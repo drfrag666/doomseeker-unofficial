@@ -36,9 +36,7 @@ CFGWadseekerIdgames::CFGWadseekerIdgames(QWidget* parent)
 	setupUi(this);
 
 	connect(btnIdgamesURLDefault, SIGNAL( clicked() ), this, SLOT( btnIdgamesURLDefaultClicked() ) );
-	connect(cbUseIdgames, SIGNAL( toggled(bool) ), this, SLOT( cbUseIdgamesToggled(bool) ) );
-
-	cbUseIdgamesToggled(cbUseIdgames->isChecked());
+	frameWithContent->setEnabled(cbUseIdgames->isChecked());
 }
 
 void CFGWadseekerIdgames::btnIdgamesURLDefaultClicked()
@@ -46,19 +44,16 @@ void CFGWadseekerIdgames::btnIdgamesURLDefaultClicked()
 	leIdgamesURL->setText(Wadseeker::defaultIdgamesUrl());
 }
 
-void CFGWadseekerIdgames::cbUseIdgamesToggled(bool checked)
-{
-	frameWithContent->setEnabled(checked);
-}
-
 void CFGWadseekerIdgames::readSettings()
 {
 	cbUseIdgames->setChecked(gConfig.wadseeker.bSearchInIdgames);
+	cbUseWadArchive->setChecked(gConfig.wadseeker.bSearchInWadArchive);
 	leIdgamesURL->setText(gConfig.wadseeker.idgamesURL);
 }
 
 void CFGWadseekerIdgames::saveSettings()
 {
 	gConfig.wadseeker.bSearchInIdgames = cbUseIdgames->isChecked();
+	gConfig.wadseeker.bSearchInWadArchive = cbUseWadArchive->isChecked();
 	gConfig.wadseeker.idgamesURL = leIdgamesURL->text();
 }

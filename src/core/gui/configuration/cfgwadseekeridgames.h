@@ -35,13 +35,12 @@ class CFGWadseekerIdgames : public ConfigurationBaseBox, private Ui::CFGWadseeke
 		CFGWadseekerIdgames(QWidget* parent = NULL);
 
 		QIcon icon() const { return QIcon(":/icons/arrow-down-double.png"); }
-		QString name() const { return tr("Idgames"); }
+		QString name() const { return tr("Archives"); }
 		void readSettings();
-		QString title() const { return tr("Wadseeker - Idgames"); }
+		QString title() const { return tr("Wadseeker - Archives"); }
 
 	protected slots:
 		void btnIdgamesURLDefaultClicked();
-		void cbUseIdgamesToggled(bool checked);
 
 	protected:
 		
