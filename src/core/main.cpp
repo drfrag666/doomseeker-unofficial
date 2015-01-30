@@ -54,6 +54,7 @@
 #include "tests/testruns.h"
 #include "wadseeker/wadseeker.h"
 #include "updater/updateinstaller.h"
+#include "lookuphost.h"
 #include "versiondump.h"
 
 QString Main::argDataDir;
@@ -214,6 +215,8 @@ int Main::run()
 	gLog.addUnformattedEntry("================================\n");
 
 	int returnCode = gApp->exec();
+
+	LookupHost::finalizeAndJoin();
 
 	#ifdef WITH_AUTOUPDATES
 	if (bInstallUpdatesAndRestart)
@@ -602,7 +605,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine
 		delete [] argv[i];
 	}
 	delete [] argv;
-
 
 	return returnValue;
 }

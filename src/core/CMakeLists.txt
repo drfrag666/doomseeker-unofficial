@@ -196,6 +196,7 @@ set(DOOMSEEKER_QT_FILES
 	customservers.h
 	joincommandlinebuilder.h
 	log.h
+	lookuphost.h
 	main.h
 	socketsignalsadapter.h
 	connectionhandler.h
@@ -372,6 +373,7 @@ set(SOURCE_FILES
 	localization.cpp
 	localizationinfo.cpp
 	log.cpp
+	lookuphost.cpp
 	main.cpp
 	random.cpp
 	scanner.cpp
