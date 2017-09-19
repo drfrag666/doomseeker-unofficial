@@ -72,7 +72,7 @@
 #include <QToolBar>
 #include <QSizePolicy>
 
-const QString MainWindow::HELP_SITE_URL = "http://doomseeker.drdteam.org/help";
+const QString MainWindow::HELP_SITE_URL = "https://doomseeker.drdteam.org/help";
 
 MainWindow::MainWindow(QApplication* application, int argc, char** argv)
 : bTotalRefreshInProcess(false), buddiesList(NULL), bWasMaximized(false),

@@ -234,7 +234,7 @@ DoomseekerConfig::DoomseekerCfg::DoomseekerCfg()
 	this->bUseTrayIcon = false;
 	this->customServersColor = "#ffaa00";
 	this->ip2CountryDatabaseMaximumAge = 60;
-	this->ip2CountryUrl = "http://doomseeker.drdteam.org/ip2c/get";
+	this->ip2CountryUrl = "https://doomseeker.drdteam.org/ip2c/get";
 	this->localization = QLocale::system().name();
 	this->mainWindowState = "";
 	this->mainWindowHeight = 0xffff;

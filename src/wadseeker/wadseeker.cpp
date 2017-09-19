@@ -37,11 +37,9 @@
 
 const QString Wadseeker::defaultSites[] =
 {
-	QString("http://doom.dogsoft.net/getwad.php?search=%WADNAME%"),
-	QString("http://wadhost.fathax.com/e107_files/downloads/wadseeker.php?search=%WADNAME%"),
-	QString("http://static.totaltrash.org/wads/"),
-	QString("http://sickedwick.net/wads/"),
-	QString("http://wads.crisisresponseunit.com/"),
+	QString("https://doom.dogsoft.net/getwad.php?search=%WADNAME%"),
+	QString("https://doomshack.org/wadlist.php"),
+	QString("https://static.allfearthesentinel.net/wads/"),
 	QString("") // empty url is treated here like an '\0' in a string
 };
 
