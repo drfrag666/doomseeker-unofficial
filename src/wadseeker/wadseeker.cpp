@@ -37,8 +37,8 @@
 
 const QString Wadseeker::defaultSites[] =
 {
+	// 2017-12-08 - doomshack.org removed at request of owner. Prefers clients to go through wad-archive.
 	QString("https://doom.dogsoft.net/getwad.php?search=%WADNAME%"),
-	QString("https://doomshack.org/wadlist.php"),
 	QString("https://static.allfearthesentinel.net/wads/"),
 	QString("") // empty url is treated here like an '\0' in a string
 };
