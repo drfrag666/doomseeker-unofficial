@@ -1,21 +1,33 @@
 image: doomseeker/doomseeker-build:latest
 
+stepsdefinded:
+  - Qt4Build: &qt4Build
+      name: Qt4 build
+      script:
+        - mkdir -p build_qt4
+        - cd build_qt4
+        - cmake -DFORCE_QT4=true ..
+        - make -j$(nproc)
+        - make install
+  - Qt5Build: &qt5Build
+      name: Qt5 build
+      script:
+        - mkdir -p build_qt5
+        - cd build_qt5
+        - cmake ..
+        - make -j$(nproc)
+        - make install
+
 pipelines:
-  default:
-    - parallel:
-      - step:
-          name: Qt4 build
-          script:
-            - mkdir -p build_qt4
-            - cd build_qt4
-            - cmake -DFORCE_QT4=true ..
-            - make -j$(nproc)
-            - make install
-      - step:
-          name: Qt5 build
-          script:
-            - mkdir -p build_qt5
-            - cd build_qt5
-            - cmake ..
-            - make -j$(nproc)
-            - make install
+  bookmarks:
+    \@:
+      - step: *qt5Build
+  custom:
+    Qt4Build:
+      - step: *qt4Build
+    Qt5Build:
+      - step: *qt5Build
+    AllBuilds:
+      - parallel:
+        - step: *qt4Build
+        - step: *qt5Build
