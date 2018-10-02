@@ -144,6 +144,9 @@ servers table when restoring state from a saved config. (addresses 3411)
 already known data as "counted", which resulted in counting them twice
 upon removal, which throwed the refresh counter off. This problem was
 triggered by "Custom/Pinned Servers".
+- Localization: Doomseeker has now option to always try to use
+the same language as the OS. This is the default setting for new
+configurations. (addresses 3481)
 - Be more flexible when matching locale names to program localizations
 definitions. Try to match locales like "en_GB" to the default English
 translation. Try to match known localization definition just basing on
@@ -151,7 +154,7 @@ the "language" part of the "language_country" locale code. This should
 fix issues when loading translations for a matching language but
 mismatching country and with "Appearance" config box displaying an
 invalid translation for a language that is known to the
-program. (addresses #3260)
+program. (addresses 3260)
 - As English translation is hardcoded into the program, it's no longer
 necessary to explicitly mention it in the .def file. It is now
 available by default regardless if there are any .def files or if any

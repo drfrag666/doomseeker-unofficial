@@ -66,7 +66,6 @@
 
 QString Main::argDataDir;
 bool Main::bInstallUpdatesAndRestart = false;
-QList<LocalizationInfo> Main::localizations;
 
 
 Main::Main(int argc, char* argv[])
@@ -473,15 +472,15 @@ void Main::initIRCConfig()
 void Main::initLocalizationsDefinitions()
 {
 	gLog << tr("Loading translations definitions");
-	localizations = Localization::loadLocalizationsList(
+	Localization::get()->loadLocalizationsList(
 		DataPaths::staticDataSearchDirs(DataPaths::TRANSLATIONS_DIR_NAME));
 
-	LocalizationInfo bestMatchedLocalization = LocalizationInfo::findBestMatch(
-		localizations, gConfig.doomseeker.localization);
-	if (bestMatchedLocalization.isValid() && bestMatchedLocalization != LocalizationInfo::DEFAULT)
+	LocalizationInfo bestMatchedLocalization = Localization::get()->coerceBestMatchingLocalization(
+		gConfig.doomseeker.localization);
+	if (bestMatchedLocalization.isValid() && bestMatchedLocalization != LocalizationInfo::PROGRAM_NATIVE)
 	{
 		gLog << tr("Loading translation \"%1\".").arg(bestMatchedLocalization.localeName);
-		bool bSuccess = Localization::loadTranslation(bestMatchedLocalization.localeName);
+		bool bSuccess = Localization::get()->loadTranslation(bestMatchedLocalization.localeName);
 		if (bSuccess)
 		{
 			gLog << tr("Translation loaded.");

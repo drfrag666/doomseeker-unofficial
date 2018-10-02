@@ -31,10 +31,15 @@ class LocalizationInfo
 {
 	public:
 		/**
+		 * Not a real localization, but a special value that tells the
+		 * program to try to always follow the current language of the OS.
+		 */
+		static const LocalizationInfo SYSTEM_FOLLOW;
+		/**
 		 * The default localization - English - is hardcoded into
 		 * the program and we don't need to have it in any .def file.
 		 */
-		static const LocalizationInfo DEFAULT;
+		static const LocalizationInfo PROGRAM_NATIVE;
 		static LocalizationInfo findBestMatch(const QList<LocalizationInfo> &candidates, const QString &localeName);
 
 		/**
@@ -51,7 +56,7 @@ class LocalizationInfo
 		 */
 		QString niceName;
 
-		void fromString(const QString& str);
+		void fromString(const QString &str);
 		QString toString() const;
 		bool isValid() const;
 

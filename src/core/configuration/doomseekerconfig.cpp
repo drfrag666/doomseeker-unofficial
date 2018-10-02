@@ -35,6 +35,7 @@
 #include "wadseeker/wadseeker.h"
 #include "datapaths.h"
 #include "fileutils.h"
+#include "localizationinfo.h"
 #include "log.h"
 #include "strings.hpp"
 #include "version.h"
@@ -265,7 +266,7 @@ DoomseekerConfig::DoomseekerCfg::DoomseekerCfg()
 	this->buddyServersColor = "#5ecf75";
 	this->customServersColor = "#ffaa00";
 	this->lanServersColor = "#92ebe5";
-	this->localization = QLocale::system().name();
+	this->localization = LocalizationInfo::SYSTEM_FOLLOW.localeName;
 	this->mainWindowState = "";
 	this->mainWindowGeometry = "";
 	this->queryAutoRefreshEverySeconds = 180;

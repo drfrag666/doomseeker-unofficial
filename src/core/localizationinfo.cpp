@@ -23,7 +23,15 @@
 #include <QLocale>
 #include <QStringList>
 
-const LocalizationInfo LocalizationInfo::DEFAULT = {
+const LocalizationInfo LocalizationInfo::SYSTEM_FOLLOW = {
+	// Unlike other translations, the "display name" in this one needs
+	// to be displayed in the currently active language. We cannot use
+	// tr() here because that would be init exactly once and also most
+	// likely before the translations are loaded.
+	"", "system", "system default"
+};
+
+const LocalizationInfo LocalizationInfo::PROGRAM_NATIVE = {
 	"GBR", "en", "English"
 };
 

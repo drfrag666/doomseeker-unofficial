@@ -29,6 +29,7 @@
 #include <QTranslator>
 #include <QSet>
 #include <QStringList>
+#include "configuration/doomseekerconfig.h"
 #include "plugins/engineplugin.h"
 #include "plugins/pluginloader.h"
 #include "datapaths.h"
@@ -39,7 +40,7 @@ const QString TRANSLATIONS_LOCATION_SUBDIR = "translations";
 const int NUM_VALID_VERSION_TOKENS = 2;
 const int NUM_VALID_TOKENS = 3;
 
-QList<QTranslator*> Localization::currentlyLoadedTranslations;
+Localization *Localization::instance = NULL;
 
 class Localization::LocalizationLoader
 {
@@ -67,37 +68,79 @@ class Localization::LocalizationLoader
 
 bool localizationInfoLessThan(const LocalizationInfo &o1, const LocalizationInfo &o2)
 {
+	// Ensure the "system follow" fake locale is at the beginning of the list
+	if (o1.localeName == LocalizationInfo::SYSTEM_FOLLOW.localeName)
+		return true;
+	if (o2.localeName == LocalizationInfo::SYSTEM_FOLLOW.localeName)
+		return false;
+	// Sort other locales alphabetically
 	return o1.localeName.toLower() < o2.localeName.toLower();
+}
+
+Localization::Localization()
+{
+	currentLocalization_ = LocalizationInfo::PROGRAM_NATIVE;
+}
+
+LocalizationInfo Localization::coerceBestMatchingLocalization(const QString &localeName) const
+{
+	LocalizationInfo localization = LocalizationInfo::findBestMatch(localizations, localeName);
+	return localization.isValid() ? localization : LocalizationInfo::PROGRAM_NATIVE;
+}
+
+const LocalizationInfo &Localization::currentLocalization() const
+{
+	return currentLocalization_;
+}
+
+Localization *Localization::get()
+{
+	if (instance == NULL)
+		instance = new Localization();
+	return instance;
+}
+
+bool Localization::isCurrentlyLoaded(const QString &localeName) const
+{
+	return localeName == currentLocalization_.localeName ||
+		localeName == gConfig.doomseeker.localization;
 }
 
 QList<LocalizationInfo> Localization::loadLocalizationsList(const QStringList& definitionsFileSearchDirs)
 {
 	LocalizationLoader l;
-	return l.loadLocalizationsList(definitionsFileSearchDirs);
+	this->localizations = l.loadLocalizationsList(definitionsFileSearchDirs);
+	return this->localizations;
 }
 
-bool Localization::loadTranslation(const QString& localeName)
+bool Localization::loadTranslation(const QString &localeName)
 {
+	QString localizationToFind = (localeName == LocalizationInfo::SYSTEM_FOLLOW.localeName) ?
+		QLocale::system().name() :
+		localeName;
+	LocalizationInfo localization = coerceBestMatchingLocalization(localizationToFind);
+	this->currentLocalization_ = localization;
+
 	// Out with the old.
 	qDeleteAll(currentlyLoadedTranslations);
 	currentlyLoadedTranslations.clear();
-	if (localeName == "en_EN")
+	if (localization == LocalizationInfo::PROGRAM_NATIVE)
 		return true;
 	// In with the new.
 	QStringList searchPaths = DataPaths::staticDataSearchDirs(
 		TRANSLATIONS_LOCATION_SUBDIR);
 	// Qt library translator.
-	installQtTranslations(localeName, searchPaths);
+	installQtTranslations(localization.localeName, searchPaths);
 
 	// Doomseeker translator.
-	bool installed = installTranslation(localeName, searchPaths);
+	bool installed = installTranslation(localization.localeName, searchPaths);
 
 	// Plugins translators.
 	foreach (const PluginLoader::Plugin *plugin, gPlugins->plugins())
 	{
 		QString name = plugin->info()->nameCanonical();
 		QTranslator *pluginTranslator = loadTranslationFile(
-			QString("%1_%2").arg(name, localeName),
+			QString("%1_%2").arg(name, localization.localeName),
 			searchPaths);
 		if (pluginTranslator)
 		{
@@ -166,7 +209,8 @@ QTranslator* Localization::loadTranslationFile(const QString& translationName, c
 //////////////////////////////////////////////////////////////////////////////
 Localization::LocalizationLoader::LocalizationLoader()
 {
-	localizations << LocalizationInfo::DEFAULT;
+	localizations << LocalizationInfo::SYSTEM_FOLLOW;
+	localizations << LocalizationInfo::PROGRAM_NATIVE;
 }
 
 QList<LocalizationInfo> Localization::LocalizationLoader::loadLocalizationsList(const QStringList& definitionsFileSearchDirs)

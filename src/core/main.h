@@ -49,7 +49,6 @@ class Main : public QObject
 		 * Default: false.
 		 */
 		static bool bInstallUpdatesAndRestart;
-		static QList<LocalizationInfo> localizations;
 		static QString argDataDir;
 
 		Main(int argc, char* argv[]);
