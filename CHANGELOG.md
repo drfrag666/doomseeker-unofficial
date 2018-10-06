@@ -41,6 +41,8 @@ each file is replaceable by any other file on the same list. (addresses 2740).
 a game. The idea here is to allow the game to decide on these values or
 to start the game into the title screen instead of dropping immediately
 into the map. (addresses 3505)
+- Guyana, Bosnia and Herzegovina, Cameroon, and Malta country flags. (addresses
+3327, 3330, 3457 and 3539)
 - IRC: User name can now be specified (this is different than nick name).
 - Windows: cacerts.pem database with "DST Root CA X3" and
 "DigiCert High Assurance EV Root CA" certificates.
@@ -85,6 +87,8 @@ style and grid will now be dynamically applied as the user changes them
 in the configuration box. This allows for quick preview (addresses 3306).
 - When user changes the language, inform that full translation is only applied
 after the restart of the program (addresses 3482).
+- United Kingdom flag to current revision from year 1801; was the pre-1801
+Union Flag (of Great Britain). (addresses 3365)
 - Create Game box: moved difficulty setting from the Rules tab to the General
 tab. This allows to disable the Rules tab fully for Chocolate Doom for which no
 other widgets are present on this tab. The setting also fits better when its
