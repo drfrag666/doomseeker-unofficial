@@ -17,6 +17,14 @@ Doomseeker uses Qt 5 as its sole dependency.  Projects for all platforms should
 be generated through CMake.  Please see COMPILE.txt and COMPILE.Windows.txt for
 more detailed information.
 
+Contact
+-------
+
+Doomseeker's maintainers may be contacted personally via email:
+
+* [Blzut3](mailto:admin@maniacsvault.net)
+* [Zalewa](mailto:zalewapl@gmail.com)
+
 Copyright
 ---------
 
