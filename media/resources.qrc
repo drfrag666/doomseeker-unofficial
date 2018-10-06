@@ -14,6 +14,8 @@
 	<file>icons/descending.png</file>
 	<file>icons/diskette.png</file>
 	<file>icons/doomseeker_plus.png</file>
+	<file>icons/edit-redo.png</file>
+	<file>icons/edit-redo-red.png</file>
 	<file>icons/exclamation.png</file>
 	<file>icons/exclamation_16.png</file>
 	<file alias="icons/exclamation_16@2x.png">icons/exclamation.png</file>
@@ -159,7 +161,6 @@
 	<file alias="flags/localhost-small">flags/localhost-small.png</file>
 	<file alias="flags/unknown-small">flags/unknown-small.png</file>
 
-	<file>IpToCountry.dat</file>
 	<file alias="LICENSE.json">../LICENSE.json</file>
 </qresource>
 </RCC>

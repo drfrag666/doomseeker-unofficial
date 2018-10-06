@@ -90,6 +90,7 @@ class IP2C : public QObject
 		void appendEntryToDatabase(const IP2CData& entry);
 
 		const QPixmap& flag(const QString& countryShortName);
+		bool hasData() const;
 
 		bool isDataAccessLocked() const
 		{

@@ -123,6 +123,8 @@ icons/shield.png (alt. link: http://www.iconarchive.com/show/fugue-icons-by-yusu
 
 icons/buddies.png (modified by Juuso "Linda" Lapinlampi <wubthecaptain@gmail.com>, 2017
                    - shirts changed; og name: system-users.png)
+icons/edit-redo.png
+icons/edit-redo-red.png (hue altered by Zalewa)
 icons/exclamation.png (og name: dialog-warning.png)
 icons/exclamation-16.png (og name: dialog-warning.png)
 icons/internet-web-browser.png

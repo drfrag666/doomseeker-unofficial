@@ -55,7 +55,6 @@ IP2CLoader::IP2CLoader(QObject *parent)
 		SLOT( ip2cFinishedParsing(bool) ) );
 
 	d->ip2cUpdater = new IP2CUpdater();
-	d->ip2cUpdater->setFilePath(DoomseekerFilePaths::ip2cDatabase());
 	this->connect(d->ip2cUpdater, SIGNAL( databaseDownloadFinished(const QByteArray&) ),
 		SLOT( ip2cFinishUpdate(const QByteArray&) ) );
 	this->connect(d->ip2cUpdater, SIGNAL( downloadProgress(qint64, qint64) ),
@@ -82,10 +81,7 @@ IP2CLoader::~IP2CLoader()
 void IP2CLoader::load()
 {
 	if (gConfig.doomseeker.bIP2CountryAutoUpdate)
-	{
-		QString databasePath = DoomseekerFilePaths::ip2cDatabase();
-		d->ip2cUpdater->needsUpdate(databasePath);
-	}
+		d->ip2cUpdater->needsUpdate(DoomseekerFilePaths::ip2cDatabaseAny());
 	ip2cParseDatabase();
 }
 
@@ -120,7 +116,7 @@ void IP2CLoader::update()
 	{
 		gLog << tr("Starting IP2C update.");
 		IP2C::instance()->setDataAccessLockEnabled(true);
-		d->ip2cUpdater->downloadDatabase();
+		d->ip2cUpdater->downloadDatabase(DoomseekerFilePaths::ip2cDatabase());
 	}
 	else
 	{
@@ -138,8 +134,8 @@ void IP2CLoader::ip2cFinishUpdate(const QByteArray& downloadedData)
 	{
 		gLog << tr("IP2C database finished downloading.");
 		QString filePath = DoomseekerFilePaths::ip2cDatabase();
-		d->ip2cUpdater->getRollbackData();
-		if (!d->ip2cUpdater->saveDownloadedData())
+		d->ip2cUpdater->getRollbackData(filePath);
+		if (!d->ip2cUpdater->saveDownloadedData(filePath))
 		{
 			gLog << tr("Unable to save IP2C database at path: %1").arg(filePath);
 		}
@@ -175,13 +171,13 @@ void IP2CLoader::ip2cFinishedParsing(bool bSuccess)
 			QFile file(filePath);
 			file.remove();
 
-			gLog << tr("Using precompiled IP2C database.");
+			gLog << tr("Trying to use preinstalled IP2C database.");
 			d->ip2cParser->readDatabaseThreaded(DoomseekerFilePaths::IP2C_QT_SEARCH_PATH);
 		}
 		else
 		{
 			// Revert to old content.
-			d->ip2cUpdater->rollback();
+			d->ip2cUpdater->rollback(filePath);
 
 			// Must succeed now.
 			d->ip2cParser->readDatabaseThreaded(filePath);

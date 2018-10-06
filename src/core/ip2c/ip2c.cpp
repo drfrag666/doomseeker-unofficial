@@ -114,6 +114,11 @@ const QPixmap &IP2C::flag(const QString& countryShortName)
 	return flags[countryShortName];
 }
 
+bool IP2C::hasData() const
+{
+	return !database.empty();
+}
+
 const IP2C::IP2CData& IP2C::lookupIP(unsigned int ipaddress)
 {
 	QMutexLocker dataAccessMutexLocker(&dataAccessMutex);
@@ -160,6 +165,9 @@ IP2CCountryInfo IP2C::obtainCountryInfo(unsigned int ipaddress)
 	{
 		return IP2CCountryInfo(&flagLan, tr("LAN"));
 	}
+
+	if (!hasData())
+		return IP2CCountryInfo();
 
 	const IP2CData& data = lookupIP(ipaddress);
 

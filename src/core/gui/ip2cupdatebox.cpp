@@ -48,7 +48,6 @@ IP2CUpdateBox::IP2CUpdateBox(QWidget* parent)
 
 	d->ip2cUpdater = new IP2CUpdater(this);
 	this->connect(d->ip2cUpdater, SIGNAL(updateNeeded(int)), SLOT(updateInfo(int)));
-	d->ip2cUpdater->needsUpdate(DoomseekerFilePaths::ip2cDatabase());
 
 	start();
 }
@@ -59,21 +58,33 @@ IP2CUpdateBox::~IP2CUpdateBox()
 
 void IP2CUpdateBox::start()
 {
-	QString filePath = DoomseekerFilePaths::ip2cDatabase();
+	QString filePath = DoomseekerFilePaths::ip2cDatabaseAny();
 
-	d->lblIP2CFileLocation->setText(filePath);
+	d->lblIP2CFileLocation->setText(!filePath.isEmpty() ? filePath : tr("N/A"));
+	
+	QString downloadPath = DoomseekerFilePaths::ip2cDatabase();
+	d->lblIP2CDownloadLocation->setText(downloadPath);
+	QFileInfo downloadedFileInfo(downloadPath);
+	d->lblDownloadIcon->setPixmap(downloadedFileInfo.isFile() ?
+		QPixmap(":/icons/edit-redo.png") : 
+		QPixmap(":/icons/edit-redo-red.png"));
+	d->lblDownloadIcon->setToolTip(downloadedFileInfo.isFile() ?
+		tr("File is already downloaded.") :
+		tr("File doesn't exist yet or location doesn't point to a file."));
 
 	QFileInfo fileInfo(filePath);
-	if (fileInfo.exists())
+	if (!filePath.isEmpty() && fileInfo.exists())
 	{
+		d->lblFileIcon->setPixmap(QPixmap(":/icons/edit-redo.png"));
 		d->lblDatabaseStatus->setText(tr("Verifying checksum ..."));
 		d->progressBar->show();
+		d->ip2cUpdater->needsUpdate(filePath);
 	}
 	else
 	{
+		d->lblFileIcon->setPixmap(QPixmap(":/icons/edit-redo-red.png"));
 		d->lblDatabaseStatus->setText(tr("IP2C database file was not found. "
-				"Precompiled database will be used. "
-				"Use update button if you want to download the newest database."));
+			"Use update button if you want to download the newest database."));
 	}
 }
 
@@ -83,15 +94,19 @@ void IP2CUpdateBox::updateInfo(int status)
 	switch (status)
 	{
 	case IP2CUpdater::UpdateNeeded:
+		d->lblStatusIcon->setPixmap(QPixmap(":/icons/edit-redo-red.png"));
 		d->lblDatabaseStatus->setText(tr("Update required."));
 		break;
 	case IP2CUpdater::UpToDate:
+		d->lblStatusIcon->setPixmap(QPixmap(":/icons/edit-redo.png"));
 		d->lblDatabaseStatus->setText(tr("Database is up-to-date."));
 		break;
 	case IP2CUpdater::UpdateCheckError:
+		d->lblStatusIcon->setPixmap(QPixmap(":/icons/x.png"));
 		d->lblDatabaseStatus->setText(tr("Database status check failed. See log for details."));
 		break;
 	default:
+		d->lblStatusIcon->setPixmap(QPixmap(":/icons/x.png"));
 		d->lblDatabaseStatus->setText(tr("Unhandled update check status."));
 		break;
 	}

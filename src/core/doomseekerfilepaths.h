@@ -52,6 +52,19 @@ class MAIN_EXPORT DoomseekerFilePaths
 		static QString cacerts();
 		static QString ini();
 		static QString ircIni();
+		/**
+		 * This is any IP2C database available in the order of usual
+		 * loading preference.
+		 *
+		 * @return The return value can vary depending on where
+		 * in the file system the file resides. If it's nowhere
+		 * to be found, empty string is returned.
+		 */
+		static QString ip2cDatabaseAny();
+		/**
+		 * This always points to the location of the locally downloaded
+		 * database regardless if the file exists or not.
+		 */
 		static QString ip2cDatabase();
 		static QString passwordIni();
 		static QString tempServerConfig();

@@ -3727,7 +3727,7 @@ Nastąpił błąd:
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_ip2cupdatebox.h" line="119"/>
         <source>IP2C file location:</source>
-        <translation>Lokacja pliku IP2C:</translation>
+        <translation>Położenie pliku IP2C:</translation>
     </message>
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_ip2cupdatebox.h" line="120"/>

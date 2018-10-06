@@ -80,10 +80,13 @@ void IP2CUpdater::checksumDownloadFinished()
 	pCurrentNetworkReply->deleteLater();
 	pCurrentNetworkReply = NULL;
 
-	QFile file(this->pathToFile);
-	file.open(QIODevice::ReadOnly);
-	QByteArray localMd5 = QCryptographicHash::hash(file.readAll(), QCryptographicHash::Md5);
-	localMd5 = localMd5.toHex().toLower();
+	QByteArray localMd5;
+	QFile file(this->lastAsyncCallPath);
+	if (file.open(QIODevice::ReadOnly))
+	{
+		localMd5 = QCryptographicHash::hash(file.readAll(), QCryptographicHash::Md5);
+		localMd5 = localMd5.toHex().toLower();
+	}
 
 	gLog << tr("Comparing IP2C hashes: local = %1, remote = %2").arg(
 		QString(localMd5)).arg(QString(remoteMd5));
@@ -105,8 +108,9 @@ const QUrl IP2CUpdater::dbDownloadUrl()
 	return QUrl("https://doomseeker.drdteam.org/ip2c/geolite2.gz");
 }
 
-void IP2CUpdater::downloadDatabase()
+void IP2CUpdater::downloadDatabase(const QString &savePath)
 {
+	this->lastAsyncCallPath = savePath;
 	get(dbDownloadUrl(), SLOT(downloadFinished()));
 }
 
@@ -134,9 +138,10 @@ void IP2CUpdater::downloadFinished()
 		gzFile gz = gzopen(tmpFilePath.toUtf8().constData(), "rb");
 		if(gz != NULL)
 		{
-			char chunk[131072]; // 128k
+			static const int CHUNK_SIZE = 128 * 1024;
+			char chunk[CHUNK_SIZE];
 			int bytesRead = 0;
-			while((bytesRead = gzread(gz, chunk, 131072)) != 0)
+			while((bytesRead = gzread(gz, chunk, CHUNK_SIZE)) != 0)
 			{
 				uncompressedData.append(QByteArray(chunk, bytesRead));
 			}
@@ -181,25 +186,17 @@ void IP2CUpdater::get(const QUrl &url, const char *finishedSlot)
 	this->connect(pCurrentNetworkReply, SIGNAL(finished()), finishedSlot);
 }
 
-bool IP2CUpdater::getRollbackData()
+bool IP2CUpdater::getRollbackData(const QString &databasePath)
 {
 	rollbackData.clear();
-
-	QFile file(pathToFile);
-	if (!file.exists())
+	QFile file(databasePath);
+	if (file.open(QIODevice::ReadOnly))
 	{
-		return false;
+		rollbackData = file.readAll();
+		file.close();
+		return true;
 	}
-
-	if (!file.open(QIODevice::ReadOnly))
-	{
-		return false;
-	}
-
-	rollbackData = file.readAll();
-	file.close();
-
-	return true;
+	return false;
 }
 
 bool IP2CUpdater::isWorking() const
@@ -216,39 +213,35 @@ void IP2CUpdater::needsUpdate(const QString& filePath)
 		return;
 	}
 
-	this->pathToFile = filePath;
+	this->lastAsyncCallPath = filePath;
 	gLog << tr("Checking if IP2C database at '%1' needs updating.").arg(filePath);
 	get(dbChecksumUrl(), SLOT(checksumDownloadFinished()));
 }
 
-bool IP2CUpdater::rollback()
+bool IP2CUpdater::rollback(const QString &savePath)
 {
-	bool bSuccess = save(rollbackData);
+	bool bSuccess = save(rollbackData, savePath);
 	rollbackData.clear();
 
 	return bSuccess;
 }
 
-bool IP2CUpdater::save(const QByteArray& saveWhat)
+bool IP2CUpdater::save(const QByteArray& saveWhat, const QString &savePath)
 {
 	if (saveWhat.isEmpty())
-	{
 		return false;
-	}
 
-	QFile file(pathToFile);
-	if (!file.open(QIODevice::WriteOnly))
+	QFile file(savePath);
+	if (file.open(QIODevice::WriteOnly))
 	{
-		return false;
+		file.write(saveWhat);
+		file.close();
+		return true;
 	}
-
-	file.write(saveWhat);
-	file.close();
-
-	return true;
+	return false;
 }
 
-bool IP2CUpdater::saveDownloadedData()
+bool IP2CUpdater::saveDownloadedData(const QString &savePath)
 {
-	return save(retrievedData);
+	return save(retrievedData, savePath);
 }

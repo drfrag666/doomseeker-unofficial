@@ -31,8 +31,7 @@
  * @brief IP2CUpdater is responsible for downloading a new version of database
  * from the site.
  *
- * NetworkManager class from Wadseeker library is used to communicate with WWW
- * site. As IP2C class remains the core of the whole system for more
+ * As IP2C class remains the core of the whole system for more
  * information refer to there.
  */
 class IP2CUpdater : public QObject
@@ -50,13 +49,11 @@ class IP2CUpdater : public QObject
 		IP2CUpdater(QObject *parent = NULL);
 		~IP2CUpdater();
 
-		void downloadDatabase();
+		void downloadDatabase(const QString &savePath);
 		const QByteArray& downloadedData();
 
-		const QString& filePath() const { return pathToFile; }
-
 		/**
-		 *	@brief Obtains rollback data from pathToFile file.
+		 *	@brief Obtains rollback data from specified file.
 		 *
 		 *	This will always clear previous rollback data. You can keep only
 		 *	one instance of rollback file at a time.
@@ -66,7 +63,7 @@ class IP2CUpdater : public QObject
 		 *
 		 *	@see rollback()
 		 */
-		bool getRollbackData();
+		bool getRollbackData(const QString &databasePath);
 
 		bool hasDownloadedData() const { return !retrievedData.isEmpty(); }
 		bool hasRollbackData() const { return !rollbackData.isEmpty(); }
@@ -87,30 +84,28 @@ class IP2CUpdater : public QObject
 
 
 		/**
-		 *	@brief Saves data to the pathToFile file. This data must be first
-		 *	obtained through the rollback method.
+		 * @brief Saves rollback data to the specified file. This data must be
+		 * first obtained through the getRollbackData() method.
 		 *
-		 *	If there is nothing to rollback this will do nothing. This will also
-		 *	clear previously obtained rollback data.
+		 * If there is nothing to rollback this will do nothing. This will also
+		 * clear previously obtained rollback data.
 		 *
-		 *	@return True if rollback succeeded, false if there was nothing to
-		 *	rollback to or the save failed.
+		 * @return True if rollback succeeded, false if there was nothing to
+		 * rollback to or the save failed.
 		 *
-		 *	@see getRollbackData()
+		 * @see getRollbackData()
 		 */
-		bool rollback();
+		bool rollback(const QString &savePath);
 
 		/**
-		 *	@brief Saves recently downloaded data to the pathToFile file.
+		 *	@brief Saves recently downloaded data to the specified file.
 		 *
 		 *	This will do nothing if there is no downloaded data.
 		 *
 		 *	@return True if save succeeded, false if there was nothing to save
 		 *	or the save failed.
 		 */
-		bool saveDownloadedData();
-
-		void setFilePath(const QString& filePath) { pathToFile = filePath; }
+		bool saveDownloadedData(const QString &savePath);
 
 	signals:
 		/**
@@ -130,22 +125,14 @@ class IP2CUpdater : public QObject
 		QNetworkAccessManager* pNetworkAccessManager;
 		QNetworkReply* pCurrentNetworkReply;
 
-		/**
-		 * @brief Various methods will operate on this path.
-		 *
-		 * @see needsUpdate()
-		 * @see rollback()
-		 * @see saveDownloadedData()
-		 * @see saveRollbackData()
-		 */
-		QString pathToFile;
+		QString lastAsyncCallPath;
 		QByteArray retrievedData;
 		QByteArray rollbackData;
 
 		void abort();
 		void get(const QUrl &url, const char *finishedSlot);
 		bool handleRedirect(QNetworkReply &reply, const char *finishedSlot);
-		bool save(const QByteArray& saveWhat);
+		bool save(const QByteArray& saveWhat, const QString &savePath);
 
 	private slots:
 		void checksumDownloadFinished();
