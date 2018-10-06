@@ -2,6 +2,18 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="es_ES">
 <context>
+    <name>OdamexAboutProvider</name>
+    <message>
+        <location filename="../odamexgameinfo.cpp" line="67"/>
+        <source>This plugin is distributed under the terms of the LGPL v2.1 or later.
+
+</source>
+        <translation>Este complemento se distribuye bajo los términos de la licencia LGPL v2.1 o posterior.
+
+</translation>
+    </message>
+</context>
+<context>
     <name>OdamexGameInfo</name>
     <message>
         <location filename="../odamexgameinfo.cpp" line="27"/>

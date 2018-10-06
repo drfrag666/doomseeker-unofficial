@@ -4,127 +4,127 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="98"/>
+        <location filename="../gui/aboutdialog.cpp" line="101"/>
         <source>This program is distributed under the terms of the LGPL v2.1 or later.</source>
         <translation>Éste programa és distribuido bajo los términos de la licéncia LGPL v2.1 o posterior.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="101"/>
+        <location filename="../gui/aboutdialog.cpp" line="104"/>
         <source>This program uses GeoLite2 database for IP-to-Country (IP2C) purposes. Database and Contents Copyright (c) 2016 MaxMind, Inc.</source>
         <translation>Éste programa usa la base de datos de GeoLite2 para localizar países por IP (IP2C). El contenido y la base de datos bajo Copyright (c) 2016 MaxMind, Inc.</translation>
     </message>
     <message>
+        <location filename="../gui/aboutdialog.cpp" line="106"/>
         <source>GeoLite2 License:
 This work is licensed under the Creative Commons Attribution - ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.</source>
-        <translation type="vanished">Licencia de GeoLite2:
+        <translation>Licencia de GeoLite2:
 Se encuentra bajo la licencia de la Creative Commons Attribution-ShareAlike 3.0 Unported License. Para ver una copia de esta licéncia, visita http://creativecommons.org/licenses/by-sa/3.0/.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="96"/>
+        <location filename="../gui/aboutdialog.cpp" line="99"/>
         <source>Copyright %1 %2 The Doomseeker Team</source>
         <translation>Copyright %1 %2 El Equipo de Doomseeker (The Doomseeker Team)</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="103"/>
         <source>GeoLite2 License:
 This work is licensed under the Creative Commons Attribution - ShareAlike 4.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.</source>
-        <translation>Licencia de GeoLite2:
+        <translation type="vanished">Licencia de GeoLite2:
 Se encuentra bajo la licencia de la Creative Commons Attribution-ShareAlike 4.0 Unported License. Para ver una copia de esta licéncia, visita http://creativecommons.org/licenses/by-sa/4.0/.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="106"/>
+        <location filename="../gui/aboutdialog.cpp" line="109"/>
         <source>GeoLite2 available at:
 https://dev.maxmind.com/geoip/geoip2/geolite2/</source>
-        <translation>GeoLite2 available at:
+        <translation>GeoLite2 está disponible en:
 https://dev.maxmind.com/geoip/geoip2/geolite2/</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="111"/>
+        <location filename="../gui/aboutdialog.cpp" line="114"/>
         <source>- Aha-Soft</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="112"/>
+        <location filename="../gui/aboutdialog.cpp" line="115"/>
         <source>- Crystal Clear by Everaldo Coelho</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="113"/>
+        <location filename="../gui/aboutdialog.cpp" line="116"/>
         <source>- Fugue Icons (C) 2013 Yusuke Kamiyamane. All rights reserved.</source>
         <translation>- Fugue Icons (C) 2013 Yusuke Kamiyamane. Todos los derechos reservados.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="114"/>
+        <location filename="../gui/aboutdialog.cpp" line="117"/>
         <source>- Nuvola 1.0 (KDE 3.x icon set)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="115"/>
+        <location filename="../gui/aboutdialog.cpp" line="118"/>
         <source>- Oxygen Icons 4.3.1 (KDE)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="116"/>
+        <location filename="../gui/aboutdialog.cpp" line="119"/>
         <source>- Silk Icon Set (C) Mark James (famfamfam.com)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="117"/>
+        <location filename="../gui/aboutdialog.cpp" line="120"/>
         <source>- Tango Icon Library / Tango Desktop Project</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="118"/>
+        <location filename="../gui/aboutdialog.cpp" line="121"/>
         <source>This program uses icons (or derivates of) from following sources:
 </source>
-        <translation>This program uses icons (or derivates of) from following sources:
+        <translation>Este programa usa iconos (o derivados) de las siguientes fuentes:
 </translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="129"/>
+        <location filename="../gui/aboutdialog.cpp" line="132"/>
         <source>JSON library license</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="437"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="439"/>
         <source>About Doomseeker</source>
         <translation>Acerca de Doomseeker</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="438"/>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="472"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="440"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="474"/>
         <source>Doomseeker</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="439"/>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="474"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="441"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="476"/>
         <source>&lt;Version&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="440"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="442"/>
         <source>&lt;Changeset&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="441"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="443"/>
         <source>Revision:</source>
         <translation>Revisión:</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="443"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="445"/>
         <source>This value is relevant to auto updater feature.</source>
         <translation>Este valor es relevante para la función de actualizacion automática.</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="445"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="447"/>
         <source>&lt;Revision&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="446"/>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="475"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="448"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="477"/>
         <source>&lt;a href=&quot;https://doomseeker.drdteam.org/&quot;&gt;https://doomseeker.drdteam.org/&lt;/a&gt;</source>
         <translation></translation>
     </message>
@@ -172,57 +172,57 @@ https://dev.maxmind.com/geoip/geoip2/geolite2/
 </translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="448"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="450"/>
         <source>Contact information:</source>
         <translation>Información de contacto:</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="449"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="451"/>
         <source>Zalewa:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="450"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="452"/>
         <source>zalewapl@gmail.com</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="451"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="453"/>
         <source>Blzut3:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="452"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="454"/>
         <source>admin@maniacsvault.net</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="453"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="455"/>
         <source>Additional contributions from:</source>
         <translation>Contribuidores adicionales:</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="454"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="456"/>
         <source>- Hyper_Eye, Nece228, Linda &quot;WubTheCaptain&quot; Lapinlampi, Pol Marcet Sardà</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="455"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="457"/>
         <source>- Doomseeker logo and main icon design by Rachael &quot;Eruanna&quot; Alexanderson</source>
         <translation>- el logo de Doomseeker y el icono principal diseñados por Rachael &quot;Eruanna&quot; Alexanderson</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="456"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="458"/>
         <source>- Improved Doomseeker icons by MazterQyoun-ae and CarpeDiem</source>
         <translation>- iconos de Doomseeker mejorados por MazterQyoun-ae y CarpeDiem</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="457"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="459"/>
         <source>JSON library on BSD License (c) Eeli Reilin 2011 :</source>
         <translation>Librería JSON bajo licencia BSD (c) Eeli Reilin 2011 :</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="458"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="460"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -231,17 +231,17 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="464"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="466"/>
         <source>Show JSON library license</source>
         <translation>Mostrar licencia de la librería JSON</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="466"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="468"/>
         <source>GeoLite2 Database:</source>
         <translation>Base de datos GeoLite2:</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="467"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="469"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -250,43 +250,43 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="473"/>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="480"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="475"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="482"/>
         <source>Wadseeker</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="476"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="478"/>
         <source>Copyright ©</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="477"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="479"/>
         <source>&lt;YearSpan&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="478"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="480"/>
         <source>&lt;Author&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="479"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="481"/>
         <source>&lt;Description&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="481"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="483"/>
         <source>Version: 0.0.0.0</source>
         <translation>Versión: 0.0.0.0</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="482"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="484"/>
         <source>&lt;Plugin Author&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_aboutdialog.h" line="483"/>
+        <location filename="../../../build/src/core/ui_aboutdialog.h" line="486"/>
         <source>Plugins</source>
         <translation>Complementos</translation>
     </message>
@@ -579,17 +579,22 @@ no puede ser ejecutado</translation>
         <translation>Apariencia</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgappearance.cpp" line="186"/>
+        <location filename="../gui/configuration/cfgappearance.cpp" line="95"/>
+        <source>Use system language</source>
+        <translation>Usar lengua del sistema</translation>
+    </message>
+    <message>
+        <location filename="../gui/configuration/cfgappearance.cpp" line="193"/>
         <source>Unknown language definition &quot;%1&quot;</source>
         <translation>Definición de lengua desconocida &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgappearance.cpp" line="217"/>
+        <location filename="../gui/configuration/cfgappearance.cpp" line="219"/>
         <source>Loading translation &quot;%1&quot;</source>
         <translation>Cargando traducción &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgappearance.cpp" line="219"/>
+        <location filename="../gui/configuration/cfgappearance.cpp" line="223"/>
         <source>Program needs to be restarted to fully apply the translation</source>
         <translation>El programa necesita reiniciarse para aplicar completamente la traducción</translation>
     </message>
@@ -639,6 +644,11 @@ no puede ser ejecutado</translation>
         <translation>Lengua:</translation>
     </message>
     <message>
+        <location filename="../../../build/src/core/ui_cfgappearance.h" line="275"/>
+        <source>Full retranslation requires a restart.</source>
+        <translation>La traducción completa requiere de reiniciar el programa.</translation>
+    </message>
+    <message>
         <location filename="../../../build/src/core/ui_cfgappearance.h" line="291"/>
         <source>Colorize server console</source>
         <translation>Colorear consola del servidor</translation>
@@ -654,9 +664,8 @@ no puede ser ejecutado</translation>
         <translation>Color servidores con compañeros:</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_cfgappearance.h" line="275"/>
         <source>Restart will be required to apply the translation fully.</source>
-        <translation>Es necesario reiniciar para aplicar la traducción completamente.</translation>
+        <translation type="vanished">Es necesario reiniciar para aplicar la traducción completamente.</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_cfgappearance.h" line="282"/>
@@ -2191,6 +2200,11 @@ p, li { white-space: pre-wrap; }
         <translation>Guardar</translation>
     </message>
     <message>
+        <location filename="../../../build/src/core/ui_createserverdialog.h" line="263"/>
+        <source>Obtain command line required to launch this game.</source>
+        <translation>Obtener la línea de comandos requerida para iniciar este juego.</translation>
+    </message>
+    <message>
         <location filename="../../../build/src/core/ui_createserverdialog.h" line="265"/>
         <source>Offline command line</source>
         <translation>Comando para el modo desconectado</translation>
@@ -2206,7 +2220,6 @@ p, li { white-space: pre-wrap; }
         <translation>Comando para el servidor</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_createserverdialog.h" line="263"/>
         <location filename="../../../build/src/core/ui_createserverdialog.h" line="268"/>
         <source>Obtain command line required to launch this server.</source>
         <translation>Obtener la línea de comandos requerida para iniciar este servidor.</translation>
@@ -3034,17 +3047,17 @@ Ejecutable: %3</translation>
         <translation>No hay bandera para el país:%1</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2c.cpp" line="156"/>
+        <location filename="../ip2c/ip2c.cpp" line="161"/>
         <source>Localhost</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2c.cpp" line="161"/>
+        <location filename="../ip2c/ip2c.cpp" line="166"/>
         <source>LAN</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2c.cpp" line="168"/>
+        <location filename="../ip2c/ip2c.cpp" line="176"/>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
@@ -3052,77 +3065,81 @@ Ejecutable: %3</translation>
 <context>
     <name>IP2CLoader</name>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="71"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="70"/>
         <source>IP2C parser is still working, awaiting stop...</source>
         <translation>El analizador IP2C sigue funcionando, esperando a que se detenga...</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="103"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="99"/>
         <source>IP2C update not needed.</source>
         <translation>Actualización de IP2C no necesaria.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="106"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="102"/>
         <source>IP2C update errored. See log for details.</source>
         <translation>La actualización de IP2C falló. Ver registro para más detalles.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="109"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="105"/>
         <source>IP2C update bugged out.</source>
         <translation>La actualización de IP2C muestra errores.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="121"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="117"/>
         <source>Starting IP2C update.</source>
         <translation>Iniciando la actualización de IP2C.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="128"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="124"/>
         <source>IP2C update must wait until parsing of current database finishes. Waiting 1 second</source>
         <translation>La actualización de IP2C debe esperar hasta que finalice el análisis de la base de datos actual. Esperando 1 segundo</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="139"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="135"/>
         <source>IP2C database finished downloading.</source>
         <translation>La base de datos IP2C se terminó de descargar.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="144"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="140"/>
         <source>Unable to save IP2C database at path: %1</source>
         <translation>No se puede guardar la base de datos IP2C en la ruta: %1</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="150"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="146"/>
         <source>IP2C download has failed.</source>
         <translation>La descarga de IP2C ha fallado.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="163"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="159"/>
         <source>Failed to read IP2C fallback. Stopping.</source>
         <translation>Error al leer la base de datos IP2C de repuesto. Parando.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="167"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="163"/>
         <source>Failed to read IP2C database. Reverting...</source>
         <translation>Error al leer la base de datos IP2C. Revirtiendo...</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="172"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="168"/>
         <source>IP2C revert attempt failed. Nothing to go back to.</source>
         <translation>Intento de revertir IP2C fallido. Nada a lo que regresar.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="178"/>
-        <source>Using precompiled IP2C database.</source>
-        <translation>Usando la base de datos IP2C precompilada.</translation>
+        <location filename="../ip2c/ip2cloader.cpp" line="174"/>
+        <source>Trying to use preinstalled IP2C database.</source>
+        <translation>Intentando usar la base de datos IP2C preinstalada.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="192"/>
+        <source>Using precompiled IP2C database.</source>
+        <translation type="vanished">Usando la base de datos IP2C precompilada.</translation>
+    </message>
+    <message>
+        <location filename="../ip2c/ip2cloader.cpp" line="188"/>
         <source>IP2C parsing finished.</source>
         <translation>El análisis de IP2C terminó.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="210"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="206"/>
         <source>Please wait. IP2C database is being read. This may take some time.</source>
         <translation>Por favor espera. La base de datos IP2C está siendo leída. Esto puede tomar algo de tiempo.</translation>
     </message>
@@ -3153,57 +3170,71 @@ Ejecutable: %3</translation>
 <context>
     <name>IP2CUpdateBox</name>
     <message>
-        <location filename="../gui/ip2cupdatebox.cpp" line="69"/>
+        <location filename="../gui/ip2cupdatebox.cpp" line="79"/>
         <source>Verifying checksum ...</source>
         <translation>Verificando suma de verificación ...</translation>
     </message>
     <message>
-        <location filename="../gui/ip2cupdatebox.cpp" line="74"/>
         <source>IP2C database file was not found. Precompiled database will be used. Use update button if you want to download the newest database.</source>
-        <translation>El archivo de la base de datos IP2C no fue encontrado. Se usará la base de datos precompilada. Use el botón de actualización si desea descargar la última base de datos.</translation>
+        <translation type="vanished">El archivo de la base de datos IP2C no fue encontrado. Se usará la base de datos precompilada. Use el botón de actualización si desea descargar la última base de datos.</translation>
+    </message>
+    <message>
+        <location filename="../gui/ip2cupdatebox.cpp" line="63"/>
+        <source>N/A</source>
+        <translation>N/A</translation>
+    </message>
+    <message>
+        <location filename="../gui/ip2cupdatebox.cpp" line="72"/>
+        <source>File is already downloaded.</source>
+        <translation>El archivo ya está descargado.</translation>
+    </message>
+    <message>
+        <location filename="../gui/ip2cupdatebox.cpp" line="73"/>
+        <source>File doesn&apos;t exist yet or location doesn&apos;t point to a file.</source>
+        <translation>El archivo aún no existe o la ubicación no apunta a un archivo.</translation>
     </message>
     <message>
         <location filename="../gui/ip2cupdatebox.cpp" line="86"/>
+        <source>IP2C database file was not found. Use update button if you want to download the newest database.</source>
+        <translation>No se encontró la base de datos IP2C. Utilice el botón de actualización si desea descargar la base de datos más reciente.</translation>
+    </message>
+    <message>
+        <location filename="../gui/ip2cupdatebox.cpp" line="98"/>
         <source>Update required.</source>
         <translation>Actualización necesaria.</translation>
     </message>
     <message>
-        <location filename="../gui/ip2cupdatebox.cpp" line="89"/>
+        <location filename="../gui/ip2cupdatebox.cpp" line="102"/>
         <source>Database is up-to-date.</source>
         <translation>La base de datos está actualizada.</translation>
     </message>
     <message>
-        <location filename="../gui/ip2cupdatebox.cpp" line="92"/>
+        <location filename="../gui/ip2cupdatebox.cpp" line="106"/>
         <source>Database status check failed. See log for details.</source>
         <translation>Fallo en la comprobación del estado de la base de datos. Ver registro para más detalles.</translation>
     </message>
     <message>
-        <location filename="../gui/ip2cupdatebox.cpp" line="95"/>
+        <location filename="../gui/ip2cupdatebox.cpp" line="110"/>
         <source>Unhandled update check status.</source>
         <translation>Estado de comprobación de actualización no controlado.</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="115"/>
+        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="187"/>
         <source>Doomseeker - Update IP2C</source>
         <translation>Doomseeker - Actualización de IP2C</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="116"/>
+        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="188"/>
         <source>IP2C file location:</source>
         <translation>Ubicación del archivo IP2C:</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="117"/>
-        <source>&lt;ENTER LOCATION HERE&gt;</source>
-        <translation></translation>
+        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="189"/>
+        <source>The downloaded database will be placed in the following location:</source>
+        <translation>La base de datos descargada estará ubicada en la siguiente ruta:</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="118"/>
-        <source>&lt;ENTER DATABASE UPDATE STATUS HERE&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="119"/>
+        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="190"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -3216,12 +3247,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Tenga en cuenta que la actualización de IP2C se realiza en segundo plano. Doomseeker le notificará del progreso de la descarga a través de una barra de progreso y mensajes en el registro.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="124"/>
+        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="195"/>
         <source>UPDATE!</source>
         <translation>¡ACTUALIZACIÓN!</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="125"/>
+        <location filename="../../../build/src/core/ui_ip2cupdatebox.h" line="196"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -3234,17 +3265,17 @@ p, li { white-space: pre-wrap; }
         <translation>Error de red al verificar la suma de verificación de IP2C: %1</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cupdater.cpp" line="88"/>
+        <location filename="../ip2c/ip2cupdater.cpp" line="91"/>
         <source>Comparing IP2C hashes: local = %1, remote = %2</source>
         <translation>Comparación de los valores hash de IP2C: local = %1, remoto = %2</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cupdater.cpp" line="93"/>
+        <location filename="../ip2c/ip2cupdater.cpp" line="96"/>
         <source>IP2C update needed.</source>
         <translation>Actualización de IP2C necesaria.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cupdater.cpp" line="220"/>
+        <location filename="../ip2c/ip2cupdater.cpp" line="217"/>
         <source>Checking if IP2C database at &apos;%1&apos; needs updating.</source>
         <translation>Comprobando si la base de datos IP2C en &apos;%1&apos; necesita una actualización.</translation>
     </message>
@@ -4059,77 +4090,77 @@ Operación fallida.</translation>
 <context>
     <name>Main</name>
     <message>
-        <location filename="../main.cpp" line="425"/>
+        <location filename="../main.cpp" line="424"/>
         <source>Doomseeker startup error</source>
         <translation>Error de inicio de Doomseeker</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="224"/>
+        <location filename="../main.cpp" line="223"/>
         <source>Init finished.</source>
         <translation>Init finalizado.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="239"/>
+        <location filename="../main.cpp" line="238"/>
         <source>Doomseeker - Updates Install Failure</source>
         <translation>Doomseeker - Instalación de actualizaciones fallas</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="285"/>
+        <location filename="../main.cpp" line="284"/>
         <source>Failed to open file &apos;%1&apos;.</source>
         <translation>Error al abrir el archivo &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="293"/>
+        <location filename="../main.cpp" line="292"/>
         <source>Failed to open stdout.</source>
         <translation>Error al abrir stdout.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="303"/>
+        <location filename="../main.cpp" line="302"/>
         <source>Dumping version info to file in JSON format.</source>
         <translation>Depositando la información de la versión al archivo en formato JSON.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="315"/>
+        <location filename="../main.cpp" line="314"/>
         <source>Preparing GUI.</source>
         <translation>Preparando GUI.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="328"/>
+        <location filename="../main.cpp" line="327"/>
         <source>Starting Create Game box.</source>
         <translation>Iniciando la ventana de Creación del Juego.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="337"/>
+        <location filename="../main.cpp" line="336"/>
         <source>Starting RCon client.</source>
         <translation>Iniciando el cliente RCon.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="352"/>
+        <location filename="../main.cpp" line="351"/>
         <source>None of the currently loaded game plugins supports RCon.</source>
         <translation>Ninguno de los complementos de juegos cargados actualmente admite RCon.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="354"/>
+        <location filename="../main.cpp" line="353"/>
         <source>Doomseeker RCon</source>
         <translation>Doomseeker RCon</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="368"/>
+        <location filename="../main.cpp" line="367"/>
         <source>Couldn&apos;t find specified plugin: </source>
         <translation>No se pudo encontrar el complemento especificado: </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="378"/>
+        <location filename="../main.cpp" line="377"/>
         <source>Plugin does not support RCon.</source>
         <translation>El complemento no es compatible con RCon.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="395"/>
+        <location filename="../main.cpp" line="394"/>
         <source>Loading extra CA certificates from &apos;%1&apos;.</source>
         <translation>Cargando certificados CA adicionales de &apos;%1&apos;.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.cpp" line="400"/>
+        <location filename="../main.cpp" line="399"/>
         <source>Appending %n extra CA certificate(s).</source>
         <translation>
             <numerusform>Anexando %n certificado(s) CA adicionales.</numerusform>
@@ -4137,64 +4168,64 @@ Operación fallida.</translation>
         </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="417"/>
+        <location filename="../main.cpp" line="416"/>
         <source>Doomseeker will not run because some directories cannot be used properly.
 </source>
         <translation>Doomseeker no se ejecutará porque algunos directorios no se pueden usar correctamente.
 </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="449"/>
+        <location filename="../main.cpp" line="448"/>
         <source>Initializing IP2C database.</source>
         <translation>Inicializando la base de datos IP2C.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="457"/>
+        <location filename="../main.cpp" line="456"/>
         <source>Initializing IRC configuration file.</source>
         <translation>Inicializando el archivo de configuración de IRC.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="475"/>
+        <location filename="../main.cpp" line="474"/>
         <source>Loading translations definitions</source>
         <translation>Cargando definiciones de traducción</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="483"/>
+        <location filename="../main.cpp" line="482"/>
         <source>Loading translation &quot;%1&quot;.</source>
         <translation>Cargando la traducción &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="487"/>
+        <location filename="../main.cpp" line="486"/>
         <source>Translation loaded.</source>
         <translation>Traducción cargada.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="491"/>
+        <location filename="../main.cpp" line="490"/>
         <source>Failed to load translation.</source>
         <translation>Error al cargar la traducción.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="498"/>
+        <location filename="../main.cpp" line="497"/>
         <source>Initializing configuration file.</source>
         <translation>Inicializando archivo de configuración.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="507"/>
+        <location filename="../main.cpp" line="506"/>
         <source>Could not get an access to the settings directory. Configuration will not be saved.</source>
         <translation>No se pudo obtener acceso al directorio de configuraciones. La configuración no se guardará.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="526"/>
+        <location filename="../main.cpp" line="525"/>
         <source>Initializing passwords configuration file.</source>
         <translation>Inicializando el archivo de configuración de contraseñas.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="539"/>
+        <location filename="../main.cpp" line="538"/>
         <source>Initializing configuration for plugins.</source>
         <translation>Inicializando la configuración para complementos.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="662"/>
+        <location filename="../main.cpp" line="661"/>
         <source>doomseeker: `--connect`, `--create-game` and `--rcon` are mutually exclusive</source>
         <translation>doomseeker: `--connect`, `--create-game` y `--rcon` se excluyen entre sí</translation>
     </message>
@@ -4217,7 +4248,7 @@ Operación fallida.</translation>
         <translation type="vanished">doomseeker: opción no reconocida &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="675"/>
+        <location filename="../main.cpp" line="674"/>
         <source>Starting refreshing thread.</source>
         <translation>Iniciando hilo de refresco.</translation>
     </message>
@@ -5125,18 +5156,18 @@ Si no tiene este archivo, y pertenece a un juego comercial, necesita comprar el 
         <translation>Configurando el archivo IRC INI: %1</translation>
     </message>
     <message>
-        <location filename="../configuration/doomseekerconfig.cpp" line="79"/>
+        <location filename="../configuration/doomseekerconfig.cpp" line="80"/>
         <source>DoomseekerConfig.iniSectionForPlugin(): empty plugin name has been specified, returning dummy IniSection.</source>
         <translatorcomment>el nombre de plugin vacío ha sido especificado, devolviendo el ficticio IniSection.</translatorcomment>
         <translation>DoomseekerConfig.iniSectionForPlugin(): empty plugin name has been specified, returning dummy IniSection.</translation>
     </message>
     <message>
-        <location filename="../configuration/doomseekerconfig.cpp" line="85"/>
+        <location filename="../configuration/doomseekerconfig.cpp" line="86"/>
         <source>DoomseekerConfig.iniSectionForPlugin(): plugin name is invalid: %1</source>
         <translation>DoomseekerConfig.iniSectionForPlugin(): el nombre del complemento no es válido: %1</translation>
     </message>
     <message>
-        <location filename="../configuration/doomseekerconfig.cpp" line="185"/>
+        <location filename="../configuration/doomseekerconfig.cpp" line="186"/>
         <source>Setting INI file: %1</source>
         <translation>Configurando archivo INI: %1</translation>
     </message>

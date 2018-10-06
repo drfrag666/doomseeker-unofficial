@@ -1205,32 +1205,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../zandronumengineplugin.cpp" line="141"/>
+        <location filename="../zandronumengineplugin.cpp" line="142"/>
         <source>Time limit:</source>
         <translation>Límite de tiempo:</translation>
     </message>
     <message>
-        <location filename="../zandronumengineplugin.cpp" line="149"/>
+        <location filename="../zandronumengineplugin.cpp" line="150"/>
         <source>Frag limit:</source>
         <translation>Límite de Frags:</translation>
     </message>
     <message>
-        <location filename="../zandronumengineplugin.cpp" line="160"/>
+        <location filename="../zandronumengineplugin.cpp" line="161"/>
         <source>Point limit:</source>
         <translation>Límite de puntos:</translation>
     </message>
     <message>
-        <location filename="../zandronumengineplugin.cpp" line="167"/>
+        <location filename="../zandronumengineplugin.cpp" line="168"/>
         <source>Win limit:</source>
         <translation>Límite de victorias:</translation>
     </message>
     <message>
-        <location filename="../zandronumengineplugin.cpp" line="172"/>
+        <location filename="../zandronumengineplugin.cpp" line="173"/>
         <source>Duel limit:</source>
         <translation>Límite de duelos:</translation>
     </message>
     <message>
-        <location filename="../zandronumengineplugin.cpp" line="175"/>
+        <location filename="../zandronumengineplugin.cpp" line="176"/>
         <source>Max. lives:</source>
         <translation>Max. vidas:</translation>
     </message>
@@ -2625,6 +2625,18 @@ p, li { white-space: pre-wrap; }
         <location filename="../zandronum3dmflags.cpp" line="341"/>
         <source>Dead players can keep inventory</source>
         <translation>Los jugadores muertos pueden conservar el inventario</translation>
+    </message>
+</context>
+<context>
+    <name>ZandronumAboutProvider</name>
+    <message>
+        <location filename="../zandronumgameinfo.cpp" line="61"/>
+        <source>This plugin is distributed under the terms of the LGPL v2.1 or later.
+
+</source>
+        <translation>Este complemento se distribuye bajo los términos de la licencia LGPL v2.1 o posterior.
+
+</translation>
     </message>
 </context>
 <context>
