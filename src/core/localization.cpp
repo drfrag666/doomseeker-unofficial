@@ -255,7 +255,7 @@ void Localization::LocalizationLoader::loadLocalizationsListFile(QIODevice& io)
 		return;
 	}
 
-	QString line = io.readLine();
+	QString line = QString::fromUtf8(io.readLine());
 	while (!line.isEmpty())
 	{
 		line = line.trimmed();
@@ -279,7 +279,7 @@ void Localization::LocalizationLoader::loadLocalizationsListFile(QIODevice& io)
 				gLog << QString("Invalid localization definition: %1").arg(line);
 			}
 		}
-		line = io.readLine();
+		line = QString::fromUtf8(io.readLine());
 	}
 }
 
