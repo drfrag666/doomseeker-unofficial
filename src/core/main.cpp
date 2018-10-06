@@ -603,10 +603,6 @@ bool Main::interpretCommandLineParameters()
 				rconPluginName = arguments[++i];
 				Strings::translateServerAddress(arguments[++i], rconAddress, rconPort, "localhost:10666");
 			}
-			else
-			{
-				failure = CmdArgsHelp::missingArgs(2, arg);
-			}
 		}
 		else if (strcmp(arg, "--help") == 0)
 		{
