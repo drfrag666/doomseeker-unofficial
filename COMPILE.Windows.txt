@@ -146,6 +146,12 @@ Remember to change CMAKE_INSTALL_PREFIX path to something less stupid than
 "C:\Program Files (x86)\Doomseeker". Be aware that the installed files are
 dumped directly to this directory.
 
+6.3. IP2C
+
+Procedures to spawn the optional IpToCountry.dat file are the same as
+for any other platform. Refer to the corresponding section in COMPILE.txt.
+A Python3 installation is required to spawn the database.
+
 ================================================================================
 Now you may build the program and while it compiles you may open one
 of the source code files that I created back in 2009 and cry :)
