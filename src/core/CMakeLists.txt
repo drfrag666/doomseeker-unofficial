@@ -53,6 +53,7 @@ else()
 endif()
 
 option(DOOMSEEKER_INSTALL_NONFREE "Install non-free resources?" ${DEFAULT_NONFREE_INSTALL})
+set(DOOMSEEKER_IP2C_DAT "" CACHE FILEPATH "Path to IpToCountry.dat; optional")
 
 # Get the revision from vcs
 add_custom_target(revision_check ALL
@@ -370,7 +371,9 @@ if(WIN32)
 	# Translatons
 	install(FILES ${TRANSLATION_FILES_TO_COPY} DESTINATION translations COMPONENT doomseeker)
 	# Other
-	install(FILES ${CMAKE_SOURCE_DIR}/media/IpToCountry.dat DESTINATION . COMPONENT doomseeker)
+	if(DOOMSEEKER_IP2C_DAT)
+		install(FILES ${DOOMSEEKER_IP2C_DAT} DESTINATION . RENAME IpToCountry.dat COMPONENT doomseeker)
+	endif()
 	install(FILES ${CMAKE_SOURCE_DIR}/tools/doomseeker-portable.bat DESTINATION . COMPONENT doomseeker)
 	install(FILES ${CMAKE_SOURCE_DIR}/CHANGELOG.md DESTINATION . COMPONENT doomseeker RENAME CHANGELOG.txt)
 endif()
@@ -378,11 +381,14 @@ endif()
 if(UNIX AND NOT APPLE)
 	install(TARGETS doomseeker RUNTIME DESTINATION bin COMPONENT doomseeker)
 	install(FILES ${CMAKE_SOURCE_DIR}/media/icon.png DESTINATION share/icons COMPONENT doomseeker RENAME doomseeker.png)
-	install(FILES ${CMAKE_SOURCE_DIR}/media/IpToCountry.dat DESTINATION share/doomseeker COMPONENT doomseeker)
 	install(FILES ${TRANSLATION_FILES_TO_COPY} DESTINATION share/doomseeker/translations COMPONENT doomseeker)
 	install(FILES ${CMAKE_SOURCE_DIR}/media/org.drdteam.Doomseeker.desktop DESTINATION share/applications COMPONENT doomseeker)
 	install(FILES ${CMAKE_SOURCE_DIR}/LICENSE.json DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/doomseeker COMPONENT doomseeker)
 	install_all_slot_styles()
+
+	if(DOOMSEEKER_IP2C_DAT)
+		install(FILES ${DOOMSEEKER_IP2C_DAT} DESTINATION share/doomseeker RENAME IpToCountry.dat COMPONENT doomseeker)
+	endif()
 
 	# When not installing to /usr we should use an install rpath.
 	if(NOT CMAKE_INSTALL_PREFIX STREQUAL "/usr")
