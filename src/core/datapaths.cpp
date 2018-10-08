@@ -351,12 +351,20 @@ QString DataPaths::pluginDocumentsLocationPath(const EnginePlugin &plugin) const
 QStringList DataPaths::pluginSearchLocationPaths() const
 {
 	QStringList paths;
-	paths.append(localDataLocationPath());
 	paths.append(workingDirectory());
 	paths.append("./");
-#ifndef Q_OS_WIN32
-	paths.append(INSTALL_PREFIX "/" INSTALL_LIBDIR "/doomseeker/");
+
+#if !defined(Q_OS_MAC) && !defined(Q_OS_WIN32)
+	// On systems where we install to a fixed location, if we see that we are
+	// running an installed binary, then we should only load plugins from the
+	// expected location.  Otherwise use it only as a last resort.
+	const QString installDir = INSTALL_PREFIX "/" INSTALL_LIBDIR "/doomseeker/";
+	if(workingDirectory() == INSTALL_PREFIX "/bin")
+		paths = QStringList(installDir);
+	else
+		paths.append(installDir);
 #endif
+
 	paths = uniquePaths(paths);
 	return Strings::combineManyPaths(paths, "engines/");
 }
