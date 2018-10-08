@@ -38,7 +38,9 @@ UnTar::~UnTar()
 
 bool UnTar::extract(int file, const QString &where)
 {
-	stream->open(QIODevice::ReadOnly);
+	if(!stream->open(QIODevice::ReadOnly))
+		return false;
+
 	stream->seek(directory[file].offset);
 	QByteArray fileData = stream->read(directory[file].size);
 	stream->close();
@@ -86,7 +88,12 @@ void UnTar::scanTarFile()
 	qint64 read;
 	unsigned int offset = 512;
 
-	stream->open(QIODevice::ReadOnly);
+	if(!stream->open(QIODevice::ReadOnly))
+	{
+		valid = false;
+		return;
+	}
+
 	while(valid && (read = stream->read(buffer, 512)) > 0)
 	{
 		if(read < 512)

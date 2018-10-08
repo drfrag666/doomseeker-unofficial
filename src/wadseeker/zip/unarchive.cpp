@@ -259,14 +259,23 @@ class BZ2Device : public CompressedIODevice
 				bzDecompress.next_in = buffer;
 				bzDecompress.avail_in = wrap->read(buffer, BUFFER_SIZE);
 
-				if(BZ2_bzDecompress(&bzDecompress) != BZ_OK)
+				int err = BZ2_bzDecompress(&bzDecompress);
+				if(err != BZ_OK && err != BZ_STREAM_END)
 					return -1;
 
-				if(bzDecompress.avail_in > 0)
+				if(err == BZ_STREAM_END)
 				{
-					wrap->seek(wrap->pos()-bzDecompress.avail_in);
-					break;
+					// If we didn't hit the end of the file then we need to reinit and keep going
+					if(!wrap->atEnd())
+					{
+						BZ2_bzDecompressEnd(&bzDecompress);
+						if(BZ2_bzDecompressInit(&bzDecompress, 0, 0) != BZ_OK)
+							return -1;
+					}
 				}
+
+				if(bzDecompress.avail_in > 0)
+					wrap->seek(wrap->pos()-bzDecompress.avail_in);
 			}
 
 			return len-bzDecompress.avail_out;

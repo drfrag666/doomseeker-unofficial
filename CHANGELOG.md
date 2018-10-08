@@ -170,9 +170,11 @@ in Create Game box resets upon actions such as game or game mode change.
 Qt to choose the most appropriate address. This should prefer IPv6 connectivity
 when available.
 - Linux: The name of the desktop file is now a reverse Doomseeker domain.
+- Wadseeker: Fixed extraction of bz2 files with multiple streams.
 - Zandronum: fix problem with widgets for a different Zandronum version being
 visible when first opening the "Create Game" box.
 - Zandronum: fix tabulation focus ordering for Zandronum's Create Server page.
+- Zandronum: Fixed silent error loop if testing binary extraction failed.
 
 ## [1.1-p1] - 2017-07-17
 ### Added

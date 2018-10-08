@@ -36,6 +36,7 @@
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QProgressDialog>
+#include <QScopedPointer>
 #include <ini/inisection.h>
 #include <ini/inivariable.h>
 #include <strings.hpp>
@@ -313,9 +314,9 @@ bool ZandronumClientExeFile::downloadTestingBinaries(const QDir &destination, QW
 		QFileInfo fi(dialog.filename());
 		QByteArray data = dialog.data();
 		QBuffer dataBuffer(&data);
-		UnArchive *archive = UnArchive::openArchive(fi, &dataBuffer);
+		QScopedPointer<UnArchive> archive(UnArchive::openArchive(fi, &dataBuffer));
 
-		if(archive != NULL)
+		if(!archive.isNull())
 		{
 			for(int i = 0;;++i)
 			{
@@ -327,16 +328,23 @@ bool ZandronumClientExeFile::downloadTestingBinaries(const QDir &destination, QW
 				}
 
 				QString fileTargetPath = destination.path() + QDir::separator() + filename;
-				archive->extract(i, fileTargetPath);
 				gLog << tr("Unpacking file: %1").arg(fileTargetPath);
-				// Make sure we can execute the binary.
-				if(filename == ZANDRONUM_BINARY_NAME)
+				if(archive->extract(i, fileTargetPath))
 				{
-					QFile binaryFile(fileTargetPath);
-					binaryFile.setPermissions(binaryFile.permissions() | QFile::ExeUser);
+					// Make sure we can execute the binary.
+					if(filename == ZANDRONUM_BINARY_NAME)
+					{
+						QFile binaryFile(fileTargetPath);
+						binaryFile.setPermissions(binaryFile.permissions() | QFile::ExeUser);
+					}
+				}
+				else
+				{
+					QMessageBox::critical(parent, tr("Doomseeker - unpack failed"),
+						tr("Failed to unpack: %1").arg(filename));
+					return false;
 				}
 			}
-			delete archive;
 			return true;
 		}
 	}
