@@ -100,6 +100,11 @@ QString AboutDialog::copyrightVerboseNotice() const
 		.arg(copyrightChar).arg(Version::yearSpan());
 	paragraphs << tr("This program is distributed under the terms of the LGPL v2.1 or later.");
 
+	//Translations
+	paragraphs << tr("Doomseeker translations contributed by:\n"
+	"- Polish: Zalewa\n"
+	"- Spanish: Pol Marcet Sardà");
+
 	// GeoLite2
 	paragraphs << tr("This program uses GeoLite2 data for IP-to-Country (IP2C) purposes, "
 		"available from https://www.maxmind.com") + "\n" +
