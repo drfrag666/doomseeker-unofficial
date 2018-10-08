@@ -41,6 +41,7 @@ each file is replaceable by any other file on the same list. (addresses 2740).
 a game. The idea here is to allow the game to decide on these values or
 to start the game into the title screen instead of dropping immediately
 into the map. (addresses 3505)
+- Translations contributors mentioned in About dialog. (addresses 3516)
 - Guyana, Bosnia and Herzegovina, Cameroon, and Malta country flags. (addresses
 3327, 3330, 3457 and 3539)
 - IRC: User name can now be specified (this is different than nick name).
