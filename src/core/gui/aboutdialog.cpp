@@ -101,9 +101,9 @@ QString AboutDialog::copyrightVerboseNotice() const
 	paragraphs << tr("This program is distributed under the terms of the LGPL v2.1 or later.");
 
 	//Translations
-	paragraphs << tr("Doomseeker translations contributed by:\n"
-	"- Polish: Zalewa\n"
-	"- Spanish: Pol Marcet Sardà");
+	paragraphs << tr("Doomseeker translations contributed by:\n")
+		+ tr("- Polish: Zalewa") + "\n"
+		+ tr("- Spanish: Pol Marcet Sardà");
 
 	// GeoLite2
 	paragraphs << tr("This program uses GeoLite2 data for IP-to-Country (IP2C) purposes, "
