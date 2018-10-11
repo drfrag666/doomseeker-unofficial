@@ -84,7 +84,7 @@ void IP2CUpdateBox::start()
 	{
 		d->lblFileIcon->setPixmap(QPixmap(":/icons/edit-redo-red.png"));
 		d->lblDatabaseStatus->setText(tr("IP2C database file was not found. "
-			"Use update button if you want to download the newest database."));
+			"Use the update button if you want to download the newest database."));
 	}
 }
 
