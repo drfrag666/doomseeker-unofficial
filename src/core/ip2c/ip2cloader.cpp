@@ -171,8 +171,16 @@ void IP2CLoader::ip2cFinishedParsing(bool bSuccess)
 			QFile file(filePath);
 			file.remove();
 
-			gLog << tr("Trying to use preinstalled IP2C database.");
-			d->ip2cParser->readDatabaseThreaded(DoomseekerFilePaths::IP2C_QT_SEARCH_PATH);
+			QString preinstalledDbPath = DoomseekerFilePaths::ip2cDatabaseAny();
+			if (!preinstalledDbPath.isEmpty())
+			{
+				gLog << tr("Trying to use preinstalled IP2C database.");
+				d->ip2cParser->readDatabaseThreaded(preinstalledDbPath);
+			}
+			else
+			{
+				ip2cJobsFinished();
+			}
 		}
 		else
 		{
@@ -201,12 +209,23 @@ void IP2CLoader::ip2cJobsFinished()
 
 void IP2CLoader::ip2cParseDatabase()
 {
-	QString filePath = DoomseekerFilePaths::IP2C_QT_SEARCH_PATH;
+	QString filePath = DoomseekerFilePaths::ip2cDatabaseAny();
+	if (!filePath.isEmpty())
+	{
+		gLog << tr("Please wait. IP2C database is being read. This may take some time.");
+		// Attempt to read IP2C database.
 
-	gLog << tr("Please wait. IP2C database is being read. This may take some time.");
-	// Attempt to read IP2C database.
-
-	d->inFallbackMode = false;
-	IP2C::instance()->setDataAccessLockEnabled(true);
-	d->ip2cParser->readDatabaseThreaded(filePath);
+		d->inFallbackMode = false;
+		IP2C::instance()->setDataAccessLockEnabled(true);
+		d->ip2cParser->readDatabaseThreaded(filePath);
+	}
+	else
+	{
+		if (!gConfig.doomseeker.bIP2CountryAutoUpdate)
+		{
+			gLog << tr("Did not find any IP2C database. IP2C functionality will be disabled.");
+			gLog << tr("You may install an IP2C database from the \"File\" menu.");
+		}
+		ip2cJobsFinished();
+	}
 }

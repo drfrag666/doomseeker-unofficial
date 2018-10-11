@@ -41,7 +41,10 @@ class MAIN_EXPORT DoomseekerFilePaths
 	public:
 		static const QString CACERTS_FILENAME;
 		static const QString IP2C_DATABASE_FILENAME;
+
+		/// @deprecated not used anymore; delete
 		static const QString IP2C_QT_SEARCH_PATH;
+
 		static const QString TEMP_SERVER_CONFIG_FILENAME;
 		static const QString INI_FILENAME;
 		static const QString IRC_INI_FILENAME;
