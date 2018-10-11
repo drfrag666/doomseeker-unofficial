@@ -81,9 +81,9 @@ DockBuddiesList::DockBuddiesList(QWidget *parent)
 
 	// Not working yet.
 	QStringList columns;
-	columns << tr("ID");
-	columns << tr("Buddy");
-	columns << tr("Location");
+	columns << DockBuddiesList::tr("ID");
+	columns << DockBuddiesList::tr("Buddy");
+	columns << DockBuddiesList::tr("Location");
 	d->buddiesTableModel->setHorizontalHeaderLabels(columns);
 
 	d->buddiesTable->setModel(d->buddiesTableModel);

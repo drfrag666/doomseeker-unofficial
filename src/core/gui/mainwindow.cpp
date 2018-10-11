@@ -228,14 +228,14 @@ MainWindow::MainWindow(QApplication* application, int argc, char** argv)
 
 	if (gPlugins->numPlugins() == 0)
 	{
-		QString message = tr(
+		QString message = MainWindow::tr(
 			"Warning: \n"
 			"Doomseeker failed to detect any plugins.\n"
 			"While the core application will still work its functionality is going to be limited.\n"
 			"One of the proper locations for plugin modules is the \"engines/\" directory.\n"
 		);
 		gLog << message;
-		QMessageBox::critical(NULL, tr("Doomseeker - plugin load failure"), message);
+		QMessageBox::critical(NULL, MainWindow::tr("Doomseeker - plugin load failure"), message);
 	}
 
 	initIP2CUpdater();
@@ -243,8 +243,8 @@ MainWindow::MainWindow(QApplication* application, int argc, char** argv)
 	// The buddies list must always be available so we can perform certain operations on it
 	d->buddiesList = new DockBuddiesList(this);
 	d->menuView->addAction(d->buddiesList->toggleViewAction());
-	d->buddiesList->toggleViewAction()->setText(tr("&Buddies"));
-	d->buddiesList->toggleViewAction()->setShortcut(tr("CTRL+B"));
+	d->buddiesList->toggleViewAction()->setText(MainWindow::tr("&Buddies"));
+	d->buddiesList->toggleViewAction()->setShortcut(MainWindow::tr("CTRL+B"));
 
 	connect(d->buddiesList, SIGNAL(joinServer(ServerPtr)), this, SLOT(runGame(ServerPtr)));
 	d->buddiesList->hide();

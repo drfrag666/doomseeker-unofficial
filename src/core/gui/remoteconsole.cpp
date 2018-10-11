@@ -65,7 +65,7 @@ RemoteConsole::RemoteConsole(QWidget *parent) : QMainWindow(parent)
 			ServerPtr server = dlg->selectedEngine()->server(QHostAddress(address), port);
 			if(!server->hasRcon())
 			{
-				QMessageBox::critical(this, tr("No RCon support"), tr("The selected source port has no RCon support."));
+				QMessageBox::critical(this, RemoteConsole::tr("No RCon support"), RemoteConsole::tr("The selected source port has no RCon support."));
 				continue;
 			}
 			d->protocol = server->rcon();
@@ -80,7 +80,7 @@ RemoteConsole::RemoteConsole(QWidget *parent) : QMainWindow(parent)
 			}
 			else
 			{
-				QMessageBox::critical(this, tr("RCon failure"), tr("Failed to create RCon protocol for the server."));
+				QMessageBox::critical(this, RemoteConsole::tr("RCon failure"), RemoteConsole::tr("Failed to create RCon protocol for the server."));
 				continue;
 			}
 		}
