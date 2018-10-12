@@ -63,10 +63,10 @@ CFGWadAlias::CFGWadAlias(QWidget *parent)
 
 	d->table->sortByColumn(PrivData<CFGWadAlias>::ColWad, Qt::AscendingOrder);
 
-	d->matchTypeHelp = tr("Left-to-Right will use the alias files instead of "
+	d->matchTypeHelp = CFGWadAlias::tr("Left-to-Right will use the alias files instead of "
 		"the main file but not vice-versa.");
 	d->matchTypeHelp += "\n\n";
-	d->matchTypeHelp += tr("All Equal will treat all files as equal and try to "
+	d->matchTypeHelp += CFGWadAlias::tr("All Equal will treat all files as equal and try to "
 		"match them in any combination.");
 }
 

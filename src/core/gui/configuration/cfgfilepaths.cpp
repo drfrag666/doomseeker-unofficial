@@ -45,7 +45,7 @@ CFGFilePaths::CFGFilePaths(QWidget* parent)
 	d->lstIwadAndPwadPaths->setModel(model);
 
 	QStringList labels;
-	labels << tr("Path") << tr("Recurse");
+	labels << CFGFilePaths::tr("Path") << CFGFilePaths::tr("Recurse");
 	model->setHorizontalHeaderLabels(labels);
 
 	QHeaderView* header = d->lstIwadAndPwadPaths->horizontalHeader();
