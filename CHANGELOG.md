@@ -183,6 +183,15 @@ when available.
 visible when first opening the "Create Game" box.
 - Zandronum: fix tabulation focus ordering for Zandronum's Create Server page.
 - Zandronum: Fixed silent error loop if testing binary extraction failed.
+- Attributions, licensing, copyrights, "FOSS stuff": a lot of effort has
+been put into cleaning up the source code from various license violations,
+lack of appropriate attributions, lack of backlinks to the source material
+and imprecise or missing licensing information. With an on-and-off effort
+it took over a year to find and fix all of the problems. Special thanks in
+this regard go to WubTheCaptain. Without her ability to meticuously spot
+the issues, and patience and effort put into explaining the problems and
+appropriate solutions, this task might have not been possible (addresses
+3237 and children).
 
 ## [1.1-p1] - 2017-07-17
 ### Added
