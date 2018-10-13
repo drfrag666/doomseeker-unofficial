@@ -8,7 +8,9 @@
         <source>This plugin is distributed under the terms of the LGPL v2.1 or later.
 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Ta wtyczka jest rozprowadzana na zasadach licencji LGPL v2.1 lub późniejszej.
+
+</translation>
     </message>
 </context>
 <context>
@@ -16,7 +18,7 @@
     <message>
         <location filename="../chocolatedoomgamerunner.cpp" line="108"/>
         <source>Join Chocolate Doom game</source>
-        <translation type="unfinished"></translation>
+        <translation>Dołącz do gry w Chocolate Doom</translation>
     </message>
 </context>
 <context>
@@ -24,22 +26,22 @@
     <message>
         <location filename="../chocolatedoomgameexefactory.cpp" line="92"/>
         <source>Chocolate Doom</source>
-        <translation type="unfinished"></translation>
+        <translation>Chocolate Doom</translation>
     </message>
     <message>
         <location filename="../chocolatedoomgameexefactory.cpp" line="95"/>
         <source>Chocolate Hexen</source>
-        <translation type="unfinished"></translation>
+        <translation>Chocolate Hexen</translation>
     </message>
     <message>
         <location filename="../chocolatedoomgameexefactory.cpp" line="98"/>
         <source>Chocolate Heretic</source>
-        <translation type="unfinished"></translation>
+        <translation>Chocolate Heretic</translation>
     </message>
     <message>
         <location filename="../chocolatedoomgameexefactory.cpp" line="101"/>
         <source>Chocolate Strife</source>
-        <translation type="unfinished"></translation>
+        <translation>Chocolate Strife</translation>
     </message>
 </context>
 <context>
@@ -47,7 +49,7 @@
     <message>
         <location filename="../chocolatedoomgameinfo.cpp" line="32"/>
         <source>Altdeath (Deathmatch 2.0)</source>
-        <translation type="unfinished"></translation>
+        <translation>Altdeath (Deathmatch 2.0)</translation>
     </message>
 </context>
 </TS>

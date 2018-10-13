@@ -338,14 +338,18 @@ https://dev.maxmind.com/geoip/geoip2/geolite2/</translation>
 <context>
     <name>AddBuddyDlg</name>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="316"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="297"/>
         <source>Invalid Pattern</source>
         <translation>Nieprawidłowy wzór</translation>
     </message>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="316"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="297"/>
+        <source>The pattern you have specified is invalid.</source>
+        <translation>Podany wzór nie jest prawidłowy.</translation>
+    </message>
+    <message>
         <source>The pattern you have specified is not a valid regular expression.</source>
-        <translation>Podany wzór nie jest prawidłowym wyrażeniem regularnym.</translation>
+        <translation type="vanished">Podany wzór nie jest prawidłowym wyrażeniem regularnym.</translation>
     </message>
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_addBuddyDlg.h" line="101"/>
@@ -2972,23 +2976,23 @@ p, li { white-space: pre-wrap; }
         <translation>Lokacja</translation>
     </message>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="152"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="136"/>
         <source>Delete Buddy</source>
         <translation>Usuń znajomego</translation>
     </message>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="152"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="136"/>
         <source>Are you sure you want to delete this pattern?</source>
         <translation>Czy jesteś pewien, że chcesz usunąć ten wzorzec?</translation>
     </message>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="206"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="190"/>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_dockBuddiesList.h" line="136"/>
         <source>Add</source>
         <translation>Dodaj</translation>
     </message>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="212"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="196"/>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_dockBuddiesList.h" line="137"/>
         <source>Delete</source>
         <translation>Usuń</translation>
@@ -6229,17 +6233,17 @@ Jeżeli nie masz tego pliku, a należy on do gry w sprzedaży, to musisz kupić 
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../configuration/doomseekerconfig.cpp" line="80"/>
+        <location filename="../configuration/doomseekerconfig.cpp" line="121"/>
         <source>DoomseekerConfig.iniSectionForPlugin(): empty plugin name has been specified, returning dummy IniSection.</source>
         <translation>DoomseekerConfig.iniSectionForPlugin(): podano pustą nazwę wtyczki, zwracam atrapę IniSection.</translation>
     </message>
     <message>
-        <location filename="../configuration/doomseekerconfig.cpp" line="86"/>
+        <location filename="../configuration/doomseekerconfig.cpp" line="127"/>
         <source>DoomseekerConfig.iniSectionForPlugin(): plugin name is invalid: %1</source>
         <translation>DoomseekerConfig.iniSectionForPlugin(): błędna nazwa wtyczki: %1</translation>
     </message>
     <message>
-        <location filename="../configuration/doomseekerconfig.cpp" line="186"/>
+        <location filename="../configuration/doomseekerconfig.cpp" line="227"/>
         <source>Setting INI file: %1</source>
         <translation>Ustawienie pliku INI: %1</translation>
     </message>
