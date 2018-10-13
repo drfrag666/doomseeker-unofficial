@@ -231,7 +231,6 @@ set(HEADER_FILES
 	scanner.h
 	serverapi/broadcast.h
 	serverapi/broadcastmanager.h
-	serverapi/buddyinfo.h
 	serverapi/createserverdialogapi.h
 	serverapi/exefile.h
 	serverapi/gameclientrunner.h
@@ -454,7 +453,6 @@ set(SOURCE_FILES
 	scanner.cpp
 	serverapi/broadcast.cpp
 	serverapi/broadcastmanager.cpp
-	serverapi/buddyinfo.cpp
 	serverapi/createserverdialogapi.cpp
 	serverapi/exefile.cpp
 	serverapi/gameclientrunner.cpp

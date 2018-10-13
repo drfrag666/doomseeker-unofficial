@@ -24,7 +24,6 @@
 #ifndef __DOCKBUDDIESLIST_H__
 #define __DOCKBUDDIESLIST_H__
 
-#include "serverapi/buddyinfo.h"
 #include "serverapi/serverptr.h"
 #include "dptr.h"
 
@@ -82,8 +81,7 @@ class AddBuddyDlg : public QDialog
 		AddBuddyDlg(QWidget *parent=NULL);
 		~AddBuddyDlg();
 
-		BuddyInfo::PatternType patternType() const;
-		QString pattern() const;
+		QRegExp pattern() const;
 
 	protected slots:
 		void buttonBoxClicked(QAbstractButton *button);

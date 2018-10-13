@@ -37,11 +37,52 @@
 #include "fileutils.h"
 #include "localizationinfo.h"
 #include "log.h"
+#include "scanner.h"
 #include "strings.hpp"
 #include "version.h"
 
 #include <QLocale>
+/**
+ * @deprecated This format for this config entry was valid before version 1.2.
+ */
+static PatternList readPre1Point2BuddiesList(const QString &configEntry)
+{
+	PatternList patterns;
 
+	Scanner listReader(configEntry.toUtf8().constData(), configEntry.length());
+	// Syntax: {basic|advanced} "pattern";...
+	while (listReader.tokensLeft())
+	{
+		if (!listReader.checkToken(TK_Identifier))
+		{
+			break; // Invalid so lets just use what we have.
+		}
+
+		QRegExp::PatternSyntax syntax;
+		if (listReader->str().compare("basic") == 0)
+			syntax = QRegExp::Wildcard;
+		else
+			syntax = QRegExp::RegExp;
+
+		if (!listReader.checkToken(TK_StringConst))
+		{
+			break;
+		}
+
+		QRegExp pattern(listReader->str(), Qt::CaseInsensitive, syntax);
+		if (pattern.isValid())
+		{
+			patterns << pattern;
+		}
+
+		if (!listReader.checkToken(';'))
+		{
+			break;
+		}
+	}
+	return patterns;
+}
+//////////////////////////////////////////////////////////////////////////////
 DoomseekerConfig* DoomseekerConfig::instance = NULL;
 
 DoomseekerConfig::DoomseekerConfig()
@@ -433,8 +474,15 @@ void DoomseekerConfig::DoomseekerCfg::load(IniSection& section)
 	// End of backward compatibility for WAD paths.
 
 	// Buddies list
-	QString buddiesConfigEntry = section["BuddiesList"];
-	BuddyInfo::readConfigEntry(buddiesConfigEntry, this->buddiesList);
+	if (section.hasSetting("Buddies"))
+	{
+		this->buddies = PatternList::deserializeQVariant(section.value("Buddies"));
+	}
+	else if (section.hasSetting("BuddiesList"))
+	{
+		// Backward compatibility, pre 1.2.
+		this->buddies = readPre1Point2BuddiesList(section["BuddiesList"]);
+	}
 }
 
 void DoomseekerConfig::DoomseekerCfg::save(IniSection& section)
@@ -496,12 +544,8 @@ void DoomseekerConfig::DoomseekerCfg::save(IniSection& section)
 	section["CustomServers"] = allCustomServers.join(";");
 	section["CustomServers2"] = allCustomServers2.join(";");
 
-	// Wad paths
 	section["WadPaths"].setValue(FileSearchPath::toVariantList(this->wadPaths));
-
-	// Buddies lists
-	QString buddiesList = BuddyInfo::createConfigEntry(this->buddiesList);
-	section["BuddiesList"] = buddiesList;
+	section["Buddies"].setValue(this->buddies.serializeQVariant());
 }
 
 const QuerySpeed &DoomseekerConfig::DoomseekerCfg::querySpeed() const

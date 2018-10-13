@@ -94,6 +94,12 @@ Union Flag (of Great Britain). (addresses 3365)
 tab. This allows to disable the Rules tab fully for Chocolate Doom for which no
 other widgets are present on this tab. The setting also fits better when its
 grouped with game mode and map selection (related to 3480).
+- Fix problems when specifying invalid basic patterns in the Buddies
+list. It was possible to create patterns that were accepted in the list
+but were actually invalid to the Qt's regex engine. Such patterns would
+not be saved in the config and they would throw off the search & destroy
+routine when deleted from the UI. Right now, the "Add Buddy" dialog
+box should outright reject invalid patterns (addresses 3398, 3399).
 - Linux: Also try to look for WADs in /usr/[local]/share/games/doom.
 - Linux: Explicit "Copy (text)" actions shall store the data both in keyboard
 and mouse selection clipboards, allowing it to be pasted with either keyboard

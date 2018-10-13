@@ -65,7 +65,7 @@ DClass<DockBuddiesList> : public Ui::DockBuddiesList
 public:
 	QList<BuddyLocationInfo> buddies;
 	QStandardItemModel *buddiesTableModel;
-	PatternList pBuddies;
+	PatternList patterns;
 };
 
 DPointered(DockBuddiesList)
@@ -90,12 +90,11 @@ DockBuddiesList::DockBuddiesList(QWidget *parent)
 	d->buddiesTable->setColumnHidden(0, true); // Hide the ID
 
 	// Read config
-	const QVector<BuddyInfo>& buddies = gConfig.doomseeker.buddiesList;
+	d->patterns = gConfig.doomseeker.buddies;
 
-	foreach (const BuddyInfo& buddy, buddies)
+	foreach (const QRegExp& pattern, d->patterns)
 	{
-		d->pBuddies << buddy.pattern;
-		d->patternsList->addItem(buddy.pattern.pattern());
+		d->patternsList->addItem(pattern.pattern());
 	}
 
 	connect(d->addButton, SIGNAL( clicked() ), this, SLOT( addBuddy() ));
@@ -108,19 +107,8 @@ DockBuddiesList::~DockBuddiesList()
 {
 	// See if we made any modification since modifying the setting will cause a
 	// write cycle.
-	if(!save)
-		return;
-
-	gConfig.doomseeker.buddiesList.clear();
-	foreach (QRegExp pattern, d->pBuddies)
-	{
-		BuddyInfo buddyInfo;
-
-		buddyInfo.pattern = pattern;
-		buddyInfo.patternType = pattern.patternSyntax() == QRegExp::Wildcard ? BuddyInfo::PT_BASIC : BuddyInfo::PT_ADVANCED;
-
-		gConfig.doomseeker.buddiesList << buddyInfo;
-	}
+	if(save)
+		gConfig.doomseeker.buddies = d->patterns;
 }
 
 void DockBuddiesList::addBuddy()
@@ -130,15 +118,11 @@ void DockBuddiesList::addBuddy()
 	if(result != QDialog::Accepted)
 		return;
 
-	QRegExp pattern(dlg.pattern(), Qt::CaseInsensitive, dlg.patternType() == BuddyInfo::PT_BASIC ? QRegExp::Wildcard : QRegExp::RegExp);
+	QRegExp pattern = dlg.pattern();
+	d->patterns << pattern;
+	d->patternsList->addItem(pattern.pattern());
 
-	if(pattern.isValid())
-	{
-		d->pBuddies << pattern;
-		scan(masterClient);
-	}
-
-	d->patternsList->addItem(dlg.pattern());
+	scan(masterClient);
 
 	save = true;
 }
@@ -164,7 +148,7 @@ void DockBuddiesList::deleteBuddy()
 				largestIndex = i;
 		}
 
-		d->pBuddies.removeAt(selection[largestIndex].row());
+		d->patterns.removeAt(selection[largestIndex].row());
 		delete d->patternsList->item(selection[largestIndex].row());
 		selection.removeAt(largestIndex); // remove index
 	}
@@ -236,7 +220,7 @@ void DockBuddiesList::scan(const MasterManager *master)
 		for(int i = 0; i < server->players().numClients(); ++i)
 		{
 			const Player player = server->player(i);
-			if (d->pBuddies.isExactMatchAny(player.nameColorTagsStripped()))
+			if (d->patterns.isExactMatchAny(player.nameColorTagsStripped()))
 			{
 				BuddyLocationInfo candidate(player, server);
 				if (!d->buddies.contains(candidate))
@@ -308,14 +292,10 @@ void AddBuddyDlg::buttonBoxClicked(QAbstractButton *button)
 {
 	if(d->buttonBox->standardButton(button) == QDialogButtonBox::Ok)
 	{
-		if(patternType() == BuddyInfo::PT_ADVANCED)
+		if (!pattern().isValid())
 		{
-			QRegExp test(pattern());
-			if(!test.isValid())
-			{
-				QMessageBox::information(this, tr("Invalid Pattern"), tr("The pattern you have specified is not a valid regular expression."));
-				return;
-			}
+			QMessageBox::information(this, tr("Invalid Pattern"), tr("The pattern you have specified is invalid."));
+			return;
 		}
 		accept();
 	}
@@ -323,14 +303,10 @@ void AddBuddyDlg::buttonBoxClicked(QAbstractButton *button)
 		reject();
 }
 
-QString AddBuddyDlg::pattern() const
+QRegExp AddBuddyDlg::pattern() const
 {
-	return d->patternBox->text();
-}
-
-BuddyInfo::PatternType AddBuddyDlg::patternType() const
-{
-	return d->basicPattern->isChecked() ? BuddyInfo::PT_BASIC : BuddyInfo::PT_ADVANCED;
+	QRegExp::PatternSyntax syntax = d->basicPattern->isChecked() ? QRegExp::Wildcard : QRegExp::RegExp;
+	return QRegExp(d->patternBox->text(), Qt::CaseInsensitive, syntax);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

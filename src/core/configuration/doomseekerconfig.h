@@ -25,13 +25,12 @@
 
 #include "customservers.h"
 #include "dptr.h"
+#include "patternlist.h"
 #include "gui/entity/serverlistfilterinfo.h"
-#include "serverapi/buddyinfo.h"
 #include <QScopedPointer>
 #include <QSettings>
 #include <QString>
 #include <QStringList>
-#include <QVector>
 
 #define gConfig DoomseekerConfig::config()
 
@@ -75,7 +74,7 @@ class DoomseekerConfig
 			bool bQueryOnStartup;
 			bool bRecordDemo;
 			bool bTellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn;
-			QVector<BuddyInfo> buddiesList;
+			PatternList buddies;
 			bool bUseTrayIcon;
 			QString buddyServersColor;
 			QVector<CustomServerInfo> customServers;
