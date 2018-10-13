@@ -172,6 +172,7 @@ Qt to choose the most appropriate address. This should prefer IPv6 connectivity
 when available.
 - Linux: The name of the desktop file is now a reverse Doomseeker domain.
 - Wadseeker: Fixed extraction of bz2 files with multiple streams.
+- SRB2 & Turok 2 EX: fix translations not being loaded. (addresses 3554)
 - Zandronum: fix problem with widgets for a different Zandronum version being
 visible when first opening the "Create Game" box.
 - Zandronum: fix tabulation focus ordering for Zandronum's Create Server page.
