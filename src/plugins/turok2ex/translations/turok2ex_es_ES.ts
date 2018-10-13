@@ -8,7 +8,7 @@
         <source>Turok 2 EX - Doomseeker plugin
 
 </source>
-        <translation>Turok 2 EX - complemento de Doomseeker
+        <translation>Turok 2 EX - Complemento de Doomseeker
 
 </translation>
     </message>

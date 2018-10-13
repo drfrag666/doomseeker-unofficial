@@ -4,84 +4,110 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="101"/>
+        <location filename="../gui/aboutdialog.cpp" line="104"/>
         <source>This program is distributed under the terms of the LGPL v2.1 or later.</source>
         <translation>Éste programa és distribuido bajo los términos de la licéncia LGPL v2.1 o posterior.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="104"/>
         <source>This program uses GeoLite2 database for IP-to-Country (IP2C) purposes. Database and Contents Copyright (c) 2016 MaxMind, Inc.</source>
-        <translation>Éste programa usa la base de datos de GeoLite2 para localizar países por IP (IP2C). El contenido y la base de datos bajo Copyright (c) 2016 MaxMind, Inc.</translation>
+        <translation type="vanished">Éste programa usa la base de datos de GeoLite2 para localizar países por IP (IP2C). El contenido y la base de datos bajo Copyright (c) 2016 MaxMind, Inc.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="106"/>
         <source>GeoLite2 License:
 This work is licensed under the Creative Commons Attribution - ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.</source>
-        <translation>Licencia de GeoLite2:
+        <translation type="vanished">Licencia de GeoLite2:
 Se encuentra bajo la licencia de la Creative Commons Attribution-ShareAlike 3.0 Unported License. Para ver una copia de esta licéncia, visita http://creativecommons.org/licenses/by-sa/3.0/.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="99"/>
+        <location filename="../gui/aboutdialog.cpp" line="102"/>
         <source>Copyright %1 %2 The Doomseeker Team</source>
         <translation>Copyright %1 %2 El Equipo de Doomseeker (The Doomseeker Team)</translation>
     </message>
     <message>
-        <source>GeoLite2 License:
-This work is licensed under the Creative Commons Attribution - ShareAlike 4.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.</source>
-        <translation type="vanished">Licencia de GeoLite2:
-Se encuentra bajo la licencia de la Creative Commons Attribution-ShareAlike 4.0 Unported License. Para ver una copia de esta licéncia, visita http://creativecommons.org/licenses/by-sa/4.0/.</translation>
+        <location filename="../gui/aboutdialog.cpp" line="107"/>
+        <source>Doomseeker translations contributed by:
+</source>
+        <translation>Traducciones de Doomseeker contribuidas por:
+</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="108"/>
+        <source>- Polish: Zalewa</source>
+        <translation>- Polaco: Zalewa</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="109"/>
+        <source>- Spanish: Pol Marcet Sard%1</source>
+        <translation>- Español: Pol Marcet Sard%1</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="112"/>
+        <source>This program uses GeoLite2 data for IP-to-Country (IP2C) purposes, available from https://www.maxmind.com</source>
+        <translation>Éste programa usa la información de GeoLite2 para localizar países por IP (IP2C), y la puede encontrar en https://www.maxmind.com</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="114"/>
+        <source>Database and Contents Copyright (c) 2018 MaxMind, Inc.</source>
+        <translation>La base de datos y su contenido bajo Copyright (c) 2018 MaxMind, Inc.</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="115"/>
+        <source>GeoLite2 License:
+This work is licensed under the Creative Commons Attribution - ShareAlike 4.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.</source>
+        <translation>Licencia de GeoLite2:
+Se encuentra bajo la licencia de la Creative Commons Attribution-ShareAlike 4.0 Unported License. Para ver una copia de esta licéncia, visita http://creativecommons.org/licenses/by-sa/4.0/.</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="118"/>
         <source>GeoLite2 available at:
 https://dev.maxmind.com/geoip/geoip2/geolite2/</source>
         <translation>GeoLite2 está disponible en:
 https://dev.maxmind.com/geoip/geoip2/geolite2/</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="114"/>
+        <location filename="../gui/aboutdialog.cpp" line="123"/>
         <source>- Aha-Soft</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="115"/>
+        <location filename="../gui/aboutdialog.cpp" line="124"/>
         <source>- Crystal Clear by Everaldo Coelho</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="116"/>
+        <location filename="../gui/aboutdialog.cpp" line="125"/>
         <source>- Fugue Icons (C) 2013 Yusuke Kamiyamane. All rights reserved.</source>
         <translation>- Fugue Icons (C) 2013 Yusuke Kamiyamane. Todos los derechos reservados.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="117"/>
+        <location filename="../gui/aboutdialog.cpp" line="126"/>
         <source>- Nuvola 1.0 (KDE 3.x icon set)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="118"/>
+        <location filename="../gui/aboutdialog.cpp" line="127"/>
         <source>- Oxygen Icons 4.3.1 (KDE)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="119"/>
+        <location filename="../gui/aboutdialog.cpp" line="128"/>
         <source>- Silk Icon Set (C) Mark James (famfamfam.com)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="120"/>
+        <location filename="../gui/aboutdialog.cpp" line="129"/>
         <source>- Tango Icon Library / Tango Desktop Project</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="121"/>
+        <location filename="../gui/aboutdialog.cpp" line="130"/>
         <source>This program uses icons (or derivates of) from following sources:
 </source>
         <translation>Este programa usa iconos (o derivados) de las siguientes fuentes:
 </translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="132"/>
+        <location filename="../gui/aboutdialog.cpp" line="141"/>
         <source>JSON library license</source>
         <translation></translation>
     </message>
@@ -209,12 +235,12 @@ https://dev.maxmind.com/geoip/geoip2/geolite2/
     <message>
         <location filename="../../../build/src/core/ui_aboutdialog.h" line="457"/>
         <source>- Doomseeker logo and main icon design by Rachael &quot;Eruanna&quot; Alexanderson</source>
-        <translation>- el logo de Doomseeker y el icono principal diseñados por Rachael &quot;Eruanna&quot; Alexanderson</translation>
+        <translation>- El logo de Doomseeker y el icono principal diseñados por Rachael &quot;Eruanna&quot; Alexanderson</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_aboutdialog.h" line="458"/>
         <source>- Improved Doomseeker icons by MazterQyoun-ae and CarpeDiem</source>
-        <translation>- iconos de Doomseeker mejorados por MazterQyoun-ae y CarpeDiem</translation>
+        <translation>- Iconos de Doomseeker mejorados por MazterQyoun-ae y CarpeDiem</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_aboutdialog.h" line="459"/>
@@ -820,9 +846,19 @@ p, li { white-space: pre-wrap; }
         <translation>Rutas de archivo</translation>
     </message>
     <message>
+        <location filename="../gui/configuration/cfgfilepaths.cpp" line="48"/>
+        <source>Path</source>
+        <translation>Ruta</translation>
+    </message>
+    <message>
+        <location filename="../gui/configuration/cfgfilepaths.cpp" line="48"/>
+        <source>Recurse</source>
+        <translation>Recursivo</translation>
+    </message>
+    <message>
         <location filename="../gui/configuration/cfgfilepaths.cpp" line="98"/>
         <source>Doomseeker - Add wad path</source>
-        <translation>Doomseeker: agregar ruta a WAD</translation>
+        <translation>Doomseeker - Agregar ruta a WAD</translation>
     </message>
     <message>
         <location filename="../gui/configuration/cfgfilepaths.cpp" line="206"/>
@@ -1490,14 +1526,24 @@ p, li { white-space: pre-wrap; }
         <translation>Alias de WADs</translation>
     </message>
     <message>
+        <location filename="../gui/configuration/cfgwadalias.cpp" line="66"/>
+        <source>Left-to-Right will use the alias files instead of the main file but not vice-versa.</source>
+        <translation>Izquierda-a-Derecha utilizará los alias de archivos en lugar del archivo principal, pero no al revés.</translation>
+    </message>
+    <message>
+        <location filename="../gui/configuration/cfgwadalias.cpp" line="69"/>
+        <source>All Equal will treat all files as equal and try to match them in any combination.</source>
+        <translation>Todo Equivalente tratará a todos los archivos como iguales e intentará combinarlos en cualquier combinación.</translation>
+    </message>
+    <message>
         <location filename="../gui/configuration/cfgwadalias.cpp" line="191"/>
         <source>Left-to-Right</source>
-        <translation></translation>
+        <translation>Izquierda-a-Derecha</translation>
     </message>
     <message>
         <location filename="../gui/configuration/cfgwadalias.cpp" line="192"/>
         <source>All Equal</source>
-        <translation>Todo equivalente</translation>
+        <translation>Todo Equivalente</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_cfgwadalias.h" line="119"/>
@@ -1876,11 +1922,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>CmdArgsHelp</name>
     <message>
-        <location filename="../cmdargshelp.cpp" line="28"/>
         <source>--connect protocol://ip[:port]
     Attempts to connect to the specified server.
 </source>
-        <translation>--connect protocol://ip[:port]
+        <translation type="vanished">--connect protocol://ip[:port]
     Intenta conectarse al servidor especificado.
 </translation>
     </message>
@@ -1894,13 +1939,34 @@ p, li { white-space: pre-wrap; }
 </translation>
     </message>
     <message>
-        <location filename="../cmdargshelp.cpp" line="34"/>
         <source>--datadir [directory]
     Sets an explicit search location for
     IP2C data along with plugins.
     Can be specified multiple times.
 </source>
-        <translation>--datadir [directory]
+        <translation type="vanished">--datadir [directory]
+    Establece una ubicación de búsqueda explícita
+    para datos IP2C junto con complementos.
+    Se puede especificar varias veces.
+</translation>
+    </message>
+    <message>
+        <location filename="../cmdargshelp.cpp" line="28"/>
+        <source>--connect &lt;protocol://ip[:port]&gt;
+    Attempts to connect to the specified server.
+</source>
+        <translation>--connect &lt;protocol://ip[:port]&gt;
+    Intenta conectarse al servidor especificado.
+</translation>
+    </message>
+    <message>
+        <location filename="../cmdargshelp.cpp" line="34"/>
+        <source>--datadir &lt;directory&gt;
+    Sets an explicit search location for
+    IP2C data along with plugins.
+    Can be specified multiple times.
+</source>
+        <translation>--datadir &lt;directory&gt;
     Establece una ubicación de búsqueda explícita
     para datos IP2C junto con complementos.
     Se puede especificar varias veces.
@@ -2404,6 +2470,21 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DockBuddiesList</name>
     <message>
+        <location filename="../gui/dockBuddiesList.cpp" line="84"/>
+        <source>ID</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../gui/dockBuddiesList.cpp" line="85"/>
+        <source>Buddy</source>
+        <translation>Compañero</translation>
+    </message>
+    <message>
+        <location filename="../gui/dockBuddiesList.cpp" line="86"/>
+        <source>Location</source>
+        <translation>Ubicación</translation>
+    </message>
+    <message>
         <location filename="../gui/dockBuddiesList.cpp" line="152"/>
         <source>Delete Buddy</source>
         <translation>Eliminar Compañero</translation>
@@ -2734,17 +2815,17 @@ Ejecutable: %3</translation>
     <message>
         <location filename="../serverapi/gameexefactory.cpp" line="71"/>
         <source>game</source>
-        <translation>Juego</translation>
+        <translation>juego</translation>
     </message>
     <message>
         <location filename="../serverapi/gameexefactory.cpp" line="77"/>
         <source>client</source>
-        <translation>Cliente</translation>
+        <translation>cliente</translation>
     </message>
     <message>
         <location filename="../serverapi/gameexefactory.cpp" line="80"/>
         <source>server</source>
-        <translation>Servidor</translation>
+        <translation>servidor</translation>
     </message>
 </context>
 <context>
@@ -2893,7 +2974,7 @@ Ejecutable: %3</translation>
     <message>
         <location filename="../../../build/src/core/ui_gamerulespanel.h" line="131"/>
         <source>Max. players:</source>
-        <translation>Max. Jugadores:</translation>
+        <translation>Max. jugadores:</translation>
     </message>
 </context>
 <context>
@@ -3125,21 +3206,31 @@ Ejecutable: %3</translation>
         <translation>Intento de revertir IP2C fallido. Nada a lo que regresar.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="174"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="177"/>
         <source>Trying to use preinstalled IP2C database.</source>
         <translation>Intentando usar la base de datos IP2C preinstalada.</translation>
+    </message>
+    <message>
+        <location filename="../ip2c/ip2cloader.cpp" line="226"/>
+        <source>Did not find any IP2C database. IP2C functionality will be disabled.</source>
+        <translation>No se encontró ninguna base de datos IP2C. La funcionalidad de IP2C estará deshabilitada.</translation>
+    </message>
+    <message>
+        <location filename="../ip2c/ip2cloader.cpp" line="227"/>
+        <source>You may install an IP2C database from the &quot;File&quot; menu.</source>
+        <translation>Puede instalar una base de datos IP2C desde el menú &quot;Archivo&quot;.</translation>
     </message>
     <message>
         <source>Using precompiled IP2C database.</source>
         <translation type="vanished">Usando la base de datos IP2C precompilada.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="188"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="196"/>
         <source>IP2C parsing finished.</source>
         <translation>El análisis de IP2C terminó.</translation>
     </message>
     <message>
-        <location filename="../ip2c/ip2cloader.cpp" line="206"/>
+        <location filename="../ip2c/ip2cloader.cpp" line="215"/>
         <source>Please wait. IP2C database is being read. This may take some time.</source>
         <translation>Por favor espera. La base de datos IP2C está siendo leída. Esto puede tomar algo de tiempo.</translation>
     </message>
@@ -3194,9 +3285,13 @@ Ejecutable: %3</translation>
         <translation>El archivo aún no existe o la ubicación no apunta a un archivo.</translation>
     </message>
     <message>
-        <location filename="../gui/ip2cupdatebox.cpp" line="86"/>
         <source>IP2C database file was not found. Use update button if you want to download the newest database.</source>
-        <translation>No se encontró la base de datos IP2C. Utilice el botón de actualización si desea descargar la base de datos más reciente.</translation>
+        <translation type="vanished">No se encontró la base de datos IP2C. Utilice el botón de actualización si desea descargar la base de datos más reciente.</translation>
+    </message>
+    <message>
+        <location filename="../gui/ip2cupdatebox.cpp" line="86"/>
+        <source>IP2C database file was not found. Use the update button if you want to download the newest database.</source>
+        <translation>No se encontró el archivo de base de datos IP2C. Utilice el botón de actualización si desea descargar la base de datos más reciente.</translation>
     </message>
     <message>
         <location filename="../gui/ip2cupdatebox.cpp" line="98"/>
@@ -3902,7 +3997,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../irc/ircresponseparser.cpp" line="278"/>
         <source>RPLNamReply: Received names list but no channel name.</source>
-        <translation>RPLNamReply: lista de nombres recibidos pero no el nombre de canal.</translation>
+        <translation>RPLNamReply: Lista de nombres recibidos pero no el nombre de canal.</translation>
     </message>
     <message>
         <location filename="../irc/ircresponseparser.cpp" line="370"/>
@@ -3929,7 +4024,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../irc/ircresponseparser.cpp" line="534"/>
         <source>IRCResponseParser: Type &apos;%1&apos; was recognized but there has been no parse code implemented for it.(yep, it&apos;s a bug in the application!)</source>
-        <translation>IRCResponseParser: se ha reconocido el tipo &apos;%1&apos; pero no se ha implementado ningún código de análisis para éste.(sip, ¡esto es un error en la aplicación!)</translation>
+        <translation>IRCResponseParser: Se ha reconocido el tipo &apos;%1&apos; pero no se ha implementado ningún código de análisis para éste.(sip, ¡esto es un error en la aplicación!)</translation>
     </message>
     <message>
         <location filename="../irc/ircresponseparser.cpp" line="602"/>
@@ -3962,7 +4057,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../irc/ircnetworkadapter.cpp" line="826"/>
         <source>IRC: Disconnected from network %1</source>
-        <translation>IRC: desconectado de la red %1</translation>
+        <translation>IRC: Desconectado de la red %1</translation>
     </message>
 </context>
 <context>
@@ -4225,7 +4320,7 @@ Operación fallida.</translation>
         <translation>Inicializando la configuración para complementos.</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="661"/>
+        <location filename="../main.cpp" line="657"/>
         <source>doomseeker: `--connect`, `--create-game` and `--rcon` are mutually exclusive</source>
         <translation>doomseeker: `--connect`, `--create-game` y `--rcon` se excluyen entre sí</translation>
     </message>
@@ -4248,7 +4343,7 @@ Operación fallida.</translation>
         <translation type="vanished">doomseeker: opción no reconocida &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="674"/>
+        <location filename="../main.cpp" line="670"/>
         <source>Starting refreshing thread.</source>
         <translation>Iniciando hilo de refresco.</translation>
     </message>
@@ -4391,6 +4486,34 @@ Operación fallida.</translation>
         <translation type="vanished">CTRL+F</translation>
     </message>
     <message>
+        <location filename="../gui/mainwindow.cpp" line="231"/>
+        <source>Warning: 
+Doomseeker failed to detect any plugins.
+While the core application will still work its functionality is going to be limited.
+One of the proper locations for plugin modules is the &quot;engines/&quot; directory.
+</source>
+        <translation>Advertencia:
+Doomseeker no pudo detectar ningún complemento.
+Si bien la aplicación seguirá funcionando, su funcionalidad será limitada.
+Una de las ubicaciones adecuadas para los complementos es el directorio &quot;engines/&quot;.
+</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="238"/>
+        <source>Doomseeker - plugin load failure</source>
+        <translation>Doomseeker - fallo al cargar un plugin</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="246"/>
+        <source>&amp;Buddies</source>
+        <translation>&amp;Compañeros</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="247"/>
+        <source>CTRL+B</source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="../gui/mainwindow.cpp" line="690"/>
         <source>Doomseeker needs to be restarted for some changes to be applied.</source>
         <translation>Doomseeker necesita reiniciarse para que algunos de los cambios se apliquen.</translation>
@@ -4456,7 +4579,7 @@ Operación fallida.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1250"/>
         <source>Query on startup warning: No master servers are enabled in the Query menu.</source>
-        <translation>Advertencia de consulta al inicio: no hay servidores maestros habilitados en el menú Consulta.</translation>
+        <translation>Advertencia de consulta al inicio: No hay servidores maestros habilitados en el menú Consulta.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1268"/>
@@ -4808,6 +4931,11 @@ Las actualizaciones restantes se han descartado.</translation>
         <source>Random map rotation</source>
         <translation>Rotación aleatoria del mapa</translation>
     </message>
+    <message>
+        <location filename="../gui/createserver/maplistpanel.cpp" line="52"/>
+        <source>Current map isn&apos;t present on map list. Game may misbehave.</source>
+        <translation>El mapa actual no se encuentra en la lista de mapas. El juego puede comportarse de forma extraña.</translation>
+    </message>
 </context>
 <context>
     <name>MasterClient</name>
@@ -5118,7 +5246,7 @@ Si no tiene este archivo, y pertenece a un juego comercial, necesita comprar el 
     <message>
         <location filename="../plugins/pluginloader.cpp" line="97"/>
         <source>plugin doesn&apos;t report its ABI version</source>
-        <translation>el complemento no informa su versión ABI</translation>
+        <translation>el complemento no proporciona su versión ABI</translation>
     </message>
     <message>
         <location filename="../plugins/pluginloader.cpp" line="99"/>
@@ -5158,8 +5286,7 @@ Si no tiene este archivo, y pertenece a un juego comercial, necesita comprar el 
     <message>
         <location filename="../configuration/doomseekerconfig.cpp" line="80"/>
         <source>DoomseekerConfig.iniSectionForPlugin(): empty plugin name has been specified, returning dummy IniSection.</source>
-        <translatorcomment>el nombre de plugin vacío ha sido especificado, devolviendo el ficticio IniSection.</translatorcomment>
-        <translation>DoomseekerConfig.iniSectionForPlugin(): empty plugin name has been specified, returning dummy IniSection.</translation>
+        <translation>DoomseekerConfig.iniSectionForPlugin(): el nombre de plugin vacío ha sido especificado, devolviendo el IniSection ficticio.</translation>
     </message>
     <message>
         <location filename="../configuration/doomseekerconfig.cpp" line="86"/>
@@ -5172,17 +5299,17 @@ Si no tiene este archivo, y pertenece a un juego comercial, necesita comprar el 
         <translation>Configurando archivo INI: %1</translation>
     </message>
     <message>
-        <location filename="../datapaths.cpp" line="501"/>
+        <location filename="../datapaths.cpp" line="509"/>
         <source>parent node is not a directory: %1</source>
         <translation>nodo padre no es un directorio: %1</translation>
     </message>
     <message>
-        <location filename="../datapaths.cpp" line="515"/>
+        <location filename="../datapaths.cpp" line="523"/>
         <source>lack of necessary permissions to the parent directory: %1</source>
         <translation>falta de permisos necesarios para el directorio padre: %1</translation>
     </message>
     <message>
-        <location filename="../datapaths.cpp" line="520"/>
+        <location filename="../datapaths.cpp" line="528"/>
         <source>cannot create directory</source>
         <translation>no se puede crear el directorio</translation>
     </message>
@@ -5227,6 +5354,26 @@ Si no tiene este archivo, y pertenece a un juego comercial, necesita comprar el 
 </context>
 <context>
     <name>RemoteConsole</name>
+    <message>
+        <location filename="../gui/remoteconsole.cpp" line="68"/>
+        <source>No RCon support</source>
+        <translation>Sin soporte RCon</translation>
+    </message>
+    <message>
+        <location filename="../gui/remoteconsole.cpp" line="68"/>
+        <source>The selected source port has no RCon support.</source>
+        <translation>El source port seleccionado no tiene soporte para RCon.</translation>
+    </message>
+    <message>
+        <location filename="../gui/remoteconsole.cpp" line="83"/>
+        <source>RCon failure</source>
+        <translation>Fallo de RCon</translation>
+    </message>
+    <message>
+        <location filename="../gui/remoteconsole.cpp" line="83"/>
+        <source>Failed to create RCon protocol for the server.</source>
+        <translation>Error al crear el protocolo RCon para el servidor.</translation>
+    </message>
     <message>
         <location filename="../gui/remoteconsole.cpp" line="110"/>
         <source>RCon Failure</source>
@@ -5456,12 +5603,14 @@ Si no tiene este archivo, y pertenece a un juego comercial, necesita comprar el 
         <translation>Despejar</translation>
     </message>
     <message>
+        <location filename="../gui/serverfilterdock.cpp" line="61"/>
         <source>Server &amp;Filter</source>
-        <translation type="vanished">&amp;Filtro de Servidores</translation>
+        <translation>&amp;Filtro de Servidores</translation>
     </message>
     <message>
+        <location filename="../gui/serverfilterdock.cpp" line="62"/>
         <source>CTRL+F</source>
-        <translation type="vanished">CTRL+F</translation>
+        <translation>CTRL+F</translation>
     </message>
 </context>
 <context>
