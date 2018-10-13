@@ -54,6 +54,7 @@ Turok2ExEnginePlugin::Turok2ExEnginePlugin()
 		EP_NoIwad,
 		EP_NoClientSlots,
 		EP_DifficultyProvider, new Turok2ExDifficultyProvider(),
+		EP_CanonicalName, "turok2ex",
 		EP_Done
 	);
 }

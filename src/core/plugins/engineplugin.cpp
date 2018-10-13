@@ -177,6 +177,9 @@ void EnginePlugin::init(const char* name, const char* const icon[], ...)
 			case EP_Broadcast:
 				d->broadcast = va_arg(va, Broadcast*);
 				break;
+			case EP_CanonicalName:
+				d->canonicalName = va_arg(va, const char*);
+				break;
 			case EP_ClientOnly:
 				d->clientOnly = true;
 				break;
@@ -266,10 +269,18 @@ void EnginePlugin::masterHost(QString &host, unsigned short &port) const
 
 QString EnginePlugin::nameCanonical() const
 {
-	QString name = data()->name;
-	name = name.toLower();
-	name = name.replace(QRegExp("\\s"), "_");
-	return name;
+	if (!d->canonicalName.isEmpty())
+	{
+		return d->canonicalName;
+	}
+	else
+	{
+		// Derive.
+		QString name = data()->name;
+		name = name.toLower();
+		name = name.replace(QRegExp("\\s"), "_");
+		return name;
+	}
 }
 
 ServerPtr EnginePlugin::server(const QHostAddress &address, unsigned short port) const

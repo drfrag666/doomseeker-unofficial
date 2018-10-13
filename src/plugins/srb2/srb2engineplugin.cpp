@@ -59,6 +59,7 @@ Srb2EnginePlugin::Srb2EnginePlugin()
 		EP_AllowsMOTD,
 		EP_AllowsRConPassword,
 		EP_NoClientSlots,
+		EP_CanonicalName, "srb2",
 		EP_Done
 	);
 }

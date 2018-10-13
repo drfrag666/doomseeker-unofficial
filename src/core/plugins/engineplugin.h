@@ -219,8 +219,34 @@ class MAIN_EXPORT EnginePlugin
 			/**
 			 * @brief Provides a description to be shown in the "About" menu.
 			 */
-			EP_AboutProvider
-
+			EP_AboutProvider,
+			/**
+			 * @brief Plugin canonical name; should match filenames of the
+			 * library and translation files.
+			 *
+			 * This setting is optional. If not specified, Doomseeker will
+			 * try to derive the canonical name from the human-readable name.
+			 *
+			 * Recommendation for canonical names is to use text that is
+			 * short, related to the human-readable name, reasonably unique,
+			 * all lowercase, has no whitespace and is preferably one word
+			 * or an abbreviation.
+			 *
+			 * Canonical name is used to match names of translation files.
+			 * This means that names of the translation files must have the
+			 * same prefix as the canonical name. For example, if canonical
+			 * name is "spacewar", the Spanish translation file must be named
+			 * "spacewar_es_ES.qm".
+			 *
+			 * While certain plugins may match their canonical name to their
+			 * actual, human-readable name in a simple and derivable fashion,
+			 * some other plugins may have a canonical name that is drastically
+			 * different. The author of the plugin should choose the canonical
+			 * name carefully as it may be used and remembered throughout the
+			 * program to identify this particular plugin. Changing this name
+			 * in a later release may lead to data or settings loss by users.
+			 */
+			EP_CanonicalName
 		};
 
 		/// Reimplement if you want to perform some ini initialization manually.
@@ -305,6 +331,7 @@ class MAIN_EXPORT EnginePlugin
 				bool allowsPlayerSlots;
 				bool allowsUpnp;
 				bool allowsUpnpPort;
+				QString canonicalName;
 
 				Data();
 
@@ -406,9 +433,12 @@ class MAIN_EXPORT EnginePlugin
 		void masterHost(QString &host, unsigned short &port) const;
 
 		/**
-		 * @brief Derived from actual plugin name.
+		 * @brief Either specified explicitly by plugin or derived from
+		 * the actual plugin name.
 		 *
-		 * This name is derived from plugin's actual name with following rules:
+		 * If plugin specifies a canonical name, it's taken as-is.
+		 *
+		 * If name is derived from the actual name, the following rules apply:
 		 * - All characters are lower-cased.
 		 * - All whitespace is replaced with underscores.
 		 *
