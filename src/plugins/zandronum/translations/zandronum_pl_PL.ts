@@ -1255,7 +1255,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronumengineplugin.cpp" line="176"/>
         <source>Max. lives:</source>
-        <translation>Maks. żyć:</translation>
+        <translation>Max. żyć:</translation>
     </message>
     <message>
         <location filename="../zandronumserver.h" line="72"/>

@@ -1195,7 +1195,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_cfgircdefinenetworkdialog.h" line="285"/>
         <source>Max. 512 characters per command.</source>
-        <translation>Maks. 512 znaków na komendę.</translation>
+        <translation>Max. 512 znaków na komendę.</translation>
     </message>
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_cfgircdefinenetworkdialog.h" line="286"/>
@@ -1665,7 +1665,7 @@ Te wartości mogą być też dostosowywane ręcznie.</translation>
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_cfgserverpasswords.h" line="209"/>
         <source>Max number of servers to remember per password:</source>
-        <translation>Maks. liczba serwerów do zapamiętania na hasło:</translation>
+        <translation>Max. liczba serwerów do zapamiętania na hasło:</translation>
     </message>
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_cfgserverpasswords.h" line="210"/>
@@ -1904,7 +1904,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_cfgwadseekergeneral.h" line="266"/>
         <source>Max concurrent site seeks:</source>
-        <translation>Max. liczna jednoczesnych poszukiwań:</translation>
+        <translation>Max. liczba jednoczesnych poszukiwań:</translation>
     </message>
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_cfgwadseekergeneral.h" line="275"/>
@@ -2660,7 +2660,7 @@ Domyślny plik zotanie użyty.</translation>
     </message>
     <message>
         <source>Max. clients:</source>
-        <translation type="obsolete">Max. klienci:</translation>
+        <translation type="obsolete">Max. klientów:</translation>
     </message>
     <message>
         <source>Max. players:</source>
@@ -3540,7 +3540,7 @@ nie istnieje lub nie jest plikiem.</translation>
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_gamerulespanel.h" line="133"/>
         <source>Max. clients:</source>
-        <translation>Max. klienci:</translation>
+        <translation>Max. klientów:</translation>
     </message>
     <message>
         <location filename="../../../../vs2013_5_7_0/src/core/ui_gamerulespanel.h" line="134"/>
