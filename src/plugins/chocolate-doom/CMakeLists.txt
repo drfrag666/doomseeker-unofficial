@@ -43,6 +43,17 @@ set(HEADER_FILES
 	chocolatedoomserver.h
 )
 
-add_library(${PLUGIN_NAME} MODULE ${CHOCOLATEDOOM_FILES} ${HEADER_FILES})
+set(TRANSLATIONS_FILES
+	translations/chocolatedoom_es_ES.ts
+	translations/chocolatedoom_pl_PL.ts
+)
+set(FILES_TO_TRANSLATE
+	${HEADER_FILES}
+	${CHOCOLATEDOOM_FILES}
+)
+
+include(../Translation.cmake)
+
+add_library(${PLUGIN_NAME} MODULE ${CHOCOLATEDOOM_FILES} ${HEADER_FILES} ${QM_FILES})
 
 include(../PluginFooter.cmake)

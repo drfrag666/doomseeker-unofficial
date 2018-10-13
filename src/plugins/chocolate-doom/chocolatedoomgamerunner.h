@@ -30,6 +30,7 @@ class ChocolateDoomServer;
 
 class ChocolateDoomGameClientRunner : public GameClientRunner
 {
+	Q_OBJECT;
 	public:
 		ChocolateDoomGameClientRunner(QSharedPointer<ChocolateDoomServer> server);
 

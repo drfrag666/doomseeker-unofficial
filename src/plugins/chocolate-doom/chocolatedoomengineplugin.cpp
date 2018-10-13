@@ -52,6 +52,7 @@ ChocolateDoomEnginePlugin::ChocolateDoomEnginePlugin()
 		EP_NoMapList,
 		EP_NoClientSlots,
 		EP_NoPlayerSlots,
+		EP_CanonicalName, "chocolatedoom",
 		EP_Done
 	);
 }
