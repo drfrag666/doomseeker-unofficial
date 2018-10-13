@@ -320,14 +320,18 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AddBuddyDlg</name>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="316"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="297"/>
         <source>Invalid Pattern</source>
         <translation>Patrón inválido</translation>
     </message>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="316"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="297"/>
+        <source>The pattern you have specified is invalid.</source>
+        <translation>El patrón que has especificado no es válido.</translation>
+    </message>
+    <message>
         <source>The pattern you have specified is not a valid regular expression.</source>
-        <translation>El patrón que has especificado no es una expressión regular válida.</translation>
+        <translation type="vanished">El patrón que has especificado no es una expressión regular válida.</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_addBuddyDlg.h" line="98"/>
@@ -2485,23 +2489,23 @@ p, li { white-space: pre-wrap; }
         <translation>Ubicación</translation>
     </message>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="152"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="136"/>
         <source>Delete Buddy</source>
         <translation>Eliminar Compañero</translation>
     </message>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="152"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="136"/>
         <source>Are you sure you want to delete this pattern?</source>
         <translation>¿Seguro que quieres eliminar este patrón?</translation>
     </message>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="206"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="190"/>
         <location filename="../../../build/src/core/ui_dockBuddiesList.h" line="135"/>
         <source>Add</source>
         <translation>Añadir</translation>
     </message>
     <message>
-        <location filename="../gui/dockBuddiesList.cpp" line="212"/>
+        <location filename="../gui/dockBuddiesList.cpp" line="196"/>
         <location filename="../../../build/src/core/ui_dockBuddiesList.h" line="136"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
@@ -5284,17 +5288,17 @@ Si no tiene este archivo, y pertenece a un juego comercial, necesita comprar el 
         <translation>Configurando el archivo IRC INI: %1</translation>
     </message>
     <message>
-        <location filename="../configuration/doomseekerconfig.cpp" line="80"/>
+        <location filename="../configuration/doomseekerconfig.cpp" line="121"/>
         <source>DoomseekerConfig.iniSectionForPlugin(): empty plugin name has been specified, returning dummy IniSection.</source>
         <translation>DoomseekerConfig.iniSectionForPlugin(): el nombre de plugin vacío ha sido especificado, devolviendo el IniSection ficticio.</translation>
     </message>
     <message>
-        <location filename="../configuration/doomseekerconfig.cpp" line="86"/>
+        <location filename="../configuration/doomseekerconfig.cpp" line="127"/>
         <source>DoomseekerConfig.iniSectionForPlugin(): plugin name is invalid: %1</source>
         <translation>DoomseekerConfig.iniSectionForPlugin(): el nombre del complemento no es válido: %1</translation>
     </message>
     <message>
-        <location filename="../configuration/doomseekerconfig.cpp" line="186"/>
+        <location filename="../configuration/doomseekerconfig.cpp" line="227"/>
         <source>Setting INI file: %1</source>
         <translation>Configurando archivo INI: %1</translation>
     </message>
