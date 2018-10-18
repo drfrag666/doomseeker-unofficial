@@ -601,6 +601,30 @@ Server::Response ZandronumServer::readRequest(const QByteArray &data)
 		resetPwadsList(pwads);
 	}
 
+	//Extended flags
+	if((flags & SQF_EXTENDED_INFO) == SQF_EXTENDED_INFO)
+	{
+		RETURN_BAD_IF_NOT_ENOUGH_DATA(1);
+		quint32 flags2 = in.readQInt32();
+
+		if ((flags2 & SQF2_PWAD_HASHES) == SQF2_PWAD_HASHES)
+		{
+			QList<PWad> pwads = wads();
+			flags2 ^= SQF2_PWAD_HASHES;
+
+			RETURN_BAD_IF_NOT_ENOUGH_DATA(1);
+			unsigned int numHashes = in.readQInt8();
+			RETURN_BAD_IF_NOT_ENOUGH_DATA(numHashes);
+
+			for (int index = 0; index < numHashes; index++)
+			{
+				pwads.replace(index, PWad(pwads[index].name(),
+					pwads[index].isOptional(),
+					QByteArray::fromHex(in.readRawUntilByte('\0')))); //Add the hash of the wad.
+			}
+			resetPwadsList(pwads);
+		}
+	}
 	return RESPONSE_GOOD;
 }
 
@@ -614,11 +638,13 @@ void ZandronumServer::resetPwadsList(const QList<PWad> &wads)
 QByteArray ZandronumServer::createSendRequest()
 {
 	// Prepare launcher challenge.
-	int query = SQF_STANDARDQUERY;
-	const unsigned char challenge[12] = {
+	int standard_query = SQF_STANDARDQUERY;
+	int extended_query = SQF2_STANDARDQUERY;
+	const unsigned char challenge[18] = {
 		SERVER_CHALLENGE,
-		WRITEINT32_DIRECT(unsigned char, query),
-		WRITEINT32_DIRECT(unsigned char, millisecondTime())
+		WRITEINT32_DIRECT(unsigned char, standard_query),
+		WRITEINT32_DIRECT(unsigned char, millisecondTime()),
+		WRITEINT32_DIRECT(unsigned char, extended_query)
 	};
 	char challengeOut[16];
 	int out = 16;

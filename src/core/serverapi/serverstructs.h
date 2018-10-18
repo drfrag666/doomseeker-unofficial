@@ -471,6 +471,7 @@ class MAIN_EXPORT PWad
 {
 	public:
 		PWad(const QString &name, bool optional=false);
+		PWad(const QString &name, bool optional, const QByteArray &hash);
 		virtual ~PWad();
 
 		/**
@@ -481,7 +482,10 @@ class MAIN_EXPORT PWad
 		 * @brief File name of the WAD.
 		 */
 		const QString& name() const;
-
+		/**
+		 * @brief Hash of the WAD.
+		 */
+		const QByteArray& hash() const;
 	private:
 		DPtr<PWad> d;
 };

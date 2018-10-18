@@ -228,19 +228,19 @@ Server::Response OdamexServer::readRequest(const QByteArray &data)
 		CHECK_POS;
 
 		QString wad = in.readRawUntilByte('\0');
-		if(i >= 2)
-			addWad(wad);
-		else if(i == 1)
-			setIwad(wad);
-
+		QByteArray hash = "";
 		CHECK_POS;
 		if(protocolVersion >= 4)
 		{
 			short hashLength = in.readQUInt8();
-			in.skipRawData(hashLength);
+			hash = in.readRaw(hashLength); //Add the hash of the wad.
 		}
 		else
 			in.readRawUntilByte('\0');
+		if (i >= 2)
+			addWad(PWad(wad, false, hash));
+		else if (i == 1)
+			setIwad(wad);
 	}
 
 	clearPlayersList();

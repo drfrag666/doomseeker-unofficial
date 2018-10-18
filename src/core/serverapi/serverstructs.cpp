@@ -407,14 +407,23 @@ DClass<PWad>
 	public:
 		QString name;
 		bool optional;
+		QByteArray hash;
 };
 
 DPointered(PWad)
+
+PWad::PWad(const QString &name, bool optional, const QByteArray &hash)
+{
+	d->name = name;
+	d->optional = optional;
+	d->hash = hash;
+}
 
 PWad::PWad(const QString &name, bool optional)
 {
 	d->name = name;
 	d->optional = optional;
+	d->hash = "";
 }
 
 PWad::~PWad()
@@ -429,4 +438,9 @@ bool PWad::isOptional() const
 const QString& PWad::name() const
 {
 	return d->name;
+}
+
+const QByteArray& PWad::hash() const
+{
+	return d->hash;
 }
