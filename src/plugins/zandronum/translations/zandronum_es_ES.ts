@@ -190,7 +190,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1872"/>
         <source>Don&apos;t use ping-based backwards reconciliation for player-fired hitscans and rails.</source>
-        <translation>No utilice reconciliación hacia atrás basada en ping para hitscans y rieles disparados por jugadores.</translation>
+        <translation>No utilizar reconciliación hacia atrás basada en ping para hitscans y rieles disparados por jugadores.</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1874"/>
@@ -370,7 +370,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1927"/>
         <source>Slowly lose health when over 100%</source>
-        <translation>Poco a poco perderer salud cuando esta esté por encima de 100%</translation>
+        <translation>Poco a poco perder salud cuando esta esté por encima del 100%</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1928"/>
@@ -440,7 +440,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1944"/>
         <source>Don&apos;t spawn any multiplayer actor in coop</source>
-        <translation>No generes ningún actor multijugador en la cooperativo</translation>
+        <translation>No generes ningún actor multijugador en el cooperativo</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1945"/>
@@ -525,7 +525,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1965"/>
         <source>Lose all ammo</source>
-        <translation>Pierde toda la munición</translation>
+        <translation>Perder toda la munición</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1966"/>
@@ -555,7 +555,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1975"/>
         <source>Survival only: no map reset when all players die</source>
-        <translation>Sólo supervivencia: no se restablece el mapa cuando todos los jugadores mueren</translation>
+        <translation>Solo supervivencia: no se restablece el mapa cuando todos los jugadores mueren</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1976"/>
@@ -762,7 +762,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2017"/>
         <source>Enable buggier wall clipping so players can wallrun.</source>
-        <translation>Habilitar un atravesamiento de pared más malo para que los jugadores puedan hacer wallrun.</translation>
+        <translation>Habilitar un atravesamiento de pared peor para que los jugadores puedan hacer wallrun.</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2019"/>
@@ -852,12 +852,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2049"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Crushed monsters are turned into gibs, rather than replaced by gibs.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Los monstruos aplastados se convierten en biszeras, en lugar de ser reemplazados por estas.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Los monstruos aplastados se convierten en vísceras, en lugar de ser reemplazados por estas.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2051"/>
         <source>Crusher gibs by morphing, not replacement</source>
-        <translation>Aplastar transforma en biszeras, en lugar de reemplazar por estas</translation>
+        <translation>Aplastar transforma en vísceras, en lugar de reemplazar por estas</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2052"/>
@@ -982,7 +982,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2090"/>
         <source>Use original missile clipping height</source>
-        <translation>Utilice la altura original de atravesamiento de misiles</translation>
+        <translation>Utilizar la altura original de atravesamiento de misiles</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2091"/>
@@ -1007,7 +1007,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2098"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The scrolling floor specials in Heretic and Hexen move the player much faster than the actual texture scrolling speed. Enable this option to restore this effect. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Los desplacamientos especiales del suelo en Heretic y Hexen mueven al jugador mucho más rápido que la velocidad de desplazamiento de la textura real. Habilita esta opción para restaurar este efecto.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Los desplazamientos especiales del suelo en Heretic y Hexen mueven al jugador mucho más rápido que la velocidad de desplazamiento de la textura real. Habilita esta opción para restaurar este efecto.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2100"/>
@@ -1027,7 +1027,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2106"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When a player leaves the game, don&apos;t stop any scripts of that player that are still running.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cuando un jugador abandona el juego, no detener ningun script que ese jugador todavía esté ejecutando.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Cuando un jugador abandona el juego, no detener ningún script que ese jugador todavía esté ejecutando.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2108"/>
@@ -1054,7 +1054,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2117"/>
         <source>Old ZDoom bridge drops</source>
-        <translation>Caidas de puente del antiguo ZDoom</translation>
+        <translation>Caídas de puente del antiguo ZDoom</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2119"/>
@@ -1154,7 +1154,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2147"/>
         <source>West spawns are silent</source>
-        <translation>Las apariciones &quot;West&quot; són silenciosas</translation>
+        <translation>Las apariciones &quot;West&quot; son silenciosas</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="2148"/>
@@ -1446,7 +1446,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum2dmflags.cpp" line="79"/>
         <source>Use original Doom heights for clipping against projectiles</source>
-        <translation>Utilice alturas originales de Doom durante una colisión con misiles</translation>
+        <translation>Utilizar alturas originales de Doom durante una colisión con misiles</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="81"/>
@@ -1476,7 +1476,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum2dmflags.cpp" line="91"/>
         <source>Crushed monsters are turned into gibs, rather than replaced by gibs</source>
-        <translation>Los monstruos aplastados se convierten en biszeras, en lugar de ser reemplazados por estas</translation>
+        <translation>Los monstruos aplastados se convierten en vísceras, en lugar de ser reemplazados por estas</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="93"/>
@@ -1521,7 +1521,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum2dmflags.cpp" line="118"/>
         <source>Use Doom&apos;s original random number generator</source>
-        <translation>Utilice el generador de números aleatorios original de Doom</translation>
+        <translation>Utilizar el generador de números aleatorios original de Doom</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="120"/>
@@ -1556,12 +1556,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum2dmflags.cpp" line="136"/>
         <source>Use vanilla&apos;s autoaim tracer behavior</source>
-        <translation>Utilice el comportamiento de autoapuntado original</translation>
+        <translation>Utilizar el comportamiento de autoapuntado original</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="138"/>
         <source>West spawns are silent</source>
-        <translation>Las apariciones &quot;West&quot; són silenciosas</translation>
+        <translation>Las apariciones &quot;West&quot; son silenciosas</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="140"/>
@@ -1591,7 +1591,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum2dmflags.cpp" line="150"/>
         <source>Use original doom2 intermission music</source>
-        <translation>Utilice la música original de intermedio de doom2</translation>
+        <translation>Utilizar la música original de intermedio de doom2</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="152"/>
@@ -1631,17 +1631,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum2dmflags.cpp" line="172"/>
         <source>Falling damage (old ZDoom)</source>
-        <translation>Daño de caida (antiguo ZDoom)</translation>
+        <translation>Daño de caída (antiguo ZDoom)</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="174"/>
         <source>Falling damage (Hexen)</source>
-        <translation>Daño de caida (Hexen)</translation>
+        <translation>Daño de caída (Hexen)</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="176"/>
         <source>Falling damage (Strife)</source>
-        <translation>Daño de caida (Strife)</translation>
+        <translation>Daño de caída (Strife)</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="178"/>
@@ -1731,32 +1731,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum2dmflags.cpp" line="212"/>
         <source>Lose keys on respawn (COOP)</source>
-        <translation>Pierde llaves al reaparecer (COOP)</translation>
+        <translation>Perder llaves al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="214"/>
         <source>Lose weapons on respawn (COOP)</source>
-        <translation>Pierde armas al reaparecer (COOP)</translation>
+        <translation>Perder armas al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="216"/>
         <source>Lose armor on respawn (COOP)</source>
-        <translation>Pierde armadura al reaparecer (COOP)</translation>
+        <translation>Perder armadura al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="218"/>
         <source>Lose powerups on respawn (COOP)</source>
-        <translation>Pierde potenciadores al reaparecer (COOP)</translation>
+        <translation>Perder potenciadores al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="220"/>
         <source>Lose ammo on respawn (COOP)</source>
-        <translation>Pierde munición al reaparecer (COOP)</translation>
+        <translation>Perder munición al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="222"/>
         <source>Lose half your ammo on respawn (COOP)</source>
-        <translation>Pierde la mitad de la munición al reaparecer (COOP)</translation>
+        <translation>Perder la mitad de la munición al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="225"/>
@@ -1946,7 +1946,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum2dmflags.cpp" line="312"/>
         <source>Award damage instead of kills</source>
-        <translation>Premiar daño lugar de asesinatos</translation>
+        <translation>Premiar daño en lugar de asesinatos</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="314"/>
@@ -2069,7 +2069,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum3dmflags.cpp" line="79"/>
         <source>Use original Doom heights for clipping against projectiles</source>
-        <translation>Utilice alturas originales de Doom durante una colisión con misiles</translation>
+        <translation>Utilizar alturas originales de Doom durante una colisión con misiles</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="81"/>
@@ -2099,7 +2099,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum3dmflags.cpp" line="91"/>
         <source>Crushed monsters are turned into gibs, rather than replaced by gibs</source>
-        <translation>Los monstruos aplastados se convierten en biszeras, en lugar de ser reemplazados por estas</translation>
+        <translation>Los monstruos aplastados se convierten en vísceras, en lugar de ser reemplazados por estas</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="93"/>
@@ -2159,7 +2159,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum3dmflags.cpp" line="130"/>
         <source>Use Doom&apos;s original random number generator</source>
-        <translation>Utilice el generador de números aleatorios original de Doom</translation>
+        <translation>Utilizar el generador de números aleatorios original de Doom</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="132"/>
@@ -2194,12 +2194,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum3dmflags.cpp" line="148"/>
         <source>Use vanilla&apos;s autoaim tracer behavior</source>
-        <translation>Utilice el comportamiento de autoapuntado original</translation>
+        <translation>Utilizar el comportamiento de autoapuntado original</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="150"/>
         <source>West spawns are silent</source>
-        <translation>Las apariciones &quot;West&quot; són silenciosas</translation>
+        <translation>Las apariciones &quot;West&quot; son silenciosas</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="152"/>
@@ -2229,7 +2229,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum3dmflags.cpp" line="162"/>
         <source>Use original doom2 intermission music</source>
-        <translation>Utilice la música original de intermedio de doom2</translation>
+        <translation>Utilizar la música original de intermedio de doom2</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="164"/>
@@ -2269,17 +2269,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum3dmflags.cpp" line="184"/>
         <source>Falling damage (old ZDoom)</source>
-        <translation>Daño de caida (antiguo ZDoom)</translation>
+        <translation>Daño de caída (antiguo ZDoom)</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="186"/>
         <source>Falling damage (Hexen)</source>
-        <translation>Daño de caida (Hexen)</translation>
+        <translation>Daño de caída (Hexen)</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="188"/>
         <source>Falling damage (Strife)</source>
-        <translation>Daño de caida (Strife)</translation>
+        <translation>Daño de caída (Strife)</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="190"/>
@@ -2324,7 +2324,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum3dmflags.cpp" line="206"/>
         <source>Items other than invuln. and invis. respawn</source>
-        <translation>Los objetos (a excepción de invulnerabilidad y invisibilidad) reaparecen</translation>
+        <translation>Los objetos (a excepción de invulnerabilidad e invisibilidad) reaparecen</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="208"/>
@@ -2369,32 +2369,32 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum3dmflags.cpp" line="224"/>
         <source>Lose keys on respawn (COOP)</source>
-        <translation>Pierde llaves al reaparecer (COOP)</translation>
+        <translation>Perder llaves al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="226"/>
         <source>Lose weapons on respawn (COOP)</source>
-        <translation>Pierde armas al reaparecer (COOP)</translation>
+        <translation>Perder armas al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="228"/>
         <source>Lose armor on respawn (COOP)</source>
-        <translation>Pierde armadura al reaparecer (COOP)</translation>
+        <translation>Perder armadura al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="230"/>
         <source>Lose powerups on respawn (COOP)</source>
-        <translation>Pierde potenciadores al reaparecer (COOP)</translation>
+        <translation>Perder potenciadores al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="232"/>
         <source>Lose ammo on respawn (COOP)</source>
-        <translation>Pierde munición al reaparecer (COOP)</translation>
+        <translation>Perder munición al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="234"/>
         <source>Lose half your ammo on respawn (COOP)</source>
-        <translation>Pierde la mitad de la munición al reaparecer (COOP)</translation>
+        <translation>Perder la mitad de la munición al reaparecer (COOP)</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="236"/>
@@ -2589,7 +2589,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum3dmflags.cpp" line="326"/>
         <source>Award damage instead of kills</source>
-        <translation>Premiar daño lugar de asesinatos</translation>
+        <translation>Premiar daño en lugar de asesinatos</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="328"/>
@@ -2649,7 +2649,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronumbroadcast.cpp" line="121"/>
         <source>Failed to bind Zandronum&apos;s LAN broadcasts listening socket on port %1. Will keep retrying silently.</source>
-        <translation>Error al enlazar la conexión de escucha de las transmisiones LAN de Zandronum en el puerto %1. Seguiremos reintentandolo en silencio.</translation>
+        <translation>Error al enlazar la conexión de escucha de las transmisiones LAN de Zandronum en el puerto %1. Seguiremos reintentándolo en silencio.</translation>
     </message>
 </context>
 <context>
@@ -2694,7 +2694,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronumbinaries.cpp" line="161"/>
         <source>&lt;p&gt;Installation of testing binaries for version %1 can potentially &lt;b&gt;overwrite&lt;/b&gt; your files.&lt;/p&gt;&lt;p&gt;Game will be installed to:&lt;br&gt;%2&lt;/p&gt;&lt;p&gt;Do you want Doomseeker to extract Zandronum files, potentially &lt;b&gt;overwriting existing ones&lt;/b&gt;, and to copy all your configuration files from your base directory?&lt;/p&gt;</source>
-        <translation>&lt;p&gt;La instalación de los binarios de prueba para la versión %1 puede potencialmente &lt;b&gt;rescribir&lt;/b&gt; tus archivos.&lt;/p&gt;&lt;p&gt;El juego se instalará en:&lt;br&gt;%2&lt;/p&gt;&lt;p&gt;Quieres que Doomseeker extraiga los archivos de Zandronum, potencialmente &lt;b&gt;reescribiendo los archivos ya existentes&lt;/b&gt;, y copiar todos los archivos de configración de tu directorio base?&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;La instalación de los binarios de prueba para la versión %1 puede potencialmente &lt;b&gt;rescribir&lt;/b&gt; tus archivos.&lt;/p&gt;&lt;p&gt;El juego se instalará en:&lt;br&gt;%2&lt;/p&gt;&lt;p&gt;Quieres que Doomseeker extraiga los archivos de Zandronum, potencialmente &lt;b&gt;reescribiendo los archivos ya existentes&lt;/b&gt;, y copiar todos los archivos de configuración de tu directorio base?&lt;/p&gt;</translation>
     </message>
     <message>
         <location filename="../zandronumbinaries.cpp" line="172"/>
@@ -2772,7 +2772,7 @@ Doomseeker puede instalar el juego allí igualmente si lo desea.</translation>
     <message>
         <location filename="../zandronumbinaries.cpp" line="343"/>
         <source>Doomseeker - unpack failed</source>
-        <translation>Doomseeker - error al desenpaquetar</translation>
+        <translation>Doomseeker - error al desempaquetar</translation>
     </message>
     <message>
         <location filename="../zandronumbinaries.cpp" line="344"/>
@@ -2935,7 +2935,7 @@ Doomseeker puede instalar el juego allí igualmente si lo desea.</translation>
     <message>
         <location filename="../zandronumrconprotocol.cpp" line="283"/>
         <source>Authentication failure.</source>
-        <translation>Fallo de autentificacion.</translation>
+        <translation>Fallo de autenticación.</translation>
     </message>
     <message>
         <location filename="../zandronumrconprotocol.cpp" line="288"/>

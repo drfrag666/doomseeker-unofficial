@@ -108,7 +108,7 @@
     <message>
         <location filename="../srb2gameinfo.cpp" line="101"/>
         <source>Tag</source>
-        <translation>Tu la llevas</translation>
+        <translation>Tú la llevas</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="102"/>

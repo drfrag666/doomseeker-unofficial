@@ -6,7 +6,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="104"/>
         <source>This program is distributed under the terms of the LGPL v2.1 or later.</source>
-        <translation>Éste programa és distribuido bajo los términos de la licéncia LGPL v2.1 o posterior.</translation>
+        <translation>Este programa es distribuido bajo los términos de la licencia LGPL v2.1 o posterior.</translation>
     </message>
     <message>
         <source>This program uses GeoLite2 database for IP-to-Country (IP2C) purposes. Database and Contents Copyright (c) 2016 MaxMind, Inc.</source>
@@ -43,7 +43,7 @@ Se encuentra bajo la licencia de la Creative Commons Attribution-ShareAlike 3.0 
     <message>
         <location filename="../gui/aboutdialog.cpp" line="112"/>
         <source>This program uses GeoLite2 data for IP-to-Country (IP2C) purposes, available from https://www.maxmind.com</source>
-        <translation>Éste programa usa la información de GeoLite2 para localizar países por IP (IP2C), y la puede encontrar en https://www.maxmind.com</translation>
+        <translation>Este programa usa la información de GeoLite2 para localizar países por IP (IP2C), y la puede encontrar en https://www.maxmind.com</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="114"/>
@@ -55,7 +55,7 @@ Se encuentra bajo la licencia de la Creative Commons Attribution-ShareAlike 3.0 
         <source>GeoLite2 License:
 This work is licensed under the Creative Commons Attribution - ShareAlike 4.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.</source>
         <translation>Licencia de GeoLite2:
-Se encuentra bajo la licencia de la Creative Commons Attribution-ShareAlike 4.0 Unported License. Para ver una copia de esta licéncia, visita http://creativecommons.org/licenses/by-sa/4.0/.</translation>
+Se encuentra bajo la licencia de la Creative Commons Attribution-ShareAlike 4.0 Unported License. Para ver una copia de esta licencia, visita http://creativecommons.org/licenses/by-sa/4.0/.</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="118"/>
@@ -141,7 +141,7 @@ https://dev.maxmind.com/geoip/geoip2/geolite2/</translation>
     <message>
         <location filename="../../../build/src/core/ui_aboutdialog.h" line="445"/>
         <source>This value is relevant to auto updater feature.</source>
-        <translation>Este valor es relevante para la función de actualizacion automática.</translation>
+        <translation>Este valor es relevante para la función de actualización automática.</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_aboutdialog.h" line="447"/>
@@ -341,7 +341,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../build/src/core/ui_addBuddyDlg.h" line="99"/>
         <source>Type the name of your buddy here.  If the pattern type is set to basic you may use an asterisk (*) as a wild card.</source>
-        <translation>Escriba aquí el nombre de su compañero. Si el tipo de patrón és básico, puede usar el asterisco (*) como carácter comodín.</translation>
+        <translation>Escriba aquí el nombre de su compañero. Si el tipo de patrón es básico, puede usar el asterisco (*) como carácter comodín.</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_addBuddyDlg.h" line="100"/>
@@ -445,7 +445,7 @@ no puede ser ejecutado</translation>
     <message>
         <location filename="../updater/autoupdater.cpp" line="199"/>
         <source>Update channel is not configured. Please check your configuration.</source>
-        <translation>Canal de actualización no configurado. Por favor comprueve la configuración.</translation>
+        <translation>Canal de actualización no configurado. Por favor compruebe la configuración.</translation>
     </message>
     <message>
         <location filename="../updater/autoupdater.cpp" line="201"/>
@@ -475,7 +475,7 @@ no puede ser ejecutado</translation>
     <message>
         <location filename="../updater/autoupdater.cpp" line="213"/>
         <source>Download URL for one of the packages is invalid. Check the log for details.</source>
-        <translation>La URL de descarga de uno de los paquetes és inválida. Compruebe el registro para más detalles.</translation>
+        <translation>La URL de descarga de uno de los paquetes es inválida. Compruebe el registro para más detalles.</translation>
     </message>
     <message>
         <location filename="../updater/autoupdater.cpp" line="216"/>
@@ -535,7 +535,7 @@ no puede ser ejecutado</translation>
     <message>
         <location filename="../updater/autoupdater.cpp" line="351"/>
         <source>Confirm</source>
-        <translation>Comfirmar</translation>
+        <translation>Confirmar</translation>
     </message>
     <message>
         <location filename="../updater/autoupdater.cpp" line="362"/>
@@ -651,17 +651,17 @@ no puede ser ejecutado</translation>
     <message>
         <location filename="../../../build/src/core/ui_cfgappearance.h" line="281"/>
         <source>Custom servers color:</source>
-        <translation>Color servidores Customizados:</translation>
+        <translation>Color servidores customizados:</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_cfgappearance.h" line="285"/>
         <source>Bots are not players</source>
-        <translation>Bots no són jugadores</translation>
+        <translation>Bots no son jugadores</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_cfgappearance.h" line="287"/>
         <source>Hide passwords</source>
-        <translation>Ocultar contrasseñas</translation>
+        <translation>Ocultar contraseñas</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_cfgappearance.h" line="289"/>
@@ -686,7 +686,7 @@ no puede ser ejecutado</translation>
     <message>
         <location filename="../../../build/src/core/ui_cfgappearance.h" line="293"/>
         <source>Draw grid in server table</source>
-        <translation>Dibujar quadrícula en la tabla de servidores</translation>
+        <translation>Dibujar cuadrícula en la tabla de servidores</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_cfgappearance.h" line="283"/>
@@ -710,7 +710,7 @@ no puede ser ejecutado</translation>
     <message>
         <location filename="../../../build/src/core/ui_cfgappearance.h" line="296"/>
         <source>When close button is pressed, minimize to tray icon.</source>
-        <translation>Quando se presione el botón &quot;cerrar&quot;, minimizar a la bandeja del sistema.</translation>
+        <translation>Cuando se presione el botón &quot;cerrar&quot;, minimizar a la bandeja del sistema.</translation>
     </message>
 </context>
 <context>
@@ -771,7 +771,7 @@ no puede ser ejecutado</translation>
     <message>
         <location filename="../gui/configuration/cfgcustomservers.cpp" line="128"/>
         <source>Port must be within range 1 - 65535</source>
-        <translation>El puerto deve estar en el rango 1 - 65535</translation>
+        <translation>El puerto debe estar en el rango 1 - 65535</translation>
     </message>
     <message>
         <location filename="../gui/configuration/cfgcustomservers.cpp" line="132"/>
@@ -911,7 +911,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Si se selecciona Doomseeker intentará encontrar los archivos utilizados en un servidor particular si el cursor está en la columna WADs de éste. Esto requiere de acceso al disco duro y buscar en todos los directorios especificados cada vez que se genera la lista. Si lleva demasiado tiempo crear dicha lista, puede intentar deshabilitar esta opción.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Si se selecciona Doomseeker intentará encontrar los archivos utilizados en un servidor particular si el cursor está en la columna WADs de este. Esto requiere de acceso al disco duro y buscar en todos los directorios especificados cada vez que se genera la lista. Si lleva demasiado tiempo crear dicha lista, puede intentar deshabilitar esta opción.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;This also applies to IWAD column.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -1648,7 +1648,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/configuration/cfgwadseekergeneral.cpp" line="126"/>
         <source>This path doesn&apos;t exist.</source>
-        <translation>This path doesn&apos;t exist.</translation>
+        <translation>Esta ruta no existe.</translation>
     </message>
     <message>
         <location filename="../gui/configuration/cfgwadseekergeneral.cpp" line="131"/>
@@ -1726,7 +1726,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../build/src/core/ui_cfgwadseekergeneral.h" line="272"/>
         <source>Max concurrent WAD downloads:</source>
-        <translation>Máximo número de descargas simultáneas máximas de WAD:</translation>
+        <translation>Máximo número de descargas simultáneas de WAD:</translation>
     </message>
 </context>
 <context>
@@ -1887,7 +1887,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../build/src/core/ui_cfgchatlogspage.h" line="159"/>
         <source> days</source>
-        <translation> dias</translation>
+        <translation> días</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_cfgchatlogspage.h" line="160"/>
@@ -1992,7 +1992,7 @@ p, li { white-space: pre-wrap; }
     Launch the rcon client for the specified ip.
 </source>
         <translation>--rcon [plugin] [ip]
-    Inicie el cliente rcon para la ip especificada.
+    Inicia el cliente rcon para la ip especificada.
 </translation>
     </message>
     <message>
@@ -2007,8 +2007,8 @@ p, li { white-space: pre-wrap; }
     Inicia la aplicación en modo portátil.
     En modo portátil, Doomseeker guarda todos los archivos de
     configuración en el directorio donde reside su ejecutable.
-    Normalmente, la configuración se guarda en el directorio de
-    inicio del usuario.
+    Normalmente, la configuración se guarda en el directorio
+    de inicio del usuario.
 </translation>
     </message>
     <message>
@@ -2726,7 +2726,7 @@ es un directorio o no existe.</translation>
     <message>
         <location filename="../../../build/src/core/ui_freedoomdialog.h" line="210"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Webpage: &lt;a href=&quot;https://freedoom.github.io&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://freedoom.github.io&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Webpage: &lt;a href=&quot;https://freedoom.github.io&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://freedoom.github.io&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Página web: &lt;a href=&quot;https://freedoom.github.io&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://freedoom.github.io&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_freedoomdialog.h" line="211"/>
@@ -3086,7 +3086,7 @@ Ejecutable: %3</translation>
     <message>
         <location filename="../../../build/src/core/ui_generalgamesetuppanel.h" line="326"/>
         <source>If checked, the game will try to tell your router to forward necessary ports.</source>
-        <translation>Si está marcado, el juego intentará decirle a su ruter que reenvíe los puertos necesarios.</translation>
+        <translation>Si está marcado, el juego intentará decirle a su router que reenvíe los puertos necesarios.</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_generalgamesetuppanel.h" line="328"/>
@@ -3445,7 +3445,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/configuration/irc/ircconfigurationdialog.cpp" line="87"/>
         <source>You have chosen one or more networks for autojoin startup but you have not defined any nickname. Please define it now.</source>
-        <translation>Ha elegido una o más redes para el inicio automático, pero no ha definido ninguna alias. Por favor, defínala ahora.</translation>
+        <translation>Ha elegido una o más redes para el inicio automático, pero no ha definido ningun alias. Por favor, definala ahora.</translation>
     </message>
 </context>
 <context>
@@ -3675,7 +3675,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../build/src/core/ui_ircdocktabcontents.h" line="133"/>
         <source>Do not scroll text area</source>
-        <translation>No mover la area del texto</translation>
+        <translation>No mover la área del texto</translation>
     </message>
 </context>
 <context>
@@ -3860,7 +3860,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../build/src/core/ui_ircnetworkselectionbox.h" line="240"/>
         <source>IRC - Connect to Network</source>
-        <translation>IRC - Conéctar a una red</translation>
+        <translation>IRC - Conectar a una red</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_ircnetworkselectionbox.h" line="241"/>
@@ -4028,7 +4028,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../irc/ircresponseparser.cpp" line="534"/>
         <source>IRCResponseParser: Type &apos;%1&apos; was recognized but there has been no parse code implemented for it.(yep, it&apos;s a bug in the application!)</source>
-        <translation>IRCResponseParser: Se ha reconocido el tipo &apos;%1&apos; pero no se ha implementado ningún código de análisis para éste.(sip, ¡esto es un error en la aplicación!)</translation>
+        <translation>IRCResponseParser: Se ha reconocido el tipo &apos;%1&apos; pero no se ha implementado ningún código de análisis para este.(sip, ¡esto es un error en la aplicación!)</translation>
     </message>
     <message>
         <location filename="../irc/ircresponseparser.cpp" line="602"/>
@@ -4505,7 +4505,7 @@ Una de las ubicaciones adecuadas para los complementos es el directorio &quot;en
     <message>
         <location filename="../gui/mainwindow.cpp" line="238"/>
         <source>Doomseeker - plugin load failure</source>
-        <translation>Doomseeker - fallo al cargar un plugin</translation>
+        <translation>Doomseeker - fallo al cargar un complemento</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="246"/>
@@ -5009,7 +5009,7 @@ Las actualizaciones restantes se han descartado.</translation>
     <message>
         <location filename="../../../build/src/core/ui_miscserversetuppanel.h" line="147"/>
         <source>Hide passwords</source>
-        <translation>Ocultar contrasseñas</translation>
+        <translation>Ocultar contraseñas</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_miscserversetuppanel.h" line="148"/>
@@ -5290,7 +5290,7 @@ Si no tiene este archivo, y pertenece a un juego comercial, necesita comprar el 
     <message>
         <location filename="../configuration/doomseekerconfig.cpp" line="121"/>
         <source>DoomseekerConfig.iniSectionForPlugin(): empty plugin name has been specified, returning dummy IniSection.</source>
-        <translation>DoomseekerConfig.iniSectionForPlugin(): el nombre de plugin vacío ha sido especificado, devolviendo el IniSection ficticio.</translation>
+        <translation>DoomseekerConfig.iniSectionForPlugin(): el nombre del complemento ha sido especificado vacío, devolviendo el IniSection ficticio.</translation>
     </message>
     <message>
         <location filename="../configuration/doomseekerconfig.cpp" line="127"/>
@@ -5975,7 +5975,7 @@ Si no tiene este archivo, y pertenece a un juego comercial, necesita comprar el 
     <message>
         <location filename="../updater/updaterinfoparser.cpp" line="125"/>
         <source>Invalid update download URL for package %1: %2</source>
-        <translation>La URL de descarga de la actualización no és válida para el paquete %1: %2</translation>
+        <translation>La URL de descarga de la actualización no es válida para el paquete %1: %2</translation>
     </message>
     <message>
         <location filename="../updater/updaterinfoparser.cpp" line="132"/>
