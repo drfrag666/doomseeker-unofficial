@@ -116,7 +116,8 @@ function flatten_framework()
 			mv $Qt5Framework/$Filename $Framework/$Filename
 		fi
 	done
-	rm -vrf $Framework/Versions
+	# Contents directory not allowed with code signing
+	rm -vrf $Framework/Versions $Framework/Contents
 }
 
 function mergebin()
