@@ -8,7 +8,7 @@ This file follows the format of
 and this project does not adhere to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased][unreleased]
+## [1.2] - 2018-10-27
 ### Added
 - List the '--help' argument in the help.
 - '--version-json' argument can now write to stdout if file is not specified
@@ -394,6 +394,7 @@ without any warranty.
 
 
 [unreleased]: https://bitbucket.org/Doomseeker/doomseeker/commits/all
+[1.2]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.2
 [1.1-p1]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.1-p1
 [1.1]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.1
 [1.0]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.0
