@@ -125,7 +125,7 @@ if(MSVC AND NOT MSVC90 AND NOT MSVC12)
 	)
 endif()
 
-if(WIN32 OR APPLE)
+if(WIN32)
 	set(WITH_AUTOUPDATES 1)
 	add_subdirectory(tools/updateinstaller)
 endif()

@@ -51,6 +51,7 @@ into the map. (addresses 3505)
 
 ### Changed
 - **Relicensed Doomseeker and plugins to LGPLv2.1+.**
+- Disabled autoupdates on macOS due to Apple restrictions on signed apps.
 - Reworked data paths so Doomseeker should now follow XDG on Linux (Qt5 only).
 Configs will be migrated. On Mac the demos are migrated to Application Support.
 On Windows, paths will be moved to %LOCALAPPDATA% and leading dot is removed
