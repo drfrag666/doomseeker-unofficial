@@ -24,6 +24,7 @@
 
 #include <QBuffer>
 #include <QDataStream>
+#include <QCryptographicHash>
 
 #include "odamexgamehost.h"
 #include "odamexgameinfo.h"
@@ -237,8 +238,11 @@ Server::Response OdamexServer::readRequest(const QByteArray &data)
 		}
 		else
 			in.readRawUntilByte('\0');
-		if (i >= 2)
-			addWad(PWad(wad, false, hash));
+		if (i >= 2) {
+			PWad pwad(wad, false);
+			pwad.addChecksum(hash, QCryptographicHash::Md5);
+			addWad(pwad);
+		}
 		else if (i == 1)
 			setIwad(wad);
 	}

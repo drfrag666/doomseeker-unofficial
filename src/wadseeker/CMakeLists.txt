@@ -80,6 +80,8 @@ include("wadseekerversiondefs.cmake")
 configure_file(wadseekerversiondefs.h.in wadseekerversiondefs.h)
 
 set(WADSEEKER_FILES
+	entities/checksum.cpp
+	entities/hash.cpp
 	entities/link.cpp
 	entities/modfile.cpp
 	entities/modset.cpp
@@ -120,6 +122,8 @@ set(WADSEEKER_FILES
 
 # For the purpose of generation proper project files.
 set(HEADER_FILES
+	entities/checksum.h
+	entities/hash.h
 	entities/link.h
 	entities/modfile.h
 	entities/modset.h

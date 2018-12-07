@@ -21,7 +21,8 @@
 // Copyright (C) 2014 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
 #include "serverstructs.h"
-
+#include "wadseeker/entities/checksum.h"
+#include "wadseeker/entities/hash.h"
 #include <QRegExp>
 #include <QVector>
 
@@ -407,23 +408,22 @@ DClass<PWad>
 	public:
 		QString name;
 		bool optional;
-		QByteArray hash;
+		QList<Checksum> checksums;
 };
 
 DPointered(PWad)
 
-PWad::PWad(const QString &name, bool optional, const QByteArray &hash)
+PWad::PWad(const QString &name, bool optional, const QList<Checksum> &checksums)
 {
 	d->name = name;
 	d->optional = optional;
-	d->hash = hash;
+	d->checksums = checksums;
 }
 
 PWad::PWad(const QString &name, bool optional)
 {
 	d->name = name;
 	d->optional = optional;
-	d->hash = "";
 }
 
 PWad::~PWad()
@@ -440,7 +440,24 @@ const QString& PWad::name() const
 	return d->name;
 }
 
-const QByteArray& PWad::hash() const
+const QList<Checksum> PWad::checksums() const
 {
-	return d->hash;
+	return d->checksums;
+}
+
+void PWad::addChecksum(const QByteArray &hash, const QCryptographicHash::Algorithm &algorithm)
+{
+	d->checksums.append(Checksum(hash, algorithm));
+}
+
+const bool PWad::validFile(const QString &path) const
+{
+	foreach (const Checksum checksum, d->checksums)
+	{
+		if (Hash::hashFile(path, checksum.algorithm()) != checksum.hash())
+		{
+			return false;
+		}
+	}
+	return true;
 }

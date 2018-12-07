@@ -32,7 +32,7 @@
 namespace ServerTooltip
 {
 	QString FONT_COLOR_MISSING = "#ff0000";
-	QString FONT_COLOR_OPTIONAL = "#ff9f00";
+	QString FONT_COLOR_WARNING = "#ff9f00";
 	QString FONT_COLOR_FOUND = "#009f00";
 }
 
@@ -147,22 +147,30 @@ QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 
 QString ServerTooltip::createPwadToolTipInfo(const PWad& pwad, const ServerPtr &server)
 {
-	WadFindResult path = findWad(server, pwad.name());
+	WadFindResult findResult = findWad(server, pwad.name());
 
 	QString fontColor = "#777777";
 	QStringList cells;
 
 	cells << pwad.name();
-	if (path.isValid())
+	if (findResult.isValid())
 	{
-		fontColor = FONT_COLOR_FOUND;
-		cells << path.path();
+		if (pwad.validFile(findResult.path()))
+		{
+			fontColor = FONT_COLOR_FOUND;
+			cells << findResult.path();
+		}
+		else
+		{
+			fontColor = FONT_COLOR_WARNING;
+			cells << findResult.path() + " " + L10n::tr("INCOMPATIBLE");
+		}
 	}
 	else
 	{
 		if (pwad.isOptional())
 		{
-			fontColor = FONT_COLOR_OPTIONAL;
+			fontColor = FONT_COLOR_WARNING;
 			cells << L10n::tr("OPTIONAL");
 		}
 		else
@@ -171,7 +179,7 @@ QString ServerTooltip::createPwadToolTipInfo(const PWad& pwad, const ServerPtr &
 			cells << L10n::tr("MISSING");
 		}
 	}
-	if (path.isAlias())
+	if (findResult.isAlias())
 	{
 		cells << L10n::tr("ALIAS");
 	}

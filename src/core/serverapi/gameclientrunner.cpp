@@ -128,6 +128,7 @@ DClass<GameClientRunner>
 		CommandLineInfo* cli;
 		JoinError joinError;
 		QList<PWad> missingPwads;
+		QList<PWad> incompatiblePwads;
 		PathFinder pathFinder;
 		ServerPtr server;
 
@@ -255,6 +256,11 @@ void GameClientRunner::addWads()
 	addIwad();
 	addPwads();
 
+	if (!d->incompatiblePwads.isEmpty())
+	{
+		d->joinError.setIncompatibleWads(d->incompatiblePwads);
+		d->joinError.setType(JoinError::MissingWads);
+	}
 	if (!isIwadFound() || !d->missingPwads.isEmpty())
 	{
 		if (!isIwadFound())
@@ -291,6 +297,7 @@ void GameClientRunner::addPassword_default()
 void GameClientRunner::addPwads()
 {
 	QStringList paths;
+	WadPathFinder wadFinder = WadPathFinder(d->pathFinder);
 	for (int i = 0; i < d->server->numWads(); ++i)
 	{
 		QString pwad = findWad(d->server->wad(i).name());
@@ -300,7 +307,14 @@ void GameClientRunner::addPwads()
 		}
 		else
 		{
-			paths << pwad;
+			if (!d->server->wad(i).validFile(pwad))
+			{
+				markPwadAsIncompatible(d->server->wad(i));
+			}
+			else
+			{
+				paths << pwad;
+			}
 		}
 	}
 	addModFiles(paths);
@@ -537,6 +551,11 @@ const QString& GameClientRunner::iwadPath() const
 void GameClientRunner::markPwadAsMissing(const PWad& pwadName)
 {
 	d->missingPwads << pwadName;
+}
+
+void GameClientRunner::markPwadAsIncompatible(const PWad &pwadName)
+{
+	d->incompatiblePwads << pwadName;
 }
 
 PathFinder& GameClientRunner::pathFinder()

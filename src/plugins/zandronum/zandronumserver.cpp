@@ -43,6 +43,7 @@
 #include <QDateTime>
 #include <QFileInfo>
 #include <QRegExp>
+#include <QCryptographicHash>
 
 #define SERVER_CHALLENGE	0xC7,0x00,0x00,0x00
 #define SERVER_GOOD			5660023
@@ -618,9 +619,11 @@ Server::Response ZandronumServer::readRequest(const QByteArray &data)
 
 			for (int index = 0; index < numHashes; index++)
 			{
-				pwads.replace(index, PWad(pwads[index].name(),
-					pwads[index].isOptional(),
-					QByteArray::fromHex(in.readRawUntilByte('\0')))); //Add the hash of the wad.
+				PWad pwad(pwads[index].name(),
+					pwads[index].isOptional());
+				pwad.addChecksum(QByteArray::fromHex(in.readRawUntilByte('\0')),
+					QCryptographicHash::Md5);
+				pwads.replace(index, pwad);
 			}
 			resetPwadsList(pwads);
 		}

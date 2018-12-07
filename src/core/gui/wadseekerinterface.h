@@ -24,6 +24,7 @@
 #define __WADSEEKERINTERFACE_H_
 
 #include "serverapi/serverptr.h"
+#include "serverapi/serverstructs.h"
 #include "wadseeker/wadseeker.h"
 #include "dptr.h"
 #include <QDialog>
@@ -63,9 +64,18 @@ class WadseekerInterface : public QDialog
 		 * If window is automatic seek will start immediatelly. Otherwise
 		 * WADs are inserted into the line edit.
 		 *
-		 * @param wads - wads to seek.
+		 * @param wads - list of the names of wads to seek.
 		 */
 		void setWads(const QStringList& wads);
+		/**
+		 * @brief Sets WADs to seek.
+		 *
+		 * If window is automatic seek will start immediatelly. Otherwise
+		 * WADs are inserted into the line edit.
+		 *
+		 * @param wads - list of PWads to seek.
+		 */
+		void setWads(const QList<PWad>& wads);
 
 		Wadseeker& wadseekerRef() { return wadseeker; }
 

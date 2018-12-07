@@ -40,6 +40,7 @@ DClass<JoinError>
 		 * This is valid only if type == MissingWads.
 		 */
 		QList<PWad> missingWads;
+		QList<PWad> incompatibleWads;
 };
 
 DPointered(JoinError)
@@ -93,7 +94,8 @@ bool JoinError::isMissingIwadOnly() const
 {
 	return d->type == MissingWads
 		&& !d->missingIwad.isEmpty()
-		&& d->missingWads.isEmpty();
+		&& d->missingWads.isEmpty()
+		&& d->incompatibleWads.isEmpty();
 }
 
 bool JoinError::isMissingWadsError() const
@@ -111,6 +113,11 @@ const QList<PWad>& JoinError::missingWads() const
 	return d->missingWads;
 }
 
+const QList<PWad>& JoinError::incompatibleWads() const
+{
+	return d->incompatibleWads;
+}
+
 void JoinError::setError(const QString& error)
 {
 	d->error = error;
@@ -124,6 +131,11 @@ void JoinError::setMissingIwad(const QString& iwad)
 void JoinError::setMissingWads(const QList<PWad>& wads)
 {
 	d->missingWads = wads;
+}
+
+void JoinError::setIncompatibleWads(const QList<PWad> &wads)
+{
+	d->incompatibleWads = wads;
 }
 
 void JoinError::setType(JoinErrorType type)

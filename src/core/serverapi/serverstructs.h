@@ -28,10 +28,12 @@
 #include <QObject>
 #include <QVariant>
 #include <climits>
+#include <QCryptographicHash>
 
 #include "dptr.h"
 #include "global.h"
 
+class Checksum;
 /**
  * \ingroup group_pluginapi
  * \file serverstructs.h
@@ -471,7 +473,7 @@ class MAIN_EXPORT PWad
 {
 	public:
 		PWad(const QString &name, bool optional=false);
-		PWad(const QString &name, bool optional, const QByteArray &hash);
+		PWad(const QString &name, bool optional, const QList<Checksum> &checksums);
 		virtual ~PWad();
 
 		/**
@@ -483,9 +485,22 @@ class MAIN_EXPORT PWad
 		 */
 		const QString& name() const;
 		/**
-		 * @brief Hash of the WAD.
+		 * @brief List of checksums of the WAD.
 		 */
-		const QByteArray& hash() const;
+		const QList<Checksum> checksums() const;
+		/**
+		 * @brief Adds a checksum to the WAD.
+		 *
+		 * @param hash - Hash resulting from hashing the WAD with the algorithm.
+		 * @param algorithm - Algorithm used to produce the hash.
+		 */
+		void addChecksum(const QByteArray &hash, const QCryptographicHash::Algorithm &algorithm);
+		/**
+		 * @brief Verifies if a file has the same checksums as the PWad.
+		 *
+		 * @param path - Path to the file.
+		 */
+		const bool validFile(const QString &path) const;
 	private:
 		DPtr<PWad> d;
 };

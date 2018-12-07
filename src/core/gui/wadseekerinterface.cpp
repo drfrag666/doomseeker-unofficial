@@ -27,6 +27,7 @@
 #include "gui/helpers/taskbarbutton.h"
 #include "gui/helpers/taskbarprogress.h"
 #include "serverapi/server.h"
+#include "serverapi/serverstructs.h"
 #include "application.h"
 #include "mainwindow.h"
 #include "strings.hpp"
@@ -408,6 +409,21 @@ void WadseekerInterface::setWads(const QStringList& wads)
 	else
 	{
 		d->leWadName->setText(wads.join(", "));
+	}
+}
+
+void WadseekerInterface::setWads(const QList<PWad>& wads)
+{
+	QStringList wadNames;
+	foreach (const PWad wad, wads)
+		wadNames.append(wad.name());
+	if (isAutomatic())
+	{
+		seekedWads = wadNames;
+	}
+	else
+	{
+		d->leWadName->setText(wadNames.join(", "));
 	}
 }
 

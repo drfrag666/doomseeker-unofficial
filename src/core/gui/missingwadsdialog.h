@@ -42,26 +42,30 @@ public:
 		Install
 	};
 
-	MissingWadsDialog(const QList<PWad> &wads, QWidget *parent);
+	MissingWadsDialog(const QList<PWad> &missingWads, const QList<PWad> &incompatibleWads, QWidget *parent);
 	~MissingWadsDialog();
 
 	MissingWadsProceed decision() const;
-	QStringList filesToDownload() const;
+	QList<PWad> filesToDownload() const;
 	void setAllowIgnore(bool);
 
 private:
 	DPtr<MissingWadsDialog> d;
 
-	QStringList downloadableFiles() const;
-	QStringList forbiddenFiles() const;
-	QStringList optionalFiles() const;
+	QList<PWad> downloadableFiles() const;
+	QList<PWad> forbiddenFiles() const;
+	QList<PWad> optionalFiles() const;
 
+	QList<PWad> incompatibleFiles() const;
 	bool hasAnyAllowedFile() const;
 	bool isFreedoomReplaceableOnList(const QStringList &files) const;
-	QStringList selectedOptionalFiles() const;
+	QList<PWad> selectedOptionalFiles() const;
+	QList<PWad> selectedIncompatibleFiles() const;
+	QList<PWad> filenamesToPwads(const QStringList &names, QList<PWad> files) const;
 	void setup();
 	void setupForbiddenFilesArea();
 	void setupDownloadableFilesArea();
+	void setupIncompatibleFilesArea();
 	void setupOptionalFilesArea();
 	void setupWadseekerIsRunning();
 	void setupWadseekerNotRunning();

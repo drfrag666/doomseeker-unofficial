@@ -394,6 +394,14 @@ class MAIN_EXPORT GameClientRunner : public QObject
 		void markPwadAsMissing(const PWad& pwadName);
 
 		/**
+		 * @brief Stores PWAD in an internal list of incompatible WADs.
+		 *
+		 * This information is retrieved by Doomseeker to prompt user whether
+		 * they want to try to replace the WADs with compatible ones.
+		 */
+		void markPwadAsIncompatible(const PWad& pwadName);
+
+		/**
 		 * @brief Reference to a PathFinder belonging to this GameClientRunner.
 		 *
 		 * Useful if plugins want to access the PathFinder.

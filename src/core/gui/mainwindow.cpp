@@ -20,6 +20,7 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2009 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
+#include "wadseeker/entities/checksum.h"
 #include "configuration/doomseekerconfig.h"
 #include "configuration/queryspeed.h"
 #include "gui/configuration/irc/ircconfigurationdialog.h"
@@ -637,25 +638,30 @@ void MainWindow::findMissingWADs(const ServerPtr &server)
 {
 	// Display a message if all WADs are present.
 	QList<PWad> wads = server->wads();
-	wads << server->iwad();
 	PathFinder pathFinder = server->wadPathFinder();
 	WadPathFinder wadFinder(pathFinder);
 	QList<PWad> missingWads;
+	QList<PWad> incompatibleWads;
 	foreach(const PWad &wad, wads)
 	{
-		if(!wadFinder.find(wad.name()).isValid())
+		WadFindResult findResult = wadFinder.find(wad.name());
+		if (!findResult.isValid())
 		{
-			PWad optionalWad = PWad(wad.name(), true);
+			PWad optionalWad = PWad(wad.name(), true, wad.checksums());
 			missingWads << optionalWad;
 		}
+		else if (!wad.validFile(findResult.path()))
+		{
+			incompatibleWads << wad;
+		}
 	}
-	if (missingWads.isEmpty())
+	if (missingWads.isEmpty() && incompatibleWads.isEmpty())
 	{
 		QMessageBox::information(this, tr("All WADs found"), tr("All of the WADs used by this server are present."));
 		return;
 	}
 
-	MissingWadsDialog dialog(missingWads, this);
+	MissingWadsDialog dialog(missingWads, incompatibleWads, this);
 	dialog.setAllowIgnore(false);
 	if (dialog.exec() == QDialog::Accepted && dialog.decision() == MissingWadsDialog::Install)
 	{

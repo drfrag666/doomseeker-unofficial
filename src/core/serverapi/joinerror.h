@@ -83,10 +83,15 @@ class MAIN_EXPORT JoinError
 		 * This is valid only if type == MissingWads.
 		 */
 		const QList<PWad>& missingWads() const;
+		/**
+		 * This is valid only if type == MissingWads.
+		 */
+		const QList<PWad>& incompatibleWads() const;
 
 		void setError(const QString& error);
 		void setMissingIwad(const QString& iwad);
 		void setMissingWads(const QList<PWad>& wads);
+		void setIncompatibleWads(const QList<PWad>& wads);
 		void setType(JoinErrorType type);
 
 		JoinErrorType type() const;

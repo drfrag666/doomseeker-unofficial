@@ -35,16 +35,18 @@ DClass<MissingWadsDialog> : public Ui::MissingWadsDialog
 {
 public:
 	::MissingWadsDialog::MissingWadsProceed decision;
-	QList<PWad> wads;
+	QList<PWad> missingWads;
+	QList<PWad> incompatibleWads;
 };
 DPointeredNoCopy(MissingWadsDialog)
 
-MissingWadsDialog::MissingWadsDialog(const QList<PWad> &wads, QWidget *parent)
+MissingWadsDialog::MissingWadsDialog(const QList<PWad> &missingWads, const QList<PWad> &incompatibleWads, QWidget *parent)
 : QDialog(parent)
 {
 	d->setupUi(this);
 	d->decision = Cancel;
-	d->wads = wads;
+	d->missingWads = missingWads;
+	d->incompatibleWads = incompatibleWads;
 
 	setup();
 	adjustSize();
@@ -89,19 +91,23 @@ void MissingWadsDialog::setupWadseekerNotRunning()
 	setupForbiddenFilesArea();
 	setupDownloadableFilesArea();
 	setupOptionalFilesArea();
+	setupIncompatibleFilesArea();
 
 	d->btnInstall->setVisible(hasAnyAllowedFile());
 }
 
 void MissingWadsDialog::setupForbiddenFilesArea()
 {
-	QStringList files = forbiddenFiles();
+	QList<PWad> files = forbiddenFiles();
 	if (!files.isEmpty())
 	{
 		d->areaCantBeDownloaded->show();
-		d->lblCantBeDownloadedFiles->setText(files.join(", "));
+		QStringList names;
+		foreach (PWad file, files)
+			names << file.name();
+		d->lblCantBeDownloadedFiles->setText(names.join(", "));
 
-		bool installFreedoom = isFreedoomReplaceableOnList(files);
+		bool installFreedoom = isFreedoomReplaceableOnList(names);
 		d->lblInstallFreedoom->setVisible(installFreedoom);
 		d->btnInstallFreedoom->setVisible(installFreedoom);
 	}
@@ -113,11 +119,14 @@ void MissingWadsDialog::setupForbiddenFilesArea()
 
 void MissingWadsDialog::setupDownloadableFilesArea()
 {
-	QStringList files = downloadableFiles();
+	QList<PWad> files = downloadableFiles();
 	if (!files.isEmpty())
 	{
 		d->areaCanBeDownloadedFiles->show();
-		d->lblCanBeDownloadedFiles->setText(files.join(", "));
+		QStringList names;
+		foreach (PWad file, files)
+			names << file.name();
+		d->lblCanBeDownloadedFiles->setText(names.join(", "));
 	}
 	else
 	{
@@ -127,13 +136,13 @@ void MissingWadsDialog::setupDownloadableFilesArea()
 
 void MissingWadsDialog::setupOptionalFilesArea()
 {
-	QStringList files = optionalFiles();
+	QList<PWad> files = optionalFiles();
 	if (!files.isEmpty())
 	{
 		d->areaOptionalFiles->show();
-		foreach (const QString &file, files)
+		foreach (const PWad &file, files)
 		{
-			QListWidgetItem *item = new QListWidgetItem(file, d->optionalFilesList);
+			QListWidgetItem *item = new QListWidgetItem(file.name(), d->optionalFilesList);
 			item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
 			item->setCheckState(Qt::Checked);
 		}
@@ -141,6 +150,25 @@ void MissingWadsDialog::setupOptionalFilesArea()
 	else
 	{
 		d->areaOptionalFiles->hide();
+	}
+}
+
+void MissingWadsDialog::setupIncompatibleFilesArea()
+{
+	QList<PWad> files = incompatibleFiles();
+	if (!files.isEmpty())
+	{
+		d->areaIncompatibleFiles->show();
+		foreach (const PWad &file, files)
+		{
+			QListWidgetItem *item = new QListWidgetItem(file.name(), d->incompatibleFilesList);
+			item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
+			item->setCheckState(Qt::Checked);
+		}
+	}
+	else
+	{
+		d->areaIncompatibleFiles->hide();
 	}
 }
 
@@ -179,53 +207,69 @@ void MissingWadsDialog::installMissingFiles()
 	accept();
 }
 
-QStringList MissingWadsDialog::downloadableFiles() const
+QList<PWad> MissingWadsDialog::downloadableFiles() const
 {
-	QStringList result;
-	foreach (const PWad &file, d->wads)
+	QList<PWad> result;
+	foreach (const PWad &file, d->missingWads)
 	{
 		if (!Wadseeker::isForbiddenWad(file.name()) && !file.isOptional())
 		{
-			result << file.name();
+			result << file;
 		}
 	}
 	return result;
 }
 
-QStringList MissingWadsDialog::forbiddenFiles() const
+QList<PWad> MissingWadsDialog::forbiddenFiles() const
 {
-	QStringList result;
-	foreach (const PWad &file, d->wads)
+	QList<PWad> result;
+	QList<PWad> wads;
+	wads << d->missingWads << d->incompatibleWads;
+	foreach (const PWad &file, wads)
 	{
 		if (Wadseeker::isForbiddenWad(file.name()))
 		{
-			result << file.name();
+			result << file;
 		}
 	}
 	return result;
 }
 
-QStringList MissingWadsDialog::optionalFiles() const
+QList<PWad> MissingWadsDialog::optionalFiles() const
 {
-	QStringList result;
-	foreach (const PWad &file, d->wads)
+	QList<PWad> result;
+	foreach (const PWad &file, d->missingWads)
 	{
 		if (!Wadseeker::isForbiddenWad(file.name()) && file.isOptional())
 		{
-			result << file.name();
+			result << file;
 		}
 	}
 	return result;
 }
 
-QStringList MissingWadsDialog::filesToDownload() const
+QList<PWad> MissingWadsDialog::incompatibleFiles() const
 {
-	QStringList result = downloadableFiles();
-	result << selectedOptionalFiles();
+	QList<PWad> result;
+	foreach (const PWad &file, d->incompatibleWads)
+	{
+		if (!Wadseeker::isForbiddenWad(file.name()))
+		{
+			result << file;
+		}
+	}
 	return result;
 }
 
-QStringList MissingWadsDialog::selectedOptionalFiles() const
+QList<PWad> MissingWadsDialog::filesToDownload() const
+{
+	QList<PWad> result = downloadableFiles();
+	result << selectedOptionalFiles();
+	result << selectedIncompatibleFiles();
+	return result;
+}
+
+QList<PWad> MissingWadsDialog::selectedOptionalFiles() const
 {
 	QStringList result;
 	for (int i = 0; i < d->optionalFilesList->count(); ++i)
@@ -236,12 +280,46 @@ QStringList MissingWadsDialog::selectedOptionalFiles() const
 			result << item->text();
 		}
 	}
+	return filenamesToPwads(result, optionalFiles());
+}
+
+QList<PWad> MissingWadsDialog::selectedIncompatibleFiles() const
+{
+	QStringList result;
+	for (int i = 0; i < d->incompatibleFilesList->count(); ++i)
+	{
+		QListWidgetItem *item = d->incompatibleFilesList->item(i);
+		if (item->checkState() == Qt::Checked)
+		{
+			result << item->text();
+		}
+	}
+	return filenamesToPwads(result, incompatibleFiles());
+}
+
+QList<PWad> MissingWadsDialog::filenamesToPwads(const QStringList &names, QList<PWad> files) const
+{
+	QList<PWad> result;
+	foreach (QString name, names)
+	{
+		for (int i = 0; i < files.size(); ++i)
+		{
+			if (files[i].name() == name)
+			{
+				result << files[i];
+				files.removeAt(i);
+				break;
+			}
+		}
+	}
 	return result;
 }
 
 bool MissingWadsDialog::hasAnyAllowedFile() const
 {
-	return !downloadableFiles().isEmpty() || !optionalFiles().isEmpty();
+	return !downloadableFiles().isEmpty() ||
+		!optionalFiles().isEmpty() ||
+		!incompatibleFiles().isEmpty();
 }
 
 MissingWadsDialog::MissingWadsProceed MissingWadsDialog::decision() const

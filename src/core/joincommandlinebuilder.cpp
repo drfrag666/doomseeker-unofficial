@@ -207,7 +207,8 @@ MissingWadsDialog::MissingWadsProceed JoinCommandLineBuilder::handleMissingWads(
 	{
 		missingWads << error.missingWads();
 	}
-	MissingWadsDialog dialog(missingWads, d->parentWidget);
+
+	MissingWadsDialog dialog(missingWads, error.incompatibleWads(), d->parentWidget);
 	if (dialog.exec() == QDialog::Accepted)
 	{
 		if (dialog.decision() == MissingWadsDialog::Install)
