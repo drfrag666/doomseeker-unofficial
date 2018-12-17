@@ -147,7 +147,7 @@ DataPaths::DataPaths(bool bPortableModeOn)
 		d->cacheDirectory = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
 		d->dataDirectory = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
 
-		#ifdef Q_OS_MAC
+		#ifdef Q_OS_DARWIN
 		d->configDirectory = systemAppDataDirectory("Library/Preferences/Doomseeker");
 		#else
 		d->configDirectory = systemAppDataDirectory(LEGACY_APPDATA_DIR_NAME);
@@ -201,7 +201,7 @@ QList<DataPaths::DirErrno> DataPaths::createDirectories()
 		if (configDirError.isError())
 			failedDirs << configDirError;
 
-		#if !defined(Q_OS_MAC)
+		#if !defined(Q_OS_DARWIN)
 		else if (appDataDir.exists(".doomseeker"))
 		{
 			// Migrate config from old versions of Doomseeker (pre 1.2)
@@ -223,7 +223,7 @@ QList<DataPaths::DirErrno> DataPaths::createDirectories()
 	// ask about existence of a subdirectory inside the data directory.
 	if (!d->dataDirectory.exists(DEMOS_DIR_NAME))
 	{
-		#ifdef Q_OS_MAC
+		#ifdef Q_OS_DARWIN
 		const QString legacyPrefDirectory = "Library/Preferences/Doomseeker";
 		#else
 		const QString legacyPrefDirectory = ".doomseeker";
@@ -345,7 +345,7 @@ QStringList DataPaths::pluginSearchLocationPaths() const
 	paths.append(workingDirectory());
 	paths.append("./");
 
-	#if !defined(Q_OS_MAC) && !defined(Q_OS_WIN32)
+	#if !defined(Q_OS_DARWIN) && !defined(Q_OS_WIN32)
 	// On systems where we install to a fixed location, if we see that we are
 	// running an installed binary, then we should only load plugins from the
 	// expected location.  Otherwise use it only as a last resort.

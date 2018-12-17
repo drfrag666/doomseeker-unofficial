@@ -55,7 +55,7 @@
 #define TESTING_BINARY_URL TESTING_BINARY_URL_BASE "linux-x86_64.tar.bz2"
 #endif
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_DARWIN
 #define ZANDRONUM_BINARY_NAME "zandronum"
 #else
 #define ZANDRONUM_BINARY_NAME "Zandronum.app"
@@ -270,7 +270,7 @@ QString ZandronumClientExeFile::workingDirectory(Message &message)
 
 bool ZandronumClientExeFile::downloadTestingBinaries(const QDir &destination, QWidget *parent)
 {
-	#ifdef Q_OS_MAC
+	#ifdef Q_OS_DARWIN
 	// Can't do anything for Mac OS X at this time. :/
 	return false;
 	#else
@@ -415,7 +415,7 @@ bool ZandronumClientExeFile::spawnTestingBatchFile(const QString &versionDir, QS
 	content  = "#!/bin/sh\n";
 	content += "cd \"" + cdDir + "\" \n";
 	content += "export LANG=C\n";
-	#ifdef Q_OS_MAC
+	#ifdef Q_OS_DARWIN
 	content += "\"" + binaryPath + ZANDRONUM_APP_BUNDLE_BIN "\" \"$@\"\n";
 	#else
 	content += "\"" + binaryPath + "\" \"$@\"\n"; // "$@" deals with all the parameters
