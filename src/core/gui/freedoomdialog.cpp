@@ -28,6 +28,7 @@
 #include "pathfinder/pathfinder.h"
 #include "pathfinder/wadpathfinder.h"
 #include "fileutils.h"
+#include <wadseeker/entities/checksum.h>
 #include <wadseeker/entities/modset.h>
 #include <wadseeker/freedoom.h>
 #include <wadseeker/modinstall.h>
@@ -164,11 +165,15 @@ void FreedoomDialog::insertModFile(const ModFile &file)
 	}
 	else
 	{
-		QString md5 = FileUtils::md5(location).toHex();
-		if (md5.compare(file.md5(), Qt::CaseInsensitive) != 0)
+		QByteArray md5 = FileUtils::md5(location);
+		foreach (Checksum checksum, file.checksums())
 		{
-			status = tr("Different");
-			needsInstall = true;
+			if (md5 != checksum.hash() && checksum.algorithm() == QCryptographicHash::Md5)
+			{
+				status = tr("Different");
+				needsInstall = true;
+				break;
+			}
 		}
 	}
 	if (file.fileName().compare("freedm.wad", Qt::CaseInsensitive) == 0)

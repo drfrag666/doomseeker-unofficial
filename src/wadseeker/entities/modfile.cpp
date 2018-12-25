@@ -21,6 +21,7 @@
 // Copyright (C) 2015 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
 #include "modfile.h"
+#include "checksum.h"
 
 DClass<ModFile>
 {
@@ -28,7 +29,7 @@ public:
 	QString fileName;
 	QString name;
 	QString description;
-	QString md5;
+	QList<Checksum> checksums;
 	QUrl url;
 	QString version;
 };
@@ -36,6 +37,11 @@ DPointered(ModFile)
 
 ModFile::ModFile()
 {
+}
+
+ModFile::ModFile(const QString& name)
+{
+	d->fileName = name;
 }
 
 ModFile::~ModFile()
@@ -72,14 +78,14 @@ void ModFile::setDescription(const QString &v) const
 	d->description = v;
 }
 
-const QString &ModFile::md5() const
+const QList<Checksum> &ModFile::checksums() const
 {
-	return d->md5;
+	return d->checksums;
 }
 
-void ModFile::setMd5(const QString &v) const
+void ModFile::setChecksums(const QList<Checksum> &v) const
 {
-	d->md5 = v;
+	d->checksums = v;
 }
 
 const QUrl &ModFile::url() const

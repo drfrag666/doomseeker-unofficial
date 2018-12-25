@@ -20,6 +20,8 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2009 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
+#include "entities/modfile.h"
+#include "entities/modset.h"
 #include "entities/waddownloadinfo.h"
 #include "protocols/wadarchive/wadarchiveclient.h"
 #include "wadretriever/wadretriever.h"
@@ -66,7 +68,7 @@ public:
 		unsigned maxConcurrentDownloads;
 		unsigned maxConcurrentSeeks;
 		QString saveDirectoryPath;
-		QStringList seekedWads;
+		ModSet seekedWads;
 		QStringList sitesUrls;
 
 		SeekParameters()
@@ -192,7 +194,7 @@ void Wadseeker::cleanUpAfterFinish()
 	}
 
 	// If there are no more WAD downloads pending for URLs when finish is
-	// announced, then the Wadeeker procedure is a success.
+	// announced, then the Wadseeker procedure is a success.
 	bool bSuccess = !d->wadRetriever->isAnyWadPendingUrl() && !d->bIsAborting;
 	d->bIsAborting = false;
 
@@ -246,27 +248,27 @@ void Wadseeker::fileMirrorLinksFound(const QString& filename, const QList<QUrl>&
 	d->wadRetriever->addMirrorUrls(filename, urls);
 }
 
-QStringList Wadseeker::filterAllowedOnlyWads(const QStringList &wads)
+ModSet Wadseeker::filterAllowedOnlyWads(const ModSet& wads)
 {
-	QStringList result;
-	foreach (const QString &wad, wads)
+	ModSet result;
+	foreach (const ModFile &wad, wads.modFiles())
 	{
 		if (!isForbiddenWad(wad))
 		{
-			result << wad;
+			result.addModFile(wad);
 		}
 	}
 	return result;
 }
 
-QStringList Wadseeker::filterForbiddenOnlyWads(const QStringList &wads)
+ModSet Wadseeker::filterForbiddenOnlyWads(const ModSet& wads)
 {
-	QStringList result;
-	foreach (const QString &wad, wads)
+	ModSet result;
+	foreach (const ModFile &wad, wads.modFiles())
 	{
 		if (isForbiddenWad(wad))
 		{
-			result << wad;
+			result.addModFile(wad);
 		}
 	}
 	return result;
@@ -300,19 +302,19 @@ bool Wadseeker::isAllFinished() const
 	return !isWorking();
 }
 
-bool Wadseeker::isDownloadingFile(const QString& file) const
+bool Wadseeker::isDownloadingFile(const ModFile& file) const
 {
 	if (d->wadRetriever != NULL)
 	{
-		return d->wadRetriever->isDownloadingWad(file);
+		return d->wadRetriever->isDownloadingWad(file.fileName());
 	}
 
 	return false;
 }
 
-bool Wadseeker::isForbiddenWad(const QString& wad)
+bool Wadseeker::isForbiddenWad(const ModFile& wad)
 {
-	QFileInfo fiWad(wad);
+	QFileInfo fiWad(wad.fileName());
 	// Check the basename, ignore extension.
 	// This will block names like "doom2.zip" but also "doom2.pk3" and
 	// "doom2.whatever".
@@ -513,13 +515,13 @@ void Wadseeker::setupSitesUrls()
 	{
 		// If URL containts wadname placeholder we need to create a unique
 		// URL for each searched wad.
-		foreach (const QString& wad, d->seekParametersForCurrentSeek->seekedWads)
+		foreach (const ModFile& wad, d->seekParametersForCurrentSeek->seekedWads.modFiles())
 		{
 			QUrl url = UrlParser::resolveWadnameTemplateUrl(
-				d->seekParametersForCurrentSeek->customSiteUrl, wad);
+				d->seekParametersForCurrentSeek->customSiteUrl, wad.fileName());
 			if (url.isValid())
 			{
-				d->wwwSeeker->addFileSiteUrlWithPriority(wad, url, PRIORITY_CUSTOM);
+				d->wwwSeeker->addFileSiteUrlWithPriority(wad.fileName(), url, PRIORITY_CUSTOM);
 			}
 		}
 	}
@@ -532,12 +534,12 @@ void Wadseeker::setupSitesUrls()
 	{
 		if (UrlParser::isWadnameTemplateUrl(strSiteUrl))
 		{
-			foreach (const QString& wad, d->seekParametersForCurrentSeek->seekedWads)
+			foreach (const ModFile& wad, d->seekParametersForCurrentSeek->seekedWads.modFiles())
 			{
-				QUrl url = UrlParser::resolveWadnameTemplateUrl(strSiteUrl, wad);
+				QUrl url = UrlParser::resolveWadnameTemplateUrl(strSiteUrl, wad.fileName());
 				if (url.isValid())
 				{
-					d->wwwSeeker->addFileSiteUrlWithPriority(wad, url, PRIORITY_NORMAL);
+					d->wwwSeeker->addFileSiteUrlWithPriority(wad.fileName(), url, PRIORITY_NORMAL);
 				}
 			}
 		}
@@ -658,7 +660,7 @@ void Wadseeker::stopWadArchiveClient()
 	}
 }
 
-bool Wadseeker::startSeek(const QStringList& wads)
+bool Wadseeker::startSeek(const ModSet& wads)
 {
 	if (d->seekParametersForCurrentSeek != NULL)
 	{
@@ -682,23 +684,22 @@ bool Wadseeker::startSeek(const QStringList& wads)
 		return false;
 	}
 
-	QStringList filteredWadsList;
-	foreach (QString wad, wads)
+	ModSet filteredWadsList;
+	foreach (ModFile wad, wads.modFiles())
 	{
-		wad = wad.trimmed();
-		if (wad.isEmpty())
+		if (wad.fileName().isEmpty())
 		{
 			continue;
 		}
 
 		if (isForbiddenWad(wad))
 		{
-			emit message(tr("WAD \"%1\" is on the forbidden list. Wadseeker will not download this WAD.").arg(wad),
+			emit message(tr("WAD \"%1\" is on the forbidden list. Wadseeker will not download this WAD.").arg(wad.fileName()),
 				WadseekerLib::Error);
 			continue;
 		}
 
-		filteredWadsList << wad;
+		filteredWadsList.addModFile(wad);
 	}
 
 	if (filteredWadsList.isEmpty())
@@ -721,10 +722,10 @@ bool Wadseeker::startSeek(const QStringList& wads)
 	QList<FileSeekInfo> fileSeekInfosList;
 	QList<WadDownloadInfo> wadDownloadInfoList;
 
-	foreach (const QString& wad, filteredWadsList)
+	foreach (const ModFile& wad, filteredWadsList.modFiles())
 	{
 		// Create download info object for this WAD.
-		WadDownloadInfo wadDownloadInfo(wad);
+		WadDownloadInfo wadDownloadInfo(wad.fileName());
 		wadDownloadInfoList << wadDownloadInfo;
 
 		// Generate all possible filenames.
@@ -732,8 +733,8 @@ bool Wadseeker::startSeek(const QStringList& wads)
 		possibleFilenames << wadDownloadInfo.possibleArchiveNames();
 		possibleFilenames << wadDownloadInfo.name();
 
-		fileSeekInfosList << FileSeekInfo(wad, possibleFilenames);
-		emit message(tr("WAD %1: %2").arg(wad, fileSeekInfosList.last().possibleFilenames().join(", ")), WadseekerLib::Notice);
+		fileSeekInfosList << FileSeekInfo(wad.fileName(), possibleFilenames);
+		emit message(tr("WAD %1: %2").arg(wad.fileName(), fileSeekInfosList.last().possibleFilenames().join(", ")), WadseekerLib::Notice);
 	}
 
 	if (d->seekParametersForCurrentSeek->bIdgamesEnabled)

@@ -23,7 +23,10 @@
 #include "freedoominfoparser.h"
 
 #include "entities/modset.h"
+#include "entities/checksum.h"
 #include "protocols/json.h"
+
+#include <QCryptographicHash>
 
 DClass<FreedoomInfoParser>
 {
@@ -47,10 +50,14 @@ public:
 	ModFile parseModFile(const QString &filename, const QVariantMap &var)
 	{
 		ModFile file;
+
+		QList<Checksum> checksums;
+		checksums << Checksum(QByteArray::fromHex(var["md5"].toByteArray()), QCryptographicHash::Md5);
+
 		file.setFileName(filename);
 		file.setName(var["name"].toString());
 		file.setDescription(var["description"].toString());
-		file.setMd5(var["md5"].toString());
+		file.setChecksums(checksums);
 		file.setUrl(var["url"].toString());
 		file.setVersion(var["version"].toString());
 		return file;

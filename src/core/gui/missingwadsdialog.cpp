@@ -27,6 +27,7 @@
 #include "gui/wadseekerinterface.h"
 #include "serverapi/serverstructs.h"
 #include "application.h"
+#include <wadseeker/entities/modfile.h>
 #include <wadseeker/freedoom.h>
 #include <wadseeker/wadseeker.h>
 #include <QListWidgetItem>
@@ -210,9 +211,9 @@ void MissingWadsDialog::installMissingFiles()
 QList<PWad> MissingWadsDialog::downloadableFiles() const
 {
 	QList<PWad> result;
-	foreach (const PWad &file, d->missingWads)
+	foreach (PWad file, d->missingWads)
 	{
-		if (!Wadseeker::isForbiddenWad(file.name()) && !file.isOptional())
+		if (!Wadseeker::isForbiddenWad(file) && !file.isOptional())
 		{
 			result << file;
 		}

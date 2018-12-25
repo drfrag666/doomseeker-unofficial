@@ -34,6 +34,7 @@
 #include "global.h"
 
 class Checksum;
+class ModFile;
 /**
  * \ingroup group_pluginapi
  * \file serverstructs.h
@@ -474,8 +475,10 @@ class MAIN_EXPORT PWad
 	public:
 		PWad(const QString &name, bool optional=false);
 		PWad(const QString &name, bool optional, const QList<Checksum> &checksums);
+		PWad(const ModFile &modFile);
 		virtual ~PWad();
 
+		operator ModFile();
 		/**
 		 * @brief Is this WAD required to join the server?
 		 */

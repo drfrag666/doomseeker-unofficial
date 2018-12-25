@@ -24,6 +24,7 @@
 
 #include "speedcalculator.h"
 #include "strings.hpp"
+#include "wadseeker/entities/modfile.h"
 
 #include <QDebug>
 #include <QHeaderView>
@@ -122,9 +123,9 @@ int WadseekerWadsTable::findFileRow(const QString& filename)
 	return -1;
 }
 
-void WadseekerWadsTable::setFileDownloadFinished(const QString& filename)
+void WadseekerWadsTable::setFileDownloadFinished(const ModFile& filename)
 {
-	int row = findFileRow(filename);
+	int row = findFileRow(filename.fileName());
 
 	if (row >= 0)
 	{
@@ -141,9 +142,9 @@ void WadseekerWadsTable::setFileDownloadFinished(const QString& filename)
 	}
 }
 
-void WadseekerWadsTable::setFileFailed(const QString& filename)
+void WadseekerWadsTable::setFileFailed(const ModFile& filename)
 {
-	int row = findFileRow(filename);
+	int row = findFileRow(filename.fileName());
 
 	if (row >= 0)
 	{
@@ -153,9 +154,9 @@ void WadseekerWadsTable::setFileFailed(const QString& filename)
 	}
 }
 
-void WadseekerWadsTable::setFileProgress(const QString& filename, qint64 current, qint64 total)
+void WadseekerWadsTable::setFileProgress(const ModFile& filename, qint64 current, qint64 total)
 {
-	int row = findFileRow(filename);
+	int row = findFileRow(filename.fileName());
 
 	if (row >= 0)
 	{
@@ -164,7 +165,7 @@ void WadseekerWadsTable::setFileProgress(const QString& filename, qint64 current
 		pBar->setValue(current);
 
 		// Update ETA and speed
-		SpeedCalculator* pCalculator = d.speedCalculators.value(filename);
+		SpeedCalculator *pCalculator = d.speedCalculators.value(filename.fileName());
 		pCalculator->setExpectedDataSize(total);
 		pCalculator->registerDataAmount(current);
 
@@ -173,15 +174,15 @@ void WadseekerWadsTable::setFileProgress(const QString& filename, qint64 current
 	}
 }
 
-void WadseekerWadsTable::setFileSuccessful(const QString& filename)
+void WadseekerWadsTable::setFileSuccessful(const ModFile& filename)
 {
-	int row = findFileRow(filename);
+	int row = findFileRow(filename.fileName());
 
 	if (row >= 0)
 	{
 		// Set progress bar to 100%.
 		QProgressBar* pBar = (QProgressBar*) this->cellWidget(row, IDX_PROGRESS_COLUMN);
-		SpeedCalculator* pCalculator = d.speedCalculators[filename];
+		SpeedCalculator* pCalculator = d.speedCalculators[filename.fileName()];
 		if (pCalculator->expectedDataSize() == 0)
 		{
 			pCalculator->setExpectedDataSize(1);
@@ -203,11 +204,11 @@ void WadseekerWadsTable::setFileSuccessful(const QString& filename)
 	}
 }
 
-void WadseekerWadsTable::setFileUrl(const QString& filename, const QUrl& url)
+void WadseekerWadsTable::setFileUrl(const ModFile& filename, const QUrl& url)
 {
-	// At this point we know that a new download has sstarted.
+	// At this point we know that a new download has started.
 	// We should reset certain values.
-	int row = findFileRow(filename);
+	int row = findFileRow(filename.fileName());
 
 	if (row >= 0)
 	{
@@ -219,7 +220,7 @@ void WadseekerWadsTable::setFileUrl(const QString& filename, const QUrl& url)
 		pBar->setMaximum(0);
 		pBar->setValue(0);
 
-		SpeedCalculator* pCalculator = d.speedCalculators[filename];
+		SpeedCalculator *pCalculator = d.speedCalculators[filename.fileName()];
 		pCalculator->start();
 	}
 }

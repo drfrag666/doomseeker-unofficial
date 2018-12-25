@@ -155,16 +155,8 @@ QString ServerTooltip::createPwadToolTipInfo(const PWad& pwad, const ServerPtr &
 	cells << pwad.name();
 	if (findResult.isValid())
 	{
-		if (pwad.validFile(findResult.path()))
-		{
-			fontColor = FONT_COLOR_FOUND;
-			cells << findResult.path();
-		}
-		else
-		{
-			fontColor = FONT_COLOR_WARNING;
-			cells << findResult.path() + " " + L10n::tr("INCOMPATIBLE");
-		}
+		fontColor = FONT_COLOR_FOUND;
+		cells << findResult.path();
 	}
 	else
 	{

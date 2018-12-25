@@ -70,7 +70,6 @@ class JoinCommandLineBuilder : public QObject
 	private:
 		DPtr<JoinCommandLineBuilder> d;
 
-		void allDownloadableWads(const JoinError &joinError, QStringList &required, QStringList &optional);
 		bool buildServerConnectParams(ServerConnectParams &params);
 		bool checkServerStatus();
 		void failBuild();

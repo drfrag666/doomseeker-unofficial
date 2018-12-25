@@ -41,6 +41,8 @@ class Idgames;
 class WadArchiveClient;
 class WadRetriever;
 class WWWSeeker;
+class ModSet;
+class ModFile;
 
 /**
  *	@mainpage Wadseeker API
@@ -76,7 +78,7 @@ class WWWSeeker;
  *	ws.setPrimarySitesToDefault(); // Use the default list of sites
  *	ws.setTargetDirectory("./");
  *	QStringList listOfWads;
- *	listOfWads << "doom2.wad"; // This will be ignored beacuse of iwadNames
+ *	listOfWads << "doom2.wad"; // This will be ignored because of iwadNames
  *	listOfWads << "somemod.wad";
  *	listOfWads << "somemod.pk3";
  *	ws.seekWads(listOfWads);
@@ -118,22 +120,22 @@ class WADSEEKER_API Wadseeker : public QObject
 		/**
 		 * @brief Lists only wads for which isForbiddenWad() returns false.
 		 */
-		static QStringList filterAllowedOnlyWads(const QStringList &wads);
+		static ModSet filterAllowedOnlyWads(const ModSet &wads);
 		/**
 		 * @brief Lists only wads for which isForbiddenWad() returns true.
 		 */
-		static QStringList filterForbiddenOnlyWads(const QStringList &wads);
+		static ModSet filterForbiddenOnlyWads(const ModSet &wads);
 
 		/**
 		 *	@brief Attempts to detect if the input is on
 		 *	       a list of forbidden wads.
 		 *
 		 *	@param wad
-		 *		Name of wad trying to be searched for.
+		 *		wad trying to be searched for.
 		 *	@return True if Wadseeker will refuse to download the wad specified.
 		 *	@see iwadNames
 		 */
-		static bool isForbiddenWad(const QString& wad);
+		static bool isForbiddenWad(const ModFile& wad);
 
 		/**
 		 * Initializes a new instance of Wadseeker.
@@ -151,7 +153,7 @@ class WADSEEKER_API Wadseeker : public QObject
 		 * @param wad
 		 *      Name of the file as specified by seekStarted() signal.
 		 */
-		bool isDownloadingFile(const QString& file) const;
+		bool isDownloadingFile(const ModFile& file) const;
 
 		/**
 		 * @brief Check if Wadseeker is still working.
@@ -290,7 +292,7 @@ class WADSEEKER_API Wadseeker : public QObject
 		 *		List of files that will be searched for.
 		 *	@return True if seek was started. False otherwise.
 		 */
-		bool startSeek(const QStringList& wads);
+		bool startSeek(const ModSet& wads);
 
 		/**
 		 *	Target directory is a directory where all seeked files will
@@ -330,7 +332,7 @@ class WADSEEKER_API Wadseeker : public QObject
 		 *      Emitted previously by seekStarted() signal as an entry on the
 		 *      filenames list.
 		 */
-		void fileDownloadFinished(const QString& filename);
+		void fileDownloadFinished(const ModFile& filename);
 
 		/**
 		 * @brief Emits download progress.
@@ -347,7 +349,7 @@ class WADSEEKER_API Wadseeker : public QObject
 		 * @param total
 		 *     Total size of the downloaded file.
 		 */
-		void fileDownloadProgress(const QString& filename, qint64 done, qint64 total);
+		void fileDownloadProgress(const ModFile& filename, qint64 done, qint64 total);
 
 		/**
 		 * @brief Emitted when a file download starts.
@@ -357,7 +359,7 @@ class WADSEEKER_API Wadseeker : public QObject
 		 * @param url
 		 *     URL from which the file is being downloaded.
 		 */
-		void fileDownloadStarted(const QString& filename, const QUrl& url);
+		void fileDownloadStarted(const ModFile& filename, const QUrl &url);
 
 		/**
 		 * @brief Emitted when a particular file is installed correctly.
@@ -367,7 +369,7 @@ class WADSEEKER_API Wadseeker : public QObject
 		 *      Emitted previously by seekStarted() signal as an entry on the
 		 *      filenames list.
 		 */
-		void fileInstalled(const QString& filename);
+		void fileInstalled(const ModFile& filename);
 
 		/**
 		 * @brief Emitted when Wadseeker wants to communicate about its
@@ -386,7 +388,7 @@ class WADSEEKER_API Wadseeker : public QObject
 		 *     Wadseeker will continue to refer to those filenames in other
 		 *     signals.
 		 */
-		void seekStarted(const QStringList& filenames);
+		void seekStarted(const ModSet& filenames);
 
 		/**
 		 * @brief Notifies that Wadseeker started querying a

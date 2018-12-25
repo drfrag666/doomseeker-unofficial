@@ -23,6 +23,7 @@
 #include "serverstructs.h"
 #include "wadseeker/entities/checksum.h"
 #include "wadseeker/entities/hash.h"
+#include "wadseeker/entities/modfile.h"
 #include <QRegExp>
 #include <QVector>
 
@@ -426,8 +427,22 @@ PWad::PWad(const QString &name, bool optional)
 	d->optional = optional;
 }
 
+PWad::PWad(const ModFile &modFile)
+{
+	d->name = modFile.fileName();
+	d->optional = false;
+	d->checksums = modFile.checksums();
+}
+
 PWad::~PWad()
 {
+}
+
+PWad::operator ModFile()
+{
+	ModFile modFile(d->name);
+	modFile.setChecksums(d->checksums);
+	return modFile;
 }
 
 bool PWad::isOptional() const

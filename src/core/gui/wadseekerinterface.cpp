@@ -31,6 +31,9 @@
 #include "application.h"
 #include "mainwindow.h"
 #include "strings.hpp"
+#include "wadseeker/entities/modfile.h"
+#include "wadseeker/entities/modset.h"
+#include "wadseeker/entities/checksum.h"
 
 #include <QMessageBox>
 
@@ -97,8 +100,14 @@ void WadseekerInterface::accept()
 		{
 			return;
 		}
-
-		startSeeking(d->leWadName->text().split(',', QString::SkipEmptyParts));
+		else
+		{
+			seekedWads.clear();
+			QStringList pwadNames = d->leWadName->text().split(',', QString::SkipEmptyParts);
+			foreach (QString pwadName, pwadNames)
+				seekedWads << pwadName.trimmed();
+		}
+		startSeeking(seekedWads);
 	}
 }
 
@@ -125,11 +134,11 @@ void WadseekerInterface::allDone(bool bSuccess)
 	}
 	else
 	{
-		QStringList failures = unsuccessfulWads();
+		QList<PWad> failures = unsuccessfulWads();
 
-		foreach (const QString& failure, failures)
+		foreach (const PWad& failure, failures)
 		{
-			d->twWads->setFileFailed(failure);
+			d->twWads->setFileFailed(failure.name());
 		}
 
 		displayMessage(tr("All done. Fail."), WadseekerLib::CriticalError, false);
@@ -143,10 +152,10 @@ void WadseekerInterface::connectWadseekerObject()
 		SLOT( allDone(bool) ) );
 	this->connect(&wadseeker, SIGNAL( message(const QString&, WadseekerLib::MessageType) ),
 		SLOT( message(const QString&, WadseekerLib::MessageType) ) );
-	this->connect(&wadseeker, SIGNAL( seekStarted(const QStringList&) ),
-		SLOT( seekStarted(const QStringList&) ) );
-	this->connect(&wadseeker, SIGNAL( fileInstalled(const QString&) ),
-		SLOT( fileDownloadSuccessful(const QString&) ) );
+	this->connect(&wadseeker, SIGNAL( seekStarted(const ModSet&) ),
+		SLOT( seekStarted(const ModSet&) ) );
+	this->connect(&wadseeker, SIGNAL( fileInstalled(const ModFile&) ),
+		SLOT( fileDownloadSuccessful(const ModFile&) ) );
 	this->connect(&wadseeker, SIGNAL( siteFinished(const QUrl&) ),
 		SLOT( siteFinished(const QUrl&) ) );
 	this->connect(&wadseeker, SIGNAL( siteProgress(const QUrl&, qint64, qint64) ),
@@ -161,12 +170,12 @@ void WadseekerInterface::connectWadseekerObject()
 		SLOT( serviceFinished(QString) ) );
 
 	// Connect Wadseeker to the WADs table widget.
-	d->twWads->connect(&wadseeker, SIGNAL( fileDownloadFinished(const QString&) ),
-		SLOT( setFileDownloadFinished(const QString&) ) );
-	d->twWads->connect(&wadseeker, SIGNAL( fileDownloadProgress(const QString&, qint64, qint64) ),
-		SLOT( setFileProgress(const QString&, qint64, qint64) ) );
-	d->twWads->connect(&wadseeker, SIGNAL( fileDownloadStarted(const QString&, const QUrl&) ),
-		SLOT( setFileUrl(const QString&, const QUrl&) ) );
+	d->twWads->connect(&wadseeker, SIGNAL( fileDownloadFinished(const ModFile&) ),
+		SLOT( setFileDownloadFinished(const ModFile&) ) );
+	d->twWads->connect(&wadseeker, SIGNAL( fileDownloadProgress(const ModFile&, qint64, qint64) ),
+		SLOT( setFileProgress(const ModFile&, qint64, qint64) ) );
+	d->twWads->connect(&wadseeker, SIGNAL( fileDownloadStarted(const ModFile&, const QUrl&) ),
+		SLOT( setFileUrl(const ModFile&, const QUrl&) ) );
 }
 
 void WadseekerInterface::construct()
@@ -309,10 +318,10 @@ void WadseekerInterface::displayMessage(const QString& message, WadseekerLib::Me
 	d->teWadseekerOutput->append(strProcessedMessage);
 }
 
-void WadseekerInterface::fileDownloadSuccessful(const QString& filename)
+void WadseekerInterface::fileDownloadSuccessful(const ModFile& filename)
 {
 	successfulWads << filename;
-	d->twWads->setFileSuccessful(filename);
+	d->twWads->setFileSuccessful(filename.fileName());
 }
 
 void WadseekerInterface::initMessageColors()
@@ -357,22 +366,29 @@ void WadseekerInterface::resetTitleToDefault()
 	setWindowTitle(tr("Wadseeker"));
 }
 
-void WadseekerInterface::seekStarted(const QStringList& filenames)
+void WadseekerInterface::seekStarted(const ModSet& filenames)
 {
+	QList<PWad> wads;
+	QStringList names;
+	foreach (ModFile modFile, filenames.modFiles())
+	{
+		wads << modFile;
+		names << modFile.fileName();
+	}
 	d->teWadseekerOutput->clear();
 	d->pbOverallProgress->setValue(0);
 	d->taskbarProgress->setValue(0);
-	displayMessage("Seek started on filenames: " + filenames.join(", "), WadseekerLib::Notice, false);
+	displayMessage("Seek started on filenames: " + names.join(", "), WadseekerLib::Notice, false);
 
-	seekedWads = filenames;
+	seekedWads = wads;
 	successfulWads.clear();
 	d->twSites->setRowCount(0);
 	d->twWads->setRowCount(0);
 	setStateDownloading();
 
-	foreach (const QString& name, filenames)
+	foreach (const PWad& wad, seekedWads)
 	{
-		d->twWads->addFile(name);
+		d->twWads->addFile(wad.name());
 	}
 }
 
@@ -400,43 +416,22 @@ void WadseekerInterface::setupAutomatic()
 	d->leWadName->hide();
 }
 
-void WadseekerInterface::setWads(const QStringList& wads)
-{
-	if (isAutomatic())
-	{
-		seekedWads = wads;
-	}
-	else
-	{
-		d->leWadName->setText(wads.join(", "));
-	}
-}
-
 void WadseekerInterface::setWads(const QList<PWad>& wads)
 {
-	QStringList wadNames;
-	foreach (const PWad wad, wads)
-		wadNames.append(wad.name());
-	if (isAutomatic())
+	seekedWads = wads;
+	if (!isAutomatic())
 	{
-		seekedWads = wadNames;
-	}
-	else
-	{
-		d->leWadName->setText(wadNames.join(", "));
+		QStringList names;
+		foreach (PWad wad, wads)
+			names << wad.name();
+		d->leWadName->setText(names.join(", "));
 	}
 }
 
 void WadseekerInterface::setupIdgames()
 {
-	QString idgamesUrl = Wadseeker::defaultIdgamesUrl();
-	bool useIdgames = true;
-
-	useIdgames = gConfig.wadseeker.bSearchInIdgames;
-	idgamesUrl = gConfig.wadseeker.idgamesURL;
-
-	wadseeker.setIdgamesEnabled(useIdgames);
-	wadseeker.setIdgamesUrl(idgamesUrl);
+	wadseeker.setIdgamesEnabled(gConfig.wadseeker.bSearchInIdgames);
+	wadseeker.setIdgamesUrl(gConfig.wadseeker.idgamesURL);
 	wadseeker.setWadArchiveEnabled(gConfig.wadseeker.bSearchInWadArchive);
 }
 
@@ -490,7 +485,7 @@ void WadseekerInterface::siteStarted(const QUrl& site)
 	displayMessage("Site started: " + site.toString(), WadseekerLib::Notice, false);
 }
 
-void WadseekerInterface::startSeeking(const QStringList& seekedFilesList)
+void WadseekerInterface::startSeeking(const QList<PWad>& seekedFilesList)
 {
 	if (seekedFilesList.isEmpty())
 	{
@@ -498,15 +493,9 @@ void WadseekerInterface::startSeeking(const QStringList& seekedFilesList)
 	}
 	d->bCompletedSuccessfully = false;
 
-	// Get rid of the whitespace characters from each filename; we don't want
-	// to be searching " awad.wad".
-	QStringList seekedFilesListFormatted;
-	foreach (QString filenameFormatted, seekedFilesList)
-	{
-		filenameFormatted = filenameFormatted.trimmed();
-
-		seekedFilesListFormatted << filenameFormatted;
-	}
+	ModSet listWads;
+	foreach (PWad seekedFile, seekedFilesList)
+		listWads.addModFile(seekedFile);
 
 	setupIdgames();
 
@@ -514,7 +503,7 @@ void WadseekerInterface::startSeeking(const QStringList& seekedFilesList)
 	wadseeker.setCustomSite(customSite);
 	wadseeker.setMaximumConcurrentSeeks(gConfig.wadseeker.maxConcurrentSiteDownloads);
 	wadseeker.setMaximumConcurrentDownloads(gConfig.wadseeker.maxConcurrentWadDownloads);
-	wadseeker.startSeek(seekedFilesListFormatted);
+	wadseeker.startSeek(listWads);
 }
 
 void WadseekerInterface::updateProgressBar()
@@ -549,15 +538,20 @@ void WadseekerInterface::updateTitle()
 	}
 }
 
-QStringList WadseekerInterface::unsuccessfulWads() const
+QList<PWad> WadseekerInterface::unsuccessfulWads() const
 {
-	QStringList allWads = seekedWads;
-
-	foreach (const QString& success, successfulWads)
+	QList<PWad> allWads = seekedWads;
+	foreach (PWad successfulWad, successfulWads)
 	{
-		allWads.removeAll(success);
+		for (int i = 0; i < allWads.size(); ++i)
+		{
+			if (allWads[i].name() == successfulWad.name())
+			{
+				allWads.removeAt(i);
+				break;
+			}
+		}
 	}
-
 	return allWads;
 }
 

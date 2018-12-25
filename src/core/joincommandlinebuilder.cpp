@@ -82,25 +82,6 @@ JoinCommandLineBuilder::~JoinCommandLineBuilder()
 {
 }
 
-void JoinCommandLineBuilder::allDownloadableWads(const JoinError &joinError, QStringList &required, QStringList &optional)
-{
-	if (!joinError.missingIwad().isEmpty())
-	{
-		required << joinError.missingIwad();
-	}
-
-	const QList<PWad> missingWads = joinError.missingWads();
-	foreach(const PWad &wad, missingWads)
-	{
-		if(wad.isOptional())
-			optional.append(wad.name());
-		else
-			required.append(wad.name());
-	}
-	required = Wadseeker::filterAllowedOnlyWads(required);
-	optional = Wadseeker::filterAllowedOnlyWads(optional);
-}
-
 bool JoinCommandLineBuilder::buildServerConnectParams(ServerConnectParams &params)
 {
 	if (d->server->isLockedAnywhere())

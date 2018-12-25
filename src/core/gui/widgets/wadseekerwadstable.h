@@ -30,6 +30,7 @@
 #include "gui/widgets/tablewidgetmouseaware.h"
 
 class SpeedCalculator;
+class ModFile;
 
 class WadseekerWadsTable : public TableWidgetMouseAware
 {
@@ -81,15 +82,15 @@ class WadseekerWadsTable : public TableWidgetMouseAware
 		double totalDonePercentage() const;
 
 	public slots:
-		void setFileDownloadFinished(const QString& filename);
-		void setFileFailed(const QString& filename);
-		void setFileProgress(const QString& filename, qint64 current, qint64 total);
-		void setFileSuccessful(const QString& filename);
+		void setFileDownloadFinished(const ModFile& filename);
+		void setFileFailed(const ModFile& filename);
+		void setFileProgress(const ModFile& filename, qint64 current, qint64 total);
+		void setFileSuccessful(const ModFile& filename);
 
 		/**
 		 * @brief Fired when new URL starts for specified file.
 		 */
-		void setFileUrl(const QString& filename, const QUrl& url);
+		void setFileUrl(const ModFile& filename, const QUrl& url);
 
 	protected:
 		void showEvent(QShowEvent* pEvent);

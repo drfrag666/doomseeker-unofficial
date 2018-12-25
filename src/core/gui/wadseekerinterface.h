@@ -24,7 +24,6 @@
 #define __WADSEEKERINTERFACE_H_
 
 #include "serverapi/serverptr.h"
-#include "serverapi/serverstructs.h"
 #include "wadseeker/wadseeker.h"
 #include "dptr.h"
 #include <QDialog>
@@ -32,6 +31,9 @@
 #include <QTimer>
 
 class QModelIndex;
+class PWad;
+class ModSet;
+class ModFile;
 
 /**
  * @brief Wadseeker dialog box, only one instance is allowed.
@@ -61,16 +63,7 @@ class WadseekerInterface : public QDialog
 		/**
 		 * @brief Sets WADs to seek.
 		 *
-		 * If window is automatic seek will start immediatelly. Otherwise
-		 * WADs are inserted into the line edit.
-		 *
-		 * @param wads - list of the names of wads to seek.
-		 */
-		void setWads(const QStringList& wads);
-		/**
-		 * @brief Sets WADs to seek.
-		 *
-		 * If window is automatic seek will start immediatelly. Otherwise
+		 * If window is automatic seek will start immediately. Otherwise
 		 * WADs are inserted into the line edit.
 		 *
 		 * @param wads - list of PWads to seek.
@@ -102,9 +95,9 @@ class WadseekerInterface : public QDialog
 		QString customSite;
 
 		/**
-		 * Interface uses this instead of line edit if bAutomatic is true.
+		 * Interface uses this to store the PWads.
 		 */
-		QStringList seekedWads;
+		QList<PWad> seekedWads;
 
 		States state;
 
@@ -112,7 +105,7 @@ class WadseekerInterface : public QDialog
 		 * @brief A subset of seekedWads list. Contains all WADs that were
 		 *        successfully installed.
 		 */
-		QStringList successfulWads;
+		QList<PWad> successfulWads;
 
 		QTimer updateTimer;
 		Wadseeker wadseeker;
@@ -135,26 +128,26 @@ class WadseekerInterface : public QDialog
 		void setupAutomatic();
 		void setupIdgames();
 		void showEvent(QShowEvent* event);
-		void startSeeking(const QStringList& seekedFilesList);
+		void startSeeking(const QList<PWad>& seekedFilesList);
 		void updateProgressBar();
 		void updateTitle();
 
 		/**
-		 * @brief Subtracts successulWads list from seekedWads and returns the
+		 * @brief Subtracts successfulWads list from seekedWads and returns the
 		 *        difference.
 		 */
-		QStringList unsuccessfulWads() const;
+		QList<PWad> unsuccessfulWads() const;
 
 	private slots:
 		void abortService(const QString &service);
 		void abortSite(const QUrl &url);
 		void accept();
 		void allDone(bool bSuccess);
-		void fileDownloadSuccessful(const QString& filename);
+		void fileDownloadSuccessful(const ModFile& filename);
 		void reject();
 		void message(const QString& message, WadseekerLib::MessageType type);
 		void registerUpdateRequest();
-		void seekStarted(const QStringList& filenames);
+		void seekStarted(const ModSet& filenames);
 		void serviceStarted(const QString &service);
 		void serviceFinished(const QString &service);
 		void siteFinished(const QUrl& site);
