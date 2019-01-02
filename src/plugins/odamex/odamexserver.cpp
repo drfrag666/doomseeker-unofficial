@@ -238,7 +238,8 @@ Server::Response OdamexServer::readRequest(const QByteArray &data)
 		}
 		else
 			in.readRawUntilByte('\0');
-		if (i >= 2) {
+		if (i >= 2)
+		{
 			PWad pwad(wad, false);
 			pwad.addChecksum(hash, QCryptographicHash::Md5);
 			addWad(pwad);

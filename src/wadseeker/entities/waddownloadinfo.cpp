@@ -22,19 +22,50 @@
 //------------------------------------------------------------------------------
 #include "waddownloadinfo.h"
 #include "wadseekerversioninfo.h"
+#include "modfile.h"
+#include "checksum.h"
+#include "hash.h"
 
 #include <QFileInfo>
 #include <QStringList>
 
+DClass<WadDownloadInfo>
+{
+public:
+	QString name;
+	qint64 size;
+	QList<Checksum> checksums;
+};
+DPointered(WadDownloadInfo)
+
 WadDownloadInfo::WadDownloadInfo()
 {
-	d.size = -1;
+	d->size = -1;
 }
 
 WadDownloadInfo::WadDownloadInfo(const QString& name)
 {
-	d.name = name;
-	d.size = -1;
+	d->name = name;
+	d->size = -1;
+}
+
+WadDownloadInfo::WadDownloadInfo(const ModFile& modFile)
+{
+	d->name = modFile.fileName();
+	d->checksums = modFile.checksums();
+	d->size = -1;
+}
+
+WadDownloadInfo::operator ModFile() const
+{
+	ModFile modFile(d->name);
+	modFile.setChecksums(d->checksums);
+	return modFile;
+}
+
+const QString &WadDownloadInfo::name() const
+{
+	return d->name;
 }
 
 QString WadDownloadInfo::archiveName(const QString& suffix) const
@@ -45,7 +76,7 @@ QString WadDownloadInfo::archiveName(const QString& suffix) const
 	}
 	else
 	{
-		QFileInfo fi(d.name);
+		QFileInfo fi(d->name);
 
 		QString baseName = fi.completeBaseName();
 		return baseName + "." + suffix;
@@ -54,14 +85,14 @@ QString WadDownloadInfo::archiveName(const QString& suffix) const
 
 QString WadDownloadInfo::basename() const
 {
-	QFileInfo fi(d.name);
+	QFileInfo fi(d->name);
 	return fi.completeBaseName();
 }
 
 bool WadDownloadInfo::isArchive() const
 {
 	QStringList supportedArchives = WadseekerVersionInfo::supportedArchiveExtensions();
-	QFileInfo fi(d.name);
+	QFileInfo fi(d->name);
 
 	foreach (const QString& supportedSuffix, supportedArchives)
 	{
@@ -76,7 +107,7 @@ bool WadDownloadInfo::isArchive() const
 
 bool WadDownloadInfo::isValid() const
 {
-	return !d.name.trimmed().isEmpty();
+	return !d->name.trimmed().isEmpty();
 }
 
 bool WadDownloadInfo::isFilenameIndicatingSameWad(const QString& filename) const
@@ -117,4 +148,31 @@ QStringList WadDownloadInfo::possibleArchiveNames() const
 	}
 
 	return names;
+}
+
+void WadDownloadInfo::setSize(qint64 size)
+{
+	d->size = size;
+}
+
+qint64 WadDownloadInfo::size() const
+{
+	return d->size;
+}
+
+const QList<Checksum> &WadDownloadInfo::checksums() const
+{
+	return d->checksums;
+}
+
+const bool WadDownloadInfo::validFile(const QString &path) const
+{
+	foreach (const Checksum checksum, d->checksums)
+	{
+		if (Hash::hashFile(path, checksum.algorithm()) != checksum.hash())
+		{
+			return false;
+		}
+	}
+	return true;
 }

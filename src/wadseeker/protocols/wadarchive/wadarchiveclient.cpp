@@ -22,8 +22,10 @@
 //------------------------------------------------------------------------------
 #include "wadarchiveclient.h"
 
+#include "entities/checksum.h"
 #include "entities/waddownloadinfo.h"
 #include "protocols/json.h"
+#include <QCryptographicHash>
 #include <QDebug>
 #include <QNetworkRequest>
 #include <QNetworkReply>
@@ -34,18 +36,32 @@ class WadArchiveClient::PrivData
 public:
 	WadDownloadInfo currentWad;
 	QNetworkAccessManager *nam;
-	QNetworkReply *reply;
+	QNetworkReply *replyName;
+	QNetworkReply *replyChecksum;
 	QString userAgent;
 	QList<WadDownloadInfo> queue;
 	QList<QUrl> urls;
 
-	QUrl buildUrl(const WadDownloadInfo &wad)
+	QUrl buildUrlName(const WadDownloadInfo &wad)
 	{
 		if (!wad.isValid() || wad.name().contains("/"))
 		{
 			return QUrl();
 		}
 		return QUrl(QString("https://www.wad-archive.com/wadseeker/%1").arg(wad.name()));
+	}
+
+	QUrl buildUrlChecksum(const WadDownloadInfo &wad)
+	{
+		if (wad.isValid() || !wad.name().contains("/"))
+		{
+			foreach (Checksum checksum, wad.checksums())
+			{
+				if (checksum.algorithm() == QCryptographicHash::Md5 || checksum.algorithm() == QCryptographicHash::Sha1)
+					return QUrl(QString("https://www.wad-archive.com/api/latest/%1").arg(QString(checksum.hash().toHex())));
+			}
+		}
+		return QUrl();
 	}
 
 	QUrl buildBadUrlReporterUrl(const QUrl &url)
@@ -60,15 +76,20 @@ WadArchiveClient::WadArchiveClient()
 {
 	d = new PrivData();
 	d->nam = new QNetworkAccessManager();
-	d->reply = NULL;
+	d->replyName = NULL;
+	d->replyChecksum = NULL;
 }
 
 WadArchiveClient::~WadArchiveClient()
 {
 	abort();
-	if (d->reply != NULL)
+	if (d->replyName != NULL)
 	{
-		d->reply->deleteLater();
+		d->replyName->deleteLater();
+	}
+	if (d->replyChecksum != NULL)
+	{
+		d->replyChecksum->deleteLater();
 	}
 	d->nam->deleteLater();
 	delete d;
@@ -77,9 +98,13 @@ WadArchiveClient::~WadArchiveClient()
 void WadArchiveClient::abort()
 {
 	d->queue.clear();
-	if (d->reply != NULL)
+	if (d->replyName != NULL)
 	{
-		d->reply->abort();
+		d->replyName->abort();
+	}
+	if (d->replyChecksum != NULL)
+	{
+		d->replyChecksum->abort();
 	}
 	else
 	{
@@ -95,7 +120,7 @@ void WadArchiveClient::emitFinished()
 
 void WadArchiveClient::enqueue(const WadDownloadInfo &wad)
 {
-	if (d->buildUrl(wad).isValid())
+	if (d->buildUrlName(wad).isValid())
 	{
 		d->queue << wad;
 	}
@@ -103,7 +128,7 @@ void WadArchiveClient::enqueue(const WadDownloadInfo &wad)
 
 bool WadArchiveClient::isWorking() const
 {
-	return !d->queue.isEmpty() || d->reply != NULL;
+	return !d->queue.isEmpty() || d->replyName != NULL || d->replyChecksum != NULL;
 }
 
 void WadArchiveClient::setUserAgent(const QString &userAgent)
@@ -128,40 +153,51 @@ void WadArchiveClient::startNextInQueue()
 		return;
 	}
 	d->currentWad = d->queue.takeFirst();
-	QUrl url = d->buildUrl(d->currentWad);
+	QUrl urlName = d->buildUrlName(d->currentWad);
+	QUrl urlChecksum = d->buildUrlChecksum(d->currentWad);
 	#ifndef NDEBUG
-		qDebug() << "wad archive search:" << url;
+		qDebug() << "wad archive search:" << urlName;
+		qDebug() << "wad archive checksum:" << urlChecksum;
 	#endif
 	emit message(tr("Querying Wad Archive for %1").arg(d->currentWad.name()), WadseekerLib::Notice);
 
-	QNetworkRequest request;
-	request.setUrl(url);
-	request.setRawHeader("User-Agent", d->userAgent.toUtf8());
-	d->reply = d->nam->get(request);
-	this->connect(d->reply, SIGNAL(finished()), SLOT(onQueryFinished()));
+	d->replyName = startQNetworkReply(urlName);
+	d->replyChecksum = startQNetworkReply(urlChecksum);
+	this->connect(d->replyName, SIGNAL(finished()), SLOT(onQueryFinished()));
+	this->connect(d->replyChecksum, SIGNAL(finished()), SLOT(onQueryFinished()));
 }
 
 void WadArchiveClient::onQueryFinished()
 {
-	emit message(tr("Wad Archive query finished."), WadseekerLib::Notice);
-	QVariantList elements = QtJson::Json::parse(d->reply->readAll()).toList();
-	if (elements.size() > 0)
+	if (d->replyName->isFinished() && d->replyChecksum->isFinished())
 	{
-		parseWadArchiveStructure(elements[0].toMap());
-	}
+		emit message(tr("Wad Archive query finished."), WadseekerLib::Notice);
+		QVariantList elementsName = QtJson::Json::parse(d->replyName->readAll()).toList();
+		QVariantMap elementsChecksum = QtJson::Json::parse(d->replyChecksum->readAll()).toMap();
+		if (elementsName.size() > 0)
+		{
+			parseWadArchiveStructure(elementsName[0].toMap(), elementsChecksum);
+		}
 
-	d->reply->deleteLater();
-	d->reply = NULL;
-	startNextInQueue();
+		d->replyName->deleteLater();
+		d->replyName = NULL;
+		d->replyChecksum->deleteLater();
+		d->replyChecksum = NULL;
+		startNextInQueue();
+	}
 }
 
-void WadArchiveClient::parseWadArchiveStructure(const QVariantMap &map)
+void WadArchiveClient::parseWadArchiveStructure(const QVariantMap &mapName, const QVariantMap &mapChecksum)
 {
-	QVariantList links = map["links"].toList();
-	foreach (QVariant link, links)
+	QVariantList linksName = mapName["links"].toList();
+	QVariantList linksChecksum = mapChecksum["links"].toList();
+	foreach (QVariant link, linksName)
 	{
-		d->urls << QUrl(link.toString());
-		emit urlFound(d->currentWad.name(), QUrl(link.toString()));
+		if (linksChecksum.isEmpty() || linksChecksum.contains(link))
+		{
+			d->urls << QUrl(link.toString());
+			emit urlFound(d->currentWad.name(), QUrl(link.toString()));
+		}
 	}
 }
 
@@ -175,10 +211,16 @@ void WadArchiveClient::reportBadUrlIfOriginatingFromHere(const QUrl &url)
 		#ifndef NDEBUG
 			qDebug() << "Wad Archive report url:" << reportUrl;
 		#endif
-		QNetworkRequest request;
-		request.setUrl(reportUrl);
-		request.setRawHeader("User-Agent", d->userAgent.toUtf8());
-		QNetworkReply *reply = d->nam->get(request);
+		QNetworkReply *reply = startQNetworkReply(reportUrl);
 		connect(reply, SIGNAL(finished()), reply, SLOT(deleteLater()));
 	}
+}
+
+QNetworkReply *WadArchiveClient::startQNetworkReply(const QUrl &url)
+{
+	QNetworkRequest request;
+	request.setUrl(url);
+	//MUST BE CHANGED. For the moment this skips the bot filter in the API.
+	request.setRawHeader("User-Agent", d->userAgent.toUtf8());
+	return d->nam->get(request);
 }

@@ -24,6 +24,7 @@
 #define id6c75c254_acf8_441c_980d_c044fd80f264
 
 #include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include <QObject>
 #include <QString>
 #include <QUrl>
@@ -46,18 +47,18 @@ public:
 	void reportBadUrlIfOriginatingFromHere(const QUrl &url);
 	void setUserAgent(const QString &userAgent);
 	void start();
-
+	QNetworkReply *startQNetworkReply(const QUrl& url);
 signals:
 	void finished();
 	void message(const QString &msg, WadseekerLib::MessageType type);
 	void urlFound(const QString &wadName, const QUrl &url);
 
-private:
+  private:
 	class PrivData;
 	PrivData *d;
 
 	void emitFinished();
-	void parseWadArchiveStructure(const QVariantMap &map);
+	void parseWadArchiveStructure(const QVariantMap &mapName, const QVariantMap &mapMd5);
 	void startNextInQueue();
 
 private slots:

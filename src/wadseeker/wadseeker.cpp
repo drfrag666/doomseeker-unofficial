@@ -233,7 +233,7 @@ void Wadseeker::fileLinkFound(const QString& filename, const QUrl& url)
 	emit message(tr("Found link to file \"%1\": %2").arg(filename)
 				.arg(url.toEncoded().constData()), WadseekerLib::Notice);
 
-	d->wadRetriever->addUrl(filename, url);
+	d->wadRetriever->addUrl(d->seekParameters.seekedWads.findFileName(filename), url);
 }
 
 void Wadseeker::fileMirrorLinksFound(const QString& filename, const QList<QUrl>& urls)
@@ -568,7 +568,7 @@ void Wadseeker::setupWadArchiveClient(const QList<WadDownloadInfo> &wadDownloadI
 	this->connect(d->wadArchiveClient, SIGNAL(finished()),
 		SLOT(wadArchiveFinished()));
 	this->connect(d->wadArchiveClient, SIGNAL(urlFound(QString, QUrl)),
-		SLOT(fileLinkFound(QString, QUrl)));
+				  SLOT(fileLinkFound(QString, QUrl)));
 }
 
 void Wadseeker::skipFileCurrentUrl(const QString& fileName)
@@ -725,7 +725,7 @@ bool Wadseeker::startSeek(const ModSet& wads)
 	foreach (const ModFile& wad, filteredWadsList.modFiles())
 	{
 		// Create download info object for this WAD.
-		WadDownloadInfo wadDownloadInfo(wad.fileName());
+		WadDownloadInfo wadDownloadInfo(wad);
 		wadDownloadInfoList << wadDownloadInfo;
 
 		// Generate all possible filenames.

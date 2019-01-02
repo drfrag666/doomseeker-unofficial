@@ -458,13 +458,21 @@ bool WadRetriever::parseInstallerResult(const WadInstaller::WadInstallerResult& 
 		foreach (const QFileInfo& installedWad, result.installedWads)
 		{
 			WadRetrieverInfo* pInfo = findRetrieverInfo(installedWad.fileName());
-			emit message(tr("Installed WAD: %1 [%2 bytes]").arg(pInfo->wad->name()).arg(installedWad.size()),
-				WadseekerLib::Notice);
+			if (pInfo->wad->validFile(installedWad.filePath()))
+			{
+				emit message(tr("Installed WAD: %1 [%2 bytes]").arg(pInfo->wad->name()).arg(installedWad.size()),
+					WadseekerLib::Notice);
 
-			pInfo->wad->setSize(installedWad.size());
-			emit wadInstalled(*pInfo->wad);
+				pInfo->wad->setSize(installedWad.size());
+				emit wadInstalled(*pInfo->wad);
 
-			removeWadRetrieverInfo(pInfo);
+				removeWadRetrieverInfo(pInfo);
+			}
+			else
+			{
+				emit message(tr("The checksum of \"%1\" doesn’t match the expected one.").arg(pInfo->wad->name()),
+					WadseekerLib::Notice);
+			}
 		}
 
 		if (d.wads.isEmpty())

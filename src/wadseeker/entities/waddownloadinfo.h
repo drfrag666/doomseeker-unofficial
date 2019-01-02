@@ -23,8 +23,14 @@
 #ifndef __WADDOWNLOADINFO_H__
 #define __WADDOWNLOADINFO_H__
 
+#include "dptr.h"
+
 #include <QByteArray>
 #include <QString>
+#include <QList>
+
+class ModFile;
+class Checksum;
 
 /**
  * @brief Holds information about unique WAD download.
@@ -34,6 +40,9 @@ class WadDownloadInfo
 	public:
 		WadDownloadInfo();
 		WadDownloadInfo(const QString& name);
+
+		WadDownloadInfo(const ModFile &modFile);
+		operator ModFile() const;
 
 		/**
 		 * @brief Gets name for the archive that may contain the mentioned file.
@@ -68,10 +77,7 @@ class WadDownloadInfo
 		 */
 		bool isFilenameIndicatingSameWad(const QString& filename) const;
 
-		const QString& name() const
-		{
-			return d.name;
-		}
+		const QString &name() const;
 
 		/**
 		 * @brief Check if name() values match.
@@ -104,10 +110,7 @@ class WadDownloadInfo
 		 *      Size of the file in bytes if known. If unknown
 		 *      then a negative value should be set.
 		 */
-		void setSize(qint64 size)
-		{
-			d.size = size;
-		}
+		void setSize(qint64 size);
 
 		/**
 		 * @brief Size of the file if known.
@@ -115,20 +118,23 @@ class WadDownloadInfo
 		 * @return Size of the file in bytes if known. If unknown
 		 *         then a negative value is returned.
 		 */
-		qint64 size() const
-		{
-			return d.size;
-		}
+		qint64 size() const;
 
+		/**
+		 * @brief List of checksums known.
+		 *
+		 * @return List of all known checksums for the desired wad.
+		 */
+		const QList<Checksum> &checksums() const;
+
+		/**
+		 * @brief Verifies if a file has the same checksums as the wad.
+		 *
+		 * @param path - Path to the file.
+		 */
+		const bool validFile(const QString &path) const;
 	private:
-		class PrivData
-		{
-			public:
-				QString name;
-				qint64 size;
-		};
-
-		PrivData d;
+		DPtr<WadDownloadInfo> d;
 };
 
 #endif
