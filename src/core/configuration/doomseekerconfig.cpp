@@ -302,6 +302,7 @@ DoomseekerConfig::DoomseekerCfg::DoomseekerCfg()
 	this->bQueryOnStartup = true;
 	this->bRecordDemo = false;
 	this->bTellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn = true;
+	this->bCheckTheIntegrityOfWads = true;
 	this->bUseTrayIcon = false;
 	this->bMarkServersWithBuddies = true;
 	this->buddyServersColor = "#5ecf75";
@@ -364,6 +365,7 @@ void DoomseekerConfig::DoomseekerCfg::init(IniSection& section)
 	section.createSetting("QueryOnStartup", this->bQueryOnStartup);
 	section.createSetting("RecordDemo", this->bRecordDemo);
 	section.createSetting("TellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn", this->bTellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn);
+	section.createSetting("CheckTheIntegrityOfWads", this->bCheckTheIntegrityOfWads);
 	section.createSetting("UseTrayIcon", this->bUseTrayIcon);
 	section.createSetting("MarkServersWithBuddies", this->bMarkServersWithBuddies);
 	section.createSetting("BuddyServersColor", this->buddyServersColor);
@@ -406,6 +408,7 @@ void DoomseekerConfig::DoomseekerCfg::load(IniSection& section)
 	this->bQueryOnStartup = section["QueryOnStartup"];
 	this->bRecordDemo = section["RecordDemo"];
 	this->bTellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn = section["TellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn"];
+	this->bCheckTheIntegrityOfWads = section["CheckTheIntegrityOfWads"];
 	this->bUseTrayIcon = section["UseTrayIcon"];
 	this->bMarkServersWithBuddies = section["MarkServersWithBuddies"];
 	this->buddyServersColor = (const QString &)section["BuddyServersColor"];
@@ -502,6 +505,7 @@ void DoomseekerConfig::DoomseekerCfg::save(IniSection& section)
 	section["QueryOnStartup"] = this->bQueryOnStartup;
 	section["RecordDemo"] = this->bRecordDemo;
 	section["TellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn"] = this->bTellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn;
+	section["CheckTheIntegrityOfWads"] = this->bCheckTheIntegrityOfWads;
 	section["UseTrayIcon"] = this->bUseTrayIcon;
 	section["MarkServersWithBuddies"] = this->bMarkServersWithBuddies;
 	section["BuddyServersColor"] = this->buddyServersColor;

@@ -307,7 +307,7 @@ void GameClientRunner::addPwads()
 		}
 		else
 		{
-			if (!d->server->wad(i).validFile(pwad))
+			if (gConfig.doomseeker.bCheckTheIntegrityOfWads && !d->server->wad(i).validFile(pwad))
 			{
 				markPwadAsIncompatible(d->server->wad(i));
 			}

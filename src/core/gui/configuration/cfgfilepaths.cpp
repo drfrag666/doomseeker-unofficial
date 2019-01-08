@@ -161,6 +161,7 @@ void CFGFilePaths::readSettings()
 	}
 
 	d->cbTellMeWhereAreMyWads->setChecked(gConfig.doomseeker.bTellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn);
+	d->cbCheckTheIntegrityOfWads->setChecked(gConfig.doomseeker.bCheckTheIntegrityOfWads);
 }
 
 void CFGFilePaths::saveSettings()
@@ -179,6 +180,7 @@ void CFGFilePaths::saveSettings()
 
 	gConfig.doomseeker.wadPaths = wadPaths;
 	gConfig.doomseeker.bTellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn = d->cbTellMeWhereAreMyWads->isChecked();
+	gConfig.doomseeker.bCheckTheIntegrityOfWads = d->cbCheckTheIntegrityOfWads->isChecked();
 }
 
 ConfigPage::Validation CFGFilePaths::validate()

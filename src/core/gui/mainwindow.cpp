@@ -650,7 +650,7 @@ void MainWindow::findMissingWADs(const ServerPtr &server)
 			PWad optionalWad = PWad(wad.name(), true, wad.checksums());
 			missingWads << optionalWad;
 		}
-		else if (!wad.validFile(findResult.path()))
+		else if (gConfig.doomseeker.bCheckTheIntegrityOfWads && !wad.validFile(findResult.path()))
 		{
 			incompatibleWads << wad;
 		}

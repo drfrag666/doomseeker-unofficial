@@ -74,6 +74,7 @@ class DoomseekerConfig
 			bool bQueryOnStartup;
 			bool bRecordDemo;
 			bool bTellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn;
+			bool bCheckTheIntegrityOfWads;
 			PatternList buddies;
 			bool bUseTrayIcon;
 			QString buddyServersColor;
