@@ -470,7 +470,7 @@ bool WadRetriever::parseInstallerResult(const WadInstaller::WadInstallerResult& 
 			}
 			else
 			{
-				emit message(tr("The checksum of \"%1\" doesn’t match the expected one.").arg(pInfo->wad->name()),
+				emit message(tr("The checksum of \"%1\" doesn't match the expected one.").arg(pInfo->wad->name()),
 					WadseekerLib::Notice);
 			}
 		}

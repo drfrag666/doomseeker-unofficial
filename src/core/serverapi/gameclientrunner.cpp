@@ -23,6 +23,7 @@
 #include "gameclientrunner.h"
 
 #include "configuration/doomseekerconfig.h"
+#include "gui/checkwadsdlg.h"
 #include "ini/inisection.h"
 #include "ini/inivariable.h"
 #include "pathfinder/pathfinder.h"
@@ -296,27 +297,16 @@ void GameClientRunner::addPassword_default()
 
 void GameClientRunner::addPwads()
 {
+	CheckWadsDlg* checkWadsDlg = new CheckWadsDlg(&d->pathFinder);
+	checkWadsDlg->addWads(d->server->wads());
+	const CheckResult checkResults = checkWadsDlg->checkWads();
+	foreach (const PWad& wad, checkResults.missingWads)
+		markPwadAsMissing(wad);
+	foreach (const PWad& wad, checkResults.incompatibleWads)
+		markPwadAsIncompatible(wad);
 	QStringList paths;
-	WadPathFinder wadFinder = WadPathFinder(d->pathFinder);
-	for (int i = 0; i < d->server->numWads(); ++i)
-	{
-		QString pwad = findWad(d->server->wad(i).name());
-		if (pwad.isEmpty())
-		{
-			markPwadAsMissing(d->server->wad(i));
-		}
-		else
-		{
-			if (gConfig.doomseeker.bCheckTheIntegrityOfWads && !d->server->wad(i).validFile(pwad))
-			{
-				markPwadAsIncompatible(d->server->wad(i));
-			}
-			else
-			{
-				paths << pwad;
-			}
-		}
-	}
+	foreach (const PWad& wad, checkResults.foundWads)
+		paths << findWad(wad.name());
 	addModFiles(paths);
 }
 

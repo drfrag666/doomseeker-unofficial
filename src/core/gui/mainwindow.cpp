@@ -24,6 +24,7 @@
 #include "configuration/doomseekerconfig.h"
 #include "configuration/queryspeed.h"
 #include "gui/configuration/irc/ircconfigurationdialog.h"
+#include "gui/checkwadsdlg.h"
 #include "gui/configuration/doomseekerconfigurationdialog.h"
 #include "gui/helpers/playersdiagram.h"
 #include "gui/irc/ircdock.h"
@@ -639,22 +640,17 @@ void MainWindow::findMissingWADs(const ServerPtr &server)
 	// Display a message if all WADs are present.
 	QList<PWad> wads = server->wads();
 	PathFinder pathFinder = server->wadPathFinder();
-	WadPathFinder wadFinder(pathFinder);
 	QList<PWad> missingWads;
 	QList<PWad> incompatibleWads;
-	foreach(const PWad &wad, wads)
-	{
-		WadFindResult findResult = wadFinder.find(wad.name());
-		if (!findResult.isValid())
-		{
-			PWad optionalWad = PWad(wad.name(), true, wad.checksums());
-			missingWads << optionalWad;
-		}
-		else if (gConfig.doomseeker.bCheckTheIntegrityOfWads && !wad.validFile(findResult.path()))
-		{
-			incompatibleWads << wad;
-		}
-	}
+
+	CheckWadsDlg* checkWadsDlg = new CheckWadsDlg(&pathFinder);
+	checkWadsDlg->addWads(wads);
+	const CheckResult checkResults = checkWadsDlg->checkWads();
+
+	foreach (const PWad& wad, checkResults.missingWads)
+		missingWads << PWad(wad.name(), true, wad.checksums());
+	incompatibleWads << checkResults.incompatibleWads;
+
 	if (missingWads.isEmpty() && incompatibleWads.isEmpty())
 	{
 		QMessageBox::information(this, tr("All WADs found"), tr("All of the WADs used by this server are present."));

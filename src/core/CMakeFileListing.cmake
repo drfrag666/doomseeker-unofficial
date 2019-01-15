@@ -1,6 +1,7 @@
 set(UI_FILES
 	gui/aboutdialog.ui
 	gui/addBuddyDlg.ui
+	gui/checkwadsdlg.ui
 	gui/configuration/cfgappearance.ui
 	gui/configuration/cfgautoupdates.ui
 	gui/configuration/cfgcustomservers.ui
@@ -77,6 +78,7 @@ set(HEADER_FILES
 	gitinfo.h
 	global.h
 	gui/aboutdialog.h
+	gui/checkwadsdlg.h
 	gui/commongui.h
 	gui/configuration/cfgappearance.h
 	gui/configuration/cfgautoupdates.h
@@ -304,6 +306,7 @@ set(SOURCE_FILES
 	fileutils.cpp
 	gamedemo.cpp
 	gui/aboutdialog.cpp
+	gui/checkwadsdlg.cpp
 	gui/commongui.cpp
 	gui/configuration/cfgappearance.cpp
 	gui/configuration/cfgautoupdates.cpp
