@@ -22,7 +22,7 @@
     <message>
         <source>CRC code on BSD License:
 </source>
-        <translation>Kod CRD na licencji BSD:
+        <translation>Kod CRC na licencji BSD:
 </translation>
     </message>
     <message>
