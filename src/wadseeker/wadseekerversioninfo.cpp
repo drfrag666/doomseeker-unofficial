@@ -80,5 +80,5 @@ QString WadseekerVersionInfo::version()
 
 QString WadseekerVersionInfo::yearSpan()
 {
-	return "2009 - 2018";
+	return "2009 - 2019";
 }

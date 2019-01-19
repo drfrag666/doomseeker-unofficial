@@ -155,7 +155,7 @@ https://dev.maxmind.com/geoip/geoip2/geolite2/</translation>
         <translation></translation>
     </message>
     <message>
-        <source>Copyright © 2009 - 2018 The Doomseeker Team
+        <source>Copyright © 2009 - 2019 The Doomseeker Team
 
 This program is distributed under the terms of the LGPL v2.1 or later.
 
@@ -176,7 +176,7 @@ This program uses icons (or derivates of) from following sources:
 - Silk Icon Set (C) Mark James (famfamfam.com)
 - Tango Icon Library / Tango Desktop Project
 </source>
-        <translation type="obsolete">Copyright © 2009 - 2018 The Doomseeker Team
+        <translation type="obsolete">Copyright © 2009 - 2019 The Doomseeker Team
 
 Éste programa és distribuido bajo los términos de la licéncia LGPL v2.1 o posterior
 
