@@ -23,6 +23,7 @@
 #ifndef __WADDOWNLOADINFO_H__
 #define __WADDOWNLOADINFO_H__
 
+#include "../wadseekerexportinfo.h"
 #include "dptr.h"
 
 #include <QByteArray>
@@ -35,7 +36,7 @@ class Checksum;
 /**
  * @brief Holds information about unique WAD download.
  */
-class WadDownloadInfo
+class WADSEEKER_API WadDownloadInfo
 {
 	public:
 		WadDownloadInfo();

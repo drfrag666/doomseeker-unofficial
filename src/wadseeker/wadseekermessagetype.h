@@ -23,6 +23,8 @@
 #ifndef __WADSEEKERMESSAGETYPE_H__
 #define __WADSEEKERMESSAGETYPE_H__
 
+// WADSEEKER_API - Include in wadseeker dev package
+
 namespace WadseekerLib
 {
 	/**

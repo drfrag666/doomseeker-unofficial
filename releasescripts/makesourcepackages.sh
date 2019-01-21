@@ -144,6 +144,10 @@ if ! tar -c "$doomseekerArchiveName" --owner=doomseeker --group=doomseeker | xz 
 	echo 'Failed to create Doomseeker archive!' >&2
 	Error=1
 else
+	echo 'Adding licence and dependencies for independent building...'
+	cp "$doomseekerArchiveName/LICENSE.json" "$doomseekerArchiveName/src/wadseeker"
+	cp -r "$doomseekerArchiveName/cmake" "$doomseekerArchiveName/src/wadseeker"
+
 	echo 'Creating Wadseeker archive...'
 	if ! tar -cC "$doomseekerArchiveName/src" wadseeker --transform "s,^wadseeker,$wadseekerArchiveName," --owner=doomseeker --group=doomseeker | xz -9 > "$wadseekerArchiveName.tar.xz"; then
 		echo 'Failed to create Wadseeker archive!' >&2

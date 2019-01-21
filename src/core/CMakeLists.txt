@@ -61,6 +61,7 @@ add_custom_target(revision_check ALL
 	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 	DEPENDS updaterevision
 )
+
 # In case gitinfo.h isn't yet generated create a dummy file so our file listing
 # will contain it. We can't just add it to the file listing since then CMake
 # would complain that it doesn't exist.
@@ -101,6 +102,10 @@ endif()
 
 if(NOT TARGET ZLIB::ZLIB)
 	find_package_ZLIB(REQUIRED)
+endif()
+
+if(NOT TARGET wadseeker::wadseeker AND NOT WADSEEKER_INTERNAL)
+	find_library_wadseeker(REQUIRED)
 endif()
 
 include("CMakeSpawnFileListing.cmake")

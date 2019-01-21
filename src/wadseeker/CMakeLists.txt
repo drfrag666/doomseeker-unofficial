@@ -172,7 +172,7 @@ PRIVATE
 	${CMAKE_CURRENT_BINARY_DIR}
 	${CMAKE_CURRENT_SOURCE_DIR}
 INTERFACE
-	${CMAKE_CURRENT_SOURCE_DIR}/..
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
 )
 
 target_link_libraries(wadseeker
@@ -194,13 +194,27 @@ if(DEFINED Doomseeker_BINARY_DIR)
 	set_target_properties(wadseeker PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${Doomseeker_BINARY_DIR} RUNTIME_OUTPUT_DIRECTORY ${Doomseeker_BINARY_DIR})
 endif()
 
+set(TARGETS_EXPORT_NAME "${PROJECT_NAME}Targets")
 if(NOT WIN32 AND NOT XCODE_VERSION)
-	install(TARGETS wadseeker LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT wadseeker NAMELINK_SKIP)
-	install(TARGETS wadseeker LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT wadseeker-dev NAMELINK_ONLY)
+	install(
+		TARGETS wadseeker
+		EXPORT ${TARGETS_EXPORT_NAME}
+		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT wadseeker NAMELINK_SKIP
+		INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wadseeker
+	)
+	install(
+		TARGETS wadseeker
+		EXPORT ${TARGETS_EXPORT_NAME}
+		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT wadseeker-dev NAMELINK_ONLY
+	)
 	install(FILES ${CMAKE_SOURCE_DIR}/LICENSE.json DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/wadseeker COMPONENT wadseeker)
 elseif(WIN32)
-	install(TARGETS wadseeker RUNTIME DESTINATION . COMPONENT wadseeker)
-
+	install(
+		TARGETS wadseeker
+		EXPORT ${TARGETS_EXPORT_NAME}
+		RUNTIME DESTINATION . COMPONENT wadseeker
+		INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wadseeker
+	)
 	# License files.
 	set(LICENSE_FILES
 		LICENSE
@@ -221,12 +235,6 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.6.0")
 	# to correct the versions per component we're better off generating it
 	# manually. This means there will be a lintian error until that step is run.
 	configure_file(deb-extra/shlibs.in ${CMAKE_CURRENT_BINARY_DIR}/shlibs)
-
-	cpack_add_component(wadseeker
-		DISPLAY_NAME libwadseeker
-		DESCRIPTION "Library for automatically locating and downloading mods for Doom."
-		REQUIRED)
-	parent_scope_component(wadseeker)
 
 	set(CPACK_PACKAGE_VERSION ${VERSION_STRING})
 
@@ -250,5 +258,38 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.6.0")
 		set(CPACK_COMPONENT_WADSEEKER-DEV_DESCRIPTION ${CPACK_COMPONENT_WADSEEKER-DEV_DESCRIPTION} PARENT_SCOPE)
 
 		file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/CPackComponent.version" "${CPACK_DEBIAN_WADSEEKER_PACKAGE_NAME} ${VERSION_STRING}\n${CPACK_DEBIAN_WADSEEKER-DEV_PACKAGE_NAME} ${VERSION_STRING}\n")
+	else()
+		include(CPack)
+		include(CMakePackageConfigHelpers)
+		set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/wadseeker")
+
+		set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
+		set(VERSION_CONFIG "${generated_dir}/${PROJECT_NAME}ConfigVersion.cmake")
+		set(PROJECT_CONFIG "${generated_dir}/${PROJECT_NAME}Config.cmake")
+		configure_package_config_file(wadseekerConfig.cmake.in
+			${PROJECT_CONFIG}
+			INSTALL_DESTINATION ${CONFIG_INSTALL_DIR}
+		)
+		write_basic_package_version_file (
+			${VERSION_CONFIG} COMPATIBILITY SameMajorVersion
+			VERSION ${VERSION_STRING}
+		)
+
+		install(
+			EXPORT ${TARGETS_EXPORT_NAME}
+			NAMESPACE ${PROJECT_NAME}::
+			DESTINATION ${CONFIG_INSTALL_DIR}
+		)
+		install(
+			FILES ${PROJECT_CONFIG} ${VERSION_CONFIG}
+			DESTINATION ${CONFIG_INSTALL_DIR}
+		)
+	endif()
+	cpack_add_component(wadseeker
+		DISPLAY_NAME libwadseeker
+		DESCRIPTION "Library for automatically locating and downloading mods for Doom."
+		REQUIRED)
+	if(COMMAND parent_scope_component)
+		parent_scope_component(wadseeker)
 	endif()
 endif()

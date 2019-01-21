@@ -78,6 +78,7 @@ if(WIN32)
 else()
 	option(FORCE_INTERNAL_ZLIB "Use internal zlib" OFF)
 	option(FORCE_INTERNAL_BZIP2 "Use internal bzip2" OFF)
+	option(FORCE_INTERNAL_WADSEEKER "Use internal wadseeker" ON)
 
 	include(${CMAKE_SOURCE_DIR}/cmake/Modules/Macros.cmake)
 
@@ -86,6 +87,9 @@ else()
 	endif()
 	if(NOT FORCE_INTERNAL_BZIP2)
 		find_package_BZip2()
+	endif()
+	if(NOT FORCE_INTERNAL_WADSEEKER)
+		find_library_wadseeker()
 	endif()
 endif()
 
@@ -115,6 +119,16 @@ else( BZIP2_FOUND AND NOT FORCE_INTERNAL_BZIP2 )
 	set( BZIP2_LIBRARY bz2 )
 endif()
 
+if ( wadseeker_FOUND AND NOT FORCE_INTERNAL_WADSEEKER )
+	message( STATUS "Using system Wadseeker library" )
+else( wadseeker_FOUND AND NOT FORCE_INTERNAL_WADSEEKER )
+	message( STATUS "Using internal Wadseeker library" )
+	set( WADSEEKER_INTERNAL YES )
+	add_subdirectory( src/wadseeker )
+	set( WADSEEKER_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/src/wadseeker" )
+	set( WADSEEKER_INCLUDE_DIR "${WADSEEKER_INCLUDE_DIRS}" )
+endif()
+
 if(MSVC AND NOT MSVC90 AND NOT MSVC12)
 	message(WARNING
 		"Full automatic packaging is only supported for Microsoft Visual C++ 2008 and 2013. "
@@ -134,7 +148,6 @@ add_subdirectory(tools/updaterevision)
 
 add_subdirectory(src/core)
 add_subdirectory(src/plugins)
-add_subdirectory(src/wadseeker)
 
 message(STATUS "'INSTALL' will dump files to \"${CMAKE_INSTALL_PREFIX}\"")
 

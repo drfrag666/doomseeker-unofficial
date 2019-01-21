@@ -25,7 +25,7 @@
 #include "gui/entity/serverlistfilterinfo.h"
 #include "gui/widgets/serverfilterbuildermenu.h"
 #include "gui/serverlist.h"
-#include "core/customservers.h"
+#include "customservers.h"
 #include "serverapi/server.h"
 #include "clipboard.h"
 #include "strings.hpp"
