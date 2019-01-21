@@ -8,6 +8,24 @@ This file follows the format of
 and this project does not adhere to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [Unreleased]
+### Added
+- WAD checksum verification when joining a game. The checksum verification
+is done for servers where the games provide the checksum info for the
+mod files used on the server (Odamex and Zandronum). Doomseeker collects
+these checksums during the usual server refresh procedure. It can then
+use this info to calculate the checksums of locally stored mod files and
+then compare them to the checksums provided by the game servers. If checksums
+mismatch, user will be informed about this. The checksums are also used
+during WAD downloads in Wadseeker. If Wadseeker knows the checksum of the
+desired file and this checksum doesn't match after download then the downloaded
+file will be rejected. Because checksums verification can be lengthy for
+large files, a prolonged verification procedure will pop a dialog box where
+the verification can be manually skipepd. User also has an option to disable
+the verification altogether from Doomseeker's configuration. This addresses
+Mantis ticket #3369.
+
 ## [1.2] - 2018-10-27
 ### Added
 - List the '--help' argument in the help.
