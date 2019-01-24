@@ -426,7 +426,7 @@ void CreateServerDialog::showCommandLine(bool offline)
 		CommandLine::escapeExecutable(executable);
 		CommandLine::escapeArgs(args);
 
-		QString title = offline ? 
+		QString title = offline ?
 			tr("Run game command line:") :
 			tr("Host server command line:");
 		CopyTextDlg ctd(executable + " " + args.join(" "), title, this);

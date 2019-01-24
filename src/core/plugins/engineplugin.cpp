@@ -50,6 +50,7 @@ EnginePlugin::Data::Data()
 	allowsURL = false;
 	allowsUpnp = false;
 	allowsUpnpPort = false;
+	allowsLogging = false;
 	broadcast = NULL;
 	clientOnly = false;
 	createDMFlagsPagesAutomatic = true;
@@ -161,6 +162,9 @@ void EnginePlugin::init(const char* name, const char* const icon[], ...)
 				break;
 			case EP_AllowsJoinPassword:
 				d->allowsJoinPassword = true;
+				break;
+			case EP_AllowsLogging:
+				d->allowsLogging = true;
 				break;
 			case EP_AllowsRConPassword:
 				d->allowsRConPassword = true;

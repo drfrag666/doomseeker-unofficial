@@ -28,6 +28,7 @@ set(UI_FILES
 	gui/createserver/generalgamesetuppanel.ui
 	gui/createserver/iwadandwadspickerdialog.ui
 	gui/createserver/iwadpicker.ui
+	gui/createserver/logdirectorypicker.ui
 	gui/createserver/maplistpanel.ui
 	gui/createserver/miscserversetuppanel.ui
 	gui/createserver/wadspicker.ui
@@ -109,6 +110,7 @@ set(HEADER_FILES
 	gui/createserver/generalgamesetuppanel.h
 	gui/createserver/iwadandwadspickerdialog.h
 	gui/createserver/iwadpicker.h
+	gui/createserver/logdirectorypicker.h
 	gui/createserver/maplistpanel.h
 	gui/createserver/miscserversetuppanel.h
 	gui/createserver/wadspicker.h
@@ -337,6 +339,7 @@ set(SOURCE_FILES
 	gui/createserver/generalgamesetuppanel.cpp
 	gui/createserver/iwadandwadspickerdialog.cpp
 	gui/createserver/iwadpicker.cpp
+	gui/createserver/logdirectorypicker.cpp
 	gui/createserver/maplistpanel.cpp
 	gui/createserver/miscserversetuppanel.cpp
 	gui/createserver/wadspicker.cpp

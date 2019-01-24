@@ -295,6 +295,7 @@ DoomseekerConfig::DoomseekerCfg::DoomseekerCfg()
 	this->bHidePasswords = false;
 	this->bGroupServersWithPlayersAtTheTopOfTheList = true;
 	this->bIP2CountryAutoUpdate = true;
+	this->bLogCreatedServer = false;
 	this->bLookupHosts = true;
 	this->bQueryAutoRefreshDontIfActive = true;
 	this->bQueryAutoRefreshEnabled = false;
@@ -315,6 +316,7 @@ DoomseekerConfig::DoomseekerCfg::DoomseekerCfg()
 	setQuerySpeed(QuerySpeed::aggressive());
 	this->previousCreateServerConfigDir = "";
 	this->previousCreateServerExecDir = "";
+	this->previousCreateServerLogDir = "";
 	this->previousCreateServerWadDir = "";
 	this->slotStyle = 1;
 	this->serverListSortIndex = -1;
@@ -359,6 +361,7 @@ void DoomseekerConfig::DoomseekerCfg::init(IniSection& section)
 	section.createSetting("HidePasswords", this->bHidePasswords);
 	section.createSetting("GroupServersWithPlayersAtTheTopOfTheList", this->bGroupServersWithPlayersAtTheTopOfTheList);
 	section.createSetting("IP2CAutoUpdate", this->bIP2CountryAutoUpdate);
+	section.createSetting("LogCreatedServers", this->bLogCreatedServer);
 	section.createSetting("LookupHosts", this->bLookupHosts);
 	section.createSetting("QueryAutoRefreshDontIfActive", this->bQueryAutoRefreshDontIfActive);
 	section.createSetting("QueryAutoRefreshEnabled", this->bQueryAutoRefreshEnabled);
@@ -401,6 +404,7 @@ void DoomseekerConfig::DoomseekerCfg::load(IniSection& section)
 	this->bHidePasswords = section["HidePasswords"];
 	this->bGroupServersWithPlayersAtTheTopOfTheList = section["GroupServersWithPlayersAtTheTopOfTheList"];
 	this->bIP2CountryAutoUpdate = section["IP2CAutoUpdate"];
+	this->bLogCreatedServer = section["LogCreatedServers"];
 	this->bLookupHosts = section["LookupHosts"];
 	this->bQueryAutoRefreshDontIfActive = section["QueryAutoRefreshDontIfActive"];
 	this->bQueryAutoRefreshEnabled = section["QueryAutoRefreshEnabled"];
@@ -422,6 +426,7 @@ void DoomseekerConfig::DoomseekerCfg::load(IniSection& section)
 	d->querySpeed.attemptsPerServer = section["QueryAttemptsPerServer"];
 	this->previousCreateServerConfigDir = (const QString &)section["PreviousCreateServerConfigDir"];
 	this->previousCreateServerExecDir = (const QString &)section["PreviousCreateServerExecDir"];
+	this->previousCreateServerLogDir = (const QString &)section["PreviousCreateServerLogDir"];
 	this->previousCreateServerWadDir = (const QString &)section["PreviousCreateServerWadDir"];
 	this->serverListColumnState = (const QString &)section["ServerListColumnState"];
 	this->serverListSortIndex = section["ServerListSortIndex"];
@@ -498,6 +503,7 @@ void DoomseekerConfig::DoomseekerCfg::save(IniSection& section)
 	section["HidePasswords"] = this->bHidePasswords;
 	section["GroupServersWithPlayersAtTheTopOfTheList"] = this->bGroupServersWithPlayersAtTheTopOfTheList;
 	section["IP2CAutoUpdate"] = this->bIP2CountryAutoUpdate;
+	section["LogCreatedServers"] = this->bLogCreatedServer;
 	section["LookupHosts"] = this->bLookupHosts;
 	section["QueryAutoRefreshDontIfActive"] = this->bQueryAutoRefreshDontIfActive;
 	section["QueryAutoRefreshEnabled"] = this->bQueryAutoRefreshEnabled;
@@ -519,6 +525,7 @@ void DoomseekerConfig::DoomseekerCfg::save(IniSection& section)
 	section["QueryAttemptsPerServer"] = this->querySpeed().attemptsPerServer;
 	section["PreviousCreateServerConfigDir"] = this->previousCreateServerConfigDir;
 	section["PreviousCreateServerExecDir"] = this->previousCreateServerExecDir;
+	section["PreviousCreateServerLogDir"] = this->previousCreateServerLogDir;
 	section["PreviousCreateServerWadDir"] = this->previousCreateServerWadDir;
 	section["ServerListColumnState"] = this->serverListColumnState;
 	section["ServerListSortIndex"] = this->serverListSortIndex;
@@ -707,7 +714,7 @@ DoomseekerConfig::WadseekerCfg::WadseekerCfg()
 	this->maxConcurrentWadDownloads = 2;
 	this->targetDirectory = gDefaultDataPaths->programsDataDirectoryPath();
 
-	// Search URLs remains unitizalized here. It will be initialized
+	// Search URLs remains uninitialized here. It will be initialized
 	// by init() and then load() since Doomseeker always calls these
 	// methods in this order.
 }

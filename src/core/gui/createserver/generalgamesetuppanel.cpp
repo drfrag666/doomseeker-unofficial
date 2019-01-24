@@ -72,6 +72,7 @@ void GeneralGameSetupPanel::fillInParams(GameCreateParams &params)
 {
 	params.setExecutablePath(pathToExe());
 	params.setIwadPath(d->iwadPicker->currentIwad());
+	params.setLoggingPath(d->logDirectoryPicker->validatedCurrentPath());
 	params.setPwadsPaths(d->wadsPicker->filePaths());
 	params.setPwadsOptional(d->wadsPicker->fileOptional());
 	params.setBroadcastToLan(d->cbBroadcastToLAN->isChecked());
@@ -129,6 +130,9 @@ void GeneralGameSetupPanel::loadConfig(Ini &config, bool loadingPrevious)
 		d->iwadPicker->addIwad(general["iwad"]);
 	}
 
+	d->logDirectoryPicker->setLoggingEnabled(general["logEnabled"]);
+	d->logDirectoryPicker->setPathAndUpdate(general["logDir"]);
+
 	QList<bool> optionalWads;
 	foreach(QString value, general["pwadsOptional"].valueString().split(";"))
 	{
@@ -152,6 +156,8 @@ void GeneralGameSetupPanel::saveConfig(Ini &config)
 	general["executable"] = pathToExe();
 	general["name"] = d->leServername->text();
 	general["port"] = d->spinPort->value();
+	general["logDir"] = d->logDirectoryPicker->currentPath();
+	general["logEnabled"] = d->logDirectoryPicker->isLoggingEnabled();
 	general["gamemode"] = d->cboGamemode->itemData(d->cboGamemode->currentIndex()).toInt();
 	general["map"] = d->leMap->text();
 	general["difficulty"] = d->cboDifficulty->itemData(d->cboDifficulty->currentIndex()).toInt();
@@ -200,6 +206,8 @@ void GeneralGameSetupPanel::setupForEngine(EnginePlugin *engine)
 
 	d->labelIwad->setVisible(engine->data()->hasIwad);
 	d->iwadPicker->setVisible(engine->data()->hasIwad);
+	d->labelLogging->setVisible(engine->data()->allowsLogging);
+	d->logDirectoryPicker->setVisible(engine->data()->allowsLogging);
 	d->upnpArea->setVisible(engine->data()->allowsUpnp);
 	d->spinUpnpPort->setVisible(engine->data()->allowsUpnpPort);
 

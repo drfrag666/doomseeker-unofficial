@@ -66,6 +66,7 @@ ZandronumEnginePlugin::ZandronumEnginePlugin()
 		EP_AllowsEmail,
 		EP_AllowsConnectPassword,
 		EP_AllowsJoinPassword,
+		EP_AllowsLogging,
 		EP_AllowsRConPassword,
 		EP_AllowsMOTD,
 		EP_AllowsUpnp,

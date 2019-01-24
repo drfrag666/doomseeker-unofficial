@@ -143,6 +143,11 @@ class MAIN_EXPORT GameCreateParams
 		QString iwadName() const;
 
 		/**
+		 * @brief Path to the directory where logs should be saved.
+		 */
+		const QString& loggingPath() const;
+		void setLoggingPath(const QString& iwadPath);
+		/**
 		 * @brief Level name as in E1M1 or MAP01.
 		 */
 		const QString& map() const;

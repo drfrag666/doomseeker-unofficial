@@ -22,6 +22,7 @@
 //------------------------------------------------------------------------------
 #include "odamexgamehost.h"
 
+#include <QDateTime>
 #include <serverapi/gamecreateparams.h>
 #include <serverapi/serverstructs.h>
 #include <climits>
@@ -39,6 +40,12 @@ void OdamexGameHost::addExtra()
 	if (params().skill() != Skill::UNDEFINED)
 		args() << "-skill" << QString::number(params().skill() + 1); // from 1 to 5
 	args() << "+set" << "sv_upnp" << (params().upnp() ? "1" : "0");
+
+	if(!params().loggingPath().isEmpty())
+	{
+		args() << "+logfile" << params().loggingPath() + "/Odamex_" +
+			QDateTime::currentDateTime().toString("yyyy_MM_dd-HH_mm_ss") + ".log";
+	}
 
 	const QStringList& mapsList = params().mapList();
 	if (!mapsList.isEmpty())

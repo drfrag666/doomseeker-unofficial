@@ -246,7 +246,13 @@ class MAIN_EXPORT EnginePlugin
 			 * program to identify this particular plugin. Changing this name
 			 * in a later release may lead to data or settings loss by users.
 			 */
-			EP_CanonicalName
+			EP_CanonicalName,
+			/**
+			 * @brief enables logging info (like console output) into a file.
+			 * This will show the Logging section in the general game setup
+			 * panel.
+			 */
+			EP_AllowsLogging
 		};
 
 		/// Reimplement if you want to perform some ini initialization manually.
@@ -331,6 +337,7 @@ class MAIN_EXPORT EnginePlugin
 				bool allowsPlayerSlots;
 				bool allowsUpnp;
 				bool allowsUpnpPort;
+				bool allowsLogging;
 				QString canonicalName;
 
 				Data();

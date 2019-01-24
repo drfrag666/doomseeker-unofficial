@@ -37,7 +37,7 @@ public:
 	CheckResult wadsChecked;
 	QScopedPointer<QTimer> checkWadTimer;
 	QScopedPointer<QTimer> showWindow;
-	bool checkIncompatibility = gConfig.doomseeker.bCheckTheIntegrityOfWads;
+	bool checkIncompatibility;
 };
 
 DPointeredNoCopy(CheckWadsDlg)
@@ -46,6 +46,7 @@ CheckWadsDlg::CheckWadsDlg(const PathFinder* pathFinder, QWidget* parent) : QDia
 {
 	assert(pathFinder != NULL);
 	d->pathFinder = pathFinder;
+	d->checkIncompatibility = gConfig.doomseeker.bCheckTheIntegrityOfWads;
 	d->checkWadTimer.reset(new QTimer);
 	d->showWindow.reset(new QTimer);
 

@@ -43,6 +43,7 @@ DClass<GameCreateParams>
 		GameCreateParams::HostMode hostMode;
 		QString ingamePassword;
 		QString iwadPath;
+		QString loggingPath;
 		QString map;
 		QStringList mapList;
 		int maxClients;
@@ -179,6 +180,11 @@ QString GameCreateParams::iwadName() const
 {
 	QFileInfo fi(iwadPath());
 	return fi.fileName();
+}
+
+const QString& GameCreateParams::loggingPath() const
+{
+	return d->loggingPath;
 }
 
 const QString& GameCreateParams::map() const
@@ -336,6 +342,11 @@ void GameCreateParams::setIngamePassword(const QString& pass)
 void GameCreateParams::setIwadPath(const QString& iwadPath)
 {
 	d->iwadPath = iwadPath;
+}
+
+void GameCreateParams::setLoggingPath(const QString& loggingPath)
+{
+	d->loggingPath = loggingPath;
 }
 
 void GameCreateParams::setMap(const QString& map)

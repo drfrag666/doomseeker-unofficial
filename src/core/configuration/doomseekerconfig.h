@@ -66,6 +66,7 @@ class DoomseekerConfig
 			bool bHidePasswords;
 			bool bGroupServersWithPlayersAtTheTopOfTheList;
 			bool bIP2CountryAutoUpdate;
+			bool bLogCreatedServer;
 			bool bLookupHosts;
 			bool bMarkServersWithBuddies;
 			bool bQueryAutoRefreshDontIfActive;
@@ -87,6 +88,7 @@ class DoomseekerConfig
 			unsigned queryAutoRefreshEverySeconds;
 			QString previousCreateServerConfigDir;
 			QString previousCreateServerExecDir;
+			QString previousCreateServerLogDir;
 			QString previousCreateServerWadDir;
 			QString serverListColumnState;
 			int serverListSortIndex;
