@@ -21,7 +21,7 @@
 cmake_minimum_required(VERSION 2.8.12)
 
 set(PLUGIN_NAME odamex)
-set(PLUGIN_VERSION 33)
+set(PLUGIN_VERSION 34)
 include(../PluginHeader.cmake)
 
 set(ODAMEX_FILES
