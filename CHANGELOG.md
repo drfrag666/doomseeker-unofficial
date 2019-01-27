@@ -22,9 +22,12 @@ during WAD downloads in Wadseeker. If Wadseeker knows the checksum of the
 desired file and this checksum doesn't match after download then the downloaded
 file will be rejected. Because checksums verification can be lengthy for
 large files, a prolonged verification procedure will pop a dialog box where
-the verification can be manually skipepd. User also has an option to disable
+the verification can be manually skipped. User also has an option to disable
 the verification altogether from Doomseeker's configuration. This addresses
 Mantis ticket #3369.
+- "Create Game" dialog box allows now to define a game log storage
+directory for games that support it. Odamex and Zandronum plugins
+are wired up to use this feature.
 
 ## [1.2] - 2018-10-27
 ### Added
