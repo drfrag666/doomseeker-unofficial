@@ -47,7 +47,7 @@ if(USE_CPACK)
 	# Right now all we support is DEB, but we'll probably want to make this a
 	# user option later?
 	set(CPACK_GENERATOR "DEB")
-	set(CPACK_PACKAGE_CONTACT "First Last <example@example.com>" CACHE STRING "Contact info for archive maintainer.")
+	set(CPACK_PACKAGE_CONTACT "First Last <example@localhost.localdomain>" CACHE STRING "Contact info for archive maintainer.")
 	# We encode the install prefix into the binary, so we should use the same prefix when packaging.
 	set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 	set(CPACK_STRIP_FILES ON)
