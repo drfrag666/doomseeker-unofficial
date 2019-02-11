@@ -105,7 +105,7 @@ if(NOT TARGET ZLIB::ZLIB)
 endif()
 
 if(NOT TARGET wadseeker::wadseeker AND NOT WADSEEKER_INTERNAL)
-	find_library_wadseeker(REQUIRED)
+	find_package_wadseeker(REQUIRED)
 endif()
 
 include("CMakeSpawnFileListing.cmake")

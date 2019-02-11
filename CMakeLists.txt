@@ -89,7 +89,7 @@ else()
 		find_package_BZip2()
 	endif()
 	if(NOT FORCE_INTERNAL_WADSEEKER)
-		find_library_wadseeker()
+		find_package_wadseeker()
 	endif()
 endif()
 

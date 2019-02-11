@@ -63,7 +63,7 @@ void ZandronumGameHost::addExtra()
 
 	if(!params().loggingPath().isEmpty())
 	{
-		// Zandronum sufixes a date plus a ".log" extension. We'll add a prefix.
+		// Zandronum suffixes a date plus a ".log" extension. We'll add a prefix.
 		args() << "+logfile" << params().loggingPath() + "/Zandronum";
 	}
 

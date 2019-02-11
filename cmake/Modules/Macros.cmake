@@ -124,7 +124,7 @@ macro(find_package_BZip2)
 	endif()
 endmacro()
 
-macro(find_library_wadseeker)
+macro(find_package_wadseeker)
 	find_package(wadseeker CONFIG ${ARGV0})
 	#Probably not needed. The config should do it's job.
 	if (wadseeker_FOUND AND NOT TARGET wadseeker::wadseeker)
