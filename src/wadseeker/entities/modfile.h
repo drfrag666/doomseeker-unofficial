@@ -38,8 +38,10 @@ class WADSEEKER_API ModFile
 {
 public:
 	ModFile();
-	ModFile(const QString& name);
+	ModFile(const QString &name);
+	ModFile(const ModFile &other);
 	virtual ~ModFile();
+	ModFile &operator=(const ModFile &other);
 
 	/**
 	 * @brief returns the name of the file that contains the mod.

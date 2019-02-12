@@ -39,6 +39,11 @@ ModFile::ModFile()
 {
 }
 
+ModFile::ModFile(const ModFile &other)
+{
+	this->d = other.d;
+}
+
 ModFile::ModFile(const QString& name)
 {
 	d->fileName = name;
@@ -46,6 +51,13 @@ ModFile::ModFile(const QString& name)
 
 ModFile::~ModFile()
 {
+}
+
+ModFile &ModFile::operator=(const ModFile &other)
+{
+	if (this != &other)
+		this->d = other.d;
+	return *this;
 }
 
 const QString &ModFile::fileName() const

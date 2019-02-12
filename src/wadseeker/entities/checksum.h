@@ -36,7 +36,10 @@ class WADSEEKER_API Checksum
 {
 	public:
 		Checksum(const QByteArray &hash, const QCryptographicHash::Algorithm &algorithm);
+		Checksum(const Checksum &other);
 		virtual ~Checksum();
+		Checksum &operator=(const Checksum &other);
+
 		/**
 		 * @brief Hash of a file generated with the algorithm.
 		 */

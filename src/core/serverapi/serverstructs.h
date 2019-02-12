@@ -65,7 +65,9 @@ class MAIN_EXPORT DMFlag
 		DMFlag();
 		DMFlag(const QString &internalName, unsigned value);
 		DMFlag(const QString &internalName, unsigned value, const QString &name);
+		DMFlag(const DMFlag &other);
 		virtual ~DMFlag();
+		DMFlag &operator=(const DMFlag &other);
 
 		/**
 		 * @brief Uniquely identifiable name within its DMFlagsSection,
@@ -168,7 +170,9 @@ class MAIN_EXPORT DMFlagsSection
 		 */
 		DMFlagsSection(const QString &internalName, const QString &name);
 
+		DMFlagsSection(const DMFlagsSection &other);
 		virtual ~DMFlagsSection();
+		DMFlagsSection &operator=(const DMFlagsSection &other);
 
 		/**
 		 * @brief Append a new DMFlag to this section.
@@ -256,7 +260,9 @@ class MAIN_EXPORT GameCVar
 		GameCVar();
 		GameCVar(const QString &name, const QString &command);
 		GameCVar(const QString &name, const QString &command, const QVariant &value);
+		GameCVar(const GameCVar &other);
 		virtual ~GameCVar();
+		GameCVar &operator=(const GameCVar &other);
 
 		/**
 		 * @brief Command-line argument that sets this GameCVar.
@@ -431,7 +437,9 @@ class MAIN_EXPORT GameMode
 		 * @brief Constructs an invalid GameMode object.
 		 */
 		GameMode();
+		GameMode(const GameMode &other);
 		virtual ~GameMode();
+		GameMode &operator=(const GameMode &other);
 
 		/**
 		 * @brief Index, either a StandardGameMode or custom defined by plugin.
@@ -476,7 +484,9 @@ class MAIN_EXPORT PWad
 		PWad(const QString &name, bool optional=false);
 		PWad(const QString &name, bool optional, const QList<Checksum> &checksums);
 		PWad(const ModFile &modFile);
+		PWad(const PWad &other);
 		virtual ~PWad();
+		PWad &operator=(const PWad &other);
 
 		operator ModFile();
 		/**

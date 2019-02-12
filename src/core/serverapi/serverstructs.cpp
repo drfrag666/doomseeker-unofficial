@@ -68,8 +68,20 @@ DMFlag::DMFlag(const QString &internalName, unsigned value, const QString &name)
 	d->value = value;
 }
 
+DMFlag::DMFlag(const DMFlag &other)
+{
+	this->d = other.d;
+}
+
 DMFlag::~DMFlag()
 {
+}
+
+DMFlag &DMFlag::operator=(const DMFlag &other)
+{
+	if (this != &other)
+		this->d = other.d;
+	return *this;
 }
 
 const QString &DMFlag::internalName() const
@@ -125,8 +137,20 @@ DMFlagsSection::DMFlagsSection(const QString &internalName, const QString &name)
 	d->setInternalName(internalName);
 }
 
+DMFlagsSection::DMFlagsSection(const DMFlagsSection &other)
+{
+	this->d = other.d;
+}
+
 DMFlagsSection::~DMFlagsSection()
 {
+}
+
+DMFlagsSection &DMFlagsSection::operator=(const DMFlagsSection &other)
+{
+	if (this != &other)
+		this->d = other.d;
+	return *this;
 }
 
 void DMFlagsSection::add(const DMFlag& flag)
@@ -254,8 +278,20 @@ GameCVar::GameCVar(const QString &name, const QString &command, const QVariant &
 	setValue(value);
 }
 
+GameCVar::GameCVar(const GameCVar &other)
+{
+	this->d = other.d;
+}
+
 GameCVar::~GameCVar()
 {
+}
+
+GameCVar &GameCVar::operator=(const GameCVar &other)
+{
+	if (this != &other)
+		this->d = other.d;
+	return *this;
 }
 
 const QString &GameCVar::command() const
@@ -334,8 +370,20 @@ GameMode::GameMode(gamemode_id index, const QString &name)
 	d->teamgame = false;
 }
 
+GameMode::GameMode(const GameMode &other)
+{
+	this->d = other.d;
+}
+
 GameMode::~GameMode()
 {
+}
+
+GameMode &GameMode::operator=(const GameMode &other)
+{
+	if (this != &other)
+		this->d = other.d;
+	return *this;
 }
 
 GameMode GameMode::ffaGame(int index, const QString &name)
@@ -434,8 +482,20 @@ PWad::PWad(const ModFile &modFile)
 	d->checksums = modFile.checksums();
 }
 
+PWad::PWad(const PWad &other)
+{
+	this->d = other.d;
+}
+
 PWad::~PWad()
 {
+}
+
+PWad &PWad::operator=(const PWad &other)
+{
+	if (this != &other)
+		this->d = other.d;
+	return *this;
 }
 
 PWad::operator ModFile()

@@ -38,8 +38,20 @@ Checksum::Checksum(const QByteArray &hash, const QCryptographicHash::Algorithm &
 	d->algorithm = algorithm;
 }
 
+Checksum::Checksum(const Checksum &other)
+{
+	this->d = other.d;
+}
+
 Checksum::~Checksum()
 {
+}
+
+Checksum &Checksum::operator=(const Checksum &other)
+{
+	if (this != &other)
+		this->d = other.d;
+	return *this;
 }
 
 const QCryptographicHash::Algorithm &Checksum::algorithm() const

@@ -41,8 +41,20 @@ GameFile::GameFile()
 	d->executable = 0;
 }
 
+GameFile::GameFile(const GameFile &other)
+{
+	this->d = other.d;
+}
+
 GameFile::~GameFile()
 {
+}
+
+GameFile &GameFile::operator=(const GameFile &other)
+{
+	if (this != &other)
+		this->d = other.d;
+	return *this;
 }
 
 const QString &GameFile::configName() const

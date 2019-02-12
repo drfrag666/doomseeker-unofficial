@@ -86,7 +86,9 @@ public:
 	};
 
 	GameFile();
+	GameFile(const GameFile &other);
 	virtual ~GameFile();
+	GameFile &operator=(const GameFile &other);
 
 	/**
 	 * @brief Guesses by file name if this is the same file.

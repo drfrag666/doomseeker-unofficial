@@ -142,8 +142,20 @@ ExeFilePath::ExeFilePath(const QString &path)
 	d->workingDir = QFileInfo(path).path();
 }
 
+ExeFilePath::ExeFilePath(const ExeFilePath &other)
+{
+	this->d = other.d;
+}
+
 ExeFilePath::~ExeFilePath()
 {
+}
+
+ExeFilePath &ExeFilePath::operator=(const ExeFilePath &other)
+{
+	if (this != &other)
+		this->d = other.d;
+	return *this;
 }
 
 QString ExeFilePath::path() const

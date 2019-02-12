@@ -152,7 +152,9 @@ public:
 	 * @brief Infers working dir from path.
 	 */
 	ExeFilePath(const QString &path);
+	ExeFilePath(const ExeFilePath &other);
 	virtual ~ExeFilePath();
+	ExeFilePath &operator=(const ExeFilePath &other);
 
 	QString path() const;
 	ExeFilePath &setPath(const QString &path);
