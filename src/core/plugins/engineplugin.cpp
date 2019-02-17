@@ -290,7 +290,8 @@ QString EnginePlugin::nameCanonical() const
 ServerPtr EnginePlugin::server(const QHostAddress &address, unsigned short port) const
 {
 	ServerPtr server = mkServer(address, port);
-	server->setSelf(server.toWeakRef());
+	if (server != NULL)
+		server->setSelf(server.toWeakRef());
 	return server;
 }
 
