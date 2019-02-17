@@ -38,7 +38,7 @@ public:
 	virtual void setVisible(bool visible) {};
 
 private:
-	FlagsPageValueController(const FlagsPageValueController &other) {}
+	FlagsPageValueController(const FlagsPageValueController &other);
 };
 
 #endif
