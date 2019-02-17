@@ -180,20 +180,7 @@ endif ()
 # windows.rc
 if(WIN32)
 	# compile the Windows resource file.  How we do this depends on the compiler.
-	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-		add_custom_command(
-			OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/windows.o
-			COMMAND windres -o ${CMAKE_CURRENT_BINARY_DIR}/windows.o -i ${Doomseeker_SOURCE_DIR}/media/windows.rc
-				-I ${CMAKE_CURRENT_BINARY_DIR}
-				-I ${CMAKE_CURRENT_SOURCE_DIR}
-			WORKING_DIRECTORY ${Doomseeker_SOURCE_DIR}/media
-			COMMENT "Generating windows resources (windows.rc)"
-		)
-
-		set(SOURCE_FILES ${SOURCE_FILES} ${CMAKE_CURRENT_BINARY_DIR}/windows.o)
-	else()
-		set(SOURCE_FILES ${SOURCE_FILES} ${Doomseeker_SOURCE_DIR}/media/windows.rc)
-	endif()
+	set(SOURCE_FILES ${SOURCE_FILES} ${Doomseeker_SOURCE_DIR}/media/windows.rc)
 endif()
 
 # Generate versiondefs.h
