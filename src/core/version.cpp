@@ -48,7 +48,7 @@ QString Version::operatingSystem()
 
 QString Version::qtPackageVersion()
 {
-	return QString("%1-%2").arg(qVersion()).arg(1);
+	return QString("%1-%2").arg(qVersion()).arg("mingw-1");
 }
 
 QString Version::revision()
