@@ -358,10 +358,9 @@ if(WIN32)
 		# MinGW-w64 release signature: i686-8.1.0-release-posix-dwarf-rt_v6-rev0
 		#
 		# Get MinGW-w64 path from CMAKE_LINKER variable because this path
-		# is common when we're using either MinGW's GCC or Clang compiled
+		# is the same regardless if we're using MinGW's GCC or Clang compiled
 		# with MinGW-w64.
 		get_filename_component(MINGW_PATH ${CMAKE_LINKER} PATH)
-		message(STATUS "MINGW_PATH ${MINGW_PATH} ${MINGW_PATH}/libgcc_s_dw2-1.dll")
 		install_programs(.
 			${MINGW_PATH}/libgcc_s_dw2-1.dll
 			${MINGW_PATH}/libstdc++-6.dll
