@@ -57,5 +57,9 @@ endif ()
 target_include_directories( lzma INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/C )
 
 if( CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "Clang" )
-	target_compile_options( lzma PRIVATE -Wall -Wextra -fomit-frame-pointer -fPIC )
+	target_compile_options( lzma PRIVATE -Wall -Wextra -fomit-frame-pointer)
+	# [Doomseeker] MinGW-w64 + clang will not compile with -fPIC
+	if (NOT WIN32)
+		target_compile_options( lzma PRIVATE -fPIC )
+	endif()
 endif()
