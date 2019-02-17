@@ -137,7 +137,7 @@ void MasterResponder::readPendingDatagram()
 	char* buffer = new char[MAGIC_SIZE];
 	d->socket->readDatagram(buffer, MAGIC_SIZE, &address, &port);
 	QByteArray packet = QByteArray(buffer, MAGIC_SIZE);
-	delete buffer;
+	delete[] buffer;
 
 	gLog << QString("FakePlugin, received master datagram. Magic = %1"
 		", Client: '%2:%3'").arg(QString(packet))
