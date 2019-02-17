@@ -349,11 +349,24 @@ if(WIN32)
 		COMPONENT doomseeker
 		RENAME doomseeker.ico
 	)
-	# Install MSVC runtime. Only Visual 2008 and 2013 are supported at the moment.
+	# Install runtime libraries.
 	if (MSVC90 OR MSVC12)
 		# Install redist and manifest for the program.
 		include("${CMAKE_SOURCE_DIR}/cmake/Modules/FindRequiredSystemLibraries.cmake")
 		install_programs(. ${REQUIRED_SYSTEM_LIBRARIES})
+	elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "Clang")
+		# MinGW-w64 release signature: i686-8.1.0-release-posix-dwarf-rt_v6-rev0
+		#
+		# Get MinGW-w64 path from CMAKE_LINKER variable because this path
+		# is common when we're using either MinGW's GCC or Clang compiled
+		# with MinGW-w64.
+		get_filename_component(MINGW_PATH ${CMAKE_LINKER} PATH)
+		message(STATUS "MINGW_PATH ${MINGW_PATH} ${MINGW_PATH}/libgcc_s_dw2-1.dll")
+		install_programs(.
+			${MINGW_PATH}/libgcc_s_dw2-1.dll
+			${MINGW_PATH}/libstdc++-6.dll
+			${MINGW_PATH}/libwinpthread-1.dll
+		)
 	endif()
 	if (MSVC90)
 		# Install manifest for plugins.
