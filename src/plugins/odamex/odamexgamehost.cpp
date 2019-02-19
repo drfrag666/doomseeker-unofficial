@@ -43,7 +43,7 @@ void OdamexGameHost::addExtra()
 
 	if(!params().loggingPath().isEmpty())
 	{
-		args() << "+logfile" << params().loggingPath() + "/Odamex_" +
+		args() << "+logfile" << params().loggingPath() + "/Odamex__" +
 			QDateTime::currentDateTime().toString("yyyy_MM_dd-HH_mm_ss") + ".log";
 	}
 
