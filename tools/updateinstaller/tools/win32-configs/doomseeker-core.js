@@ -22,8 +22,6 @@
         "LICENSE.txt",
         "LICENSE.json.txt",
         "LICENSE.updater.txt",
-        "msvcp120.dll",
-        "msvcr120.dll",
         "updater.exe"
     ],
 
