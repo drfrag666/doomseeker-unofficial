@@ -29,6 +29,13 @@ Mantis ticket #3369.
 directory for games that support it. Odamex and Zandronum plugins
 are wired up to use this feature.
 
+### Changed
+- Windows compiler change. Use MinGW-w64 to build Doomseeker instead of
+Microsoft's Visual Studio Compiler with v120_xp toolset. From the source-code
+perspective, this allows to use the modern C++ standards. From the end-user
+perspective, the program performance seems to have improved by 50%, while
+the downside is that the size of the release package has increased by 25%.
+
 ## [1.2] - 2018-10-27
 ### Added
 - List the '--help' argument in the help.
