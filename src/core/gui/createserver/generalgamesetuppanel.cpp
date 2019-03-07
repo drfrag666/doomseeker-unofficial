@@ -68,6 +68,13 @@ GeneralGameSetupPanel::~GeneralGameSetupPanel()
 {
 }
 
+QStringList GeneralGameSetupPanel::getAllWadPaths() const
+{
+	QStringList paths;
+	paths << d->iwadPicker->currentIwad() << d->wadsPicker->filePaths();
+	return paths;
+}
+
 void GeneralGameSetupPanel::fillInParams(GameCreateParams &params)
 {
 	params.setExecutablePath(pathToExe());

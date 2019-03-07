@@ -343,9 +343,11 @@ UnArchive *UnArchive::detectArchive(const QFileInfo &fi, QIODevice *&device)
 		file = QFileInfo(file.completeBaseName());
 	}
 
-	if(file.suffix().compare("zip", Qt::CaseInsensitive) == 0)
+	if(file.suffix().compare("zip", Qt::CaseInsensitive) == 0 ||
+		file.suffix().compare("pk3", Qt::CaseInsensitive) == 0)
 		return new UnZip(device);
-	else if(file.suffix().compare("7z", Qt::CaseInsensitive) == 0)
+	else if(file.suffix().compare("7z", Qt::CaseInsensitive) == 0 ||
+		file.suffix().compare("pk7", Qt::CaseInsensitive) == 0)
 		return new Un7Zip(device);
 	else if(file.suffix().compare("tar", Qt::CaseInsensitive) == 0)
 		return new UnTar(device);

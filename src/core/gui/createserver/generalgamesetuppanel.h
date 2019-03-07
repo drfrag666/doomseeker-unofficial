@@ -53,6 +53,7 @@ public:
 	void setupForRemoteGame();
 	void setCreateServerDialog(CreateServerDialog *dialog);
 	void setIwadByName(const QString &iwad);
+	QStringList getAllWadPaths() const;
 
 signals:
 	void gameModeChanged(const GameMode &gameMode);

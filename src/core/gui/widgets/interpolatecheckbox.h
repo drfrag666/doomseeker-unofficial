@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// maplistpanel.h
+// interpolatecheckbox.h
 //------------------------------------------------------------------------------
 //
 // This library is free software; you can redistribute it and/or
@@ -18,49 +18,25 @@
 // 02110-1301  USA
 //
 //------------------------------------------------------------------------------
-// Copyright (C) 2014 "Zalewa" <zalewapl@gmail.com>
+// Copyright (C) 2019 Pol Marcet Sardà <polmarcetsarda@gmail.com>
 //------------------------------------------------------------------------------
-#ifndef id73b8c7bf_fc0d_416b_bda8_e1252e0763c0
-#define id73b8c7bf_fc0d_416b_bda8_e1252e0763c0
+#ifndef __INTERPOLATECHECKBOX_H_
+#define __INTERPOLATECHECKBOX_H_
 
-#include "dptr.h"
+#include <QCheckBox>
 
-#include <QWidget>
-
-class CreateServerDialog;
-class EnginePlugin;
-class GameCreateParams;
-class Ini;
-
-class MapListPanel : public QWidget
+/**
+ * @brief Tristate checkbox that when clicked it'll never be partially checked.
+ */
+class InterpolateCheckBox : public QCheckBox
 {
-Q_OBJECT
-
-public:
-	MapListPanel(QWidget *parent);
-	~MapListPanel();
-
-	void fillInParams(GameCreateParams &params);
-	bool hasMaps() const;
-	bool isMapOnList(const QString &mapName) const;
-	void loadConfig(Ini &config);
-	void saveConfig(Ini &config);
-	void setCreateServerDialog(CreateServerDialog *dialog);
-	void setupForEngine(const EnginePlugin *engine);
-
-protected:
-	void showEvent(QShowEvent *event);
-
-private:
-	void addMapToMaplist(const QString &map);
-
-	DPtr<MapListPanel> d;
-private slots:
-	void addMapFromEditBoxToList();
-	void addMapsFromLoadedWads();
-	void onFocusChanged(QWidget* old, QWidget* now);
-	void removeSelectedFromList();
-	void updateMapWarningVisibility();
+	public:
+		InterpolateCheckBox(const QString& text, QWidget *parent = nullptr)
+			: QCheckBox(text, parent) {}
+		InterpolateCheckBox(QWidget *parent = nullptr)
+			: QCheckBox(parent) {}
+	protected:
+		void nextCheckState () override;
 };
 
 #endif

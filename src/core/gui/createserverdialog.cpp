@@ -323,6 +323,11 @@ QString CreateServerDialog::mapName() const
 	return d->generalSetupPanel->mapName();
 }
 
+QStringList CreateServerDialog::wadPaths() const
+{
+	return d->generalSetupPanel->getAllWadPaths();
+}
+
 bool CreateServerDialog::fillInParamsFromPluginPages(GameCreateParams &params)
 {
 	foreach (CreateServerDialogPage* page, d->currentCustomPages)

@@ -30,6 +30,7 @@ set(UI_FILES
 	gui/createserver/iwadpicker.ui
 	gui/createserver/logdirectorypicker.ui
 	gui/createserver/maplistpanel.ui
+	gui/createserver/maplistselector.ui
 	gui/createserver/miscserversetuppanel.ui
 	gui/createserver/wadspicker.ui
 	gui/createserverdialog.ui
@@ -112,6 +113,7 @@ set(HEADER_FILES
 	gui/createserver/iwadpicker.h
 	gui/createserver/logdirectorypicker.h
 	gui/createserver/maplistpanel.h
+	gui/createserver/maplistselector.h
 	gui/createserver/miscserversetuppanel.h
 	gui/createserver/wadspicker.h
 	gui/createserverdialog.h
@@ -157,6 +159,7 @@ set(HEADER_FILES
 	gui/widgets/fontbutton.h
 	gui/widgets/iconlabel.h
 	gui/widgets/importantmessageswidget.h
+	gui/widgets/interpolatecheckbox.h
 	gui/widgets/memorylineedit.h
 	gui/widgets/multicombobox.h
 	gui/widgets/qtabwidgetext.h
@@ -214,6 +217,7 @@ set(HEADER_FILES
 	localizationinfo.h
 	log.h
 	main.h
+	modreader.h
 	pathfinder/basefileseeker.h
 	pathfinder/caseinsensitivefsfileseeker.h
 	pathfinder/casesensitivefsfileseeker.h
@@ -341,6 +345,7 @@ set(SOURCE_FILES
 	gui/createserver/iwadpicker.cpp
 	gui/createserver/logdirectorypicker.cpp
 	gui/createserver/maplistpanel.cpp
+	gui/createserver/maplistselector.cpp
 	gui/createserver/miscserversetuppanel.cpp
 	gui/createserver/wadspicker.cpp
 	gui/createserverdialog.cpp
@@ -385,6 +390,7 @@ set(SOURCE_FILES
 	gui/widgets/fontbutton.cpp
 	gui/widgets/iconlabel.cpp
 	gui/widgets/importantmessageswidget.cpp
+	gui/widgets/interpolatecheckbox.cpp
 	gui/widgets/memorylineedit.cpp
 	gui/widgets/multicombobox.cpp
 	gui/widgets/serverconsole.cpp
@@ -440,6 +446,7 @@ set(SOURCE_FILES
 	localizationinfo.cpp
 	log.cpp
 	main.cpp
+	modreader.cpp
 	pathfinder/basefileseeker.cpp
 	pathfinder/caseinsensitivefsfileseeker.cpp
 	pathfinder/casesensitivefsfileseeker.cpp

@@ -51,6 +51,7 @@ class CreateServerDialog : public QDialog
 		QString mapName() const;
 		void setConfigureButtonVisible(bool visible);
 		void setIwadByName(const QString &iwad);
+		QStringList wadPaths() const;
 
 	private slots:
 		void btnLoadClicked();

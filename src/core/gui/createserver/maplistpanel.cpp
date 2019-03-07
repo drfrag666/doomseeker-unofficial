@@ -28,6 +28,8 @@
 #include "plugins/engineplugin.h"
 #include "serverapi/gamecreateparams.h"
 #include "commongui.h"
+#include "maplistselector.h"
+
 #include <QStandardItemModel>
 #include <QTimer>
 
@@ -61,6 +63,17 @@ MapListPanel::~MapListPanel()
 void MapListPanel::addMapFromEditBoxToList()
 {
 	addMapToMaplist(d->leMapname->text().trimmed());
+}
+
+void MapListPanel::addMapsFromLoadedWads()
+{
+	MapListSelector* mapListSelector = new MapListSelector;
+	mapListSelector->addPaths(d->parentDialog->wadPaths());
+	if (mapListSelector->exec() == QDialog::Accepted)
+	{
+		foreach (QString map, mapListSelector->selectedMaps())
+			addMapToMaplist(map);
+	}
 }
 
 void MapListPanel::addMapToMaplist(const QString &map)
