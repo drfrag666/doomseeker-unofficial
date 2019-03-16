@@ -25,9 +25,17 @@ large files, a prolonged verification procedure will pop a dialog box where
 the verification can be manually skipped. User also has an option to disable
 the verification altogether from Doomseeker's configuration. This addresses
 Mantis ticket #3369.
-- "Create Game" dialog box allows now to define a game log storage
-directory for games that support it. Odamex and Zandronum plugins
-are wired up to use this feature.
+- "Create Game" box:
+    - Allows now to define a game log storage directory for games that support
+      it. Odamex and Zandronum plugins are wired up to use this feature.
+      (addresses #3568)
+    - "Pick maps for maplist" button added. The UI lists maps from loaded game
+      mods and allows to select them for the maplist in bulk. IWAD maps are
+      displayed in a gray color, while normal color is used for maps that are
+      present in the loaded custom mods. The list also displays which mod file
+      each map comes from through a tooltip. Reading map lumps from WAD and PK3
+      formats is supported, as well as extracting mods from archives and parsing
+      them. (addresses #3599)
 
 ### Changed
 - Windows compiler change. Use MinGW-w64 to build Doomseeker instead of
