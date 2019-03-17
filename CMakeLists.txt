@@ -139,6 +139,18 @@ if(MSVC AND NOT MSVC90 AND NOT MSVC12)
 	)
 endif()
 
+# C++ standard
+if(CMAKE_VERSION VERSION_LESS "3.1")
+	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
+	else()
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+	endif ()
+else ()
+		set(CMAKE_CXX_STANDARD 11)
+		set(CXX_STANDARD_REQUIRED ON)
+endif ()
+
 if(WIN32)
 	set(WITH_AUTOUPDATES 1)
 	add_subdirectory(tools/updateinstaller)
