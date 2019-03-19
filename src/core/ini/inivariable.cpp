@@ -30,8 +30,8 @@ DClass<IniVariable>
 {
 	public:
 		/**
-		 * @brief For non-const operations. Might be NULL even if pConstSection
-		 *        is not NULL.
+		 * @brief For non-const operations. Might be nullptr even if pConstSection
+		 *        is not nullptr.
 		 */
 		IniSection section;
 

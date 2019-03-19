@@ -37,7 +37,7 @@ class CFGIRCNetworks : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGIRCNetworks(QWidget* parent = NULL);
+		CFGIRCNetworks(QWidget* parent = nullptr);
 		~CFGIRCNetworks();
 
 		QIcon icon() const { return QIcon(":/flags/lan-small"); }

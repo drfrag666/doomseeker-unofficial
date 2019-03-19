@@ -99,7 +99,7 @@ class Refresher::Data
 					return server;
 				}
 			}
-			return NULL;
+			return nullptr;
 		}
 
 		QUdpSocket *socket(const Server *server)
@@ -137,7 +137,7 @@ class Refresher::MasterClientInfo
 
 ////////////////////////////////////////////////////////////////////////////////
 
-Refresher* Refresher::staticInstance = NULL;
+Refresher* Refresher::staticInstance = nullptr;
 QMutex Refresher::instanceMutex;
 
 Refresher::Refresher()
@@ -179,10 +179,10 @@ void Refresher::concludeRefresh()
 
 Refresher *Refresher::instance()
 {
-	if (staticInstance == NULL)
+	if (staticInstance == nullptr)
 	{
 		QMutexLocker locker(&instanceMutex);
-		if (staticInstance == NULL)
+		if (staticInstance == nullptr)
 		{
 			staticInstance = new Refresher();
 		}
@@ -192,7 +192,7 @@ Refresher *Refresher::instance()
 
 bool Refresher::isInstantiated()
 {
-	return staticInstance != NULL;
+	return staticInstance != nullptr;
 }
 
 void Refresher::deinstantiate()
@@ -201,7 +201,7 @@ void Refresher::deinstantiate()
 	if (isInstantiated())
 	{
 		delete staticInstance;
-		staticInstance = NULL;
+		staticInstance = nullptr;
 	}
 }
 
@@ -219,7 +219,7 @@ Server* Refresher::findRefreshingServer(const QHostAddress& address,
 			return refreshOp.server;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 bool Refresher::isAnythingToRefresh() const
@@ -248,8 +248,8 @@ void Refresher::masterFinishedRefreshing()
 
 void Refresher::purgeNullServers()
 {
-	d->refreshingServers.removeAll(ServerRefreshTime(NULL));
-	d->unchallengedServers.removeAll(NULL);
+	d->refreshingServers.removeAll(ServerRefreshTime(nullptr));
+	d->unchallengedServers.removeAll(nullptr);
 }
 
 void Refresher::quit()
@@ -381,7 +381,7 @@ void Refresher::setDelayBetweenResends(int delay)
 
 bool Refresher::start()
 {
-	return d->socketPool.acquireMasterSocket() != NULL;
+	return d->socketPool.acquireMasterSocket() != nullptr;
 }
 
 void Refresher::startNewServerRefresh()
@@ -460,7 +460,7 @@ bool Refresher::tryReadDatagramByServer(const QHostAddress& address,
 		return true;
 	}
 	Server* server = findRefreshingServer(address, port);
-	if (server != NULL)
+	if (server != nullptr)
 	{
 		// Store the state of request read.
 		int response = server->readRefreshQueryResponse(packet);

@@ -56,7 +56,7 @@ GameRulesPanel::GameRulesPanel(QWidget *parent)
 {
 	d->setupUi(this);
 	d->anythingAvailable = true;
-	d->engine = NULL;
+	d->engine = nullptr;
 }
 
 GameRulesPanel::~GameRulesPanel()
@@ -107,7 +107,7 @@ MapListPanel *GameRulesPanel::mapListPanel()
 
 void GameRulesPanel::memorizeLimits()
 {
-	if (d->engine != NULL)
+	if (d->engine != nullptr)
 	{
 		if (!d->memorizedLimits.contains(d->engine->nameCanonical()))
 		{
@@ -190,7 +190,7 @@ void GameRulesPanel::setupForEngine(const EnginePlugin *engine, const GameMode &
 
 	setupLimitWidgets(engine, gameMode);
 	d->anythingAvailable = !d->limitWidgets.isEmpty() || d->anythingAvailable;
-	
+
 	d->engine = engine;
 }
 

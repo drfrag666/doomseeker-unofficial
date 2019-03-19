@@ -36,7 +36,7 @@ class CFGServerPasswords : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGServerPasswords(QWidget* parent=NULL);
+		CFGServerPasswords(QWidget* parent=nullptr);
 		~CFGServerPasswords();
 
 		QIcon icon() const { return QIcon(":/icons/padlock.png"); }

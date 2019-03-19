@@ -49,19 +49,19 @@ void IRCConfigurationDialog::doSaveSettings()
 
 void IRCConfigurationDialog::initOptionsList()
 {
-	ConfigPage* configPage = NULL;
+	ConfigPage* configPage = nullptr;
 
 	configPage = new CFGIRCAppearance(this);
-	this->addConfigPage(NULL, configPage);
+	this->addConfigPage(nullptr, configPage);
 
 	cfgNetworks = new CFGIRCNetworks(this);
 	configPage = cfgNetworks;
-	this->addConfigPage(NULL, configPage);
+	this->addConfigPage(nullptr, configPage);
 
 	configPage = new CFGIRCSounds(this);
-	this->addConfigPage(NULL, configPage);
+	this->addConfigPage(nullptr, configPage);
 
-	addConfigPage(NULL, new CfgChatLogsPage(this));
+	addConfigPage(nullptr, new CfgChatLogsPage(this));
 }
 
 bool IRCConfigurationDialog::isNetworkAutojoinEnabled()

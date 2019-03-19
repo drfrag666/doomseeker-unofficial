@@ -76,8 +76,8 @@ const EnginePlugin *RconPasswordDialog::selectedEngine() const
 {
 	int pluginIndex = d->engines->itemData(d->engines->currentIndex()).toInt();
 	const PluginLoader::Plugin *plugin = gPlugins->plugin(pluginIndex);
-	if(plugin == NULL)
-		return NULL;
+	if(plugin == nullptr)
+		return nullptr;
 
 	return plugin->info();
 }

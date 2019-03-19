@@ -34,7 +34,7 @@ class CFGWadseekerSites : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGWadseekerSites(QWidget* parent = NULL);
+		CFGWadseekerSites(QWidget* parent = nullptr);
 		~CFGWadseekerSites();
 
 		QIcon icon() const { return QIcon(":/icons/internet-web-browser.png"); }

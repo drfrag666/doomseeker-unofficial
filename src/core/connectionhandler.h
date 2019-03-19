@@ -59,7 +59,7 @@ class ConnectionHandler : public QObject
 	Q_OBJECT
 
 	public:
-		ConnectionHandler(ServerPtr server, QWidget *parentWidget=NULL);
+		ConnectionHandler(ServerPtr server, QWidget *parentWidget=nullptr);
 		~ConnectionHandler();
 
 		void run();

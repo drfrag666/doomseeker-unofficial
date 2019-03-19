@@ -32,7 +32,7 @@ class CFGWadseekerGeneral : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGWadseekerGeneral(QWidget* parent = NULL);
+		CFGWadseekerGeneral(QWidget* parent = nullptr);
 		~CFGWadseekerGeneral();
 
 		QIcon icon() const { return QIcon(":/icons/preferences-system-4.png"); }

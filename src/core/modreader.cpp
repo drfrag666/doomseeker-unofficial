@@ -153,7 +153,7 @@ DPointeredNoCopy(CompressedReader)
 CompressedReader::CompressedReader(const QString& path)
 {
 	d->filepath = path;
-	d->archive.reset(NULL);
+	d->archive.reset(nullptr);
 }
 
 CompressedReader::~CompressedReader()

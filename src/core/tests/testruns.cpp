@@ -28,7 +28,7 @@
 #include "tests/teststrings.h"
 #include "tests/testutf8splitter.h"
 
-TestCore* TestRuns::pTestCore = NULL;
+TestCore* TestRuns::pTestCore = nullptr;
 
 void TestRuns::callTests()
 {

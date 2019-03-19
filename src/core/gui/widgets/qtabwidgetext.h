@@ -28,7 +28,7 @@
 class QTabWidgetExt : public QTabWidget
 {
 	public:
-		QTabWidgetExt(QWidget* parent = NULL)
+		QTabWidgetExt(QWidget* parent = nullptr)
 		: QTabWidget(parent)
 		{
 		}

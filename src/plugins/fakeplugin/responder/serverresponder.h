@@ -32,7 +32,7 @@ class ServerResponder : public QObject
 	public:
 		static const int MAX_CHANCE = 65535;
 
-		ServerResponder(QObject* parent = NULL);
+		ServerResponder(QObject* parent = nullptr);
 		~ServerResponder();
 
 		bool bind(unsigned short port);

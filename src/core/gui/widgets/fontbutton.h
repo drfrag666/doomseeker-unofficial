@@ -35,7 +35,7 @@ class FontButton : public QPushButton
 	Q_OBJECT
 
 	public:
-		FontButton(QWidget* parent = NULL);
+		FontButton(QWidget* parent = nullptr);
 
 		const QFont& selectedFont() const { return currentFont; }
 

@@ -32,7 +32,7 @@
 
 CustomServerInfo CustomServerInfo::fromServer(const Server *server)
 {
-	assert(server != NULL);
+	assert(server != nullptr);
 	CustomServerInfo obj;
 	obj.engine = server->plugin()->data()->name;
 	obj.engineIndex = gPlugins->pluginIndexFromName(obj.engine);
@@ -191,9 +191,9 @@ QList<ServerPtr> CustomServers::setServers(const QList<CustomServerInfo>& server
 
 		const EnginePlugin* pInterface = gPlugins->plugin(customServerInfo.engineIndex)->info();
 		ServerPtr p = pInterface->server(address, customServerInfo.port);
-		if(p == NULL)
+		if(p == nullptr)
 		{
-			gLog << tr("Plugin returned NULL \"Server*\" for custom server %1:%2. "
+			gLog << tr("Plugin returned nullptr \"Server*\" for custom server %1:%2. "
 				"This is a problem with the plugin.")
 					.arg(customServerInfo.host).arg(customServerInfo.port);
 			continue;

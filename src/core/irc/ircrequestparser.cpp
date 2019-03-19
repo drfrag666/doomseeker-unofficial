@@ -44,7 +44,7 @@ DPointered(IRCRequestParser)
 
 IRCRequestParser::IRCRequestParser()
 {
-	d->adapter = NULL;
+	d->adapter = nullptr;
 }
 
 IRCRequestParser::~IRCRequestParser()

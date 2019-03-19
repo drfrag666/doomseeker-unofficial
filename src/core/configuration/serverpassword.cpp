@@ -109,7 +109,7 @@ ServerPasswordSummary ServerPassword::mostSimilarServer(const ServerPasswordSumm
 	if (!similarities.empty())
 	{
 		qSort(similarities);
-		if (outSimilarity != NULL)
+		if (outSimilarity != nullptr)
 		{
 			*outSimilarity = similarities.last().similarity;
 		}
@@ -117,7 +117,7 @@ ServerPasswordSummary ServerPassword::mostSimilarServer(const ServerPasswordSumm
 	}
 	else
 	{
-		if (outSimilarity != NULL)
+		if (outSimilarity != nullptr)
 		{
 			*outSimilarity = 0.0f;
 		}

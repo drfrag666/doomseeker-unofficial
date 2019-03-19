@@ -48,7 +48,7 @@ MasterManager::~MasterManager()
 
 void MasterManager::addMaster(MasterClient *master)
 {
-	if(master == NULL)
+	if(master == nullptr)
 		return;
 
 	masters.append(master);

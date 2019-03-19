@@ -55,7 +55,7 @@ class MAIN_EXPORT ConfigPage : public QWidget
 			VALIDATION_ERROR,
 		};
 
-		ConfigPage(QWidget* parent = NULL);
+		ConfigPage(QWidget* parent = nullptr);
 		virtual ~ConfigPage();
 
 		/**

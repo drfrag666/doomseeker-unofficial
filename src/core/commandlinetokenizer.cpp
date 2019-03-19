@@ -45,7 +45,7 @@ public:
 			LPCWSTR winapiCmdLine = (LPCWSTR)cmdLine.utf16();
 			LPWSTR* winapiTokens = CommandLineToArgvW(winapiCmdLine, &numArgs);
 
-			if (winapiTokens == NULL)
+			if (winapiTokens == nullptr)
 			{
 				return QStringList();
 			}

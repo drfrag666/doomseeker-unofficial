@@ -61,7 +61,7 @@ CreateServerDialog::CreateServerDialog(QWidget* parent)
 	setAttribute(Qt::WA_DeleteOnClose);
 
 	d->remoteGameSetup = false;
-	d->currentEngine = NULL;
+	d->currentEngine = nullptr;
 
 	d->setupUi(this);
 	setConfigureButtonVisible(false);
@@ -115,7 +115,7 @@ void CreateServerDialog::btnSaveClicked()
 
 		if (!saveConfig(strFile))
 		{
-			QMessageBox::critical(NULL, tr("Doomseeker - save game setup config"), tr("Unable to save game setup configuration!"));
+			QMessageBox::critical(nullptr, tr("Doomseeker - save game setup config"), tr("Unable to save game setup configuration!"));
 		}
 	}
 
@@ -132,9 +132,9 @@ void CreateServerDialog::btnStartServerClicked()
 bool CreateServerDialog::commandLineArguments(QString &executable, QStringList &args, bool offline)
 {
 	const QString errorCapt = tr("Doomseeker - create game");
-	if (d->currentEngine == NULL)
+	if (d->currentEngine == nullptr)
 	{
-		QMessageBox::critical(NULL, errorCapt, tr("No game selected"));
+		QMessageBox::critical(nullptr, errorCapt, tr("No game selected"));
 		return false;
 	}
 
@@ -151,7 +151,7 @@ bool CreateServerDialog::commandLineArguments(QString &executable, QStringList &
 
 		if (message.isError())
 		{
-			QMessageBox::critical(NULL, tr("Doomseeker - error"), message.contents());
+			QMessageBox::critical(nullptr, tr("Doomseeker - error"), message.contents());
 			return false;
 		}
 		else
@@ -232,7 +232,7 @@ void CreateServerDialog::initDMFlagsTabs()
 
 void CreateServerDialog::initEngineSpecific(EnginePlugin* engine)
 {
-	if (engine == d->currentEngine || engine == NULL)
+	if (engine == d->currentEngine || engine == nullptr)
 	{
 		return;
 	}
@@ -349,9 +349,9 @@ bool CreateServerDialog::fillInParamsFromPluginPages(GameCreateParams &params)
 void CreateServerDialog::runGame(bool offline)
 {
 	const QString errorCapt = tr("Doomseeker - create game");
-	if (d->currentEngine == NULL)
+	if (d->currentEngine == nullptr)
 	{
-		QMessageBox::critical(NULL, errorCapt, tr("No game selected"));
+		QMessageBox::critical(nullptr, errorCapt, tr("No game selected"));
 		return;
 	}
 
@@ -367,7 +367,7 @@ void CreateServerDialog::runGame(bool offline)
 
 		if (message.isError())
 		{
-			QMessageBox::critical(NULL, tr("Doomseeker - error"), message.contents());
+			QMessageBox::critical(nullptr, tr("Doomseeker - error"), message.contents());
 		}
 		else
 		{

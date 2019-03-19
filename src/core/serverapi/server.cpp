@@ -281,7 +281,7 @@ const QString& Server::email() const
 
 QString Server::engineName() const
 {
-	if (plugin() != NULL)
+	if (plugin() != nullptr)
 	{
 		return plugin()->data()->name;
 	}

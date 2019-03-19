@@ -35,7 +35,7 @@ class WadseekerSitesTable : public TableWidgetMouseAware
 		static const int IDX_PROGRESS_COLUMN = 1;
 		static const int IDX_ABORT_COLUMN = 2;
 
-		WadseekerSitesTable(QWidget* pParent = NULL);
+		WadseekerSitesTable(QWidget* pParent = nullptr);
 
 		void addUrl(const QUrl& url);
 		void removeUrl(const QUrl& url);

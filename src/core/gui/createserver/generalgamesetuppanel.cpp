@@ -56,7 +56,7 @@ GeneralGameSetupPanel::GeneralGameSetupPanel(QWidget *parent)
 	d->setupUi(this);
 	d->iwadSetExplicitly = false;
 	d->remoteGameSetup = false;
-	d->parentDialog = NULL;
+	d->parentDialog = nullptr;
 
 	d->executableInput->setAllowedExecutables(GameFile::CreateGame);
 
@@ -245,7 +245,7 @@ void GeneralGameSetupPanel::setupForRemoteGame()
 
 		NULL
 	};
-	for(int i = 0;disableControls[i] != NULL;++i)
+	for(int i = 0;disableControls[i] != nullptr;++i)
 		disableControls[i]->setDisabled(true);
 }
 
@@ -314,7 +314,7 @@ bool GeneralGameSetupPanel::setEngine(const QString &engineName)
 
 void GeneralGameSetupPanel::updateMapWarningVisibility()
 {
-	assert(d->parentDialog != NULL);
+	assert(d->parentDialog != nullptr);
 	MapListPanel *mapList = d->parentDialog->mapListPanel();
 	d->lblMapWarning->setVisible(mapList->hasMaps() && !mapList->isMapOnList(mapName()));
 }

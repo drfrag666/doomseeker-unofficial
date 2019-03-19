@@ -104,7 +104,7 @@ DClass<DataPaths>
 
 DPointered(DataPaths)
 
-DataPaths *DataPaths::staticDefaultInstance = NULL;
+DataPaths *DataPaths::staticDefaultInstance = nullptr;
 
 static const QString LEGACY_APPDATA_DIR_NAME = ".doomseeker";
 static const QString DEMOS_DIR_NAME = "demos";
@@ -319,8 +319,8 @@ QString DataPaths::env(const QString &key)
 
 void DataPaths::initDefault(bool bPortableModeOn)
 {
-	assert(staticDefaultInstance == NULL && "DataPaths can have only one default.");
-	if (staticDefaultInstance == NULL)
+	assert(staticDefaultInstance == nullptr && "DataPaths can have only one default.");
+	if (staticDefaultInstance == nullptr)
 	{
 		staticDefaultInstance = new DataPaths(bPortableModeOn);
 	}

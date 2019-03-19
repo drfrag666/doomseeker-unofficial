@@ -28,7 +28,7 @@
 
 static const QString DATA_SEARCH_PREFIX = "data";
 
-DataPaths* DoomseekerFilePaths::pDataPaths = NULL;
+DataPaths* DoomseekerFilePaths::pDataPaths = nullptr;
 
 const QString DoomseekerFilePaths::CACERTS_FILENAME = "cacerts.pem";
 const QString DoomseekerFilePaths::IP2C_DATABASE_FILENAME = "IpToCountry.dat";

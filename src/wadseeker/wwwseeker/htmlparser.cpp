@@ -90,7 +90,7 @@ void HtmlParser::capitalizeHtmlTags()
 
 int	HtmlParser::findTag(int beginAt, int* end)
 {
-	if (end == NULL)
+	if (end == nullptr)
 	{
 		return -1;
 	}

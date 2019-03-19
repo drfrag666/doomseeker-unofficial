@@ -168,7 +168,7 @@ int ServerListProxyModel::compareColumnSortData(QVariant& var1, QVariant& var2, 
 bool ServerListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
 	ServerPtr s = serverFromList(sourceRow);
-	if (s == NULL)
+	if (s == nullptr)
 	{
 		return false;
 	}
@@ -302,7 +302,7 @@ bool ServerListProxyModel::lessThan(const QModelIndex& left, const QModelIndex& 
 	ServerPtr s1 = serverFromList(left);
 	ServerPtr s2 = serverFromList(right);
 
-	if (s1 != NULL && s2 != NULL)
+	if (s1 != nullptr && s2 != nullptr)
 	{
 		if (s1->isCustom() && !s2->isCustom())
 		{

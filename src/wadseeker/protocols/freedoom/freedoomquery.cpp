@@ -50,12 +50,12 @@ FreedoomQuery::FreedoomQuery(QObject *parent)
 : QObject(parent)
 {
 	d->nam = new QNetworkAccessManager();
-	d->reply = NULL;
+	d->reply = nullptr;
 }
 
 FreedoomQuery::~FreedoomQuery()
 {
-	if (d->reply != NULL)
+	if (d->reply != nullptr)
 	{
 		d->reply->deleteLater();
 	}
@@ -88,7 +88,7 @@ void FreedoomQuery::onNetworkQueryFinished()
 
 	d->reply->disconnect(this);
 	d->reply->deleteLater();
-	d->reply = NULL;
+	d->reply = nullptr;
 	emit finished();
 }
 

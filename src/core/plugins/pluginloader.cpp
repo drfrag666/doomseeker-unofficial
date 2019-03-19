@@ -69,8 +69,8 @@ DPointered(PluginLoader::Plugin)
 PluginLoader::Plugin::Plugin(unsigned int type, QString file)
 {
 	d->file = file;
-	d->library = NULL;
-	d->info = NULL;
+	d->library = nullptr;
+	d->info = nullptr;
 	if (PrivData<PluginLoader::Plugin>::isForbiddenPlugin(file))
 	{
 		gLog << QObject::tr("Skipping loading of forbidden plugin: %1").arg(file);
@@ -87,14 +87,14 @@ PluginLoader::Plugin::Plugin(unsigned int type, QString file)
 	SetErrorMode(oldErrorMode);
 	#endif
 
-	if(d->library != NULL)
+	if(d->library != nullptr)
 	{
 		unsigned int (*doomSeekerABI)() = (unsigned int(*)()) (dlsym(d->library, "doomSeekerABI"));
 		if(!doomSeekerABI || doomSeekerABI() != DOOMSEEKER_ABI_VERSION)
 		{
 			// Unsupported version
 			QString reason;
-			if (doomSeekerABI != NULL)
+			if (doomSeekerABI != nullptr)
 			{
 				reason = QObject::tr(
 					"plugin ABI version mismatch; plugin: %1, Doomseeker: %2").arg(
@@ -110,7 +110,7 @@ PluginLoader::Plugin::Plugin(unsigned int type, QString file)
 		}
 
 		EnginePlugin *(*doomSeekerInit)() = (EnginePlugin *(*)()) (dlsym(d->library, "doomSeekerInit"));
-		if(doomSeekerInit == NULL)
+		if(doomSeekerInit == nullptr)
 		{ // This is not a valid plugin.
 			unload();
 			return;
@@ -159,15 +159,15 @@ void PluginLoader::Plugin::initConfig()
 
 bool PluginLoader::Plugin::isValid() const
 {
-	return d->library != NULL;
+	return d->library != nullptr;
 }
 
 void PluginLoader::Plugin::unload()
 {
-	if (d->library != NULL)
+	if (d->library != nullptr)
 	{
 		dlclose(d->library);
-		d->library = NULL;
+		d->library = nullptr;
 	}
 }
 
@@ -182,7 +182,7 @@ DClass<PluginLoader>
 
 DPointered(PluginLoader)
 
-PluginLoader *PluginLoader::staticInstance = NULL;
+PluginLoader *PluginLoader::staticInstance = nullptr;
 
 PluginLoader::PluginLoader(unsigned int type, const QStringList &directories)
 {
@@ -214,10 +214,10 @@ void PluginLoader::clearPlugins()
 
 void PluginLoader::deinit()
 {
-	if (staticInstance != NULL)
+	if (staticInstance != nullptr)
 	{
 		delete staticInstance;
-		staticInstance = NULL;
+		staticInstance = nullptr;
 	}
 }
 
@@ -249,16 +249,16 @@ bool PluginLoader::filesInDir()
 EnginePlugin *PluginLoader::info(int pluginIndex) const
 {
 	const Plugin* p = plugin(pluginIndex);
-	if (p != NULL)
+	if (p != nullptr)
 	{
 		return p->info();
 	}
-	return NULL;
+	return nullptr;
 }
 
 void PluginLoader::init(const QStringList &directories)
 {
-	if (staticInstance != NULL)
+	if (staticInstance != nullptr)
 	{
 		qDebug() << "Attempting to re-init PluginLoader";
 		assert(false);
@@ -277,7 +277,7 @@ void PluginLoader::initConfig()
 
 PluginLoader *PluginLoader::instance()
 {
-	assert(staticInstance != NULL);
+	assert(staticInstance != nullptr);
 	return staticInstance;
 }
 

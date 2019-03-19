@@ -148,7 +148,7 @@ class AutoUpdater : public QObject
 		static QString updateStorageDirPath();
 
 
-		AutoUpdater(QObject* pParent = NULL);
+		AutoUpdater(QObject* pParent = nullptr);
 		~AutoUpdater();
 
 		void abort();

@@ -103,7 +103,7 @@ class MAIN_EXPORT Ini : public QObject
 		void removeKey(const QString& key);
 
 		/**
-		 * This won't create a variable if it doesn't exist and return NULL
+		 * This won't create a variable if it doesn't exist and return nullptr
 		 * in such case.
 		 * @return A reference to the internally stored IniVariable if it
 		 * does. Be sure to check if it isNull.

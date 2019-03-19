@@ -44,7 +44,7 @@ DPointeredNoCopy(CheckWadsDlg)
 
 CheckWadsDlg::CheckWadsDlg(const PathFinder* pathFinder, QWidget* parent) : QDialog(parent)
 {
-	assert(pathFinder != NULL);
+	assert(pathFinder != nullptr);
 	d->pathFinder = pathFinder;
 	d->checkIncompatibility = gConfig.doomseeker.bCheckTheIntegrityOfWads;
 	d->checkWadTimer.reset(new QTimer);

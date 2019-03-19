@@ -139,14 +139,14 @@ IniVariable Ini::setting(const QString& sectionName, const QString& variableName
 
 void Ini::setValue(const QString& key, const QVariant& value)
 {
-	assert(d->provider != NULL);
+	assert(d->provider != nullptr);
 
 	d->provider->setValue(key, value);
 }
 
 QVariant Ini::value(const QString& key) const
 {
-	assert(d->provider != NULL);
+	assert(d->provider != nullptr);
 
 	return d->provider->value(key);
 }

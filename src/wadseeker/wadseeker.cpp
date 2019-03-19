@@ -103,7 +103,7 @@ public:
 	/**
 	 * This object is created when startSeek() method is called. This will
 	 * ensure that the parameters won't change during the seek operation.
-	 * When seek is not in progress this is NULL.
+	 * When seek is not in progress this is nullptr.
 	 */
 	SeekParameters* seekParametersForCurrentSeek;
 
@@ -116,15 +116,15 @@ DPointeredNoCopy(Wadseeker)
 Wadseeker::Wadseeker()
 {
 	d->bIsAborting = false;
-	d->seekParametersForCurrentSeek = NULL;
-	d->wadArchiveClient = NULL;
-	d->wadRetriever = NULL;
-	d->wwwSeeker = NULL;
+	d->seekParametersForCurrentSeek = nullptr;
+	d->wadArchiveClient = nullptr;
+	d->wadRetriever = nullptr;
+	d->wwwSeeker = nullptr;
 }
 
 Wadseeker::~Wadseeker()
 {
-	if (d->wadArchiveClient != NULL)
+	if (d->wadArchiveClient != nullptr)
 	{
 		delete d->wadArchiveClient;
 	}
@@ -134,17 +134,17 @@ Wadseeker::~Wadseeker()
 		delete d->idgamesClients.takeFirst();
 	}
 
-	if (d->wwwSeeker != NULL)
+	if (d->wwwSeeker != nullptr)
 	{
 		delete d->wwwSeeker;
 	}
 
-	if (d->wadRetriever != NULL)
+	if (d->wadRetriever != nullptr)
 	{
 		delete d->wadRetriever;
 	}
 
-	if (d->seekParametersForCurrentSeek != NULL)
+	if (d->seekParametersForCurrentSeek != nullptr)
 	{
 		delete d->seekParametersForCurrentSeek;
 	}
@@ -156,7 +156,7 @@ void Wadseeker::abort()
 	{
 		d->bIsAborting = true;
 		abortSeekers();
-		if (d->wadRetriever != NULL)
+		if (d->wadRetriever != nullptr)
 		{
 			d->wadRetriever->abort();
 		}
@@ -172,7 +172,7 @@ void Wadseeker::abortSeekers()
 
 void Wadseeker::abortWwwSeeker()
 {
-	if (d->wwwSeeker != NULL)
+	if (d->wwwSeeker != nullptr)
 	{
 		d->wwwSeeker->abort();
 	}
@@ -188,7 +188,7 @@ void Wadseeker::cleanUpIfAllFinished()
 
 void Wadseeker::cleanUpAfterFinish()
 {
-	if (d->seekParametersForCurrentSeek == NULL)
+	if (d->seekParametersForCurrentSeek == nullptr)
 	{
 		return;
 	}
@@ -199,16 +199,16 @@ void Wadseeker::cleanUpAfterFinish()
 	d->bIsAborting = false;
 
 	delete d->seekParametersForCurrentSeek;
-	d->seekParametersForCurrentSeek = NULL;
+	d->seekParametersForCurrentSeek = nullptr;
 
 	delete d->wadArchiveClient;
-	d->wadArchiveClient = NULL;
+	d->wadArchiveClient = nullptr;
 
 	d->wadRetriever->deleteLater();
-	d->wadRetriever = NULL;
+	d->wadRetriever = nullptr;
 
 	delete d->wwwSeeker;
-	d->wwwSeeker = NULL;
+	d->wwwSeeker = nullptr;
 
 	emit allDone(bSuccess);
 }
@@ -304,7 +304,7 @@ bool Wadseeker::isAllFinished() const
 
 bool Wadseeker::isDownloadingFile(const ModFile& file) const
 {
-	if (d->wadRetriever != NULL)
+	if (d->wadRetriever != nullptr)
 	{
 		return d->wadRetriever->isDownloadingWad(file.fileName());
 	}
@@ -332,7 +332,7 @@ bool Wadseeker::isForbiddenWad(const ModFile& wad)
 
 bool Wadseeker::isWorking() const
 {
-	if (d->seekParametersForCurrentSeek == NULL)
+	if (d->seekParametersForCurrentSeek == nullptr)
 	{
 		// We're in a "waiting for orders" state, ie. seek is not in progress.
 		return false;
@@ -340,7 +340,7 @@ bool Wadseeker::isWorking() const
 
 	return d->wwwSeeker->isWorking()
 		|| d->wadRetriever->isAnyDownloadWorking()
-		|| (d->wadArchiveClient != NULL && d->wadArchiveClient->isWorking())
+		|| (d->wadArchiveClient != nullptr && d->wadArchiveClient->isWorking())
 		|| !d->idgamesClients.isEmpty();
 }
 
@@ -400,7 +400,7 @@ void Wadseeker::prepareSeekObjects()
 
 void Wadseeker::reportBadUrl(const QUrl &url)
 {
-	if (d->wadArchiveClient != NULL)
+	if (d->wadArchiveClient != nullptr)
 	{
 		d->wadArchiveClient->reportBadUrlIfOriginatingFromHere(url);
 	}
@@ -573,7 +573,7 @@ void Wadseeker::setupWadArchiveClient(const QList<WadDownloadInfo> &wadDownloadI
 
 void Wadseeker::skipFileCurrentUrl(const QString& fileName)
 {
-	if (d->wadRetriever != NULL)
+	if (d->wadRetriever != nullptr)
 	{
 		d->wadRetriever->skipCurrentUrl(fileName);
 	}
@@ -599,7 +599,7 @@ void Wadseeker::skipService(const QString &service)
 
 void Wadseeker::skipSiteSeek(const QUrl& url)
 {
-	if (d->wwwSeeker != NULL)
+	if (d->wwwSeeker != nullptr)
 	{
 		d->wwwSeeker->skipSite(url);
 	}
@@ -654,7 +654,7 @@ void Wadseeker::startWadArchiveClient()
 
 void Wadseeker::stopWadArchiveClient()
 {
-	if (d->wadArchiveClient != NULL)
+	if (d->wadArchiveClient != nullptr)
 	{
 		d->wadArchiveClient->abort();
 	}
@@ -662,7 +662,7 @@ void Wadseeker::stopWadArchiveClient()
 
 bool Wadseeker::startSeek(const ModSet& wads)
 {
-	if (d->seekParametersForCurrentSeek != NULL)
+	if (d->seekParametersForCurrentSeek != nullptr)
 	{
 		emit message(tr("Seek already in progress. Please abort the current seek before starting a new one."),
 					WadseekerLib::CriticalError);

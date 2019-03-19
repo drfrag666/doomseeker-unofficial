@@ -45,7 +45,7 @@ class WadseekerWadsTable : public TableWidgetMouseAware
 				QAction* actionSkipCurrentSite;
 
 			private:
-				ContextMenu(QWidget* pParent = NULL);
+				ContextMenu(QWidget* pParent = nullptr);
 		};
 
 		static const int IDX_NAME_COLUMN = 0;
@@ -55,7 +55,7 @@ class WadseekerWadsTable : public TableWidgetMouseAware
 		static const int IDX_ETA_COLUMN = 4;
 		static const int IDX_SIZE_COLUMN = 5;
 
-		WadseekerWadsTable(QWidget* pParent = NULL);
+		WadseekerWadsTable(QWidget* pParent = nullptr);
 		~WadseekerWadsTable();
 
 		void addFile(const QString& filename);

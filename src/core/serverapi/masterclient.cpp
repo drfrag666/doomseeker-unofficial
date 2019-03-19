@@ -50,12 +50,12 @@ DClass<MasterClient>
 
 		bool isCacheOpenForReading() const
 		{
-			return cache != NULL && cache->isReadable();
+			return cache != nullptr && cache->isReadable();
 		}
 
 		bool isCacheOpenForWriting() const
 		{
-			return cache != NULL && cache->isWritable();
+			return cache != nullptr && cache->isWritable();
 		}
 
 		QString (MasterClient::*masterBanHelp)() const;
@@ -67,7 +67,7 @@ POLYMORPHIC_DEFINE_CONST(QString, MasterClient, masterBanHelp, (), ());
 
 MasterClient::MasterClient()
 {
-	d->cache = NULL;
+	d->cache = nullptr;
 	d->timeouted = false;
 	d->enabled = true;
 	d->port = 0;
@@ -78,7 +78,7 @@ MasterClient::~MasterClient()
 {
 	emptyServerList();
 	resetPacketCaching();
-	if (d->cache != NULL)
+	if (d->cache != nullptr)
 	{
 		delete d->cache;
 	}
@@ -119,7 +119,7 @@ void MasterClient::emptyServerList()
 
 QString MasterClient::engineName() const
 {
-	if (plugin() == NULL)
+	if (plugin() == nullptr)
 	{
 		return "";
 	}
@@ -188,12 +188,12 @@ bool MasterClient::preparePacketCache(bool write)
 {
 	if (write ? !d->isCacheOpenForWriting() : !d->isCacheOpenForReading())
 	{
-		if(plugin() == NULL)
+		if(plugin() == nullptr)
 		{
 			return false;
 		}
 
-		if(d->cache == NULL)
+		if(d->cache == nullptr)
 		{
 			QString cacheFile = gDefaultDataPaths->cacheLocationPath() + "/"
 				+ QString(plugin()->data()->name).replace(' ', "");
@@ -216,7 +216,7 @@ bool MasterClient::preparePacketCache(bool write)
 		// reading from the beginning.
 		d->cache->seek(0);
 	}
-	return d->cache != NULL;
+	return d->cache != nullptr;
 }
 
 void MasterClient::pushPacketToCache(const QByteArray &data)
@@ -302,10 +302,10 @@ void MasterClient::registerNewServer(ServerPtr server)
 
 void MasterClient::resetPacketCaching()
 {
-	if(d->cache != NULL)
+	if(d->cache != nullptr)
 	{
 		delete d->cache;
-		d->cache = NULL;
+		d->cache = nullptr;
 	}
 }
 

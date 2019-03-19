@@ -66,7 +66,7 @@ TaskbarButton::TaskbarButton(QObject *parent)
 	}
 	else
 	{
-		d->button = NULL;
+		d->button = nullptr;
 		d->progress = new TaskbarProgress(this);
 	}
 #else
@@ -77,7 +77,7 @@ TaskbarButton::TaskbarButton(QObject *parent)
 QString TaskbarButton::overlayAccessibleDescription() const
 {
 #ifdef WIN_TASKBAR
-	if (d->button != NULL)
+	if (d->button != nullptr)
 	{
 		return d->button->overlayAccessibleDescription();
 	}
@@ -88,7 +88,7 @@ QString TaskbarButton::overlayAccessibleDescription() const
 QIcon TaskbarButton::overlayIcon() const
 {
 #ifdef WIN_TASKBAR
-	if (d->button != NULL)
+	if (d->button != nullptr)
 	{
 		return d->button->overlayIcon();
 	}
@@ -104,7 +104,7 @@ TaskbarProgress *TaskbarButton::progress() const
 void TaskbarButton::setWindow(QWindow *window)
 {
 #ifdef WIN_TASKBAR
-	if (d->button != NULL)
+	if (d->button != nullptr)
 	{
 		d->button->setWindow(window);
 	}
@@ -114,18 +114,18 @@ void TaskbarButton::setWindow(QWindow *window)
 QWindow *TaskbarButton::window() const
 {
 #ifdef WIN_TASKBAR
-	if (d->button != NULL)
+	if (d->button != nullptr)
 	{
 		return d->button->window();
 	}
 #endif
-	return NULL;
+	return nullptr;
 }
 
 void TaskbarButton::clearOverlayIcon()
 {
 #ifdef WIN_TASKBAR
-	if (d->button != NULL)
+	if (d->button != nullptr)
 	{
 		d->button->clearOverlayIcon();
 	}
@@ -135,7 +135,7 @@ void TaskbarButton::clearOverlayIcon()
 void TaskbarButton::setOverlayAccessibleDescription(const QString &description)
 {
 #ifdef WIN_TASKBAR
-	if (d->button != NULL)
+	if (d->button != nullptr)
 	{
 		d->button->setOverlayAccessibleDescription(description);
 	}
@@ -145,7 +145,7 @@ void TaskbarButton::setOverlayAccessibleDescription(const QString &description)
 void TaskbarButton::setOverlayIcon(const QIcon &icon)
 {
 #ifdef WIN_TASKBAR
-	if (d->button != NULL)
+	if (d->button != nullptr)
 	{
 		d->button->setOverlayIcon(icon);
 	}

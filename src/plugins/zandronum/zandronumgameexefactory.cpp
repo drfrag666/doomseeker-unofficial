@@ -49,7 +49,7 @@ QList<ExeFilePath> ZandronumGameExeFactory::additionalExecutables(int execType) 
 {
 	QList<ExeFilePath> testingExecutables;
 	IniSection *cfg = plugin()->data()->pConfig;
-	if (cfg != NULL)
+	if (cfg != nullptr)
 	{
 		QDir directory(cfg->value("TestingPath").toString());
 		QStringList subdirs = directory.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::Reversed);

@@ -27,8 +27,8 @@ NetworkReplyTimeouter::NetworkReplyTimeouter(QNetworkReply* pReply)
 {
 	this->bIsProgressing = false;
 	this->pReply = pReply;
-	this->pConnectionTimeoutTimer = NULL;
-	this->pProgressTimeoutTimer = NULL;
+	this->pConnectionTimeoutTimer = nullptr;
+	this->pProgressTimeoutTimer = nullptr;
 	this->progressTimeout = 0;
 
 	this->connect(pReply,
@@ -48,12 +48,12 @@ NetworkReplyTimeouter::NetworkReplyTimeouter(QNetworkReply* pReply)
 
 NetworkReplyTimeouter::~NetworkReplyTimeouter()
 {
-	if (pConnectionTimeoutTimer != NULL)
+	if (pConnectionTimeoutTimer != nullptr)
 	{
 		delete pConnectionTimeoutTimer;
 	}
 
-	if (pProgressTimeoutTimer != NULL)
+	if (pProgressTimeoutTimer != nullptr)
 	{
 		delete pProgressTimeoutTimer;
 	}
@@ -76,7 +76,7 @@ void NetworkReplyTimeouter::restartProgressTimeoutIfAllowed()
 {
 	if (progressTimeout != 0 && bIsProgressing)
 	{
-		if (pProgressTimeoutTimer == NULL)
+		if (pProgressTimeoutTimer == nullptr)
 		{
 			pProgressTimeoutTimer = new QTimer();
 			pProgressTimeoutTimer->setSingleShot(true);
@@ -99,7 +99,7 @@ void NetworkReplyTimeouter::setProgressTimeout(unsigned timeoutMsecs)
 void NetworkReplyTimeouter::startConnectionTimeoutTimer(unsigned timeoutMsecs)
 {
 	bIsProgressing = true;
-	if (pConnectionTimeoutTimer == NULL)
+	if (pConnectionTimeoutTimer == nullptr)
 	{
 		pConnectionTimeoutTimer = new QTimer();
 		pConnectionTimeoutTimer->setSingleShot(true);
@@ -113,7 +113,7 @@ void NetworkReplyTimeouter::startConnectionTimeoutTimer(unsigned timeoutMsecs)
 
 void NetworkReplyTimeouter::stopTimerIfNotNull(QTimer* pTimer)
 {
-	if (pTimer != NULL)
+	if (pTimer != nullptr)
 	{
 		pTimer->stop();
 	}

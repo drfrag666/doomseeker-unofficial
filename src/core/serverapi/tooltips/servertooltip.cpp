@@ -69,7 +69,7 @@ QString ServerTooltip::createIwadToolTip(ServerPtr server)
 
 QString ServerTooltip::createPlayersToolTip(ServerCPtr server)
 {
-	if (server == NULL || !server->isKnown())
+	if (server == nullptr || !server->isKnown())
 	{
 		return QString();
 	}
@@ -91,7 +91,7 @@ QString ServerTooltip::createPlayersToolTip(ServerCPtr server)
 
 QString ServerTooltip::createPortToolTip(ServerCPtr server)
 {
-	if (server == NULL || !server->isKnown())
+	if (server == nullptr || !server->isKnown())
 		return QString();
 
 	QString ret;
@@ -106,7 +106,7 @@ QString ServerTooltip::createPortToolTip(ServerCPtr server)
 
 QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 {
-	if (server == NULL || !server->isKnown() || server->numWads() == 0)
+	if (server == nullptr || !server->isKnown() || server->numWads() == 0)
 	{
 		return QString();
 	}
@@ -193,7 +193,7 @@ QString ServerTooltip::createPwadToolTipInfo(const PWad& pwad, const ServerPtr &
 
 QString ServerTooltip::createServerNameToolTip(ServerCPtr server)
 {
-	if (server == NULL)
+	if (server == nullptr)
 	{
 		return QString();
 	}

@@ -32,7 +32,7 @@ class CFGWadseekerAppearance : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGWadseekerAppearance(QWidget* parent = NULL);
+		CFGWadseekerAppearance(QWidget* parent = nullptr);
 		~CFGWadseekerAppearance();
 
 		QIcon icon() const { return QIcon(":/icons/color-fill.png"); }

@@ -33,7 +33,7 @@ class CopyTextDlg : public QDialog
 	Q_OBJECT;
 
 	public:
-		CopyTextDlg(const QString& content, const QString& description = QString(), QWidget* parent = NULL);
+		CopyTextDlg(const QString& content, const QString& description = QString(), QWidget* parent = nullptr);
 		~CopyTextDlg();
 
 	protected slots:

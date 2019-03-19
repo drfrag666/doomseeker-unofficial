@@ -40,7 +40,7 @@ const QString TRANSLATIONS_LOCATION_SUBDIR = "translations";
 const int NUM_VALID_VERSION_TOKENS = 2;
 const int NUM_VALID_TOKENS = 3;
 
-Localization *Localization::instance = NULL;
+Localization *Localization::instance = nullptr;
 
 class Localization::LocalizationLoader
 {
@@ -95,7 +95,7 @@ const LocalizationInfo &Localization::currentLocalization() const
 
 Localization *Localization::get()
 {
-	if (instance == NULL)
+	if (instance == nullptr)
 		instance = new Localization();
 	return instance;
 }
@@ -173,7 +173,7 @@ void Localization::installQtTranslations(const QString &localeName, QStringList 
 bool Localization::installTranslation(const QString &translationName, const QStringList &searchPaths)
 {
 	QTranslator* translator = loadTranslationFile(translationName, searchPaths);
-	if (translator != NULL)
+	if (translator != nullptr)
 	{
 		QCoreApplication::installTranslator(translator);
 		currentlyLoadedTranslations.append(translator);
@@ -202,7 +202,7 @@ QTranslator* Localization::loadTranslationFile(const QString& translationName, c
 	if (!bLoaded)
 	{
 		delete pTranslator;
-		pTranslator = NULL;
+		pTranslator = nullptr;
 	}
 	return pTranslator;
 }

@@ -39,7 +39,7 @@ class ColorButton : public QPushButton
 	Q_OBJECT
 
 	public:
-		ColorButton(QWidget* parent = NULL);
+		ColorButton(QWidget* parent = nullptr);
 
 		QString colorHtml() const;
 		const QColor& colorQ() const { return color; }

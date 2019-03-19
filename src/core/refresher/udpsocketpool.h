@@ -29,9 +29,6 @@
 
 // Qt4 compatilbity, not really be the best place for this but the days of Qt4
 // support should be numbered.
-#if QT_VERSION < 0x050000
-#define Q_NULLPTR NULL
-#endif
 
 class UdpSocketPool : public QObject
 {
@@ -47,7 +44,7 @@ public:
 	void releaseAll();
 
 	bool hasPendingDatagrams() const;
-	QByteArray readNextDatagram(QHostAddress *address = Q_NULLPTR, quint16 *port = Q_NULLPTR);
+	QByteArray readNextDatagram(QHostAddress *address = nullptr, quint16 *port = nullptr);
 
 signals:
 	void readyRead();

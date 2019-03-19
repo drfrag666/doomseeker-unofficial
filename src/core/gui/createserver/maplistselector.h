@@ -46,7 +46,7 @@ class MapListSelector : public QDialog
 	Q_OBJECT;
 
 	public:
-		MapListSelector(QWidget* parent = NULL);
+		MapListSelector(QWidget* parent = nullptr);
 		~MapListSelector();
 
 		/**

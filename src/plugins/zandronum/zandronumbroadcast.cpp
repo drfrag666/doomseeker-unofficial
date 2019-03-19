@@ -82,7 +82,7 @@ DPointeredNoCopy(ZandronumBroadcast)
 ZandronumBroadcast::ZandronumBroadcast()
 {
 	d->bindFailureLogged = false;
-	d->socket = NULL;
+	d->socket = nullptr;
 }
 
 ZandronumBroadcast::~ZandronumBroadcast()

@@ -38,7 +38,7 @@ class CommonGUI
 		 * @brief Calls QInputDialog::getText().
 		 */
 		static QString askString(const QString& title, const QString& label,
-			bool* ok = NULL, const QString& defaultString = "");
+			bool* ok = nullptr, const QString& defaultString = "");
 
 		/**
 		 * Reads items from a QListView with QStandardItemModel and pulls the

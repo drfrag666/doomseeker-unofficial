@@ -60,7 +60,7 @@ class MAIN_EXPORT EngineConfigPage : public ConfigPage
 		 * @param parent
 		 *     Parent widget, most likely configuration dialog box.
 		 */
-		EngineConfigPage(EnginePlugin *plugin, IniSection &cfg, QWidget *parent=NULL);
+		EngineConfigPage(EnginePlugin *plugin, IniSection &cfg, QWidget *parent=nullptr);
 		virtual ~EngineConfigPage();
 
 		QIcon icon() const;

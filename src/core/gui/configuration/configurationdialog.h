@@ -38,7 +38,7 @@ class ConfigurationDialog : public QDialog
 	Q_OBJECT
 
 	public:
-		ConfigurationDialog(QWidget* parent = NULL);
+		ConfigurationDialog(QWidget* parent = nullptr);
 		~ConfigurationDialog();
 
 		/**
@@ -46,14 +46,14 @@ class ConfigurationDialog : public QDialog
 		 *
 		 * @param rootItem
 		 *     Pointer to the root node of the tree to which the new box
-		 *     will be attached. If NULL, the standard model root is used.
+		 *     will be attached. If nullptr, the standard model root is used.
 		 * @param configPage
 		 *     Pointer to ConfigPage instance.
 		 * @param position
 		 *     Passing <0 will use appendRow method, otherwise the new
 		 *     tree view node will be inserted at specified position.
 		 *
-		 * @return NULL if ConfigPage was not added. Pointer to a new
+		 * @return nullptr if ConfigPage was not added. Pointer to a new
 		 * tree node if operation was successful.
 		 */
 		virtual QStandardItem* addConfigPage(QStandardItem* rootItem, ConfigPage* configPage, int position = -1);
@@ -66,14 +66,14 @@ class ConfigurationDialog : public QDialog
 		 *
 		 * @param rootItem
 		 *     Pointer to the root node of the tree to which the new label
-		 *     will be attached. If NULL, the standard model root is used.
+		 *     will be attached. If nullptr, the standard model root is used.
 		 * @param label
 		 *     Label for the new node.
 		 * @param position
 		 *     Passing <0 will use appendRow method, otherwise the new
 		 *     tree view node will be inserted at specified position.
 		 *
-		 * @return Newly created options tree view node. NULL if rootItem
+		 * @return Newly created options tree view node. nullptr if rootItem
 		 * was not a member of the tree view.
 		 */
 		QStandardItem* addLabel(QStandardItem* rootItem, const QString& label, int position = -1);
@@ -92,7 +92,7 @@ class ConfigurationDialog : public QDialog
 		QTreeView* optionsTree();
 
 		/**
-		 * @param widget - hide currently displayed box if NULL.
+		 * @param widget - hide currently displayed box if nullptr.
 		 */
 		void showConfigPage(ConfigPage* widget);
 

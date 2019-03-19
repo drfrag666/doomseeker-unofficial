@@ -56,7 +56,7 @@ QStandardItem* DoomseekerConfigurationDialog::addConfigPage(QStandardItem* rootI
 {
 	QStandardItem* pItem = ConfigurationDialog::addConfigPage(rootItem, configPage, position);
 
-	if (pItem != NULL)
+	if (pItem != nullptr)
 	{
 		connect(configPage, SIGNAL( appearanceChanged() ),
 			SLOT( appearanceChangedSlot() ) );
@@ -69,7 +69,7 @@ QStandardItem* DoomseekerConfigurationDialog::addConfigPage(QStandardItem* rootI
 
 bool DoomseekerConfigurationDialog::addEngineConfiguration(ConfigPage* configPage)
 {
-	if (enginesRoot != NULL)
+	if (enginesRoot != nullptr)
 	{
 		return addConfigPage(enginesRoot, configPage);
 	}
@@ -89,16 +89,16 @@ void DoomseekerConfigurationDialog::restartNeededSlot()
 
 void DoomseekerConfigurationDialog::appendFilePathsConfigurationBoxes()
 {
-	QStandardItem *itemFilePaths = addConfigPage(NULL, new CFGFilePaths(this));
+	QStandardItem *itemFilePaths = addConfigPage(nullptr, new CFGFilePaths(this));
 	addConfigPage(itemFilePaths, new CFGWadAlias(this));
 }
 
 void DoomseekerConfigurationDialog::appendWadseekerConfigurationBoxes()
 {
-	QStandardItem* wadseekerRoot = addLabel(NULL, tr("Wadseeker"));
+	QStandardItem* wadseekerRoot = addLabel(nullptr, tr("Wadseeker"));
 	wadseekerRoot->setIcon(QIcon(":/icons/get-wad.png"));
 
-	ConfigPage* configPage = NULL;
+	ConfigPage* configPage = nullptr;
 
 	configPage = new CFGWadseekerAppearance(this);
 	addConfigPage(wadseekerRoot, configPage);
@@ -128,26 +128,26 @@ void DoomseekerConfigurationDialog::doSaveSettings()
 
 void DoomseekerConfigurationDialog::initOptionsList()
 {
-	enginesRoot = addLabel(NULL, tr("Games"));
+	enginesRoot = addLabel(nullptr, tr("Games"));
 	enginesRoot->setIcon(QIcon(":/icons/joystick.png"));
 
-	ConfigPage* configPage = NULL;
+	ConfigPage* configPage = nullptr;
 
 	configPage = new CFGAppearance(this);
-	addConfigPage(NULL, configPage);
+	addConfigPage(nullptr, configPage);
 
 	configPage = new CFGAutoUpdates(this);
-	addConfigPage(NULL, configPage);
+	addConfigPage(nullptr, configPage);
 
 	configPage = new CFGCustomServers(this);
-	addConfigPage(NULL, configPage);
+	addConfigPage(nullptr, configPage);
 	customServersCfgBox = configPage;
 
 	configPage = new CFGServerPasswords(this);
-	addConfigPage(NULL, configPage);
+	addConfigPage(nullptr, configPage);
 
 	configPage = new CFGQuery(this);
-	addConfigPage(NULL, configPage);
+	addConfigPage(nullptr, configPage);
 
 	appendFilePathsConfigurationBoxes();
 	appendWadseekerConfigurationBoxes();
@@ -157,11 +157,11 @@ void DoomseekerConfigurationDialog::initOptionsList()
 
 bool DoomseekerConfigurationDialog::isOpen()
 {
-	if (gApp->mainWindow() == NULL)
+	if (gApp->mainWindow() == nullptr)
 		return false;
 	foreach(QObject *obj, gApp->mainWindow()->children())
 	{
-		if (qobject_cast<DoomseekerConfigurationDialog*>(obj) != NULL)
+		if (qobject_cast<DoomseekerConfigurationDialog*>(obj) != nullptr)
 			return true;
 	}
 	return false;
@@ -172,7 +172,7 @@ void DoomseekerConfigurationDialog::openConfiguration(QWidget *parent, const Eng
 	DoomseekerConfigurationDialog configDialog(parent);
 
 	MainWindow *mainWindow = gApp->mainWindow();
-	if (mainWindow != NULL)
+	if (mainWindow != nullptr)
 		mainWindow->connect(&configDialog, SIGNAL(appearanceChanged()), SLOT(updateDynamicAppearance()));
 
 	configDialog.initOptionsList();
@@ -190,7 +190,7 @@ void DoomseekerConfigurationDialog::openConfiguration(QWidget *parent, const Eng
 	DoomseekerConfig::AutoUpdates::UpdateMode updateModeBefore = gConfig.autoUpdates.updateMode;
 	UpdateChannel updateChannelBefore = UpdateChannel::fromName(gConfig.autoUpdates.updateChannelName);
 	// Stop the auto refresh timer during configuration.
-	if (mainWindow != NULL)
+	if (mainWindow != nullptr)
 		mainWindow->stopAutoRefreshTimer();
 
 	if(openPlugin)
@@ -199,7 +199,7 @@ void DoomseekerConfigurationDialog::openConfiguration(QWidget *parent, const Eng
 	configDialog.exec();
 
 	// Do some cleanups after config box finishes.
-	if (mainWindow != NULL)
+	if (mainWindow != nullptr)
 		mainWindow->initAutoRefreshTimer();
 
 	// If update channel or update mode changed then we should discard the
@@ -208,13 +208,13 @@ void DoomseekerConfigurationDialog::openConfiguration(QWidget *parent, const Eng
 	if (updateChannelBefore != updateChannelAfter
 		|| updateModeBefore != gConfig.autoUpdates.updateMode)
 	{
-		if (mainWindow != NULL)
+		if (mainWindow != nullptr)
 			mainWindow->abortAutoUpdater();
 		gConfig.autoUpdates.bPerformUpdateOnNextRun = false;
 		gConfig.saveToFile();
 	}
 
-	if (mainWindow != NULL)
+	if (mainWindow != nullptr)
 		mainWindow->finishConfiguration(configDialog, !bLookupHostsSettingBefore && gConfig.doomseeker.bLookupHosts);
 }
 

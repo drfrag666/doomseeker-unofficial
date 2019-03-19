@@ -34,7 +34,7 @@ class MasterResponder : public QObject
 	Q_OBJECT
 
 	public:
-		MasterResponder(QObject* parent = NULL);
+		MasterResponder(QObject* parent = nullptr);
 		~MasterResponder();
 
 		bool bind(unsigned short port);

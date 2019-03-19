@@ -95,7 +95,7 @@ void CFGIRCNetworks::cleanUpTable()
 void CFGIRCNetworks::editButtonClicked()
 {
 	IRCNetworkEntity* pNetwork = this->selectedNetwork();
-	if (pNetwork != NULL)
+	if (pNetwork != nullptr)
 	{
 		CFGIRCDefineNetworkDialog dialog(*pNetwork, this);
 		dialog.setExistingNetworks(networksAsQList());
@@ -259,7 +259,7 @@ IRCNetworkEntity* CFGIRCNetworks::selectedNetwork()
 		return network(index.row());
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 int CFGIRCNetworks::selectedRow()

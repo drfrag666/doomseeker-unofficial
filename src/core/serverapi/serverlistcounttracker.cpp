@@ -39,7 +39,7 @@ public:
 
 	bool isPassingPluginFilter(const ServerPtr &server) const
 	{
-		return plugin == NULL || server->plugin() == plugin;
+		return plugin == nullptr || server->plugin() == plugin;
 	}
 };
 DPointered(ServerListCountTracker)
@@ -47,7 +47,7 @@ DPointered(ServerListCountTracker)
 ServerListCountTracker::ServerListCountTracker(QObject *parent)
 : QObject(parent)
 {
-	d->plugin = NULL;
+	d->plugin = nullptr;
 	d->hasRegisterBeenCalled = false;
 }
 

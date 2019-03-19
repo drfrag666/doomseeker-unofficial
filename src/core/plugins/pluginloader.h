@@ -57,7 +57,7 @@ class PluginLoader
 				virtual ~Plugin();
 
 				/**
-				 * @brief Returns a pointer to the requested function or NULL.
+				 * @brief Returns a pointer to the requested function or nullptr.
 				 */
 				void *function(const char* func) const;
 				void initConfig();
@@ -107,7 +107,7 @@ class PluginLoader
 		 * @brief Convenience method - calls Plugin::info() for specified
 		 *        plugin.
 		 *
-		 * @return NULL can be returned if plugin with given index is not
+		 * @return nullptr can be returned if plugin with given index is not
 		 * present.
 		 */
 		EnginePlugin *info(int pluginIndex) const;
@@ -136,7 +136,7 @@ class PluginLoader
 
 		const QList<Plugin*> &plugins() const;
 		/**
-		 * @brief Returns the requested plugin or NULL.
+		 * @brief Returns the requested plugin or nullptr.
 		 */
 		const Plugin* plugin(unsigned int index) const;
 
@@ -147,7 +147,7 @@ class PluginLoader
 		void resetPluginsDirectory(const QString& pluginsDirectory);
 
 		/**
-		 * @brief Returns the requested plugin or NULL.
+		 * @brief Returns the requested plugin or nullptr.
 		 */
 		const Plugin* operator[] (unsigned int index) const;
 

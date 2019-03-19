@@ -40,7 +40,7 @@ DPointered(DataStreamOperatorWrapper)
 
 DataStreamOperatorWrapper::DataStreamOperatorWrapper(QDataStream* stream)
 {
-	assert(stream != NULL);
+	assert(stream != nullptr);
 	d->s = stream;
 }
 

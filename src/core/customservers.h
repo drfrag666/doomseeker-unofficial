@@ -79,7 +79,7 @@ class CustomServers : public MasterClient
 		static bool isServerPinned(const CustomServerInfo &serverInfo);
 		static void setServerPinned(const CustomServerInfo &serverInfo, bool pinned);
 
-		const EnginePlugin *plugin() const { return NULL; }
+		const EnginePlugin *plugin() const { return nullptr; }
 
 		/**
 		 * Convenience method - tries to read config seeking for

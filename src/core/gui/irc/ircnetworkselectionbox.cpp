@@ -239,13 +239,13 @@ bool IRCNetworkSelectionBox::validate()
 
 	if (connectionInfo.nick.isEmpty())
 	{
-		QMessageBox::warning(NULL, ERROR_TITLE, tr("You must specify a nick."));
+		QMessageBox::warning(nullptr, ERROR_TITLE, tr("You must specify a nick."));
 		return false;
 	}
 
 	if (connectionInfo.networkEntity.address().isEmpty())
 	{
-		QMessageBox::warning(NULL, ERROR_TITLE, tr("You must specify a network address."));
+		QMessageBox::warning(nullptr, ERROR_TITLE, tr("You must specify a network address."));
 		return false;
 	}
 

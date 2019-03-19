@@ -36,12 +36,12 @@ DClass<Application>
 
 DPointered(Application)
 
-Application *Application::staticInstance = NULL;
+Application *Application::staticInstance = nullptr;
 
 Application::Application(int &argc, char **argv)
 : QApplication(argc, argv)
 {
-	d->mainWindow = NULL;
+	d->mainWindow = nullptr;
 	d->running = true;
 	setApplicationName(NAME);
 
@@ -58,11 +58,11 @@ Application::~Application()
 
 void Application::deinit()
 {
-	if (staticInstance != NULL)
+	if (staticInstance != nullptr)
 	{
 		staticInstance->destroy();
 		delete staticInstance;
-		staticInstance = NULL;
+		staticInstance = nullptr;
 	}
 }
 
@@ -78,18 +78,18 @@ QIcon Application::icon()
 
 bool Application::isInit()
 {
-	return staticInstance != NULL;
+	return staticInstance != nullptr;
 }
 
 void Application::init(int &argc, char **argv)
 {
-	assert(staticInstance == NULL && "Cannot initialize Application twice!");
+	assert(staticInstance == nullptr && "Cannot initialize Application twice!");
 	staticInstance = new Application(argc, argv);
 }
 
 Application *Application::instance()
 {
-	assert(staticInstance != NULL);
+	assert(staticInstance != nullptr);
 	return staticInstance;
 }
 

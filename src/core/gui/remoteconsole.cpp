@@ -53,7 +53,7 @@ RemoteConsole::RemoteConsole(QWidget *parent) : QMainWindow(parent)
 	// Prompt for connection info & password.
 	RconPasswordDialog *dlg = new RconPasswordDialog(this, true);
 	connect(dlg, SIGNAL(rejected()), this, SLOT(close()));
-	while(d->protocol == NULL)
+	while(d->protocol == nullptr)
 	{
 		int ret = dlg->exec();
 		if(ret == QDialog::Accepted)
@@ -70,7 +70,7 @@ RemoteConsole::RemoteConsole(QWidget *parent) : QMainWindow(parent)
 			}
 			d->protocol = server->rcon();
 
-			if(d->protocol != NULL)
+			if(d->protocol != nullptr)
 			{
 				d->server = server;
 				setWindowIcon(d->server->icon());
@@ -100,7 +100,7 @@ RemoteConsole::RemoteConsole(ServerPtr server, QWidget *parent)
 	setWindowIcon(server->icon());
 	changeServerName(server->name());
 
-	if (d->protocol != NULL)
+	if (d->protocol != nullptr)
 	{
 		standardInit();
 		showPasswordDialog();
@@ -120,7 +120,7 @@ RemoteConsole::~RemoteConsole()
 void RemoteConsole::construct()
 {
 	d->setupUi(this);
-	d->protocol = NULL;
+	d->protocol = nullptr;
 	d->serverConsole = new ServerConsole();
 	d->console->layout()->addWidget(d->serverConsole);
 	connect(d->actionDisconnect, SIGNAL(triggered()), this, SLOT(disconnectFromServer()));

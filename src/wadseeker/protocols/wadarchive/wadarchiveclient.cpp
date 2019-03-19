@@ -76,18 +76,18 @@ WadArchiveClient::WadArchiveClient()
 {
 	d = new PrivData();
 	d->nam = new QNetworkAccessManager();
-	d->replyName = NULL;
-	d->replyChecksum = NULL;
+	d->replyName = nullptr;
+	d->replyChecksum = nullptr;
 }
 
 WadArchiveClient::~WadArchiveClient()
 {
 	abort();
-	if (d->replyName != NULL)
+	if (d->replyName != nullptr)
 	{
 		d->replyName->deleteLater();
 	}
-	if (d->replyChecksum != NULL)
+	if (d->replyChecksum != nullptr)
 	{
 		d->replyChecksum->deleteLater();
 	}
@@ -98,11 +98,11 @@ WadArchiveClient::~WadArchiveClient()
 void WadArchiveClient::abort()
 {
 	d->queue.clear();
-	if (d->replyName != NULL)
+	if (d->replyName != nullptr)
 	{
 		d->replyName->abort();
 	}
-	if (d->replyChecksum != NULL)
+	if (d->replyChecksum != nullptr)
 	{
 		d->replyChecksum->abort();
 	}
@@ -128,7 +128,7 @@ void WadArchiveClient::enqueue(const WadDownloadInfo &wad)
 
 bool WadArchiveClient::isWorking() const
 {
-	return !d->queue.isEmpty() || d->replyName != NULL || d->replyChecksum != NULL;
+	return !d->queue.isEmpty() || d->replyName != nullptr || d->replyChecksum != nullptr;
 }
 
 void WadArchiveClient::setUserAgent(const QString &userAgent)
@@ -180,9 +180,9 @@ void WadArchiveClient::onQueryFinished()
 		}
 
 		d->replyName->deleteLater();
-		d->replyName = NULL;
+		d->replyName = nullptr;
 		d->replyChecksum->deleteLater();
-		d->replyChecksum = NULL;
+		d->replyChecksum = nullptr;
 		startNextInQueue();
 	}
 }

@@ -37,7 +37,7 @@ class DndFileSystemListView : public QListView
 	Q_OBJECT
 
 	public:
-		DndFileSystemListView(QWidget* pParent = NULL);
+		DndFileSystemListView(QWidget* pParent = nullptr);
 
 	signals:
 		void fileSystemPathDropped(const QString& path);

@@ -110,12 +110,12 @@ const QString MainWindow::HELP_SITE_URL = "https://doomseeker.drdteam.org/help";
 class QueryMenuAction : public QAction
 {
 	public:
-		QueryMenuAction(const EnginePlugin *plugin, ServersStatusWidget *statusWidget, QObject* parent = NULL)
+		QueryMenuAction(const EnginePlugin *plugin, ServersStatusWidget *statusWidget, QObject* parent = nullptr)
 		:QAction(parent)
 		{
 			this->pPlugin = plugin;
 
-			if (plugin != NULL)
+			if (plugin != nullptr)
 			{
 				connect(this, SIGNAL( toggled(bool) ), plugin->data()->masterClient,
 					SLOT( setEnabled(bool) ) );
@@ -135,9 +135,9 @@ class QueryMenuAction : public QAction
 DClass<MainWindow> : public Ui::MainWindowWnd
 {
 public:
-	PrivData() : bTotalRefreshInProcess(false), buddiesList(NULL),
-	bWasMaximized(false), bWantToQuit(false), logDock(NULL),
-	masterManager(NULL), trayIcon(NULL), trayIconMenu(NULL)
+	PrivData() : bTotalRefreshInProcess(false), buddiesList(nullptr),
+	bWasMaximized(false), bWantToQuit(false), logDock(nullptr),
+	masterManager(nullptr), trayIcon(nullptr), trayIconMenu(nullptr)
 	{
 	}
 
@@ -202,9 +202,9 @@ DPointeredNoCopy(MainWindow)
 
 MainWindow::MainWindow(QApplication* application, int argc, char** argv)
 {
-	d->autoUpdater = NULL;
-	d->mainDock = NULL;
-	d->connectionHandler = NULL;
+	d->autoUpdater = nullptr;
+	d->mainDock = nullptr;
+	d->connectionHandler = nullptr;
 	d->updateChannelOnUpdateStart = new UpdateChannel();
 	d->updaterInstallerErrorCode = 0;
 
@@ -313,11 +313,11 @@ MainWindow::~MainWindow()
 	gConfig.doomseeker.mainWindowGeometry = saveGeometry();
 	gConfig.doomseeker.mainWindowState = saveState().toBase64();
 
-	if (d->updateChannelOnUpdateStart != NULL)
+	if (d->updateChannelOnUpdateStart != nullptr)
 	{
 		delete d->updateChannelOnUpdateStart;
 	}
-	if (d->autoUpdater != NULL)
+	if (d->autoUpdater != nullptr)
 	{
 		d->autoUpdater->disconnect();
 		delete d->autoUpdater;
@@ -338,27 +338,27 @@ MainWindow::~MainWindow()
 		}
 	}
 
-	if (d->trayIcon != NULL)
+	if (d->trayIcon != nullptr)
 	{
 		d->trayIcon->setVisible(false);
 		delete d->trayIcon;
-		d->trayIcon = NULL;
+		d->trayIcon = nullptr;
 	}
 
-	if (d->trayIconMenu != NULL)
+	if (d->trayIconMenu != nullptr)
 	{
 		delete d->trayIconMenu;
-		d->trayIconMenu = NULL;
+		d->trayIconMenu = nullptr;
 	}
 
 	delete d->serverList;
 
-	if(d->masterManager != NULL)
+	if(d->masterManager != nullptr)
 	{
 		delete d->masterManager;
 	}
 
-	if (d->ip2cLoader != NULL)
+	if (d->ip2cLoader != nullptr)
 	{
 		delete d->ip2cLoader;
 	}
@@ -366,7 +366,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::abortAutoUpdater()
 {
-	if (d->autoUpdater != NULL)
+	if (d->autoUpdater != nullptr)
 	{
 		d->autoUpdater->abort();
 	}
@@ -407,7 +407,7 @@ void MainWindow::changeEvent(QEvent* event)
 
 void MainWindow::checkForUpdates(bool bUserTriggered)
 {
-	if (d->autoUpdater != NULL)
+	if (d->autoUpdater != nullptr)
 	{
 		if (d->autoUpdater->isRunning())
 		{
@@ -418,7 +418,7 @@ void MainWindow::checkForUpdates(bool bUserTriggered)
 		else
 		{
 			delete d->autoUpdater;
-			d->autoUpdater = NULL;
+			d->autoUpdater = nullptr;
 		}
 	}
 	gLog << tr("Removing old update packages from local temporary space.");
@@ -485,7 +485,7 @@ void MainWindow::closeEvent(QCloseEvent* event)
 	// Check if tray icon is available and if we want to minimize to tray icon
 	// when 'X' button is pressed. Real quit requests are handled by
 	// quitProgram() method. This method sets d->bWantToQuit to true.
-	if (d->trayIcon != NULL && gConfig.doomseeker.bCloseToTrayIcon && !d->bWantToQuit)
+	if (d->trayIcon != nullptr && gConfig.doomseeker.bCloseToTrayIcon && !d->bWantToQuit)
 	{
 		d->bWasMaximized = isMaximized();
 		event->ignore();
@@ -499,7 +499,7 @@ void MainWindow::closeEvent(QCloseEvent* event)
 
 void MainWindow::confirmUpdateInstallation()
 {
-	assert(d->autoUpdater != NULL && "MainWindow::confirmUpdateInstallation()");
+	assert(d->autoUpdater != nullptr && "MainWindow::confirmUpdateInstallation()");
 	d->updatesConfirmationWidget->hide();
 	d->autoUpdater->confirmDownloadAndInstall();
 }
@@ -513,7 +513,7 @@ void MainWindow::connectIP2CLoader(IP2CLoader* loader)
 
 void MainWindow::discardUpdates()
 {
-	assert(d->autoUpdater != NULL && "MainWindow::confirmUpdateInstallation()");
+	assert(d->autoUpdater != nullptr && "MainWindow::confirmUpdateInstallation()");
 	d->updatesConfirmationWidget->hide();
 	// User rejected this update so let's add the packages
 	// to the ignore list so user won't be nagged again.
@@ -702,7 +702,7 @@ void MainWindow::finishConfiguration(DoomseekerConfigurationDialog &configDialog
 
 void MainWindow::finishedQueryingMaster(MasterClient* master)
 {
-	if (master == NULL)
+	if (master == nullptr)
 	{
 		return;
 	}
@@ -933,19 +933,19 @@ void MainWindow::initTrayIcon()
 	bool isEnabled = gConfig.doomseeker.bUseTrayIcon;
 	if (!isEnabled || !QSystemTrayIcon::isSystemTrayAvailable())
 	{
-		if (d->trayIcon != NULL)
+		if (d->trayIcon != nullptr)
 		{
 			delete d->trayIcon;
-			d->trayIcon = NULL;
+			d->trayIcon = nullptr;
 		}
 
-		if (d->trayIconMenu != NULL)
+		if (d->trayIconMenu != nullptr)
 		{
 			delete d->trayIconMenu;
-			d->trayIconMenu = NULL;
+			d->trayIconMenu = nullptr;
 		}
 	}
-	else if (d->trayIcon == NULL)
+	else if (d->trayIcon == nullptr)
 	{
 		QAction* trayAction;
 		d->trayIconMenu = new QMenu(this);
@@ -976,16 +976,16 @@ void MainWindow::ip2cJobsFinished()
 	d->serverList->updateCountryFlags();
 	d->ip2cUpdateProgressBar->hide();
 
-	if (d->ip2cLoader != NULL)
+	if (d->ip2cLoader != nullptr)
 	{
 		delete d->ip2cLoader;
-		d->ip2cLoader = NULL;
+		d->ip2cLoader = nullptr;
 	}
 }
 
 void MainWindow::ip2cStartUpdate()
 {
-	if (d->ip2cLoader != NULL)
+	if (d->ip2cLoader != nullptr)
 	{
 		// If update is currently in progress then prevent re-starting.
 		return;
@@ -1053,7 +1053,7 @@ void MainWindow::menuBuddies()
 void MainWindow::menuCreateServer()
 {
 	// This object will auto-delete on close.
-	CreateServerDialog* dialog = new CreateServerDialog(NULL);
+	CreateServerDialog* dialog = new CreateServerDialog(nullptr);
 	dialog->setWindowIcon(this->windowIcon());
 	dialog->show();
 }
@@ -1089,7 +1089,7 @@ void MainWindow::menuIRCOptions()
 	dialog.initOptionsList();
 	dialog.exec();
 
-	if (d->ircDock != NULL)
+	if (d->ircDock != nullptr)
 	{
 		d->ircDock->applyAppearanceSettings();
 
@@ -1140,7 +1140,7 @@ void MainWindow::menuWadSeeker()
 {
 	if (gWadseekerShow->checkWadseekerValidity(this))
 	{
-		WadseekerInterface *wadseeker = WadseekerInterface::create(NULL);
+		WadseekerInterface *wadseeker = WadseekerInterface::create(nullptr);
 		wadseeker->setAttribute(Qt::WA_DeleteOnClose);
 		wadseeker->show();
 	}
@@ -1158,7 +1158,7 @@ QProgressBar* MainWindow::mkStdProgressBarForStatusBar()
 void MainWindow::notifyFirstRun()
 {
 	// On first run prompt configuration box.
-	QMessageBox::information(NULL, tr("Welcome to Doomseeker"),
+	QMessageBox::information(nullptr, tr("Welcome to Doomseeker"),
 		tr("Before you start browsing for servers, please ensure that Doomseeker is properly configured."));
 	d->menuActionConfigure->trigger();
 }
@@ -1200,7 +1200,7 @@ void MainWindow::onAutoUpdaterFinish()
 	d->autoUpdaterStatusBarWidget->hide();
 	d->updatesConfirmationWidget->hide();
 	d->autoUpdater->deleteLater();
-	d->autoUpdater = NULL;
+	d->autoUpdater = nullptr;
 }
 
 void MainWindow::onAutoUpdaterOverallProgress(int current, int total,
@@ -1255,7 +1255,7 @@ void MainWindow::postInitAppStartup()
 	{
 		// There are no plugins so something is really bad.
 		// Display error message.
-		QMessageBox::critical(NULL, tr("Doomseeker critical error"),
+		QMessageBox::critical(nullptr, tr("Doomseeker critical error"),
 			tr("Doomseeker was unable to find any plugin libraries.\n"
 				"Although the application will still work it will not be possible "
 				"to fetch any server info or launch any game.\n\n"
@@ -1268,9 +1268,9 @@ void MainWindow::postInitAppStartup()
 
 QueryMenuAction* MainWindow::queryMenuActionForPlugin(const EnginePlugin* plugin)
 {
-	if (plugin == NULL)
+	if (plugin == nullptr)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	if (d->queryMenuPorts.contains(plugin))
@@ -1278,7 +1278,7 @@ QueryMenuAction* MainWindow::queryMenuActionForPlugin(const EnginePlugin* plugin
 		return d->queryMenuPorts[plugin];
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 void MainWindow::quitProgram()
@@ -1346,10 +1346,10 @@ void MainWindow::runGame(const ServerPtr &server)
 
 void MainWindow::setQueryPluginEnabled(const EnginePlugin* plugin, bool bEnabled)
 {
-	assert(plugin != NULL);
+	assert(plugin != nullptr);
 
 	QueryMenuAction* pAction = queryMenuActionForPlugin(plugin);
-	if (pAction != NULL)
+	if (pAction != nullptr)
 	{
 		pAction->setChecked(bEnabled);
 		if (plugin->data()->hasMasterClient())
@@ -1471,7 +1471,7 @@ void MainWindow::showInstallFreedoomDialog()
 		d->freedoomDialog->activateWindow();
 		return;
 	}
-	FreedoomDialog *dialog = new FreedoomDialog(NULL);
+	FreedoomDialog *dialog = new FreedoomDialog(nullptr);
 	dialog->setAttribute(Qt::WA_DeleteOnClose);
 	dialog->show();
 	d->freedoomDialog = dialog;
@@ -1553,7 +1553,7 @@ void MainWindow::stopAutoRefreshTimer()
 void MainWindow::togglePluginQueryEnabled(const EnginePlugin *plugin)
 {
 	QueryMenuAction* pAction = queryMenuActionForPlugin(plugin);
-	assert(pAction != NULL);
+	assert(pAction != nullptr);
 
 	setQueryPluginEnabled(plugin, !pAction->isChecked());
 }
@@ -1629,7 +1629,7 @@ void MainWindow::updateRefreshProgress()
 
 void MainWindow::updateTrayIconTooltip(const ServerListCount &count)
 {
-	if (d->trayIcon != NULL)
+	if (d->trayIcon != nullptr)
 	{
 		QString tip;
 		tip += tr("Generic servers: %1\n").arg(count.numGenericServers);

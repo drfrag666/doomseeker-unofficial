@@ -66,7 +66,7 @@ void WadRetriever::abort()
 void WadRetriever::addMirrorUrls(const WadDownloadInfo& wad, const QList<QUrl>& urls)
 {
 	WadRetrieverInfo* pRetrieverInfo = findRetrieverInfo(wad);
-	if (pRetrieverInfo != NULL)
+	if (pRetrieverInfo != nullptr)
 	{
 		// We need to filter out URLs that were used globally.
 		QList<QUrl> filteredUrlList;
@@ -89,7 +89,7 @@ void WadRetriever::addMirrorUrls(const WadDownloadInfo& wad, const QList<QUrl>& 
 void WadRetriever::addUrl(const WadDownloadInfo& wad, const QUrl& url)
 {
 	WadRetrieverInfo* pRetrieverInfo = findRetrieverInfo(wad);
-	if (pRetrieverInfo != NULL)
+	if (pRetrieverInfo != nullptr)
 	{
 		if (!hasUrl(*pRetrieverInfo, url))
 		{
@@ -154,7 +154,7 @@ WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const WadDownloa
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const QString& wadName)
@@ -169,7 +169,7 @@ WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const QString& w
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const NetworkReply* pNetworkReply)
@@ -178,7 +178,7 @@ WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const NetworkRep
 	for (it = d.wads.begin(); it != d.wads.end(); ++it)
 	{
 		WadRetrieverInfo& wadInfo = **it;
-		if (wadInfo.pNetworkReply != NULL)
+		if (wadInfo.pNetworkReply != nullptr)
 		{
 			if (*wadInfo.pNetworkReply == *pNetworkReply)
 			{
@@ -187,7 +187,7 @@ WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const NetworkRep
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 const WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const WadDownloadInfo& wad) const
@@ -202,7 +202,7 @@ const WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const WadD
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 const WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const QString& wadName) const
@@ -217,7 +217,7 @@ const WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const QStr
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 const WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const NetworkReply* pNetworkReply) const
@@ -226,7 +226,7 @@ const WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const Netw
 	for (it = d.wads.begin(); it != d.wads.end(); ++it)
 	{
 		WadRetrieverInfo& wadInfo = **it;
-		if (wadInfo.pNetworkReply != NULL)
+		if (wadInfo.pNetworkReply != nullptr)
 		{
 			if (*wadInfo.pNetworkReply == *pNetworkReply)
 			{
@@ -235,7 +235,7 @@ const WadRetriever::WadRetrieverInfo* WadRetriever::findRetrieverInfo(const Netw
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 QList< WadRetriever::WadRetrieverInfo* > WadRetriever::getAllCurrentlyRunningDownloadsInfos() const
@@ -245,7 +245,7 @@ QList< WadRetriever::WadRetrieverInfo* > WadRetriever::getAllCurrentlyRunningDow
 	QList< WadRetrieverInfo* >::const_iterator it;
 	for (it = d.wads.begin(); it != d.wads.end(); ++it)
 	{
-		if ((*it)->pNetworkReply != NULL)
+		if ((*it)->pNetworkReply != nullptr)
 		{
 			list << (*it);
 		}
@@ -309,7 +309,7 @@ bool WadRetriever::isDownloadingWad(const WadDownloadInfo& wad) const
 {
 	const WadRetrieverInfo* pInfo = findRetrieverInfo(wad);
 
-	return pInfo != NULL && pInfo->pNetworkReply != NULL;
+	return pInfo != nullptr && pInfo->pNetworkReply != nullptr;
 }
 
 bool WadRetriever::isUrlAllowedToDownloadATM(const QUrl& url) const
@@ -330,7 +330,7 @@ bool WadRetriever::isUrlAllowedToDownloadATM(const QUrl& url) const
 void WadRetriever::networkQueryDownloadProgress(NetworkReply* pReply, qint64 current, qint64 total)
 {
 	WadRetrieverInfo* pInfo = findRetrieverInfo(pReply);
-	if (pInfo != NULL) // if NULL then WTF
+	if (pInfo != nullptr)
 	{
 		emit wadDownloadProgress(*pInfo->wad, current, total);
 	}
@@ -353,7 +353,7 @@ void WadRetriever::networkQueryError(NetworkReply* pReply, QNetworkReply::Networ
 void WadRetriever::networkQueryFinished(NetworkReply* pReply)
 {
 	WadRetrieverInfo* pInfo = findRetrieverInfo(pReply);
-	if (pInfo != NULL)
+	if (pInfo != nullptr)
 	{
 		QUrl url = pReply->request().url();
 		if (url.isEmpty())
@@ -386,7 +386,7 @@ void WadRetriever::networkQueryFinished(NetworkReply* pReply)
 		emit wadDownloadFinished(*pInfo->wad);
 
 		// Clear for later reuse of pointer.
-		pInfo->pNetworkReply = NULL;
+		pInfo->pNetworkReply = nullptr;
 
 		QUrl possibleRedirectUrl = pReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
 		if (!possibleRedirectUrl.isEmpty()
@@ -423,7 +423,7 @@ int WadRetriever::numDownloadsPendingUrls() const
 	// Count each retriever info.
 	foreach (const WadRetrieverInfo* info, d.wads)
 	{
-		if (info->pNetworkReply == NULL &&
+		if (info->pNetworkReply == nullptr &&
 			info->downloadUrls->isEmpty())
 		{
 			++num;
@@ -587,7 +587,7 @@ void WadRetriever::setWads(const QList<WadDownloadInfo>& wads)
 void WadRetriever::skipCurrentUrl(const WadDownloadInfo& wad)
 {
 	WadRetrieverInfo* pInfo = findRetrieverInfo(wad);
-	if (pInfo != NULL && pInfo->pNetworkReply != NULL)
+	if (pInfo != nullptr && pInfo->pNetworkReply != nullptr)
 	{
 		pInfo->pNetworkReply->reply->abort();
 	}
@@ -675,7 +675,7 @@ void WadRetriever::tryInstall(const QString& filename, QIODevice* dataStream)
 #endif
 
 	// Install file directly.
-	if (findRetrieverInfo(filename) != NULL)
+	if (findRetrieverInfo(filename) != nullptr)
 	{
 		stream->seek(0);
 		WadInstaller::WadInstallerResult result = installer.installFile(filename, stream);
@@ -689,7 +689,7 @@ void WadRetriever::tryInstall(const QString& filename, QIODevice* dataStream)
 	QFileInfo fileInfo(filename);
 	stream->seek(0);
 	UnArchive* archive = UnArchive::openArchive(fileInfo, stream);
-	if (archive != NULL)
+	if (archive != nullptr)
 	{
 		WadInstaller::WadInstallerResult result = installer.installArchive(*archive, getWadDownloadInfoList());
 		delete archive;
@@ -724,7 +724,7 @@ bool WadRetriever::wasUrlUsed(const QUrl& url) const
 WadRetriever::WadRetrieverInfo::WadRetrieverInfo(const WadDownloadInfo& wad)
 {
 	this->downloadUrls = new URLProvider();
-	this->pNetworkReply = NULL;
+	this->pNetworkReply = nullptr;
 	this->wad = new WadDownloadInfo(wad);
 }
 
@@ -732,7 +732,7 @@ WadRetriever::WadRetrieverInfo::~WadRetrieverInfo()
 {
 	delete downloadUrls;
 
-	if (pNetworkReply != NULL)
+	if (pNetworkReply != nullptr)
 	{
 		pNetworkReply->deleteMembersLater();
 		delete pNetworkReply;
@@ -743,7 +743,7 @@ WadRetriever::WadRetrieverInfo::~WadRetrieverInfo()
 
 bool WadRetriever::WadRetrieverInfo::isAvailableForDownload() const
 {
-	return pNetworkReply == NULL && !this->downloadUrls->isEmpty();
+	return pNetworkReply == nullptr && !this->downloadUrls->isEmpty();
 }
 
 bool WadRetriever::WadRetrieverInfo::operator==(const WadDownloadInfo& wad) const

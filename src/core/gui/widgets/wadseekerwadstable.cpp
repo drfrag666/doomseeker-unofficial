@@ -261,7 +261,7 @@ double WadseekerWadsTable::totalDonePercentage() const
 	for (int i = 0; i < this->rowCount(); ++i)
 	{
 		const QProgressBar* pBar = (const QProgressBar*) this->cellWidget(i, IDX_PROGRESS_COLUMN);
-		if (pBar != NULL)
+		if (pBar != nullptr)
 		{
 			int val = pBar->value();
 			int max = pBar->maximum();

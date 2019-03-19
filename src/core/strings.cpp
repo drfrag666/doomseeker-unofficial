@@ -148,7 +148,7 @@ QString Strings::combinePaths(QString pathFront, QString pathEnd)
 {
 	QString combinedPath;
 
-	// One of them is NULL
+	// One of them is nullptr
 	if (pathFront.isEmpty())
 	{
 		return pathEnd;

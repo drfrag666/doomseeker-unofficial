@@ -60,7 +60,7 @@ void ServerDetailsDock::clear()
 void ServerDetailsDock::displaySelection(QList<ServerPtr> &selectedServers)
 {
 	ServerPtr server = selectServer(selectedServers);
-	if (server == NULL)
+	if (server == nullptr)
 	{
 		clear();
 		return;

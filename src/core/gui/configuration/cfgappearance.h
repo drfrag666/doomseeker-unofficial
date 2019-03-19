@@ -33,7 +33,7 @@ class CFGAppearance : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGAppearance(QWidget *parent=NULL);
+		CFGAppearance(QWidget *parent=nullptr);
 		~CFGAppearance();
 
 		QIcon icon() const { return QIcon(":/icons/color-fill.png"); }

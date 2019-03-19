@@ -36,7 +36,7 @@ class PasswordDlg : public QDialog
 	Q_OBJECT
 
 	public:
-		PasswordDlg(ServerCPtr server, QWidget *parent=NULL);
+		PasswordDlg(ServerCPtr server, QWidget *parent=nullptr);
 		~PasswordDlg();
 
 		QString connectPassword() const;

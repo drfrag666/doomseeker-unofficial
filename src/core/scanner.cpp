@@ -61,7 +61,7 @@ DClass<Scanner::ParserState>
 DPointered(Scanner::ParserState);
 DPointered(Scanner)
 
-void (*Scanner::messageHandler)(MessageLevel, const char*, va_list) = NULL;
+void (*Scanner::messageHandler)(MessageLevel, const char*, va_list) = nullptr;
 
 static const char* const TokenNames[TK_NumSpecialTokens] =
 {
@@ -607,14 +607,14 @@ bool Scanner::nextToken(bool autoExpandState)
 			}
 			else
 			{
-				d->nextState.setDecimal(d->nextState.str().toDouble(NULL));
+				d->nextState.setDecimal(d->nextState.str().toDouble(nullptr));
 				d->nextState.setNumber(static_cast<int> (d->nextState.decimal()));
 				d->nextState.setBoolean(d->nextState.number() != 0);
 			}
 		}
 		else if(d->nextState.token() == TK_IntConst)
 		{
-			d->nextState.setNumber(d->nextState.str().toUInt(NULL, integerBase));
+			d->nextState.setNumber(d->nextState.str().toUInt(nullptr, integerBase));
 			d->nextState.setDecimal(d->nextState.number());
 			d->nextState.setBoolean(d->nextState.number() != 0);
 		}

@@ -42,7 +42,7 @@ class CreateServerDialog : public QDialog
 	Q_OBJECT
 
 	public:
-		CreateServerDialog(QWidget* parent = NULL);
+		CreateServerDialog(QWidget* parent = nullptr);
 		virtual ~CreateServerDialog();
 
 		bool commandLineArguments(QString &executable, QStringList &args, bool offline);

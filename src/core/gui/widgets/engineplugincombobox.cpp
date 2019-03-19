@@ -42,7 +42,7 @@ EnginePlugin *EnginePluginComboBox::currentPlugin() const
 			return gPlugins->info(enginePluginIndex);
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 void EnginePluginComboBox::loadPlugins()

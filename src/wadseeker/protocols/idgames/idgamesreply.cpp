@@ -40,7 +40,7 @@ class IdgamesReply::PrivData
 IdgamesReply::IdgamesReply(const QNetworkRequest &request, QNetworkReply *reply)
 {
 	d = new PrivData();
-	d->reply = NULL;
+	d->reply = nullptr;
 	d->request = request;
 	d->redirects = 0;
 	setReply(reply);
@@ -117,7 +117,7 @@ IdgamesResult IdgamesReply::result() const
 
 void IdgamesReply::setReply(QNetworkReply *reply)
 {
-	if (d->reply != NULL)
+	if (d->reply != nullptr)
 	{
 		d->reply->disconnect();
 		d->reply->deleteLater();

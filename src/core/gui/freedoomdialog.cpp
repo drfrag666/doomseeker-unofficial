@@ -197,7 +197,7 @@ void FreedoomDialog::insertModFile(const ModFile &file)
 	for (int col = 0; col < d->wadsTable->columnCount(); ++col)
 	{
 		QTableWidgetItem *item = d->wadsTable->item(row, col);
-		if (item != NULL)
+		if (item != nullptr)
 		{
 			item->setToolTip(tooltip);
 		}

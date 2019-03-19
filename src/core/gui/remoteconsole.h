@@ -34,8 +34,8 @@ class RemoteConsole : public QMainWindow
 	Q_OBJECT
 
 	public:
-		RemoteConsole(QWidget *parent=NULL);
-		RemoteConsole(ServerPtr server, QWidget *parent=NULL);
+		RemoteConsole(QWidget *parent=nullptr);
+		RemoteConsole(ServerPtr server, QWidget *parent=nullptr);
 		~RemoteConsole();
 
 	public slots:

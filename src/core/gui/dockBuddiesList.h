@@ -48,14 +48,14 @@ class DockBuddiesList : public QDockWidget
 			HOW_MANY_BUDDIESLIST_COLUMNS
 		};
 
-		DockBuddiesList(QWidget *parent=NULL);
+		DockBuddiesList(QWidget *parent=nullptr);
 		~DockBuddiesList();
 
 		bool hasBuddy(const ServerPtr &server);
 
 	public slots:
 		void addBuddy();
-		void scan(const MasterManager *master=NULL);
+		void scan(const MasterManager *master=nullptr);
 
 	signals:
 		void joinServer(const ServerPtr &server);
@@ -78,7 +78,7 @@ class AddBuddyDlg : public QDialog
 	Q_OBJECT
 
 	public:
-		AddBuddyDlg(QWidget *parent=NULL);
+		AddBuddyDlg(QWidget *parent=nullptr);
 		~AddBuddyDlg();
 
 		QRegExp pattern() const;

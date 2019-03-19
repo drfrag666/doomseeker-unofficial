@@ -32,7 +32,7 @@ class CFGIRCAppearance : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGIRCAppearance(QWidget* parent = NULL);
+		CFGIRCAppearance(QWidget* parent = nullptr);
 		~CFGIRCAppearance();
 
 		QIcon icon() const { return QIcon(":/icons/color-fill.png"); }

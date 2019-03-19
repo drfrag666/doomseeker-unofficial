@@ -156,7 +156,7 @@ void ServerListContextMenu::createMembers()
 		d->menu->addMenu(d->filterBuilder);
 	}
 
-	d->rcon = NULL;
+	d->rcon = nullptr;
 	if(d->serverAtIndex->hasRcon())
 	{
 		d->menu->addSeparator();
@@ -183,23 +183,23 @@ void ServerListContextMenu::createMembers()
 
 void ServerListContextMenu::initializeMembers()
 {
-	d->clearAdditionalSorting = NULL;
-	d->removeAdditionalSortingForColumn = NULL;
-	d->sortAdditionallyAscending = NULL;
-	d->sortAdditionallyDescending = NULL;
-	d->copyAddress = NULL;
-	d->copyEmail = NULL;
-	d->copyName = NULL;
-	d->copyUrl = NULL;
-	d->filterBuilder = NULL;
-	d->findMissingWads = NULL;
-	d->join = NULL;
-	d->menu = NULL;
-	d->openUrlInDefaultBrowser = NULL;
-	d->rcon = NULL;
-	d->refresh = NULL;
-	d->showJoinCommandLine = NULL;
-	d->toggleServerPinned = NULL;
+	d->clearAdditionalSorting = nullptr;
+	d->removeAdditionalSortingForColumn = nullptr;
+	d->sortAdditionallyAscending = nullptr;
+	d->sortAdditionallyDescending = nullptr;
+	d->copyAddress = nullptr;
+	d->copyEmail = nullptr;
+	d->copyName = nullptr;
+	d->copyUrl = nullptr;
+	d->filterBuilder = nullptr;
+	d->findMissingWads = nullptr;
+	d->join = nullptr;
+	d->menu = nullptr;
+	d->openUrlInDefaultBrowser = nullptr;
+	d->rcon = nullptr;
+	d->refresh = nullptr;
+	d->showJoinCommandLine = nullptr;
+	d->toggleServerPinned = nullptr;
 }
 
 const QModelIndex &ServerListContextMenu::modelIndex() const
@@ -230,7 +230,7 @@ const ServerListFilterInfo& ServerListContextMenu::serverFilter() const
 
 ServerListContextMenu::Result ServerListContextMenu::translateQMenuResult(QAction* resultAction)
 {
-	if (resultAction == NULL)
+	if (resultAction == nullptr)
 	{
 		return NothingHappened;
 	}

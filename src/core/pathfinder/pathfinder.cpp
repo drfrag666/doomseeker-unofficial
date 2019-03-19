@@ -160,7 +160,7 @@ QString PathFinder::findFile(const QString& fileName) const
 		return QString();
 	}
 
-	BaseFileSeeker* seeker = NULL;
+	BaseFileSeeker* seeker = nullptr;
 	#ifdef Q_OS_WIN32
 	seeker = new CaseInsensitiveFSFileSeeker();
 	#else

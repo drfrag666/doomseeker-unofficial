@@ -116,7 +116,7 @@ ConfigurationDialog::ConfigurationDialog(QWidget* parent)
 		PrivData<ConfigurationDialog>::COL_VALIDATION, QHeaderView::Fixed);
 #endif
 
-	d->currentlyDisplayedPage = NULL;
+	d->currentlyDisplayedPage = nullptr;
 	connect(d->buttonBox, SIGNAL( clicked(QAbstractButton *) ), this, SLOT ( btnClicked(QAbstractButton *) ));
 	this->connect(d->tvOptionsList->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)),
 		SLOT(switchToItem(QModelIndex, QModelIndex)));
@@ -135,18 +135,18 @@ QStandardItem* ConfigurationDialog::addConfigPage(
 {
 	if (!canConfigPageBeAdded(configPage))
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	QStandardItemModel* pModel = (QStandardItemModel*)d->tvOptionsList->model();
-	if (rootItem == NULL)
+	if (rootItem == nullptr)
 	{
 		rootItem = pModel->invisibleRootItem();
 	}
 
 	if (!this->hasItemOnList(rootItem))
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	QList<QStandardItem*> row;
@@ -186,17 +186,17 @@ QStandardItem* ConfigurationDialog::addConfigPage(
 QStandardItem* ConfigurationDialog::addLabel(QStandardItem* rootItem, const QString& label, int position)
 {
 	QStandardItemModel* pModel = (QStandardItemModel*)d->tvOptionsList->model();
-	if (rootItem == NULL)
+	if (rootItem == nullptr)
 	{
 		rootItem = pModel->invisibleRootItem();
 	}
 
 	if (!this->hasItemOnList(rootItem))
 	{
-		return NULL;
+		return nullptr;
 	}
 
-	QtMetaPointer metaPointer = (void*)NULL;
+	QtMetaPointer metaPointer = (void*)nullptr;
 	QVariant variantMetaPointer = qVariantFromValue(metaPointer);
 
 	QList<QStandardItem*> row;
@@ -260,7 +260,7 @@ QModelIndex ConfigurationDialog::findPageModelIndex(ConfigPage *page)
 
 bool ConfigurationDialog::isConfigPageValid(ConfigPage* configPage)
 {
-	return configPage != NULL && !configPage->name().isEmpty();
+	return configPage != nullptr && !configPage->name().isEmpty();
 }
 
 bool ConfigurationDialog::hasConfigPage(ConfigPage* configPage)
@@ -294,7 +294,7 @@ void ConfigurationDialog::keyPressEvent(QKeyEvent* e)
 
 bool ConfigurationDialog::hasItemOnList(QStandardItem* pItem) const
 {
-	if (pItem == NULL)
+	if (pItem == nullptr)
 	{
 		return false;
 	}
@@ -311,7 +311,7 @@ bool ConfigurationDialog::hasItemOnList(QStandardItem* pItem) const
 void ConfigurationDialog::onPageValidationRequested()
 {
 	ConfigPage *page = qobject_cast<ConfigPage*>(sender());
-	assert(page != NULL);
+	assert(page != nullptr);
 	validatePage(page);
 }
 
@@ -367,7 +367,7 @@ void ConfigurationDialog::saveSettings()
 
 void ConfigurationDialog::showConfigPage(ConfigPage* page)
 {
-	if (d->currentlyDisplayedPage != NULL)
+	if (d->currentlyDisplayedPage != nullptr)
 	{
 		validatePage(d->currentlyDisplayedPage);
 		d->currentlyDisplayedPage->hide();
@@ -375,7 +375,7 @@ void ConfigurationDialog::showConfigPage(ConfigPage* page)
 	}
 	d->currentlyDisplayedPage = page;
 
-	if (page != NULL)
+	if (page != nullptr)
 	{
 		page->setAllowSave(true);
 		validatePage(page);
@@ -387,7 +387,7 @@ void ConfigurationDialog::showConfigPage(ConfigPage* page)
 
 void ConfigurationDialog::validatePage(ConfigPage *page)
 {
-	assert(page != NULL);
+	assert(page != nullptr);
 	QModelIndex pageIndex = findPageModelIndex(page);
 	assert(pageIndex.isValid());
 

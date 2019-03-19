@@ -54,19 +54,19 @@ Idgames::Idgames(const QString& idgamesPage)
 	d->nam = new QNetworkAccessManager();
 	d->idgamesBaseUrl = idgamesPage;
 	d->idgamesClient = new IdgamesClient(d->nam, idgamesPage);
-	d->idgamesReply = NULL;
+	d->idgamesReply = nullptr;
 	d->bIsAborting = false;
-	d->currentRequest = NULL;
+	d->currentRequest = nullptr;
 }
 
 Idgames::~Idgames()
 {
-	if (d->idgamesReply != NULL)
+	if (d->idgamesReply != nullptr)
 	{
 		delete d->idgamesReply;
 	}
 	delete d->idgamesClient;
-	if (d->currentRequest != NULL)
+	if (d->currentRequest != nullptr)
 	{
 		d->currentRequest->deleteLater();
 	}
@@ -80,11 +80,11 @@ void Idgames::abort()
 	{
 		d->bIsAborting = true;
 		// If one is occuring, others cannot.
-		if (d->idgamesReply != NULL)
+		if (d->idgamesReply != nullptr)
 		{
 			d->idgamesReply->abort();
 		}
-		else if (d->currentRequest != NULL)
+		else if (d->currentRequest != nullptr)
 		{
 			d->currentRequest->abort();
 		}
@@ -137,7 +137,7 @@ void Idgames::onIdgamesApiQueryFinished()
 	emit siteFinished(d->idgamesClient->baseUrl());
 	IdgamesResult result = d->idgamesReply->result();
 	delete d->idgamesReply;
-	d->idgamesReply = NULL;
+	d->idgamesReply = nullptr;
 	if (d->bIsAborting)
 	{
 		emit finished(this);
@@ -204,7 +204,7 @@ void Idgames::startSearch()
 
 void Idgames::networkRequestFinished()
 {
-	if (d->currentRequest == NULL)
+	if (d->currentRequest == nullptr)
 	{
 		return;
 	}
@@ -218,7 +218,7 @@ void Idgames::networkRequestFinished()
 
 	// Clean up to accept new requests.
 	d->currentRequest->deleteLater();
-	d->currentRequest = NULL;
+	d->currentRequest = nullptr;
 
 	if (d->bIsAborting)
 	{
@@ -243,7 +243,7 @@ void Idgames::networkRequestFinished()
 
 void Idgames::networkRequestProgress(qint64 done, qint64 total)
 {
-	if (d->currentRequest != NULL)
+	if (d->currentRequest != nullptr)
 	{
 		emit siteProgress(d->currentRequest->url(), done, total);
 	}

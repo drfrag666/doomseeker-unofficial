@@ -235,7 +235,7 @@ int Main::run()
 		if (installResult != UpdateInstaller::EC_Ok
 			&& installResult != UpdateInstaller::EC_NothingToUpdate)
 		{
-			QMessageBox::critical(NULL, tr("Doomseeker - Updates Install Failure"),
+			QMessageBox::critical(nullptr, tr("Doomseeker - Updates Install Failure"),
 				UpdateInstaller::errorCodeToStr((UpdateInstaller::ErrorCode)installResult));
 		}
 	}
@@ -325,7 +325,7 @@ void Main::createMainWindow()
 void Main::runCreateGame()
 {
 	gLog << tr("Starting Create Game box.");
-	CreateServerDialog* dialog = new CreateServerDialog(NULL);
+	CreateServerDialog* dialog = new CreateServerDialog(nullptr);
 	dialog->setConfigureButtonVisible(true);
 	dialog->setWindowIcon(Application::icon());
 	dialog->show();
@@ -350,7 +350,7 @@ void Main::runRemoteConsole()
 		{
 			QString error = tr("None of the currently loaded game plugins supports RCon.");
 			gLog << error;
-			QMessageBox::critical(NULL, tr("Doomseeker RCon"), error);
+			QMessageBox::critical(nullptr, tr("Doomseeker RCon"), error);
 			gApp->exit(2);
 			return;
 		}
@@ -396,7 +396,7 @@ void Main::initCaCerts()
 		QSslConfiguration sslConf = QSslConfiguration::defaultConfiguration();
 		QList<QSslCertificate> cacerts = sslConf.caCertificates();
 		QList<QSslCertificate> extraCerts = QSslCertificate::fromDevice(&certsFile);
-		gLog << tr("Appending %n extra CA certificate(s).", NULL, extraCerts.size());
+		gLog << tr("Appending %n extra CA certificate(s).", nullptr, extraCerts.size());
 		cacerts.append(extraCerts);
 		sslConf.setCaCertificates(cacerts);
 		QSslConfiguration::setDefaultConfiguration(sslConf);
@@ -421,7 +421,7 @@ bool Main::initDataDirectories()
 			errorMessage += failedDirErrno.errnoString;
 		}
 		// Prompt the errorMessage and exit.
-		QMessageBox::critical(NULL, tr("Doomseeker startup error"), errorMessage);
+		QMessageBox::critical(nullptr, tr("Doomseeker startup error"), errorMessage);
 		return false;
 	}
 
@@ -700,7 +700,7 @@ QStringList getCommandLineArgs()
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine, int nCmdShow)
 {
 	int argc = 0;
-	char** argv = NULL;
+	char** argv = nullptr;
 
 	QStringList commandLine = getCommandLineArgs();
 

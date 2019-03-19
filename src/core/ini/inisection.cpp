@@ -41,7 +41,7 @@ DPointered(IniSection)
 
 IniSection::IniSection()
 {
-	d->pIni = NULL;
+	d->pIni = nullptr;
 }
 
 IniSection::IniSection(Ini* pIni, const QString& sectionName)
@@ -89,7 +89,7 @@ bool IniSection::hasSetting(const QString &name) const
 
 bool IniSection::isNull() const
 {
-	return d->pIni == NULL;
+	return d->pIni == nullptr;
 }
 
 const QString &IniSection::name() const

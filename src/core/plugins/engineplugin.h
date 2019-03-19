@@ -344,12 +344,12 @@ class MAIN_EXPORT EnginePlugin
 
 				bool hasBroadcast() const
 				{
-					return broadcast != NULL;
+					return broadcast != nullptr;
 				}
 
 				bool hasMasterClient() const
 				{
-					return masterClient != NULL;
+					return masterClient != nullptr;
 				}
 		};
 
@@ -419,7 +419,7 @@ class MAIN_EXPORT EnginePlugin
 		 * @brief Game modes (cooperative, deathmatch, ctf).
 		 *
 		 * Modifiers are used and displayed in Create Game dialog.
-		 * If an empty list (or NULL) is returned, Modifier combo box
+		 * If an empty list (or nullptr) is returned, Modifier combo box
 		 * will be disabled.
 		 */
 		virtual QList<GameMode> gameModes() const;

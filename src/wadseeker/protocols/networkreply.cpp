@@ -30,21 +30,21 @@ NetworkReply::NetworkReply(const QNetworkRequest &request, QNetworkReply* reply)
 	this->reply = reply;
 	this->request_ = request;
 
-	if (reply != NULL)
+	if (reply != nullptr)
 	{
 		signalWrapper = new NetworkReplySignalWrapper(this);
 		timeouter = new NetworkReplyTimeouter(reply);
 	}
 	else
 	{
-		signalWrapper = NULL;
-		timeouter = NULL;
+		signalWrapper = nullptr;
+		timeouter = nullptr;
 	}
 }
 
 NetworkReply::~NetworkReply()
 {
-	if (reply != NULL)
+	if (reply != nullptr)
 	{
 		delete signalWrapper;
 		delete timeouter;
@@ -69,14 +69,14 @@ qint64 NetworkReply::bytesAvailable() const
 
 void NetworkReply::deleteMembersLater()
 {
-	if (reply != NULL)
+	if (reply != nullptr)
 	{
 		delete signalWrapper;
 		delete timeouter;
 		reply->abort();
 		reply->deleteLater();
 
-		reply = NULL;
+		reply = nullptr;
 	}
 }
 
@@ -117,7 +117,7 @@ const QNetworkRequest &NetworkReply::request() const
 
 void NetworkReply::setProgressTimeout(unsigned timeoutMsecs)
 {
-	if (timeouter != NULL)
+	if (timeouter != nullptr)
 	{
 		timeouter->setProgressTimeout(timeoutMsecs);
 	}
@@ -125,7 +125,7 @@ void NetworkReply::setProgressTimeout(unsigned timeoutMsecs)
 
 void NetworkReply::startConnectionTimeoutTimer(unsigned timeoutMsecs)
 {
-	if (timeouter != NULL)
+	if (timeouter != nullptr)
 	{
 		timeouter->startConnectionTimeoutTimer(timeoutMsecs);
 	}

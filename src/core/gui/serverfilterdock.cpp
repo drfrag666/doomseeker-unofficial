@@ -52,7 +52,7 @@ ServerFilterDock::ServerFilterDock(QWidget* pParent)
 : QDockWidget(pParent)
 {
 	d->setupUi(this);
-	d->leQuickSearch = NULL;
+	d->leQuickSearch = nullptr;
 	d->bDisableUpdate = false;
 	d->cbGroupServersWithPlayersAtTop->setChecked(gConfig.doomseeker.bGroupServersWithPlayersAtTheTopOfTheList);
 
@@ -99,7 +99,7 @@ void ServerFilterDock::clear()
 
 QLineEdit *ServerFilterDock::createQuickSearch()
 {
-	if (d->leQuickSearch == NULL)
+	if (d->leQuickSearch == nullptr)
 	{
 		QLineEdit *qs = new QLineEdit();
 		qs->setText(d->leServerName->text());
@@ -174,7 +174,7 @@ void ServerFilterDock::setFilterInfo(const ServerListFilterInfo& filterInfo)
 	d->cboExcludeGameMode->setSelectedTexts(filterInfo.gameModesExcluded);
 
 	d->spinMaxPing->setValue(filterInfo.maxPing);
-	if (d->leQuickSearch != NULL)
+	if (d->leQuickSearch != nullptr)
 	{
 		d->leQuickSearch->setText(filterInfo.serverName.trimmed());
 	}

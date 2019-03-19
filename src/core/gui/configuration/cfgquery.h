@@ -33,7 +33,7 @@ class CFGQuery : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGQuery(QWidget *parent=NULL);
+		CFGQuery(QWidget *parent=nullptr);
 		~CFGQuery();
 
 		QIcon icon() const { return QIcon(":/icons/view-refresh-2.png"); }

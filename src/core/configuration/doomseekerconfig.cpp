@@ -83,11 +83,11 @@ static PatternList readPre1Point2BuddiesList(const QString &configEntry)
 	return patterns;
 }
 //////////////////////////////////////////////////////////////////////////////
-DoomseekerConfig* DoomseekerConfig::instance = NULL;
+DoomseekerConfig* DoomseekerConfig::instance = nullptr;
 
 DoomseekerConfig::DoomseekerConfig()
 {
-	this->dummySection = new IniSection(NULL, QString());
+	this->dummySection = new IniSection(nullptr, QString());
 }
 
 DoomseekerConfig::~DoomseekerConfig()
@@ -97,7 +97,7 @@ DoomseekerConfig::~DoomseekerConfig()
 
 DoomseekerConfig& DoomseekerConfig::config()
 {
-	if (instance == NULL)
+	if (instance == nullptr)
 	{
 		instance = new DoomseekerConfig();
 	}
@@ -107,10 +107,10 @@ DoomseekerConfig& DoomseekerConfig::config()
 
 void DoomseekerConfig::dispose()
 {
-	if (instance != NULL)
+	if (instance != nullptr)
 	{
 		delete instance;
-		instance = NULL;
+		instance = nullptr;
 	}
 }
 
@@ -128,7 +128,7 @@ IniSection DoomseekerConfig::iniSectionForPlugin(const QString& pluginName)
 		return *dummySection;
 	}
 
-	if (this->pIni == NULL)
+	if (this->pIni == nullptr)
 	{
 		setIniFile("");
 	}
@@ -160,7 +160,7 @@ bool DoomseekerConfig::isValidPluginName(const QString& pluginName) const
 
 bool DoomseekerConfig::readFromFile()
 {
-	if (pIni == NULL)
+	if (pIni == nullptr)
 	{
 		return false;
 	}
@@ -184,7 +184,7 @@ bool DoomseekerConfig::readFromFile()
 
 bool DoomseekerConfig::saveToFile()
 {
-	if (pIni == NULL)
+	if (pIni == nullptr)
 	{
 		return false;
 	}

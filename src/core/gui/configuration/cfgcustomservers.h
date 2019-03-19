@@ -38,7 +38,7 @@ class CFGCustomServers : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGCustomServers(QWidget *parent=NULL);
+		CFGCustomServers(QWidget *parent=nullptr);
 		~CFGCustomServers();
 
 		QIcon icon() const { return QIcon(":/flags/localhost-small"); }

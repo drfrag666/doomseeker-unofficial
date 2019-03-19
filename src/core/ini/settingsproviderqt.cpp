@@ -48,7 +48,7 @@ public:
 	 */
 	QString exactKey(const QString &key) const
 	{
-		assert(target != NULL);
+		assert(target != nullptr);
 		foreach (const QString &candidate, target->allKeys())
 		{
 			if (candidate.compare(key, Qt::CaseInsensitive) == 0)
@@ -71,13 +71,13 @@ SettingsProviderQt::~SettingsProviderQt()
 
 QStringList SettingsProviderQt::allKeys() const
 {
-	assert(d->target != NULL);
+	assert(d->target != nullptr);
 	return d->target->allKeys();
 }
 
 QStringList SettingsProviderQt::allSections() const
 {
-	assert(d->target != NULL);
+	assert(d->target != nullptr);
 	return d->target->childGroups();
 }
 
@@ -93,12 +93,12 @@ void SettingsProviderQt::remove(const QString& key)
 
 void SettingsProviderQt::setValue(const QString& key, const QVariant& value)
 {
-	assert(d->target != NULL);
+	assert(d->target != nullptr);
 	d->target->setValue(d->exactKey(key), value);
 }
 
 QVariant SettingsProviderQt::value(const QString& key, QVariant defValue) const
 {
-	assert(d->target != NULL);
+	assert(d->target != nullptr);
 	return d->target->value(d->exactKey(key), defValue);
 }

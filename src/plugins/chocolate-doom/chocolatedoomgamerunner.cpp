@@ -74,7 +74,7 @@ void ChocolateDoomGameClientRunner::addGamePaths()
 
 void ChocolateDoomGameClientRunner::configureEmptyServer()
 {
-	CreateServerDialogApi *csd = CreateServerDialogApi::createNew(NULL);
+	CreateServerDialogApi *csd = CreateServerDialogApi::createNew(nullptr);
 	csd->dialog()->setAttribute(Qt::WA_DeleteOnClose, false);
 	csd->makeRemoteGameSetup(plugin());
 	if(csd->dialog()->exec() == QDialog::Accepted)
@@ -104,7 +104,7 @@ QStringList ChocolateDoomGameClientRunner::executables() const
 
 void ChocolateDoomGameClientRunner::joinPopulatedServer()
 {
-	IwadAndWadsPickerDialog *dialog = new IwadAndWadsPickerDialog(NULL);
+	IwadAndWadsPickerDialog *dialog = new IwadAndWadsPickerDialog(nullptr);
 	dialog->setWindowTitle(tr("Join Chocolate Doom game"));
 	dialog->setExecutables(executables());
 	dialog->setIwadByName(server->iwad());

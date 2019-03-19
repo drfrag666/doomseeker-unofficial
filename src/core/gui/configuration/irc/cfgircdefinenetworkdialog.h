@@ -36,8 +36,8 @@ class CFGIRCDefineNetworkDialog : public QDialog
 	Q_OBJECT
 
 	public:
-		CFGIRCDefineNetworkDialog(const IRCNetworkEntity& initValuesEntity, QWidget* parent = NULL);
-		CFGIRCDefineNetworkDialog(QWidget* parent = NULL);
+		CFGIRCDefineNetworkDialog(const IRCNetworkEntity& initValuesEntity, QWidget* parent = nullptr);
+		CFGIRCDefineNetworkDialog(QWidget* parent = nullptr);
 		~CFGIRCDefineNetworkDialog();
 
 		IRCNetworkEntity getNetworkEntity() const;

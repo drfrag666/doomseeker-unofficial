@@ -32,7 +32,7 @@ class IRCConfigurationDialog : public ConfigurationDialog
 	Q_OBJECT
 
 	public:
-		IRCConfigurationDialog(QWidget* parent = NULL);
+		IRCConfigurationDialog(QWidget* parent = nullptr);
 
 		void initOptionsList();
 

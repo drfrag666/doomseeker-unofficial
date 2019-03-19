@@ -44,8 +44,8 @@ const QString SERVER_PASSWORDS_KEY = "ServerPasswords";
 // in Main and kept in different places. Perhaps we should move them
 // out to a separate singleton? If not, then perhaps we could at least
 // move the instantiation out of Main.
-Ini* PasswordsCfg::ini = NULL;
-QSettings *PasswordsCfg::settings = NULL;
+Ini* PasswordsCfg::ini = nullptr;
+QSettings *PasswordsCfg::settings = nullptr;
 
 
 DClass<PasswordsCfg>
@@ -58,7 +58,7 @@ DPointered(PasswordsCfg)
 
 PasswordsCfg::PasswordsCfg()
 {
-	assert(ini != NULL && "instantiated PasswordsCfg() without initing ini");
+	assert(ini != nullptr && "instantiated PasswordsCfg() without initing ini");
 	d->section = ini->section(SECTION_NAME);
 }
 
@@ -87,8 +87,8 @@ void PasswordsCfg::cutStoredServers()
 
 void PasswordsCfg::initIni(const QString& path)
 {
-	assert(ini == NULL && "tried to re-init password ini");
-	if (ini != NULL)
+	assert(ini == nullptr && "tried to re-init password ini");
+	if (ini != nullptr)
 	{
 		qDebug() << "Error: tried to re-init password ini";
 		return;
@@ -138,7 +138,7 @@ void PasswordsCfg::saveServerPhrase(const QString& phrase, const Server* server,
 	}
 
 	ServerPasswordSummary serverInfo;
-	if (server != NULL)
+	if (server != nullptr)
 	{
 		ServerSummary serverSummary(server);
 		serverSummary.setTime(QDateTime::currentDateTime());

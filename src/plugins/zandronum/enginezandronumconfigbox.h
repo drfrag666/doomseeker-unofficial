@@ -35,7 +35,7 @@ class EngineZandronumConfigBox : public EngineConfigPage
 	Q_OBJECT
 
 	public:
-		EngineZandronumConfigBox(EnginePlugin* plugin, IniSection& cfg, QWidget* parent = NULL);
+		EngineZandronumConfigBox(EnginePlugin* plugin, IniSection& cfg, QWidget* parent = nullptr);
 
 		void readSettings();
 

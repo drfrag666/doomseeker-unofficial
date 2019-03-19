@@ -32,7 +32,7 @@
 
 #include <QMessageBox>
 
-IRCConfig* IRCConfig::instance = NULL;
+IRCConfig* IRCConfig::instance = nullptr;
 
 IRCConfig::IRCConfig()
 {
@@ -44,7 +44,7 @@ IRCConfig::~IRCConfig()
 
 IRCConfig& IRCConfig::config()
 {
-	if (instance == NULL)
+	if (instance == nullptr)
 	{
 		instance = new IRCConfig();
 	}
@@ -54,10 +54,10 @@ IRCConfig& IRCConfig::config()
 
 void IRCConfig::dispose()
 {
-	if (instance != NULL)
+	if (instance != nullptr)
 	{
 		delete instance;
-		instance = NULL;
+		instance = nullptr;
 	}
 }
 
@@ -92,7 +92,7 @@ void IRCConfig::loadNetworksFromPlugins()
 					if(existingEntity.isAutojoinNetwork())
 					{
 						// If we have this set to auto join ask first.
-						if(QMessageBox::question(NULL, QObject::tr("Add plugin's IRC channel?"),
+						if(QMessageBox::question(nullptr, QObject::tr("Add plugin's IRC channel?"),
 							QObject::tr("Would you like the %1 plugin to add its channel to %2's auto join?")
 								.arg(entity.description()).arg(existingEntity.description()),
 							QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No)
@@ -112,7 +112,7 @@ void IRCConfig::loadNetworksFromPlugins()
 
 bool IRCConfig::readFromFile()
 {
-	if (pIni == NULL)
+	if (pIni == nullptr)
 	{
 		return false;
 	}
@@ -138,7 +138,7 @@ bool IRCConfig::readFromFile()
 
 bool IRCConfig::saveToFile()
 {
-	if (pIni == NULL)
+	if (pIni == nullptr)
 	{
 		return false;
 	}

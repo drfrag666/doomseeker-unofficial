@@ -129,9 +129,9 @@ bool IRCDock::hasTabFocus(const IRCDockTabContents* pTab) const
 IRCNetworkAdapter* IRCDock::networkWithUiFocus()
 {
 	IRCDockTabContents* pWidget = (IRCDockTabContents*)d->tabWidget->currentWidget();
-	if (pWidget == NULL)
+	if (pWidget == nullptr)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return pWidget->ircAdapter()->network();
@@ -156,7 +156,7 @@ void IRCDock::performNetworkAutojoins()
 
 QString IRCDock::prefixMessage(IRCAdapterBase* pTargetChatWindow, IRCAdapterBase* pMessageSender, const QString& message)
 {
-	if (pMessageSender != NULL)
+	if (pMessageSender != nullptr)
 	{
 		IRCNetworkAdapter* pTargetNetwork = pTargetChatWindow->network();
 		if (pTargetNetwork !=  pMessageSender)
@@ -214,11 +214,11 @@ void IRCDock::tabFocusRequest(IRCDockTabContents* pCaller)
 
 IRCDockTabContents *IRCDock::tabWithFocus()
 {
-	if (d->tabWidget->currentWidget() != NULL)
+	if (d->tabWidget->currentWidget() != nullptr)
 	{
 		return static_cast<IRCDockTabContents*>(d->tabWidget->currentWidget());
 	}
-	return NULL;
+	return nullptr;
 }
 
 void IRCDock::titleChange(IRCDockTabContents* caller)
@@ -263,17 +263,17 @@ void IRCDock::toolBarAction(QAction* pAction)
 	else if (pAction == d->toolBarOpenChatWindow)
 	{
 		IRCNetworkAdapter* pNetwork = networkWithUiFocus();
-		if (pNetwork == NULL)
+		if (pNetwork == nullptr)
 		{
-			QMessageBox::warning(NULL, tr("Doomseeker IRC - Open chat window"), tr("Cannot obtain network connection adapter."));
+			QMessageBox::warning(nullptr, tr("Doomseeker IRC - Open chat window"), tr("Cannot obtain network connection adapter."));
 		}
 		else if (!pNetwork->isConnected())
 		{
-			QMessageBox::warning(NULL, tr("Doomseeker IRC - Open chat window"), tr("You are not connected to this network."));
+			QMessageBox::warning(nullptr, tr("Doomseeker IRC - Open chat window"), tr("You are not connected to this network."));
 		}
 		else
 		{
-			QString recipientName = QInputDialog::getText(NULL, tr("Open chat window"), tr("Specify a channel or user name:"));
+			QString recipientName = QInputDialog::getText(nullptr, tr("Open chat window"), tr("Specify a channel or user name:"));
 			if (!recipientName.isEmpty())
 			{
 				pNetwork->openNewAdapter(recipientName);

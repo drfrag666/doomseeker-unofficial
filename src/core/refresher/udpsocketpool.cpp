@@ -110,7 +110,7 @@ QUdpSocket *UdpSocketPool::acquire(const QHostAddress &address, quint16 port)
 	else
 	{
 		delete asset;
-		return NULL;
+		return nullptr;
 	}
 }
 

@@ -32,7 +32,7 @@ class IP2CUpdateBox : public QDialog
 	Q_OBJECT
 
 	public:
-		IP2CUpdateBox(QWidget* parent = NULL);
+		IP2CUpdateBox(QWidget* parent = nullptr);
 		~IP2CUpdateBox();
 
 	private:

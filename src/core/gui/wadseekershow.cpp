@@ -38,7 +38,7 @@ DClass<WadseekerShow>
 
 DPointered(WadseekerShow)
 
-WadseekerShow *WadseekerShow::staticInstance = NULL;
+WadseekerShow *WadseekerShow::staticInstance = nullptr;
 
 WadseekerShow::WadseekerShow()
 {
@@ -73,7 +73,7 @@ bool WadseekerShow::checkWadseekerValidity(QWidget *parent)
 
 WadseekerShow *WadseekerShow::instance()
 {
-	if (staticInstance == NULL)
+	if (staticInstance == nullptr)
 	{
 		staticInstance = new WadseekerShow();
 	}

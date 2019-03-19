@@ -553,7 +553,7 @@ Server::Response ZandronumServer::readRequest(const QByteArray &data)
 	{
 		flags ^= SQF_ALL_DMFLAGS;
 		ZandronumServerDmflagsParser *parser = ZandronumServerDmflagsParser::mkParser(this, &inStream);
-		if (parser != NULL)
+		if (parser != nullptr)
 		{
 			setDmFlags(parser->parse());
 			delete parser;

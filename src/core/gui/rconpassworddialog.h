@@ -34,7 +34,7 @@ class RconPasswordDialog : public QDialog
 	Q_OBJECT
 
 	public:
-		RconPasswordDialog(QWidget *parent=NULL, bool connection=false);
+		RconPasswordDialog(QWidget *parent=nullptr, bool connection=false);
 		~RconPasswordDialog();
 
 		QString connectPassword() const;

@@ -188,7 +188,7 @@ void IRCNetworkAdapter::disconnect(const QString& farewellMessage)
 
 void IRCNetworkAdapter::doSendMessage(const QString& message, IRCAdapterBase* pOrigin)
 {
-	if (pOrigin == NULL)
+	if (pOrigin == nullptr)
 	{
 		pOrigin = this;
 	}
@@ -251,7 +251,7 @@ IRCChatAdapter* IRCNetworkAdapter::getChatAdapter(const QString& recipient)
 	if (recipient.isEmpty())
 	{
 		emit error("Doomseeker error: getChatAdapter() received empty recipient.");
-		return NULL;
+		return nullptr;
 	}
 
 	QString recipientLowercase = recipient.toLower();
@@ -260,14 +260,14 @@ IRCChatAdapter* IRCNetworkAdapter::getChatAdapter(const QString& recipient)
 		return chatWindows[recipientLowercase];
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 const IRCChatAdapter* IRCNetworkAdapter::getChatAdapter(const QString& recipient) const
 {
 	if (recipient.isEmpty())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	QString recipientLowercase = recipient.toLower();
@@ -276,17 +276,17 @@ const IRCChatAdapter* IRCNetworkAdapter::getChatAdapter(const QString& recipient
 		return chatWindows[recipientLowercase];
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 IRCChatAdapter* IRCNetworkAdapter::getOrCreateNewChatAdapter(const QString& recipient)
 {
-	IRCChatAdapter* pAdapter = NULL;
+	IRCChatAdapter* pAdapter = nullptr;
 
 	if (recipient.isEmpty())
 	{
 		emit error("Doomseeker error: getOrCreateNewChatAdapter() received empty recipient.");
-		return NULL;
+		return nullptr;
 	}
 
 	QString recipientLowercase = recipient.toLower();
@@ -410,7 +410,7 @@ bool IRCNetworkAdapter::isOperator(const QString& nickname, const QString& chann
 	if (IRCGlobal::isChannelName(channel))
 	{
 		const IRCChannelAdapter* pChannelAdapter = (const IRCChannelAdapter*) this->getChatAdapter(channel);
-		if (pChannelAdapter != NULL)
+		if (pChannelAdapter != nullptr)
 		{
 			return pChannelAdapter->isOperator(nickname);
 		}
@@ -460,7 +460,7 @@ void IRCNetworkAdapter::killAllChatWindows()
 	{
 		// Make sure that the adapter destructor won't call the
 		// detachChatWindow() method or the program will be shot to oblivion.
-		pAdapter->setNetwork(NULL);
+		pAdapter->setNetwork(nullptr);
 		delete pAdapter;
 	}
 
@@ -476,7 +476,7 @@ void IRCNetworkAdapter::killChatWindow(const QString& recipient)
 
 		// Make sure that the adapter destructor won't call the
 		// detachChatWindow() method or the program will be shot to oblivion.
-		pAdapter->setNetwork(NULL);
+		pAdapter->setNetwork(nullptr);
 		delete pAdapter;
 	}
 }
@@ -575,7 +575,7 @@ void IRCNetworkAdapter::printWithClass(const QString& printWhat,
 	if (!printWhere.isEmpty())
 	{
 		IRCAdapterBase* pAdapterCandidate = getChatAdapter(printWhere);
-		if (pAdapterCandidate != NULL)
+		if (pAdapterCandidate != nullptr)
 		{
 			pAdapter = pAdapterCandidate;
 		}
@@ -583,7 +583,7 @@ void IRCNetworkAdapter::printWithClass(const QString& printWhat,
 
 	// In case if the target adapter is unknown, the message will still get
 	// printed to this adapter.
-	if (pAdapter == NULL)
+	if (pAdapter == nullptr)
 	{
 		this->emitMessageWithClass(tr("FROM %1: %2").arg(printWhere, printWhat), msgClass);
 	}

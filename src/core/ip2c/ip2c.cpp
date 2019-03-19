@@ -33,14 +33,14 @@
 #include "log.h"
 
 QMutex IP2C::instanceMutex;
-IP2C *IP2C::staticInstance = NULL;
+IP2C *IP2C::staticInstance = nullptr;
 
 IP2C *IP2C::instance()
 {
-	if (staticInstance == NULL)
+	if (staticInstance == nullptr)
 	{
 		QMutexLocker locker(&instanceMutex);
-		if (staticInstance == NULL)
+		if (staticInstance == nullptr)
 		{
 			staticInstance = new IP2C();
 		}
@@ -50,10 +50,10 @@ IP2C *IP2C::instance()
 
 void IP2C::deinstantiate()
 {
-	if (staticInstance != NULL)
+	if (staticInstance != nullptr)
 	{
 		delete staticInstance;
-		staticInstance = NULL;
+		staticInstance = nullptr;
 	}
 }
 

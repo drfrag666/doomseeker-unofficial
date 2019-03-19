@@ -172,7 +172,7 @@ GameClientRunner::GameClientRunner(ServerPtr server)
 	d->argPort = "-port";
 	d->argPwadLoading = "-file";
 	d->argDemoRecord = "-record";
-	d->cli = NULL;
+	d->cli = nullptr;
 	d->server = server;
 }
 

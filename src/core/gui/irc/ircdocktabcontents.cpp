@@ -116,9 +116,9 @@ IRCDockTabContents::IRCDockTabContents(IRCDock* pParentIRCDock)
 
 	d->bBlinkTitle = false;
 	d->bIsDestroying = false;
-	d->lastMessageClass = NULL;
-	d->userListContextMenu = NULL;
-	this->pIrcAdapter = NULL;
+	d->lastMessageClass = nullptr;
+	d->userListContextMenu = nullptr;
+	this->pIrcAdapter = nullptr;
 
 	this->pParentIRCDock = pParentIRCDock;
 	d->nicknameCompleter = new IRCNicknameCompleter();
@@ -149,21 +149,21 @@ IRCDockTabContents::~IRCDockTabContents()
 {
 	d->bIsDestroying = true;
 
-	if (d->lastMessageClass != NULL)
+	if (d->lastMessageClass != nullptr)
 	{
 		delete d->lastMessageClass;
 	}
 
-	if (d->userListContextMenu != NULL)
+	if (d->userListContextMenu != nullptr)
 	{
 		delete d->userListContextMenu;
 	}
 
-	if (pIrcAdapter != NULL)
+	if (pIrcAdapter != nullptr)
 	{
 		disconnect(pIrcAdapter, 0, 0, 0);
 		IRCAdapterBase* pTmpAdapter = pIrcAdapter;
-		pIrcAdapter = NULL;
+		pIrcAdapter = nullptr;
 		delete pTmpAdapter;
 	}
 }
@@ -175,11 +175,11 @@ void IRCDockTabContents::adapterFocusRequest()
 
 void IRCDockTabContents::adapterTerminating()
 {
-	if (pIrcAdapter != NULL && !d->bIsDestroying)
+	if (pIrcAdapter != nullptr && !d->bIsDestroying)
 	{
 		// Disconnect the adapter from this tab.
 		disconnect(pIrcAdapter, 0, 0, 0);
-		pIrcAdapter = NULL;
+		pIrcAdapter = nullptr;
 
 		emit chatWindowCloseRequest(this);
 	}
@@ -295,12 +295,12 @@ QStandardItem* IRCDockTabContents::findUserListItem(const QString& nickname)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 IRCDockTabContents::UserListMenu& IRCDockTabContents::getUserListContextMenu()
 {
-	if (d->userListContextMenu == NULL)
+	if (d->userListContextMenu == nullptr)
 	{
 		d->userListContextMenu = new UserListMenu();
 	}
@@ -324,7 +324,7 @@ bool IRCDockTabContents::hasTabFocus() const
 
 QIcon IRCDockTabContents::icon() const
 {
-	if (pIrcAdapter == NULL)
+	if (pIrcAdapter == nullptr)
 	{
 		return QIcon();
 	}
@@ -347,7 +347,7 @@ QIcon IRCDockTabContents::icon() const
 
 void IRCDockTabContents::insertMessage(const IRCMessageClass& messageClass, const QString& htmlString)
 {
-	if (d->lastMessageClass == NULL)
+	if (d->lastMessageClass == nullptr)
 	{
 		d->lastMessageClass = new IRCMessageClass();
 	}
@@ -503,7 +503,7 @@ void IRCDockTabContents::printToSendersNetworksCurrentChatBox(const QString &tex
 {
 	IRCAdapterBase *adapter = static_cast<IRCAdapterBase*>(sender());
 	IRCDockTabContents *tab = pParentIRCDock->tabWithFocus();
-	if (tab != NULL && tab->ircAdapter()->network()->isAdapterRelated(adapter))
+	if (tab != nullptr && tab->ircAdapter()->network()->isAdapterRelated(adapter))
 	{
 		tab->ircAdapter()->emitMessageWithClass(text, msgClass);
 	}
@@ -662,7 +662,7 @@ void IRCDockTabContents::setBlinkTitle(bool b)
 
 void IRCDockTabContents::setIRCAdapter(IRCAdapterBase* pAdapter)
 {
-	assert(pIrcAdapter == NULL);
+	assert(pIrcAdapter == nullptr);
 	pIrcAdapter = pAdapter;
 
 	ChatLogsCfg cfg;
@@ -821,7 +821,7 @@ QString IRCDockTabContents::title() const
 
 QString IRCDockTabContents::titleColor() const
 {
-	if (d->lastMessageClass != NULL && !this->hasTabFocus())
+	if (d->lastMessageClass != nullptr && !this->hasTabFocus())
 	{
 		QString color;
 
@@ -879,7 +879,7 @@ void IRCDockTabContents::userListCustomContextMenuRequested(const QPoint& pos)
 
 	QAction* pAction = menu.exec(posGlobal);
 
-	if (pAction == NULL)
+	if (pAction == nullptr)
 	{
 		return;
 	}

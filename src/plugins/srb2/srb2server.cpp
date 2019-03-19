@@ -359,7 +359,7 @@ Server::Response Srb2Server::readRequest(const QByteArray &data)
 			d->playerInfo.reset(new PlayerInfo());
 			stream >> *d->playerInfo;
 		}
-		d->header.reset(NULL);
+		d->header.reset(nullptr);
 	}
 
 	if (!d->serverInfo.isNull() && !d->playerInfo.isNull())
@@ -432,10 +432,10 @@ Server::Response Srb2Server::processPlayerInfo(const PlayerInfo &info)
 QByteArray Srb2Server::createSendRequest()
 {
 	// Reset header if it lingers from a previous refresh.
-	d->header.reset(NULL);
+	d->header.reset(nullptr);
 	// Also reset the old information.
-	d->serverInfo.reset(NULL);
-	d->playerInfo.reset(NULL);
+	d->serverInfo.reset(nullptr);
+	d->playerInfo.reset(nullptr);
 
 	/*
 		References:

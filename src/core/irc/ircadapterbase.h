@@ -123,7 +123,7 @@ class IRCAdapterBase : public QObject
 
 		void sendMessage(const QString& message)
 		{
-			doSendMessage(message, NULL);
+			doSendMessage(message, nullptr);
 		}
 
 	signals:

@@ -32,7 +32,7 @@ class CFGAutoUpdates : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGAutoUpdates(QWidget* parent=NULL);
+		CFGAutoUpdates(QWidget* parent=nullptr);
 		~CFGAutoUpdates();
 
 		QIcon icon() const { return QIcon(":/icons/doomseeker_plus.png"); }

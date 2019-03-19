@@ -57,7 +57,7 @@ QDomElement UpdaterScriptParser::mainElement()
 
 void UpdaterScriptParser::merge(const QDomDocument& otherDoc)
 {
-	assert(d->pDoc != NULL && "UpdaterScriptParser::merge()");
+	assert(d->pDoc != nullptr && "UpdaterScriptParser::merge()");
 	if (!d->pDoc->isNull())
 	{
 		QDomNodeList listNodes;
@@ -99,7 +99,7 @@ QDomNode UpdaterScriptParser::packagesNode(const QDomDocument& doc)
 
 QString UpdaterScriptParser::setPackageName(const QString& name)
 {
-	assert(d->pDoc != NULL && "UpdaterScriptParser::setPackageName()");
+	assert(d->pDoc != nullptr && "UpdaterScriptParser::setPackageName()");
 	QString errorMsg;
 	errorMsg = setPackageNameInPackages(name);
 	if (errorMsg.isNull())

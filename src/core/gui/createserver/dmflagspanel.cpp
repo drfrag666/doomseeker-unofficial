@@ -103,12 +103,12 @@ bool DMFlagsPanel::initDMFlagsTabs(const EnginePlugin *engine)
 
 			QHBoxLayout* hLayout = new QHBoxLayout(flagsTab);
 
-			QVBoxLayout* layout = NULL;
+			QVBoxLayout* layout = nullptr;
 			for (int j = 0; j < dmFlagsSections[i].count(); ++j)
 			{
 				if ((j % 16) == 0)
 				{
-					if (layout != NULL)
+					if (layout != nullptr)
 					{
 						layout->addStretch();
 					}
@@ -123,7 +123,7 @@ bool DMFlagsPanel::initDMFlagsTabs(const EnginePlugin *engine)
 				layout->addWidget(checkBox);
 			}
 
-			if (layout != NULL)
+			if (layout != nullptr)
 			{
 				layout->addStretch();
 			}

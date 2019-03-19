@@ -49,7 +49,7 @@ class JoinCommandLineBuilder : public QObject
 		~JoinCommandLineBuilder();
 
 		const CommandLineInfo &builtCommandLine() const;
-		static bool checkWadseekerValidity(QWidget *parent=NULL);
+		static bool checkWadseekerValidity(QWidget *parent=nullptr);
 		bool isConfigurationError() const;
 		const QString &error() const;
 		/**

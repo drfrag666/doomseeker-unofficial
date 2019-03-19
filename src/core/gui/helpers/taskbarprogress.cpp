@@ -59,7 +59,7 @@ TaskbarProgress::TaskbarProgress(QWinTaskbarProgress *progress, QObject *parent)
 : QObject(parent)
 {
 #ifdef WIN_TASKBAR
-	d->progress = NULL;
+	d->progress = nullptr;
 	assert(d->isAllowedOsVersion());
 	if (d->isAllowedOsVersion())
 	{
@@ -73,7 +73,7 @@ TaskbarProgress::TaskbarProgress(QObject *parent)
 : QObject(parent)
 {
 #ifdef WIN_TASKBAR
-	d->progress = NULL;
+	d->progress = nullptr;
 	if (d->isAllowedOsVersion())
 	{
 		d->progress = new QWinTaskbarProgress(this);
@@ -85,7 +85,7 @@ TaskbarProgress::TaskbarProgress(QObject *parent)
 void TaskbarProgress::construct()
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		this->connect(d->progress, SIGNAL(maximumChanged(int)), SIGNAL(maximumChanged(int)));
 		this->connect(d->progress, SIGNAL(minimumChanged(int)), SIGNAL(minimumChanged(int)));
@@ -98,7 +98,7 @@ void TaskbarProgress::construct()
 bool TaskbarProgress::isPaused() const
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		return d->progress->isPaused();
 	}
@@ -109,7 +109,7 @@ bool TaskbarProgress::isPaused() const
 bool TaskbarProgress::isStopped() const
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		return d->progress->isStopped();
 	}
@@ -120,7 +120,7 @@ bool TaskbarProgress::isStopped() const
 bool TaskbarProgress::isVisible() const
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		return d->progress->isVisible();
 	}
@@ -131,7 +131,7 @@ bool TaskbarProgress::isVisible() const
 int TaskbarProgress::maximum() const
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		return d->progress->maximum();
 	}
@@ -142,7 +142,7 @@ int TaskbarProgress::maximum() const
 int TaskbarProgress::minimum() const
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		return d->progress->minimum();
 	}
@@ -153,7 +153,7 @@ int TaskbarProgress::minimum() const
 int TaskbarProgress::value() const
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		return d->progress->value();
 	}
@@ -164,7 +164,7 @@ int TaskbarProgress::value() const
 void TaskbarProgress::hide()
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->hide();
 	}
@@ -174,7 +174,7 @@ void TaskbarProgress::hide()
 void TaskbarProgress::pause()
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->pause();
 	}
@@ -184,7 +184,7 @@ void TaskbarProgress::pause()
 void TaskbarProgress::reset()
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->reset();
 	}
@@ -194,7 +194,7 @@ void TaskbarProgress::reset()
 void TaskbarProgress::resume()
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->resume();
 	}
@@ -204,7 +204,7 @@ void TaskbarProgress::resume()
 void TaskbarProgress::setMaximum(int maximum)
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->setMaximum(maximum);
 	}
@@ -214,7 +214,7 @@ void TaskbarProgress::setMaximum(int maximum)
 void TaskbarProgress::setMinimum(int minimum)
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->setMinimum(minimum);
 	}
@@ -224,7 +224,7 @@ void TaskbarProgress::setMinimum(int minimum)
 void TaskbarProgress::setPaused(bool paused)
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->setPaused(paused);
 	}
@@ -234,7 +234,7 @@ void TaskbarProgress::setPaused(bool paused)
 void TaskbarProgress::setRange(int minimum, int maximum)
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->setRange(minimum, maximum);
 	}
@@ -244,7 +244,7 @@ void TaskbarProgress::setRange(int minimum, int maximum)
 void TaskbarProgress::setValue(int value)
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->setValue(value);
 	}
@@ -254,7 +254,7 @@ void TaskbarProgress::setValue(int value)
 void TaskbarProgress::setVisible(bool visible)
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->setVisible(visible);
 	}
@@ -264,7 +264,7 @@ void TaskbarProgress::setVisible(bool visible)
 void TaskbarProgress::show()
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->show();
 	}
@@ -274,7 +274,7 @@ void TaskbarProgress::show()
 void TaskbarProgress::stop()
 {
 #ifdef WIN_TASKBAR
-	if (d->progress != NULL)
+	if (d->progress != nullptr)
 	{
 		d->progress->stop();
 	}

@@ -32,7 +32,7 @@ class ServerConsole : public QWidget
 	Q_OBJECT
 
 	public:
-		ServerConsole(QWidget *parent=NULL, Qt::WindowFlags f=0);
+		ServerConsole(QWidget *parent=nullptr, Qt::WindowFlags f=0);
 		~ServerConsole();
 
 		/**

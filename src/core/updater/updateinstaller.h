@@ -56,7 +56,7 @@ class UpdateInstaller : public QObject
 		static QString errorCodeToStr(ErrorCode code);
 		static QString processErrorCodeToStr(ProcessErrorCode code);
 
-		UpdateInstaller(QObject* pParent = NULL);
+		UpdateInstaller(QObject* pParent = nullptr);
 		~UpdateInstaller();
 
 		/**

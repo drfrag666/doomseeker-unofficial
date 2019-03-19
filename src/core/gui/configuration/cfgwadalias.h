@@ -35,7 +35,7 @@ class CFGWadAlias : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGWadAlias(QWidget *parent=NULL);
+		CFGWadAlias(QWidget *parent=nullptr);
 		~CFGWadAlias();
 
 		QIcon icon() const;

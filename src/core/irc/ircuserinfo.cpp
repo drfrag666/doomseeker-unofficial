@@ -29,7 +29,7 @@
 
 IRCUserInfo::IRCUserInfo()
 {
-	this->parentNetwork = NULL;
+	this->parentNetwork = nullptr;
 }
 
 IRCUserInfo::IRCUserInfo(const QString& nickname, const IRCNetworkAdapter *parentNetwork,
@@ -38,7 +38,7 @@ IRCUserInfo::IRCUserInfo(const QString& nickname, const IRCNetworkAdapter *paren
 	this->fullSignature = fullSignature;
 	this->parentNetwork = parentNetwork;
 
-	if (nickname.isEmpty() || parentNetwork == NULL)
+	if (nickname.isEmpty() || parentNetwork == nullptr)
 	{
 		return;
 	}
@@ -89,7 +89,7 @@ bool IRCUserInfo::isSameNickname(const QString& otherNickname) const
 
 bool IRCUserInfo::isValid() const
 {
-	return !userName.isEmpty() && parentNetwork != NULL;
+	return !userName.isEmpty() && parentNetwork != nullptr;
 }
 
 const QList<char> &IRCUserInfo::modes() const
@@ -121,7 +121,7 @@ bool IRCUserInfo::operator==(const IRCUserInfo& otherUser) const
 
 bool IRCUserInfo::operator<=(const IRCUserInfo& otherUser) const
 {
-	assert(parentNetwork != NULL);
+	assert(parentNetwork != nullptr);
 	char mode1 = prefixes().topMostMode(modes());
 	char mode2 = prefixes().topMostMode(otherUser.modes());
 	if (prefixes().compare(mode1, mode2) != 0)
@@ -138,7 +138,7 @@ bool IRCUserInfo::operator<=(const IRCUserInfo& otherUser) const
 
 QString IRCUserInfo::prefixedName() const
 {
-	assert(parentNetwork != NULL);
+	assert(parentNetwork != nullptr);
 	char mode = prefixes().topMostMode(modes());
 	if (mode != 0)
 	{

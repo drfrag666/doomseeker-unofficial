@@ -49,7 +49,7 @@ class ServerPassword
 		QString lastServerName() const;
 		QDateTime lastTime() const;
 
-		ServerPasswordSummary mostSimilarServer(const ServerPasswordSummary& other, float* outSimilarity = NULL) const;
+		ServerPasswordSummary mostSimilarServer(const ServerPasswordSummary& other, float* outSimilarity = nullptr) const;
 
 		const QList<ServerPasswordSummary>& servers() const
 		{

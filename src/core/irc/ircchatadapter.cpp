@@ -33,7 +33,7 @@ IRCChatAdapter::IRCChatAdapter(IRCNetworkAdapter* pNetwork, const QString& recip
 
 IRCChatAdapter::~IRCChatAdapter()
 {
-	if (this->pNetwork != NULL)
+	if (this->pNetwork != nullptr)
 	{
 		// Prevent the situation where this->pNetwork is
 		// NULLified while we still may need it.
@@ -47,7 +47,7 @@ void IRCChatAdapter::doSendMessage(const QString& message, IRCAdapterBase* pOrig
 {
 	// If network is null and we can still send messages this might be a bug
 	// in the application.
-	if (pNetwork == NULL)
+	if (pNetwork == nullptr)
 	{
 		emit error("This chat window is not attached to any network. This is probably a bug in Doomseeker.");
 		return;

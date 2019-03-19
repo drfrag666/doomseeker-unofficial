@@ -210,9 +210,9 @@ class BZ2Device : public CompressedIODevice
 	public:
 		BZ2Device(QIODevice *wrap) : CompressedIODevice(), wrap(wrap)
 		{
-			bzCompress.bzalloc = bzDecompress.bzalloc = NULL;
-			bzCompress.bzfree = bzDecompress.bzfree = NULL;
-			bzCompress.opaque = bzDecompress.opaque = NULL;
+			bzCompress.bzalloc = bzDecompress.bzalloc = nullptr;
+			bzCompress.bzfree = bzDecompress.bzfree = nullptr;
+			bzCompress.opaque = bzDecompress.opaque = nullptr;
 		}
 		~BZ2Device()
 		{
@@ -323,7 +323,7 @@ UnArchive::UnArchive(QIODevice* dataStream)
 
 UnArchive::~UnArchive()
 {
-	if (bHasIODeviceOwnership && this->stream != NULL)
+	if (bHasIODeviceOwnership && this->stream != nullptr)
 	{
 		delete this->stream;
 	}
@@ -351,7 +351,7 @@ UnArchive *UnArchive::detectArchive(const QFileInfo &fi, QIODevice *&device)
 		return new Un7Zip(device);
 	else if(file.suffix().compare("tar", Qt::CaseInsensitive) == 0)
 		return new UnTar(device);
-	return NULL;
+	return nullptr;
 }
 
 UnArchive *UnArchive::openArchive(const QFileInfo &fi, QIODevice* dataStream)
@@ -364,16 +364,16 @@ UnArchive *UnArchive::openArchive(const QString &filename)
 {
 	QFileInfo fi(filename);
 	if(!fi.isReadable())
-		return NULL;
+		return nullptr;
 
 	QIODevice *stream = new QFile(filename);
 	UnArchive *ret = detectArchive(fi, stream);
-	if(ret != NULL)
+	if(ret != nullptr)
 	{
 		ret->bHasIODeviceOwnership = true;
 		return ret;
 	}
 
 	delete stream;
-	return NULL;
+	return nullptr;
 }

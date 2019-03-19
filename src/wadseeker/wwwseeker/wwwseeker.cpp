@@ -181,7 +181,7 @@ FileSeekInfo* WWWSeeker::findFileSeekInfo(const QString& seekedName)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 NetworkReply* WWWSeeker::findNetworkReply(QNetworkReply* pReply)
@@ -194,7 +194,7 @@ NetworkReply* WWWSeeker::findNetworkReply(QNetworkReply* pReply)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 NetworkReply* WWWSeeker::findNetworkReply(const QUrl& url)
@@ -207,7 +207,7 @@ NetworkReply* WWWSeeker::findNetworkReply(const QUrl& url)
 		}
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 bool WWWSeeker::isDirectUrl(const QUrl& url, QString& outFileName) const
@@ -355,7 +355,7 @@ void WWWSeeker::networkQueryMetaDataChanged(NetworkReply* pReply)
 
 #ifndef NDEBUG
 			printf("Attachment detected on URL %s\n", url.toString().toUtf8().constData());
-			if (attachmentSeekInfo != NULL)
+			if (attachmentSeekInfo != nullptr)
 			{
 				printf("Forwarding the detected attachment to \"%s\" download queue\n",
 						attachmentSeekInfo->file().toUtf8().constData());
@@ -364,7 +364,7 @@ void WWWSeeker::networkQueryMetaDataChanged(NetworkReply* pReply)
 			// Abort further download here.
 			// This should execute networkQueryFinished() request.
 
-			if (attachmentSeekInfo != NULL)
+			if (attachmentSeekInfo != nullptr)
 			{
 				bAttachmentDetected = true;
 
@@ -471,7 +471,7 @@ void WWWSeeker::setUserAgent(const QString& userAgent)
 void WWWSeeker::skipSite(const QUrl& url)
 {
 	NetworkReply* pInfo = findNetworkReply(url);
-	if (pInfo != NULL)
+	if (pInfo != nullptr)
 	{
 		pInfo->reply->abort();
 	}

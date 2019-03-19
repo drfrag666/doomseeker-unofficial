@@ -52,7 +52,7 @@ class CheckWadsDlg : public QDialog
 	Q_OBJECT;
 
 	public:
-		CheckWadsDlg(const PathFinder* pathFinder, QWidget* parent = NULL);
+		CheckWadsDlg(const PathFinder* pathFinder, QWidget* parent = nullptr);
 		~CheckWadsDlg();
 
 		/**

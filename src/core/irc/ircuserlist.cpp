@@ -50,7 +50,7 @@ bool IRCUserList::appendNameToCachedList(const IRCUserInfo& userInfo)
 bool IRCUserList::changeNick(const QString& oldNickname, const QString& newNickname)
 {
 	const IRCUserInfo* pExistingInfo = user(oldNickname);
-	if (pExistingInfo == NULL)
+	if (pExistingInfo == nullptr)
 	{
 		return false;
 	}
@@ -120,7 +120,7 @@ const IRCUserInfo* IRCUserList::user(const QString& nickname) const
 	int index = this->indexOfName(nickname);
 	if (index < 0)
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	return usersArray[index];
@@ -129,7 +129,7 @@ const IRCUserInfo* IRCUserList::user(const QString& nickname) const
 IRCUserInfo IRCUserList::userCopy(const QString& nickname) const
 {
 	const IRCUserInfo* pUserInfo = user(nickname);
-	if (pUserInfo == NULL)
+	if (pUserInfo == nullptr)
 	{
 		return IRCUserInfo();
 	}

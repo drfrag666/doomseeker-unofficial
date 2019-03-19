@@ -33,7 +33,7 @@
 
 IP2CParser::IP2CParser(IP2C* pTargetDatabase)
 {
-	currentParsingThread = NULL;
+	currentParsingThread = nullptr;
 	this->pTargetDatabase = pTargetDatabase;
 	bIsParsing = false;
 }
@@ -98,7 +98,7 @@ void IP2CParser::parsingThreadFinished()
 	gLog << tr("IP2C parsing thread has finished.");
 
 	delete currentParsingThread;
-	currentParsingThread = NULL;
+	currentParsingThread = nullptr;
 
 	emit parsingFinished(bSuccessState);
 }
@@ -113,7 +113,7 @@ bool IP2CParser::readDatabase(const QString& filePath)
 
 void IP2CParser::readDatabaseThreaded(const QString& filePath)
 {
-	if (currentParsingThread != NULL)
+	if (currentParsingThread != nullptr)
 	{
 		return;
 	}

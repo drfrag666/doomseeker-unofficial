@@ -60,7 +60,7 @@ class IRCResponseParseResult
 
 		bool isValid() const
 		{
-			return d.pResponseType != NULL;
+			return d.pResponseType != nullptr;
 		}
 
 		IRCResponseParseResult& operator=(const IRCResponseParseResult& other);

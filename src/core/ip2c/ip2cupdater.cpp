@@ -34,7 +34,7 @@
 IP2CUpdater::IP2CUpdater(QObject *parent)
 	: QObject(parent)
 {
-	pCurrentNetworkReply = NULL;
+	pCurrentNetworkReply = nullptr;
 	pNetworkAccessManager = new QNetworkAccessManager();
 }
 
@@ -42,7 +42,7 @@ IP2CUpdater::~IP2CUpdater()
 {
 	abort();
 
-	if (pNetworkAccessManager != NULL)
+	if (pNetworkAccessManager != nullptr)
 	{
 		pNetworkAccessManager->deleteLater();
 	}
@@ -50,13 +50,13 @@ IP2CUpdater::~IP2CUpdater()
 
 void IP2CUpdater::abort()
 {
-	if (pCurrentNetworkReply != NULL)
+	if (pCurrentNetworkReply != nullptr)
 	{
 		pCurrentNetworkReply->disconnect();
 		pCurrentNetworkReply->abort();
 		pCurrentNetworkReply->deleteLater();
 	}
-	pCurrentNetworkReply = NULL;
+	pCurrentNetworkReply = nullptr;
 }
 
 void IP2CUpdater::checksumDownloadFinished()
@@ -78,7 +78,7 @@ void IP2CUpdater::checksumDownloadFinished()
 	remoteMd5 = remoteMd5.trimmed();
 
 	pCurrentNetworkReply->deleteLater();
-	pCurrentNetworkReply = NULL;
+	pCurrentNetworkReply = nullptr;
 
 	QByteArray localMd5;
 	QFile file(this->lastAsyncCallPath);
@@ -124,7 +124,7 @@ void IP2CUpdater::downloadFinished()
 	QByteArray data = pCurrentNetworkReply->readAll();
 
 	pCurrentNetworkReply->deleteLater();
-	pCurrentNetworkReply = NULL;
+	pCurrentNetworkReply = nullptr;
 
 	// First we need to write it to a temporary file
 	QTemporaryFile tmpFile;
@@ -136,7 +136,7 @@ void IP2CUpdater::downloadFinished()
 
 		QByteArray uncompressedData;
 		gzFile gz = gzopen(tmpFilePath.toUtf8().constData(), "rb");
-		if(gz != NULL)
+		if(gz != nullptr)
 		{
 			static const int CHUNK_SIZE = 128 * 1024;
 			char chunk[CHUNK_SIZE];
@@ -201,7 +201,7 @@ bool IP2CUpdater::getRollbackData(const QString &databasePath)
 
 bool IP2CUpdater::isWorking() const
 {
-	return pCurrentNetworkReply != NULL;
+	return pCurrentNetworkReply != nullptr;
 }
 
 void IP2CUpdater::needsUpdate(const QString& filePath)

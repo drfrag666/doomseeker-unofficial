@@ -51,7 +51,7 @@ EnginePlugin::Data::Data()
 	allowsUpnp = false;
 	allowsUpnpPort = false;
 	allowsLogging = false;
-	broadcast = NULL;
+	broadcast = nullptr;
 	clientOnly = false;
 	createDMFlagsPagesAutomatic = true;
 	defaultServerPort = 10666;
@@ -59,10 +59,10 @@ EnginePlugin::Data::Data()
 	demoExtension = "lmp";
 	hasIwad = true;
 	hasMapList = true;
-	icon = NULL;
+	icon = nullptr;
 	inGameFileDownloads = false;
-	masterClient = NULL;
-	pConfig = NULL;
+	masterClient = nullptr;
+	pConfig = nullptr;
 	refreshThreshold = 2;
 	supportsRandomMapRotation = false;
 	valid = true;
@@ -290,7 +290,7 @@ QString EnginePlugin::nameCanonical() const
 ServerPtr EnginePlugin::server(const QHostAddress &address, unsigned short port) const
 {
 	ServerPtr server = mkServer(address, port);
-	if (server != NULL)
+	if (server != nullptr)
 		server->setSelf(server.toWeakRef());
 	return server;
 }

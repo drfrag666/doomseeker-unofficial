@@ -46,7 +46,7 @@ GameExecutablePicker::GameExecutablePicker(QWidget *parent)
 {
 	d->setupUi(this);
 	d->allowedExecs = 0;
-	d->plugin = NULL;
+	d->plugin = nullptr;
 
 	showWarning("");
 }
@@ -114,7 +114,7 @@ void GameExecutablePicker::setExecutableToDefault()
 {
 	showWarning("");
 	IniSection *cfg = d->plugin->data()->pConfig;
-	if (cfg == NULL)
+	if (cfg == nullptr)
 	{
 		showWarning(tr("Plugin doesn't support configuration."));
 		return;
@@ -160,7 +160,7 @@ void GameExecutablePicker::showWarning(const QString &msg)
 void GameExecutablePicker::reloadExecutables()
 {
 	showWarning("");
-	if (d->plugin == NULL)
+	if (d->plugin == nullptr)
 	{
 		showWarning(tr("Game plugin not set."));
 		return;
@@ -168,7 +168,7 @@ void GameExecutablePicker::reloadExecutables()
 	QString currentExec = d->executableInput->currentText();
 	d->executableInput->clear();
 	IniSection *cfg = d->plugin->data()->pConfig;
-	if (cfg == NULL)
+	if (cfg == nullptr)
 	{
 		CommonGUI::setCurrentText(d->executableInput, currentExec);
 		return;

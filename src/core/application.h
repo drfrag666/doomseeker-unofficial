@@ -80,7 +80,7 @@ class MAIN_EXPORT Application : public QApplication
 		/**
 		 * @brief MainWindow of the program.
 		 *
-		 * Might be NULL if current run doesn't create a MainWindow.
+		 * Might be nullptr if current run doesn't create a MainWindow.
 		 */
 		MainWindow *mainWindow() const;
 		/**
@@ -89,7 +89,7 @@ class MAIN_EXPORT Application : public QApplication
 		 * Useful for plugins that need to specify parent widget for dialog
 		 * boxes or such, as MainWindow class itself is not exported.
 		 *
-		 * Might be NULL if current run doesn't create a MainWindow.
+		 * Might be nullptr if current run doesn't create a MainWindow.
 		 */
 		QWidget *mainWindowAsQWidget() const;
 

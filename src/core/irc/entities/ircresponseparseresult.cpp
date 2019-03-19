@@ -30,7 +30,7 @@ const IRCResponseType invalidResponseType;
 
 IRCResponseParseResult::IRCResponseParseResult()
 {
-	d.pResponseType = NULL;
+	d.pResponseType = nullptr;
 	d.bWasParsed = false;
 }
 
@@ -42,13 +42,13 @@ IRCResponseParseResult::IRCResponseParseResult(const IRCResponseType& responseTy
 
 IRCResponseParseResult::IRCResponseParseResult(const IRCResponseParseResult& other)
 {
-	d.pResponseType = NULL;
+	d.pResponseType = nullptr;
 	copyIn(other);
 }
 
 IRCResponseParseResult::~IRCResponseParseResult()
 {
-	if (d.pResponseType != NULL)
+	if (d.pResponseType != nullptr)
 	{
 		delete d.pResponseType;
 	}
@@ -57,13 +57,13 @@ IRCResponseParseResult::~IRCResponseParseResult()
 void IRCResponseParseResult::copyIn(const IRCResponseParseResult& other)
 {
 	d.bWasParsed = other.d.bWasParsed;
-	if (d.pResponseType != NULL)
+	if (d.pResponseType != nullptr)
 	{
 		delete d.pResponseType;
-		d.pResponseType = NULL;
+		d.pResponseType = nullptr;
 	}
 
-	if (other.d.pResponseType != NULL)
+	if (other.d.pResponseType != nullptr)
 	{
 		d.pResponseType = new IRCResponseType(*other.d.pResponseType);
 	}
@@ -81,7 +81,7 @@ IRCResponseParseResult& IRCResponseParseResult::operator=(const IRCResponseParse
 
 const IRCResponseType& IRCResponseParseResult::type() const
 {
-	if (d.pResponseType == NULL)
+	if (d.pResponseType == nullptr)
 	{
 		return invalidResponseType;
 	}

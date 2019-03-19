@@ -38,7 +38,7 @@
 #include <QMessageBox>
 
 const int WadseekerInterface::UPDATE_INTERVAL_MS = 500;
-WadseekerInterface *WadseekerInterface::currentInstance = NULL;
+WadseekerInterface *WadseekerInterface::currentInstance = nullptr;
 
 DClass<WadseekerInterface> : public Ui::WadseekerInterface
 {
@@ -70,7 +70,7 @@ WadseekerInterface::WadseekerInterface(ServerPtr server, QWidget* parent)
 
 WadseekerInterface::~WadseekerInterface()
 {
-	currentInstance = NULL;
+	currentInstance = nullptr;
 }
 
 void WadseekerInterface::abortService(const QString &service)
@@ -228,7 +228,7 @@ WadseekerInterface *WadseekerInterface::create(QWidget* parent)
 		currentInstance = new WadseekerInterface(parent);
 		return currentInstance;
 	}
-	return NULL;
+	return nullptr;
 }
 
 WadseekerInterface *WadseekerInterface::create(ServerPtr server, QWidget* parent)
@@ -238,13 +238,13 @@ WadseekerInterface *WadseekerInterface::create(ServerPtr server, QWidget* parent
 		currentInstance = new WadseekerInterface(server, parent);
 		return currentInstance;
 	}
-	return NULL;
+	return nullptr;
 }
 
 WadseekerInterface *WadseekerInterface::createAutoNoGame(QWidget* parent)
 {
 	WadseekerInterface *interface = create(parent);
-	if (interface != NULL)
+	if (interface != nullptr)
 	{
 		interface->setupAutomatic();
 		interface->d->preventGame = true;
@@ -333,7 +333,7 @@ void WadseekerInterface::initMessageColors()
 
 bool WadseekerInterface::isInstantiated()
 {
-	return currentInstance != NULL;
+	return currentInstance != nullptr;
 }
 
 void WadseekerInterface::message(const QString& message, WadseekerLib::MessageType type)
@@ -575,7 +575,7 @@ void WadseekerInterface::wadsTableRightClicked(const QModelIndex& index, const Q
 
 		wadseeker.skipFileCurrentUrl(wadName);
 	}
-	else if (pResult != NULL)
+	else if (pResult != nullptr)
 	{
 		QMessageBox::warning(this, tr("Context menu error"), tr("Unknown action selected."));
 	}

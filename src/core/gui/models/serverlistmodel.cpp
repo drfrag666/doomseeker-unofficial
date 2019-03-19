@@ -77,7 +77,7 @@ ServerPtr ServerListModel::findSameServer(const Server *server)
 
 int ServerListModel::findServerOnTheList(const Server *server)
 {
-	if (server != NULL)
+	if (server != nullptr)
 	{
 		for (int i = 0; i < rowCount(); ++i)
 		{

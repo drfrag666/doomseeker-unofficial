@@ -192,7 +192,7 @@ class MAIN_EXPORT Server : public QObject
 		 *
 		 * @see hasRcon()
 		 */
-		virtual RConProtocol *rcon() { return NULL; }
+		virtual RConProtocol *rcon() { return nullptr; }
 		/**
 		 * @brief Color of team under given index.
 		 *

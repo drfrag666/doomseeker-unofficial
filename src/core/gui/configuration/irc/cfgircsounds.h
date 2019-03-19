@@ -34,7 +34,7 @@ class CFGIRCSounds : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGIRCSounds(QWidget* parent = NULL);
+		CFGIRCSounds(QWidget* parent = nullptr);
 		~CFGIRCSounds();
 
 		QIcon icon() const { return QIcon(":/icons/audio-speaker.png"); }

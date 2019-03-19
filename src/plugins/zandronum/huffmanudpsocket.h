@@ -30,7 +30,7 @@
 class HuffmanUdpSocket
 {
 public:
-	HuffmanUdpSocket(QUdpSocket *socket = NULL);
+	HuffmanUdpSocket(QUdpSocket *socket = nullptr);
 	~HuffmanUdpSocket();
 
 	bool hasPendingDatagrams() const;

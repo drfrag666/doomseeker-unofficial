@@ -32,7 +32,7 @@ class IP2CLoader : public QObject
 	Q_OBJECT
 
 	public:
-		IP2CLoader(QObject *parent = NULL);
+		IP2CLoader(QObject *parent = nullptr);
 		~IP2CLoader();
 
 		void load();

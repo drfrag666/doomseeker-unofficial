@@ -31,7 +31,7 @@
 QString CommonGUI::askString(const QString& title, const QString& label,
 	bool* ok, const QString& defaultString)
 {
-	return QInputDialog::getText(NULL, title,label, QLineEdit::Normal,
+	return QInputDialog::getText(nullptr, title,label, QLineEdit::Normal,
 		defaultString, ok);
 }
 

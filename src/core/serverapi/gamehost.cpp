@@ -81,7 +81,7 @@ GameHost::GameHost(EnginePlugin* plugin)
 	d->argPwadLoading = "-file";
 	d->argDemoPlayback = "-playdemo";
 	d->argDemoRecord = "-record";
-	d->currentCmdLine = NULL;
+	d->currentCmdLine = nullptr;
 	d->plugin = plugin;
 
 	set_addIwad(&GameHost::addIwad_default);
@@ -337,7 +337,7 @@ Message GameHost::host(const GameCreateParams& params)
 	if (WRAP_IN_SSS_CONSOLE)
 	{
 		QIcon icon;
-		if (plugin() != NULL)
+		if (plugin() != nullptr)
 		{
 			icon = plugin()->icon();
 		}

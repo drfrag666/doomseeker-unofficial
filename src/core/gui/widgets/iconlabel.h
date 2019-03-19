@@ -30,7 +30,7 @@
 class IconLabel : public QWidget
 {
 	public:
-		IconLabel(QWidget* pParent = NULL);
+		IconLabel(QWidget* pParent = nullptr);
 
 		const QPixmap* pixmap() const;
 		QString text() const;

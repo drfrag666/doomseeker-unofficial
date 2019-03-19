@@ -35,7 +35,7 @@ class IRCNetworkSelectionBox : public QDialog
 	Q_OBJECT
 
 	public:
-		IRCNetworkSelectionBox(QWidget* parent = NULL);
+		IRCNetworkSelectionBox(QWidget* parent = nullptr);
 		~IRCNetworkSelectionBox();
 
 		void accept();

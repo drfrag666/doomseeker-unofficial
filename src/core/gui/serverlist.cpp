@@ -41,8 +41,8 @@
 using namespace ServerListColumnId;
 
 ServerList::ServerList(ServerListView* serverTable, MainWindow* pMainWindow)
-: mainWindow(pMainWindow), model(NULL), needsCleaning(false),
-  proxyModel(NULL), sortOrder(Qt::AscendingOrder),
+: mainWindow(pMainWindow), model(nullptr), needsCleaning(false),
+  proxyModel(nullptr), sortOrder(Qt::AscendingOrder),
   sortIndex(-1), table(serverTable)
 {
 	prepareServerTable();
@@ -92,7 +92,7 @@ void ServerList::cleanUpRightNow()
 
 void ServerList::cleanUpForce()
 {
-	if (table == NULL || table->model() == NULL)
+	if (table == nullptr || table->model() == nullptr)
 		return;
 
 	if (sortIndex >= 0)
@@ -354,7 +354,7 @@ void ServerList::mouseEntered(const QModelIndex& index)
 			break;
 	}
 
-	QToolTip::showText(QCursor::pos(), tooltip, NULL);
+	QToolTip::showText(QCursor::pos(), tooltip, nullptr);
 }
 
 void ServerList::prepareServerTable()
@@ -392,7 +392,7 @@ void ServerList::refreshSelected()
 void ServerList::registerServer(ServerPtr server)
 {
 	ServerPtr serverOnList = model->findSameServer(server.data());
-	if (serverOnList != NULL)
+	if (serverOnList != nullptr)
 	{
 		serverOnList->setCustom(server->isCustom() || serverOnList->isCustom());
 		model->redraw(serverOnList.data());

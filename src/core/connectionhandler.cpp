@@ -103,7 +103,7 @@ ConnectionHandler *ConnectionHandler::connectByUrl(const QUrl &url)
 	gLog << QString("Attempting to connect to server: %1").arg(url.toString());
 
 	// Locate plugin by scheme
-	const EnginePlugin *handler = NULL;
+	const EnginePlugin *handler = nullptr;
 	// For compatibility with IDE's zds://.../<two character> scheme
 	bool zdsScheme = url.scheme().compare("zds", Qt::CaseInsensitive) == 0;
 	for(unsigned int i = 0;i < gPlugins->numPlugins();++i)
@@ -116,10 +116,10 @@ ConnectionHandler *ConnectionHandler::connectByUrl(const QUrl &url)
 			break;
 		}
 	}
-	if(handler == NULL)
+	if(handler == nullptr)
 	{
 		gLog << "Scheme not recognized starting normally.";
-		return NULL;
+		return nullptr;
 	}
 
 	unsigned short port = url.port(handler->data()->defaultServerPort);
@@ -130,7 +130,7 @@ ConnectionHandler *ConnectionHandler::connectByUrl(const QUrl &url)
 
 	// Create the server object
 	ServerPtr server = handler->server(QHostAddress(address), port);
-	ConnectionHandler *connectionHandler = new ConnectionHandler(server, NULL);
+	ConnectionHandler *connectionHandler = new ConnectionHandler(server, nullptr);
 	connectionHandler->d->forceRefresh = true;
 
 	return connectionHandler;
@@ -208,7 +208,7 @@ void ConnectionHandler::run()
 
 // -------------------------- URL Handler -------------------------------------
 
-PluginUrlHandler *PluginUrlHandler::instance = NULL;
+PluginUrlHandler *PluginUrlHandler::instance = nullptr;
 
 void PluginUrlHandler::registerAll()
 {
@@ -229,7 +229,7 @@ void PluginUrlHandler::registerScheme(const QString &scheme)
 
 void PluginUrlHandler::handleUrl(const QUrl &url)
 {
-	if(QMessageBox::question(NULL, tr("Connect to server"),
+	if(QMessageBox::question(nullptr, tr("Connect to server"),
 		tr("Do you want to connect to the server at %1?").arg(url.toString()),
 		QMessageBox::Yes|QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
 	{

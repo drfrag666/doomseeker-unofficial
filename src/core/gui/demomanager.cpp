@@ -66,7 +66,7 @@ DPointered(DemoManagerDlg)
 DemoManagerDlg::DemoManagerDlg()
 {
 	d->setupUi(this);
-	d->selectedDemo = NULL;
+	d->selectedDemo = nullptr;
 
 	d->demoModel = new QStandardItemModel();
 	adjustDemoList();
@@ -179,7 +179,7 @@ bool DemoManagerDlg::doRemoveDemo(const QString &file)
 	{
 		// Remove ini file as well, but don't bother warning if it can't be deleted for whatever reason
 		QFile::remove(file + ".ini");
-		d->selectedDemo = NULL;
+		d->selectedDemo = nullptr;
 		return true;
 	}
 	return false;
@@ -192,7 +192,7 @@ void DemoManagerDlg::deleteSelected()
 			QMessageBox::Yes|QMessageBox::Cancel) == QMessageBox::Yes)
 	{
 		QModelIndex index = d->demoList->selectionModel()->currentIndex();
-		if(d->selectedDemo == NULL)
+		if(d->selectedDemo == nullptr)
 		{
 			int dateRow = index.row();
 			for(int timeRow = 0;index.child(timeRow, 0).isValid();++timeRow)
@@ -235,7 +235,7 @@ void DemoManagerDlg::deleteSelected()
 
 void DemoManagerDlg::exportSelected()
 {
-	if(d->selectedDemo == NULL)
+	if(d->selectedDemo == nullptr)
 		return;
 
 	QFileDialog saveDialog(this);
@@ -251,11 +251,11 @@ void DemoManagerDlg::exportSelected()
 
 void DemoManagerDlg::playSelected()
 {
-	if(d->selectedDemo == NULL)
+	if(d->selectedDemo == nullptr)
 		return;
 
 	// Look for the plugin used to record.
-	EnginePlugin *plugin = NULL;
+	EnginePlugin *plugin = nullptr;
 	for(unsigned i = 0;i < gPlugins->numPlugins();i++)
 	{
 		if (d->selectedDemo->port == gPlugins->info(i)->data()->name)
@@ -263,7 +263,7 @@ void DemoManagerDlg::playSelected()
 			plugin = gPlugins->info(i);
 		}
 	}
-	if(plugin == NULL)
+	if(plugin == nullptr)
 	{
 		QMessageBox::critical(this, tr("No plugin"),
 			tr("The \"%1\" plugin does not appear to be loaded.").arg(d->selectedDemo->port));
@@ -337,7 +337,7 @@ void DemoManagerDlg::updatePreview(const QModelIndex &index)
 	if(!index.isValid() || !index.parent().isValid())
 	{
 		d->preview->setText("");
-		d->selectedDemo = NULL;
+		d->selectedDemo = nullptr;
 		return;
 	}
 

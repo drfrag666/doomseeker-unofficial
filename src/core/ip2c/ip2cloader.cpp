@@ -163,7 +163,7 @@ void IP2CLoader::ip2cFinishedParsing(bool bSuccess)
 		gLog << tr("Failed to read IP2C database. Reverting...");
 
 		d->inFallbackMode = true;
-		if (d->ip2cUpdater == NULL || !d->ip2cUpdater->hasRollbackData())
+		if (d->ip2cUpdater == nullptr || !d->ip2cUpdater->hasRollbackData())
 		{
 			gLog << tr("IP2C revert attempt failed. Nothing to go back to.");
 

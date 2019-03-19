@@ -31,7 +31,7 @@ class TableWidgetMouseAware : public QTableWidget
 	Q_OBJECT
 
 	public:
-		TableWidgetMouseAware(QWidget* parent = NULL);
+		TableWidgetMouseAware(QWidget* parent = nullptr);
 
 		bool isEmitSignalsEvenIfIndexIsInvalidEnabled() const { return bEmitSignalsEvenIfIndexIsInvalid; }
 

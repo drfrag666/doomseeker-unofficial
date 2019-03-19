@@ -468,11 +468,11 @@ QVariant Json::parseNumber(const QString &json, int &index)
         index = lastIndex + 1;
 
         if (numberStr.contains('.')) {
-                return QVariant(numberStr.toDouble(NULL));
+                return QVariant(numberStr.toDouble(nullptr));
         } else if (numberStr.startsWith('-')) {
-                return QVariant(numberStr.toLongLong(NULL));
+                return QVariant(numberStr.toLongLong(nullptr));
         } else {
-                return QVariant(numberStr.toULongLong(NULL));
+                return QVariant(numberStr.toULongLong(nullptr));
         }
 }
 

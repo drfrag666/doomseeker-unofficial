@@ -32,7 +32,7 @@ class DoomseekerConfigurationDialog : public ConfigurationDialog
 	Q_OBJECT
 
 	public:
-		DoomseekerConfigurationDialog(QWidget* parent = NULL);
+		DoomseekerConfigurationDialog(QWidget* parent = nullptr);
 
 		QStandardItem* addConfigPage(QStandardItem* rootItem, ConfigPage* configPage, int position = -1);
 		bool addEngineConfiguration(ConfigPage* configPage);
@@ -42,7 +42,7 @@ class DoomseekerConfigurationDialog : public ConfigurationDialog
 		bool wasAppearanceChanged() const { return bAppearanceChanged; }
 		bool isRestartNeeded() const { return bRestartNeeded; }
 
-		static void openConfiguration(QWidget *parent, const EnginePlugin *showPlugin=NULL);
+		static void openConfiguration(QWidget *parent, const EnginePlugin *showPlugin=nullptr);
 		static bool isOpen();
 
 	signals:

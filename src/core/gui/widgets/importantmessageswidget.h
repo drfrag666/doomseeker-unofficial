@@ -46,7 +46,7 @@ class ImportantMessagesWidget : public QWidget
 	Q_OBJECT
 
 	public:
-		ImportantMessagesWidget(QWidget* pParent = NULL);
+		ImportantMessagesWidget(QWidget* pParent = nullptr);
 		~ImportantMessagesWidget();
 
 		/**

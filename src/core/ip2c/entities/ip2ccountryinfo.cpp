@@ -24,7 +24,7 @@
 
 IP2CCountryInfo::IP2CCountryInfo()
 {
-	flag = NULL;
+	flag = nullptr;
 }
 
 IP2CCountryInfo::IP2CCountryInfo(const QPixmap* flag, QString name)
@@ -35,7 +35,7 @@ IP2CCountryInfo::IP2CCountryInfo(const QPixmap* flag, QString name)
 
 bool IP2CCountryInfo::isValid() const
 {
-	return flag != NULL
+	return flag != nullptr
 		&& !flag->isNull()
 		&& !name.isEmpty();
 }

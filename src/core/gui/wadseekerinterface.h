@@ -38,7 +38,7 @@ class ModFile;
 /**
  * @brief Wadseeker dialog box, only one instance is allowed.
  *
- * This is not a singleton, but create() methods will return NULL if instance
+ * This is not a singleton, but create() methods will return nullptr if instance
  * is already running. There's also isInstantiated() static method available.
  */
 class WadseekerInterface : public QDialog
@@ -48,9 +48,9 @@ class WadseekerInterface : public QDialog
 	public:
 		static bool isInstantiated();
 
-		static WadseekerInterface *create(QWidget* parent = NULL);
-		static WadseekerInterface *create(ServerPtr server, QWidget* parent = NULL);
-		static WadseekerInterface *createAutoNoGame(QWidget* parent = NULL);
+		static WadseekerInterface *create(QWidget* parent = nullptr);
+		static WadseekerInterface *create(ServerPtr server, QWidget* parent = nullptr);
+		static WadseekerInterface *createAutoNoGame(QWidget* parent = nullptr);
 		~WadseekerInterface();
 
 		bool isAutomatic() { return bAutomatic; }
@@ -110,8 +110,8 @@ class WadseekerInterface : public QDialog
 		QTimer updateTimer;
 		Wadseeker wadseeker;
 
-		WadseekerInterface(QWidget* parent = NULL);
-		WadseekerInterface(ServerPtr server, QWidget* parent = NULL);
+		WadseekerInterface(QWidget* parent = nullptr);
+		WadseekerInterface(ServerPtr server, QWidget* parent = nullptr);
 
 		void connectWadseekerObject();
 		void construct();

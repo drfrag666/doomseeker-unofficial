@@ -41,7 +41,7 @@ class IRCDock : public QDockWidget
 	Q_OBJECT;
 
 	public:
-		IRCDock(QWidget* parent = NULL);
+		IRCDock(QWidget* parent = nullptr);
 		~IRCDock();
 
 		IRCDockTabContents* addIRCAdapter(IRCAdapterBase* pIRCAdapter);

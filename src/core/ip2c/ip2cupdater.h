@@ -46,7 +46,7 @@ class IP2CUpdater : public QObject
 			UpdateCheckError
 		};
 
-		IP2CUpdater(QObject *parent = NULL);
+		IP2CUpdater(QObject *parent = nullptr);
 		~IP2CUpdater();
 
 		void downloadDatabase(const QString &savePath);

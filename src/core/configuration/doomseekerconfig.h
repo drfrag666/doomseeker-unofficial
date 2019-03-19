@@ -237,7 +237,7 @@ class DoomseekerConfig
 		/**
 		 *	@brief This will assume that the .ini file is initialized.
 		 *
-		 *	If the pIni pointer is NULL this will call setIniFile() with
+		 *	If the pIni pointer is nullptr this will call setIniFile() with
 		 *	empty string parameter to prevent crash.
 		 *
 		 *	@param pluginName

@@ -36,7 +36,7 @@ IRCChannelAdapter::IRCChannelAdapter(IRCNetworkAdapter* pNetwork, const QString&
 
 IRCChannelAdapter::~IRCChannelAdapter()
 {
-	if (this->pNetwork != NULL)
+	if (this->pNetwork != nullptr)
 	{
 		sendMessage("/part " + this->recipientName + " " + gIRCConfig.personal.quitMessage);
 	}
@@ -83,7 +83,7 @@ void IRCChannelAdapter::emitChatMessage(const QString& sender, const QString& co
 	const IRCUserInfo* pUserInfo = users->user(sender);
 
 	QString actualSenderName = sender;
-	if (pUserInfo != NULL)
+	if (pUserInfo != nullptr)
 	{
 		actualSenderName = pUserInfo->prefixedName();
 	}
@@ -108,7 +108,7 @@ bool IRCChannelAdapter::hasUser(const QString& nickname)
 bool IRCChannelAdapter::isOperator(const QString& nickname) const
 {
 	const IRCUserInfo* pUser = users->user(nickname);
-	if (pUser != NULL)
+	if (pUser != nullptr)
 	{
 		return pUser->isOp();
 	}
@@ -214,7 +214,7 @@ void IRCChannelAdapter::userModeChanges(const QString& nickname,
 	const QList<char> &addedFlags, const QList<char> &removedFlags)
 {
 	const IRCUserInfo* pUserInfo = this->users->user(nickname);
-	if (pUserInfo != NULL)
+	if (pUserInfo != nullptr)
 	{
 		IRCUserInfo newUserInfo = *pUserInfo;
 		foreach (char mode, addedFlags)

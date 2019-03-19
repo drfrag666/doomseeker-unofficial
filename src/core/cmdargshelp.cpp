@@ -75,7 +75,7 @@ QString CmdArgsHelp::availableCommands()
 
 QString CmdArgsHelp::missingArgs(int expectedArguments, QString option)
 {
-	QString help = tr("doomseeker: expected %n argument(s) in option %1\n\n", NULL, expectedArguments).arg(option);
+	QString help = tr("doomseeker: expected %n argument(s) in option %1\n\n", nullptr, expectedArguments).arg(option);
 	help += availableCommands();
 	return help;
 }

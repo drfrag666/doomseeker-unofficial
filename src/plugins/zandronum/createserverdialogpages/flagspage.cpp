@@ -125,7 +125,7 @@ FlagsPage::~FlagsPage()
 
 void FlagsPage::applyWidgetsChange()
 {
-	if (d->flagsController != NULL)
+	if (d->flagsController != nullptr)
 		d->flagsController->convertWidgetsToNumerical();
 }
 
@@ -234,7 +234,7 @@ bool FlagsPage::loadConfig(Ini& ini)
 
 void FlagsPage::propagateFlagsInputsChanges()
 {
-	if (d->flagsController != NULL)
+	if (d->flagsController != nullptr)
 		d->flagsController->convertNumericalToWidgets();
 }
 
@@ -306,7 +306,7 @@ void FlagsPage::setGameVersion(ZandronumGameInfo::GameVersion version)
 	if (index >= 0)
 		cboGameVersion->setCurrentIndex(index);
 	cboGameVersion->blockSignals(false);
-	if (d->flagsController != NULL)
+	if (d->flagsController != nullptr)
 	{
 		d->flagsController->setVisible(false);
 	}

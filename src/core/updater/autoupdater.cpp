@@ -78,18 +78,18 @@ AutoUpdater::AutoUpdater(QObject* pParent)
 	d->bIsRunning = false;
 	d->bStarted = false;
 	d->errorCode = EC_Ok;
-	d->pCurrentPackageFile = NULL;
+	d->pCurrentPackageFile = nullptr;
 	d->pNam = new QNetworkAccessManager();
-	d->pNetworkReply = NULL;
+	d->pNetworkReply = nullptr;
 }
 
 AutoUpdater::~AutoUpdater()
 {
-	if (d->pCurrentPackageFile != NULL)
+	if (d->pCurrentPackageFile != nullptr)
 	{
 		delete d->pCurrentPackageFile;
 	}
-	if (d->pNetworkReply != NULL)
+	if (d->pNetworkReply != nullptr)
 	{
 		d->pNetworkReply->disconnect();
 		d->pNetworkReply->abort();
@@ -101,12 +101,12 @@ AutoUpdater::~AutoUpdater()
 
 void AutoUpdater::abort()
 {
-	if (d->pNetworkReply != NULL)
+	if (d->pNetworkReply != nullptr)
 	{
 		d->pNetworkReply->disconnect();
 		d->pNetworkReply->abort();
 		d->pNetworkReply->deleteLater();
-		d->pNetworkReply = NULL;
+		d->pNetworkReply = nullptr;
 	}
 	emit finishWithError(EC_Aborted);
 }
@@ -244,7 +244,7 @@ bool AutoUpdater::isRunning() const
 
 QNetworkReply::NetworkError AutoUpdater::lastNetworkError() const
 {
-	if (errorCode() != EC_Ok && d->pNetworkReply != NULL)
+	if (errorCode() != EC_Ok && d->pNetworkReply != nullptr)
 	{
 		return d->pNetworkReply->error();
 	}
@@ -475,7 +475,7 @@ void AutoUpdater::startPackageDownload(const UpdatePackage& pkg)
 		.arg(DataPaths::UPDATE_PACKAGE_FILENAME_PREFIX).arg(pkg.name);
 	QString filePathTemplate = Strings::combinePaths(updateStorageDirPath(), fileNameTemplate);
 	qDebug() << "filePathTemplate: " << filePathTemplate;
-	if (d->pCurrentPackageFile != NULL)
+	if (d->pCurrentPackageFile != nullptr)
 	{
 		delete d->pCurrentPackageFile;
 	}
@@ -485,7 +485,7 @@ void AutoUpdater::startPackageDownload(const UpdatePackage& pkg)
 	{
 		gLog << tr("Couldn't save file in path: %1").arg(updateStorageDirPath());
 		delete d->pCurrentPackageFile;
-		d->pCurrentPackageFile = NULL;
+		d->pCurrentPackageFile = nullptr;
 		finishWithError(EC_PackageCantBeSaved);
 		return;
 	}

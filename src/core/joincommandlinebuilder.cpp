@@ -220,7 +220,7 @@ void JoinCommandLineBuilder::missingWadsClicked(QAbstractButton *button)
 
 void JoinCommandLineBuilder::obtainJoinCommandLine()
 {
-	assert(d->server != NULL);
+	assert(d->server != nullptr);
 	d->cli = CommandLineInfo();
 
 	if (!checkServerStatus())

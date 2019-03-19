@@ -49,7 +49,7 @@ MapListPanel::MapListPanel(QWidget *parent)
 	this->connect(QApplication::instance(), SIGNAL(focusChanged(QWidget*, QWidget*)),
 		SLOT(onFocusChanged(QWidget*, QWidget*)));
 
-	d->parentDialog = NULL;
+	d->parentDialog = nullptr;
 
 	d->lblWarning->setText(MapListPanel::tr("Current map isn't present on map list. Game may misbehave."));
 	d->lblWarning->setPixmap(QPixmap(":/icons/exclamation.png"));

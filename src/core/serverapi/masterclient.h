@@ -75,7 +75,7 @@ class MAIN_EXPORT MasterClient : public QObject
 		/**
 		 * @brief Extracts engine name from pluginInfo() if available.
 		 *
-		 * @return If pluginInfo() is NULL then this returns an empty string.
+		 * @return If pluginInfo() is nullptr then this returns an empty string.
 		 */
 		QString engineName() const;
 
@@ -121,7 +121,7 @@ class MAIN_EXPORT MasterClient : public QObject
 
 		/**
 		 * This is supposed to return the plugin this MasterClient belongs to.
-		 * If it doesn't belong to any plugin then return NULL.
+		 * If it doesn't belong to any plugin then return nullptr.
 		 * New instances of EnginePlugin shouldn't be created here. Instead
 		 * each plugin should keep a global instance of EnginePlugin (singleton?)
 		 * and a pointer to this instance should be returned.

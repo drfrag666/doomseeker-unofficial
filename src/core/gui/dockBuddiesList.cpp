@@ -71,7 +71,7 @@ public:
 DPointered(DockBuddiesList)
 
 DockBuddiesList::DockBuddiesList(QWidget *parent)
-: QDockWidget(parent), masterClient(NULL), save(false)
+: QDockWidget(parent), masterClient(nullptr), save(false)
 {
 	d->setupUi(this);
 	this->toggleViewAction()->setIcon(QIcon(":/icons/buddies.png"));
@@ -203,9 +203,9 @@ void DockBuddiesList::patternsListContextMenu(const QPoint &pos) const
 
 void DockBuddiesList::scan(const MasterManager *master)
 {
-	if(master == NULL && masterClient == NULL)
+	if(master == nullptr && masterClient == nullptr)
 		return;
-	else if(master != masterClient && master != NULL)
+	else if(master != masterClient && master != nullptr)
 	{ // If the master is new
 		masterClient = master;
 	}

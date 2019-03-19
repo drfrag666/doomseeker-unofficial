@@ -32,7 +32,7 @@ class CFGWadseekerIdgames : public ConfigPage
 	Q_OBJECT
 
 	public:
-		CFGWadseekerIdgames(QWidget* parent = NULL);
+		CFGWadseekerIdgames(QWidget* parent = nullptr);
 		~CFGWadseekerIdgames();
 
 		QIcon icon() const { return QIcon(":/icons/utilities-file-archiver-2.png"); }
