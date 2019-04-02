@@ -295,7 +295,8 @@ Server::Response ZandronumServer::readRequest(const QByteArray &data)
 		{
 			RETURN_BAD_IF_NOT_ENOUGH_DATA(1);
 			QString wad = in.readRawUntilByte('\0');
-			addWad(wad);
+			if (!wad.isEmpty())
+				addWad(wad);
 		}
 	}
 
