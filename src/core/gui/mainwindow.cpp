@@ -228,18 +228,6 @@ MainWindow::MainWindow(QApplication* application, int argc, char** argv)
 		d->menuActionCheckForUpdates->setVisible(false);
 	#endif
 
-	if (gPlugins->numPlugins() == 0)
-	{
-		QString message = MainWindow::tr(
-			"Warning: \n"
-			"Doomseeker failed to detect any plugins.\n"
-			"While the core application will still work its functionality is going to be limited.\n"
-			"One of the proper locations for plugin modules is the \"engines/\" directory.\n"
-		);
-		gLog << message;
-		QMessageBox::critical(NULL, MainWindow::tr("Doomseeker - plugin load failure"), message);
-	}
-
 	initIP2CUpdater();
 
 	// The buddies list must always be available so we can perform certain operations on it
