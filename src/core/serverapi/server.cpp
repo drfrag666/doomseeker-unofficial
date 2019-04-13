@@ -781,11 +781,14 @@ const PWad& Server::wad(int index) const
 PathFinder Server::wadPathFinder()
 {
 	PathFinder pathFinder;
+	#ifdef Q_OS_WIN32
 	{
 		GameExeRetriever exeRetriever(*plugin()->gameExe());
 		Message msg;
 		pathFinder.addPrioritySearchDir(exeRetriever.pathToOfflineExe(msg));
 	}
+	#endif
+	if (isTestingServer())
 	{
 		QScopedPointer<ExeFile> exeFile(clientExe());
 		Message msg;
