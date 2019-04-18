@@ -76,8 +76,16 @@ PluginLoader::Plugin::Plugin(unsigned int type, QString file)
 		gLog << QObject::tr("Skipping loading of forbidden plugin: %1").arg(file);
 		return;
 	}
+
 	// Load the library
+	#ifdef Q_OS_WIN32
+	UINT oldErrorMode = SetErrorMode(0);
+	SetErrorMode(oldErrorMode | SEM_FAILCRITICALERRORS);
+	#endif
 	d->library = dlopen(d->file.toUtf8().constData(), RTLD_NOW);
+	#ifdef Q_OS_WIN32
+	SetErrorMode(oldErrorMode);
+	#endif
 
 	if(d->library != NULL)
 	{
