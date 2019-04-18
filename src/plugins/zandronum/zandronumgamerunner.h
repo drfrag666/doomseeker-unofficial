@@ -35,9 +35,6 @@ class ZandronumGameClientRunner : public GameClientRunner
 		ZandronumGameClientRunner(ServerPtr server);
 
 		const EnginePlugin* plugin() const { return ZandronumEnginePlugin::staticInstance(); }
-
-	private:
-		void addExtra();
 };
 
 #endif

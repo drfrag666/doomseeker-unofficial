@@ -50,7 +50,6 @@ class EngineZandronumConfigBox : public EngineConfigPage
 		QGroupBox *groupTesting;
 		QLineEdit *leTestingPath;
 		QPushButton *btnBrowseTestingPath;
-		QCheckBox* cbAllowDisplayCountry;
 };
 
 #endif

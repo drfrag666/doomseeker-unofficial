@@ -34,12 +34,4 @@ ZandronumGameClientRunner::ZandronumGameClientRunner(ServerPtr server)
 	setArgForConnectPassword("+cl_password");
 	setArgForInGamePassword("+cl_joinpassword");
 	setArgForOptionalWadLoading("-optfile");
-	set_addExtra(&ZandronumGameClientRunner::addExtra);
-}
-
-void ZandronumGameClientRunner::addExtra()
-{
-	IniSection& config = *ZandronumEnginePlugin::staticInstance()->data()->pConfig;
-	bool bAllowCountryDisplay = config["AllowServersToDisplayMyCountry"];
-	args() << "+cl_hidecountry" << QString::number(!bAllowCountryDisplay ? 1 : 0);
 }

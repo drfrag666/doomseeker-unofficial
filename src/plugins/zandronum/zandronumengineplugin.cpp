@@ -95,7 +95,6 @@ void ZandronumEnginePlugin::setupConfig(IniSection &config)
 {
 	config.createSetting("Masterserver", data()->defaultMaster);
 	config.createSetting("EnableTesting", true);
-	config.createSetting("AllowServersToDisplayMyCountry", false);
 	config.createSetting("TestingPath",
 		DataPaths::defaultInstance()->pluginLocalDataLocationPath(*this));
 }

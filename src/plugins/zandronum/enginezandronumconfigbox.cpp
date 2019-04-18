@@ -53,15 +53,6 @@ EngineZandronumConfigBox::EngineZandronumConfigBox(EnginePlugin* plugin, IniSect
 	releasePathLayout->layout()->addWidget(btnBrowseTestingPath);
 	groupTesting->layout()->addWidget(releasePathLayout);
 
-	// Allow clients to "ask politely" not to display the country
-	// of the client. User modified servers can just ignore this and
-	// display the country anyway.
-	// Default: do not allow.
-	cbAllowDisplayCountry = new QCheckBox(this);
-	cbAllowDisplayCountry->setText(tr("Allow servers to display my country"));
-	cbAllowDisplayCountry->setChecked(false);
-	addWidget(cbAllowDisplayCountry);
-
 	connect(btnBrowseTestingPath, SIGNAL( clicked() ), this, SLOT ( btnBrowseTestingPathClicked() ));
 }
 
@@ -80,7 +71,6 @@ void EngineZandronumConfigBox::readSettings()
 
 	groupTesting->setChecked(config["EnableTesting"]);
 	leTestingPath->setText(config["TestingPath"]);
-	cbAllowDisplayCountry->setChecked(config["AllowServersToDisplayMyCountry"]);
 }
 
 void EngineZandronumConfigBox::saveSettings()
@@ -95,5 +85,4 @@ void EngineZandronumConfigBox::saveSettings()
 
 	strVal = leTestingPath->text();
 	config["TestingPath"] = strVal;
-	config["AllowServersToDisplayMyCountry"] = cbAllowDisplayCountry->isChecked();
 }
