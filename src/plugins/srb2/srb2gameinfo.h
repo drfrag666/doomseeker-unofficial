@@ -82,8 +82,8 @@ class Srb2AboutProvider : public TextProvider
 {
 	Q_OBJECT
 
-	public:
-		QString provide();
+public:
+	QString provide();
 };
 
 #endif

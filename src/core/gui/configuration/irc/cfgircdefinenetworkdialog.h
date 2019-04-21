@@ -35,40 +35,39 @@ class CFGIRCDefineNetworkDialog : public QDialog
 {
 	Q_OBJECT
 
-	public:
-		CFGIRCDefineNetworkDialog(const IRCNetworkEntity& initValuesEntity, QWidget* parent = nullptr);
-		CFGIRCDefineNetworkDialog(QWidget* parent = nullptr);
-		~CFGIRCDefineNetworkDialog();
+public:
+	CFGIRCDefineNetworkDialog(const IRCNetworkEntity &initValuesEntity, QWidget *parent = nullptr);
+	CFGIRCDefineNetworkDialog(QWidget *parent = nullptr);
+	~CFGIRCDefineNetworkDialog();
 
-		IRCNetworkEntity getNetworkEntity() const;
-		/**
-		 * @brief Overrides extraction from config if not-empty list is set.
-		 */
-		void setExistingNetworks(const QList<IRCNetworkEntity> &networks);
+	IRCNetworkEntity getNetworkEntity() const;
+	/**
+	 * @brief Overrides extraction from config if not-empty list is set.
+	 */
+	void setExistingNetworks(const QList<IRCNetworkEntity> &networks);
 
-	public slots:
-		void accept();
+public slots:
+	void accept();
 
-	private:
-		DPtr<CFGIRCDefineNetworkDialog> d;
+private:
+	DPtr<CFGIRCDefineNetworkDialog> d;
 
-		bool askToAcceptAnywayWhenCommandsBad(const QStringList& offenders);
-		QStringList autojoinCommands() const;
-		void construct();
-		QStringList formatOffenders(const QStringList& offenders) const;
-		void initFrom(const IRCNetworkEntity& networkEntity);
-		bool isDescriptionUnique() const;
-		bool isValidDescription() const;
-		QList<IRCNetworkEntity> listExistingNetworks() const;
-		/**
-		 * @brief If validation fails, the offending lines are returned.
-		 */
-		QStringList validateAutojoinCommands() const;
-		bool validateDescription();
+	bool askToAcceptAnywayWhenCommandsBad(const QStringList &offenders);
+	QStringList autojoinCommands() const;
+	void construct();
+	QStringList formatOffenders(const QStringList &offenders) const;
+	void initFrom(const IRCNetworkEntity &networkEntity);
+	bool isDescriptionUnique() const;
+	bool isValidDescription() const;
+	QList<IRCNetworkEntity> listExistingNetworks() const;
+	/**
+	 * @brief If validation fails, the offending lines are returned.
+	 */
+	QStringList validateAutojoinCommands() const;
+	bool validateDescription();
 
-	private slots:
-		void buttonClicked(QAbstractButton* button);
-
+private slots:
+	void buttonClicked(QAbstractButton *button);
 };
 
 #endif

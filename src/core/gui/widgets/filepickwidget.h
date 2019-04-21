@@ -42,7 +42,7 @@ public:
 		virtual QStringList neighbours()
 		{
 			return QStringList();
-		};
+		}
 	};
 
 

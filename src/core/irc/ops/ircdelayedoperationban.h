@@ -23,14 +23,14 @@
 #ifndef id09997e3e_b12d_406c_9c9a_3919ed3ff04d
 #define id09997e3e_b12d_406c_9c9a_3919ed3ff04d
 
-#include "irc/ops/ircdelayedoperation.h"
 #include "dptr.h"
+#include "irc/ops/ircdelayedoperation.h"
 
 class IRCNetworkAdapter;
 
 class IRCDelayedOperationBan : public IRCDelayedOperation
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	IRCDelayedOperationBan(IRCNetworkAdapter *network, const QString &channel,
@@ -44,8 +44,8 @@ private:
 	DPtr<IRCDelayedOperationBan> d;
 
 private slots:
-	void onWhoIsUser(const QString& nickname, const QString& user,
-		const QString& hostName, const QString& realName);
+	void onWhoIsUser(const QString &nickname, const QString &user,
+		const QString &hostName, const QString &realName);
 };
 
 #endif

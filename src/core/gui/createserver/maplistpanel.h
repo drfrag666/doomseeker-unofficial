@@ -34,7 +34,7 @@ class Ini;
 
 class MapListPanel : public QWidget
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	MapListPanel(QWidget *parent);
@@ -58,7 +58,7 @@ private:
 private slots:
 	void addMapFromEditBoxToList();
 	void addMapsFromLoadedWads();
-	void onFocusChanged(QWidget* old, QWidget* now);
+	void onFocusChanged(QWidget *old, QWidget *now);
 	void removeSelectedFromList();
 	void updateMapWarningVisibility();
 };

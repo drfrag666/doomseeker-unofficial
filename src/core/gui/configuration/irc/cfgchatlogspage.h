@@ -23,24 +23,33 @@
 #ifndef id65026263_73af_4292_be84_ddb5bf7f606b
 #define id65026263_73af_4292_be84_ddb5bf7f606b
 
-#include "gui/configuration/configpage.h"
 #include "dptr.h"
+#include "gui/configuration/configpage.h"
 #include <QIcon>
 
 class QFileInfo;
 
 class CfgChatLogsPage : public ConfigPage
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	CfgChatLogsPage(QWidget *parent);
 	~CfgChatLogsPage();
 
-	QIcon icon() const { return QIcon(":/icons/log.png"); }
-	QString name() const { return tr("Logging"); }
+	QIcon icon() const
+	{
+		return QIcon(":/icons/log.png");
+	}
+	QString name() const
+	{
+		return tr("Logging");
+	}
 	void readSettings();
-	QString title() const { return tr("IRC - Logging"); }
+	QString title() const
+	{
+		return tr("IRC - Logging");
+	}
 	Validation validate();
 
 protected:

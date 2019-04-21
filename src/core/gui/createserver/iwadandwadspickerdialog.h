@@ -23,8 +23,8 @@
 #ifndef idc56cfbd4_25dc_4818_96d3_71452acc62e8
 #define idc56cfbd4_25dc_4818_96d3_71452acc62e8
 
-#include "global.h"
 #include "dptr.h"
+#include "global.h"
 #include <QDialog>
 
 /**

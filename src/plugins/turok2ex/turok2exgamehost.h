@@ -27,7 +27,7 @@
 
 class Turok2ExGameHost : public GameHost
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	Turok2ExGameHost();

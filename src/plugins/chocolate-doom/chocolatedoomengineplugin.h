@@ -29,12 +29,12 @@
 class ChocolateDoomEnginePlugin : public EnginePlugin
 {
 	DECLARE_PLUGIN(ChocolateDoomEnginePlugin)
-	public:
-		ChocolateDoomEnginePlugin();
-		GameHost *gameHost();
-		QList<GameMode> gameModes() const;
-		ServerPtr mkServer(const QHostAddress &address, unsigned short port) const;
-		void start();
+public:
+	ChocolateDoomEnginePlugin();
+	GameHost *gameHost();
+	QList<GameMode> gameModes() const;
+	ServerPtr mkServer(const QHostAddress &address, unsigned short port) const;
+	void start();
 };
 
 #endif

@@ -28,42 +28,41 @@
 
 class FileSearchPath
 {
-	public:
-		static QList<FileSearchPath> fromStringList(const QStringList& collection);
-		static FileSearchPath fromVariant(const QVariant& var);
-		static QList<FileSearchPath> fromVariantList(const QVariantList& collection);
-		static QVariantList toVariantList(const QList<FileSearchPath>& collection);
+public:
+	static QList<FileSearchPath> fromStringList(const QStringList &collection);
+	static FileSearchPath fromVariant(const QVariant &var);
+	static QList<FileSearchPath> fromVariantList(const QVariantList &collection);
+	static QVariantList toVariantList(const QList<FileSearchPath> &collection);
 
-		FileSearchPath();
-		FileSearchPath(const QString& path);
+	FileSearchPath();
+	FileSearchPath(const QString &path);
 
-		bool isRecursive() const
-		{
-			return recursive_;
-		}
+	bool isRecursive() const
+	{
+		return recursive_;
+	}
 
-		bool isValid() const;
-		QVariant toVariant() const;
+	bool isValid() const;
+	QVariant toVariant() const;
 
-		const QString& path() const
-		{
-			return path_;
-		}
+	const QString &path() const
+	{
+		return path_;
+	}
 
-		void setPath(const QString& path)
-		{
-			path_ = path;
-		}
+	void setPath(const QString &path)
+	{
+		path_ = path;
+	}
 
-		void setRecursive(bool b)
-		{
-			recursive_ = b;
-		}
+	void setRecursive(bool b)
+	{
+		recursive_ = b;
+	}
 
-	private:
-		QString path_;
-		bool recursive_;
-
+private:
+	QString path_;
+	bool recursive_;
 };
 
 #endif

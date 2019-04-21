@@ -23,8 +23,8 @@
 #ifndef __MAPLISTSELECTOR_H_
 #define __MAPLISTSELECTOR_H_
 
-#include "ui_maplistselector.h"
 #include "dptr.h"
+#include "ui_maplistselector.h"
 #include <QDialog>
 
 /**
@@ -32,7 +32,7 @@
  */
 struct MapEntry
 {
-	MapEntry(const QString& name, const QString& originalFile, const bool& isIwad);
+	MapEntry(const QString &name, const QString &originalFile, const bool &isIwad);
 	QString name;
 	QString originalFile;
 	bool isIwad;
@@ -45,32 +45,32 @@ class MapListSelector : public QDialog
 {
 	Q_OBJECT;
 
-	public:
-		MapListSelector(QWidget* parent = nullptr);
-		~MapListSelector();
+public:
+	MapListSelector(QWidget *parent = nullptr);
+	~MapListSelector();
 
-		/**
-		 * @brief adds the paths to check for maps. Please note that it will
-		 * immediately start checking them.
-		 */
-		void addPaths(const QStringList& paths);
-		/**
-		 * @brief returns the list of maps that were checked.
-		 */
-		const QStringList selectedMaps();
-	private:
-		void addEntryToMapList(const MapEntry& newEntry);
-		void setMapsOfCheckableList(const QList<MapEntry>& list);
-		void setIfFinishedStateIsEnabled(const bool& state);
-		DPtr<MapListSelector> d;
-	private slots:
-		void accept() override;
-		void reject() override;
-		void performCheckStep();
-		void selectAll();
-		void listItemChanged();
-		void showContextMenu(const QPoint& pos);
-		void invertSelection();
+	/**
+	 * @brief adds the paths to check for maps. Please note that it will
+	 * immediately start checking them.
+	 */
+	void addPaths(const QStringList &paths);
+	/**
+	 * @brief returns the list of maps that were checked.
+	 */
+	const QStringList selectedMaps();
+private:
+	void addEntryToMapList(const MapEntry &newEntry);
+	void setMapsOfCheckableList(const QList<MapEntry> &list);
+	void setIfFinishedStateIsEnabled(const bool &state);
+	DPtr<MapListSelector> d;
+private slots:
+	void accept() override;
+	void reject() override;
+	void performCheckStep();
+	void selectAll();
+	void listItemChanged();
+	void showContextMenu(const QPoint &pos);
+	void invertSelection();
 };
 
 #endif

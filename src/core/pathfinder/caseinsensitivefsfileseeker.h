@@ -30,8 +30,8 @@
  */
 class CaseInsensitiveFSFileSeeker : public BaseFileSeeker
 {
-	public:
-		QString findFileInSpecifiedDirectory(const QString& fileName, const QString& dirPath);
+public:
+	QString findFileInSpecifiedDirectory(const QString &fileName, const QString &dirPath);
 };
 
 #endif

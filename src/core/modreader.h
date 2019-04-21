@@ -25,8 +25,8 @@
 
 #include "dptr.h"
 
-#include <QString>
 #include <QSharedPointer>
+#include <QString>
 
 /**
  * @brief Contains an entry of a WAD directory.
@@ -48,7 +48,7 @@ public:
 	virtual bool load() = 0;
 	virtual QStringList getAllMaps() = 0;
 	virtual bool isIwad() = 0;
-	static QSharedPointer<ModReader> create(const QString& path);
+	static QSharedPointer<ModReader> create(const QString &path);
 };
 
 /**
@@ -62,7 +62,7 @@ public:
 	 *
 	 * @param path absolute path to WAD file.
 	 */
-	WadReader(const QString& path);
+	WadReader(const QString &path);
 	~WadReader();
 	/**
 	 * @brief loads the WAD set in the constructor.
@@ -100,7 +100,7 @@ public:
 	 *
 	 * @param path absolute path to the compressed file.
 	 */
-	CompressedReader(const QString& path);
+	CompressedReader(const QString &path);
 	~CompressedReader();
 	/**
 	 * @brief loads the compressed file set in the constructor.
@@ -111,7 +111,10 @@ public:
 	/**
 	 * @brief returns whether or not this is a IWAD. It will always be false.
 	 */
-	bool isIwad() {return false;}
+	bool isIwad()
+	{
+		return false;
+	}
 	/**
 	 * @brief Get a list of the maps that this compressed file contains.
 	 *
@@ -129,7 +132,7 @@ protected:
 class PkReader : public CompressedReader
 {
 public:
-	PkReader(const QString& path);
+	PkReader(const QString &path);
 	/**
 	 * @brief Get a list of the maps that this PK3/7 contains.
 	 *

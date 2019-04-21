@@ -33,7 +33,7 @@ class Ini;
 
 class MiscServerSetupPanel : public QWidget
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	MiscServerSetupPanel(QWidget *parent);

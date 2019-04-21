@@ -32,17 +32,17 @@ class OdamexMasterClient : public MasterClient
 {
 	Q_OBJECT
 
-	public:
-		OdamexMasterClient();
+public:
+	OdamexMasterClient();
 
-		const EnginePlugin *plugin() const;
+	const EnginePlugin *plugin() const;
 
-		void updateAddress();
+	void updateAddress();
 
-	protected:
+protected:
 
-		QByteArray createServerListRequest();
-		Response readMasterResponse(const QByteArray &data);
+	QByteArray createServerListRequest();
+	Response readMasterResponse(const QByteArray &data);
 };
 
 #endif /* __ODAMEXMASTERCLIENT_H__ */

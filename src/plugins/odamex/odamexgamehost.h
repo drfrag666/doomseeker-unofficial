@@ -29,14 +29,14 @@ class OdamexGameHost : public GameHost
 {
 	Q_OBJECT
 
-	public:
-		OdamexGameHost();
+public:
+	OdamexGameHost();
 
-	protected:
-		void addExtra();
+protected:
+	void addExtra();
 
-	private:
-		Q_DISABLE_COPY(OdamexGameHost)
+private:
+	Q_DISABLE_COPY(OdamexGameHost)
 };
 
 #endif

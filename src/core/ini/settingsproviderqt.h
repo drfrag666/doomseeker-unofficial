@@ -35,8 +35,8 @@
 #ifndef idB4E0ED4E_CB13_4106_84A03E8713EF4A09
 #define idB4E0ED4E_CB13_4106_84A03E8713EF4A09
 
-#include "ini/settingsprovider.h"
 #include "dptr.h"
+#include "ini/settingsprovider.h"
 #include <QSettings>
 
 /**
@@ -44,19 +44,19 @@
  */
 class MAIN_EXPORT SettingsProviderQt : public SettingsProvider
 {
-	public:
-		SettingsProviderQt(QSettings* target);
-		virtual ~SettingsProviderQt();
+public:
+	SettingsProviderQt(QSettings *target);
+	virtual ~SettingsProviderQt();
 
-		QStringList allKeys() const;
-		QStringList allSections() const;
-		bool hasKey(const QString& key) const;
-		void remove(const QString& key);
-		void setValue(const QString& key, const QVariant& value);
-		QVariant value(const QString& key, QVariant defValue = QVariant()) const;
+	QStringList allKeys() const;
+	QStringList allSections() const;
+	bool hasKey(const QString &key) const;
+	void remove(const QString &key);
+	void setValue(const QString &key, const QVariant &value);
+	QVariant value(const QString &key, QVariant defValue = QVariant()) const;
 
-	private:
-		DPtr<SettingsProviderQt> d;
+private:
+	DPtr<SettingsProviderQt> d;
 };
 
 #endif // header

@@ -35,29 +35,29 @@ class UnTar : public UnArchive
 {
 	Q_OBJECT
 
+public:
+	UnTar(QIODevice *device);
+	~UnTar();
+
+	bool extract(int file, const QString &where);
+	QString fileNameFromIndex(int file);
+	int findFileEntry(const QString &entryName);
+	QStringList files();
+	bool isValid() { return valid; }
+
+protected:
+	class TarFile
+	{
 	public:
-		UnTar(QIODevice *device);
-		~UnTar();
+		QString filename;
+		unsigned int size;
+		unsigned int offset;
+	};
 
-		bool extract(int file, const QString &where);
-		QString fileNameFromIndex(int file);
-		int findFileEntry(const QString &entryName);
-		QStringList files();
-		bool isValid() { return valid; }
+	void scanTarFile();
 
-	protected:
-		class TarFile
-		{
-			public:
-				QString filename;
-				unsigned int size;
-				unsigned int offset;
-		};
-
-		void scanTarFile();
-
-		bool valid;
-		QList<TarFile> directory;
+	bool valid;
+	QList<TarFile> directory;
 };
 
 #endif

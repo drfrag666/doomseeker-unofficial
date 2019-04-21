@@ -23,8 +23,8 @@
 #ifndef idebec7725_01df_4b56_a803_07fb69a062ad
 #define idebec7725_01df_4b56_a803_07fb69a062ad
 
-#include "global.h"
 #include "dptr.h"
+#include "global.h"
 #include <QDialog>
 
 class EnginePlugin;

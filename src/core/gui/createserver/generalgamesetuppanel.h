@@ -36,7 +36,7 @@ class Ini;
 
 class GeneralGameSetupPanel : public QWidget
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	GeneralGameSetupPanel(QWidget *parent);

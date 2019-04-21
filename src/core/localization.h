@@ -46,7 +46,7 @@ public:
 
 	bool isCurrentlyLoaded(const QString &localeName) const;
 	bool loadTranslation(const QString &localeName);
-	QList<LocalizationInfo> loadLocalizationsList(const QStringList& definitionsFileSearchDirs);
+	QList<LocalizationInfo> loadLocalizationsList(const QStringList &definitionsFileSearchDirs);
 
 private:
 	class LocalizationLoader;
@@ -55,12 +55,12 @@ private:
 
 	Localization();
 
-	QList<QTranslator*> currentlyLoadedTranslations;
+	QList<QTranslator *> currentlyLoadedTranslations;
 	LocalizationInfo currentLocalization_;
 
 	void installQtTranslations(const QString &localeName, QStringList searchPaths);
 	bool installTranslation(const QString &translationName, const QStringList &searchPaths);
-	QTranslator* loadTranslationFile(const QString& translationName, const QStringList& searchPaths);
+	QTranslator *loadTranslationFile(const QString &translationName, const QStringList &searchPaths);
 };
 
 #endif

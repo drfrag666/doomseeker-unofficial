@@ -23,8 +23,8 @@
 #ifndef __CHECKWADSDLG_H_
 #define __CHECKWADSDLG_H_
 
-#include "ui_checkwadsdlg.h"
 #include "dptr.h"
+#include "ui_checkwadsdlg.h"
 #include <QDialog>
 
 class PWad;
@@ -51,30 +51,30 @@ class CheckWadsDlg : public QDialog
 {
 	Q_OBJECT;
 
-	public:
-		CheckWadsDlg(const PathFinder* pathFinder, QWidget* parent = nullptr);
-		~CheckWadsDlg();
+public:
+	CheckWadsDlg(const PathFinder *pathFinder, QWidget *parent = nullptr);
+	~CheckWadsDlg();
 
-		/**
-		 * @brief adds the wads to check.
-		 */
-		void addWads(const QList<PWad>& wads);
-		/**
-		 * @brief this function will check for the paths and integrity (if it
-		 * is turned on in the config). If the process takes more than 500
-		 * milliseconds, it will open a loading bar.
-		 *
-		 * @return returns the results stored in a CheckResult struct.
-		 */
-		const CheckResult checkWads();
-	signals:
-		void finishedChecking();
-	private:
-		DPtr<CheckWadsDlg> d;
-	private slots:
-		void openWindow();
-		void performCheckStep();
-		void abortCheck();
+	/**
+	 * @brief adds the wads to check.
+	 */
+	void addWads(const QList<PWad> &wads);
+	/**
+	 * @brief this function will check for the paths and integrity (if it
+	 * is turned on in the config). If the process takes more than 500
+	 * milliseconds, it will open a loading bar.
+	 *
+	 * @return returns the results stored in a CheckResult struct.
+	 */
+	const CheckResult checkWads();
+signals:
+	void finishedChecking();
+private:
+	DPtr<CheckWadsDlg> d;
+private slots:
+	void openWindow();
+	void performCheckStep();
+	void abortCheck();
 };
 
 #endif

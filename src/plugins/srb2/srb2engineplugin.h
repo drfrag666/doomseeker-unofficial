@@ -27,7 +27,7 @@
 
 namespace Srb2
 {
-	QString asciiOnly(const QByteArray &raw);
+QString asciiOnly(const QByteArray &raw);
 }
 
 class Srb2EnginePlugin : public EnginePlugin
@@ -40,7 +40,7 @@ public:
 	QList<DMFlagsSection> dmFlags() const;
 	GameHost *gameHost();
 	QList<GameMode> gameModes() const;
-	QList<GameCVar> limits(const GameMode& mode) const;
+	QList<GameCVar> limits(const GameMode &mode) const;
 	ServerPtr mkServer(const QHostAddress &address, unsigned short port) const;
 };
 

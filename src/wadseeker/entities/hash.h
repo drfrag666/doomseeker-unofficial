@@ -27,22 +27,22 @@
 #include "../wadseekerexportinfo.h"
 #include "dptr.h"
 #include <QCryptographicHash>
-#include <QString>
 #include <QFile>
+#include <QString>
 /**
  * @brief Handles the required algorithms to hash files
  */
 class WADSEEKER_API Hash
 {
-	public:
-	  /**
+public:
+	/**
 	 * @brief Hashes files
 	 *
 	 * @param path - Path to the desired file to hash
 	 * @param algorithm - Algorithm to use
 	 * @return hash of file
 	 */
-	  static QByteArray hashFile(const QString &path, const QCryptographicHash::Algorithm algorithm);
+	static QByteArray hashFile(const QString &path, const QCryptographicHash::Algorithm algorithm);
 };
 
 #endif

@@ -55,7 +55,7 @@ public:
 	 * each plugin should keep a global instance of EnginePlugin (singleton?)
 	 * and a pointer to this instance should be returned.
 	 */
-	virtual EnginePlugin* plugin() const = 0;
+	virtual EnginePlugin *plugin() const = 0;
 
 signals:
 	void enabledChanged(bool enabled);

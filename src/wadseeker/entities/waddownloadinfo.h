@@ -27,8 +27,8 @@
 #include "dptr.h"
 
 #include <QByteArray>
-#include <QString>
 #include <QList>
+#include <QString>
 
 class ModFile;
 class Checksum;
@@ -38,104 +38,104 @@ class Checksum;
  */
 class WADSEEKER_API WadDownloadInfo
 {
-	public:
-		WadDownloadInfo();
-		WadDownloadInfo(const QString& name);
+public:
+	WadDownloadInfo();
+	WadDownloadInfo(const QString &name);
 
-		WadDownloadInfo(const ModFile &modFile);
-		operator ModFile() const;
+	WadDownloadInfo(const ModFile &modFile);
+	operator ModFile() const;
 
-		/**
-		 * @brief Gets name for the archive that may contain the mentioned file.
-		 *
-		 * @b NOTE: If isArchive() returns true this will return the same value
-		 * as name().
-		 *
-		 * @param suffix
-		 *      Archive's extensions without the '.' character. For example
-		 *      "zip" or "7z".
-		 */
-		QString archiveName(const QString& suffix) const;
+	/**
+	 * @brief Gets name for the archive that may contain the mentioned file.
+	 *
+	 * @b NOTE: If isArchive() returns true this will return the same value
+	 * as name().
+	 *
+	 * @param suffix
+	 *      Archive's extensions without the '.' character. For example
+	 *      "zip" or "7z".
+	 */
+	QString archiveName(const QString &suffix) const;
 
-		/**
-		 * @brief Gets the name() minus the extension.
-		 */
-		QString basename() const;
+	/**
+	 * @brief Gets the name() minus the extension.
+	 */
+	QString basename() const;
 
-		/**
- 		 * @brief Recognizes if download is an archive basing on the extension
-		 * in the name specified in the constructor.
-		 */
-		bool isArchive() const;
+	/**
+	 * @brief Recognizes if download is an archive basing on the extension
+	 * in the name specified in the constructor.
+	 */
+	bool isArchive() const;
 
-		bool isValid() const;
+	bool isValid() const;
 
-		/**
-		 * @brief Checks if filename is the same WAD as this object.
-		 *
-		 * The check is done by comparing the basenames parts of the filename
-		 * with suffixes stripped.
-		 */
-		bool isFilenameIndicatingSameWad(const QString& filename) const;
+	/**
+	 * @brief Checks if filename is the same WAD as this object.
+	 *
+	 * The check is done by comparing the basenames parts of the filename
+	 * with suffixes stripped.
+	 */
+	bool isFilenameIndicatingSameWad(const QString &filename) const;
 
-		const QString &name() const;
+	const QString &name() const;
 
-		/**
-		 * @brief Check if name() values match.
-		 *
-		 * Check is case-insensitive.
-		 */
-		bool operator==(const WadDownloadInfo& other) const;
+	/**
+	 * @brief Check if name() values match.
+	 *
+	 * Check is case-insensitive.
+	 */
+	bool operator==(const WadDownloadInfo &other) const;
 
-		/**
-		 * @brief Check if name() values mismatch.
-		 *
-		 * Check is case-insensitive.
-		 */
-		bool operator!=(const WadDownloadInfo& other) const;
+	/**
+	 * @brief Check if name() values mismatch.
+	 *
+	 * Check is case-insensitive.
+	 */
+	bool operator!=(const WadDownloadInfo &other) const;
 
-		/**
-		 * @brief Return possible archive names.
-		 *
-		 * @return If isArchive() returns true, list will contain only the
-		 *         name() value. Otherwise, the returned list will contain
-		 *         filenames for all supported archives, where the archive
-		 *         extension will replace the extension from name().
-		 */
-		QStringList possibleArchiveNames() const;
+	/**
+	 * @brief Return possible archive names.
+	 *
+	 * @return If isArchive() returns true, list will contain only the
+	 *         name() value. Otherwise, the returned list will contain
+	 *         filenames for all supported archives, where the archive
+	 *         extension will replace the extension from name().
+	 */
+	QStringList possibleArchiveNames() const;
 
-		/**
-		 * @brief Size of the file.
-		 *
-		 * @param size
-		 *      Size of the file in bytes if known. If unknown
-		 *      then a negative value should be set.
-		 */
-		void setSize(qint64 size);
+	/**
+	 * @brief Size of the file.
+	 *
+	 * @param size
+	 *      Size of the file in bytes if known. If unknown
+	 *      then a negative value should be set.
+	 */
+	void setSize(qint64 size);
 
-		/**
-		 * @brief Size of the file if known.
-		 *
-		 * @return Size of the file in bytes if known. If unknown
-		 *         then a negative value is returned.
-		 */
-		qint64 size() const;
+	/**
+	 * @brief Size of the file if known.
+	 *
+	 * @return Size of the file in bytes if known. If unknown
+	 *         then a negative value is returned.
+	 */
+	qint64 size() const;
 
-		/**
-		 * @brief List of checksums known.
-		 *
-		 * @return List of all known checksums for the desired wad.
-		 */
-		const QList<Checksum> &checksums() const;
+	/**
+	 * @brief List of checksums known.
+	 *
+	 * @return List of all known checksums for the desired wad.
+	 */
+	const QList<Checksum> &checksums() const;
 
-		/**
-		 * @brief Verifies if a file has the same checksums as the wad.
-		 *
-		 * @param path - Path to the file.
-		 */
-		const bool validFile(const QString &path) const;
-	private:
-		DPtr<WadDownloadInfo> d;
+	/**
+	 * @brief Verifies if a file has the same checksums as the wad.
+	 *
+	 * @param path - Path to the file.
+	 */
+	const bool validFile(const QString &path) const;
+private:
+	DPtr<WadDownloadInfo> d;
 };
 
 #endif

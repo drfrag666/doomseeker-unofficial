@@ -23,9 +23,9 @@
 #ifndef id78d5de3c_ac88_4972_86bf_667567e4e647
 #define id78d5de3c_ac88_4972_86bf_667567e4e647
 
+#include "../wadseekerexportinfo.h"
 #include "dptr.h"
 #include "modfile.h"
-#include "../wadseekerexportinfo.h"
 /**
  * @brief Stores a list of ModFile classes. Adds convenience functions to
  * operate on the whole list.

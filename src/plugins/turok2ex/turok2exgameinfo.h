@@ -31,22 +31,22 @@ class Turok2ExGameInfo : public QObject
 {
 	Q_OBJECT
 
-	public:
-		enum Turok2ExGameModes
-		{
-			MODE_SINGLEPLAYER, // start of list
-			MODE_ROKMATCH,
-			MODE_TEAMROKMATCH,
-			MODE_FRAGTAG,
-			MODE_LASTTUROKSTANDING,
-			MODE_ROKMIX,
-			MODE_INSTAROK,
-			MODE_RAPTORFEST,
-			MODE_NUMMODES // end of list
-		};
+public:
+	enum Turok2ExGameModes
+	{
+		MODE_SINGLEPLAYER, // start of list
+		MODE_ROKMATCH,
+		MODE_TEAMROKMATCH,
+		MODE_FRAGTAG,
+		MODE_LASTTUROKSTANDING,
+		MODE_ROKMIX,
+		MODE_INSTAROK,
+		MODE_RAPTORFEST,
+		MODE_NUMMODES // end of list
+	};
 
-		static QList<GameMode> gameModes();
-		static QList<GameCVar> limits(const GameMode &gameMode);
+	static QList<GameMode> gameModes();
+	static QList<GameCVar> limits(const GameMode &gameMode);
 };
 
 class Turok2ExDifficultyProvider : GameCVarProvider
@@ -65,8 +65,8 @@ class Turok2AboutProvider : public TextProvider
 {
 	Q_OBJECT
 
-	public:
-		QString provide();
+public:
+	QString provide();
 };
 
 #endif

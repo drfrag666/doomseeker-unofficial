@@ -26,8 +26,8 @@
 
 #include <QDockWidget>
 
-#include "serverapi/serverptr.h"
 #include "dptr.h"
+#include "serverapi/serverptr.h"
 
 class ServerDetailsDock : public QDockWidget
 {
@@ -38,7 +38,7 @@ public:
 	~ServerDetailsDock();
 
 public slots:
-	void displaySelection(QList<ServerPtr>&);
+	void displaySelection(QList<ServerPtr> &);
 
 protected:
 	void resizeEvent(QResizeEvent *event);
@@ -46,7 +46,7 @@ protected:
 private:
 	void clear();
 	void reorientContentsBasingOnDimensions();
-	ServerPtr selectServer(QList<ServerPtr>&);
+	ServerPtr selectServer(QList<ServerPtr> &);
 
 	DPtr<ServerDetailsDock> d;
 };

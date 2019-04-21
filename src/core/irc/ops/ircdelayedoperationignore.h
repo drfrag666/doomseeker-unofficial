@@ -23,14 +23,14 @@
 #ifndef id6d18a0bf_8b5a_44d2_be14_a0de3c5175fe
 #define id6d18a0bf_8b5a_44d2_be14_a0de3c5175fe
 
-#include "irc/ops/ircdelayedoperation.h"
 #include "dptr.h"
+#include "irc/ops/ircdelayedoperation.h"
 
 class IRCNetworkAdapter;
 
 class IRCDelayedOperationIgnore : public IRCDelayedOperation
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	IRCDelayedOperationIgnore(QWidget *parent, IRCNetworkAdapter *network, const QString &nickname);
@@ -46,8 +46,8 @@ private:
 	DPtr<IRCDelayedOperationIgnore> d;
 
 private slots:
-	void onWhoIsUser(const QString& nickname, const QString& user,
-		const QString& hostName, const QString& realName);
+	void onWhoIsUser(const QString &nickname, const QString &user,
+		const QString &hostName, const QString &realName);
 };
 
 #endif

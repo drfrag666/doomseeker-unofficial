@@ -30,12 +30,12 @@ class FileSearchPath;
 
 class BaseFileSeeker
 {
-	public:
-		virtual ~BaseFileSeeker() {}
+public:
+	virtual ~BaseFileSeeker() {}
 
-		QString findFile(const QString& fileName, const QList<FileSearchPath>& paths);
-		QString findFileInPath(const QString& fileName, const FileSearchPath& path);
-		virtual QString findFileInSpecifiedDirectory(const QString& fileName, const QString& dirPath) = 0;
+	QString findFile(const QString &fileName, const QList<FileSearchPath> &paths);
+	QString findFileInPath(const QString &fileName, const FileSearchPath &path);
+	virtual QString findFileInSpecifiedDirectory(const QString &fileName, const QString &dirPath) = 0;
 };
 
 #endif // header

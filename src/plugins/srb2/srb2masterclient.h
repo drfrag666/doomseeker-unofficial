@@ -23,17 +23,17 @@
 #ifndef SRB2MASTERCLIENT_H
 #define SRB2MASTERCLIENT_H
 
-#include <serverapi/masterclient.h>
 #include <QTcpSocket>
 #include <QTimer>
+#include <serverapi/masterclient.h>
 
 class DataStreamOperatorWrapper;
 class EnginePlugin;
 
 namespace Srb2Master
 {
-	struct Header;
-	struct ServerPayload;
+struct Header;
+struct ServerPayload;
 }
 
 QDataStream &operator<<(QDataStream &stream, const Srb2Master::Header &header);

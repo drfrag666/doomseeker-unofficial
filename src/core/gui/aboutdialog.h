@@ -32,20 +32,20 @@ class AboutDialog : public QDialog
 {
 	Q_OBJECT
 
-	public:
-		AboutDialog(QWidget* parent = nullptr);
-		~AboutDialog();
+public:
+	AboutDialog(QWidget *parent = nullptr);
+	~AboutDialog();
 
-	public slots:
-		void changePlugin(int pluginIndex);
+public slots:
+	void changePlugin(int pluginIndex);
 
-	private:
-		DPtr<AboutDialog> d;
+private:
+	DPtr<AboutDialog> d;
 
-		QString copyrightVerboseNotice() const;
+	QString copyrightVerboseNotice() const;
 
-	private slots:
-		void showJsonLicense();
+private slots:
+	void showJsonLicense();
 };
 
 #endif /* DOOMSEEKER_GUI_ABOUTDIALOG_H */

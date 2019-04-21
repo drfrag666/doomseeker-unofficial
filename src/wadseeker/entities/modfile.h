@@ -23,8 +23,8 @@
 #ifndef ided18842d_ed12_42b5_9c38_c21abea3480f
 #define ided18842d_ed12_42b5_9c38_c21abea3480f
 
-#include "dptr.h"
 #include "../wadseekerexportinfo.h"
+#include "dptr.h"
 
 #include <QString>
 #include <QUrl>

@@ -36,7 +36,7 @@ public:
 	ZandronumBroadcast();
 	~ZandronumBroadcast();
 
-	EnginePlugin* plugin() const;
+	EnginePlugin *plugin() const;
 	void start();
 
 private:

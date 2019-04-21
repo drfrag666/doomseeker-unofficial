@@ -31,17 +31,17 @@ class IRCConfigurationDialog : public ConfigurationDialog
 {
 	Q_OBJECT
 
-	public:
-		IRCConfigurationDialog(QWidget* parent = nullptr);
+public:
+	IRCConfigurationDialog(QWidget *parent = nullptr);
 
-		void initOptionsList();
+	void initOptionsList();
 
-	protected:
-		CFGIRCNetworks* cfgNetworks;
+protected:
+	CFGIRCNetworks *cfgNetworks;
 
-		void doSaveSettings();
-		bool isNetworkAutojoinEnabled();
-		bool validate();
+	void doSaveSettings();
+	bool isNetworkAutojoinEnabled();
+	bool validate();
 };
 
 #endif

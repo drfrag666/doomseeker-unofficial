@@ -31,26 +31,26 @@ class ServerConsole : public QWidget
 {
 	Q_OBJECT
 
-	public:
-		ServerConsole(QWidget *parent=nullptr, Qt::WindowFlags f=0);
-		~ServerConsole();
+public:
+	ServerConsole(QWidget *parent = nullptr, Qt::WindowFlags f = 0);
+	~ServerConsole();
 
-		/**
-		 * @brief Sets keyboard focus to the underlying line edit widget.
-		 */
-		void setFocus();
+	/**
+	 * @brief Sets keyboard focus to the underlying line edit widget.
+	 */
+	void setFocus();
 
-	public slots:
-		void appendMessage(const QString &message);
+public slots:
+	void appendMessage(const QString &message);
 
-	signals:
-		void messageSent(const QString &message);
+signals:
+	void messageSent(const QString &message);
 
-	protected slots:
-		void forwardMessage();
+protected slots:
+	void forwardMessage();
 
-	private:
-		DPtr<ServerConsole> d;
+private:
+	DPtr<ServerConsole> d;
 };
 
 #endif // SERVERCONSOLE_H

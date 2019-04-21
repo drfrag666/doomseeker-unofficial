@@ -24,8 +24,8 @@
 #ifndef __REMOTECONSOLE_H__
 #define __REMOTECONSOLE_H__
 
-#include "serverapi/serverptr.h"
 #include "dptr.h"
+#include "serverapi/serverptr.h"
 
 #include <QMainWindow>
 
@@ -33,28 +33,28 @@ class RemoteConsole : public QMainWindow
 {
 	Q_OBJECT
 
-	public:
-		RemoteConsole(QWidget *parent=nullptr);
-		RemoteConsole(ServerPtr server, QWidget *parent=nullptr);
-		~RemoteConsole();
+public:
+	RemoteConsole(QWidget *parent = nullptr);
+	RemoteConsole(ServerPtr server, QWidget *parent = nullptr);
+	~RemoteConsole();
 
-	public slots:
-		void disconnectFromServer();
+public slots:
+	void disconnectFromServer();
 
-	protected:
-		void closeEvent(QCloseEvent *event);
+protected:
+	void closeEvent(QCloseEvent *event);
 
-	private:
-		DPtr<RemoteConsole> d;
+private:
+	DPtr<RemoteConsole> d;
 
-		void construct();
-		void standardInit();
-		void showPasswordDialog();
+	void construct();
+	void standardInit();
+	void showPasswordDialog();
 
-	private slots:
-		void changeServerName(const QString &name);
-		void invalidPassword();
-		void updatePlayerList();
+private slots:
+	void changeServerName(const QString &name);
+	void invalidPassword();
+	void updatePlayerList();
 };
 
 #endif /* __REMOTECONSOLE_HPP__ */

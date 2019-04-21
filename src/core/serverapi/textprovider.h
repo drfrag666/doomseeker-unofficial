@@ -23,14 +23,14 @@
 #ifndef __TEXTPROVIDER_H__
 #define __TEXTPROVIDER_H__
 
-#include <QObject>
 #include "global.h"
+#include <QObject>
 
 class MAIN_EXPORT TextProvider : public QObject
 {
 	Q_OBJECT
 
-	public:
-		virtual QString provide() = 0;
+public:
+	virtual QString provide() = 0;
 };
 #endif

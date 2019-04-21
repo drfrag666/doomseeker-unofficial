@@ -28,13 +28,13 @@
 class OdamexEnginePlugin : public EnginePlugin
 {
 	DECLARE_PLUGIN(OdamexEnginePlugin)
-	public:
-		OdamexEnginePlugin();
+public:
+	OdamexEnginePlugin();
 
-		QList<DMFlagsSection> dmFlags() const;
-		GameHost *gameHost();
-		QList<GameMode> gameModes() const;
-		ServerPtr mkServer(const QHostAddress &address, unsigned short port) const;
+	QList<DMFlagsSection> dmFlags() const;
+	GameHost *gameHost();
+	QList<GameMode> gameModes() const;
+	ServerPtr mkServer(const QHostAddress &address, unsigned short port) const;
 };
 
 #endif

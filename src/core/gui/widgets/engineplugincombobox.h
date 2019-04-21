@@ -29,7 +29,7 @@ class EnginePlugin;
 
 class EnginePluginComboBox : public QComboBox
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	EnginePluginComboBox(QWidget *parent);

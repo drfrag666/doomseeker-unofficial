@@ -29,19 +29,19 @@
 
 class IconLabel : public QWidget
 {
-	public:
-		IconLabel(QWidget* pParent = nullptr);
+public:
+	IconLabel(QWidget *pParent = nullptr);
 
-		const QPixmap* pixmap() const;
-		QString text() const;
-		void setPixmap(const QPixmap& pixmap);
-		void setText(const QString& str);
-		void setWordWrap(bool wrap);
+	const QPixmap *pixmap() const;
+	QString text() const;
+	void setPixmap(const QPixmap &pixmap);
+	void setText(const QString &str);
+	void setWordWrap(bool wrap);
 
-	private:
-		QHBoxLayout* pLayout;
-		QLabel* lblIcon;
-		QLabel* lblText;
+private:
+	QHBoxLayout *pLayout;
+	QLabel *lblIcon;
+	QLabel *lblText;
 };
 
 #endif

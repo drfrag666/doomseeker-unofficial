@@ -30,13 +30,13 @@
  */
 class InterpolateCheckBox : public QCheckBox
 {
-	public:
-		InterpolateCheckBox(const QString& text, QWidget *parent = nullptr)
-			: QCheckBox(text, parent) {}
-		InterpolateCheckBox(QWidget *parent = nullptr)
-			: QCheckBox(parent) {}
-	protected:
-		void nextCheckState () override;
+public:
+	InterpolateCheckBox(const QString &text, QWidget *parent = nullptr)
+		: QCheckBox(text, parent) {}
+	InterpolateCheckBox(QWidget *parent = nullptr)
+		: QCheckBox(parent) {}
+protected:
+	void nextCheckState () override;
 };
 
 #endif

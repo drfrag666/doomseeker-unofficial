@@ -32,7 +32,7 @@ class Ini;
 
 class IwadPicker : public QWidget
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	IwadPicker(QWidget *parent);

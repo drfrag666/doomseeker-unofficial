@@ -27,16 +27,14 @@
 
 class QTabWidgetExt : public QTabWidget
 {
-	public:
-		QTabWidgetExt(QWidget* parent = nullptr)
-		: QTabWidget(parent)
-		{
-		}
+public:
+	QTabWidgetExt(QWidget *parent = nullptr)
+		: QTabWidget(parent) {}
 
-		QTabBar* tabBarPublic()
-		{
-			return tabBar();
-		}
+	QTabBar *tabBarPublic()
+	{
+		return tabBar();
+	}
 };
 
 #endif

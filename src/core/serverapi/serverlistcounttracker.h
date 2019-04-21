@@ -50,7 +50,7 @@ struct ServerListCount
 
 	int refreshedPercent() const;
 
-	ServerListCount& operator+=(const ServerListCount &other);
+	ServerListCount &operator+=(const ServerListCount &other);
 };
 
 class ServerListCountTracker : public QObject

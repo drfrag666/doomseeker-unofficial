@@ -23,34 +23,33 @@
 #ifndef DOOMSEEKER_PLUGIN_ZANDRONUM_ENGINEPLUGIN_H
 #define DOOMSEEKER_PLUGIN_ZANDRONUM_ENGINEPLUGIN_H
 
-#include <plugins/engineplugin.h>
 #include <dptr.h>
+#include <plugins/engineplugin.h>
 
 class ZandronumEnginePlugin : public EnginePlugin
 {
 	DECLARE_PLUGIN(ZandronumEnginePlugin)
-	public:
-		ZandronumEnginePlugin();
+public:
+	ZandronumEnginePlugin();
 
-		QList<CreateServerDialogPage*> createServerDialogPages(
-			CreateServerDialog* pDialog);
+	QList<CreateServerDialogPage *> createServerDialogPages(CreateServerDialog *pDialog);
 
-		void setupConfig(IniSection &config);
+	void setupConfig(IniSection &config);
 
-		ConfigPage *configuration(QWidget *parent);
-		GameHost* gameHost();
-		QList<GameMode> gameModes() const;
-		QList<GameCVar> gameModifiers() const;
-		QList<GameCVar> limits(const GameMode& gm) const;
+	ConfigPage *configuration(QWidget *parent);
+	GameHost *gameHost();
+	QList<GameMode> gameModes() const;
+	QList<GameCVar> gameModifiers() const;
+	QList<GameCVar> limits(const GameMode &gm) const;
 
-		MasterClient *masterClient() const;
+	MasterClient *masterClient() const;
 
-		ServerPtr mkServer(const QHostAddress &address, unsigned short port) const;
+	ServerPtr mkServer(const QHostAddress &address, unsigned short port) const;
 
-		void start();
+	void start();
 
-	private:
-		DPtr<ZandronumEnginePlugin> d;
+private:
+	DPtr<ZandronumEnginePlugin> d;
 };
 
 #endif

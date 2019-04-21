@@ -27,7 +27,7 @@
 
 class DefaultDifficultyProvider : public GameCVarProvider
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	QList<GameCVar> get(const QVariant &context)

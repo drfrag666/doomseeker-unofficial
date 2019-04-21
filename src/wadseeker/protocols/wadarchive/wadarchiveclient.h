@@ -23,19 +23,19 @@
 #ifndef id6c75c254_acf8_441c_980d_c044fd80f264
 #define id6c75c254_acf8_441c_980d_c044fd80f264
 
+#include "wadseekermessagetype.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QObject>
 #include <QString>
 #include <QUrl>
 #include <QVariant>
-#include "wadseekermessagetype.h"
 
 class WadDownloadInfo;
 
 class WadArchiveClient : public QObject
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	WadArchiveClient();
@@ -47,13 +47,13 @@ public:
 	void reportBadUrlIfOriginatingFromHere(const QUrl &url);
 	void setUserAgent(const QString &userAgent);
 	void start();
-	QNetworkReply *startQNetworkReply(const QUrl& url);
+	QNetworkReply *startQNetworkReply(const QUrl &url);
 signals:
 	void finished();
 	void message(const QString &msg, WadseekerLib::MessageType type);
 	void urlFound(const QString &wadName, const QUrl &url);
 
-  private:
+private:
 	class PrivData;
 	PrivData *d;
 

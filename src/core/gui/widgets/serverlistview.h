@@ -35,22 +35,22 @@ class ServerListView : public QTableView
 {
 	Q_OBJECT
 
-	public:
-		ServerListView(QWidget* parent = 0);
+public:
+	ServerListView(QWidget *parent = 0);
 
-		void setupTableProperties();
+	void setupTableProperties();
 
-	protected:
-		virtual void mouseReleaseEvent(QMouseEvent* event);
-		virtual void mouseDoubleClickEvent(QMouseEvent* event);
+protected:
+	virtual void mouseReleaseEvent(QMouseEvent *event);
+	virtual void mouseDoubleClickEvent(QMouseEvent *event);
 
-	private:
-		void setupTableColumnWidths();
+private:
+	void setupTableColumnWidths();
 
-	signals:
-		void leftMouseDoubleClicked(const QModelIndex& index, const QPoint& cursorPosition);
-		void middleMouseClicked(const QModelIndex& index, const QPoint& cursorPosition);
-		void rightMouseClicked(const QModelIndex& index, const QPoint& cursorPosition);
+signals:
+	void leftMouseDoubleClicked(const QModelIndex &index, const QPoint &cursorPosition);
+	void middleMouseClicked(const QModelIndex &index, const QPoint &cursorPosition);
+	void rightMouseClicked(const QModelIndex &index, const QPoint &cursorPosition);
 };
 
 #endif

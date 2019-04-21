@@ -23,32 +23,41 @@
 #ifndef __WADSEEKERCONFIG_GENERAL_H_
 #define __WADSEEKERCONFIG_GENERAL_H_
 
-#include "gui/configuration/configpage.h"
 #include "dptr.h"
+#include "gui/configuration/configpage.h"
 #include <QIcon>
 
 class CFGWadseekerGeneral : public ConfigPage
 {
 	Q_OBJECT
 
-	public:
-		CFGWadseekerGeneral(QWidget* parent = nullptr);
-		~CFGWadseekerGeneral();
+public:
+	CFGWadseekerGeneral(QWidget *parent = nullptr);
+	~CFGWadseekerGeneral();
 
-		QIcon icon() const { return QIcon(":/icons/preferences-system-4.png"); }
-		QString name() const { return tr("General"); }
-		QString title() const { return tr("Wadseeker - General"); }
-		Validation validate();
+	QIcon icon() const
+	{
+		return QIcon(":/icons/preferences-system-4.png");
+	}
+	QString name() const
+	{
+		return tr("General");
+	}
+	QString title() const
+	{
+		return tr("Wadseeker - General");
+	}
+	Validation validate();
 
-	protected:
-		void fillTargetDirectoryComboBox();
-		void readSettings();
-		void saveSettings();
-		void showEvent(QShowEvent*);
+protected:
+	void fillTargetDirectoryComboBox();
+	void readSettings();
+	void saveSettings();
+	void showEvent(QShowEvent *);
 
-	private:
-		DPtr<CFGWadseekerGeneral> d;
-		void activateCompleter();
+private:
+	DPtr<CFGWadseekerGeneral> d;
+	void activateCompleter();
 };
 
 #endif

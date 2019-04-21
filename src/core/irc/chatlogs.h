@@ -32,7 +32,7 @@ class IRCNetworkEntity;
 
 class ChatLogs : public QObject
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	ChatLogs();

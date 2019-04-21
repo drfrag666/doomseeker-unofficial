@@ -31,20 +31,20 @@ class OdamexGameInfo : public QObject
 {
 	Q_OBJECT
 
-	public:
-		enum OdamexGameModes
-		{
-			MODE_COOPERATIVE,
-			MODE_DEATHMATCH,
-			MODE_DEATHMATCH2,
-			MODE_TEAM_DEATHMATCH,
-			MODE_CAPTURE_THE_FLAG,
-			MODE_DUEL
-		};
+public:
+	enum OdamexGameModes
+	{
+		MODE_COOPERATIVE,
+		MODE_DEATHMATCH,
+		MODE_DEATHMATCH2,
+		MODE_TEAM_DEATHMATCH,
+		MODE_CAPTURE_THE_FLAG,
+		MODE_DUEL
+	};
 
-		static QList<DMFlagsSection> dmFlags();
-		static QList<GameMode> gameModes();
-		static GameMode gameModeDuel();
+	static QList<DMFlagsSection> dmFlags();
+	static QList<GameMode> gameModes();
+	static GameMode gameModeDuel();
 };
 
 /**
@@ -54,8 +54,8 @@ class OdamexAboutProvider : public TextProvider
 {
 	Q_OBJECT
 
-	public:
-		QString provide();
+public:
+	QString provide();
 };
 
 #endif

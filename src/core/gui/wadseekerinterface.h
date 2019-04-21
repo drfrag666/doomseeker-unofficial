@@ -23,9 +23,9 @@
 #ifndef __WADSEEKERINTERFACE_H_
 #define __WADSEEKERINTERFACE_H_
 
+#include "dptr.h"
 #include "serverapi/serverptr.h"
 #include "wadseeker/wadseeker.h"
-#include "dptr.h"
 #include <QDialog>
 #include <QStringList>
 #include <QTimer>
@@ -45,116 +45,122 @@ class WadseekerInterface : public QDialog
 {
 	Q_OBJECT
 
-	public:
-		static bool isInstantiated();
+public:
+	static bool isInstantiated();
 
-		static WadseekerInterface *create(QWidget* parent = nullptr);
-		static WadseekerInterface *create(ServerPtr server, QWidget* parent = nullptr);
-		static WadseekerInterface *createAutoNoGame(QWidget* parent = nullptr);
-		~WadseekerInterface();
+	static WadseekerInterface *create(QWidget *parent = nullptr);
+	static WadseekerInterface *create(ServerPtr server, QWidget *parent = nullptr);
+	static WadseekerInterface *createAutoNoGame(QWidget *parent = nullptr);
+	~WadseekerInterface();
 
-		bool isAutomatic() { return bAutomatic; }
+	bool isAutomatic()
+	{
+		return bAutomatic;
+	}
 
-		void setCustomSite(const QString& site)
-		{
-			this->customSite = site;
-		}
+	void setCustomSite(const QString &site)
+	{
+		this->customSite = site;
+	}
 
-		/**
-		 * @brief Sets WADs to seek.
-		 *
-		 * If window is automatic seek will start immediately. Otherwise
-		 * WADs are inserted into the line edit.
-		 *
-		 * @param wads - list of PWads to seek.
-		 */
-		void setWads(const QList<PWad>& wads);
+	/**
+	 * @brief Sets WADs to seek.
+	 *
+	 * If window is automatic seek will start immediately. Otherwise
+	 * WADs are inserted into the line edit.
+	 *
+	 * @param wads - list of PWads to seek.
+	 */
+	void setWads(const QList<PWad> &wads);
 
-		Wadseeker& wadseekerRef() { return wadseeker; }
+	Wadseeker &wadseekerRef()
+	{
+		return wadseeker;
+	}
 
-	private:
-		enum States
-		{
-			Downloading = 0,
-			Waiting = 1
-		};
+private:
+	enum States
+	{
+		Downloading = 0,
+		Waiting = 1
+	};
 
-		DPtr<WadseekerInterface> d;
+	DPtr<WadseekerInterface> d;
 
-		static const int UPDATE_INTERVAL_MS;
-		static WadseekerInterface *currentInstance;
+	static const int UPDATE_INTERVAL_MS;
+	static WadseekerInterface *currentInstance;
 
-		bool bAutomatic;
-		bool bFirstShown;
+	bool bAutomatic;
+	bool bFirstShown;
 
-		// Setup for customization in the future.
-		QString colorHtmlMessageFatalError;
-		QString colorHtmlMessageError;
-		QString colorHtmlMessageNotice;
+	// Setup for customization in the future.
+	QString colorHtmlMessageFatalError;
+	QString colorHtmlMessageError;
+	QString colorHtmlMessageNotice;
 
-		QString customSite;
+	QString customSite;
 
-		/**
-		 * Interface uses this to store the PWads.
-		 */
-		QList<PWad> seekedWads;
+	/**
+	 * Interface uses this to store the PWads.
+	 */
+	QList<PWad> seekedWads;
 
-		States state;
+	States state;
 
-		/**
-		 * @brief A subset of seekedWads list. Contains all WADs that were
-		 *        successfully installed.
-		 */
-		QList<PWad> successfulWads;
+	/**
+	 * @brief A subset of seekedWads list. Contains all WADs that were
+	 *        successfully installed.
+	 */
+	QList<PWad> successfulWads;
 
-		QTimer updateTimer;
-		Wadseeker wadseeker;
+	QTimer updateTimer;
+	Wadseeker wadseeker;
 
-		WadseekerInterface(QWidget* parent = nullptr);
-		WadseekerInterface(ServerPtr server, QWidget* parent = nullptr);
+	WadseekerInterface(QWidget *parent = nullptr);
+	WadseekerInterface(ServerPtr server, QWidget *parent = nullptr);
 
-		void connectWadseekerObject();
-		void construct();
-		void displayMessage(const QString& message, WadseekerLib::MessageType type, bool bPrependErrorsWithMessageType);
-		void initMessageColors();
+	void connectWadseekerObject();
+	void construct();
+	void displayMessage(const QString &message, WadseekerLib::MessageType type, bool bPrependErrorsWithMessageType);
+	void initMessageColors();
 
-		/**
-		 * @brief Sets default window title to default.
-		 */
-		void resetTitleToDefault();
+	/**
+	 * @brief Sets default window title to default.
+	 */
+	void resetTitleToDefault();
 
-		void setStateDownloading();
-		void setStateWaiting();
-		void setupAutomatic();
-		void setupIdgames();
-		void showEvent(QShowEvent* event);
-		void startSeeking(const QList<PWad>& seekedFilesList);
-		void updateProgressBar();
-		void updateTitle();
+	void setStateDownloading();
+	void setStateWaiting();
+	void setupAutomatic();
+	void setupIdgames();
+	void showEvent(QShowEvent *event);
+	void startSeeking(const QList<PWad> &seekedFilesList);
+	void updateProgressBar();
+	void updateTitle();
 
-		/**
-		 * @brief Subtracts successfulWads list from seekedWads and returns the
-		 *        difference.
-		 */
-		QList<PWad> unsuccessfulWads() const;
+	/**
+	 * @brief Subtracts successfulWads list from seekedWads and returns the
+	 *        difference.
+	 */
+	QList<PWad> unsuccessfulWads() const;
 
-	private slots:
-		void abortService(const QString &service);
-		void abortSite(const QUrl &url);
-		void accept();
-		void allDone(bool bSuccess);
-		void fileDownloadSuccessful(const ModFile& filename);
-		void reject();
-		void message(const QString& message, WadseekerLib::MessageType type);
-		void registerUpdateRequest();
-		void seekStarted(const ModSet& filenames);
-		void serviceStarted(const QString &service);
-		void serviceFinished(const QString &service);
-		void siteFinished(const QUrl& site);
-		void siteProgress(const QUrl& site, qint64 bytes, qint64 total);
-		void siteRedirect(const QUrl& oldUrl, const QUrl& newUrl);
-		void siteStarted(const QUrl& site);
-		void wadsTableRightClicked(const QModelIndex& index, const QPoint& cursorPosition);
+private slots:
+	void abortService(const QString &service);
+	void abortSite(const QUrl &url);
+	void accept();
+	void allDone(bool bSuccess);
+	void fileDownloadSuccessful(const ModFile &filename);
+	void reject();
+	void message(const QString &message, WadseekerLib::MessageType type);
+	void registerUpdateRequest();
+	void seekStarted(const ModSet &filenames);
+	void serviceStarted(const QString &service);
+	void serviceFinished(const QString &service);
+	void siteFinished(const QUrl &site);
+	void siteProgress(const QUrl &site, qint64 bytes, qint64 total);
+	void siteRedirect(const QUrl &oldUrl, const QUrl &newUrl);
+	void siteStarted(const QUrl &site);
+	void wadsTableRightClicked(const QModelIndex &index, const QPoint &cursorPosition);
 };
 
 #endif

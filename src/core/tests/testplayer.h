@@ -29,7 +29,7 @@ class TestPlayerNameColorStrip : public TestUnitBase
 {
 public:
 	TestPlayerNameColorStrip()
-	: TestUnitBase("Player Name Color Strip")
+		: TestUnitBase("Player Name Color Strip")
 	{}
 
 	bool executeTest();

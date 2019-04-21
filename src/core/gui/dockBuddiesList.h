@@ -24,8 +24,8 @@
 #ifndef __DOCKBUDDIESLIST_H__
 #define __DOCKBUDDIESLIST_H__
 
-#include "serverapi/serverptr.h"
 #include "dptr.h"
+#include "serverapi/serverptr.h"
 
 #include <QDialog>
 #include <QDockWidget>
@@ -38,56 +38,56 @@ class DockBuddiesList : public QDockWidget
 {
 	Q_OBJECT
 
-	public:
-		enum ColumnId
-		{
-			BLCID_ID,
-			BLCID_BUDDY,
-			BLCID_LOCATION,
+public:
+	enum ColumnId
+	{
+		BLCID_ID,
+		BLCID_BUDDY,
+		BLCID_LOCATION,
 
-			HOW_MANY_BUDDIESLIST_COLUMNS
-		};
+		HOW_MANY_BUDDIESLIST_COLUMNS
+	};
 
-		DockBuddiesList(QWidget *parent=nullptr);
-		~DockBuddiesList();
+	DockBuddiesList(QWidget *parent = nullptr);
+	~DockBuddiesList();
 
-		bool hasBuddy(const ServerPtr &server);
+	bool hasBuddy(const ServerPtr &server);
 
-	public slots:
-		void addBuddy();
-		void scan(const MasterManager *master=nullptr);
+public slots:
+	void addBuddy();
+	void scan(const MasterManager *master = nullptr);
 
-	signals:
-		void joinServer(const ServerPtr &server);
-		void scanCompleted();
+signals:
+	void joinServer(const ServerPtr &server);
+	void scanCompleted();
 
-	protected slots:
-		void deleteBuddy();
-		void followBuddy(const QModelIndex &index);
-		void patternsListContextMenu(const QPoint &pos) const;
+protected slots:
+	void deleteBuddy();
+	void followBuddy(const QModelIndex &index);
+	void patternsListContextMenu(const QPoint &pos) const;
 
-	private:
-		DPtr<DockBuddiesList> d;
+private:
+	DPtr<DockBuddiesList> d;
 
-		const MasterManager *masterClient;
-		bool save;
+	const MasterManager *masterClient;
+	bool save;
 };
 
 class AddBuddyDlg : public QDialog
 {
 	Q_OBJECT
 
-	public:
-		AddBuddyDlg(QWidget *parent=nullptr);
-		~AddBuddyDlg();
+public:
+	AddBuddyDlg(QWidget *parent = nullptr);
+	~AddBuddyDlg();
 
-		QRegExp pattern() const;
+	QRegExp pattern() const;
 
-	protected slots:
-		void buttonBoxClicked(QAbstractButton *button);
+protected slots:
+	void buttonBoxClicked(QAbstractButton *button);
 
-	private:
-		DPtr<AddBuddyDlg> d;
+private:
+	DPtr<AddBuddyDlg> d;
 };
 
 #endif /* __DOCKBUDDIESLIST_H__ */

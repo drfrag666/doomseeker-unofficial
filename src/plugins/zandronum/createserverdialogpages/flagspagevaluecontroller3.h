@@ -32,61 +32,59 @@ class FlagsPage;
 
 namespace Zandronum3
 {
-
 /**
  * @brief Converts numerical flags values to widget representation
  *        and vice-versa.
  */
 class FlagsPageValueController : public ::FlagsPageValueController
 {
-	public:
-		FlagsPageValueController(FlagsPage* flagsPage);
+public:
+	FlagsPageValueController(FlagsPage *flagsPage);
 
-		void convertNumericalToWidgets();
-		void convertWidgetsToNumerical();
-		void setVisible(bool visible);
+	void convertNumericalToWidgets();
+	void convertWidgetsToNumerical();
+	void setVisible(bool visible);
 
-	private:
-		unsigned compatflags;
-		unsigned compatflags2;
-		unsigned zandronumCompatflags;
+private:
+	unsigned compatflags;
+	unsigned compatflags2;
+	unsigned zandronumCompatflags;
 
-		unsigned dmflags;
-		unsigned dmflags2;
-		unsigned zandronumDmflags;
+	unsigned dmflags;
+	unsigned dmflags2;
+	unsigned zandronumDmflags;
 
-		unsigned lmsAllowedWeapons;
-		unsigned lmsSpectatorSettings;
+	unsigned lmsAllowedWeapons;
+	unsigned lmsSpectatorSettings;
 
-		QMap<unsigned, QAbstractButton*> compatflagsCheckboxes;
-		QMap<unsigned, QAbstractButton*> compatflags2Checkboxes;
-		QMap<unsigned, QAbstractButton*> dmflagsCheckboxes;
-		QMap<unsigned, QAbstractButton*> dmflags2Checkboxes;
-		QMap<unsigned, QAbstractButton*> lmsAllowedWeaponsCheckboxes;
-		QMap<unsigned, QAbstractButton*> lmsSpectatorSettingsCheckboxes;
-		QMap<unsigned, QAbstractButton*> zandronumCompatflagsCheckboxes;
-		QMap<unsigned, QAbstractButton*> zandronumDmflagsCheckboxes;
+	QMap<unsigned, QAbstractButton *> compatflagsCheckboxes;
+	QMap<unsigned, QAbstractButton *> compatflags2Checkboxes;
+	QMap<unsigned, QAbstractButton *> dmflagsCheckboxes;
+	QMap<unsigned, QAbstractButton *> dmflags2Checkboxes;
+	QMap<unsigned, QAbstractButton *> lmsAllowedWeaponsCheckboxes;
+	QMap<unsigned, QAbstractButton *> lmsSpectatorSettingsCheckboxes;
+	QMap<unsigned, QAbstractButton *> zandronumCompatflagsCheckboxes;
+	QMap<unsigned, QAbstractButton *> zandronumDmflagsCheckboxes;
 
-		FlagsPage* flagsPage;
+	FlagsPage *flagsPage;
 
-		void convertToNumericalGeneral();
-		void convertToNumericalPlayers();
-		void convertToNumericalCooperative();
-		void convertToNumericalDeathmatch();
+	void convertToNumericalGeneral();
+	void convertToNumericalPlayers();
+	void convertToNumericalCooperative();
+	void convertToNumericalDeathmatch();
 
-		void convertCheckboxesToNumerical(const QMap<unsigned, QAbstractButton*>& checkboxMap,
-			unsigned& flagsValue);
-		void convertNumericalToCheckboxes(QMap<unsigned, QAbstractButton*>& checkboxMap,
-			unsigned flagsValue);
+	void convertCheckboxesToNumerical(const QMap<unsigned, QAbstractButton *> &checkboxMap,
+		unsigned &flagsValue);
+	void convertNumericalToCheckboxes(QMap<unsigned, QAbstractButton *> &checkboxMap,
+		unsigned flagsValue);
 
-		void convertToWidgetGeneral();
-		void convertToWidgetPlayers();
-		void convertToWidgetCooperative();
-		void convertToWidgetDeathmatch();
+	void convertToWidgetGeneral();
+	void convertToWidgetPlayers();
+	void convertToWidgetCooperative();
+	void convertToWidgetDeathmatch();
 
-		void readFlagsFromTextInputs();
+	void readFlagsFromTextInputs();
 };
-
 }
 
 #endif

@@ -26,31 +26,31 @@
 
 #include "../wadseekerexportinfo.h"
 #include "dptr.h"
-#include <QCryptographicHash>
 #include <QByteArray>
+#include <QCryptographicHash>
 
 /**
  * @brief Class to store a hash and the algorithm used.
  */
 class WADSEEKER_API Checksum
 {
-	public:
-		Checksum(const QByteArray &hash, const QCryptographicHash::Algorithm &algorithm);
-		Checksum(const Checksum &other);
-		virtual ~Checksum();
-		Checksum &operator=(const Checksum &other);
+public:
+	Checksum(const QByteArray &hash, const QCryptographicHash::Algorithm &algorithm);
+	Checksum(const Checksum &other);
+	virtual ~Checksum();
+	Checksum &operator=(const Checksum &other);
 
-		/**
-		 * @brief Hash of a file generated with the algorithm.
-		 */
-		const QByteArray &hash() const;
-		/**
-		 * @brief Algorithm used to generate the hash.
-		 */
-		const QCryptographicHash::Algorithm &algorithm() const;
+	/**
+	 * @brief Hash of a file generated with the algorithm.
+	 */
+	const QByteArray &hash() const;
+	/**
+	 * @brief Algorithm used to generate the hash.
+	 */
+	const QCryptographicHash::Algorithm &algorithm() const;
 
-	private:
-		DPtr<Checksum> d;
+private:
+	DPtr<Checksum> d;
 };
 
 #endif

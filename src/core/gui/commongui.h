@@ -33,57 +33,57 @@ class QTableWidget;
 
 class CommonGUI
 {
-	public:
-		/**
-		 * @brief Calls QInputDialog::getText().
-		 */
-		static QString askString(const QString& title, const QString& label,
-			bool* ok = nullptr, const QString& defaultString = "");
+public:
+	/**
+	 * @brief Calls QInputDialog::getText().
+	 */
+	static QString askString(const QString &title, const QString &label,
+		bool *ok = nullptr, const QString &defaultString = "");
 
-		/**
-		 * Reads items from a QListView with QStandardItemModel and pulls the
-		 * checked state and converts to a QList<bool>.
-		 */
-		static QList<bool> listViewStandardItemsToBoolList(QListView* listview);
+	/**
+	 * Reads items from a QListView with QStandardItemModel and pulls the
+	 * checked state and converts to a QList<bool>.
+	 */
+	static QList<bool> listViewStandardItemsToBoolList(QListView *listview);
 
-		/**
-		 * @brief Reads items from a QListView that uses QStandardItemModel
-		 * and puts texts of these items into a list of strings.
-		 * @param listview - QListView that uses QStandardItemModel.
-		 */
-		static QStringList listViewStandardItemsToStringList(QListView* listview);
+	/**
+	 * @brief Reads items from a QListView that uses QStandardItemModel
+	 * and puts texts of these items into a list of strings.
+	 * @param listview - QListView that uses QStandardItemModel.
+	 */
+	static QStringList listViewStandardItemsToStringList(QListView *listview);
 
-		static void removeSelectedRowsFromQTableWidget(QTableWidget *table);
+	static void removeSelectedRowsFromQTableWidget(QTableWidget *table);
 
-		/**
-		 * @brief Removes all selected rows from a QAbstractItemView.
-		 *
-		 * @param view
-		 *      QAbstractItemView from which items will be removed.
-		 * @param bSelectNextItem
-		 *      If true then next lowest item on the list is selected.
-		 *      Default: false.
-		 */
-		static void removeSelectedRowsFromStandardItemView(
-			QAbstractItemView* view, bool bSelectNextItem = false);
+	/**
+	 * @brief Removes all selected rows from a QAbstractItemView.
+	 *
+	 * @param view
+	 *      QAbstractItemView from which items will be removed.
+	 * @param bSelectNextItem
+	 *      If true then next lowest item on the list is selected.
+	 *      Default: false.
+	 */
+	static void removeSelectedRowsFromStandardItemView(
+		QAbstractItemView *view, bool bSelectNextItem = false);
 
-		/**
-		 * @brief Qt4 compliant implementation of Qt5's
-		 * QComboBox::setCurrentText().
-		 */
-		static void setCurrentText(QComboBox *box, const QString &text);
+	/**
+	 * @brief Qt4 compliant implementation of Qt5's
+	 * QComboBox::setCurrentText().
+	 */
+	static void setCurrentText(QComboBox *box, const QString &text);
 
-		/**
-		 * @brief Puts a list of strings into a QListView that uses
-		 *        QStandardItemModel.
-		 * @param targetListview
-		 *     QListView that uses QStandardItemModel. This list view will
-		 *     be filled with data.
-		 * @param stringList
-		 *     Source data.
-		 */
-		static void stringListToStandardItemsListView(QListView* targetListview,
-			const QStringList& stringList);
+	/**
+	 * @brief Puts a list of strings into a QListView that uses
+	 *        QStandardItemModel.
+	 * @param targetListview
+	 *     QListView that uses QStandardItemModel. This list view will
+	 *     be filled with data.
+	 * @param stringList
+	 *     Source data.
+	 */
+	static void stringListToStandardItemsListView(QListView *targetListview,
+		const QStringList &stringList);
 };
 
 #endif

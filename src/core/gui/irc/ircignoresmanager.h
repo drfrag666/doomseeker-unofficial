@@ -31,7 +31,7 @@ class PatternList;
 
 class IRCIgnoresManager : public QDialog
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	IRCIgnoresManager(QWidget *parent, const QString &networkDescription);

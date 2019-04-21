@@ -47,91 +47,91 @@ class FlagsPage : public CreateServerDialogPage, private Ui::FlagsPage
 
 	Q_OBJECT;
 
-	public:
-		/**
-		 * This is stored in config and indexing cannot change between versions.
-		 */
-		enum FallingDamageType
-		{
-			FDT_None = 0,
-			FDT_Old = 1,
-			FDT_Hexen = 2,
-			FDT_Strife = 3
-		};
+public:
+	/**
+	 * This is stored in config and indexing cannot change between versions.
+	 */
+	enum FallingDamageType
+	{
+		FDT_None = 0,
+		FDT_Old = 1,
+		FDT_Hexen = 2,
+		FDT_Strife = 3
+	};
 
-		/**
-		 * This is stored in config and indexing cannot change between versions.
-		 */
-		enum JumpCrouchAbility
-		{
-			JCA_Default = 0,
-			JCA_No = 1,
-			JCA_Yes = 2
-		};
+	/**
+	 * This is stored in config and indexing cannot change between versions.
+	 */
+	enum JumpCrouchAbility
+	{
+		JCA_Default = 0,
+		JCA_No = 1,
+		JCA_Yes = 2
+	};
 
-		/**
-		 * This is stored in config and indexing cannot change between versions.
-		 */
-		enum PlayerBlock
-		{
-			PB_NotSet = 0,
-			PB_Noclip = 1,
-			PB_AllyNoclip = 2,
-			PB_Block = 3
-		};
+	/**
+	 * This is stored in config and indexing cannot change between versions.
+	 */
+	enum PlayerBlock
+	{
+		PB_NotSet = 0,
+		PB_Noclip = 1,
+		PB_AllyNoclip = 2,
+		PB_Block = 3
+	};
 
-		/**
-		 * This is stored in config and indexing cannot change between versions.
-		 */
-		enum LevelExit
-		{
-			EXIT_NotSet = 0,
-			EXIT_NextMap = 1,
-			EXIT_RestartMap = 2,
-			EXIT_KillPlayer = 3
-		};
+	/**
+	 * This is stored in config and indexing cannot change between versions.
+	 */
+	enum LevelExit
+	{
+		EXIT_NotSet = 0,
+		EXIT_NextMap = 1,
+		EXIT_RestartMap = 2,
+		EXIT_KillPlayer = 3
+	};
 
-		static const ZandronumGameInfo::GameVersion DEFAULT_GAME_VERSION = ZandronumGameInfo::GV_Zandronum2;
+	static const ZandronumGameInfo::GameVersion DEFAULT_GAME_VERSION = ZandronumGameInfo::GV_Zandronum2;
 
-		FlagsPage(CreateServerDialog* pParentDialog);
-		~FlagsPage();
+	FlagsPage(CreateServerDialog *pParentDialog);
+	~FlagsPage();
 
-		virtual void fillInGameCreateParams(GameCreateParams &params);
-		virtual bool loadConfig(Ini& ini);
-		virtual bool saveConfig(Ini& ini);
+	virtual void fillInGameCreateParams(GameCreateParams &params);
+	virtual bool loadConfig(Ini &ini);
+	virtual bool saveConfig(Ini &ini);
 
-	private:
-		class PrivData;
+private:
+	class PrivData;
 
-		PrivData* d;
+	PrivData *d;
 
-		void initJumpCrouchComboBoxes(QComboBox* pComboBox);
-		void insertFlagsIfValid(QLineEdit* dst, QString flags, unsigned valIfInvalid = 0);
+	void initJumpCrouchComboBoxes(QComboBox *pComboBox);
+	void insertFlagsIfValid(QLineEdit *dst, QString flags, unsigned valIfInvalid = 0);
 
-		ZandronumGameInfo::GameVersion gameVersion() const;
-		void loadGameVersion(ZandronumGameInfo::GameVersion version);
-		void setGameVersion(ZandronumGameInfo::GameVersion version);
+	ZandronumGameInfo::GameVersion gameVersion() const;
+	void loadGameVersion(ZandronumGameInfo::GameVersion version);
+	void setGameVersion(ZandronumGameInfo::GameVersion version);
 
-		PlayerBlock playerBlock() const;
-		void setPlayerBlock(PlayerBlock playerBlock);
+	PlayerBlock playerBlock() const;
+	void setPlayerBlock(PlayerBlock playerBlock);
 
-		LevelExit levelExit() const;
-		void setLevelExit(LevelExit levelExit);
+	LevelExit levelExit() const;
+	void setLevelExit(LevelExit levelExit);
 
-	private slots:
-		void applyGameVersion();
+private slots:
+	void applyGameVersion();
 
-		/**
-		 * @brief Extracts dmflags values from widgets and inserts their
-		 *        numerical values into the text input widgets.
-		 */
-		void applyWidgetsChange();
+	/**
+	 * @brief Extracts dmflags values from widgets and inserts their
+	 *        numerical values into the text input widgets.
+	 */
+	void applyWidgetsChange();
 
-		/**
-		 * @brief Takes the numerical values of flags and applies them to
-		 *        widgets.
-		 */
-		void propagateFlagsInputsChanges();
+	/**
+	 * @brief Takes the numerical values of flags and applies them to
+	 *        widgets.
+	 */
+	void propagateFlagsInputsChanges();
 };
 
 #endif

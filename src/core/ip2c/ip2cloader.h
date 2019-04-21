@@ -31,29 +31,29 @@ class IP2CLoader : public QObject
 {
 	Q_OBJECT
 
-	public:
-		IP2CLoader(QObject *parent = nullptr);
-		~IP2CLoader();
+public:
+	IP2CLoader(QObject *parent = nullptr);
+	~IP2CLoader();
 
-		void load();
+	void load();
 
-	public slots:
-		void update();
+public slots:
+	void update();
 
-	signals:
-		void downloadProgress(qint64 current, qint64 total);
-		void finished();
+signals:
+	void downloadProgress(qint64 current, qint64 total);
+	void finished();
 
-	private:
-		DPtr<IP2CLoader> d;
+private:
+	DPtr<IP2CLoader> d;
 
-		void ip2cJobsFinished();
-		void ip2cParseDatabase();
+	void ip2cJobsFinished();
+	void ip2cParseDatabase();
 
-	private slots:
-		void ip2cFinishUpdate(const QByteArray& downloadedData);
-		void ip2cFinishedParsing(bool bSuccess);
-		void onUpdateNeeded(int status);
+private slots:
+	void ip2cFinishUpdate(const QByteArray &downloadedData);
+	void ip2cFinishedParsing(bool bSuccess);
+	void onUpdateNeeded(int status);
 };
 
 #endif

@@ -33,33 +33,42 @@ class CFGIRCSounds : public ConfigPage
 {
 	Q_OBJECT
 
-	public:
-		CFGIRCSounds(QWidget* parent = nullptr);
-		~CFGIRCSounds();
+public:
+	CFGIRCSounds(QWidget *parent = nullptr);
+	~CFGIRCSounds();
 
-		QIcon icon() const { return QIcon(":/icons/audio-speaker.png"); }
-		QString name() const { return tr("Sounds"); }
-		void readSettings();
-		QString title() const { return tr("IRC - Sounds"); }
-		Validation validate();
+	QIcon icon() const
+	{
+		return QIcon(":/icons/audio-speaker.png");
+	}
+	QString name() const
+	{
+		return tr("Sounds");
+	}
+	void readSettings();
+	QString title() const
+	{
+		return tr("IRC - Sounds");
+	}
+	Validation validate();
 
-	protected:
-		void saveSettings();
+protected:
+	void saveSettings();
 
-	private:
-		QString getPathToWav();
-		void setPath(QLineEdit* pLineEdit, const QString& path);
+private:
+	QString getPathToWav();
+	void setPath(QLineEdit *pLineEdit, const QString &path);
 
-		DPtr<CFGIRCSounds> d;
+	DPtr<CFGIRCSounds> d;
 
-		void playSound(const QString &path) const;
-		QString validateFilePath(const QString &path) const;
+	void playSound(const QString &path) const;
+	QString validateFilePath(const QString &path) const;
 
-	private slots:
-		void browseNicknameUsed();
-		void browsePrivateMessage();
-		void playNicknameUsed();
-		void playPrivateMessage();
+private slots:
+	void browseNicknameUsed();
+	void browsePrivateMessage();
+	void playNicknameUsed();
+	void playPrivateMessage();
 };
 
 

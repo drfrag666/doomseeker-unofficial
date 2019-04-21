@@ -38,25 +38,25 @@
  */
 class MAIN_EXPORT Random
 {
-	public:
-		/**
-		 *	@brief Inits or re-inits the Random class with specified seed.
-		 */
-		static void init(int seed);
+public:
+	/**
+	 * @brief Inits or re-inits the Random class with specified seed.
+	 */
+	static void init(int seed);
 
-		/**
-		 *	@brief Generates a new random unsigned short.
-		 *
-		 *	@param max
-		 *		Maximum value for the generated number. This is exclusive,
-		 *		ie. generated value is in range 0 <= x < max
-		 */
-		static unsigned short nextUShort(unsigned short max);
+	/**
+	 * @brief Generates a new random unsigned short.
+	 *
+	 * @param max
+	 *     Maximum value for the generated number. This is exclusive,
+	 *     ie. generated value is in range 0 <= x < max
+	 */
+	static unsigned short nextUShort(unsigned short max);
 
-	private:
-		static bool bIsInit;
+private:
+	static bool bIsInit;
 
-		static void builtInInit();
+	static void builtInInit();
 };
 
 #endif

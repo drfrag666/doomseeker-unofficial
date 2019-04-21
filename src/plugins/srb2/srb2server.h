@@ -33,10 +33,10 @@ class EnginePlugin;
 
 namespace Srb2ServerPacket
 {
-	struct Header;
-	struct ServerInfo; /// PT_SERVERINFO
-	struct FileNeeded; /// PT_SERVERINFO
-	struct PlayerInfo; /// PT_PLAYERINFO
+struct Header;
+struct ServerInfo; /// PT_SERVERINFO
+struct FileNeeded; /// PT_SERVERINFO
+struct PlayerInfo; /// PT_PLAYERINFO
 }
 
 QDataStream &operator>>(QDataStream &stream, Srb2ServerPacket::Header &header);
@@ -54,9 +54,9 @@ public:
 
 	QString customDetails();
 
-	GameClientRunner* gameRunner();
+	GameClientRunner *gameRunner();
 
-	EnginePlugin* plugin() const;
+	EnginePlugin *plugin() const;
 
 	void setGameVersion(const QString &version);
 

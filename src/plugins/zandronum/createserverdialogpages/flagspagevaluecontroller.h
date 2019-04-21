@@ -35,7 +35,7 @@ public:
 
 	virtual void convertNumericalToWidgets() = 0;
 	virtual void convertWidgetsToNumerical() = 0;
-	virtual void setVisible(bool visible) {};
+	virtual void setVisible(bool visible) {}
 
 private:
 	FlagsPageValueController(const FlagsPageValueController &other);

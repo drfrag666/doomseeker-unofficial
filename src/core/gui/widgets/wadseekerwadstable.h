@@ -36,88 +36,88 @@ class WadseekerWadsTable : public TableWidgetMouseAware
 {
 	Q_OBJECT;
 
+public:
+	class ContextMenu : public QMenu
+	{
+		friend class WadseekerWadsTable;
+
 	public:
-		class ContextMenu : public QMenu
-		{
-			friend class WadseekerWadsTable;
-
-			public:
-				QAction* actionSkipCurrentSite;
-
-			private:
-				ContextMenu(QWidget* pParent = nullptr);
-		};
-
-		static const int IDX_NAME_COLUMN = 0;
-		static const int IDX_URL_COLUMN = 1;
-		static const int IDX_PROGRESS_COLUMN = 2;
-		static const int IDX_SPEED_COLUMN = 3;
-		static const int IDX_ETA_COLUMN = 4;
-		static const int IDX_SIZE_COLUMN = 5;
-
-		WadseekerWadsTable(QWidget* pParent = nullptr);
-		~WadseekerWadsTable();
-
-		void addFile(const QString& filename);
-
-		ContextMenu* contextMenu(const QModelIndex& index, const QPoint& cursorPosition);
-
-		/**
-		 * @brief Total size of data in bytes for specified row.
-		 *
-		 * @return Amount of bytes if successful, negative value if
-		 *         row is invalid.
-		 */
-		qint64 expectedDataSize(int row) const;
-
-		QString fileNameAtRow(int row) const;
-
-		/**
-		 * @brief Total done percentage calculated basing on the data set by
-		 *        siteFileProgress().
-		 *
-		 * @return A value between 0.0 and 100.0. If percentage cannot be
-		 *         calculated a negative value is returned.
-		 */
-		double totalDonePercentage() const;
-
-	public slots:
-		void setFileDownloadFinished(const ModFile& filename);
-		void setFileFailed(const ModFile& filename);
-		void setFileProgress(const ModFile& filename, qint64 current, qint64 total);
-		void setFileSuccessful(const ModFile& filename);
-
-		/**
-		 * @brief Fired when new URL starts for specified file.
-		 */
-		void setFileUrl(const ModFile& filename, const QUrl& url);
-
-	protected:
-		void showEvent(QShowEvent* pEvent);
+		QAction *actionSkipCurrentSite;
 
 	private:
-		class PrivData
-		{
-			public:
-				bool bAlreadyShownOnce;
+		ContextMenu(QWidget *pParent = nullptr);
+	};
 
-				/**
-				 * @brief Hash Map containing SpeedCalculator objects for each
-				 *        downloaded WAD.
-				 *
-				 * Key - filename
-				 * Value - Pointer to SpeedCalculator instance.
-				 */
-				QMap<QString, SpeedCalculator* > speedCalculators;
-				QTime updateClock;
-		};
+	static const int IDX_NAME_COLUMN = 0;
+	static const int IDX_URL_COLUMN = 1;
+	static const int IDX_PROGRESS_COLUMN = 2;
+	static const int IDX_SPEED_COLUMN = 3;
+	static const int IDX_ETA_COLUMN = 4;
+	static const int IDX_SIZE_COLUMN = 5;
 
-		static const int UPDATE_INTERVAL_MS = 1000;
+	WadseekerWadsTable(QWidget *pParent = nullptr);
+	~WadseekerWadsTable();
 
-		PrivData d;
+	void addFile(const QString &filename);
 
-		int findFileRow(const QString& filename);
-		void updateDataInfoValues(bool bForce);
+	ContextMenu *contextMenu(const QModelIndex &index, const QPoint &cursorPosition);
+
+	/**
+	 * @brief Total size of data in bytes for specified row.
+	 *
+	 * @return Amount of bytes if successful, negative value if
+	 *         row is invalid.
+	 */
+	qint64 expectedDataSize(int row) const;
+
+	QString fileNameAtRow(int row) const;
+
+	/**
+	 * @brief Total done percentage calculated basing on the data set by
+	 *        siteFileProgress().
+	 *
+	 * @return A value between 0.0 and 100.0. If percentage cannot be
+	 *         calculated a negative value is returned.
+	 */
+	double totalDonePercentage() const;
+
+public slots:
+	void setFileDownloadFinished(const ModFile &filename);
+	void setFileFailed(const ModFile &filename);
+	void setFileProgress(const ModFile &filename, qint64 current, qint64 total);
+	void setFileSuccessful(const ModFile &filename);
+
+	/**
+	 * @brief Fired when new URL starts for specified file.
+	 */
+	void setFileUrl(const ModFile &filename, const QUrl &url);
+
+protected:
+	void showEvent(QShowEvent *pEvent);
+
+private:
+	class PrivData
+	{
+	public:
+		bool bAlreadyShownOnce;
+
+		/**
+		 * @brief Hash Map containing SpeedCalculator objects for each
+		 *        downloaded WAD.
+		 *
+		 * Key - filename
+		 * Value - Pointer to SpeedCalculator instance.
+		 */
+		QMap<QString, SpeedCalculator *> speedCalculators;
+		QTime updateClock;
+	};
+
+	static const int UPDATE_INTERVAL_MS = 1000;
+
+	PrivData d;
+
+	int findFileRow(const QString &filename);
+	void updateDataInfoValues(bool bForce);
 };
 
 #endif

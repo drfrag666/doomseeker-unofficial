@@ -29,10 +29,10 @@
 
 #include "serverapi/server.h"
 
-#define GENERICKEY			0x69696969
-#define DOOMSEEKEY			0x70717273 // not actually unique or required by Doomseeker, can otherwise be anything other than GENERICKEY
-#define DOOMSEEDTA			0x70,0x71,0x72,0x73
-#define NETM_INFO2			13
+#define GENERICKEY          0x69696969
+#define DOOMSEEKEY          0x70717273 // not actually unique or required by Doomseeker, can otherwise be anything other than GENERICKEY
+#define DOOMSEEDTA          0x70, 0x71, 0x72, 0x73
+#define NETM_INFO2          13
 
 class GameHost;
 class GameClientRunner;
@@ -42,25 +42,28 @@ class Turok2ExServer : public Server
 {
 	Q_OBJECT
 
-	public:
-		Turok2ExServer(const QHostAddress &address, unsigned short port);
+public:
+	Turok2ExServer(const QHostAddress &address, unsigned short port);
 
-		const QStringList& dehs() const { return dehPatches; }
-		GameClientRunner* gameRunner();
+	const QStringList &dehs() const
+	{
+		return dehPatches;
+	}
+	GameClientRunner *gameRunner();
 
-		EnginePlugin* plugin() const;
+	EnginePlugin *plugin() const;
 
-	protected:
-		Response readRequest(const QByteArray &data);
-		QByteArray createSendRequest();
+protected:
+	Response readRequest(const QByteArray &data);
+	QByteArray createSendRequest();
 
-	private:
-		QByteArray encryptPacket(QByteArray & message, uint32_t key);
-		bool decryptPacket(QByteArray & message, uint32_t key);
+private:
+	QByteArray encryptPacket(QByteArray &message, uint32_t key);
+	bool decryptPacket(QByteArray &message, uint32_t key);
 
-		QMap<QString, QString> cvars;
-		short protocol;
-		QStringList dehPatches;
+	QMap<QString, QString> cvars;
+	short protocol;
+	QStringList dehPatches;
 };
 
 #endif /* __Turok2ExSERVER_H__ */

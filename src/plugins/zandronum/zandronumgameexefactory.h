@@ -24,10 +24,10 @@
 #define id11524123_87af_4cee_82b2_c7f39783c02c
 
 #include "dptr.h"
-#include <serverapi/gameexefactory.h>
 #include <QDir>
 #include <QList>
 #include <QString>
+#include <serverapi/gameexefactory.h>
 
 class ExeFilePath;
 

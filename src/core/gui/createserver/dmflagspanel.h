@@ -25,8 +25,8 @@
 
 #include "dptr.h"
 
-#include <QWidget>
 #include <QtContainerFwd>
+#include <QWidget>
 
 class DMFlagsSection;
 class EnginePlugin;

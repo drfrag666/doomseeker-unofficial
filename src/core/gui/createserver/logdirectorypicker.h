@@ -29,7 +29,7 @@
 
 class LogDirectoryPicker : public QWidget
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	LogDirectoryPicker(QWidget *parent);
@@ -41,21 +41,21 @@ public:
 	 * @return QString path where the log has to be placed.
 	 */
 	const QString validatedCurrentPath() const;
-	const QString& currentPath() const;
+	const QString &currentPath() const;
 	/**
 	 * @brief Sets the Path, and calls updateLoggingEnabled.
 	 */
-	void setPathAndUpdate(const QString& path);
+	void setPathAndUpdate(const QString &path);
 
-	const bool& isLoggingEnabled() const;
-	void setLoggingEnabled(const bool& enabled);
+	const bool &isLoggingEnabled() const;
+	void setLoggingEnabled(const bool &enabled);
 private:
 	/**
 	 * @brief in case that the path does not exist, it will disable the checkbox
 	 * and show a warning sign. If not, or the path is empty, it enables the
 	 * checkbox and hides the sign.
 	 */
-	void updateLoggingStatus(const QString& path);
+	void updateLoggingStatus(const QString &path);
 	DPtr<LogDirectoryPicker> d;
 
 private slots:

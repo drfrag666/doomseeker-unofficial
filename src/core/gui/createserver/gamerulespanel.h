@@ -36,7 +36,7 @@ class MapListPanel;
 
 class GameRulesPanel : public QWidget
 {
-Q_OBJECT
+	Q_OBJECT
 
 public:
 	GameRulesPanel(QWidget *parent);

@@ -23,8 +23,8 @@
 #ifndef __SERVER_LIST_COLUMN_H_
 #define __SERVER_LIST_COLUMN_H_
 
-#include <QtContainerFwd>
 #include <QObject>
+#include <QtContainerFwd>
 
 class QStandardItem;
 
@@ -39,38 +39,38 @@ struct ServerListColumn
 
 namespace ServerListColumnId
 {
-	enum ColumnId
-	{
-		IDPort,
-		IDPlayers,
-		IDPing,
-		IDServerName,
-		IDAddress,
-		IDIwad,
-		IDMap,
-		IDWads,
-		IDGametype,
-		IDHiddenGroup,
-		IDHiddenServerPointer,
+enum ColumnId
+{
+	IDPort,
+	IDPlayers,
+	IDPing,
+	IDServerName,
+	IDAddress,
+	IDIwad,
+	IDMap,
+	IDWads,
+	IDGametype,
+	IDHiddenGroup,
+	IDHiddenServerPointer,
 
-		NUM_SERVERLIST_COLUMNS
-	};
+	NUM_SERVERLIST_COLUMNS
+};
 }
 
 class ServerListColumns : public QObject
 {
 	Q_OBJECT
 
-	public:
-		static ServerListColumn columns[];
+public:
+	static ServerListColumn columns[];
 
-		static QString columnLabel(int columnId);
-		static QStringList generateColumnHeaderLabels();
-		static QList<QStandardItem*> generateListOfCells();
+	static QString columnLabel(int columnId);
+	static QStringList generateColumnHeaderLabels();
+	static QList<QStandardItem *> generateListOfCells();
 
-		static bool isColumnVital(int columnId);
+	static bool isColumnVital(int columnId);
 
-		ServerListColumns() {}
+	ServerListColumns() {}
 };
 
 #endif
