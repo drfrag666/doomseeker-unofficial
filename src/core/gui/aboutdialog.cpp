@@ -47,6 +47,7 @@ AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent)
 	// Doomseeker
 	d->versionChangeset->setText(Version::changeset());
 	d->versionNumber->setText(Version::versionRevision());
+	d->versionAbi->setText(QString("(ABI: %1)").arg(DOOMSEEKER_ABI_VERSION));
 	d->lblRevision->setText(QString::number(Version::revisionNumber()));
 	d->logo->setPixmap(QPixmap(":/logo.png"));
 	d->pteCopyrightNotice->setPlainText(copyrightVerboseNotice());
@@ -83,7 +84,8 @@ void AboutDialog::changePlugin(int pluginIndex)
 	else
 		d->pluginDescription->setPlainText(plug->data()->aboutProvider->provide());
 	d->pluginAuthor->setText(plug->data()->author);
-	d->pluginVersion->setText(QString("Version: %1.%2").arg(plug->data()->abiVersion).arg(plug->data()->version));
+	d->pluginVersion->setText(QString("Version: %1").arg(plug->data()->version));
+	d->pluginAbiVersion->setText(QString("(ABI: %1)").arg(plug->data()->abiVersion));
 }
 
 QString AboutDialog::copyrightVerboseNotice() const
