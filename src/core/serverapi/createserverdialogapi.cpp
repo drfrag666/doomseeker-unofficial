@@ -23,8 +23,8 @@
 #include "createserverdialogapi.h"
 
 #include "gui/createserverdialog.h"
-#include <QPointer>
 #include <cassert>
+#include <QPointer>
 
 DClass<CreateServerDialogApi>
 {

@@ -24,11 +24,11 @@
 
 #include "zandronumengineplugin.h"
 #include "zandronumserver.h"
-#include <serverapi/server.h>
 #include <log.h>
 #include <QElapsedTimer>
 #include <QTimer>
 #include <QUdpSocket>
+#include <serverapi/server.h>
 
 DClass<ZandronumBroadcast>
 {
@@ -89,7 +89,7 @@ ZandronumBroadcast::~ZandronumBroadcast()
 {
 }
 
-EnginePlugin* ZandronumBroadcast::plugin() const
+EnginePlugin *ZandronumBroadcast::plugin() const
 {
 	return ZandronumEnginePlugin::staticInstance();
 }

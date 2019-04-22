@@ -24,41 +24,41 @@
 
 #include "configuration/doomseekerconfig.h"
 #include "doomseekerfilepaths.h"
+#include "global.h"
 #include "ip2c/ip2c.h"
 #include "ip2c/ip2cparser.h"
 #include "ip2c/ip2cupdater.h"
-#include "global.h"
 #include "log.h"
 #include <QFile>
 #include <QTimer>
 
 DClass<IP2CLoader>
 {
-	public:
-		IP2CParser* ip2cParser;
-		IP2CUpdater* ip2cUpdater;
-		bool updateInProgress;
-		bool inFallbackMode;
+public:
+	IP2CParser *ip2cParser;
+	IP2CUpdater *ip2cUpdater;
+	bool updateInProgress;
+	bool inFallbackMode;
 };
 
 DPointered(IP2CLoader)
 
 ///////////////////////////////////////////////////////////////////////////////
 IP2CLoader::IP2CLoader(QObject *parent)
-:QObject(parent)
+	: QObject(parent)
 {
 	d->updateInProgress = false;
 	d->inFallbackMode = false;
 
 	d->ip2cParser = new IP2CParser(IP2C::instance());
-	this->connect(d->ip2cParser, SIGNAL( parsingFinished(bool) ),
-		SLOT( ip2cFinishedParsing(bool) ) );
+	this->connect(d->ip2cParser, SIGNAL(parsingFinished(bool)),
+		SLOT(ip2cFinishedParsing(bool)));
 
 	d->ip2cUpdater = new IP2CUpdater();
-	this->connect(d->ip2cUpdater, SIGNAL( databaseDownloadFinished(const QByteArray&) ),
-		SLOT( ip2cFinishUpdate(const QByteArray&) ) );
-	this->connect(d->ip2cUpdater, SIGNAL( downloadProgress(qint64, qint64) ),
-		SIGNAL( downloadProgress(qint64, qint64) ) );
+	this->connect(d->ip2cUpdater, SIGNAL(databaseDownloadFinished(const QByteArray&)),
+		SLOT(ip2cFinishUpdate(const QByteArray&)));
+	this->connect(d->ip2cUpdater, SIGNAL(downloadProgress(qint64,qint64)),
+		SIGNAL(downloadProgress(qint64,qint64)));
 	this->connect(d->ip2cUpdater, SIGNAL(updateNeeded(int)),
 		SLOT(onUpdateNeeded(int)));
 }
@@ -88,9 +88,7 @@ void IP2CLoader::load()
 void IP2CLoader::onUpdateNeeded(int status)
 {
 	if (status == IP2CUpdater::UpdateNeeded)
-	{
 		update();
-	}
 	else
 	{
 		switch (status)
@@ -127,7 +125,7 @@ void IP2CLoader::update()
 	}
 }
 
-void IP2CLoader::ip2cFinishUpdate(const QByteArray& downloadedData)
+void IP2CLoader::ip2cFinishUpdate(const QByteArray &downloadedData)
 {
 	d->updateInProgress = false;
 	if (!downloadedData.isEmpty())
@@ -136,9 +134,7 @@ void IP2CLoader::ip2cFinishUpdate(const QByteArray& downloadedData)
 		QString filePath = DoomseekerFilePaths::ip2cDatabase();
 		d->ip2cUpdater->getRollbackData(filePath);
 		if (!d->ip2cUpdater->saveDownloadedData(filePath))
-		{
 			gLog << tr("Unable to save IP2C database at path: %1").arg(filePath);
-		}
 		ip2cParseDatabase();
 	}
 	else
@@ -178,9 +174,7 @@ void IP2CLoader::ip2cFinishedParsing(bool bSuccess)
 				d->ip2cParser->readDatabaseThreaded(preinstalledDbPath);
 			}
 			else
-			{
 				ip2cJobsFinished();
-			}
 		}
 		else
 		{

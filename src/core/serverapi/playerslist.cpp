@@ -24,8 +24,8 @@
 
 DClass<PlayersList>
 {
-	public:
-		QList<Player> players;
+public:
+	QList<Player> players;
 };
 
 DPointered(PlayersList)
@@ -35,12 +35,12 @@ PlayersList::PlayersList()
 	// Nothing to store yet. Future backward compatibility with plugins.
 }
 
-PlayersList::PlayersList(const PlayersList& other)
+PlayersList::PlayersList(const PlayersList &other)
 {
 	d = other.d;
 }
 
-PlayersList& PlayersList::operator=(const PlayersList& other)
+PlayersList &PlayersList::operator=(const PlayersList &other)
 {
 	d = other.d;
 	return *this;
@@ -50,7 +50,7 @@ PlayersList::~PlayersList()
 {
 }
 
-void PlayersList::bots(PlayersList& botsList) const
+void PlayersList::bots(PlayersList &botsList) const
 {
 	botsList.clear();
 
@@ -63,7 +63,7 @@ void PlayersList::bots(PlayersList& botsList) const
 	}
 }
 
-void PlayersList::botsWithoutTeam(PlayersList& botsList) const
+void PlayersList::botsWithoutTeam(PlayersList &botsList) const
 {
 	botsList.clear();
 
@@ -109,7 +109,7 @@ int PlayersList::numBotsOnTeam(int team) const
 	return bots;
 }
 
-int	PlayersList::numBotsWithoutTeam() const
+int PlayersList::numBotsWithoutTeam() const
 {
 	int bots = 0;
 	foreach(Player player, players())
@@ -123,7 +123,7 @@ int	PlayersList::numBotsWithoutTeam() const
 	return bots;
 }
 
-int	PlayersList::numClients() const
+int PlayersList::numClients() const
 {
 	return size();
 }
@@ -133,7 +133,7 @@ int PlayersList::numClientsWithoutBots() const
 	return size() - numBots();
 }
 
-int	PlayersList::numHumansInGame() const
+int PlayersList::numHumansInGame() const
 {
 	int humansInGame = 0;
 
@@ -154,8 +154,8 @@ int PlayersList::numHumansOnTeam(int team) const
 	foreach(Player player, players())
 	{
 		if (!player.isBot()
-		&& !player.isSpectating()
-		&& player.teamNum() == team)
+			&& !player.isSpectating()
+			&& player.teamNum() == team)
 		{
 			++humans;
 		}
@@ -164,14 +164,14 @@ int PlayersList::numHumansOnTeam(int team) const
 	return humans;
 }
 
-int	PlayersList::numHumansWithoutTeam() const
+int PlayersList::numHumansWithoutTeam() const
 {
 	int humans = 0;
 	foreach(Player player, players())
 	{
 		if (!player.isBot()
-		&& !player.isSpectating()
-		&& player.teamNum() == Player::TEAM_NONE)
+			&& !player.isSpectating()
+			&& player.teamNum() == Player::TEAM_NONE)
 		{
 			++humans;
 		}
@@ -230,7 +230,7 @@ const QList<Player> &PlayersList::players() const
 	return d->players;
 }
 
-void PlayersList::inGamePlayersByTeams(PlayersByTeams& playersListMap) const
+void PlayersList::inGamePlayersByTeams(PlayersByTeams &playersListMap) const
 {
 	playersListMap.clear();
 
@@ -258,7 +258,7 @@ int PlayersList::size() const
 	return d->players.size();
 }
 
-void PlayersList::spectators(PlayersList& spectatorsList) const
+void PlayersList::spectators(PlayersList &spectatorsList) const
 {
 	spectatorsList.clear();
 

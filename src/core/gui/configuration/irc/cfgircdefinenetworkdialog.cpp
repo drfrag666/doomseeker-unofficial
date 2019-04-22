@@ -23,11 +23,11 @@
 #include "cfgircdefinenetworkdialog.h"
 #include "ui_cfgircdefinenetworkdialog.h"
 
+#include "irc/chatnetworknamer.h"
 #include "irc/configuration/chatnetworkscfg.h"
 #include "irc/entities/ircnetworkentity.h"
-#include "irc/chatnetworknamer.h"
-#include <QMessageBox>
 #include <cassert>
+#include <QMessageBox>
 
 
 DClass<CFGIRCDefineNetworkDialog> : public Ui::CFGIRCDefineNetworkDialog
@@ -42,16 +42,16 @@ public:
 DPointered(CFGIRCDefineNetworkDialog)
 
 
-CFGIRCDefineNetworkDialog::CFGIRCDefineNetworkDialog(const IRCNetworkEntity& initValuesEntity, QWidget* parent)
-: QDialog(parent)
+CFGIRCDefineNetworkDialog::CFGIRCDefineNetworkDialog(const IRCNetworkEntity &initValuesEntity, QWidget *parent)
+	: QDialog(parent)
 {
 	construct();
 
 	initFrom(initValuesEntity);
 }
 
-CFGIRCDefineNetworkDialog::CFGIRCDefineNetworkDialog(QWidget* parent)
-: QDialog(parent)
+CFGIRCDefineNetworkDialog::CFGIRCDefineNetworkDialog(QWidget *parent)
+	: QDialog(parent)
 {
 	construct();
 }
@@ -63,21 +63,17 @@ CFGIRCDefineNetworkDialog::~CFGIRCDefineNetworkDialog()
 void CFGIRCDefineNetworkDialog::accept()
 {
 	if (!validateDescription())
-	{
 		return;
-	}
 	QStringList offenders = validateAutojoinCommands();
 	if (!offenders.isEmpty())
 	{
 		if (!askToAcceptAnywayWhenCommandsBad(offenders))
-		{
 			return;
-		}
 	}
 	QDialog::accept();
 }
 
-bool CFGIRCDefineNetworkDialog::askToAcceptAnywayWhenCommandsBad(const QStringList& offenders)
+bool CFGIRCDefineNetworkDialog::askToAcceptAnywayWhenCommandsBad(const QStringList &offenders)
 {
 	assert(!offenders.isEmpty() && "no offenders");
 	QString header = tr("Following commands have violated the IRC maximum byte "
@@ -87,9 +83,7 @@ bool CFGIRCDefineNetworkDialog::askToAcceptAnywayWhenCommandsBad(const QStringLi
 	QStringList formattedOffenders = formatOffenders(offenders.mid(0, 10));
 	QString body = formattedOffenders.join("\n\n");
 	if (formattedOffenders.size() < offenders.size())
-	{
 		body += tr("\n\n... and %n more ...", "", offenders.size() - formattedOffenders.size());
-	}
 	QString msg = header + body + footer;
 	QMessageBox::StandardButton result = QMessageBox::warning(
 		this, tr("Doomseeker - IRC Commands Problem"), msg,
@@ -102,30 +96,26 @@ QStringList CFGIRCDefineNetworkDialog::autojoinCommands() const
 	return d->teAutojoinCommands->toPlainText().split("\n");
 }
 
-void CFGIRCDefineNetworkDialog::buttonClicked(QAbstractButton* button)
+void CFGIRCDefineNetworkDialog::buttonClicked(QAbstractButton *button)
 {
-	QPushButton* pButton = (QPushButton*)button;
+	QPushButton *pButton = (QPushButton *)button;
 	if (pButton == d->buttonBox->button(QDialogButtonBox::Ok))
-	{
 		this->accept();
-	}
 	else
-	{
 		this->reject();
-	}
 }
 
 void CFGIRCDefineNetworkDialog::construct()
 {
 	d->setupUi(this);
 
-	connect(d->buttonBox, SIGNAL( clicked(QAbstractButton*) ), SLOT( buttonClicked(QAbstractButton*) ) );
+	connect(d->buttonBox, SIGNAL(clicked(QAbstractButton*)), SLOT(buttonClicked(QAbstractButton*)));
 }
 
-QStringList CFGIRCDefineNetworkDialog::formatOffenders(const QStringList& offenders) const
+QStringList CFGIRCDefineNetworkDialog::formatOffenders(const QStringList &offenders) const
 {
 	QStringList offendersFormatted;
-	foreach (const QString& offender, offenders)
+	foreach (const QString &offender, offenders)
 	{
 		offendersFormatted << tr("\t%1 (...)").arg(offender.left(40));
 	}
@@ -151,7 +141,7 @@ IRCNetworkEntity CFGIRCDefineNetworkDialog::getNetworkEntity() const
 	return entity;
 }
 
-void CFGIRCDefineNetworkDialog::initFrom(const IRCNetworkEntity& networkEntity)
+void CFGIRCDefineNetworkDialog::initFrom(const IRCNetworkEntity &networkEntity)
 {
 	d->originalDescription = networkEntity.description();
 	d->leAddress->setText(networkEntity.address());
@@ -175,9 +165,7 @@ bool CFGIRCDefineNetworkDialog::isDescriptionUnique() const
 	foreach (const IRCNetworkEntity &network, listExistingNetworks())
 	{
 		if (network.description().trimmed().toLower() == current)
-		{
 			return false;
-		}
 	}
 	return true;
 }
@@ -190,24 +178,18 @@ bool CFGIRCDefineNetworkDialog::isValidDescription() const
 QList<IRCNetworkEntity> CFGIRCDefineNetworkDialog::listExistingNetworks() const
 {
 	if (!d->existingNetworks.isEmpty())
-	{
 		return d->existingNetworks;
-	}
 	else
-	{
 		return ChatNetworksCfg().networks();
-	}
 }
 
 QStringList CFGIRCDefineNetworkDialog::validateAutojoinCommands() const
 {
 	QStringList offenders;
-	foreach (const QString& command, autojoinCommands())
+	foreach (const QString &command, autojoinCommands())
 	{
 		if (command.toUtf8().length() > PrivData<CFGIRCDefineNetworkDialog>::MAX_IRC_COMMAND_LENGTH)
-		{
 			offenders << command;
-		}
 	}
 	return offenders;
 }

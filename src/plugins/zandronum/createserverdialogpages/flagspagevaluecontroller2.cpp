@@ -28,8 +28,7 @@
 
 namespace Zandronum2
 {
-
-FlagsPageValueController::FlagsPageValueController(FlagsPage* flagsPage)
+FlagsPageValueController::FlagsPageValueController(FlagsPage *flagsPage)
 {
 	this->flagsPage = flagsPage;
 	this->compatflags = 0;
@@ -40,11 +39,11 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage* flagsPage)
 	this->lmsAllowedWeapons = 0;
 	this->lmsSpectatorSettings = 0;
 
-	FlagsPage* f = flagsPage;
+	FlagsPage *f = flagsPage;
 
 	// Compat flags
 	{
-		QMap<unsigned, QAbstractButton*>& m = compatflagsCheckboxes;
+		QMap<unsigned, QAbstractButton *> &m = compatflagsCheckboxes;
 
 		// Compatibility
 		// - Oldschool
@@ -117,7 +116,7 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage* flagsPage)
 
 	// Zandronum compatflags
 	{
-		QMap<unsigned, QAbstractButton*>& m = zandronumCompatflagsCheckboxes;
+		QMap<unsigned, QAbstractButton *> &m = zandronumCompatflagsCheckboxes;
 
 		// Players
 		m.insert(Dmflags::ZACOMPATF_DISABLETAUNTS,
@@ -170,7 +169,7 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage* flagsPage)
 
 	// DMFlags
 	{
-		QMap<unsigned, QAbstractButton*>& m = dmflagsCheckboxes;
+		QMap<unsigned, QAbstractButton *> &m = dmflagsCheckboxes;
 
 		// General
 		m.insert(Dmflags::DF_NO_MONSTERS,
@@ -231,7 +230,7 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage* flagsPage)
 
 	// DMFlags 2
 	{
-		QMap<unsigned, QAbstractButton*>& m = dmflags2Checkboxes;
+		QMap<unsigned, QAbstractButton *> &m = dmflags2Checkboxes;
 
 		// General
 		m.insert(Dmflags::DF2_BARRELS_RESPAWN,
@@ -304,7 +303,7 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage* flagsPage)
 
 	// Zandronum DMFlags
 	{
-		QMap<unsigned, QAbstractButton*>& m = zandronumDmflagsCheckboxes;
+		QMap<unsigned, QAbstractButton *> &m = zandronumDmflagsCheckboxes;
 
 		// General
 		m.insert(Dmflags::ZADF_NOUNLAGGED,
@@ -347,7 +346,7 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage* flagsPage)
 
 	// LMSAllowedWeapons
 	{
-		QMap<unsigned, QAbstractButton*>& m = lmsAllowedWeaponsCheckboxes;
+		QMap<unsigned, QAbstractButton *> &m = lmsAllowedWeaponsCheckboxes;
 
 		m.insert(ZandronumGameInfo::LMSAW_Chainsaw,
 			f->cbLMSChainsaw);
@@ -373,7 +372,7 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage* flagsPage)
 
 	// LMSSpectatorSettings
 	{
-		QMap<unsigned, QAbstractButton*>& m = lmsSpectatorSettingsCheckboxes;
+		QMap<unsigned, QAbstractButton *> &m = lmsSpectatorSettingsCheckboxes;
 
 		m.insert(ZandronumGameInfo::LMSSS_TalkToActivePlayers,
 			f->cbLMSSpectatorsCanTalkToActivePlayers);
@@ -430,12 +429,11 @@ void FlagsPageValueController::convertWidgetsToNumerical()
 }
 
 void FlagsPageValueController::convertCheckboxesToNumerical(
-	const QMap<unsigned, QAbstractButton*>& checkboxMap,
-	unsigned& flagsValue)
+	const QMap<unsigned, QAbstractButton *> &checkboxMap,
+	unsigned &flagsValue)
 {
 	foreach (unsigned flag, checkboxMap.keys())
 	{
-
 		if (checkboxMap[flag]->isChecked())
 		{
 			flagsValue |= flag;
@@ -447,12 +445,11 @@ void FlagsPageValueController::convertCheckboxesToNumerical(
 			// are not supported by the GUI.
 			flagsValue &= ~flag;
 		}
-
 	}
 }
 
 void FlagsPageValueController::convertNumericalToCheckboxes(
-	QMap<unsigned, QAbstractButton*>& checkboxMap,
+	QMap<unsigned, QAbstractButton *> &checkboxMap,
 	unsigned flagsValue)
 {
 	foreach (unsigned flag, checkboxMap.keys())
@@ -465,76 +462,76 @@ void FlagsPageValueController::convertNumericalToCheckboxes(
 ////////////////////////////////////////////////////////////////////////////////
 void FlagsPageValueController::convertToNumericalGeneral()
 {
-	FlagsPage* f = flagsPage;
+	FlagsPage *f = flagsPage;
 
 	// Environment
 
 	// Reset the value.
 	dmflags &= ~(Dmflags::DF_FORCE_FALLINGZD
-				| Dmflags::DF_FORCE_FALLINGHX
-				| Dmflags::DF_FORCE_FALLINGST);
+		| Dmflags::DF_FORCE_FALLINGHX
+		| Dmflags::DF_FORCE_FALLINGST);
 	switch (f->cboFallingDamage->currentIndex())
 	{
-		case FlagsPage::FDT_None:
-			// pass
-			break;
+	case FlagsPage::FDT_None:
+		// pass
+		break;
 
-		case FlagsPage::FDT_Old:
-			dmflags |= Dmflags::DF_FORCE_FALLINGZD;
-			break;
+	case FlagsPage::FDT_Old:
+		dmflags |= Dmflags::DF_FORCE_FALLINGZD;
+		break;
 
-		case FlagsPage::FDT_Hexen:
-			dmflags |= Dmflags::DF_FORCE_FALLINGHX;
-			break;
+	case FlagsPage::FDT_Hexen:
+		dmflags |= Dmflags::DF_FORCE_FALLINGHX;
+		break;
 
-		case FlagsPage::FDT_Strife:
-			dmflags |= Dmflags::DF_FORCE_FALLINGST;
-			break;
+	case FlagsPage::FDT_Strife:
+		dmflags |= Dmflags::DF_FORCE_FALLINGST;
+		break;
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////
 void FlagsPageValueController::convertToNumericalPlayers()
 {
-	FlagsPage* f = flagsPage;
+	FlagsPage *f = flagsPage;
 
 	// Abilities
 
 	// Reset the value.
 	dmflags &= ~(Dmflags::DF_YES_JUMP
-				| Dmflags::DF_NO_JUMP);
+		| Dmflags::DF_NO_JUMP);
 	switch (f->cboJumping->currentIndex())
 	{
-		case FlagsPage::JCA_Default:
-			// pass
-			break;
-		case FlagsPage::JCA_Yes:
-			dmflags |= Dmflags::DF_YES_JUMP;
-			break;
-		case FlagsPage::JCA_No:
-			dmflags |= Dmflags::DF_NO_JUMP;
-			break;
+	case FlagsPage::JCA_Default:
+		// pass
+		break;
+	case FlagsPage::JCA_Yes:
+		dmflags |= Dmflags::DF_YES_JUMP;
+		break;
+	case FlagsPage::JCA_No:
+		dmflags |= Dmflags::DF_NO_JUMP;
+		break;
 	}
 
 	// Reset the value.
 	dmflags &= ~(Dmflags::DF_YES_CROUCH
-				| Dmflags::DF_NO_CROUCH);
+		| Dmflags::DF_NO_CROUCH);
 	switch (f->cboCrouching->currentIndex())
 	{
-		case FlagsPage::JCA_Default:
-			// pass
-			break;
-		case FlagsPage::JCA_Yes:
-			dmflags |= Dmflags::DF_YES_CROUCH;
-			break;
-		case FlagsPage::JCA_No:
-			dmflags |= Dmflags::DF_NO_CROUCH;
-			break;
+	case FlagsPage::JCA_Default:
+		// pass
+		break;
+	case FlagsPage::JCA_Yes:
+		dmflags |= Dmflags::DF_YES_CROUCH;
+		break;
+	case FlagsPage::JCA_No:
+		dmflags |= Dmflags::DF_NO_CROUCH;
+		break;
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////
 void FlagsPageValueController::convertToNumericalCooperative()
 {
-	FlagsPage* f = flagsPage;
+	FlagsPage *f = flagsPage;
 
 	// Placeholder method for future use.
 }
@@ -542,11 +539,11 @@ void FlagsPageValueController::convertToNumericalCooperative()
 ////////////////////////////////////////////////////////////////////////////////
 void FlagsPageValueController::convertToNumericalDeathmatch()
 {
-	FlagsPage* f = flagsPage;
+	FlagsPage *f = flagsPage;
 
 	// Reset the value.
 	dmflags &= ~(Dmflags::DF_NO_EXIT
-			| Dmflags::DF_SAME_LEVEL);
+		| Dmflags::DF_SAME_LEVEL);
 	if (f->rbKillThePlayer->isChecked())
 	{
 		dmflags |= Dmflags::DF_NO_EXIT;
@@ -561,7 +558,7 @@ void FlagsPageValueController::convertToNumericalDeathmatch()
 ////////////////////////////////////////////////////////////////////////////////
 void FlagsPageValueController::convertToWidgetGeneral()
 {
-	FlagsPage* f = flagsPage;
+	FlagsPage *f = flagsPage;
 
 	// Environment
 
@@ -574,7 +571,7 @@ void FlagsPageValueController::convertToWidgetGeneral()
 	{
 		f->cboFallingDamage->setCurrentIndex(FlagsPage::FDT_Strife);
 	}
-	else if(dmflags & Dmflags::DF_FORCE_FALLINGZD)
+	else if (dmflags & Dmflags::DF_FORCE_FALLINGZD)
 	{
 		f->cboFallingDamage->setCurrentIndex(FlagsPage::FDT_Old);
 	}
@@ -590,7 +587,7 @@ void FlagsPageValueController::convertToWidgetGeneral()
 ////////////////////////////////////////////////////////////////////////////////
 void FlagsPageValueController::convertToWidgetPlayers()
 {
-	FlagsPage* f = flagsPage;
+	FlagsPage *f = flagsPage;
 
 	// Abilities
 	if (dmflags & Dmflags::DF_YES_JUMP)
@@ -628,14 +625,14 @@ void FlagsPageValueController::convertToWidgetPlayers()
 ////////////////////////////////////////////////////////////////////////////////
 void FlagsPageValueController::convertToWidgetCooperative()
 {
-	FlagsPage* f = flagsPage;
+	FlagsPage *f = flagsPage;
 
 	// Placeholder method for future use.
 }
 ////////////////////////////////////////////////////////////////////////////////
 void FlagsPageValueController::convertToWidgetDeathmatch()
 {
-	FlagsPage* f = flagsPage;
+	FlagsPage *f = flagsPage;
 
 	if (dmflags & Dmflags::DF_NO_EXIT)
 	{
@@ -663,5 +660,4 @@ void FlagsPageValueController::readFlagsFromTextInputs()
 	lmsAllowedWeapons = flagsPage->leLMSAllowedWeapons->text().toUInt();
 	lmsSpectatorSettings = flagsPage->leLMSSpectatorSettings->text().toUInt();
 }
-
 }

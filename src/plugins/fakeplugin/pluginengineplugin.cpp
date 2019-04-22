@@ -23,18 +23,18 @@
 
 #include "plugins/engineplugin.h"
 
-#include "responder/masterresponder.h"
-#include "responder/respondercfg.h"
 #include "pluginengineplugin.h"
 #include "plugingamehost.h"
 #include "pluginmasterclient.h"
 #include "pluginserver.h"
+#include "responder/masterresponder.h"
+#include "responder/respondercfg.h"
 #include <cassert>
 
 class PluginEnginePlugin::PrivData
 {
-	public:
-		MasterResponder* masterResponder;
+public:
+	MasterResponder *masterResponder;
 };
 ///////////////////////////////////////////////////////////////////////////////
 INSTALL_PLUGIN(PluginEnginePlugin)

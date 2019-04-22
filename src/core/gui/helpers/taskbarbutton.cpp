@@ -39,26 +39,26 @@
 DClass<TaskbarButton>
 {
 public:
-#ifdef WIN_TASKBAR
+	#ifdef WIN_TASKBAR
 	QWinTaskbarButton *button;
-#endif
+	#endif
 	TaskbarProgress *progress;
 
 	bool isAllowedOsVersion() const
 	{
-#ifdef WIN_TASKBAR
+		#ifdef WIN_TASKBAR
 		return QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7;
-#else
+		#else
 		return false;
-#endif
+		#endif
 	}
 };
 DPointered(TaskbarButton)
 
 TaskbarButton::TaskbarButton(QObject *parent)
-: QObject(parent)
+	: QObject(parent)
 {
-#ifdef WIN_TASKBAR
+	#ifdef WIN_TASKBAR
 	if (d->isAllowedOsVersion())
 	{
 		d->button = new QWinTaskbarButton(this);
@@ -69,30 +69,28 @@ TaskbarButton::TaskbarButton(QObject *parent)
 		d->button = nullptr;
 		d->progress = new TaskbarProgress(this);
 	}
-#else
+	#else
 	d->progress = new TaskbarProgress(this);
-#endif
+	#endif
 }
 
 QString TaskbarButton::overlayAccessibleDescription() const
 {
-#ifdef WIN_TASKBAR
+	#ifdef WIN_TASKBAR
 	if (d->button != nullptr)
-	{
 		return d->button->overlayAccessibleDescription();
-	}
-#endif
+
+	#endif
 	return QString();
 }
 
 QIcon TaskbarButton::overlayIcon() const
 {
-#ifdef WIN_TASKBAR
+	#ifdef WIN_TASKBAR
 	if (d->button != nullptr)
-	{
 		return d->button->overlayIcon();
-	}
-#endif
+
+	#endif
 	return QIcon();
 }
 
@@ -103,51 +101,46 @@ TaskbarProgress *TaskbarButton::progress() const
 
 void TaskbarButton::setWindow(QWindow *window)
 {
-#ifdef WIN_TASKBAR
+	#ifdef WIN_TASKBAR
 	if (d->button != nullptr)
-	{
 		d->button->setWindow(window);
-	}
-#endif
+
+	#endif
 }
 
 QWindow *TaskbarButton::window() const
 {
-#ifdef WIN_TASKBAR
+	#ifdef WIN_TASKBAR
 	if (d->button != nullptr)
-	{
 		return d->button->window();
-	}
-#endif
+
+	#endif
 	return nullptr;
 }
 
 void TaskbarButton::clearOverlayIcon()
 {
-#ifdef WIN_TASKBAR
+	#ifdef WIN_TASKBAR
 	if (d->button != nullptr)
-	{
 		d->button->clearOverlayIcon();
-	}
-#endif
+
+	#endif
 }
 
 void TaskbarButton::setOverlayAccessibleDescription(const QString &description)
 {
-#ifdef WIN_TASKBAR
+	#ifdef WIN_TASKBAR
 	if (d->button != nullptr)
-	{
 		d->button->setOverlayAccessibleDescription(description);
-	}
-#endif
+
+	#endif
 }
 
 void TaskbarButton::setOverlayIcon(const QIcon &icon)
 {
-#ifdef WIN_TASKBAR
+	#ifdef WIN_TASKBAR
 	if (d->button != nullptr)
-	{
 		d->button->setOverlayIcon(icon);
-	}
-#endif
+
+	#endif
 }

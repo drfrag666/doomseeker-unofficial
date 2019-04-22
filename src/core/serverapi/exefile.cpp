@@ -28,15 +28,15 @@
 #include "message.h"
 #include "plugins/engineplugin.h"
 
-#include <QString>
 #include <QFileInfo>
+#include <QString>
 
 DClass<ExeFile>
 {
-	public:
-		QString configKey;
-		QString exeTypeName;
-		QString programName;
+public:
+	QString configKey;
+	QString exeTypeName;
+	QString programName;
 };
 
 DPointered(ExeFile)
@@ -49,12 +49,12 @@ ExeFile::~ExeFile()
 {
 }
 
-const QString& ExeFile::configKey() const
+const QString &ExeFile::configKey() const
 {
 	return d->configKey;
 }
 
-const QString& ExeFile::exeTypeName() const
+const QString &ExeFile::exeTypeName() const
 {
 	return d->exeTypeName;
 }
@@ -64,7 +64,7 @@ Message ExeFile::install(QWidget *parent)
 	return Message();
 }
 
-QString ExeFile::pathToExe(Message& message)
+QString ExeFile::pathToExe(Message &message)
 {
 	IniSection config = gConfig.iniSectionForPlugin(programName());
 	IniVariable setting = config[configKey()];
@@ -95,27 +95,27 @@ QString ExeFile::pathToExe(Message& message)
 	return fi.absoluteFilePath();
 }
 
-const QString& ExeFile::programName() const
+const QString &ExeFile::programName() const
 {
 	return d->programName;
 }
 
-void ExeFile::setConfigKey(const QString& keyName)
+void ExeFile::setConfigKey(const QString &keyName)
 {
 	d->configKey = keyName;
 }
 
-void ExeFile::setExeTypeName(const QString& name)
+void ExeFile::setExeTypeName(const QString &name)
 {
 	d->exeTypeName = name;
 }
 
-void ExeFile::setProgramName(const QString& name)
+void ExeFile::setProgramName(const QString &name)
 {
 	d->programName = name;
 }
 
-QString ExeFile::workingDirectory(Message& message)
+QString ExeFile::workingDirectory(Message &message)
 {
 	QFileInfo fi(pathToExe(message));
 	return fi.absolutePath();

@@ -29,13 +29,13 @@ FileSearchPath::FileSearchPath()
 	recursive_ = false;
 }
 
-FileSearchPath::FileSearchPath(const QString& path)
+FileSearchPath::FileSearchPath(const QString &path)
 {
 	path_ = path;
 	recursive_ = false;
 }
 
-QList<FileSearchPath> FileSearchPath::fromStringList(const QStringList& collection)
+QList<FileSearchPath> FileSearchPath::fromStringList(const QStringList &collection)
 {
 	QList<FileSearchPath> result;
 	foreach (QString path, collection)
@@ -45,7 +45,7 @@ QList<FileSearchPath> FileSearchPath::fromStringList(const QStringList& collecti
 	return result;
 }
 
-FileSearchPath FileSearchPath::fromVariant(const QVariant& var)
+FileSearchPath FileSearchPath::fromVariant(const QVariant &var)
 {
 	FileSearchPath result;
 	QVariantList list = var.toList();
@@ -60,10 +60,10 @@ FileSearchPath FileSearchPath::fromVariant(const QVariant& var)
 	return result;
 }
 
-QList<FileSearchPath> FileSearchPath::fromVariantList(const QVariantList& collection)
+QList<FileSearchPath> FileSearchPath::fromVariantList(const QVariantList &collection)
 {
 	QList<FileSearchPath> result;
-	foreach (const QVariant& variant, collection)
+	foreach (const QVariant &variant, collection)
 	{
 		result << fromVariant(variant);
 	}
@@ -83,10 +83,10 @@ QVariant FileSearchPath::toVariant() const
 	return var;
 }
 
-QVariantList FileSearchPath::toVariantList(const QList<FileSearchPath>& collection)
+QVariantList FileSearchPath::toVariantList(const QList<FileSearchPath> &collection)
 {
 	QVariantList result;
-	foreach (const FileSearchPath& path, collection)
+	foreach (const FileSearchPath &path, collection)
 	{
 		result << path.toVariant();
 	}

@@ -45,11 +45,11 @@ Srb2EnginePlugin::Srb2EnginePlugin()
 		EP_DefaultServerPort, 5029,
 		EP_MasterClient, new Srb2MasterClient(),
 		EP_InGameFileDownloads,
-#ifdef Q_OS_WIN32
+		#ifdef Q_OS_WIN32
 		EP_ClientExeName, "srb2win",
-#else
+		#else
 		EP_ClientExeName, "srb2",
-#endif
+		#endif
 		EP_ClientOnly,
 		EP_GameFileSearchSuffixes, "srb2",
 		EP_IRCChannel, "Sonic Robo Blast 2", "irc.esper.net", "#srb2fun",
@@ -79,7 +79,7 @@ QList<GameMode> Srb2EnginePlugin::gameModes() const
 	return Srb2GameInfo::gameModes();
 }
 
-QList<GameCVar> Srb2EnginePlugin::limits(const GameMode& mode) const
+QList<GameCVar> Srb2EnginePlugin::limits(const GameMode &mode) const
 {
 	return Srb2GameInfo::limits(mode);
 }
@@ -96,9 +96,7 @@ QString Srb2::asciiOnly(const QByteArray &raw)
 	{
 		char c = raw[i];
 		if (c >= 0x20)
-		{
 			result += c;
-		}
 	}
 	return result;
 }

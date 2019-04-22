@@ -33,16 +33,16 @@
 
 DClass<PasswordDlg> : public Ui::PasswordDlg
 {
-	public:
-		ServerCPtr server;
-		ComboBoxEx *cboConnectPassEx;
-		ComboBoxEx *cboIngamePassEx;
+public:
+	ServerCPtr server;
+	ComboBoxEx *cboConnectPassEx;
+	ComboBoxEx *cboIngamePassEx;
 };
 
 DPointered(PasswordDlg)
 
 PasswordDlg::PasswordDlg(ServerCPtr server, QWidget *parent)
-: QDialog(parent)
+	: QDialog(parent)
 {
 	d->setupUi(this);
 	d->cboConnectPassEx = new ComboBoxEx(*d->cboConnectPassword);
@@ -89,7 +89,7 @@ QString PasswordDlg::inGamePassword() const
 void PasswordDlg::loadConfiguration()
 {
 	PasswordsCfg cfg;
-	if(cfg.isHidingPasswords())
+	if (cfg.isHidingPasswords())
 	{
 		d->cboConnectPassword->lineEdit()->setEchoMode(QLineEdit::Password);
 		d->cboIngamePassword->lineEdit()->setEchoMode(QLineEdit::Password);
@@ -141,17 +141,17 @@ void PasswordDlg::saveConfiguration()
 	}
 }
 
-void PasswordDlg::setCurrentConnectPassword(const QString& password)
+void PasswordDlg::setCurrentConnectPassword(const QString &password)
 {
 	d->cboConnectPassEx->setCurrentOrAddNewAndSelect(password);
 }
 
-void PasswordDlg::setCurrentIngamePassword(const QString& password)
+void PasswordDlg::setCurrentIngamePassword(const QString &password)
 {
 	d->cboIngamePassEx->setCurrentOrAddNewAndSelect(password);
 }
 
-void PasswordDlg::setPasswords(const QStringList& passwords)
+void PasswordDlg::setPasswords(const QStringList &passwords)
 {
 	d->cboConnectPassEx->setItemsSorted(passwords);
 	d->cboIngamePassEx->setItemsSorted(passwords);

@@ -25,7 +25,7 @@
 #include "protocols/networkreplysignalwrapper.h"
 #include "protocols/networkreplytimeouter.h"
 
-NetworkReply::NetworkReply(const QNetworkRequest &request, QNetworkReply* reply)
+NetworkReply::NetworkReply(const QNetworkRequest &request, QNetworkReply *reply)
 {
 	this->reply = reply;
 	this->request_ = request;
@@ -136,14 +136,12 @@ QUrl NetworkReply::url() const
 	return reply->url();
 }
 
-bool NetworkReply::operator==(const NetworkReply& other) const
+bool NetworkReply::operator==(const NetworkReply &other) const
 {
 	return *this == other.reply;
 }
 
-bool NetworkReply::operator==(const QNetworkReply* reply) const
+bool NetworkReply::operator==(const QNetworkReply *reply) const
 {
 	return this->reply == reply;
 }
-
-

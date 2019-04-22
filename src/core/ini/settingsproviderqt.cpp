@@ -39,7 +39,7 @@
 DClass<SettingsProviderQt>
 {
 public:
-	QSettings* target;
+	QSettings *target;
 
 	/**
 	 * We want case-insensitivity, but QSettings
@@ -60,7 +60,7 @@ public:
 
 DPointered(SettingsProviderQt)
 
-SettingsProviderQt::SettingsProviderQt(QSettings* target)
+SettingsProviderQt::SettingsProviderQt(QSettings *target)
 {
 	d->target = target;
 }
@@ -81,23 +81,23 @@ QStringList SettingsProviderQt::allSections() const
 	return d->target->childGroups();
 }
 
-bool SettingsProviderQt::hasKey(const QString& key) const
+bool SettingsProviderQt::hasKey(const QString &key) const
 {
 	return d->target->contains(d->exactKey(key));
 }
 
-void SettingsProviderQt::remove(const QString& key)
+void SettingsProviderQt::remove(const QString &key)
 {
 	d->target->remove(d->exactKey(key));
 }
 
-void SettingsProviderQt::setValue(const QString& key, const QVariant& value)
+void SettingsProviderQt::setValue(const QString &key, const QVariant &value)
 {
 	assert(d->target != nullptr);
 	d->target->setValue(d->exactKey(key), value);
 }
 
-QVariant SettingsProviderQt::value(const QString& key, QVariant defValue) const
+QVariant SettingsProviderQt::value(const QString &key, QVariant defValue) const
 {
 	assert(d->target != nullptr);
 	return d->target->value(d->exactKey(key), defValue);

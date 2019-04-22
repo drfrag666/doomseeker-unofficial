@@ -125,17 +125,13 @@ QList<GameCVar> Srb2GameInfo::limits(const GameMode &gameMode)
 	case GameMode::SGM_TeamDeathmatch:
 	case GameMode::SGM_CTF:
 		if (gameMode.index() == GameMode::SGM_CTF)
-		{
 			limits << GameCVar(tr("Team difference autobalance"), "+autobalance", 0);
-		}
 		limits << GameCVar(tr("Point limit"), "+pointlimit");
 		limits << GameCVar(tr("Time limit"), "+timelimit");
 		break;
 	}
 	if (gameMode.index() == GameMode::SGM_CTF)
-	{
 		limits << GameCVar(tr("Flag auto-return time"), "+flagtime", 30);
-	}
 	limits << GameCVar(tr("Force server character (skin)"), "+forceskin", -1);
 	limits << GameCVar(tr("Respawn item time"), "+respawnitemtime", 30);
 	limits << GameCVar(tr("Intermission time"), "+inttime", 20);

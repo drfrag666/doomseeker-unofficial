@@ -22,13 +22,13 @@
 //------------------------------------------------------------------------------
 #include "flagspage.h"
 
+#include <ini/ini.h>
+#include <ini/inisection.h>
+#include <log.h>
 #include <QDebug>
 #include <QSharedPointer>
 #include <QValidator>
-#include <ini/ini.h>
-#include <ini/inisection.h>
 #include <serverapi/gamecreateparams.h>
-#include <log.h>
 
 #include "createserverdialogpages/flagsid.h"
 #include "createserverdialogpages/flagspagevaluecontroller2.h"
@@ -41,26 +41,26 @@ const unsigned DEFAULT_LMSSPECTATORSETTINGS = 3;
 
 class DmflagsValidator : public QValidator
 {
-	public:
-		void fixup(QString& input) const
+public:
+	void fixup(QString &input) const
+	{
+		if (input.trimmed().isEmpty())
 		{
-			if (input.trimmed().isEmpty())
-			{
-				input = "0";
-			}
+			input = "0";
+		}
+	}
+
+	State validate(QString &input, int &pos ) const
+	{
+		if (input.trimmed().isEmpty())
+		{
+			return QValidator::Intermediate;
 		}
 
-		State validate(QString& input, int& pos ) const
-		{
-			if (input.trimmed().isEmpty())
-			{
-				return QValidator::Intermediate;
-			}
-
-			bool bOk;
-			input.toUInt(&bOk);
-			return bOk ? QValidator::Acceptable : QValidator::Invalid;
-		}
+		bool bOk;
+		input.toUInt(&bOk);
+		return bOk ? QValidator::Acceptable : QValidator::Invalid;
+	}
 };
 ////////////////////////////////////////////////////////////////////////////////
 class FlagsPage::PrivData
@@ -71,8 +71,8 @@ public:
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-FlagsPage::FlagsPage(CreateServerDialog* pParentDialog)
-: CreateServerDialogPage(pParentDialog, tr("Zandronum"))
+FlagsPage::FlagsPage(CreateServerDialog *pParentDialog)
+	: CreateServerDialogPage(pParentDialog, tr("Zandronum"))
 {
 	setupUi(this);
 
@@ -146,12 +146,12 @@ void FlagsPage::fillInGameCreateParams(GameCreateParams &gameCreateParams)
 	if (cbMonstersMustBeKilledToExit->isChecked())
 	{
 		params << "+sv_killallmonsters_percentage"
-			<< QString::number(spinMonsterKillPercentage->value());
+		<< QString::number(spinMonsterKillPercentage->value());
 	}
 	params << "+sv_afk2spec" <<
-		QString::number(spinForceInactivePlayersSpectatingMins->value());
+	QString::number(spinForceInactivePlayersSpectatingMins->value());
 	params << "+sv_coop_damagefactor" <<
-		QString::number(spinMonstersDamageFactor->value());
+	QString::number(spinMonstersDamageFactor->value());
 
 	params << "+sv_defaultdmflags" << (cbDefaultDmflags->isChecked() ? "1" : "0");
 
@@ -161,14 +161,14 @@ void FlagsPage::fillInGameCreateParams(GameCreateParams &gameCreateParams)
 	gameCreateParams.customParameters() << params;
 }
 
-void FlagsPage::initJumpCrouchComboBoxes(QComboBox* pComboBox)
+void FlagsPage::initJumpCrouchComboBoxes(QComboBox *pComboBox)
 {
 	pComboBox->insertItem(JCA_Default, tr("Default"));
 	pComboBox->insertItem(JCA_No, tr("No"));
 	pComboBox->insertItem(JCA_Yes, tr("Yes"));
 }
 
-void FlagsPage::insertFlagsIfValid(QLineEdit* dst, QString flags, unsigned valIfInvalid)
+void FlagsPage::insertFlagsIfValid(QLineEdit *dst, QString flags, unsigned valIfInvalid)
 {
 	int dummy;
 	if (d->validator.validate(flags, dummy) == QValidator::Acceptable)
@@ -181,7 +181,7 @@ void FlagsPage::insertFlagsIfValid(QLineEdit* dst, QString flags, unsigned valIf
 	}
 }
 
-bool FlagsPage::loadConfig(Ini& ini)
+bool FlagsPage::loadConfig(Ini &ini)
 {
 	IniSection section = ini.section("dmflags");
 	loadGameVersion(static_cast<ZandronumGameInfo::GameVersion>((int)section["gameversion"]));
@@ -238,7 +238,7 @@ void FlagsPage::propagateFlagsInputsChanges()
 		d->flagsController->convertNumericalToWidgets();
 }
 
-bool FlagsPage::saveConfig(Ini& ini)
+bool FlagsPage::saveConfig(Ini &ini)
 {
 	IniSection section = ini.section("dmflags");
 
@@ -247,7 +247,7 @@ bool FlagsPage::saveConfig(Ini& ini)
 	// the backward-compatibility fallbacks.
 	QStringList oldSettings;
 	oldSettings << "dmflags" << "dmflags2" << "zandronumDmflags" << "compatflags"
-		<< "zandronumCompatflags" << "lmsallowedweapons" << "lmsspectatorsettings";
+	<< "zandronumCompatflags" << "lmsallowedweapons" << "lmsspectatorsettings";
 	foreach (const QString &oldSetting, oldSettings)
 	{
 		section.deleteSetting(oldSetting);
@@ -292,7 +292,7 @@ void FlagsPage::loadGameVersion(ZandronumGameInfo::GameVersion version)
 		if (index < 0)
 		{
 			gLog << QString("Zandronum: FlagsPage::loadGameVersion() - oops, "
-				"a bug!, GameVersion = %1") .arg(version);
+				"a bug!, GameVersion = %1").arg(version);
 			return;
 		}
 	}
@@ -314,7 +314,7 @@ void FlagsPage::setGameVersion(ZandronumGameInfo::GameVersion version)
 	{
 	default:
 		gLog << tr("Tried to set unknown Zandronum version. Reverting to default.");
-		// intentional fall-through
+	// intentional fall-through
 	case ZandronumGameInfo::GV_Zandronum2:
 		d->flagsController = QSharedPointer<FlagsPageValueController>(
 			new Zandronum2::FlagsPageValueController(this));
@@ -330,11 +330,11 @@ void FlagsPage::setGameVersion(ZandronumGameInfo::GameVersion version)
 
 ZandronumGameInfo::GameVersion FlagsPage::gameVersion() const
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
+	#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
 	return static_cast<ZandronumGameInfo::GameVersion>(cboGameVersion->currentData().toInt());
-#else
+	#else
 	return static_cast<ZandronumGameInfo::GameVersion>(cboGameVersion->itemData(cboGameVersion->currentIndex()).toInt());
-#endif
+	#endif
 }
 
 FlagsPage::PlayerBlock FlagsPage::playerBlock() const

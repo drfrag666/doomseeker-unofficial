@@ -26,12 +26,12 @@
 
 #include "entities/link.h"
 
-UrlParser::UrlParser(const QList<Link>& links)
+UrlParser::UrlParser(const QList<Link> &links)
 {
 	d.links = links;
 }
 
-QList<Link> UrlParser::directLinks(const QStringList& wantedFilenames, const QUrl& baseUrl)
+QList<Link> UrlParser::directLinks(const QStringList &wantedFilenames, const QUrl &baseUrl)
 {
 	QList<Link> linksList;
 
@@ -51,15 +51,15 @@ QList<Link> UrlParser::directLinks(const QStringList& wantedFilenames, const QUr
 	return linksList;
 }
 
-bool UrlParser::hasFileReferenceSomewhere(const QStringList& wantedFilenames, const Link& link)
+bool UrlParser::hasFileReferenceSomewhere(const QStringList &wantedFilenames, const Link &link)
 {
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	QString strQuery = link.url.query(QUrl::FullyDecoded);
-#else
+	#else
 	QString strQuery = QUrl::fromPercentEncoding(link.url.encodedQuery());
-#endif
+	#endif
 
-	foreach (const QString& filename, wantedFilenames)
+	foreach (const QString &filename, wantedFilenames)
 	{
 		if (strQuery.contains(filename, Qt::CaseInsensitive)
 			|| link.text.contains(filename, Qt::CaseInsensitive))
@@ -71,24 +71,24 @@ bool UrlParser::hasFileReferenceSomewhere(const QStringList& wantedFilenames, co
 	return false;
 }
 
-bool UrlParser::hasSameHost(const QUrl& url1, const QUrl& url2)
+bool UrlParser::hasSameHost(const QUrl &url1, const QUrl &url2)
 {
 	return url1.host().compare(url2.host(), Qt::CaseInsensitive) == 0;
 }
 
-bool UrlParser::isDirectLinkToFile(const QStringList& wantedFilenames, const QUrl& url)
+bool UrlParser::isDirectLinkToFile(const QStringList &wantedFilenames, const QUrl &url)
 {
 	// In both cases we want path to match raw filename. This means no
 	// special percent encoding for characters that are valid on file
 	// system.
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	QString urlPath = url.path(QUrl::FullyDecoded);
-#else
+	#else
 	QString urlPath = url.path();
-#endif
+	#endif
 	QFileInfo fi(urlPath);
 
-	foreach (const QString& filename, wantedFilenames)
+	foreach (const QString &filename, wantedFilenames)
 	{
 		if (fi.fileName().compare(filename, Qt::CaseInsensitive) == 0)
 		{
@@ -99,7 +99,7 @@ bool UrlParser::isDirectLinkToFile(const QStringList& wantedFilenames, const QUr
 	return false;
 }
 
-bool UrlParser::isDirectLinkToFile(const QStringList& wantedFilenames, const Link& link)
+bool UrlParser::isDirectLinkToFile(const QStringList &wantedFilenames, const Link &link)
 {
 	return isDirectLinkToFile(wantedFilenames, link.url);
 }
@@ -123,7 +123,7 @@ QUrl UrlParser::resolveWadnameTemplateUrl(QString url, const QString &wadname)
 	return url;
 }
 
-QList<Link> UrlParser::siteLinks(const QStringList& wantedFilenames, const QUrl& baseUrl)
+QList<Link> UrlParser::siteLinks(const QStringList &wantedFilenames, const QUrl &baseUrl)
 {
 	QList<Link> linksList;
 

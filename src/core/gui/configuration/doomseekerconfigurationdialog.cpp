@@ -20,8 +20,9 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2010 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
-#include "doomseekerconfigurationdialog.h"
+#include "application.h"
 #include "configuration/doomseekerconfig.h"
+#include "doomseekerconfigurationdialog.h"
 #include "gui/configuration/cfgappearance.h"
 #include "gui/configuration/cfgautoupdates.h"
 #include "gui/configuration/cfgcustomservers.h"
@@ -35,44 +36,41 @@
 #include "gui/configuration/cfgwadseekersites.h"
 #include "gui/configuration/engineconfigpage.h"
 #include "gui/mainwindow.h"
+#include "log.h"
 #include "plugins/engineplugin.h"
 #include "plugins/pluginloader.h"
-#include "updater/updatechannel.h"
-#include "application.h"
-#include "log.h"
 #include "qtmetapointer.h"
+#include "updater/updatechannel.h"
 #include <QStandardItem>
 #include <QTreeView>
 
-DoomseekerConfigurationDialog::DoomseekerConfigurationDialog(QWidget* parent)
-: ConfigurationDialog(parent)
+DoomseekerConfigurationDialog::DoomseekerConfigurationDialog(QWidget *parent)
+	: ConfigurationDialog(parent)
 {
 	this->bAppearanceChanged = false;
 	this->bCustomServersChanged = false;
 	this->bRestartNeeded = false;
 }
 
-QStandardItem* DoomseekerConfigurationDialog::addConfigPage(QStandardItem* rootItem, ConfigPage* configPage, int position)
+QStandardItem *DoomseekerConfigurationDialog::addConfigPage(QStandardItem *rootItem, ConfigPage *configPage, int position)
 {
-	QStandardItem* pItem = ConfigurationDialog::addConfigPage(rootItem, configPage, position);
+	QStandardItem *pItem = ConfigurationDialog::addConfigPage(rootItem, configPage, position);
 
 	if (pItem != nullptr)
 	{
-		connect(configPage, SIGNAL( appearanceChanged() ),
-			SLOT( appearanceChangedSlot() ) );
-		connect(configPage, SIGNAL( restartNeeded() ),
-			SLOT( restartNeededSlot() ) );
+		connect(configPage, SIGNAL(appearanceChanged()),
+			SLOT(appearanceChangedSlot()));
+		connect(configPage, SIGNAL(restartNeeded()),
+			SLOT(restartNeededSlot()));
 	}
 
 	return pItem;
 }
 
-bool DoomseekerConfigurationDialog::addEngineConfiguration(ConfigPage* configPage)
+bool DoomseekerConfigurationDialog::addEngineConfiguration(ConfigPage *configPage)
 {
 	if (enginesRoot != nullptr)
-	{
 		return addConfigPage(enginesRoot, configPage);
-	}
 	return false;
 }
 
@@ -95,10 +93,10 @@ void DoomseekerConfigurationDialog::appendFilePathsConfigurationBoxes()
 
 void DoomseekerConfigurationDialog::appendWadseekerConfigurationBoxes()
 {
-	QStandardItem* wadseekerRoot = addLabel(nullptr, tr("Wadseeker"));
+	QStandardItem *wadseekerRoot = addLabel(nullptr, tr("Wadseeker"));
 	wadseekerRoot->setIcon(QIcon(":/icons/get-wad.png"));
 
-	ConfigPage* configPage = nullptr;
+	ConfigPage *configPage = nullptr;
 
 	configPage = new CFGWadseekerAppearance(this);
 	addConfigPage(wadseekerRoot, configPage);
@@ -117,13 +115,9 @@ void DoomseekerConfigurationDialog::doSaveSettings()
 {
 	bCustomServersChanged = customServersCfgBox->allowSave();
 	if (gConfig.saveToFile())
-	{
 		gLog << tr("Settings saved!");
-	}
 	else
-	{
 		gLog << tr("Settings save failed!");
-	}
 }
 
 void DoomseekerConfigurationDialog::initOptionsList()
@@ -131,7 +125,7 @@ void DoomseekerConfigurationDialog::initOptionsList()
 	enginesRoot = addLabel(nullptr, tr("Games"));
 	enginesRoot->setIcon(QIcon(":/icons/joystick.png"));
 
-	ConfigPage* configPage = nullptr;
+	ConfigPage *configPage = nullptr;
 
 	configPage = new CFGAppearance(this);
 	addConfigPage(nullptr, configPage);
@@ -159,9 +153,9 @@ bool DoomseekerConfigurationDialog::isOpen()
 {
 	if (gApp->mainWindow() == nullptr)
 		return false;
-	foreach(QObject *obj, gApp->mainWindow()->children())
+	foreach (QObject *obj, gApp->mainWindow()->children())
 	{
-		if (qobject_cast<DoomseekerConfigurationDialog*>(obj) != nullptr)
+		if (qobject_cast<DoomseekerConfigurationDialog *>(obj) != nullptr)
 			return true;
 	}
 	return false;
@@ -177,12 +171,12 @@ void DoomseekerConfigurationDialog::openConfiguration(QWidget *parent, const Eng
 
 	configDialog.initOptionsList();
 
-	for(unsigned i = 0; i < gPlugins->numPlugins(); ++i)
+	for (unsigned i = 0; i < gPlugins->numPlugins(); ++i)
 	{
-		EnginePlugin* pPluginInfo = gPlugins->info(i);
+		EnginePlugin *pPluginInfo = gPlugins->info(i);
 
 		// Create the config box.
-		ConfigPage* configPage = pPluginInfo->configuration(&configDialog);
+		ConfigPage *configPage = pPluginInfo->configuration(&configDialog);
 		configDialog.addEngineConfiguration(configPage);
 	}
 
@@ -193,7 +187,7 @@ void DoomseekerConfigurationDialog::openConfiguration(QWidget *parent, const Eng
 	if (mainWindow != nullptr)
 		mainWindow->stopAutoRefreshTimer();
 
-	if(openPlugin)
+	if (openPlugin)
 		configDialog.showPluginConfiguration(openPlugin);
 
 	configDialog.exec();
@@ -221,16 +215,14 @@ void DoomseekerConfigurationDialog::openConfiguration(QWidget *parent, const Eng
 void DoomseekerConfigurationDialog::showPluginConfiguration(const EnginePlugin *plugin)
 {
 	// Find plugin page and make it the active page
-	for(int i = 0;i < enginesRoot->rowCount();++i)
+	for (int i = 0; i < enginesRoot->rowCount(); ++i)
 	{
 		QStandardItem *page = enginesRoot->child(i);
 		QtMetaPointer metaPointer = page->data(Qt::UserRole).value<QtMetaPointer>();
-		void* pointer = metaPointer;
-		EngineConfigPage *engineConfig = (EngineConfigPage*)pointer;
+		void *pointer = metaPointer;
+		EngineConfigPage *engineConfig = (EngineConfigPage *)pointer;
 
-		if(engineConfig->plugin() == plugin)
-		{
+		if (engineConfig->plugin() == plugin)
 			showConfigPage(engineConfig);
-		}
 	}
 }

@@ -25,7 +25,7 @@
 #include <QLineEdit>
 
 ComboBoxEx::ComboBoxEx(QComboBox &comboBox)
-: box(comboBox)
+	: box(comboBox)
 {
 }
 
@@ -33,9 +33,7 @@ QStringList ComboBoxEx::allItems() const
 {
 	QStringList items;
 	for (int i = 0; i < box.count(); ++i)
-	{
 		items << box.itemText(i);
-	}
 	return items;
 }
 
@@ -65,9 +63,7 @@ void ComboBoxEx::setCurrentOrAddNewAndSelect(const QString &item)
 {
 	int idx = box.findText(item);
 	if (idx >= 0)
-	{
 		box.setCurrentIndex(idx);
-	}
 	else
 	{
 		box.insertItem(0, item);
@@ -80,11 +76,9 @@ void ComboBoxEx::setItemsSorted(QStringList items)
 {
 	qSort(items.begin(), items.end(), caseInsensitiveLessThan);
 	box.clear();
-	foreach (const QString& item, items)
+	foreach (const QString &item, items)
 	{
 		if (box.findText(item) < 0)
-		{
 			box.addItem(item);
-		}
 	}
 }

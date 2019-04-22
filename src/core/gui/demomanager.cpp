@@ -21,20 +21,20 @@
 // Copyright (C) 2011 Braden "Blzut3" Obrzut <admin@maniacsvault.net>
 //------------------------------------------------------------------------------
 
+#include "datapaths.h"
 #include "demomanager.h"
-#include "ui_demomanager.h"
 #include "ini/ini.h"
 #include "ini/settingsproviderqt.h"
-#include "datapaths.h"
 #include "pathfinder/pathfinder.h"
 #include "pathfinder/wadpathfinder.h"
 #include "plugins/engineplugin.h"
 #include "plugins/pluginloader.h"
-#include "serverapi/gameexeretriever.h"
 #include "serverapi/gamecreateparams.h"
+#include "serverapi/gameexeretriever.h"
+#include "serverapi/gamehost.h"
 #include "serverapi/message.h"
 #include "serverapi/server.h"
-#include "serverapi/gamehost.h"
+#include "ui_demomanager.h"
 
 #include <QDir>
 #include <QFileDialog>
@@ -45,20 +45,20 @@
 
 class Demo
 {
-	public:
-		QString filename;
-		QString port;
-		QDateTime time;
-		QStringList wads;
-		QStringList optionalWads;
+public:
+	QString filename;
+	QString port;
+	QDateTime time;
+	QStringList wads;
+	QStringList optionalWads;
 };
 
 DClass<DemoManagerDlg> : public Ui::DemoManagerDlg
 {
-	public:
-		Demo *selectedDemo;
-		QStandardItemModel *demoModel;
-		QList<QList<Demo> > demoTree;
+public:
+	Demo *selectedDemo;
+	QStandardItemModel *demoModel;
+	QList<QList<Demo> > demoTree;
 };
 
 DPointered(DemoManagerDlg)
@@ -71,7 +71,7 @@ DemoManagerDlg::DemoManagerDlg()
 	d->demoModel = new QStandardItemModel();
 	adjustDemoList();
 
-	connect(d->demoList->selectionModel(), SIGNAL( currentChanged(const QModelIndex &, const QModelIndex &) ), this, SLOT( updatePreview(const QModelIndex &) ));
+	connect(d->demoList->selectionModel(), SIGNAL(currentChanged(const QModelIndex&,const QModelIndex&)), this, SLOT(updatePreview(const QModelIndex&)));
 }
 
 DemoManagerDlg::~DemoManagerDlg()
@@ -82,14 +82,12 @@ void DemoManagerDlg::adjustDemoList()
 {
 	// Get valid extensions
 	QStringList demoExtensions;
-	for(unsigned i = 0;i < gPlugins->numPlugins();++i)
+	for (unsigned i = 0; i < gPlugins->numPlugins(); ++i)
 	{
 		QString ext = QString("*.%1").arg(gPlugins->info(i)->data()->demoExtension);
 
-		if(!demoExtensions.contains(ext))
-		{
+		if (!demoExtensions.contains(ext))
 			demoExtensions << ext;
-		}
 	}
 
 	// In order to index the demos we'll convert the dates to integers by calculating the days until today.
@@ -100,17 +98,17 @@ void DemoManagerDlg::adjustDemoList()
 	QStringList demos = demosDirectory.entryList(demoExtensions, QDir::Files);
 	typedef QMap<int, Demo> DemoMap;
 	QMap<int, DemoMap> demoMap;
-	foreach(const QString &demoName, demos)
+	foreach (const QString &demoName, demos)
 	{
 		QStringList demoData;
 		QString metaData = demoName.left(demoName.lastIndexOf("."));
 		// We need to split manually to handle escaping.
-		for(int i = 0;i < metaData.length();++i)
+		for (int i = 0; i < metaData.length(); ++i)
 		{
-			if(metaData[i] == '_')
+			if (metaData[i] == '_')
 			{
 				// If our underscore is followed by another just continue on...
-				if(i+1 < metaData.length() && metaData[i+1] == '_')
+				if (i + 1 < metaData.length() && metaData[i + 1] == '_')
 				{
 					++i;
 					continue;
@@ -118,13 +116,13 @@ void DemoManagerDlg::adjustDemoList()
 
 				// Split the meta data and then restart from the beginning.
 				demoData << metaData.left(i).replace("__", "_");
-				metaData = metaData.mid(i+1);
+				metaData = metaData.mid(i + 1);
 				i = 0;
 			}
 		}
 		// Whatever is left is a part of our data.
 		demoData << metaData.replace("__", "_");
-		if(demoData.size() < 3) // Should have at least 3 elements port, date, time[, iwad[, pwads]]
+		if (demoData.size() < 3) // Should have at least 3 elements port, date, time[, iwad[, pwads]]
 			continue;
 
 		QDate date = QDate::fromString(demoData[1], "dd.MM.yyyy");
@@ -133,7 +131,7 @@ void DemoManagerDlg::adjustDemoList()
 		demo.filename = demoName;
 		demo.port = demoData[0];
 		demo.time = QDateTime(date, time);
-		if(demoData.size() >= 4)
+		if (demoData.size() >= 4)
 			demo.wads = demoData.mid(3);
 		else
 		{
@@ -145,7 +143,7 @@ void DemoManagerDlg::adjustDemoList()
 			Ini metaData(&settingsProvider);
 			demo.wads << metaData.retrieveSetting("meta", "iwad");
 			QString pwads = metaData.retrieveSetting("meta", "pwads");
-			if(pwads.length() > 0)
+			if (pwads.length() > 0)
 				demo.wads << pwads.split(";");
 			demo.optionalWads = metaData.retrieveSetting("meta", "optionalPwads").value().toStringList();
 		}
@@ -156,11 +154,11 @@ void DemoManagerDlg::adjustDemoList()
 	// Convert to a model
 	d->demoModel->clear();
 	d->demoTree.clear();
-	foreach(const DemoMap &demoDate, demoMap)
+	foreach (const DemoMap &demoDate, demoMap)
 	{
 		QStandardItem *item = new QStandardItem(demoDate.begin().value().time.toString("ddd. MMM d, yyyy"));
 		QList<Demo> demoDateList;
-		foreach(const Demo &demo, demoDate)
+		foreach (const Demo &demo, demoDate)
 		{
 			demoDateList << demo;
 			item->appendRow(new QStandardItem(demo.time.toString("hh:mm:ss")));
@@ -173,7 +171,7 @@ void DemoManagerDlg::adjustDemoList()
 
 bool DemoManagerDlg::doRemoveDemo(const QString &file)
 {
-	if(!QFile::remove(file))
+	if (!QFile::remove(file))
 		QMessageBox::critical(this, tr("Unable to delete"), tr("Could not delete the selected demo."));
 	else
 	{
@@ -187,21 +185,21 @@ bool DemoManagerDlg::doRemoveDemo(const QString &file)
 
 void DemoManagerDlg::deleteSelected()
 {
-	if(QMessageBox::question(this, tr("Delete demo?"),
-			tr("Are you sure you want to delete the selected demo?"),
-			QMessageBox::Yes|QMessageBox::Cancel) == QMessageBox::Yes)
+	if (QMessageBox::question(this, tr("Delete demo?"),
+		tr("Are you sure you want to delete the selected demo?"),
+		QMessageBox::Yes | QMessageBox::Cancel) == QMessageBox::Yes)
 	{
 		QModelIndex index = d->demoList->selectionModel()->currentIndex();
-		if(d->selectedDemo == nullptr)
+		if (d->selectedDemo == nullptr)
 		{
 			int dateRow = index.row();
-			for(int timeRow = 0;index.child(timeRow, 0).isValid();++timeRow)
+			for (int timeRow = 0; index.child(timeRow, 0).isValid(); ++timeRow)
 			{
-				if(doRemoveDemo(gDefaultDataPaths->demosDirectoryPath() + QDir::separator() + d->demoTree[dateRow][timeRow].filename))
+				if (doRemoveDemo(gDefaultDataPaths->demosDirectoryPath() + QDir::separator() + d->demoTree[dateRow][timeRow].filename))
 				{
 					d->demoModel->removeRow(timeRow, index);
 					d->demoTree[dateRow].removeAt(timeRow);
-					if(d->demoTree[dateRow].size() == 0)
+					if (d->demoTree[dateRow].size() == 0)
 					{
 						d->demoModel->removeRow(dateRow);
 						d->demoTree.removeAt(dateRow);
@@ -215,7 +213,7 @@ void DemoManagerDlg::deleteSelected()
 		}
 		else
 		{
-			if(doRemoveDemo(gDefaultDataPaths->demosDirectoryPath() + QDir::separator() + d->selectedDemo->filename))
+			if (doRemoveDemo(gDefaultDataPaths->demosDirectoryPath() + QDir::separator() + d->selectedDemo->filename))
 			{
 				// Adjust the tree
 				int dateRow = index.parent().row();
@@ -223,7 +221,7 @@ void DemoManagerDlg::deleteSelected()
 
 				d->demoModel->removeRow(timeRow, index.parent());
 				d->demoTree[dateRow].removeAt(timeRow);
-				if(d->demoTree[dateRow].size() == 0)
+				if (d->demoTree[dateRow].size() == 0)
 				{
 					d->demoModel->removeRow(dateRow);
 					d->demoTree.removeAt(dateRow);
@@ -235,35 +233,33 @@ void DemoManagerDlg::deleteSelected()
 
 void DemoManagerDlg::exportSelected()
 {
-	if(d->selectedDemo == nullptr)
+	if (d->selectedDemo == nullptr)
 		return;
 
 	QFileDialog saveDialog(this);
 	saveDialog.setAcceptMode(QFileDialog::AcceptSave);
 	saveDialog.selectFile(d->selectedDemo->filename);
-	if(saveDialog.exec() == QDialog::Accepted)
+	if (saveDialog.exec() == QDialog::Accepted)
 	{
 		// Copy the demo to the new location.
-		if(!QFile::copy(gDefaultDataPaths->demosDirectoryPath() + QDir::separator() + d->selectedDemo->filename, saveDialog.selectedFiles().first()))
+		if (!QFile::copy(gDefaultDataPaths->demosDirectoryPath() + QDir::separator() + d->selectedDemo->filename, saveDialog.selectedFiles().first()))
 			QMessageBox::critical(this, tr("Unable to save"), tr("Could not write to the specified location."));
 	}
 }
 
 void DemoManagerDlg::playSelected()
 {
-	if(d->selectedDemo == nullptr)
+	if (d->selectedDemo == nullptr)
 		return;
 
 	// Look for the plugin used to record.
 	EnginePlugin *plugin = nullptr;
-	for(unsigned i = 0;i < gPlugins->numPlugins();i++)
+	for (unsigned i = 0; i < gPlugins->numPlugins(); i++)
 	{
 		if (d->selectedDemo->port == gPlugins->info(i)->data()->name)
-		{
 			plugin = gPlugins->info(i);
-		}
 	}
-	if(plugin == nullptr)
+	if (plugin == nullptr)
 	{
 		QMessageBox::critical(this, tr("No plugin"),
 			tr("The \"%1\" plugin does not appear to be loaded.").arg(d->selectedDemo->port));
@@ -291,7 +287,7 @@ void DemoManagerDlg::playSelected()
 			missingWads << wad;
 	}
 
-	if(!missingWads.isEmpty())
+	if (!missingWads.isEmpty())
 	{
 		QMessageBox::critical(this, tr("Files not found"),
 			tr("The following files could not be located: ") + missingWads.join(", "));
@@ -314,13 +310,11 @@ void DemoManagerDlg::playSelected()
 	params.setHostMode(GameCreateParams::Demo);
 	params.setExecutablePath(binPath);
 
-	GameHost* gameRunner = plugin->gameHost();
+	GameHost *gameRunner = plugin->gameHost();
 	Message message = gameRunner->host(params);
 
 	if (message.isError())
-	{
 		QMessageBox::critical(this, tr("Doomseeker - error"), message.contents());
-	}
 
 	delete gameRunner;
 }
@@ -328,13 +322,13 @@ void DemoManagerDlg::playSelected()
 
 void DemoManagerDlg::performAction(QAbstractButton *button)
 {
-	if(button == d->buttonBox->button(QDialogButtonBox::Close))
+	if (button == d->buttonBox->button(QDialogButtonBox::Close))
 		reject();
 }
 
 void DemoManagerDlg::updatePreview(const QModelIndex &index)
 {
-	if(!index.isValid() || !index.parent().isValid())
+	if (!index.isValid() || !index.parent().isValid())
 	{
 		d->preview->setText("");
 		d->selectedDemo = nullptr;
@@ -347,11 +341,11 @@ void DemoManagerDlg::updatePreview(const QModelIndex &index)
 
 	QString text = "<b>" + tr("Port") + ":</b><p style=\"margin: 0px 0px 0px 10px\">" + d->selectedDemo->port + "</p>" +
 		"<b>" + tr("WADs") + ":</b><p style=\"margin: 0px 0px 0px 10px\">";
-	foreach(const QString &wad, d->selectedDemo->wads)
+	foreach (const QString &wad, d->selectedDemo->wads)
 	{
 		text += wad + "<br />";
 	}
-	foreach(const QString &wad, d->selectedDemo->optionalWads)
+	foreach (const QString &wad, d->selectedDemo->optionalWads)
 	{
 		text += "[" + wad + "]<br />";
 	}

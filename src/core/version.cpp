@@ -36,13 +36,13 @@ QString Version::name()
 QString Version::operatingSystem()
 {
 	#ifdef Q_OS_WIN32
-		return QString("Windows");
+	return QString("Windows");
 	#elif defined(Q_OS_LINUX)
-		return QString("Linux");
+	return QString("Linux");
 	#elif defined(Q_OS_MAC)
-		return QString("MAC");
+	return QString("MAC");
 	#else
-		return QString("Unknown OS for Version::operatingSystem()");
+	return QString("Unknown OS for Version::operatingSystem()");
 	#endif
 }
 

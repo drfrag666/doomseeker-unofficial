@@ -22,15 +22,15 @@
 //------------------------------------------------------------------------------
 #include "srb2masterclient.h"
 
-#include <datastreamoperatorwrapper.h>
-#include <global.h>
 #include "srb2engineplugin.h"
 #include "srb2server.h"
+#include <datastreamoperatorwrapper.h>
+#include <global.h>
 
+#include <cstring>
 #include <QBuffer>
 #include <QDataStream>
 #include <QHostAddress>
-#include <cstring>
 
 using namespace Srb2Master;
 
@@ -96,7 +96,9 @@ struct Srb2Master::ServerPayload
 	qint32 room;
 	QString version;
 
-	ServerPayload() : port(0), room(0) {}
+	ServerPayload() : port(0), room(0)
+	{
+	}
 
 	bool isValid() const
 	{
@@ -169,7 +171,7 @@ void Srb2MasterClient::refreshStarts()
 	socket.connectToHost(address(), port());
 }
 
-const EnginePlugin* Srb2MasterClient::plugin() const
+const EnginePlugin *Srb2MasterClient::plugin() const
 {
 	return Srb2EnginePlugin::staticInstance();
 }
@@ -200,9 +202,7 @@ Header Srb2MasterClient::readHeader()
 {
 	QByteArray data = socket.read(sizeof(Header));
 	if (data.length() < static_cast<qint64>(sizeof(Header)))
-	{
 		return Header();
-	}
 	QDataStream stream(data);
 	stream.setByteOrder(QDataStream::BigEndian);
 
@@ -241,9 +241,7 @@ void Srb2MasterClient::socketStateChanged(QAbstractSocket::SocketState state)
 		readTimer.start();
 	}
 	else if (state == QAbstractSocket::UnconnectedState)
-	{
 		readTimer.stop();
-	}
 }
 
 void Srb2MasterClient::sendChallenge()

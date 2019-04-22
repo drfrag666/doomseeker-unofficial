@@ -22,15 +22,15 @@
 //------------------------------------------------------------------------------
 #include "missingwadsdialog.h"
 
-#include "ui_missingwadsdialog.h"
+#include "application.h"
 #include "gui/mainwindow.h"
 #include "gui/wadseekerinterface.h"
 #include "serverapi/serverstructs.h"
-#include "application.h"
+#include "ui_missingwadsdialog.h"
+#include <QListWidgetItem>
 #include <wadseeker/entities/modfile.h>
 #include <wadseeker/freedoom.h>
 #include <wadseeker/wadseeker.h>
-#include <QListWidgetItem>
 
 DClass<MissingWadsDialog> : public Ui::MissingWadsDialog
 {
@@ -42,7 +42,7 @@ public:
 DPointeredNoCopy(MissingWadsDialog)
 
 MissingWadsDialog::MissingWadsDialog(const QList<PWad> &missingWads, const QList<PWad> &incompatibleWads, QWidget *parent)
-: QDialog(parent)
+	: QDialog(parent)
 {
 	d->setupUi(this);
 	d->decision = Cancel;
@@ -68,13 +68,9 @@ void MissingWadsDialog::setup()
 {
 	d->btnInstallFreedoom->hide();
 	if (WadseekerInterface::isInstantiated())
-	{
 		setupWadseekerIsRunning();
-	}
 	else
-	{
 		setupWadseekerNotRunning();
-	}
 }
 
 void MissingWadsDialog::setupWadseekerIsRunning()
@@ -105,7 +101,9 @@ void MissingWadsDialog::setupForbiddenFilesArea()
 		d->areaCantBeDownloaded->show();
 		QStringList names;
 		foreach (PWad file, files)
+		{
 			names << file.name();
+		}
 		d->lblCantBeDownloadedFiles->setText(names.join(", "));
 
 		bool installFreedoom = isFreedoomReplaceableOnList(names);
@@ -113,9 +111,7 @@ void MissingWadsDialog::setupForbiddenFilesArea()
 		d->btnInstallFreedoom->setVisible(installFreedoom);
 	}
 	else
-	{
 		d->areaCantBeDownloaded->hide();
-	}
 }
 
 void MissingWadsDialog::setupDownloadableFilesArea()
@@ -126,13 +122,11 @@ void MissingWadsDialog::setupDownloadableFilesArea()
 		d->areaCanBeDownloadedFiles->show();
 		QStringList names;
 		foreach (PWad file, files)
-			names << file.name();
+		names << file.name();
 		d->lblCanBeDownloadedFiles->setText(names.join(", "));
 	}
 	else
-	{
 		d->areaCanBeDownloadedFiles->hide();
-	}
 }
 
 void MissingWadsDialog::setupOptionalFilesArea()
@@ -149,9 +143,7 @@ void MissingWadsDialog::setupOptionalFilesArea()
 		}
 	}
 	else
-	{
 		d->areaOptionalFiles->hide();
-	}
 }
 
 void MissingWadsDialog::setupIncompatibleFilesArea()
@@ -168,9 +160,7 @@ void MissingWadsDialog::setupIncompatibleFilesArea()
 		}
 	}
 	else
-	{
 		d->areaIncompatibleFiles->hide();
-	}
 }
 
 bool MissingWadsDialog::isFreedoomReplaceableOnList(const QStringList &files) const
@@ -178,9 +168,7 @@ bool MissingWadsDialog::isFreedoomReplaceableOnList(const QStringList &files) co
 	foreach (const QString &file, files)
 	{
 		if (Freedoom::hasFreedoomReplacement(file))
-		{
 			return true;
-		}
 	}
 	return false;
 }
@@ -214,9 +202,7 @@ QList<PWad> MissingWadsDialog::downloadableFiles() const
 	foreach (PWad file, d->missingWads)
 	{
 		if (!Wadseeker::isForbiddenWad(file) && !file.isOptional())
-		{
 			result << file;
-		}
 	}
 	return result;
 }
@@ -229,9 +215,7 @@ QList<PWad> MissingWadsDialog::forbiddenFiles() const
 	foreach (const PWad &file, wads)
 	{
 		if (Wadseeker::isForbiddenWad(file.name()))
-		{
 			result << file;
-		}
 	}
 	return result;
 }
@@ -242,9 +226,7 @@ QList<PWad> MissingWadsDialog::optionalFiles() const
 	foreach (const PWad &file, d->missingWads)
 	{
 		if (!Wadseeker::isForbiddenWad(file.name()) && file.isOptional())
-		{
 			result << file;
-		}
 	}
 	return result;
 }
@@ -255,9 +237,7 @@ QList<PWad> MissingWadsDialog::incompatibleFiles() const
 	foreach (const PWad &file, d->incompatibleWads)
 	{
 		if (!Wadseeker::isForbiddenWad(file.name()))
-		{
 			result << file;
-		}
 	}
 	return result;
 }
@@ -277,9 +257,7 @@ QList<PWad> MissingWadsDialog::selectedOptionalFiles() const
 	{
 		QListWidgetItem *item = d->optionalFilesList->item(i);
 		if (item->checkState() == Qt::Checked)
-		{
 			result << item->text();
-		}
 	}
 	return filenamesToPwads(result, optionalFiles());
 }
@@ -291,9 +269,7 @@ QList<PWad> MissingWadsDialog::selectedIncompatibleFiles() const
 	{
 		QListWidgetItem *item = d->incompatibleFilesList->item(i);
 		if (item->checkState() == Qt::Checked)
-		{
 			result << item->text();
-		}
 	}
 	return filenamesToPwads(result, incompatibleFiles());
 }

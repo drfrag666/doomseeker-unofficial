@@ -43,8 +43,8 @@ public:
 
 DPointered(CFGWadseekerGeneral)
 
-CFGWadseekerGeneral::CFGWadseekerGeneral(QWidget* parent)
-: ConfigPage(parent)
+CFGWadseekerGeneral::CFGWadseekerGeneral(QWidget *parent)
+	: ConfigPage(parent)
 {
 	d->setupUi(this);
 	d->completerActive = false;
@@ -117,31 +117,23 @@ ConfigPage::Validation CFGWadseekerGeneral::validate()
 
 	QFileInfo targetDirectory = d->targetDirectory();
 	if (error.isEmpty() && d->targetDirectory().isEmpty())
-	{
 		error = tr("No path specified.");
-	}
 
 	if (error.isEmpty() && !targetDirectory.exists())
-	{
 		error = tr("This path doesn't exist.");
-	}
 
 	if (error.isEmpty() && !targetDirectory.isDir())
-	{
 		error = tr("This is not a directory.");
-	}
 
 	if (error.isEmpty() && !targetDirectory.isWritable())
-	{
 		error = tr("This directory cannot be written to.");
-	}
 
 	// If path seems valid also take a look at the file
 	// paths configuration. Warn if it is not on the list.
 	if (error.isEmpty())
 	{
 		bool pathOnList = false;
-		foreach(FileSearchPath possiblePath, gConfig.doomseeker.wadPaths)
+		foreach (FileSearchPath possiblePath, gConfig.doomseeker.wadPaths)
 		{
 			// Bring paths to QFileInfo before string comparison. Two same paths
 			// may have different string representations.

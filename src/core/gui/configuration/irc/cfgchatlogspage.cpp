@@ -38,7 +38,7 @@ DPointered(CfgChatLogsPage)
 
 
 CfgChatLogsPage::CfgChatLogsPage(QWidget *parent)
-: ConfigPage(parent)
+	: ConfigPage(parent)
 {
 	d->setupUi(this);
 	d->lblDirWarning->hide();
@@ -126,8 +126,6 @@ ConfigPage::Validation CfgChatLogsPage::validate()
 QString CfgChatLogsPage::validateChatLogsPath(const QFileInfo &path) const
 {
 	if (path.exists() && !path.isDir())
-	{
 		return tr("Specified path isn't a directory.");
-	}
 	return "";
 }

@@ -23,10 +23,10 @@
 #include "ircignoresmanager.h"
 #include "ui_ircignoresmanager.h"
 
-#include <QKeyEvent>
 #include "irc/configuration/chatnetworkscfg.h"
 #include "irc/entities/ircnetworkentity.h"
 #include "patternlist.h"
+#include <QKeyEvent>
 
 DClass<IRCIgnoresManager> : public Ui::IRCIgnoresManager
 {
@@ -38,7 +38,7 @@ DPointered(IRCIgnoresManager)
 
 
 IRCIgnoresManager::IRCIgnoresManager(QWidget *parent, const QString &networkDescription)
-: QDialog(parent)
+	: QDialog(parent)
 {
 	d->networkDescription = networkDescription;
 	d->setupUi(this);
@@ -53,18 +53,14 @@ IRCIgnoresManager::~IRCIgnoresManager()
 void IRCIgnoresManager::done(int result)
 {
 	if (result == Accepted)
-	{
 		saveItems();
-	}
 	QDialog::done(result);
 }
 
 void IRCIgnoresManager::keyPressEvent(QKeyEvent *event)
 {
 	if (event->key() == Qt::Key_Delete)
-	{
 		deleteSelected();
-	}
 	QDialog::keyPressEvent(event);
 }
 
@@ -95,16 +91,14 @@ PatternList IRCIgnoresManager::patterns() const
 	{
 		QString text = d->list->item(row)->text();
 		if (!text.trimmed().isEmpty())
-		{
 			result << QRegExp(text, Qt::CaseInsensitive, QRegExp::Wildcard);
-		}
 	}
 	return result;
 }
 
 void IRCIgnoresManager::deleteSelected()
 {
-	QList<QListWidgetItem*> selection = d->list->selectedItems();
+	QList<QListWidgetItem *> selection = d->list->selectedItems();
 	foreach (QListWidgetItem *item, selection)
 	{
 		d->list->removeItemWidget(item);

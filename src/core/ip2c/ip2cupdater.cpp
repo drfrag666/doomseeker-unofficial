@@ -43,9 +43,7 @@ IP2CUpdater::~IP2CUpdater()
 	abort();
 
 	if (pNetworkAccessManager != nullptr)
-	{
 		pNetworkAccessManager->deleteLater();
-	}
 }
 
 void IP2CUpdater::abort()
@@ -62,9 +60,7 @@ void IP2CUpdater::abort()
 void IP2CUpdater::checksumDownloadFinished()
 {
 	if (handleRedirect(*pCurrentNetworkReply, SLOT(checksumDownloadFinished())))
-	{
 		return;
-	}
 
 	if (pCurrentNetworkReply->error() != QNetworkReply::NoError)
 	{
@@ -92,9 +88,7 @@ void IP2CUpdater::checksumDownloadFinished()
 		QString(localMd5)).arg(QString(remoteMd5));
 	bool needed = localMd5 != remoteMd5;
 	if (needed)
-	{
 		gLog << tr("IP2C update needed.");
-	}
 	emit updateNeeded(needed ? UpdateNeeded : UpToDate);
 }
 
@@ -117,9 +111,7 @@ void IP2CUpdater::downloadDatabase(const QString &savePath)
 void IP2CUpdater::downloadFinished()
 {
 	if (handleRedirect(*pCurrentNetworkReply, SLOT(downloadFinished())))
-	{
 		return;
-	}
 
 	QByteArray data = pCurrentNetworkReply->readAll();
 
@@ -128,7 +120,7 @@ void IP2CUpdater::downloadFinished()
 
 	// First we need to write it to a temporary file
 	QTemporaryFile tmpFile;
-	if(tmpFile.open())
+	if (tmpFile.open())
 	{
 		tmpFile.write(data);
 
@@ -136,12 +128,12 @@ void IP2CUpdater::downloadFinished()
 
 		QByteArray uncompressedData;
 		gzFile gz = gzopen(tmpFilePath.toUtf8().constData(), "rb");
-		if(gz != nullptr)
+		if (gz != nullptr)
 		{
 			static const int CHUNK_SIZE = 128 * 1024;
 			char chunk[CHUNK_SIZE];
 			int bytesRead = 0;
-			while((bytesRead = gzread(gz, chunk, CHUNK_SIZE)) != 0)
+			while ((bytesRead = gzread(gz, chunk, CHUNK_SIZE)) != 0)
 			{
 				uncompressedData.append(QByteArray(chunk, bytesRead));
 			}
@@ -162,9 +154,7 @@ bool IP2CUpdater::handleRedirect(QNetworkReply &reply, const char *finishedSlot)
 	{
 		// Redirect.
 		if (possibleRedirectUrl.isRelative())
-		{
 			possibleRedirectUrl = url.resolved(possibleRedirectUrl);
-		}
 		get(possibleRedirectUrl, finishedSlot);
 		return true;
 	}
@@ -181,8 +171,8 @@ void IP2CUpdater::get(const QUrl &url, const char *finishedSlot)
 	request.setRawHeader("User-Agent", Version::userAgent().toUtf8());
 
 	pCurrentNetworkReply = pNetworkAccessManager->get(request);
-	this->connect(pCurrentNetworkReply, SIGNAL(downloadProgress(qint64, qint64)),
-		SIGNAL(downloadProgress(qint64, qint64)));
+	this->connect(pCurrentNetworkReply, SIGNAL(downloadProgress(qint64,qint64)),
+		SIGNAL(downloadProgress(qint64,qint64)));
 	this->connect(pCurrentNetworkReply, SIGNAL(finished()), finishedSlot);
 }
 
@@ -204,7 +194,7 @@ bool IP2CUpdater::isWorking() const
 	return pCurrentNetworkReply != nullptr;
 }
 
-void IP2CUpdater::needsUpdate(const QString& filePath)
+void IP2CUpdater::needsUpdate(const QString &filePath)
 {
 	QFile file(filePath);
 	if (!file.exists())
@@ -226,7 +216,7 @@ bool IP2CUpdater::rollback(const QString &savePath)
 	return bSuccess;
 }
 
-bool IP2CUpdater::save(const QByteArray& saveWhat, const QString &savePath)
+bool IP2CUpdater::save(const QByteArray &saveWhat, const QString &savePath)
 {
 	if (saveWhat.isEmpty())
 		return false;

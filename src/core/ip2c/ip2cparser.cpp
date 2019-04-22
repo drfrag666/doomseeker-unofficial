@@ -31,14 +31,14 @@
 #include <QMutexLocker>
 #include <QTime>
 
-IP2CParser::IP2CParser(IP2C* pTargetDatabase)
+IP2CParser::IP2CParser(IP2C *pTargetDatabase)
 {
 	currentParsingThread = nullptr;
 	this->pTargetDatabase = pTargetDatabase;
 	bIsParsing = false;
 }
 
-bool IP2CParser::doReadDatabase(const QString& filePath)
+bool IP2CParser::doReadDatabase(const QString &filePath)
 {
 	QMutexLocker mutexLocker(&thisLock);
 
@@ -49,8 +49,8 @@ bool IP2CParser::doReadDatabase(const QString& filePath)
 	gLog << tr("Parsing IP2C database: %1").arg(dataBase.fileName());
 
 	if (!dataBase.exists()
-	||  !dataBase.open(QIODevice::ReadOnly)
-	||  !dataBase.isReadable())
+		|| !dataBase.open(QIODevice::ReadOnly)
+		|| !dataBase.isReadable())
 	{
 		gLog << tr("Unable to open IP2C file.");
 		return false;
@@ -64,29 +64,25 @@ bool IP2CParser::doReadDatabase(const QString& filePath)
 	// Read version.
 	int pos = 4;
 	if (pos >= dataArray.size())
-	{
 		return false;
-	}
 
-	const char* data = dataArray.constData();
+	const char *data = dataArray.constData();
 	unsigned short version = READINT16(&data[pos]);
 
 	bool wasReadSuccessful = false;
 	switch (version)
 	{
-		case 2:
-			wasReadSuccessful = readDatabaseVersion2(dataArray);
-			break;
+	case 2:
+		wasReadSuccessful = readDatabaseVersion2(dataArray);
+		break;
 
-		default:
-			wasReadSuccessful = false;
-			break;
+	default:
+		wasReadSuccessful = false;
+		break;
 	}
 
 	if (!wasReadSuccessful)
-	{
 		return false;
-	}
 
 	gLog << tr("IP2C database read in %1 ms. Entries read: %2").arg(time.elapsed()).arg(pTargetDatabase->numKnownEntries());
 	return true;
@@ -103,7 +99,7 @@ void IP2CParser::parsingThreadFinished()
 	emit parsingFinished(bSuccessState);
 }
 
-bool IP2CParser::readDatabase(const QString& filePath)
+bool IP2CParser::readDatabase(const QString &filePath)
 {
 	bool bSuccess = doReadDatabase(filePath);
 	emit parsingFinished(bSuccess);
@@ -111,22 +107,20 @@ bool IP2CParser::readDatabase(const QString& filePath)
 	return bSuccess;
 }
 
-void IP2CParser::readDatabaseThreaded(const QString& filePath)
+void IP2CParser::readDatabaseThreaded(const QString &filePath)
 {
 	if (currentParsingThread != nullptr)
-	{
 		return;
-	}
 
-	ParsingThread* pParsingThread = new ParsingThread(this, filePath);
-	connect(pParsingThread, SIGNAL( finished() ), this, SLOT( parsingThreadFinished() ) );
+	ParsingThread *pParsingThread = new ParsingThread(this, filePath);
+	connect(pParsingThread, SIGNAL(finished()), this, SLOT(parsingThreadFinished()));
 
 	currentParsingThread = pParsingThread;
 
 	pParsingThread->start();
 }
 
-bool IP2CParser::readDatabaseVersion2(const QByteArray& dataArray)
+bool IP2CParser::readDatabaseVersion2(const QByteArray &dataArray)
 {
 	QBuffer buffer;
 	buffer.setData(dataArray);
@@ -148,7 +142,8 @@ bool IP2CParser::readDatabaseVersion2(const QByteArray& dataArray)
 
 		baseEntry.countryFullName = QString::fromUtf8(stream.readRawUntilByte('\0'));
 		baseEntry.country = QString::fromUtf8(stream.readRawUntilByte('\0'));
-		if (!stream.hasRemaining()) return false;
+		if (!stream.hasRemaining())
+			return false;
 
 		quint32 numOfIpBlocks = stream.readQUInt32();
 
@@ -158,7 +153,8 @@ bool IP2CParser::readDatabaseVersion2(const QByteArray& dataArray)
 			IP2C::IP2CData entry = baseEntry;
 
 			entry.ipStart = stream.readQUInt32();
-			if (!stream.hasRemaining()) return false;
+			if (!stream.hasRemaining())
+				return false;
 			entry.ipEnd = stream.readQUInt32();
 
 			hashTable[entry.ipStart] = entry;
@@ -172,7 +168,7 @@ bool IP2CParser::readDatabaseVersion2(const QByteArray& dataArray)
 
 ////////////////////////////////////////////////////////////////////////////////
 
-IP2CParser::ConstructorDestructorParserStateSetter::ConstructorDestructorParserStateSetter(IP2CParser* pParser)
+IP2CParser::ConstructorDestructorParserStateSetter::ConstructorDestructorParserStateSetter(IP2CParser *pParser)
 {
 	this->pParser = pParser;
 	pParser->bIsParsing = true;

@@ -22,8 +22,8 @@
 //------------------------------------------------------------------------------
 #include "programargshelpdialog.h"
 
-#include "ui_programargshelpdialog.h"
 #include "cmdargshelp.h"
+#include "ui_programargshelpdialog.h"
 
 DClass<ProgramArgsHelpDialog> : public Ui::ProgramArgsHelpDialog
 {
@@ -33,7 +33,7 @@ DPointered(ProgramArgsHelpDialog)
 
 
 ProgramArgsHelpDialog::ProgramArgsHelpDialog(QWidget *parent)
-: QDialog(parent)
+	: QDialog(parent)
 {
 	d->setupUi(this);
 

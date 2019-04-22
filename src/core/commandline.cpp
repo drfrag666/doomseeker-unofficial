@@ -26,12 +26,12 @@
 #include "strings.hpp"
 #include <QRegExp>
 
-void CommandLine::escapeArgs(QStringList& args)
+void CommandLine::escapeArgs(QStringList &args)
 {
 	QStringList::iterator it;
 	for (it = args.begin(); it != args.end(); ++it)
 	{
-		QString& str = *it;
+		QString &str = *it;
 		escapeArg(str);
 	}
 }
@@ -45,7 +45,7 @@ static bool needsQuoteWrap(const QString &arg)
 }
 
 #if defined Q_OS_WIN
-void CommandLine::escapeArg(QString& arg)
+void CommandLine::escapeArg(QString &arg)
 {
 	// Note: this may be game specific (oh, dear...)
 	arg.replace('"', "\\\"");
@@ -58,7 +58,7 @@ void CommandLine::escapeArg(QString& arg)
 
 #else
 // Since most other operating systems are Unix like we might as well make this a default.
-void CommandLine::escapeArg(QString& arg)
+void CommandLine::escapeArg(QString &arg)
 {
 	arg.replace('\'', "'\\''"); // This does: ' -> '\''
 	if (needsQuoteWrap(arg))
@@ -69,12 +69,12 @@ void CommandLine::escapeArg(QString& arg)
 }
 #endif
 
-void CommandLine::escapeExecutable(QString& arg)
+void CommandLine::escapeExecutable(QString &arg)
 {
-#ifdef Q_OS_MAC
+	#ifdef Q_OS_MAC
 	QFileInfo binary = arg;
-	if(binary.isBundle())
+	if (binary.isBundle())
 		arg += AppRunner::findBundleBinary(binary);
-#endif
+	#endif
 	return escapeArg(arg);
 }

@@ -21,8 +21,8 @@
 // Copyright (C) 2010 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
 #include "cfgwadseekeridgames.h"
-#include "ui_cfgwadseekeridgames.h"
 #include "configuration/doomseekerconfig.h"
+#include "ui_cfgwadseekeridgames.h"
 #include "wadseeker/wadseeker.h"
 #include <QCompleter>
 #include <QDebug>
@@ -37,12 +37,12 @@ DClass<CFGWadseekerIdgames> : public Ui::CFGWadseekerIdgames
 
 DPointered(CFGWadseekerIdgames)
 
-CFGWadseekerIdgames::CFGWadseekerIdgames(QWidget* parent)
-: ConfigPage(parent)
+CFGWadseekerIdgames::CFGWadseekerIdgames(QWidget *parent)
+	: ConfigPage(parent)
 {
 	d->setupUi(this);
 
-	connect(d->btnIdgamesURLDefault, SIGNAL( clicked() ), this, SLOT( btnIdgamesURLDefaultClicked() ) );
+	connect(d->btnIdgamesURLDefault, SIGNAL(clicked()), this, SLOT(btnIdgamesURLDefaultClicked()));
 	d->frameWithContent->setEnabled(d->cbUseIdgames->isChecked());
 }
 

@@ -22,10 +22,10 @@
 //------------------------------------------------------------------------------
 #include "pluginloader.h"
 
-#include "log.h"
 #include "configuration/doomseekerconfig.h"
 #include "ini/inisection.h"
 #include "ini/inivariable.h"
+#include "log.h"
 #include "plugins/engineplugin.h"
 #include "serverapi/masterclient.h"
 #include "strings.hpp"
@@ -34,34 +34,34 @@
 
 #ifdef Q_OS_WIN32
 	#include <windows.h>
-	#define dlopen(a,b)	LoadLibrary(a)
-	#define dlsym(a,b)	GetProcAddress(a, b)
-	#define dlclose(a)	FreeLibrary(a)
-	#define dlerror()	GetLastError()
+#define dlopen(a, b) LoadLibrary(a)
+#define dlsym(a, b)  GetProcAddress(a, b)
+#define dlclose(a)   FreeLibrary(a)
+#define dlerror()    GetLastError()
 	#ifdef _MSC_VER
 		#pragma warning(disable: 4251)
 	#endif
 #else
-	#include <dlfcn.h>
 	#include <dirent.h>
+	#include <dlfcn.h>
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////
 DClass<PluginLoader::Plugin>
 {
-	public:
-		EnginePlugin *info;
-		QString file;
-		#ifdef Q_OS_WIN32
-			HMODULE library;
-		#else
-			void *library;
-		#endif
+public:
+	EnginePlugin *info;
+	QString file;
+	#ifdef Q_OS_WIN32
+	HMODULE library;
+	#else
+	void *library;
+	#endif
 
-		static bool isForbiddenPlugin(QString file)
-		{
-			return QFileInfo(file).fileName().toLower().contains("vavoom");
-		}
+	static bool isForbiddenPlugin(QString file)
+	{
+		return QFileInfo(file).fileName().toLower().contains("vavoom");
+	}
 };
 
 DPointered(PluginLoader::Plugin)
@@ -87,10 +87,10 @@ PluginLoader::Plugin::Plugin(unsigned int type, QString file)
 	SetErrorMode(oldErrorMode);
 	#endif
 
-	if(d->library != nullptr)
+	if (d->library != nullptr)
 	{
-		unsigned int (*doomSeekerABI)() = (unsigned int(*)()) (dlsym(d->library, "doomSeekerABI"));
-		if(!doomSeekerABI || doomSeekerABI() != DOOMSEEKER_ABI_VERSION)
+		unsigned int (*doomSeekerABI)() = (unsigned int (*)())(dlsym(d->library, "doomSeekerABI"));
+		if (!doomSeekerABI || doomSeekerABI() != DOOMSEEKER_ABI_VERSION)
 		{
 			// Unsupported version
 			QString reason;
@@ -98,7 +98,7 @@ PluginLoader::Plugin::Plugin(unsigned int type, QString file)
 			{
 				reason = QObject::tr(
 					"plugin ABI version mismatch; plugin: %1, Doomseeker: %2").arg(
-						doomSeekerABI()).arg(DOOMSEEKER_ABI_VERSION);
+					doomSeekerABI()).arg(DOOMSEEKER_ABI_VERSION);
 			}
 			else
 			{
@@ -109,15 +109,15 @@ PluginLoader::Plugin::Plugin(unsigned int type, QString file)
 			return;
 		}
 
-		EnginePlugin *(*doomSeekerInit)() = (EnginePlugin *(*)()) (dlsym(d->library, "doomSeekerInit"));
-		if(doomSeekerInit == nullptr)
+		EnginePlugin *(*doomSeekerInit)() = (EnginePlugin * (*)())(dlsym(d->library, "doomSeekerInit"));
+		if (doomSeekerInit == nullptr)
 		{ // This is not a valid plugin.
 			unload();
 			return;
 		}
 
 		d->info = doomSeekerInit();
-		if(!info()->data()->valid)
+		if (!info()->data()->valid)
 		{
 			unload();
 			return;
@@ -138,7 +138,7 @@ PluginLoader::Plugin::~Plugin()
 	unload();
 }
 
-void *PluginLoader::Plugin::function(const char* func) const
+void *PluginLoader::Plugin::function(const char *func) const
 {
 	return (void *) dlsym(d->library, func);
 }
@@ -174,10 +174,10 @@ void PluginLoader::Plugin::unload()
 ////////////////////////////////////////////////////////////////////////////////
 DClass<PluginLoader>
 {
-	public:
-		unsigned int type;
-		QString pluginsDirectory;
-		QList<PluginLoader::Plugin*> plugins;
+public:
+	unsigned int type;
+	QString pluginsDirectory;
+	QList<PluginLoader::Plugin *> plugins;
 };
 
 DPointered(PluginLoader)
@@ -229,12 +229,12 @@ bool PluginLoader::filesInDir()
 	{
 		return false;
 	}
-#ifdef Q_OS_WIN32
+	#ifdef Q_OS_WIN32
 	QStringList windowsNamesFilter;
 	windowsNamesFilter << "*.dll";
 	dir.setNameFilters(windowsNamesFilter);
-#endif
-	foreach (const QString& entry, dir.entryList(QDir::Files))
+	#endif
+	foreach (const QString &entry, dir.entryList(QDir::Files))
 	{
 		QString pluginFilePath = Strings::combinePaths(d->pluginsDirectory, entry);
 		Plugin *plugin = new Plugin(d->type, pluginFilePath);
@@ -248,7 +248,7 @@ bool PluginLoader::filesInDir()
 
 EnginePlugin *PluginLoader::info(int pluginIndex) const
 {
-	const Plugin* p = plugin(pluginIndex);
+	const Plugin *p = plugin(pluginIndex);
 	if (p != nullptr)
 	{
 		return p->info();
@@ -286,17 +286,17 @@ const unsigned int PluginLoader::numPlugins() const
 	return d->plugins.size();
 }
 
-const QList<PluginLoader::Plugin*> &PluginLoader::plugins() const
+const QList<PluginLoader::Plugin *> &PluginLoader::plugins() const
 {
 	return d->plugins;
 }
 
-const PluginLoader::Plugin* PluginLoader::plugin(unsigned int index) const
+const PluginLoader::Plugin *PluginLoader::plugin(unsigned int index) const
 {
 	return d->plugins[index];
 }
 
-int PluginLoader::pluginIndexFromName(const QString& name) const
+int PluginLoader::pluginIndexFromName(const QString &name) const
 {
 	// Why the mangling?
 	// Ever since version 0.8.1b there was a bug that removed all spacebars
@@ -319,14 +319,14 @@ int PluginLoader::pluginIndexFromName(const QString& name) const
 	return -1;
 }
 
-void PluginLoader::resetPluginsDirectory(const QString& pluginsDirectory)
+void PluginLoader::resetPluginsDirectory(const QString &pluginsDirectory)
 {
 	d->pluginsDirectory = pluginsDirectory;
 	clearPlugins();
 	filesInDir();
 }
 
-const PluginLoader::Plugin* PluginLoader::operator[] (unsigned int index) const
+const PluginLoader::Plugin *PluginLoader::operator[] (unsigned int index) const
 {
 	return d->plugins[index];
 }

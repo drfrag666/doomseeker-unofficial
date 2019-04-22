@@ -32,37 +32,37 @@
 #include <QFileInfo>
 #include <QTemporaryDir>
 
-QSharedPointer<ModReader> ModReader::create(const QString& path)
+QSharedPointer<ModReader> ModReader::create(const QString &path)
 {
 	QFileInfo f(path);
 	if (f.suffix().compare("wad", Qt::CaseInsensitive) == 0)
 	{
-		return QSharedPointer<ModReader> (new WadReader(path));
+		return QSharedPointer<ModReader>(new WadReader(path));
 	}
 	else if (f.suffix().compare("zip", Qt::CaseInsensitive) == 0 ||
 		f.suffix().compare("7z", Qt::CaseInsensitive) == 0)
 	{
-		return QSharedPointer<ModReader> (new CompressedReader(path));
+		return QSharedPointer<ModReader>(new CompressedReader(path));
 	}
 	else if (f.suffix().compare("pk3", Qt::CaseInsensitive) == 0 ||
 		f.suffix().compare("pk7", Qt::CaseInsensitive) == 0)
 	{
-		return QSharedPointer<ModReader> (new PkReader(path));
+		return QSharedPointer<ModReader>(new PkReader(path));
 	}
 	return QSharedPointer<ModReader> ();
 }
 
 DClass<WadReader>
 {
-	public:
-		QString filepath;
-		bool isIwad;
-		QList<DirectoryEntry> directory;
+public:
+	QString filepath;
+	bool isIwad;
+	QList<DirectoryEntry> directory;
 };
 
 DPointered(WadReader)
 
-WadReader::WadReader(const QString& path)
+WadReader::WadReader(const QString &path)
 {
 	d->filepath = path;
 }
@@ -85,7 +85,7 @@ bool WadReader::load()
 		stream.skipRawData(4);
 
 		int directoryPosition = stream.readQInt32();
-		stream.skipRawData(directoryPosition-12);
+		stream.skipRawData(directoryPosition - 12);
 		while (stream.hasRemaining())
 		{
 			DirectoryEntry dirEntry;
@@ -118,14 +118,14 @@ QStringList WadReader::getAllMaps()
 		"SEGS", "SSECTORS", "NODES", "SECTORS", "REJECT", "BLOCKMAP"};
 
 	foreach (DirectoryEntry dirEntry, getDirectory())
-		names << dirEntry.name;
+	names << dirEntry.name;
 
-	for (int mainIter = 0; mainIter < names.size()-lumpsToCheckFor.size(); ++mainIter)
+	for (int mainIter = 0; mainIter < names.size() - lumpsToCheckFor.size(); ++mainIter)
 	{
 		bool isMap = true;
 		for (int checkIter = 0; checkIter < lumpsToCheckFor.size(); ++checkIter)
 		{
-			if (names[mainIter+checkIter+1] != lumpsToCheckFor[checkIter])
+			if (names[mainIter + checkIter + 1] != lumpsToCheckFor[checkIter])
 			{
 				isMap = false;
 				break;
@@ -142,15 +142,15 @@ QStringList WadReader::getAllMaps()
 
 DClass<CompressedReader>
 {
-	public:
-		QScopedPointer<UnArchive> archive;
-		QString filepath;
-		QStringList directory;
+public:
+	QScopedPointer<UnArchive> archive;
+	QString filepath;
+	QStringList directory;
 };
 
 DPointeredNoCopy(CompressedReader)
 
-CompressedReader::CompressedReader(const QString& path)
+CompressedReader::CompressedReader(const QString &path)
 {
 	d->filepath = path;
 	d->archive.reset(nullptr);
@@ -163,7 +163,7 @@ CompressedReader::~CompressedReader()
 bool CompressedReader::load()
 {
 	d->archive.reset(UnArchive::openArchive(d->filepath));
-	if(!d->archive.isNull())
+	if (!d->archive.isNull())
 	{
 		d->directory = d->archive->files();
 	}
@@ -191,7 +191,7 @@ QStringList CompressedReader::getAllMapsRootDir()
 			{
 				QString extractedFilePath = tempDir.path() + QDir::separator() + dirEntry;
 				QSharedPointer<ModReader> modReader = ModReader::create(extractedFilePath);
-				if(!modReader.isNull() && !d->archive.isNull() &&
+				if (!modReader.isNull() && !d->archive.isNull() &&
 					d->archive->extract(d->archive->findFileEntry(dirEntry), extractedFilePath))
 				{
 					modReader->load();
@@ -203,7 +203,7 @@ QStringList CompressedReader::getAllMapsRootDir()
 	return mapList;
 }
 
-PkReader::PkReader(const QString& path) : CompressedReader(path)
+PkReader::PkReader(const QString &path) : CompressedReader(path)
 {
 }
 
@@ -211,7 +211,7 @@ QStringList PkReader::getAllMaps()
 {
 	QStringList mapList;
 	QStringList rootPaths;
-	foreach (const QString& dirEntry, d->directory)
+	foreach (const QString &dirEntry, d->directory)
 	{
 		QFileInfo fileInfo(dirEntry);
 		if (dirEntry.startsWith("maps/", Qt::CaseInsensitive) &&

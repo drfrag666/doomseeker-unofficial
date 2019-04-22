@@ -22,20 +22,20 @@
 //------------------------------------------------------------------------------
 #include "freedoomdialog.h"
 
-#include "ui_freedoomdialog.h"
 #include "configuration/doomseekerconfig.h"
+#include "fileutils.h"
 #include "pathfinder/filesearchpath.h"
 #include "pathfinder/pathfinder.h"
 #include "pathfinder/wadpathfinder.h"
-#include "fileutils.h"
-#include <wadseeker/entities/checksum.h>
-#include <wadseeker/entities/modset.h>
-#include <wadseeker/freedoom.h>
-#include <wadseeker/modinstall.h>
+#include "ui_freedoomdialog.h"
 #include <QCheckBox>
 #include <QCompleter>
 #include <QDirModel>
 #include <QMessageBox>
+#include <wadseeker/entities/checksum.h>
+#include <wadseeker/entities/modset.h>
+#include <wadseeker/freedoom.h>
+#include <wadseeker/modinstall.h>
 
 DClass<FreedoomDialog> : public Ui::FreedoomDialog
 {
@@ -47,7 +47,7 @@ public:
 DPointered(FreedoomDialog)
 
 FreedoomDialog::FreedoomDialog(QWidget *parent)
-: QDialog(parent)
+	: QDialog(parent)
 {
 	d->setupUi(this);
 
@@ -56,8 +56,8 @@ FreedoomDialog::FreedoomDialog(QWidget *parent)
 
 	d->modInstall = new ModInstall(this);
 	this->connect(d->modInstall, SIGNAL(finished()), SLOT(onModInstallFinished()));
-	this->connect(d->modInstall, SIGNAL(fileDownloadProgress(QString, qint64, qint64)),
-		SLOT(showFileDownloadProgress(QString, qint64, qint64)));
+	this->connect(d->modInstall, SIGNAL(fileDownloadProgress(QString,qint64,qint64)),
+		SLOT(showFileDownloadProgress(QString,qint64,qint64)));
 
 	d->btnInstall->setEnabled(false);
 	setupInstallPaths();
@@ -92,9 +92,7 @@ void FreedoomDialog::onModInstallFinished()
 		fetchInfo();
 	}
 	else
-	{
 		showError(d->modInstall->error());
-	}
 }
 
 void FreedoomDialog::updateConfig()
@@ -122,13 +120,9 @@ void FreedoomDialog::resetProgressBar()
 void FreedoomDialog::applyFreedoomVersionInfo()
 {
 	if (!d->freedoom->isError())
-	{
 		showModInfo(d->freedoom->modSet());
-	}
 	else
-	{
 		showError(tr("Error: %1").arg(d->freedoom->error()));
-	}
 }
 
 void FreedoomDialog::showModInfo(const ModSet &modSet)
@@ -177,9 +171,7 @@ void FreedoomDialog::insertModFile(const ModFile &file)
 		}
 	}
 	if (file.fileName().compare("freedm.wad", Qt::CaseInsensitive) == 0)
-	{
 		needsInstall = false;
-	}
 
 	d->wadsTable->insertRow(d->wadsTable->rowCount());
 	int row = d->wadsTable->rowCount() - 1;
@@ -192,15 +184,13 @@ void FreedoomDialog::insertModFile(const ModFile &file)
 
 	QString tooltip = tr("<p>File: %1<br>Version: %2<br>"
 		"Description: %3<br>Location: %4</p>")
-		.arg(file.name(), file.version(), file.description(), location);
+			.arg(file.name(), file.version(), file.description(), location);
 
 	for (int col = 0; col < d->wadsTable->columnCount(); ++col)
 	{
 		QTableWidgetItem *item = d->wadsTable->item(row, col);
 		if (item != nullptr)
-		{
 			item->setToolTip(tooltip);
-		}
 	}
 }
 
@@ -224,7 +214,7 @@ ModSet FreedoomDialog::selectedModFiles() const
 	ModSet modSet;
 	for (int row = 0; row < d->wadsTable->rowCount(); ++row)
 	{
-		QCheckBox *checkbox = static_cast<QCheckBox*>(d->wadsTable->cellWidget(row, ColInstall));
+		QCheckBox *checkbox = static_cast<QCheckBox *>(d->wadsTable->cellWidget(row, ColInstall));
 		if (checkbox->isChecked())
 		{
 			QString fileName = d->wadsTable->item(row, ColName)->text();
@@ -244,32 +234,32 @@ void FreedoomDialog::setupInstallPaths()
 	{
 		d->cboInstallPath->addItem(path.path());
 	}
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	d->cboInstallPath->setCurrentText(gConfig.wadseeker.targetDirectory);
-#else
+	#else
 	// This is basically what the Qt5 function above does.  Could use it there
 	// but I figured I would #if it for when we eventually drop Qt4 we won't be
 	// reinventing the wheel.
 	const int item = d->cboInstallPath->findText(gConfig.wadseeker.targetDirectory);
-	if(item >= 0)
+	if (item >= 0)
 		d->cboInstallPath->setCurrentIndex(item);
 	else
 		d->cboInstallPath->setEditText(gConfig.wadseeker.targetDirectory);
-#endif
+	#endif
 }
 
 void FreedoomDialog::setupWadsTable()
 {
 	QHeaderView *header = d->wadsTable->horizontalHeader();
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	header->setSectionResizeMode(ColName, QHeaderView::Stretch);
 	header->setSectionResizeMode(ColStatus, QHeaderView::ResizeToContents);
 	header->setSectionResizeMode(ColInstall, QHeaderView::ResizeToContents);
-#else
+	#else
 	header->setResizeMode(ColName, QHeaderView::Stretch);
 	header->setResizeMode(ColStatus, QHeaderView::ResizeToContents);
 	header->setResizeMode(ColInstall, QHeaderView::ResizeToContents);
-#endif
+	#endif
 	d->wadsTable->setColumnWidth(ColName, 150);
 }
 

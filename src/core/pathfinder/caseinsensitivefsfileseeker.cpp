@@ -26,8 +26,8 @@
 #include "strings.hpp"
 #include <QFileInfo>
 
-QString CaseInsensitiveFSFileSeeker::findFileInSpecifiedDirectory(const QString& fileName,
-	const QString& dirPath)
+QString CaseInsensitiveFSFileSeeker::findFileInSpecifiedDirectory(const QString &fileName,
+	const QString &dirPath)
 {
 	QFileInfo file(Strings::combinePaths(dirPath, fileName));
 	if (file.exists() && file.isFile())

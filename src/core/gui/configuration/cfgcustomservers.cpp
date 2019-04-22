@@ -20,11 +20,11 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2009 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
-#include "configuration/doomseekerconfig.h"
 #include "cfgcustomservers.h"
-#include "ui_cfgcustomservers.h"
+#include "configuration/doomseekerconfig.h"
 #include "plugins/engineplugin.h"
 #include "plugins/pluginloader.h"
+#include "ui_cfgcustomservers.h"
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QStandardItemModel>
@@ -36,21 +36,21 @@ const // clear warnings
 DClass<CFGCustomServers> : public Ui::CFGCustomServers
 {
 public:
-	QStandardItemModel* model;
+	QStandardItemModel *model;
 };
 
 DPointered(CFGCustomServers)
 
 CFGCustomServers::CFGCustomServers(QWidget *parent)
-: ConfigPage(parent)
+	: ConfigPage(parent)
 {
 	d->setupUi(this);
 
-	connect(d->btnAdd, SIGNAL( clicked() ), this, SLOT( add() ));
-	connect(d->btnDisableSelected, SIGNAL( clicked() ), this, SLOT( disableSelected() ));
-	connect(d->btnEnableSelected, SIGNAL( clicked() ), this, SLOT( enableSelected() ));
-	connect(d->btnRemove, SIGNAL( clicked() ), this, SLOT( remove() ));
-	connect(d->btnSetEngine, SIGNAL( clicked() ), this, SLOT( setEngine() ));
+	connect(d->btnAdd, SIGNAL(clicked()), this, SLOT(add()));
+	connect(d->btnDisableSelected, SIGNAL(clicked()), this, SLOT(disableSelected()));
+	connect(d->btnEnableSelected, SIGNAL(clicked()), this, SLOT(enableSelected()));
+	connect(d->btnRemove, SIGNAL(clicked()), this, SLOT(remove()));
+	connect(d->btnSetEngine, SIGNAL(clicked()), this, SLOT(setEngine()));
 
 	prepareEnginesComboBox();
 }
@@ -62,19 +62,19 @@ CFGCustomServers::~CFGCustomServers()
 void CFGCustomServers::add()
 {
 	int pluginIndex = d->cboEngines->itemData(d->cboEngines->currentIndex()).toInt();
-	const EnginePlugin* plugin = gPlugins->info(pluginIndex);
+	const EnginePlugin *plugin = gPlugins->info(pluginIndex);
 
 	QString engineName = d->cboEngines->itemText(d->cboEngines->currentIndex());
 
 	add(engineName, "", plugin->data()->defaultServerPort, true);
 }
 
-void CFGCustomServers::add(const QString& engineName, const QString& host,
+void CFGCustomServers::add(const QString &engineName, const QString &host,
 	unsigned short port, bool enabled)
 {
-	QList<QStandardItem* > record;
+	QList<QStandardItem *> record;
 
-	QStandardItem* engineItem = new QStandardItem();
+	QStandardItem *engineItem = new QStandardItem();
 	setEngineOnItem(engineItem, engineName);
 
 	QString portString = QString::number(port);
@@ -109,28 +109,28 @@ CFGCustomServers::CheckAndFixPorts CFGCustomServers::checkAndFixPorts(int firstR
 	return returnValue;
 }
 
-void CFGCustomServers::dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight)
+void CFGCustomServers::dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight)
 {
 	const QString MESSAGE_TITLE = tr("Doomseeker - pinned servers");
 
 	int leftmostColumn = topLeft.column();
 	int rightmostColumn = bottomRight.column();
 
-	if ( isPortColumnWithinRange(leftmostColumn, rightmostColumn) )
+	if (isPortColumnWithinRange(leftmostColumn, rightmostColumn))
 	{
-		switch ( checkAndFixPorts(topLeft.row(), bottomRight.row()) )
+		switch (checkAndFixPorts(topLeft.row(), bottomRight.row()))
 		{
-			case AllOk:
-				// Ignore
-				break;
+		case AllOk:
+			// Ignore
+			break;
 
-			case AtLeastOneFixed:
-				QMessageBox::warning(this, MESSAGE_TITLE, tr("Port must be within range 1 - 65535"));
-				break;
+		case AtLeastOneFixed:
+			QMessageBox::warning(this, MESSAGE_TITLE, tr("Port must be within range 1 - 65535"));
+			break;
 
-			default:
-				QMessageBox::warning(this, MESSAGE_TITLE, tr("Unimplemented behavior!"));
-				break;
+		default:
+			QMessageBox::warning(this, MESSAGE_TITLE, tr("Unimplemented behavior!"));
+			break;
 		}
 	}
 }
@@ -147,20 +147,20 @@ void CFGCustomServers::enableSelected()
 
 void CFGCustomServers::setEnabledOnSelected(bool enabled)
 {
-	QItemSelectionModel* sel = d->tvServers->selectionModel();
+	QItemSelectionModel *sel = d->tvServers->selectionModel();
 	QModelIndexList indexList = sel->selectedRows();
 
 	QModelIndexList::iterator it;
 	for (it = indexList.begin(); it != indexList.end(); ++it)
 	{
-		QStandardItem* item = d->model->itemFromIndex(it->sibling(it->row(), EnabledIndex));
+		QStandardItem *item = d->model->itemFromIndex(it->sibling(it->row(), EnabledIndex));
 		item->setCheckState(enabled ? Qt::Checked : Qt::Unchecked);
 	}
 }
 
-const EnginePlugin* CFGCustomServers::getPluginInfoForRow(int rowIndex)
+const EnginePlugin *CFGCustomServers::getPluginInfoForRow(int rowIndex)
 {
-	QStandardItem* itemEngine = d->model->item(rowIndex, EngineColumnIndex);
+	QStandardItem *itemEngine = d->model->item(rowIndex, EngineColumnIndex);
 	QString engineName = itemEngine->data().toString();
 	int pluginIndex = gPlugins->pluginIndexFromName(engineName);
 	return gPlugins->info(pluginIndex);
@@ -176,7 +176,7 @@ bool CFGCustomServers::isPortCorrect(int rowIndex)
 	const int MIN_PORT = 1;
 	const int MAX_PORT = 65535;
 
-	QStandardItem* item = d->model->item(rowIndex, PortColumnIndex);
+	QStandardItem *item = d->model->item(rowIndex, PortColumnIndex);
 	bool ok;
 	int port = item->text().toInt(&ok);
 
@@ -189,21 +189,19 @@ void CFGCustomServers::prepareEnginesComboBox()
 
 	for (unsigned i = 0; i < gPlugins->numPlugins(); ++i)
 	{
-		const EnginePlugin* plugin = gPlugins->info(i);
+		const EnginePlugin *plugin = gPlugins->info(i);
 		d->cboEngines->addItem(plugin->icon(), plugin->data()->name, i);
 	}
 
 	if (d->cboEngines->count() > 0)
-	{
 		d->cboEngines->setCurrentIndex(0);
-	}
 }
 
 void CFGCustomServers::prepareTable()
 {
 	d->model = new QStandardItemModel(this);
 
-	connect(d->model, SIGNAL( dataChanged(const QModelIndex&, const QModelIndex&) ), this, SLOT( dataChanged(const QModelIndex&, const QModelIndex&) ) );
+	connect(d->model, SIGNAL(dataChanged(const QModelIndex&,const QModelIndex&)), this, SLOT(dataChanged(const QModelIndex&,const QModelIndex&)));
 
 	QStringList labels;
 	labels << "" << tr("Host") << tr("Port") << "";
@@ -220,11 +218,11 @@ void CFGCustomServers::prepareTable()
 	fixedSizeColumns << EngineColumnIndex << EnabledIndex;
 	foreach (ColumnIndices columnIdx, fixedSizeColumns)
 	{
-#if QT_VERSION >= 0x050000
+		#if QT_VERSION >= 0x050000
 		d->tvServers->horizontalHeader()->setSectionResizeMode(columnIdx, QHeaderView::Fixed);
-#else
+		#else
 		d->tvServers->horizontalHeader()->setResizeMode(columnIdx, QHeaderView::Fixed);
-#endif
+		#endif
 	}
 	d->tvServers->horizontalHeader()->setHighlightSections(false);
 
@@ -238,22 +236,18 @@ void CFGCustomServers::readSettings()
 	QList<CustomServerInfo> customServersList = gConfig.doomseeker.customServers.toList();
 	QList<CustomServerInfo>::iterator it;
 	for (it = customServersList.begin(); it != customServersList.end(); ++it)
-	{
 		add(it->engine, it->host, it->port, it->enabled);
-	}
 }
 
 void CFGCustomServers::remove()
 {
-	QItemSelectionModel* selModel = d->tvServers->selectionModel();
+	QItemSelectionModel *selModel = d->tvServers->selectionModel();
 	QModelIndexList indexList = selModel->selectedRows();
 	selModel->clear();
 
-	QList<QStandardItem*> itemList;
+	QList<QStandardItem *> itemList;
 	for (int i = 0; i < indexList.count(); ++i)
-	{
 		itemList << d->model->item(indexList[i].row(), 0);
-	}
 
 	for (int i = 0; i < itemList.count(); ++i)
 	{
@@ -269,19 +263,19 @@ void CFGCustomServers::saveSettings()
 
 void CFGCustomServers::setEngine()
 {
-	QItemSelectionModel* sel = d->tvServers->selectionModel();
+	QItemSelectionModel *sel = d->tvServers->selectionModel();
 	QModelIndexList indexList = sel->selectedRows();
 
 	QModelIndexList::iterator it;
 	for (it = indexList.begin(); it != indexList.end(); ++it)
 	{
-		QStandardItem* item = d->model->itemFromIndex(*it);
+		QStandardItem *item = d->model->itemFromIndex(*it);
 		QString engineName = d->cboEngines->itemText(d->cboEngines->currentIndex());
 		setEngineOnItem(item, engineName);
 	}
 }
 
-void CFGCustomServers::setEngineOnItem(QStandardItem* item, const QString& engineName)
+void CFGCustomServers::setEngineOnItem(QStandardItem *item, const QString &engineName)
 {
 	int engineId = gPlugins->pluginIndexFromName(engineName);
 
@@ -289,13 +283,11 @@ void CFGCustomServers::setEngineOnItem(QStandardItem* item, const QString& engin
 	item->setToolTip(engineName);
 	if (engineId >= 0)
 	{
-		const EnginePlugin* plugin = gPlugins->info(engineId);
+		const EnginePlugin *plugin = gPlugins->info(engineId);
 		item->setIcon(plugin->icon());
 	}
 	else
-	{
 		item->setIcon(QPixmap(unknownengine_xpm));
-	}
 
 	item->setEditable(false);
 	item->setText("");
@@ -303,10 +295,10 @@ void CFGCustomServers::setEngineOnItem(QStandardItem* item, const QString& engin
 
 void CFGCustomServers::setPortToDefault(int rowIndex)
 {
-	const EnginePlugin* pluginInfo = getPluginInfoForRow(rowIndex);
+	const EnginePlugin *pluginInfo = getPluginInfoForRow(rowIndex);
 	QString defaultPort = QString::number(pluginInfo->data()->defaultServerPort);
 
-	QStandardItem* itemPort = d->model->item(rowIndex, PortColumnIndex);
+	QStandardItem *itemPort = d->model->item(rowIndex, PortColumnIndex);
 	itemPort->setText(defaultPort);
 }
 
@@ -317,7 +309,7 @@ QVector<CustomServerInfo> CFGCustomServers::tableGetServers()
 	{
 		CustomServerInfo customServer;
 
-		QStandardItem* item = d->model->item(i, EngineColumnIndex);
+		QStandardItem *item = d->model->item(i, EngineColumnIndex);
 		customServer.engine = item->data().toString();
 
 		customServer.engineIndex = gPlugins->pluginIndexFromName(customServer.engine);

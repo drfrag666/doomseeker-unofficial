@@ -27,7 +27,7 @@ IP2CCountryInfo::IP2CCountryInfo()
 	flag = nullptr;
 }
 
-IP2CCountryInfo::IP2CCountryInfo(const QPixmap* flag, QString name)
+IP2CCountryInfo::IP2CCountryInfo(const QPixmap *flag, QString name)
 {
 	this->flag = flag;
 	this->name = name;

@@ -57,7 +57,7 @@ ChocolateDoomEnginePlugin::ChocolateDoomEnginePlugin()
 	);
 }
 
-GameHost* ChocolateDoomEnginePlugin::gameHost()
+GameHost *ChocolateDoomEnginePlugin::gameHost()
 {
 	return new ChocolateDoomGameHost();
 }

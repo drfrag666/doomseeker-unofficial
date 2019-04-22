@@ -23,14 +23,14 @@
 #include "cfgappearance.h"
 #include "ui_cfgappearance.h"
 
-#include "gui/helpers/playersdiagram.h"
 #include "configuration/doomseekerconfig.h"
-#include <QColorDialog>
-#include <QSystemTrayIcon>
+#include "gui/helpers/playersdiagram.h"
 #include "ip2c/ip2c.h"
 #include "localization.h"
 #include "log.h"
 #include "main.h"
+#include <QColorDialog>
+#include <QSystemTrayIcon>
 
 DClass<CFGAppearance> : public Ui::CFGAppearance
 {
@@ -62,7 +62,7 @@ public:
 DPointered(CFGAppearance)
 
 CFGAppearance::CFGAppearance(QWidget *parent)
-: ConfigPage(parent)
+	: ConfigPage(parent)
 {
 	set_reject(&CFGAppearance::reject_);
 	d->setupUi(this);
@@ -85,10 +85,10 @@ void CFGAppearance::dynamicAppearanceChange()
 
 void CFGAppearance::initLanguagesList()
 {
-	foreach (const LocalizationInfo& obj, Localization::get()->localizations)
+	foreach (const LocalizationInfo &obj, Localization::get()->localizations)
 	{
-		const QString& flagName = obj.countryCodeName;
-		const QString& translationName = obj.localeName;
+		const QString &flagName = obj.countryCodeName;
+		const QString &translationName = obj.localeName;
 
 		QString displayName = obj.niceName;
 		if (translationName == LocalizationInfo::SYSTEM_FOLLOW.localeName)
@@ -110,9 +110,7 @@ void CFGAppearance::initSlotStyles(const QString &selected)
 	{
 		d->slotStyle->addItem(style.displayName, style.name);
 		if (style.name == selected)
-		{
 			d->slotStyle->setCurrentIndex(d->slotStyle->count() - 1);
-		}
 	}
 }
 
@@ -137,9 +135,7 @@ void CFGAppearance::readSettings()
 
 	// Load settings into widgets.
 	if (d->cboLanguage->count() == 0)
-	{
 		initLanguagesList();
-	}
 	initSlotStyles(gConfig.doomseeker.slotStyle);
 
 	d->btnCustomServersColor->setColorHtml(gConfig.doomseeker.customServersColor);
@@ -182,14 +178,12 @@ void CFGAppearance::readSettings()
 	if (bestMatchedLocalization.isValid())
 		idxLanguage = d->cboLanguage->findData(bestMatchedLocalization.localeName);
 	if (idxLanguage >= 0)
-	{
 		d->cboLanguage->setCurrentIndex(idxLanguage);
-	}
 	else
 	{
 		// Display that there is something wrong.
 		QString name = gConfig.doomseeker.localization;
-		const QPixmap& icon = IP2C::instance()->flagUnknown;
+		const QPixmap &icon = IP2C::instance()->flagUnknown;
 		QString str = tr("Unknown language definition \"%1\"").arg(name);
 		d->cboLanguage->addItem(icon, str, name);
 		d->cboLanguage->setCurrentIndex(d->cboLanguage->count() - 1);
@@ -245,7 +239,7 @@ void CFGAppearance::setVisibilityOfLanguageChangeNotificationIfNeeded()
 	bool switchingToOsLocaleWhichIsAlsoTheCurrentLocale = false;
 	if (chosenLocalization == LocalizationInfo::SYSTEM_FOLLOW.localeName)
 	{
-		switchingToOsLocaleWhichIsAlsoTheCurrentLocale = 
+		switchingToOsLocaleWhichIsAlsoTheCurrentLocale =
 			Localization::get()->isCurrentlyLoaded(QLocale::system().name());
 	}
 	d->translationRestartNotifierWidget->setVisible(

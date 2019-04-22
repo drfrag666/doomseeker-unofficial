@@ -25,8 +25,8 @@
 #include "irc/configuration/chatnetworkscfg.h"
 #include "irc/entities/ircnetworkentity.h"
 #include "irc/entities/ircuserprefix.h"
-#include "irc/ircnetworkconnectioninfo.h"
 #include "irc/ircnetworkadapter.h"
+#include "irc/ircnetworkconnectioninfo.h"
 #include "irc/ircresponseparser.h"
 #include "patternlist.h"
 #include <QInputDialog>
@@ -55,15 +55,15 @@ DPointered(IRCDelayedOperationIgnore)
 
 IRCDelayedOperationIgnore::IRCDelayedOperationIgnore(QWidget *parent,
 	IRCNetworkAdapter *network, const QString &nickname)
-: IRCDelayedOperation(parent)
+	: IRCDelayedOperation(parent)
 {
 	d->showPatternPopup = false;
 	d->network = network;
 	d->nickname = nickname;
 	d->parentWidget = parent;
 	this->connect(d->network->responseParser(),
-		SIGNAL(whoIsUser(QString, QString, QString, QString)),
-		SLOT(onWhoIsUser(QString, QString, QString, QString)));
+		SIGNAL(whoIsUser(QString,QString,QString,QString)),
+		SLOT(onWhoIsUser(QString,QString,QString,QString)));
 }
 
 IRCDelayedOperationIgnore::~IRCDelayedOperationIgnore()
@@ -75,8 +75,8 @@ void IRCDelayedOperationIgnore::start()
 	d->network->sendMessage(QString("/whois %1").arg(d->cleanNickname()));
 }
 
-void IRCDelayedOperationIgnore::onWhoIsUser(const QString& nickname, const QString& user,
-	const QString& hostName, const QString& realName)
+void IRCDelayedOperationIgnore::onWhoIsUser(const QString &nickname, const QString &user,
+	const QString &hostName, const QString &realName)
 {
 	QString ignorePattern = "*!*@" + hostName;
 	if (d->showPatternPopup)

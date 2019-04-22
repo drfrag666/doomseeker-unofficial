@@ -20,17 +20,17 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2010 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
-#include "ircconfigurationdialog.h"
+#include "gui/commongui.h"
 #include "gui/configuration/irc/cfgchatlogspage.h"
 #include "gui/configuration/irc/cfgircappearance.h"
 #include "gui/configuration/irc/cfgircnetworks.h"
 #include "gui/configuration/irc/cfgircsounds.h"
-#include "gui/commongui.h"
 #include "irc/configuration/ircconfig.h"
+#include "ircconfigurationdialog.h"
 #include "log.h"
 
-IRCConfigurationDialog::IRCConfigurationDialog(QWidget* parent)
-: ConfigurationDialog(parent)
+IRCConfigurationDialog::IRCConfigurationDialog(QWidget *parent)
+	: ConfigurationDialog(parent)
 {
 	this->setWindowTitle(tr("Doomseeker - IRC Options"));
 }
@@ -38,18 +38,14 @@ IRCConfigurationDialog::IRCConfigurationDialog(QWidget* parent)
 void IRCConfigurationDialog::doSaveSettings()
 {
 	if (gIRCConfig.saveToFile())
-	{
 		gLog << tr("Settings saved!");
-	}
 	else
-	{
 		gLog << tr("Settings save failed!");
-	}
 }
 
 void IRCConfigurationDialog::initOptionsList()
 {
-	ConfigPage* configPage = nullptr;
+	ConfigPage *configPage = nullptr;
 
 	configPage = new CFGIRCAppearance(this);
 	this->addConfigPage(nullptr, configPage);
@@ -66,13 +62,11 @@ void IRCConfigurationDialog::initOptionsList()
 
 bool IRCConfigurationDialog::isNetworkAutojoinEnabled()
 {
-	QVector<IRCNetworkEntity*> networks = cfgNetworks->networks();
-	foreach (IRCNetworkEntity* pNetwork, networks)
+	QVector<IRCNetworkEntity *> networks = cfgNetworks->networks();
+	foreach (IRCNetworkEntity *pNetwork, networks)
 	{
 		if (pNetwork->isAutojoinNetwork())
-		{
 			return true;
-		}
 	}
 
 	return false;
@@ -86,9 +80,7 @@ bool IRCConfigurationDialog::validate()
 		{
 			QString nick = CommonGUI::askString(tr("Config validation"), tr("You have chosen one or more networks for autojoin startup but you have not defined any nickname. Please define it now."));
 			if (nick.isEmpty())
-			{
 				return false;
-			}
 
 			gIRCConfig.personal.nickname = nick;
 		}

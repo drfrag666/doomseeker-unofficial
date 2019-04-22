@@ -27,8 +27,8 @@
 
 DClass<GeneralInfoTip>
 {
-	public:
-		ServerCPtr server;
+public:
+	ServerCPtr server;
 };
 
 DPointered(GeneralInfoTip)

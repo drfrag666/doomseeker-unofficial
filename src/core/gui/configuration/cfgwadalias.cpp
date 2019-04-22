@@ -45,7 +45,7 @@ public:
 DPointeredNoCopy(CFGWadAlias)
 
 CFGWadAlias::CFGWadAlias(QWidget *parent)
-: ConfigPage(parent)
+	: ConfigPage(parent)
 {
 	d->setupUi(this);
 
@@ -54,11 +54,11 @@ CFGWadAlias::CFGWadAlias(QWidget *parent)
 
 	QHeaderView *header = d->table->horizontalHeader();
 	header->resizeSection(PrivData<CFGWadAlias>::ColWad, 150);
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	header->setSectionResizeMode(PrivData<CFGWadAlias>::ColAliases, QHeaderView::Stretch);
-#else
+	#else
 	header->setResizeMode(PrivData<CFGWadAlias>::ColAliases, QHeaderView::Stretch);
-#endif
+	#endif
 	header->resizeSection(PrivData<CFGWadAlias>::ColMatchType, 110);
 
 	d->table->sortByColumn(PrivData<CFGWadAlias>::ColWad, Qt::AscendingOrder);
@@ -101,7 +101,7 @@ void CFGWadAlias::addAliasToTable(const FileAlias &alias)
 void CFGWadAlias::addDefaults()
 {
 	QList<FileAlias> aliases = FileAlias::standardWadAliases();
-	foreach (const FileAlias& alias, aliases)
+	foreach (const FileAlias &alias, aliases)
 	{
 		addAliasToTable(alias);
 	}
@@ -129,9 +129,7 @@ QList<FileAlias> CFGWadAlias::aliases() const
 	{
 		FileAlias alias = aliasFromRow(row);
 		if (alias.isValid())
-		{
 			aliases << alias;
-		}
 	}
 	return FileAliasList::mergeDuplicates(aliases);
 }
@@ -144,11 +142,9 @@ FileAlias CFGWadAlias::aliasFromRow(int row) const
 	foreach (const QString &candidateAlias, candidateAliases)
 	{
 		if (!candidateAlias.trimmed().isEmpty())
-		{
 			alias.addAlias(candidateAlias.trimmed());
-		}
 	}
-	QComboBox *cboMatchType = qobject_cast<QComboBox*>(d->table->cellWidget(
+	QComboBox *cboMatchType = qobject_cast<QComboBox *>(d->table->cellWidget(
 		row, PrivData<CFGWadAlias>::ColMatchType));
 	alias.setMatchType(static_cast<FileAlias::MatchType>(
 		cboMatchType->itemData(cboMatchType->currentIndex()).toInt()));
@@ -160,7 +156,7 @@ void CFGWadAlias::applyAliasToRow(int row, const FileAlias &alias)
 	d->table->setItem(row, PrivData<CFGWadAlias>::ColWad, toolTipItem(alias.name()));
 	d->table->setItem(row, PrivData<CFGWadAlias>::ColAliases, toolTipItem(alias.aliases().join("; ")));
 
-	QComboBox *cboMatchType = qobject_cast<QComboBox*>(
+	QComboBox *cboMatchType = qobject_cast<QComboBox *>(
 		d->table->cellWidget(row, PrivData<CFGWadAlias>::ColMatchType));
 	int matchTypeIdx = qMax(0, cboMatchType->findData(alias.matchType()));
 	cboMatchType->setCurrentIndex(matchTypeIdx);
@@ -208,9 +204,7 @@ void CFGWadAlias::readSettings()
 	foreach (const FileAlias &alias, aliases)
 	{
 		if (alias.isValid())
-		{
 			addAliasToTable(alias);
-		}
 	}
 
 	d->table->setSortingEnabled(wasSortingEnabled);

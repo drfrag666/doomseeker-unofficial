@@ -20,11 +20,11 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2011 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
-#include "waddownloadinfo.h"
-#include "wadseekerversioninfo.h"
-#include "modfile.h"
 #include "checksum.h"
 #include "hash.h"
+#include "modfile.h"
+#include "waddownloadinfo.h"
+#include "wadseekerversioninfo.h"
 
 #include <QFileInfo>
 #include <QStringList>
@@ -43,13 +43,13 @@ WadDownloadInfo::WadDownloadInfo()
 	d->size = -1;
 }
 
-WadDownloadInfo::WadDownloadInfo(const QString& name)
+WadDownloadInfo::WadDownloadInfo(const QString &name)
 {
 	d->name = name;
 	d->size = -1;
 }
 
-WadDownloadInfo::WadDownloadInfo(const ModFile& modFile)
+WadDownloadInfo::WadDownloadInfo(const ModFile &modFile)
 {
 	d->name = modFile.fileName();
 	d->checksums = modFile.checksums();
@@ -68,7 +68,7 @@ const QString &WadDownloadInfo::name() const
 	return d->name;
 }
 
-QString WadDownloadInfo::archiveName(const QString& suffix) const
+QString WadDownloadInfo::archiveName(const QString &suffix) const
 {
 	if (isArchive())
 	{
@@ -94,7 +94,7 @@ bool WadDownloadInfo::isArchive() const
 	QStringList supportedArchives = WadseekerVersionInfo::supportedArchiveExtensions();
 	QFileInfo fi(d->name);
 
-	foreach (const QString& supportedSuffix, supportedArchives)
+	foreach (const QString &supportedSuffix, supportedArchives)
 	{
 		if (fi.suffix().compare(supportedSuffix, Qt::CaseInsensitive) == 0)
 		{
@@ -110,21 +110,21 @@ bool WadDownloadInfo::isValid() const
 	return !d->name.trimmed().isEmpty();
 }
 
-bool WadDownloadInfo::isFilenameIndicatingSameWad(const QString& filename) const
+bool WadDownloadInfo::isFilenameIndicatingSameWad(const QString &filename) const
 {
 	QFileInfo fi(filename);
 	return fi.completeBaseName().compare(basename(), Qt::CaseInsensitive) == 0;
 }
 
-bool WadDownloadInfo::operator==(const WadDownloadInfo& other) const
+bool WadDownloadInfo::operator==(const WadDownloadInfo &other) const
 {
-	const QString& name = this->name();
-	const QString& otherName = other.name();
+	const QString &name = this->name();
+	const QString &otherName = other.name();
 
 	return name.compare(otherName, Qt::CaseInsensitive) == 0;
 }
 
-bool WadDownloadInfo::operator!=(const WadDownloadInfo& other) const
+bool WadDownloadInfo::operator!=(const WadDownloadInfo &other) const
 {
 	return !(*this == other);
 }
@@ -141,7 +141,7 @@ QStringList WadDownloadInfo::possibleArchiveNames() const
 	{
 		QString basename = this->basename();
 
-		foreach (const QString& suffix, WadseekerVersionInfo::supportedArchiveExtensions())
+		foreach (const QString &suffix, WadseekerVersionInfo::supportedArchiveExtensions())
 		{
 			names << basename + "." + suffix;
 		}

@@ -21,11 +21,11 @@
 // Copyright (C) 2009 Braden "Blzut3" Obrzut <admin@maniacsvault.net>
 //------------------------------------------------------------------------------
 #include "configuration/doomseekerconfig.h"
-#include "rconpassworddialog.h"
-#include "ui_rconpassworddialog.h"
 #include "plugins/engineplugin.h"
 #include "plugins/pluginloader.h"
+#include "rconpassworddialog.h"
 #include "serverapi/server.h"
+#include "ui_rconpassworddialog.h"
 
 DClass<RconPasswordDialog> : public Ui::RconPasswordDialog
 {
@@ -34,7 +34,7 @@ DClass<RconPasswordDialog> : public Ui::RconPasswordDialog
 DPointered(RconPasswordDialog)
 
 RconPasswordDialog::RconPasswordDialog(QWidget *parent, bool connection)
-: QDialog(parent)
+	: QDialog(parent)
 {
 	d->setupUi(this);
 	this->connect(d->cbHidePassword, SIGNAL(toggled(bool)), SLOT(setHidePassword(bool)));
@@ -43,17 +43,15 @@ RconPasswordDialog::RconPasswordDialog(QWidget *parent, bool connection)
 	{
 		// Populate engines box.
 		d->engines->clear();
-		for(unsigned int i = 0;i < gPlugins->numPlugins();i++)
+		for (unsigned int i = 0; i < gPlugins->numPlugins(); i++)
 		{
-			const EnginePlugin* info = gPlugins->plugin(i)->info();
+			const EnginePlugin *info = gPlugins->plugin(i)->info();
 			if (info->server(QHostAddress("localhost"), 0)->hasRcon())
 				d->engines->addItem(info->icon(), info->data()->name, i);
 		}
 	}
 	else
-	{
 		d->connectionBox->hide();
-	}
 
 	d->cbHidePassword->setChecked(gConfig.doomseeker.bHidePasswords);
 
@@ -76,7 +74,7 @@ const EnginePlugin *RconPasswordDialog::selectedEngine() const
 {
 	int pluginIndex = d->engines->itemData(d->engines->currentIndex()).toInt();
 	const PluginLoader::Plugin *plugin = gPlugins->plugin(pluginIndex);
-	if(plugin == nullptr)
+	if (plugin == nullptr)
 		return nullptr;
 
 	return plugin->info();

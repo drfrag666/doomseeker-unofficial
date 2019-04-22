@@ -34,7 +34,7 @@ void TestCore::clearCounters()
 	testsSucceeded = 0;
 }
 
-void TestCore::executeTest(TestUnitBase* pTest)
+void TestCore::executeTest(TestUnitBase *pTest)
 {
 	testLog << "--------------------------------------------------------";
 	testLog << QString("Test: %1").arg(pTest->testName());

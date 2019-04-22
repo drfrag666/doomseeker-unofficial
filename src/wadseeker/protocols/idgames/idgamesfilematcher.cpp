@@ -27,7 +27,7 @@
 #include <QDebug>
 
 IdgamesFile IdgamesFileMatcher::match(const WadDownloadInfo &wad,
-		const QList<IdgamesFile> &candidates)
+	const QList<IdgamesFile> &candidates)
 {
 	foreach (const IdgamesFile &candidate, candidates)
 	{

@@ -20,8 +20,8 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2009 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
-#include "copytextdlg.h"
 #include "clipboard.h"
+#include "copytextdlg.h"
 
 DClass<CopyTextDlg> : public Ui::CopyTextDlg
 {
@@ -29,16 +29,14 @@ DClass<CopyTextDlg> : public Ui::CopyTextDlg
 
 DPointered(CopyTextDlg)
 
-CopyTextDlg::CopyTextDlg(const QString& content, const QString& description, QWidget* parent) : QDialog(parent)
+CopyTextDlg::CopyTextDlg(const QString &content, const QString &description, QWidget *parent) : QDialog(parent)
 {
 	d->setupUi(this);
 
-	connect(d->btnCopy, SIGNAL( clicked() ), SLOT( copyContent() ) );
+	connect(d->btnCopy, SIGNAL(clicked()), SLOT(copyContent()));
 
 	if (!description.isNull())
-	{
 		d->lblDescription->setText(description);
-	}
 
 	d->teContent->document()->setPlainText(content);
 

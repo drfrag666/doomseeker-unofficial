@@ -29,15 +29,15 @@
 DClass<GameExeFactory>
 {
 public:
-	EnginePlugin* plugin;
+	EnginePlugin *plugin;
 
-	QList<ExeFilePath> (GameExeFactory::*additionalExecutables)(int) const;
+	QList<ExeFilePath>(GameExeFactory::*additionalExecutables)(int) const;
 	GameFileList (GameExeFactory::*gameFiles)() const;
 };
 
 DPointered(GameExeFactory)
 
-GameExeFactory::GameExeFactory(EnginePlugin* plugin)
+GameExeFactory::GameExeFactory(EnginePlugin *plugin)
 {
 	d->plugin = plugin;
 
@@ -52,7 +52,7 @@ GameExeFactory::~GameExeFactory()
 POLYMORPHIC_DEFINE_CONST(QList<ExeFilePath>, GameExeFactory, additionalExecutables, (int execType), (execType));
 POLYMORPHIC_DEFINE_CONST(GameFileList, GameExeFactory, gameFiles, (), ());
 
-EnginePlugin* GameExeFactory::plugin() const
+EnginePlugin *GameExeFactory::plugin() const
 {
 	return d->plugin;
 }

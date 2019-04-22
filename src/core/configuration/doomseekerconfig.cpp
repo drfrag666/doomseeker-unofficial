@@ -23,23 +23,23 @@
 #include "doomseekerconfig.h"
 
 #include "configuration/queryspeed.h"
+#include "datapaths.h"
+#include "fileutils.h"
 #include "gui/models/serverlistproxymodel.h"
 #include "ini/ini.h"
 #include "ini/inisection.h"
 #include "ini/inivariable.h"
 #include "ini/settingsproviderqt.h"
+#include "localizationinfo.h"
+#include "log.h"
 #include "pathfinder/filealias.h"
 #include "pathfinder/filesearchpath.h"
 #include "plugins/engineplugin.h"
-#include "updater/updatechannel.h"
-#include "wadseeker/wadseeker.h"
-#include "datapaths.h"
-#include "fileutils.h"
-#include "localizationinfo.h"
-#include "log.h"
 #include "scanner.h"
 #include "strings.hpp"
+#include "updater/updatechannel.h"
 #include "version.h"
+#include "wadseeker/wadseeker.h"
 
 #include <QLocale>
 /**
@@ -54,9 +54,7 @@ static PatternList readPre1Point2BuddiesList(const QString &configEntry)
 	while (listReader.tokensLeft())
 	{
 		if (!listReader.checkToken(TK_Identifier))
-		{
 			break; // Invalid so lets just use what we have.
-		}
 
 		QRegExp::PatternSyntax syntax;
 		if (listReader->str().compare("basic") == 0)
@@ -65,25 +63,19 @@ static PatternList readPre1Point2BuddiesList(const QString &configEntry)
 			syntax = QRegExp::RegExp;
 
 		if (!listReader.checkToken(TK_StringConst))
-		{
 			break;
-		}
 
 		QRegExp pattern(listReader->str(), Qt::CaseInsensitive, syntax);
 		if (pattern.isValid())
-		{
 			patterns << pattern;
-		}
 
 		if (!listReader.checkToken(';'))
-		{
 			break;
-		}
 	}
 	return patterns;
 }
 //////////////////////////////////////////////////////////////////////////////
-DoomseekerConfig* DoomseekerConfig::instance = nullptr;
+DoomseekerConfig *DoomseekerConfig::instance = nullptr;
 
 DoomseekerConfig::DoomseekerConfig()
 {
@@ -95,12 +87,10 @@ DoomseekerConfig::~DoomseekerConfig()
 	delete this->dummySection;
 }
 
-DoomseekerConfig& DoomseekerConfig::config()
+DoomseekerConfig &DoomseekerConfig::config()
 {
 	if (instance == nullptr)
-	{
 		instance = new DoomseekerConfig();
-	}
 
 	return *instance;
 }
@@ -114,7 +104,7 @@ void DoomseekerConfig::dispose()
 	}
 }
 
-IniSection DoomseekerConfig::iniSectionForPlugin(const QString& pluginName)
+IniSection DoomseekerConfig::iniSectionForPlugin(const QString &pluginName)
 {
 	if (pluginName.isEmpty())
 	{
@@ -129,30 +119,26 @@ IniSection DoomseekerConfig::iniSectionForPlugin(const QString& pluginName)
 	}
 
 	if (this->pIni == nullptr)
-	{
 		setIniFile("");
-	}
 
 	QString sectionName = pluginName;
 	sectionName = sectionName.replace(' ', "");
 	return this->pIni->section(sectionName);
 }
 
-IniSection DoomseekerConfig::iniSectionForPlugin(const EnginePlugin* plugin)
+IniSection DoomseekerConfig::iniSectionForPlugin(const EnginePlugin *plugin)
 {
 	return iniSectionForPlugin(plugin->data()->name);
 }
 
-bool DoomseekerConfig::isValidPluginName(const QString& pluginName) const
+bool DoomseekerConfig::isValidPluginName(const QString &pluginName) const
 {
 	QString invalids[] = { "doomseeker", "wadseeker", "" };
 
 	for (int i = 0; !invalids[i].isEmpty(); ++i)
 	{
 		if (pluginName.compare(invalids[i], Qt::CaseInsensitive) == 0)
-		{
 			return false;
-		}
 	}
 
 	return true;
@@ -161,9 +147,7 @@ bool DoomseekerConfig::isValidPluginName(const QString& pluginName) const
 bool DoomseekerConfig::readFromFile()
 {
 	if (pIni == nullptr)
-	{
 		return false;
-	}
 
 	IniSection sectionDoomseeker = pIni->section(doomseeker.SECTION_NAME);
 	doomseeker.load(sectionDoomseeker);
@@ -185,16 +169,14 @@ bool DoomseekerConfig::readFromFile()
 bool DoomseekerConfig::saveToFile()
 {
 	if (pIni == nullptr)
-	{
 		return false;
-	}
 
-// TODO:
-// Find a way to work around this.
-//	const QString TOP_COMMENT = QObject::tr("This is %1 configuration file.\n\
-//Any modification done manually to this file is on your own risk.").arg(Version::fullVersionInfo());
-//
-//	pIni->setIniTopComment(TOP_COMMENT);
+	// TODO:
+	// Find a way to work around this.
+	//	const QString TOP_COMMENT = QObject::tr("This is %1 configuration file.\n\
+	// //Any modification done manually to this file is on your own risk.").arg(Version::fullVersionInfo());
+	//
+	//	pIni->setIniTopComment(TOP_COMMENT);
 
 	IniSection sectionDoomseeker = pIni->section(doomseeker.SECTION_NAME);
 	doomseeker.save(sectionDoomseeker);
@@ -217,7 +199,7 @@ bool DoomseekerConfig::saveToFile()
 	return false;
 }
 
-bool DoomseekerConfig::setIniFile(const QString& filePath)
+bool DoomseekerConfig::setIniFile(const QString &filePath)
 {
 	// Delete old instances if necessary.
 	this->pIni.reset();
@@ -258,28 +240,24 @@ QList<FileSearchPath> DoomseekerConfig::combinedWadseekPaths() const
 //////////////////////////////////////////////////////////////////////////////
 DClass<DoomseekerConfig::DoomseekerCfg>
 {
-	public:
-		IniSection section;
-		QuerySpeed querySpeed;
+public:
+	IniSection section;
+	QuerySpeed querySpeed;
 
-		QString slotStyle() const
-		{
-			// Slot styles were indexed in older versions of Doomseeker.
-			// This here provides compatibility layer that allows to load configuration
-			// files from those versions.
-			const int NUM_SLOTSTYLES = 2;
-			const char* indexedSlotStyles[NUM_SLOTSTYLES] = { "marines", "blocks" };
-			bool isInt = false;
-			int numeric = section["SlotStyle"].value().toInt(&isInt);
-			if (isInt && numeric >= 0 && numeric < NUM_SLOTSTYLES)
-			{
-				return indexedSlotStyles[numeric];
-			}
-			else
-			{
-				return section["SlotStyle"].valueString();
-			}
-		}
+	QString slotStyle() const
+	{
+		// Slot styles were indexed in older versions of Doomseeker.
+		// This here provides compatibility layer that allows to load configuration
+		// files from those versions.
+		const int NUM_SLOTSTYLES = 2;
+		const char *indexedSlotStyles[NUM_SLOTSTYLES] = { "marines", "blocks" };
+		bool isInt = false;
+		int numeric = section["SlotStyle"].value().toInt(&isInt);
+		if (isInt && numeric >= 0 && numeric < NUM_SLOTSTYLES)
+			return indexedSlotStyles[numeric];
+		else
+			return section["SlotStyle"].valueString();
+	}
 };
 
 DPointered(DoomseekerConfig::DoomseekerCfg)
@@ -349,7 +327,7 @@ void DoomseekerConfig::DoomseekerCfg::setAdditionalSortColumns(const QList<Colum
 	d->section.setValue("AdditionalSortColumns", varList);
 }
 
-void DoomseekerConfig::DoomseekerCfg::init(IniSection& section)
+void DoomseekerConfig::DoomseekerCfg::init(IniSection &section)
 {
 	// TODO: Make all methods use d->section
 	d->section = section;
@@ -389,14 +367,12 @@ void DoomseekerConfig::DoomseekerCfg::init(IniSection& section)
 void DoomseekerConfig::DoomseekerCfg::initWadAlias()
 {
 	if (!d->section.hasSetting("WadAliases"))
-	{
 		setWadAliases(FileAlias::standardWadAliases());
-	}
 }
 
-void DoomseekerConfig::DoomseekerCfg::load(IniSection& section)
+void DoomseekerConfig::DoomseekerCfg::load(IniSection &section)
 {
-	this->localization = (const QString&)section["Localization"];
+	this->localization = (const QString &)section["Localization"];
 	this->bBotsAreNotPlayers = section["BotsAreNotPlayers"];
 	this->bCloseToTrayIcon = section["CloseToTrayIcon"];
 	this->bColorizeServerConsole = section["ColorizeServerConsole"];
@@ -469,7 +445,7 @@ void DoomseekerConfig::DoomseekerCfg::load(IniSection& section)
 		// Backward compatibility continued:
 		wadPaths.clear();
 		QStringList paths = variantWadPaths.toString().split(";");
-		foreach (const QString& path, paths)
+		foreach (const QString &path, paths)
 		{
 			wadPaths << FileSearchPath(path);
 		}
@@ -483,9 +459,7 @@ void DoomseekerConfig::DoomseekerCfg::load(IniSection& section)
 
 	// Buddies list
 	if (section.hasSetting("Buddies"))
-	{
 		this->buddies = PatternList::deserializeQVariant(section.value("Buddies"));
-	}
 	else if (section.hasSetting("BuddiesList"))
 	{
 		// Backward compatibility, pre 1.2.
@@ -493,7 +467,7 @@ void DoomseekerConfig::DoomseekerCfg::load(IniSection& section)
 	}
 }
 
-void DoomseekerConfig::DoomseekerCfg::save(IniSection& section)
+void DoomseekerConfig::DoomseekerCfg::save(IniSection &section)
 {
 	section["Localization"] = this->localization;
 	section["BotsAreNotPlayers"] = this->bBotsAreNotPlayers;
@@ -537,7 +511,7 @@ void DoomseekerConfig::DoomseekerCfg::save(IniSection& section)
 	// Custom servers
 	QStringList allCustomServers; // backward compatibility for Doomseeker <1.2
 	QStringList allCustomServers2; // Doomseeker >=1.2
-	foreach (const CustomServerInfo& customServer, this->customServers)
+	foreach (const CustomServerInfo &customServer, this->customServers)
 	{
 		QString engineName = QUrl::toPercentEncoding(customServer.engine, "", "()");
 		QString address = QUrl::toPercentEncoding(customServer.host, "", "()");
@@ -593,9 +567,7 @@ void DoomseekerConfig::DoomseekerCfg::setWadAliases(const QList<FileAlias> &val)
 void DoomseekerConfig::DoomseekerCfg::enableFreedoomInstallation(const QString &dir)
 {
 	if (!FileUtils::containsPath(wadPathsOnly(), dir))
-	{
 		wadPaths.prepend(dir);
-	}
 	QList<FileAlias> aliases = wadAliases();
 	aliases << FileAlias::freeDoom1Aliases();
 	aliases << FileAlias::freeDoom2Aliases();
@@ -606,7 +578,7 @@ void DoomseekerConfig::DoomseekerCfg::enableFreedoomInstallation(const QString &
 QStringList DoomseekerConfig::DoomseekerCfg::wadPathsOnly() const
 {
 	QStringList result;
-	foreach (const FileSearchPath& path, wadPaths)
+	foreach (const FileSearchPath &path, wadPaths)
 	{
 		result << path.path();
 	}
@@ -615,7 +587,7 @@ QStringList DoomseekerConfig::DoomseekerCfg::wadPathsOnly() const
 //////////////////////////////////////////////////////////////////////////////
 const QString DoomseekerConfig::AutoUpdates::SECTION_NAME = "Doomseeker_AutoUpdates";
 
-void DoomseekerConfig::AutoUpdates::init(IniSection& section)
+void DoomseekerConfig::AutoUpdates::init(IniSection &section)
 {
 	section.createSetting("UpdateChannelName", UpdateChannel::mkStable().name());
 	section.createSetting("UpdateMode", (int) UM_NotifyOnly);
@@ -623,13 +595,13 @@ void DoomseekerConfig::AutoUpdates::init(IniSection& section)
 	section.createSetting("bPerformUpdateOnNextRun", false);
 }
 
-void DoomseekerConfig::AutoUpdates::load(IniSection& section)
+void DoomseekerConfig::AutoUpdates::load(IniSection &section)
 {
 	updateChannelName = (const QString &)section["UpdateChannelName"];
 	updateMode = (UpdateMode)section["UpdateMode"].value().toInt();
 	QVariantMap lastKnownUpdateRevisionsVariant = section["LastKnownUpdateRevisions"].value().toMap();
 	lastKnownUpdateRevisions.clear();
-	foreach (const QString& package, lastKnownUpdateRevisionsVariant.keys())
+	foreach (const QString &package, lastKnownUpdateRevisionsVariant.keys())
 	{
 		QVariant revisionVariant = lastKnownUpdateRevisionsVariant[package];
 		lastKnownUpdateRevisions.insert(package, revisionVariant.toString());
@@ -637,12 +609,12 @@ void DoomseekerConfig::AutoUpdates::load(IniSection& section)
 	bPerformUpdateOnNextRun = section["bPerformUpdateOnNextRun"].value().toBool();
 }
 
-void DoomseekerConfig::AutoUpdates::save(IniSection& section)
+void DoomseekerConfig::AutoUpdates::save(IniSection &section)
 {
 	section["UpdateChannelName"] = updateChannelName;
 	section["UpdateMode"] = updateMode;
 	QVariantMap revisionsVariantMap;
-	foreach (const QString& package, lastKnownUpdateRevisions.keys())
+	foreach (const QString &package, lastKnownUpdateRevisions.keys())
 	{
 		revisionsVariantMap.insert(package, lastKnownUpdateRevisions[package]);
 	}
@@ -652,7 +624,7 @@ void DoomseekerConfig::AutoUpdates::save(IniSection& section)
 //////////////////////////////////////////////////////////////////////////////
 const QString DoomseekerConfig::ServerFilter::SECTION_NAME = "ServerFilter";
 
-void DoomseekerConfig::ServerFilter::init(IniSection& section)
+void DoomseekerConfig::ServerFilter::init(IniSection &section)
 {
 	section.createSetting("bEnabled", true);
 	section.createSetting("bShowEmpty", true);
@@ -667,7 +639,7 @@ void DoomseekerConfig::ServerFilter::init(IniSection& section)
 	section.createSetting("WADsExcluded", QStringList());
 }
 
-void DoomseekerConfig::ServerFilter::load(IniSection& section)
+void DoomseekerConfig::ServerFilter::load(IniSection &section)
 {
 	info.bEnabled = section["bEnabled"];
 	info.bShowEmpty = section["bShowEmpty"];
@@ -682,7 +654,7 @@ void DoomseekerConfig::ServerFilter::load(IniSection& section)
 	info.wadsExcluded = section["WADsExcluded"].value().toStringList();
 }
 
-void DoomseekerConfig::ServerFilter::save(IniSection& section)
+void DoomseekerConfig::ServerFilter::save(IniSection &section)
 {
 	section["bEnabled"] = info.bEnabled;
 	section["bShowEmpty"] = info.bShowEmpty;
@@ -719,7 +691,7 @@ DoomseekerConfig::WadseekerCfg::WadseekerCfg()
 	// methods in this order.
 }
 
-void DoomseekerConfig::WadseekerCfg::init(IniSection& section)
+void DoomseekerConfig::WadseekerCfg::init(IniSection &section)
 {
 	section.createSetting("AlwaysUseDefaultSites", this->bAlwaysUseDefaultSites);
 	section.createSetting("SearchInIdgames", this->bSearchInIdgames);
@@ -736,7 +708,7 @@ void DoomseekerConfig::WadseekerCfg::init(IniSection& section)
 	section.createSetting("TargetDirectory", this->targetDirectory);
 }
 
-void DoomseekerConfig::WadseekerCfg::load(IniSection& section)
+void DoomseekerConfig::WadseekerCfg::load(IniSection &section)
 {
 	this->bAlwaysUseDefaultSites = section["AlwaysUseDefaultSites"];
 	this->bSearchInIdgames = section["SearchInIdgames"];
@@ -754,13 +726,13 @@ void DoomseekerConfig::WadseekerCfg::load(IniSection& section)
 	// Complex data values
 	this->searchURLs.clear();
 	QStringList urlList = section["SearchURLs"].valueString().split(";", QString::SkipEmptyParts);
-	foreach (const QString& url, urlList)
+	foreach (const QString &url, urlList)
 	{
 		this->searchURLs << QUrl::fromPercentEncoding(url.toUtf8());
 	}
 }
 
-void DoomseekerConfig::WadseekerCfg::save(IniSection& section)
+void DoomseekerConfig::WadseekerCfg::save(IniSection &section)
 {
 	section["AlwaysUseDefaultSites"] = this->bAlwaysUseDefaultSites;
 	section["SearchInIdgames"] = this->bSearchInIdgames;
@@ -777,7 +749,7 @@ void DoomseekerConfig::WadseekerCfg::save(IniSection& section)
 
 	// Complex data values
 	QStringList urlEncodedList;
-	foreach (const QString& url, this->searchURLs)
+	foreach (const QString &url, this->searchURLs)
 	{
 		urlEncodedList << QUrl::toPercentEncoding(url);
 	}

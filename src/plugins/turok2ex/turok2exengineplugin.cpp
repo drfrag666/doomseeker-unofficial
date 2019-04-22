@@ -26,10 +26,10 @@
 #include "irc/entities/ircnetworkentity.h"
 #include "plugins/engineplugin.h"
 
+#include "turok2exengineplugin.h"
 #include "turok2exgamehost.h"
 #include "turok2exgameinfo.h"
 #include "turok2exmasterclient.h"
-#include "turok2exengineplugin.h"
 #include "turok2exserver.h"
 
 INSTALL_PLUGIN(Turok2ExEnginePlugin)
@@ -64,12 +64,12 @@ QList<GameMode> Turok2ExEnginePlugin::gameModes() const
 	return Turok2ExGameInfo::gameModes();
 }
 
-QList<GameCVar> Turok2ExEnginePlugin::limits(const GameMode& mode) const
+QList<GameCVar> Turok2ExEnginePlugin::limits(const GameMode &mode) const
 {
 	return Turok2ExGameInfo::limits(mode);
 }
 
-GameHost* Turok2ExEnginePlugin::gameHost()
+GameHost *Turok2ExEnginePlugin::gameHost()
 {
 	return new Turok2ExGameHost();
 }
@@ -78,4 +78,3 @@ ServerPtr Turok2ExEnginePlugin::mkServer(const QHostAddress &address, unsigned s
 {
 	return ServerPtr(new Turok2ExServer(address, port));
 }
-

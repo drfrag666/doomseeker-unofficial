@@ -29,9 +29,9 @@
 
 DClass<WadFindResult>
 {
-	public:
-		QString alias;
-		QString path;
+public:
+	QString alias;
+	QString path;
 };
 
 DPointered(WadFindResult)
@@ -76,20 +76,20 @@ void WadFindResult::setPath(const QString &val)
 ///////////////////////////////////////////////////////////////////////////////
 DClass<WadPathFinder>
 {
-	public:
-		QList<FileAlias> aliases;
-		PathFinder pathFinder;
-		bool aliasesAllowed;
+public:
+	QList<FileAlias> aliases;
+	PathFinder pathFinder;
+	bool aliasesAllowed;
 
-		QStringList defaultPaths()
-		{
-			QStringList paths;
-			#ifdef Q_OS_UNIX
-			paths << "/usr/local/share/games/doom/"
-				<< "/usr/share/games/doom/";
-			#endif
-			return paths;
-		}
+	QStringList defaultPaths()
+	{
+		QStringList paths;
+		#ifdef Q_OS_UNIX
+		paths << "/usr/local/share/games/doom/"
+		<< "/usr/share/games/doom/";
+		#endif
+		return paths;
+	}
 };
 
 DPointered(WadPathFinder)
@@ -100,7 +100,7 @@ WadPathFinder::WadPathFinder(PathFinder pathFinder)
 	d->aliasesAllowed = true;
 	d->pathFinder = pathFinder;
 	foreach (const QString &path, d->defaultPaths())
-		d->pathFinder.addSearchDir(path);
+	d->pathFinder.addSearchDir(path);
 }
 
 WadPathFinder::~WadPathFinder()

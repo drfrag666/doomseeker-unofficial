@@ -23,20 +23,20 @@
 #include "createserverdialog.h"
 #include "ui_createserverdialog.h"
 
+#include "apprunner.h"
+#include "commandline.h"
 #include "configuration/doomseekerconfig.h"
 #include "copytextdlg.h"
-#include "gui/widgets/createserverdialogpage.h"
-#include "gui/configuration/doomseekerconfigurationdialog.h"
 #include "datapaths.h"
+#include "gamedemo.h"
+#include "gui/configuration/doomseekerconfigurationdialog.h"
+#include "gui/widgets/createserverdialogpage.h"
 #include "ini/ini.h"
 #include "ini/settingsproviderqt.h"
 #include "plugins/engineplugin.h"
 #include "serverapi/gamecreateparams.h"
 #include "serverapi/gamehost.h"
 #include "serverapi/message.h"
-#include "apprunner.h"
-#include "commandline.h"
-#include "gamedemo.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -44,18 +44,18 @@
 
 DClass<CreateServerDialog> : public Ui::CreateServerDialog
 {
-	public:
-		bool remoteGameSetup;
-		QList<CreateServerDialogPage*> currentCustomPages;
-		EnginePlugin *currentEngine;
+public:
+	bool remoteGameSetup;
+	QList<CreateServerDialogPage *> currentCustomPages;
+	EnginePlugin *currentEngine;
 };
 
 DPointered(CreateServerDialog)
 
 const QString CreateServerDialog::TEMP_GAME_CONFIG_FILENAME = "/tmpserver.ini";
 
-CreateServerDialog::CreateServerDialog(QWidget* parent)
-: QDialog(parent)
+CreateServerDialog::CreateServerDialog(QWidget *parent)
+	: QDialog(parent)
 {
 	// Have the console delete itself
 	setAttribute(Qt::WA_DeleteOnClose);
@@ -73,7 +73,7 @@ CreateServerDialog::CreateServerDialog(QWidget* parent)
 	// before the actual Create Game dialog. We need to give some time
 	// for the dialog to appear. Unfortunately reimplementing
 	// QDialog::showEvent() didn't work very well.
-	QTimer::singleShot(1, this, SLOT(firstLoadConfigTimer()) );
+	QTimer::singleShot(1, this, SLOT(firstLoadConfigTimer()));
 }
 
 CreateServerDialog::~CreateServerDialog()
@@ -109,21 +109,16 @@ void CreateServerDialog::btnSaveClicked()
 		gConfig.doomseeker.previousCreateServerConfigDir = fi.absolutePath();
 
 		if (fi.suffix().isEmpty())
-		{
 			strFile += ".ini";
-		}
 
 		if (!saveConfig(strFile))
-		{
 			QMessageBox::critical(nullptr, tr("Doomseeker - save game setup config"), tr("Unable to save game setup configuration!"));
-		}
 	}
-
 }
 
 void CreateServerDialog::btnStartServerClicked()
 {
-	if(!d->remoteGameSetup)
+	if (!d->remoteGameSetup)
 		runGame(false);
 	else
 		accept();
@@ -144,7 +139,7 @@ bool CreateServerDialog::commandLineArguments(QString &executable, QStringList &
 		CommandLineInfo cli;
 		QString error;
 
-		GameHost* gameRunner = d->currentEngine->gameHost();
+		GameHost *gameRunner = d->currentEngine->gameHost();
 		Message message = gameRunner->createHostCommandLine(gameParams, cli);
 
 		delete gameRunner;
@@ -164,23 +159,17 @@ bool CreateServerDialog::commandLineArguments(QString &executable, QStringList &
 	return false;
 }
 
-bool CreateServerDialog::createHostInfo(GameCreateParams& params, bool offline)
+bool CreateServerDialog::createHostInfo(GameCreateParams &params, bool offline)
 {
 	if (d->remoteGameSetup)
-	{
 		params.setHostMode(GameCreateParams::Remote);
-	}
 	else
-	{
 		params.setHostMode(offline ? GameCreateParams::Offline : GameCreateParams::Host);
-	}
 	d->generalSetupPanel->fillInParams(params);
 	d->dmflagsPanel->fillInParams(params);
 
 	if (!fillInParamsFromPluginPages(params))
-	{
 		return false;
-	}
 
 	d->customParamsPanel->fillInParams(params);
 	d->miscPanel->fillInParams(params);
@@ -190,7 +179,7 @@ bool CreateServerDialog::createHostInfo(GameCreateParams& params, bool offline)
 	return true;
 }
 
-void CreateServerDialog::createHostInfoDemoRecord(GameCreateParams& params, bool offline)
+void CreateServerDialog::createHostInfoDemoRecord(GameCreateParams &params, bool offline)
 {
 	if (gConfig.doomseeker.bRecordDemo && offline)
 	{
@@ -211,9 +200,7 @@ void CreateServerDialog::firstLoadConfigTimer()
 
 	QFileInfo fi(tmpGameCfgPath);
 	if (fi.exists())
-	{
 		loadConfig(tmpGameCfgPath, true);
-	}
 }
 
 void CreateServerDialog::initDMFlagsTabs()
@@ -221,21 +208,15 @@ void CreateServerDialog::initDMFlagsTabs()
 	bool flagsAdded = d->dmflagsPanel->initDMFlagsTabs(d->currentEngine);
 	int tabIndex = d->tabWidget->indexOf(d->tabFlags);
 	if (flagsAdded && tabIndex < 0)
-	{
 		d->tabWidget->insertTab(d->tabWidget->indexOf(d->tabCustomParameters), d->tabFlags, tr("Flags"));
-	}
 	else if (!flagsAdded && tabIndex >= 0)
-	{
 		d->tabWidget->removeTab(tabIndex);
-	}
 }
 
-void CreateServerDialog::initEngineSpecific(EnginePlugin* engine)
+void CreateServerDialog::initEngineSpecific(EnginePlugin *engine)
 {
 	if (engine == d->currentEngine || engine == nullptr)
-	{
 		return;
-	}
 
 	d->currentEngine = engine;
 
@@ -246,10 +227,10 @@ void CreateServerDialog::initEngineSpecific(EnginePlugin* engine)
 	initRules();
 }
 
-void CreateServerDialog::initEngineSpecificPages(EnginePlugin* engine)
+void CreateServerDialog::initEngineSpecificPages(EnginePlugin *engine)
 {
 	// First, get rid of the original pages.
-	foreach (CreateServerDialogPage* page, d->currentCustomPages)
+	foreach (CreateServerDialogPage *page, d->currentCustomPages)
 	{
 		delete page;
 	}
@@ -257,7 +238,7 @@ void CreateServerDialog::initEngineSpecificPages(EnginePlugin* engine)
 
 	// Add new custom pages to the dialog.
 	d->currentCustomPages = engine->createServerDialogPages(this);
-	foreach (CreateServerDialogPage* page, d->currentCustomPages)
+	foreach (CreateServerDialogPage *page, d->currentCustomPages)
 	{
 		int idxInsertAt = d->tabWidget->indexOf(d->tabCustomParameters);
 		d->tabWidget->insertTab(idxInsertAt, page, page->name());
@@ -281,7 +262,7 @@ void CreateServerDialog::initRules()
 	d->tabWidget->setTabEnabled(d->tabWidget->indexOf(d->tabRules), d->rulesPanel->isAnythingAvailable());
 }
 
-bool CreateServerDialog::loadConfig(const QString& filename, bool loadingPrevious)
+bool CreateServerDialog::loadConfig(const QString &filename, bool loadingPrevious)
 {
 	QSettings settingsFile(filename, QSettings::IniFormat);
 	SettingsProviderQt settingsProvider(&settingsFile);
@@ -293,7 +274,7 @@ bool CreateServerDialog::loadConfig(const QString& filename, bool loadingPreviou
 	d->dmflagsPanel->loadConfig(ini);
 
 	// Custom pages.
-	foreach (CreateServerDialogPage* page, d->currentCustomPages)
+	foreach (CreateServerDialogPage *page, d->currentCustomPages)
 	{
 		page->loadConfig(ini);
 	}
@@ -313,7 +294,7 @@ void CreateServerDialog::makeRemoteGameSetupDialog(const EnginePlugin *plugin)
 	d->rulesPanel->setupForRemoteGame();
 }
 
-MapListPanel* CreateServerDialog::mapListPanel()
+MapListPanel *CreateServerDialog::mapListPanel()
 {
 	return d->rulesPanel->mapListPanel();
 }
@@ -330,12 +311,10 @@ QStringList CreateServerDialog::wadPaths() const
 
 bool CreateServerDialog::fillInParamsFromPluginPages(GameCreateParams &params)
 {
-	foreach (CreateServerDialogPage* page, d->currentCustomPages)
+	foreach (CreateServerDialogPage *page, d->currentCustomPages)
 	{
 		if (page->validate())
-		{
 			page->fillInGameCreateParams(params);
-		}
 		else
 		{
 			// Pages must take care of displaying their own error messages.
@@ -360,15 +339,13 @@ void CreateServerDialog::runGame(bool offline)
 	{
 		QString error;
 
-		GameHost* gameRunner = d->currentEngine->gameHost();
+		GameHost *gameRunner = d->currentEngine->gameHost();
 		Message message = gameRunner->host(gameParams);
 
 		delete gameRunner;
 
 		if (message.isError())
-		{
 			QMessageBox::critical(nullptr, tr("Doomseeker - error"), message.contents());
-		}
 		else
 		{
 			QString tmpGameConfigPath = gDefaultDataPaths->programsDataDirectoryPath() + TEMP_GAME_CONFIG_FILENAME;
@@ -377,7 +354,7 @@ void CreateServerDialog::runGame(bool offline)
 	}
 }
 
-bool CreateServerDialog::saveConfig(const QString& filename)
+bool CreateServerDialog::saveConfig(const QString &filename)
 {
 	QSettings settingsFile(filename, QSettings::IniFormat);
 	SettingsProviderQt settingsProvider(&settingsFile);
@@ -390,7 +367,7 @@ bool CreateServerDialog::saveConfig(const QString& filename)
 	d->dmflagsPanel->saveConfig(ini);
 
 	// Custom pages.
-	foreach (CreateServerDialogPage* page, d->currentCustomPages)
+	foreach (CreateServerDialogPage *page, d->currentCustomPages)
 	{
 		page->saveConfig(ini);
 	}

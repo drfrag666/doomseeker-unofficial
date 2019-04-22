@@ -20,8 +20,8 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2015 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
-#include "modfile.h"
 #include "checksum.h"
+#include "modfile.h"
 
 DClass<ModFile>
 {
@@ -44,7 +44,7 @@ ModFile::ModFile(const ModFile &other)
 	this->d = other.d;
 }
 
-ModFile::ModFile(const QString& name)
+ModFile::ModFile(const QString &name)
 {
 	d->fileName = name;
 }

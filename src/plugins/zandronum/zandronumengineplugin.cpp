@@ -28,17 +28,17 @@
 #include <plugins/engineplugin.h>
 #include <strings.hpp>
 
-#include "huffman/huffman.h"
 #include "createserverdialogpages/flagspage.h"
-#include "zandronumbroadcast.h"
+#include "enginezandronumconfigbox.h"
+#include "huffman/huffman.h"
 #include "zandronumbinaries.h"
+#include "zandronumbroadcast.h"
+#include "zandronumengineplugin.h"
 #include "zandronumgameexefactory.h"
 #include "zandronumgamehost.h"
 #include "zandronumgameinfo.h"
-#include "zandronumengineplugin.h"
 #include "zandronummasterclient.h"
 #include "zandronumserver.h"
-#include "enginezandronumconfigbox.h"
 
 DClass<ZandronumEnginePlugin>
 {
@@ -71,9 +71,9 @@ ZandronumEnginePlugin::ZandronumEnginePlugin()
 		EP_AllowsMOTD,
 		EP_AllowsUpnp,
 		EP_AllowsUpnpPort,
-#if defined(Q_OS_WIN32) || defined(Q_OS_MAC)
+		#if defined(Q_OS_WIN32) || defined(Q_OS_MAC)
 		EP_ClientOnly,
-#endif
+		#endif
 		EP_ClientExeName, "zandronum",
 		EP_ServerExeName, "zandronum-server",
 		EP_GameFileSearchSuffixes, "zandronum",
@@ -104,17 +104,16 @@ ConfigPage *ZandronumEnginePlugin::configuration(QWidget *parent)
 	return new EngineZandronumConfigBox(staticInstance(), *data()->pConfig, parent);
 }
 
-QList<CreateServerDialogPage*> ZandronumEnginePlugin::createServerDialogPages(
-	CreateServerDialog* pDialog)
+QList<CreateServerDialogPage *> ZandronumEnginePlugin::createServerDialogPages(CreateServerDialog *pDialog)
 {
-	QList<CreateServerDialogPage*> pages;
+	QList<CreateServerDialogPage *> pages;
 
 	pages << new FlagsPage(pDialog);
 
 	return pages;
 }
 
-GameHost* ZandronumEnginePlugin::gameHost()
+GameHost *ZandronumEnginePlugin::gameHost()
 {
 	return new ZandronumGameHost();
 }
@@ -129,41 +128,41 @@ QList<GameCVar> ZandronumEnginePlugin::gameModifiers() const
 	return ZandronumGameInfo::gameModifiers();
 }
 
-QList<GameCVar> ZandronumEnginePlugin::limits(const GameMode& gm) const
+QList<GameCVar> ZandronumEnginePlugin::limits(const GameMode &gm) const
 {
 	QList<GameCVar> gl;
 
 	int m = gm.index();
 
 	if (m != GameMode::SGM_Cooperative
-	&&	m != ZandronumGameInfo::GAMEMODE_INVASION
-	&&	m != ZandronumGameInfo::GAMEMODE_SURVIVAL)
+		&& m != ZandronumGameInfo::GAMEMODE_INVASION
+		&& m != ZandronumGameInfo::GAMEMODE_SURVIVAL)
 	{
 		gl << GameCVar(QObject::tr("Time limit:"), "+timelimit");
 	}
 
 	if (m == GameMode::SGM_Deathmatch
-	||	m == ZandronumGameInfo::GAMEMODE_DUEL
-	||	m == GameMode::SGM_TeamDeathmatch
-	||	m == ZandronumGameInfo::GAMEMODE_TERMINATOR)
+		|| m == ZandronumGameInfo::GAMEMODE_DUEL
+		|| m == GameMode::SGM_TeamDeathmatch
+		|| m == ZandronumGameInfo::GAMEMODE_TERMINATOR)
 	{
 		gl << GameCVar(QObject::tr("Frag limit:"), "+fraglimit");
 	}
 
 	if (m == GameMode::SGM_CTF
-	||	m == ZandronumGameInfo::GAMEMODE_DOMINATION
-	||	m == ZandronumGameInfo::GAMEMODE_ONEFLAGCTF
-	||	m == ZandronumGameInfo::GAMEMODE_POSSESSION
-	||	m == ZandronumGameInfo::GAMEMODE_SKULLTAG
-	||	m == ZandronumGameInfo::GAMEMODE_TEAMGAME
-	||	m == ZandronumGameInfo::GAMEMODE_TEAMPOSSESSION)
+		|| m == ZandronumGameInfo::GAMEMODE_DOMINATION
+		|| m == ZandronumGameInfo::GAMEMODE_ONEFLAGCTF
+		|| m == ZandronumGameInfo::GAMEMODE_POSSESSION
+		|| m == ZandronumGameInfo::GAMEMODE_SKULLTAG
+		|| m == ZandronumGameInfo::GAMEMODE_TEAMGAME
+		|| m == ZandronumGameInfo::GAMEMODE_TEAMPOSSESSION)
 	{
 		gl << GameCVar(QObject::tr("Point limit:"), "+pointlimit");
 	}
 
 	if (m == ZandronumGameInfo::GAMEMODE_DUEL
-	||	m == ZandronumGameInfo::GAMEMODE_LASTMANSTANDING
-	||	m == ZandronumGameInfo::GAMEMODE_TEAMLMS)
+		|| m == ZandronumGameInfo::GAMEMODE_LASTMANSTANDING
+		|| m == ZandronumGameInfo::GAMEMODE_TEAMLMS)
 	{
 		gl << GameCVar(QObject::tr("Win limit:"), "+winlimit");
 	}

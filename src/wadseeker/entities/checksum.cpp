@@ -25,9 +25,9 @@
 
 DClass<Checksum>
 {
-	public:
-		QByteArray hash;
-		QCryptographicHash::Algorithm algorithm;
+public:
+	QByteArray hash;
+	QCryptographicHash::Algorithm algorithm;
 };
 
 DPointered(Checksum)

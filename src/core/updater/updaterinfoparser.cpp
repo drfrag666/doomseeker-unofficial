@@ -22,20 +22,20 @@
 //------------------------------------------------------------------------------
 #include "updaterinfoparser.h"
 
-#include "updater/autoupdater.h"
-#include "updater/updatepackage.h"
 #include "json.h"
 #include "log.h"
+#include "updater/autoupdater.h"
+#include "updater/updatepackage.h"
 
 DClass<UpdaterInfoParser>
 {
-	public:
-		QList<UpdatePackage> packages;
+public:
+	QList<UpdatePackage> packages;
 
-		bool hasMainProgramName(const QVariantMap &metaData) const
-		{
-			return metaData.contains(AutoUpdater::MAIN_PROGRAM_PACKAGE_NAME);
-		}
+	bool hasMainProgramName(const QVariantMap &metaData) const
+	{
+		return metaData.contains(AutoUpdater::MAIN_PROGRAM_PACKAGE_NAME);
+	}
 };
 
 DPointered(UpdaterInfoParser)
@@ -48,12 +48,12 @@ UpdaterInfoParser::~UpdaterInfoParser()
 {
 }
 
-const QList<UpdatePackage>& UpdaterInfoParser::packages() const
+const QList<UpdatePackage> &UpdaterInfoParser::packages() const
 {
 	return d->packages;
 }
 
-int UpdaterInfoParser::parse(const QByteArray& json)
+int UpdaterInfoParser::parse(const QByteArray &json)
 {
 	d->packages.clear();
 	QVariant var = QtJson::Json::parse(json);
@@ -62,7 +62,7 @@ int UpdaterInfoParser::parse(const QByteArray& json)
 		QVariantMap metaData = var.toMap();
 		if (d->hasMainProgramName(metaData))
 		{
-			foreach (const QString& package, metaData.keys())
+			foreach (const QString &package, metaData.keys())
 			{
 				int result = parsePackageNode(package, metaData[package].toMap());
 				if (result != AutoUpdater::EC_Ok)
@@ -83,7 +83,7 @@ int UpdaterInfoParser::parse(const QByteArray& json)
 	return AutoUpdater::EC_Ok;
 }
 
-int UpdaterInfoParser::parsePackageNode(const QString& packageName, const QVariantMap& map)
+int UpdaterInfoParser::parsePackageNode(const QString &packageName, const QVariantMap &map)
 {
 	UpdatePackage package;
 	package.name = packageName;
@@ -124,7 +124,7 @@ int UpdaterInfoParser::parsePackageNode(const QString& packageName, const QVaria
 		{
 			gLog << tr("Invalid update download URL for package %1: %2")
 				.arg(packageName, strUrl);
-			return  AutoUpdater::EC_InvalidDownloadUrl;
+			return AutoUpdater::EC_InvalidDownloadUrl;
 		}
 	}
 	else
@@ -141,7 +141,7 @@ int UpdaterInfoParser::parsePackageNode(const QString& packageName, const QVaria
 		{
 			gLog << tr("Invalid update script download URL for package %1, %2")
 				.arg(packageName, strUrl);
-			return  AutoUpdater::EC_InvalidDownloadUrl;
+			return AutoUpdater::EC_InvalidDownloadUrl;
 		}
 	}
 	else

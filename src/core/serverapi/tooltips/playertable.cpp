@@ -27,9 +27,9 @@
 
 DClass<PlayerTable>
 {
-	public:
-		int numOfColumns;
-		ServerCPtr server;
+public:
+	int numOfColumns;
+	ServerCPtr server;
 };
 
 DPointered(PlayerTable)
@@ -67,7 +67,7 @@ void PlayerTable::setNumberOfColumns()
 	}
 }
 
-QString PlayerTable::spawnPartOfPlayerTable(const PlayersList& list, bool bAppendEmptyRowAtBeginning)
+QString PlayerTable::spawnPartOfPlayerTable(const PlayersList &list, bool bAppendEmptyRowAtBeginning)
 {
 	QString ret;
 	if (list.count() != 0)
@@ -79,7 +79,7 @@ QString PlayerTable::spawnPartOfPlayerTable(const PlayersList& list, bool bAppen
 
 		for (int i = 0; i < list.count(); ++i)
 		{
-			const Player& player = list[i];
+			const Player &player = list[i];
 
 			QString status = "";
 			if (player.isBot())
@@ -112,7 +112,7 @@ QString PlayerTable::spawnPartOfPlayerTable(const PlayersList& list, bool bAppen
 	return ret;
 }
 
-QString PlayerTable::spawnPlayersRows(const PlayersByTeams& playersByTeams)
+QString PlayerTable::spawnPlayersRows(const PlayersByTeams &playersByTeams)
 {
 	QString playersRows;
 
@@ -129,7 +129,7 @@ QString PlayerTable::spawnPlayersRows(const PlayersByTeams& playersByTeams)
 	return playersRows;
 }
 
-QString	PlayerTable::tableContent()
+QString PlayerTable::tableContent()
 {
 	PlayersByTeams playersByTeams;
 	PlayersList bots, spectators;

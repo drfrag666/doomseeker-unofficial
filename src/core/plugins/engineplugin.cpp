@@ -24,6 +24,7 @@
 #include "gui/configuration/engineconfigpage.h"
 #include "ini/ini.h"
 #include "irc/entities/ircnetworkentity.h"
+#include "log.h"
 #include "pathfinder/pathfind.h"
 #include "plugins/enginedefaults.h"
 #include "plugins/engineplugin.h"
@@ -31,7 +32,6 @@
 #include "serverapi/gamefile.h"
 #include "serverapi/gamehost.h"
 #include "serverapi/server.h"
-#include "log.h"
 #include "strings.hpp"
 
 #include <cstdarg>
@@ -91,7 +91,7 @@ EnginePlugin::~EnginePlugin()
 	delete d;
 }
 
-ConfigPage* EnginePlugin::configuration(QWidget *parent)
+ConfigPage *EnginePlugin::configuration(QWidget *parent)
 {
 	return new EngineConfigPage(this, *d->pConfig, parent);
 }
@@ -101,12 +101,12 @@ QList<DMFlagsSection> EnginePlugin::dmFlags() const
 	return QList<DMFlagsSection>();
 }
 
-GameExeFactory* EnginePlugin::gameExe()
+GameExeFactory *EnginePlugin::gameExe()
 {
 	return data()->gameExeFactory.data();
 }
 
-GameHost* EnginePlugin::gameHost()
+GameHost *EnginePlugin::gameHost()
 {
 	return new GameHost(this);
 }
@@ -121,7 +121,7 @@ QList<GameCVar> EnginePlugin::gameModifiers() const
 	return QList<GameCVar>();
 }
 
-void EnginePlugin::init(const char* name, const char* const icon[], ...)
+void EnginePlugin::init(const char *name, const char *const icon[], ...)
 {
 	d->name = name;
 	d->icon = new QPixmap(icon);
@@ -131,134 +131,134 @@ void EnginePlugin::init(const char* name, const char* const icon[], ...)
 	va_start(va, icon);
 
 	int feature;
-	while((feature = va_arg(va, int)) != EP_Done)
+	while ((feature = va_arg(va, int)) != EP_Done)
 	{
-		switch(feature)
+		switch (feature)
 		{
-			default:
-				// Since we don't know if the feature has arguments we must abort.
-				gLog << QString("%1 plugin attempted to use unknown feature.").arg(name);
-				d->valid = false;
-				return;
+		default:
+			// Since we don't know if the feature has arguments we must abort.
+			gLog << QString("%1 plugin attempted to use unknown feature.").arg(name);
+			d->valid = false;
+			return;
 
-			case EP_Author:
-				d->author = va_arg(va, const char*);
-				break;
-			case EP_Version:
-				d->version = va_arg(va, unsigned int);
-				break;
-			case EP_AboutProvider:
-				d->aboutProvider.reset(va_arg(va, TextProvider *));
-				break;
+		case EP_Author:
+			d->author = va_arg(va, const char *);
+			break;
+		case EP_Version:
+			d->version = va_arg(va, unsigned int);
+			break;
+		case EP_AboutProvider:
+			d->aboutProvider.reset(va_arg(va, TextProvider *));
+			break;
 
-			case EP_AllowsConnectPassword:
-				d->allowsConnectPassword = true;
-				break;
-			case EP_AllowsEmail:
-				d->allowsEmail = true;
-				break;
-			case EP_AllowsURL:
-				d->allowsURL = true;
-				break;
-			case EP_AllowsJoinPassword:
-				d->allowsJoinPassword = true;
-				break;
-			case EP_AllowsLogging:
-				d->allowsLogging = true;
-				break;
-			case EP_AllowsRConPassword:
-				d->allowsRConPassword = true;
-				break;
-			case EP_AllowsMOTD:
-				d->allowsMOTD = true;
-				break;
-			case EP_AllowsUpnp:
-				d->allowsUpnp = true;
-				break;
-			case EP_AllowsUpnpPort:
-				d->allowsUpnpPort = true;
-				break;
-			case EP_Broadcast:
-				d->broadcast = va_arg(va, Broadcast*);
-				break;
-			case EP_CanonicalName:
-				d->canonicalName = va_arg(va, const char*);
-				break;
-			case EP_ClientOnly:
-				d->clientOnly = true;
-				break;
-			case EP_DefaultMaster:
-				d->defaultMaster = va_arg(va, const char*);
-				break;
-			case EP_DefaultServerPort:
-				d->defaultServerPort = va_arg(va, unsigned int);
-				break;
-			case EP_DemoExtension:
-				d->demoExtensionAutomatic = va_arg(va, unsigned int);
-				d->demoExtension = va_arg(va, const char*);
-				break;
-			case EP_DifficultyProvider:
-				d->difficulty = QSharedPointer<GameCVarProvider>(va_arg(va, GameCVarProvider*));
-				break;
-			case EP_DontCreateDMFlagsPagesAutomatic:
-				d->createDMFlagsPagesAutomatic = false;
-				break;
-			case EP_InGameFileDownloads:
-				d->inGameFileDownloads = true;
-				break;
-			case EP_IRCChannel:
+		case EP_AllowsConnectPassword:
+			d->allowsConnectPassword = true;
+			break;
+		case EP_AllowsEmail:
+			d->allowsEmail = true;
+			break;
+		case EP_AllowsURL:
+			d->allowsURL = true;
+			break;
+		case EP_AllowsJoinPassword:
+			d->allowsJoinPassword = true;
+			break;
+		case EP_AllowsLogging:
+			d->allowsLogging = true;
+			break;
+		case EP_AllowsRConPassword:
+			d->allowsRConPassword = true;
+			break;
+		case EP_AllowsMOTD:
+			d->allowsMOTD = true;
+			break;
+		case EP_AllowsUpnp:
+			d->allowsUpnp = true;
+			break;
+		case EP_AllowsUpnpPort:
+			d->allowsUpnpPort = true;
+			break;
+		case EP_Broadcast:
+			d->broadcast = va_arg(va, Broadcast *);
+			break;
+		case EP_CanonicalName:
+			d->canonicalName = va_arg(va, const char *);
+			break;
+		case EP_ClientOnly:
+			d->clientOnly = true;
+			break;
+		case EP_DefaultMaster:
+			d->defaultMaster = va_arg(va, const char *);
+			break;
+		case EP_DefaultServerPort:
+			d->defaultServerPort = va_arg(va, unsigned int);
+			break;
+		case EP_DemoExtension:
+			d->demoExtensionAutomatic = va_arg(va, unsigned int);
+			d->demoExtension = va_arg(va, const char *);
+			break;
+		case EP_DifficultyProvider:
+			d->difficulty = QSharedPointer<GameCVarProvider>(va_arg(va, GameCVarProvider *));
+			break;
+		case EP_DontCreateDMFlagsPagesAutomatic:
+			d->createDMFlagsPagesAutomatic = false;
+			break;
+		case EP_InGameFileDownloads:
+			d->inGameFileDownloads = true;
+			break;
+		case EP_IRCChannel:
+		{
+			// Either create an entity or put the channel in an existing one.
+			IRCNetworkEntity entity;
+			entity.setDescription(va_arg(va, const char *));
+			entity.setAddress(va_arg(va, const char *));
+			entity.autojoinChannels() << va_arg(va, const char *);
+
+			if (d->ircChannels.contains(entity))
 			{
-				// Either create an entity or put the channel in an existing one.
-				IRCNetworkEntity entity;
-				entity.setDescription(va_arg(va, const char*));
-				entity.setAddress(va_arg(va, const char*));
-				entity.autojoinChannels() << va_arg(va, const char*);
-
-				if(d->ircChannels.contains(entity))
-				{
-					IRCNetworkEntity &existingEntity = d->ircChannels[d->ircChannels.indexOf(entity)];
-					existingEntity.autojoinChannels() << entity.autojoinChannels()[0];
-				}
-				else
-					d->ircChannels << entity;
-				break;
+				IRCNetworkEntity &existingEntity = d->ircChannels[d->ircChannels.indexOf(entity)];
+				existingEntity.autojoinChannels() << entity.autojoinChannels()[0];
 			}
-			case EP_MasterClient:
-				d->masterClient = va_arg(va, MasterClient*);
-				break;
-			case EP_NoClientSlots:
-				d->allowsClientSlots = false;
-				break;
-			case EP_NoPlayerSlots:
-				d->allowsPlayerSlots = false;
-				break;
-			case EP_NoIwad:
-				d->hasIwad = false;
-				break;
-			case EP_NoMapList:
-				d->hasMapList = false;
-				break;
-			case EP_SupportsRandomMapRotation:
-				d->supportsRandomMapRotation = true;
-				break;
-			case EP_URLScheme:
-				d->scheme = va_arg(va, const char*);
-				break;
-			case EP_RefreshThreshold:
-				d->refreshThreshold = va_arg(va, unsigned int);
-				break;
-			case EP_ClientExeName:
-				d->clientExeName = va_arg(va, const char*);
-				break;
-			case EP_ServerExeName:
-				d->serverExeName = va_arg(va, const char*);
-				break;
-			case EP_GameFileSearchSuffixes:
-			{
-				QString suffixes = va_arg(va, const char*);
-				d->gameFileSearchSuffixes = suffixes.split(";", QString::SkipEmptyParts);
-				break;
-			}
+			else
+				d->ircChannels << entity;
+			break;
+		}
+		case EP_MasterClient:
+			d->masterClient = va_arg(va, MasterClient *);
+			break;
+		case EP_NoClientSlots:
+			d->allowsClientSlots = false;
+			break;
+		case EP_NoPlayerSlots:
+			d->allowsPlayerSlots = false;
+			break;
+		case EP_NoIwad:
+			d->hasIwad = false;
+			break;
+		case EP_NoMapList:
+			d->hasMapList = false;
+			break;
+		case EP_SupportsRandomMapRotation:
+			d->supportsRandomMapRotation = true;
+			break;
+		case EP_URLScheme:
+			d->scheme = va_arg(va, const char *);
+			break;
+		case EP_RefreshThreshold:
+			d->refreshThreshold = va_arg(va, unsigned int);
+			break;
+		case EP_ClientExeName:
+			d->clientExeName = va_arg(va, const char *);
+			break;
+		case EP_ServerExeName:
+			d->serverExeName = va_arg(va, const char *);
+			break;
+		case EP_GameFileSearchSuffixes:
+		{
+			QString suffixes = va_arg(va, const char *);
+			d->gameFileSearchSuffixes = suffixes.split(";", QString::SkipEmptyParts);
+			break;
+		}
 		}
 	}
 

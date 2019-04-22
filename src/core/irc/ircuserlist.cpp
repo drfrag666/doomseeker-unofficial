@@ -20,18 +20,16 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2010 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
-#include "ircuserlist.h"
 #include "irc/ircuserinfo.h"
+#include "ircuserlist.h"
 
 IRCUserList::~IRCUserList()
 {
 	for (int i = 0; i < usersArray.size(); ++i)
-	{
 		delete usersArray[i];
-	}
 }
 
-bool IRCUserList::appendNameToCachedList(const IRCUserInfo& userInfo)
+bool IRCUserList::appendNameToCachedList(const IRCUserInfo &userInfo)
 {
 	int index = this->indexOfName(userInfo.cleanNickname());
 	if (index >= 0)
@@ -41,19 +39,17 @@ bool IRCUserList::appendNameToCachedList(const IRCUserInfo& userInfo)
 	}
 	else
 	{
-		IRCUserInfo* pUserInfo = new IRCUserInfo(userInfo);
+		IRCUserInfo *pUserInfo = new IRCUserInfo(userInfo);
 		usersArray.append(pUserInfo);
 		return true;
 	}
 }
 
-bool IRCUserList::changeNick(const QString& oldNickname, const QString& newNickname)
+bool IRCUserList::changeNick(const QString &oldNickname, const QString &newNickname)
 {
-	const IRCUserInfo* pExistingInfo = user(oldNickname);
+	const IRCUserInfo *pExistingInfo = user(oldNickname);
 	if (pExistingInfo == nullptr)
-	{
 		return false;
-	}
 
 	IRCUserInfo user = *pExistingInfo;
 	user.setPrefixedNickname(newNickname);
@@ -62,44 +58,40 @@ bool IRCUserList::changeNick(const QString& oldNickname, const QString& newNickn
 	return true;
 }
 
-bool IRCUserList::hasUser(const QString& nickname) const
+bool IRCUserList::hasUser(const QString &nickname) const
 {
-	return (indexOfName(nickname) != -1);
+	return indexOfName(nickname) != -1;
 }
 
-int	IRCUserList::indexOfName(const QString& nickname) const
+int IRCUserList::indexOfName(const QString &nickname) const
 {
 	for (int i = 0; i < usersArray.size(); ++i)
 	{
-		const IRCUserInfo& storedUser = *usersArray[i];
+		const IRCUserInfo &storedUser = *usersArray[i];
 		if (storedUser.isSameNickname(nickname))
-		{
 			return i;
-		}
 	}
 
 	return -1;
 }
 
-bool IRCUserList::removeNameFromCachedList(const QString& nickname)
+bool IRCUserList::removeNameFromCachedList(const QString &nickname)
 {
 	int index = indexOfName(nickname);
 	if (index < 0)
-	{
 		return false;
-	}
 
 	delete usersArray[index];
 	usersArray.remove(index);
 	return true;
 }
 
-void IRCUserList::setUserModes(const QString& nickname, const QList<char> &modes)
+void IRCUserList::setUserModes(const QString &nickname, const QList<char> &modes)
 {
 	int index = this->indexOfName(nickname);
 	if (index >= 0)
 	{
-		IRCUserInfo& userInfo = *usersArray[index];
+		IRCUserInfo &userInfo = *usersArray[index];
 		userInfo.setModes(modes);
 	}
 }
@@ -108,30 +100,24 @@ QStringList IRCUserList::toStringList() const
 {
 	QStringList nicksList;
 	for (int i = 0; i < usersArray.size(); ++i)
-	{
 		nicksList << usersArray[i]->prefixedName();
-	}
 
 	return nicksList;
 }
 
-const IRCUserInfo* IRCUserList::user(const QString& nickname) const
+const IRCUserInfo *IRCUserList::user(const QString &nickname) const
 {
 	int index = this->indexOfName(nickname);
 	if (index < 0)
-	{
 		return nullptr;
-	}
 
 	return usersArray[index];
 }
 
-IRCUserInfo IRCUserList::userCopy(const QString& nickname) const
+IRCUserInfo IRCUserList::userCopy(const QString &nickname) const
 {
-	const IRCUserInfo* pUserInfo = user(nickname);
+	const IRCUserInfo *pUserInfo = user(nickname);
 	if (pUserInfo == nullptr)
-	{
 		return IRCUserInfo();
-	}
 	return *pUserInfo;
 }

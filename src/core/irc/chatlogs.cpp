@@ -55,13 +55,9 @@ QString ChatLogs::logFilePath(const IRCNetworkEntity &entity, const QString &rec
 QString ChatLogs::logFileName(const QString &recipient) const
 {
 	if (!recipient.trimmed().isEmpty())
-	{
 		return recipient.trimmed().toLower();
-	}
 	else
-	{
 		return "@main";
-	}
 }
 
 bool ChatLogs::mkLogDir(const IRCNetworkEntity &entity)
@@ -80,14 +76,10 @@ bool ChatLogs::renameNetwork(QWidget *parentUi, QString oldName, QString newName
 	oldName = oldName.trimmed().toLower();
 	newName = newName.trimmed().toLower();
 	if (oldName == newName)
-	{
 		return true;
-	}
 	QDir dir(d->rootPath());
 	if (!dir.exists(oldName))
-	{
 		return true;
-	}
 	while (true)
 	{
 		QMessageBox::StandardButton result = QMessageBox::Ok;
@@ -98,20 +90,14 @@ bool ChatLogs::renameNetwork(QWidget *parentUi, QString oldName, QString newName
 				"already exists.").arg(oldName, newName);
 		}
 		else if (!dir.rename(oldName, newName))
-		{
 			error = tr("Failed to transfer chat from \"%1\" to \"%2\"").arg(oldName, newName);
-		}
 
 		if (error.isEmpty())
-		{
 			break;
-		}
 		result = QMessageBox::warning(parentUi, tr("Chat logs transfer"), error,
 			QMessageBox::Ignore | QMessageBox::Retry | QMessageBox::Abort);
 		if (result != QMessageBox::Retry)
-		{
 			return result == QMessageBox::Ignore;
-		}
 	}
 	return true;
 }

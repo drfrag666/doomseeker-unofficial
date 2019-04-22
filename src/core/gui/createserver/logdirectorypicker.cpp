@@ -25,8 +25,8 @@
 
 #include "configuration/doomseekerconfig.h"
 
-#include <QFileDialog>
 #include <QDir>
+#include <QFileDialog>
 
 DClass<LogDirectoryPicker> : public Ui::LogDirectoryPicker
 {
@@ -38,7 +38,7 @@ public:
 DPointeredNoCopy(LogDirectoryPicker)
 
 LogDirectoryPicker::LogDirectoryPicker(QWidget *parent)
-: QWidget(parent)
+	: QWidget(parent)
 {
 	d->setupUi(this);
 
@@ -73,7 +73,7 @@ void LogDirectoryPicker::browse()
 		setPathAndUpdate(QDir(strPath).absolutePath());
 }
 
-void LogDirectoryPicker::updateLoggingStatus(const QString& path)
+void LogDirectoryPicker::updateLoggingStatus(const QString &path)
 {
 	if (!path.isEmpty())
 	{
@@ -91,26 +91,26 @@ void LogDirectoryPicker::updateLoggingStatus(const QString& path)
 	gConfig.doomseeker.previousCreateServerLogDir = d->dialogDir;
 }
 
-void LogDirectoryPicker::setPathAndUpdate(const QString& path)
+void LogDirectoryPicker::setPathAndUpdate(const QString &path)
 {
 	d->dialogDir = path;
 	d->pathTextBox->setText(path);
 	updateLoggingStatus(path);
 }
 
-void LogDirectoryPicker::setLoggingEnabled(const bool& enabled)
+void LogDirectoryPicker::setLoggingEnabled(const bool &enabled)
 {
 	d->loggingEnabled = enabled;
 	gConfig.doomseeker.bLogCreatedServer = d->loggingEnabled;
 	d->cbLoggingEnabled->setChecked(d->loggingEnabled);
 }
 
-const bool& LogDirectoryPicker::isLoggingEnabled() const
+const bool &LogDirectoryPicker::isLoggingEnabled() const
 {
 	return d->loggingEnabled;
 }
 
-const QString& LogDirectoryPicker::currentPath() const
+const QString &LogDirectoryPicker::currentPath() const
 {
 	return d->dialogDir;
 }

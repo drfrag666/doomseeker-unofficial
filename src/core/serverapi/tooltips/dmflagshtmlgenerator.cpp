@@ -27,18 +27,18 @@
 
 DClass<DmflagsHtmlGenerator>
 {
-	public:
-		ServerCPtr server;
+public:
+	ServerCPtr server;
 
-		QString mkSectionContents(const DMFlagsSection &section)
+	QString mkSectionContents(const DMFlagsSection &section)
+	{
+		QString result;
+		for (int i = 0; i < section.count(); ++i)
 		{
-			QString result;
-			for (int i = 0; i < section.count(); ++i)
-			{
-				result += "<li>" + section[i].name() + "</li>";
-			}
-			return result;
+			result += "<li>" + section[i].name() + "</li>";
 		}
+		return result;
+	}
 };
 
 DPointered(DmflagsHtmlGenerator)

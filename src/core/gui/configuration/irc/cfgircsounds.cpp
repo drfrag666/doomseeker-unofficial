@@ -4,8 +4,8 @@
 // Copyright (C) 2011 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
 #include "cfgircsounds.h"
-#include "ui_cfgircsounds.h"
 #include "irc/configuration/ircconfig.h"
+#include "ui_cfgircsounds.h"
 
 #include <QFile>
 #include <QFileDialog>
@@ -17,8 +17,8 @@ DClass<CFGIRCSounds> : public Ui::CFGIRCSounds
 
 DPointered(CFGIRCSounds)
 
-CFGIRCSounds::CFGIRCSounds(QWidget* parent)
-: ConfigPage(parent)
+CFGIRCSounds::CFGIRCSounds(QWidget *parent)
+	: ConfigPage(parent)
 {
 	d->setupUi(this);
 	d->lblNicknameUsedWarning->hide();
@@ -69,9 +69,7 @@ void CFGIRCSounds::playSound(const QString &path) const
 {
 	QFile file(path);
 	if (file.exists())
-	{
 		QSound::play(path);
-	}
 }
 
 void CFGIRCSounds::readSettings()
@@ -92,13 +90,11 @@ void CFGIRCSounds::saveSettings()
 	gIRCConfig.sounds.privateMessageReceivedSound = d->lePrivateMessage->text().trimmed();
 }
 
-void CFGIRCSounds::setPath(QLineEdit* pLineEdit, const QString& path)
+void CFGIRCSounds::setPath(QLineEdit *pLineEdit, const QString &path)
 {
 	QString trimmedPath = path.trimmed();
 	if (!trimmedPath.isEmpty())
-	{
 		pLineEdit->setText(trimmedPath);
-	}
 	emit validationRequested();
 }
 
@@ -125,19 +121,13 @@ ConfigPage::Validation CFGIRCSounds::validate()
 QString CFGIRCSounds::validateFilePath(const QString &path) const
 {
 	if (path.trimmed().isEmpty())
-	{
 		return tr("No path specified.");
-	}
 
 	QFileInfo fileInfo(path.trimmed());
 	if (!fileInfo.exists())
-	{
 		return tr("File doesn't exist.");
-	}
 
 	if (!fileInfo.isFile())
-	{
 		return tr("This is not a file.");
-	}
 	return "";
 }

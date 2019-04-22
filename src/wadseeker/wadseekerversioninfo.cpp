@@ -44,10 +44,10 @@ QStringList WadseekerVersionInfo::knownWadExtensions()
 	return list;
 }
 
-bool WadseekerVersionInfo::isSupportedArchiveExtension(const QString& suffix)
+bool WadseekerVersionInfo::isSupportedArchiveExtension(const QString &suffix)
 {
 	QStringList extensions = supportedArchiveExtensions();
-	foreach (const QString& supported, extensions)
+	foreach (const QString &supported, extensions)
 	{
 		if (suffix.compare(supported, Qt::CaseInsensitive) == 0)
 		{

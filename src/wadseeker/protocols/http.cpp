@@ -26,7 +26,7 @@
 
 #include <QFileInfo>
 
-Http::Http(const NetworkReply* pReply)
+Http::Http(const NetworkReply *pReply)
 {
 	this->pReply = pReply;
 }
@@ -106,7 +106,7 @@ bool Http::isHtmlContentType() const
 
 QString Http::urlFilename() const
 {
-	const QUrl& url = pReply->request().url();
+	const QUrl &url = pReply->request().url();
 	QFileInfo fileInfo(url.path());
 
 	return fileInfo.fileName();

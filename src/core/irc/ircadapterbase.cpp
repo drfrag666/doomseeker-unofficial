@@ -35,5 +35,5 @@ void IRCAdapterBase::emitMessageToAllChatBoxes(const QString &message, const IRC
 
 const IRCNetworkEntity &IRCAdapterBase::networkEntity() const
 {
-	return const_cast<IRCAdapterBase*>(this)->network()->connection().networkEntity;
+	return const_cast<IRCAdapterBase *>(this)->network()->connection().networkEntity;
 }

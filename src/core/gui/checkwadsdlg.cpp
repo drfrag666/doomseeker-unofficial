@@ -25,15 +25,15 @@
 #include "pathfinder/pathfinder.h"
 #include "pathfinder/wadpathfinder.h"
 #include "serverapi/serverstructs.h"
-#include <QTimer>
-#include <QScopedPointer>
 #include <cassert>
+#include <QScopedPointer>
+#include <QTimer>
 
 DClass<CheckWadsDlg> : public Ui::CheckWadsDlg
 {
 public:
 	QList<PWad> wads;
-	const PathFinder* pathFinder;
+	const PathFinder *pathFinder;
 	CheckResult wadsChecked;
 	QScopedPointer<QTimer> checkWadTimer;
 	QScopedPointer<QTimer> showWindow;
@@ -42,7 +42,7 @@ public:
 
 DPointeredNoCopy(CheckWadsDlg)
 
-CheckWadsDlg::CheckWadsDlg(const PathFinder* pathFinder, QWidget* parent) : QDialog(parent)
+CheckWadsDlg::CheckWadsDlg(const PathFinder *pathFinder, QWidget *parent) : QDialog(parent)
 {
 	assert(pathFinder != nullptr);
 	d->pathFinder = pathFinder;
@@ -53,14 +53,14 @@ CheckWadsDlg::CheckWadsDlg(const PathFinder* pathFinder, QWidget* parent) : QDia
 	d->setupUi(this);
 	connect(d->checkWadTimer.data(), SIGNAL(timeout()), this, SLOT(performCheckStep()));
 	connect(d->showWindow.data(), SIGNAL(timeout()), this, SLOT(openWindow()));
-	connect(d->buttonBox, SIGNAL(clicked(QAbstractButton *)), SLOT(abortCheck()));
+	connect(d->buttonBox, SIGNAL(clicked(QAbstractButton*)), SLOT(abortCheck()));
 }
 
 CheckWadsDlg::~CheckWadsDlg()
 {
 }
 
-void CheckWadsDlg::addWads(const QList<PWad>& wads)
+void CheckWadsDlg::addWads(const QList<PWad> &wads)
 {
 	d->wads << wads;
 	d->progressBar->setMaximum(d->progressBar->value() + wads.size());
@@ -68,7 +68,6 @@ void CheckWadsDlg::addWads(const QList<PWad>& wads)
 
 const CheckResult CheckWadsDlg::checkWads()
 {
-
 	d->showWindow->setSingleShot(true);
 	d->showWindow->start(500);
 	d->checkWadTimer->start(0);
@@ -109,7 +108,7 @@ void CheckWadsDlg::performCheckStep()
 	else
 		d->wadsChecked.foundWads << wad;
 
-	d->progressBar->setValue(d->progressBar->value()+1);
+	d->progressBar->setValue(d->progressBar->value() + 1);
 }
 
 void CheckWadsDlg::abortCheck()

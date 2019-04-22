@@ -22,19 +22,19 @@
 //------------------------------------------------------------------------------
 #include "idgamesreply.h"
 
-#include <QDebug>
 #include "protocols/idgames/idgamesresult.h"
 #include "protocols/json.h"
+#include <QDebug>
 
 static const int MAX_REDIRECTS = 10;
 
 class IdgamesReply::PrivData
 {
-	public:
-		QNetworkReply *reply;
-		QNetworkRequest request;
-		IdgamesResult result;
-		int redirects;
+public:
+	QNetworkReply *reply;
+	QNetworkRequest request;
+	IdgamesResult result;
+	int redirects;
 };
 
 IdgamesReply::IdgamesReply(const QNetworkRequest &request, QNetworkReply *reply)
@@ -66,7 +66,7 @@ void IdgamesReply::onNetworkFinished()
 		if (possibleRedirect.isValid())
 		{
 			#ifndef NDEBUG
-				qDebug() << "idgames redirect: " << possibleRedirect;
+			qDebug() << "idgames redirect: " << possibleRedirect;
 			#endif
 			redirect(possibleRedirect.toUrl());
 		}
@@ -74,8 +74,8 @@ void IdgamesReply::onNetworkFinished()
 		{
 			QString json = d->reply->readAll();
 			#ifndef NDEBUG
-				qDebug() << "idgames onNetworkFinished()" << json;
-				qDebug() << "idgames onNetworkFinished() parsed" << QtJson::Json::parse(json);
+			qDebug() << "idgames onNetworkFinished()" << json;
+			qDebug() << "idgames onNetworkFinished() parsed" << QtJson::Json::parse(json);
 			#endif
 			finish(IdgamesResult(QtJson::Json::parse(json)));
 		}

@@ -25,9 +25,9 @@
 
 #include "doomseekerfilepaths.h"
 
+#include "ip2c/ip2cupdater.h"
 #include <QDateTime>
 #include <QFileInfo>
-#include "ip2c/ip2cupdater.h"
 
 DClass<IP2CUpdateBox> : public Ui::IP2CUpdateBox
 {
@@ -37,13 +37,13 @@ public:
 
 DPointered(IP2CUpdateBox)
 
-IP2CUpdateBox::IP2CUpdateBox(QWidget* parent)
-: QDialog(parent)
+IP2CUpdateBox::IP2CUpdateBox(QWidget *parent)
+	: QDialog(parent)
 {
 	d->setupUi(this);
 
-	connect(d->btnUpdate, SIGNAL( clicked() ), this, SLOT( accept() ) );
-	connect(d->btnCancel, SIGNAL( clicked() ), this, SLOT( reject() ) );
+	connect(d->btnUpdate, SIGNAL(clicked()), this, SLOT(accept()));
+	connect(d->btnCancel, SIGNAL(clicked()), this, SLOT(reject()));
 	d->progressBar->hide();
 
 	d->ip2cUpdater = new IP2CUpdater(this);
@@ -61,12 +61,12 @@ void IP2CUpdateBox::start()
 	QString filePath = DoomseekerFilePaths::ip2cDatabaseAny();
 
 	d->lblIP2CFileLocation->setText(!filePath.isEmpty() ? filePath : tr("N/A"));
-	
+
 	QString downloadPath = DoomseekerFilePaths::ip2cDatabase();
 	d->lblIP2CDownloadLocation->setText(downloadPath);
 	QFileInfo downloadedFileInfo(downloadPath);
 	d->lblDownloadIcon->setPixmap(downloadedFileInfo.isFile() ?
-		QPixmap(":/icons/edit-redo.png") : 
+		QPixmap(":/icons/edit-redo.png") :
 		QPixmap(":/icons/edit-redo-red.png"));
 	d->lblDownloadIcon->setToolTip(downloadedFileInfo.isFile() ?
 		tr("File is already downloaded.") :

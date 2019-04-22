@@ -29,9 +29,9 @@ const QString Application::NAME = "doomseeker";
 
 DClass<Application>
 {
-	public:
-		MainWindow *mainWindow;
-		bool running;
+public:
+	MainWindow *mainWindow;
+	bool running;
 };
 
 DPointered(Application)
@@ -39,16 +39,16 @@ DPointered(Application)
 Application *Application::staticInstance = nullptr;
 
 Application::Application(int &argc, char **argv)
-: QApplication(argc, argv)
+	: QApplication(argc, argv)
 {
 	d->mainWindow = nullptr;
 	d->running = true;
 	setApplicationName(NAME);
 
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	// http://blog.qt.io/blog/2013/04/25/retina-display-support-for-mac-os-ios-and-x11/
 	setAttribute(Qt::AA_UseHighDpiPixmaps);
-#endif
+	#endif
 }
 
 

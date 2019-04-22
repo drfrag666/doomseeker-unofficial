@@ -23,7 +23,7 @@
 #include "networkreplytimeouter.h"
 
 
-NetworkReplyTimeouter::NetworkReplyTimeouter(QNetworkReply* pReply)
+NetworkReplyTimeouter::NetworkReplyTimeouter(QNetworkReply *pReply)
 {
 	this->bIsProgressing = false;
 	this->pReply = pReply;
@@ -32,18 +32,18 @@ NetworkReplyTimeouter::NetworkReplyTimeouter(QNetworkReply* pReply)
 	this->progressTimeout = 0;
 
 	this->connect(pReply,
-		SIGNAL( downloadProgress(qint64, qint64) ),
-		SLOT( progressRegistered(qint64, qint64) ));
+		SIGNAL(downloadProgress(qint64,qint64)),
+		SLOT(progressRegistered(qint64,qint64)));
 	this->connect(pReply,
-		SIGNAL( uploadProgress(qint64, qint64) ),
-		SLOT( progressRegistered(qint64, qint64) ));
+		SIGNAL(uploadProgress(qint64,qint64)),
+		SLOT(progressRegistered(qint64,qint64)));
 
 
 	// This little monster here allows us to emit custom generated
 	// signals from QNetworkReply!
 	pReply->connect(this,
-		SIGNAL( error(QNetworkReply::NetworkError) ),
-		SIGNAL( error(QNetworkReply::NetworkError) ));
+		SIGNAL(error(QNetworkReply::NetworkError)),
+		SIGNAL(error(QNetworkReply::NetworkError)));
 }
 
 NetworkReplyTimeouter::~NetworkReplyTimeouter()
@@ -81,8 +81,8 @@ void NetworkReplyTimeouter::restartProgressTimeoutIfAllowed()
 			pProgressTimeoutTimer = new QTimer();
 			pProgressTimeoutTimer->setSingleShot(true);
 			this->connect(pProgressTimeoutTimer,
-				SIGNAL( timeout() ),
-				SLOT( timeout() ) );
+				SIGNAL(timeout()),
+				SLOT(timeout()));
 		}
 
 		pProgressTimeoutTimer->start(progressTimeout);
@@ -104,14 +104,14 @@ void NetworkReplyTimeouter::startConnectionTimeoutTimer(unsigned timeoutMsecs)
 		pConnectionTimeoutTimer = new QTimer();
 		pConnectionTimeoutTimer->setSingleShot(true);
 		this->connect(pConnectionTimeoutTimer,
-			SIGNAL( timeout() ),
-			SLOT( timeout() ) );
+			SIGNAL(timeout()),
+			SLOT(timeout()));
 	}
 
 	pConnectionTimeoutTimer->start(timeoutMsecs);
 }
 
-void NetworkReplyTimeouter::stopTimerIfNotNull(QTimer* pTimer)
+void NetworkReplyTimeouter::stopTimerIfNotNull(QTimer *pTimer)
 {
 	if (pTimer != nullptr)
 	{

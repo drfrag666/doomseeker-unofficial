@@ -35,22 +35,21 @@
 
 #include <cstdio>
 
+#include "application.h"
+#include "cmdargshelp.h"
+#include "commandlinetokenizer.h"
 #include "configuration/doomseekerconfig.h"
 #include "configuration/passwordscfg.h"
 #include "configuration/queryspeed.h"
 #include "connectionhandler.h"
+#include "datapaths.h"
+#include "doomseekerfilepaths.h"
 #include "gui/createserverdialog.h"
 #include "gui/mainwindow.h"
 #include "gui/remoteconsole.h"
-#include "ip2c/ip2c.h"
 #include "ini/ini.h"
+#include "ip2c/ip2c.h"
 #include "irc/configuration/ircconfig.h"
-#include "serverapi/server.h"
-#include "application.h"
-#include "cmdargshelp.h"
-#include "commandlinetokenizer.h"
-#include "datapaths.h"
-#include "doomseekerfilepaths.h"
 #include "localization.h"
 #include "log.h"
 #include "main.h"
@@ -58,19 +57,20 @@
 #include "plugins/pluginloader.h"
 #include "refresher/refresher.h"
 #include "serverapi/server.h"
+#include "serverapi/server.h"
 #include "strings.hpp"
 #include "tests/testruns.h"
-#include "wadseeker/wadseeker.h"
 #include "updater/updateinstaller.h"
 #include "versiondump.h"
+#include "wadseeker/wadseeker.h"
 
 QString Main::argDataDir;
 bool Main::bInstallUpdatesAndRestart = false;
 
 
-Main::Main(int argc, char* argv[])
-: arguments(argv), argumentsCount(argc),
-  startCreateGame(false), startRcon(false)
+Main::Main(int argc, char *argv[])
+	: arguments(argv), argumentsCount(argc),
+	startCreateGame(false), startRcon(false)
 {
 	bIsFirstRun = false;
 	bTestMode = false;
@@ -116,7 +116,7 @@ int Main::connectToServerByURL()
 {
 	ConnectionHandler *handler = ConnectionHandler::connectByUrl(connectUrl);
 
-	if(handler)
+	if (handler)
 	{
 		connect(handler, SIGNAL(finished(int)), gApp, SLOT(quit()));
 		handler->run();
@@ -138,10 +138,10 @@ int Main::run()
 	applyLogVerbosity();
 
 	Application::init(argumentsCount, arguments);
-#ifdef Q_OS_MAC
+	#ifdef Q_OS_MAC
 	// In Mac OS X it is abnormal to have menu icons unless it's a shortcut to a file of some kind.
 	gApp->setAttribute(Qt::AA_DontShowIconsInMenus);
-#endif
+	#endif
 
 	gLog << "Starting Doomseeker. Hello World! :)";
 	gLog << "Setting up data directories.";
@@ -325,7 +325,7 @@ void Main::createMainWindow()
 void Main::runCreateGame()
 {
 	gLog << tr("Starting Create Game box.");
-	CreateServerDialog* dialog = new CreateServerDialog(nullptr);
+	CreateServerDialog *dialog = new CreateServerDialog(nullptr);
 	dialog->setConfigureButtonVisible(true);
 	dialog->setWindowIcon(Application::icon());
 	dialog->show();
@@ -334,12 +334,12 @@ void Main::runCreateGame()
 void Main::runRemoteConsole()
 {
 	gLog << tr("Starting RCon client.");
-	if(rconPluginName.isEmpty())
+	if (rconPluginName.isEmpty())
 	{
 		bool canAnyEngineRcon = false;
-		for(unsigned int i = 0;i < gPlugins->numPlugins();i++)
+		for (unsigned int i = 0; i < gPlugins->numPlugins(); i++)
 		{
-			const EnginePlugin* info = gPlugins->plugin(i)->info();
+			const EnginePlugin *info = gPlugins->plugin(i)->info();
 			if (info->server(QHostAddress("localhost"), 0)->hasRcon())
 			{
 				canAnyEngineRcon = true;
@@ -362,7 +362,7 @@ void Main::runRemoteConsole()
 	{
 		// Find plugin
 		int pIndex = gPlugins->pluginIndexFromName(rconPluginName);
-		if(pIndex == -1)
+		if (pIndex == -1)
 		{
 			gLog << tr("Couldn't find specified plugin: ") + rconPluginName;
 			gApp->exit(2);
@@ -372,7 +372,7 @@ void Main::runRemoteConsole()
 		// Check for RCon Availability.
 		const EnginePlugin *plugin = gPlugins->plugin(pIndex)->info();
 		ServerPtr server = plugin->server(QHostAddress(rconAddress), rconPort);
-		if(!server->hasRcon())
+		if (!server->hasRcon())
 		{
 			gLog << tr("Plugin does not support RCon.");
 			gApp->exit(2);
@@ -432,10 +432,10 @@ bool Main::initDataDirectories()
 
 	// Continue with standard dirs:
 	dataDirectories << "./";
-#if defined(Q_OS_LINUX)
+	#if defined(Q_OS_LINUX)
 	// check in /usr/local/share/doomseeker/ on Linux
 	dataDirectories << INSTALL_PREFIX "/share/doomseeker/";
-#endif
+	#endif
 
 	dataDirectories << ":/";
 	QDir::setSearchPaths("data", dataDirectories);
@@ -563,7 +563,7 @@ bool Main::interpretCommandLineParameters()
 	//first argument is the command to run the program, example: ./doomseeker. better use 1 instead of 0
 	for (int i = 1; i < argumentsCount && failure.isEmpty(); ++i)
 	{
-		const char* arg = arguments[i];
+		const char *arg = arguments[i];
 
 		if (strcmp(arg, "--connect") == 0)
 		{
@@ -685,7 +685,7 @@ bool Main::shouldLogToStderr() const
 
 #ifdef _MSC_VER
 	#ifdef NDEBUG
-		#define USE_WINMAIN_AS_ENTRY_POINT
+#define USE_WINMAIN_AS_ENTRY_POINT
 	#endif
 #endif
 
@@ -694,28 +694,28 @@ bool Main::shouldLogToStderr() const
 QStringList getCommandLineArgs()
 {
 	CommandLineTokenizer tokenizer;
-	return tokenizer.tokenize(QString::fromUtf16((const ushort*)GetCommandLineW()));
+	return tokenizer.tokenize(QString::fromUtf16((const ushort *)GetCommandLineW()));
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine, int nCmdShow)
 {
 	int argc = 0;
-	char** argv = nullptr;
+	char **argv = nullptr;
 
 	QStringList commandLine = getCommandLineArgs();
 
 	// At least one is ensured to be here.
 	argc = commandLine.size();
-	argv = new char*[argc];
+	argv = new char *[argc];
 
 	for (int i = 0; i < commandLine.size(); ++i)
 	{
-		const QString& parameter = commandLine[i];
+		const QString &parameter = commandLine[i];
 		argv[i] = new char[parameter.toUtf8().size() + 1];
 		strcpy(argv[i], parameter.toUtf8().constData());
 	}
 
-	Main* pMain = new Main(argc, argv);
+	Main *pMain = new Main(argc, argv);
 	int returnValue = pMain->run();
 
 	// Cleans up after the program.
@@ -732,9 +732,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR szCmdLine
 	return returnValue;
 }
 #else
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
-	Main* pMain = new Main(argc, argv);
+	Main *pMain = new Main(argc, argv);
 	int returnValue = pMain->run();
 
 	// Cleans up after the program.
@@ -743,4 +743,3 @@ int main(int argc, char* argv[])
 	return returnValue;
 }
 #endif
-

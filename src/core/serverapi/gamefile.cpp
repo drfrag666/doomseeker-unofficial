@@ -93,7 +93,7 @@ GameFile &GameFile::setExecutable(int flags)
 bool GameFile::isSameFile(const QString &otherFileName)
 {
 	QString thisFile = fileName();
-#if defined(Q_OS_WIN32)
+	#if defined(Q_OS_WIN32)
 	if (executable() != 0)
 	{
 		if (!thisFile.endsWith(".exe"))
@@ -101,7 +101,7 @@ bool GameFile::isSameFile(const QString &otherFileName)
 			thisFile += ".exe";
 		}
 	}
-#endif
+	#endif
 	return thisFile.compare(otherFileName, FileUtils::comparisonSensitivity()) == 0;
 }
 
@@ -211,13 +211,13 @@ GameFileList &GameFileList::prepend(const GameFile &gameFile)
 	return *this;
 }
 
-GameFileList& operator<<(GameFileList &list, const GameFile &gameFile)
+GameFileList &operator<<(GameFileList &list, const GameFile &gameFile)
 {
 	list.append(gameFile);
 	return list;
 }
 
-GameFileList& operator<<(GameFileList &list, const GameFileList &other)
+GameFileList &operator<<(GameFileList &list, const GameFileList &other)
 {
 	list.append(other);
 	return list;

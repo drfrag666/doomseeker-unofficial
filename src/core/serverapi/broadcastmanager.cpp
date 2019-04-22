@@ -22,11 +22,11 @@
 //------------------------------------------------------------------------------
 #include "broadcastmanager.h"
 
+#include "log.h"
 #include "plugins/engineplugin.h"
 #include "refresher/refresher.h"
 #include "serverapi/broadcast.h"
 #include "serverapi/server.h"
-#include "log.h"
 #include <QSet>
 
 DClass<BroadcastManager>
@@ -37,7 +37,7 @@ public:
 DPointered(BroadcastManager)
 
 BroadcastManager::BroadcastManager(QObject *parent)
-: QObject(parent)
+	: QObject(parent)
 {
 }
 
@@ -76,8 +76,8 @@ void BroadcastManager::registerPlugin(const EnginePlugin *plugin)
 		SIGNAL(serverLost(ServerPtr)),
 		SLOT(forgetServer(ServerPtr)));
 	this->connect(plugin->data()->broadcast,
-		SIGNAL(serverDetected(ServerPtr, bool)),
-		SLOT(registerServer(ServerPtr, bool)));
+		SIGNAL(serverDetected(ServerPtr,bool)),
+		SLOT(registerServer(ServerPtr,bool)));
 }
 
 QList<ServerPtr> BroadcastManager::servers() const

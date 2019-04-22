@@ -39,8 +39,8 @@ QByteArray HuffmanQt::decode(const char *in, int size)
 
 	int outSize = ((size * 8) / 3) + 1; // compressed/decompressed = 3/8
 	unsigned char *out = new unsigned char[outSize];
-	HUFFMAN_Decode(reinterpret_cast<const unsigned char*>(in), out, size, &outSize);
-	QByteArray result(reinterpret_cast<char*>(out), outSize);
+	HUFFMAN_Decode(reinterpret_cast<const unsigned char *>(in), out, size, &outSize);
+	QByteArray result(reinterpret_cast<char *>(out), outSize);
 	delete [] out;
 	return result;
 }
@@ -54,8 +54,8 @@ QByteArray HuffmanQt::encode(const char *in, int size)
 {
 	int outSize = size + 1;
 	unsigned char *out = new unsigned char[outSize];
-	HUFFMAN_Encode(reinterpret_cast<const unsigned char*>(in), out, size, &outSize);
-	QByteArray result(reinterpret_cast<char*>(out), outSize);
+	HUFFMAN_Encode(reinterpret_cast<const unsigned char *>(in), out, size, &outSize);
+	QByteArray result(reinterpret_cast<char *>(out), outSize);
 	delete [] out;
 	return result;
 }

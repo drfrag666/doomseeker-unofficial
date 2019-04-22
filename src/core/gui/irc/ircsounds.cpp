@@ -44,35 +44,29 @@ void IRCSounds::loadFromConfig()
 	}
 }
 
-QSound* IRCSounds::loadIfExists(const QString& path)
+QSound *IRCSounds::loadIfExists(const QString &path)
 {
 	QFileInfo fileInfo(path);
 	if (fileInfo.isFile())
-	{
 		return new QSound(path);
-	}
 
 	return nullptr;
 }
 
 void IRCSounds::playIfAvailable(SoundType sound)
 {
-	QSound* pSound = sounds[sound];
+	QSound *pSound = sounds[sound];
 	if (pSound != nullptr)
-	{
 		pSound->play();
-	}
 }
 
 void IRCSounds::unload()
 {
-	QMap<SoundType, QSound*>::iterator it;
+	QMap<SoundType, QSound *>::iterator it;
 	for (it = sounds.begin(); it != sounds.end(); ++it)
 	{
 		if (it.value() != nullptr)
-		{
 			delete it.value();
-		}
 	}
 
 	sounds.clear();

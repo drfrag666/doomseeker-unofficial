@@ -73,9 +73,7 @@ QString IRCISupportParser::findValue(const QString &key)
 	foreach (const QString &element, d->iSupportParams)
 	{
 		if (element.startsWith(key))
-		{
 			return element.mid(key.length());
-		}
 	}
 	return QString();
 }
@@ -90,26 +88,18 @@ void IRCISupportParser::parsePrefix()
 {
 	QString value = findValue("PREFIX=");
 	if (value.isNull())
-	{
 		return;
-	}
 	QRegExp regex("\\((\\S+)\\)(\\S+)$");
 	regex.setMinimal(true);
 	if (regex.indexIn(value) < 0)
-	{
 		return;
-	}
 	QByteArray modes = regex.cap(1).toUtf8();
 	QByteArray prefixes = regex.cap(2).toUtf8();
 	if (modes.size() != prefixes.size())
-	{
 		return;
-	}
 	IRCUserPrefix userPrefixes;
 	for (int i = 0; i < modes.size(); ++i)
-	{
 		userPrefixes.assignPrefix(modes[i], prefixes[i]);
-	}
 	d->state.userPrefixes = userPrefixes;
 }
 

@@ -27,20 +27,20 @@
 
 DClass<JoinError>
 {
-	public:
-		JoinError::JoinErrorType type;
-		QString error;
+public:
+	JoinError::JoinErrorType type;
+	QString error;
 
-		/**
-		 * This is valid only if type == MissingWads.
-		 */
-		QString missingIwad;
+	/**
+	 * This is valid only if type == MissingWads.
+	 */
+	QString missingIwad;
 
-		/**
-		 * This is valid only if type == MissingWads.
-		 */
-		QList<PWad> missingWads;
-		QList<PWad> incompatibleWads;
+	/**
+	 * This is valid only if type == MissingWads.
+	 */
+	QList<PWad> missingWads;
+	QList<PWad> incompatibleWads;
 };
 
 DPointered(JoinError)
@@ -55,12 +55,12 @@ JoinError::JoinError(JoinError::JoinErrorType type)
 	d->type = type;
 }
 
-JoinError::JoinError(const JoinError& other)
+JoinError::JoinError(const JoinError &other)
 {
 	d = other.d;
 }
 
-JoinError& JoinError::operator=(const JoinError& other)
+JoinError &JoinError::operator=(const JoinError &other)
 {
 	d = other.d;
 	return *this;
@@ -70,7 +70,7 @@ JoinError::~JoinError()
 {
 }
 
-void JoinError::addMissingWad(const PWad& wad)
+void JoinError::addMissingWad(const PWad &wad)
 {
 	d->missingWads << wad;
 }
@@ -80,7 +80,7 @@ void JoinError::clearMissingWads()
 	d->missingWads.clear();
 }
 
-const QString& JoinError::error() const
+const QString &JoinError::error() const
 {
 	return d->error;
 }
@@ -103,32 +103,32 @@ bool JoinError::isMissingWadsError() const
 	return d->type == MissingWads;
 }
 
-const QString& JoinError::missingIwad() const
+const QString &JoinError::missingIwad() const
 {
 	return d->missingIwad;
 }
 
-const QList<PWad>& JoinError::missingWads() const
+const QList<PWad> &JoinError::missingWads() const
 {
 	return d->missingWads;
 }
 
-const QList<PWad>& JoinError::incompatibleWads() const
+const QList<PWad> &JoinError::incompatibleWads() const
 {
 	return d->incompatibleWads;
 }
 
-void JoinError::setError(const QString& error)
+void JoinError::setError(const QString &error)
 {
 	d->error = error;
 }
 
-void JoinError::setMissingIwad(const QString& iwad)
+void JoinError::setMissingIwad(const QString &iwad)
 {
 	d->missingIwad = iwad;
 }
 
-void JoinError::setMissingWads(const QList<PWad>& wads)
+void JoinError::setMissingWads(const QList<PWad> &wads)
 {
 	d->missingWads = wads;
 }

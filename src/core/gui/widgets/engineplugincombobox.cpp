@@ -26,7 +26,7 @@
 #include "plugins/pluginloader.h"
 
 EnginePluginComboBox::EnginePluginComboBox(QWidget *parent)
-: QComboBox(parent)
+	: QComboBox(parent)
 {
 	this->connect(this, SIGNAL(currentIndexChanged(int)), SLOT(onIndexChanged(int)));
 	loadPlugins();
@@ -38,9 +38,7 @@ EnginePlugin *EnginePluginComboBox::currentPlugin() const
 	{
 		unsigned enginePluginIndex = itemData(currentIndex()).toUInt();
 		if (enginePluginIndex < gPlugins->numPlugins())
-		{
 			return gPlugins->info(enginePluginIndex);
-		}
 	}
 	return nullptr;
 }
@@ -51,14 +49,12 @@ void EnginePluginComboBox::loadPlugins()
 
 	for (unsigned i = 0; i < gPlugins->numPlugins(); ++i)
 	{
-		const EnginePlugin* plugin = gPlugins->info(i);
+		const EnginePlugin *plugin = gPlugins->info(i);
 		addItem(plugin->icon(), plugin->data()->name, i);
 	}
 
 	if (count() > 0)
-	{
 		setCurrentIndex(0);
-	}
 }
 
 void EnginePluginComboBox::onIndexChanged(int index)
@@ -70,9 +66,7 @@ bool EnginePluginComboBox::setPluginByName(const QString &name)
 {
 	int engIndex = gPlugins->pluginIndexFromName(name);
 	if (engIndex < 0)
-	{
 		return false;
-	}
 	setCurrentIndex(engIndex);
 	return true;
 }

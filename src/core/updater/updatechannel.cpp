@@ -39,12 +39,12 @@
 const QString CHANNEL_BETA = "beta";
 const QString CHANNEL_STABLE = "stable";
 
-UpdateChannel::UpdateChannel(const QString& name)
+UpdateChannel::UpdateChannel(const QString &name)
 {
 	this->channelName = name;
 }
 
-UpdateChannel::UpdateChannel(const UpdateChannel& other)
+UpdateChannel::UpdateChannel(const UpdateChannel &other)
 {
 	this->channelName = other.channelName;
 }
@@ -57,10 +57,10 @@ QList<UpdateChannel> UpdateChannel::allChannels()
 	return list;
 }
 
-UpdateChannel UpdateChannel::fromName(const QString& name)
+UpdateChannel UpdateChannel::fromName(const QString &name)
 {
 	QList<UpdateChannel> channels = allChannels();
-	foreach (const UpdateChannel& channel, channels)
+	foreach (const UpdateChannel &channel, channels)
 	{
 		if (channel.name() == name)
 		{
@@ -80,7 +80,7 @@ UpdateChannel UpdateChannel::mkStable()
 	return UpdateChannel(CHANNEL_STABLE);
 }
 
-bool UpdateChannel::operator==(const UpdateChannel& other) const
+bool UpdateChannel::operator==(const UpdateChannel &other) const
 {
 	return this->channelName == other.channelName;
 }

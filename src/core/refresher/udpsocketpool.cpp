@@ -63,7 +63,7 @@ public:
 		}
 	};
 
-	QList<Asset*> pool;
+	QList<Asset *> pool;
 	int sliceSize;
 };
 DPointeredNoCopy(UdpSocketPool)

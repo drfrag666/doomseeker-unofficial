@@ -26,11 +26,11 @@
 
 #define READINT32(pointer) \
 	((quint32((quint8)(*(pointer)))) | \
-	 (quint32(quint8(*((pointer)+1)))<<8) | \
-	 (quint32(quint8(*((pointer)+2)))<<16) | \
-	 (quint32(quint8(*((pointer)+3)))<<24))
+	(quint32(quint8(*((pointer) + 1))) << 8) | \
+	(quint32(quint8(*((pointer) + 2))) << 16) | \
+	(quint32(quint8(*((pointer) + 3))) << 24))
 
-#define READINT16(pointer) ((quint16((quint8)(*(pointer)))) | (quint16(quint8(*((pointer)+1)))<<8))
+#define READINT16(pointer) ((quint16((quint8)(*(pointer)))) | (quint16(quint8(*((pointer) + 1))) << 8))
 
 #define LOCAL_FILE_HEADER_SIGNATURE 0x04034b50
 #define DESCRIPTOR_EXISTS_FLAG 0x0004 // (3rd bit)
@@ -46,7 +46,6 @@ DPointered(ZipFile::CentralDirectory);
 
 namespace ZipFile
 {
-
 static const quint32 INVALID_SIGNATURE = 0xcccccccc;
 
 ///////////////////////////////////////////////////////////////////////////
@@ -233,16 +232,14 @@ unsigned long LocalFileHeader::fileEntrySize() const
 	// Calculated depending on variables below.
 	long dataDescriptorSize = 0;
 	if ((generalPurposeBitFlag & DESCRIPTOR_EXISTS_FLAG) == DESCRIPTOR_EXISTS_FLAG)
-	{
 		dataDescriptorSize = 12;
-	}
 
 	return howManyBytesTillData() + dataDescriptorSize + compressedSize;
 }
 
 HeaderError LocalFileHeader::fromByteArray(const QByteArray &array)
 {
-	const char* data = array.constData();
+	const char *data = array.constData();
 
 	localFileHeaderSignature = 0;
 
@@ -256,9 +253,7 @@ HeaderError LocalFileHeader::fromByteArray(const QByteArray &array)
 
 	// The header is correct but the data size is not enough.
 	if (array.size() != 30)
-	{
 		return Corrupted;
-	}
 
 	versionNeededToExtract = READINT16(&data[4]);
 	generalPurposeBitFlag = READINT16(&data[6]);
@@ -278,5 +273,4 @@ unsigned long LocalFileHeader::howManyBytesTillData() const
 {
 	return ZIP_LOCAL_FILE_HEADER_SIZE + fileNameLength + extraFieldLength;
 }
-
 } // end of ZipFile namespace

@@ -26,15 +26,14 @@
 #include "chocolatedoomgameinfo.h"
 #include "chocolatedoomserver.h"
 #include <gui/createserver/iwadandwadspickerdialog.h>
+#include <ini/inisection.h>
+#include <QFileInfo>
 #include <serverapi/createserverdialogapi.h>
 #include <serverapi/gamefile.h>
 #include <serverapi/playerslist.h>
-#include <ini/inisection.h>
-#include <QFileInfo>
 
-ChocolateDoomGameClientRunner::ChocolateDoomGameClientRunner(
-	QSharedPointer<ChocolateDoomServer> server)
-: GameClientRunner(server)
+ChocolateDoomGameClientRunner::ChocolateDoomGameClientRunner(QSharedPointer<ChocolateDoomServer> server)
+	: GameClientRunner(server)
 {
 	this->server = server;
 	set_addGamePaths(&ChocolateDoomGameClientRunner::addGamePaths);
@@ -44,13 +43,9 @@ ChocolateDoomGameClientRunner::ChocolateDoomGameClientRunner(
 void ChocolateDoomGameClientRunner::createCommandLineArguments()
 {
 	if (server->players().size() == 0)
-	{
 		configureEmptyServer();
-	}
 	else
-	{
 		joinPopulatedServer();
-	}
 	if (joinError().type() == JoinError::NoError)
 	{
 		addGamePaths();
@@ -67,9 +62,7 @@ void ChocolateDoomGameClientRunner::addGamePaths()
 		setWorkingDir(QFileInfo(overwriteExecutable).path());
 	}
 	else
-	{
 		addGamePaths_default();
-	}
 }
 
 void ChocolateDoomGameClientRunner::configureEmptyServer()
@@ -77,14 +70,10 @@ void ChocolateDoomGameClientRunner::configureEmptyServer()
 	CreateServerDialogApi *csd = CreateServerDialogApi::createNew(nullptr);
 	csd->dialog()->setAttribute(Qt::WA_DeleteOnClose, false);
 	csd->makeRemoteGameSetup(plugin());
-	if(csd->dialog()->exec() == QDialog::Accepted)
-	{
+	if (csd->dialog()->exec() == QDialog::Accepted)
 		csd->fillInCommandLineArguments(overwriteExecutable, args());
-	}
 	else
-	{
 		setJoinError(JoinError(JoinError::Terminate));
-	}
 	delete csd;
 }
 
@@ -115,18 +104,12 @@ void ChocolateDoomGameClientRunner::joinPopulatedServer()
 		foreach (const QString &file, dialog->filePaths())
 		{
 			if (file.toLower().endsWith(".deh"))
-			{
 				args() << "-deh" << file;
-			}
 			else
-			{
 				args() << "-file" << file;
-			}
 		}
 	}
 	else
-	{
 		setJoinError(JoinError(JoinError::Terminate));
-	}
 	delete dialog;
 }

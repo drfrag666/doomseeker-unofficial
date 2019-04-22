@@ -24,16 +24,16 @@
 
 #include "configuration/doomseekerconfig.h"
 #include "pathfinder/wadpathfinder.h"
-#include "serverapi/tooltips/tooltipgenerator.h"
 #include "serverapi/playerslist.h"
 #include "serverapi/server.h"
 #include "serverapi/serverstructs.h"
+#include "serverapi/tooltips/tooltipgenerator.h"
 
 namespace ServerTooltip
 {
-	QString FONT_COLOR_MISSING = "#ff0000";
-	QString FONT_COLOR_WARNING = "#ff9f00";
-	QString FONT_COLOR_FOUND = "#009f00";
+QString FONT_COLOR_MISSING = "#ff0000";
+QString FONT_COLOR_WARNING = "#ff9f00";
+QString FONT_COLOR_FOUND = "#009f00";
 }
 
 QString ServerTooltip::createIwadToolTip(ServerPtr server)
@@ -74,12 +74,12 @@ QString ServerTooltip::createPlayersToolTip(ServerCPtr server)
 		return QString();
 	}
 
-	TooltipGenerator* tooltipGenerator = server->tooltipGenerator();
+	TooltipGenerator *tooltipGenerator = server->tooltipGenerator();
 
 	QString ret;
 	ret = "<div style='white-space: pre'>";
 	ret += tooltipGenerator->gameInfoTableHTML();
-	if(server->players().numClients() != 0)
+	if (server->players().numClients() != 0)
 	{
 		ret += tooltipGenerator->playerTableHTML();
 	}
@@ -115,7 +115,7 @@ QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 	static const QString toolTip = "<div style='white-space: pre'>%1</div>";
 	QString content;
 
-	const QList<PWad>& pwads = server->wads();
+	const QList<PWad> &pwads = server->wads();
 
 	// Check if we should seek and colorize.
 	bool bFindWads = gConfig.doomseeker.bTellMeWhereAreTheWADsWhenIHoverCursorOverWADSColumn;
@@ -145,7 +145,7 @@ QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 	return toolTip.arg(content);
 }
 
-QString ServerTooltip::createPwadToolTipInfo(const PWad& pwad, const ServerPtr &server)
+QString ServerTooltip::createPwadToolTipInfo(const PWad &pwad, const ServerPtr &server)
 {
 	WadFindResult findResult = findWad(server, pwad.name());
 
@@ -198,7 +198,7 @@ QString ServerTooltip::createServerNameToolTip(ServerCPtr server)
 		return QString();
 	}
 
-	TooltipGenerator* tooltipGenerator = server->tooltipGenerator();
+	TooltipGenerator *tooltipGenerator = server->tooltipGenerator();
 
 	QString ret;
 	QString generalInfo = tooltipGenerator->generalInfoHTML();

@@ -26,13 +26,13 @@
 #include "configpage.h"
 #include "qtmetapointer.h"
 #include <cassert>
-#include <Qt>
+#include <QAbstractButton>
 #include <QDebug>
 #include <QKeyEvent>
-#include <QStandardItemModel>
 #include <QStandardItem>
+#include <QStandardItemModel>
+#include <Qt>
 #include <QTreeView>
-#include <QAbstractButton>
 
 DClass<ConfigurationDialog> : public Ui::ConfigurationDialog
 {
@@ -46,25 +46,21 @@ public:
 		COLSIZE,
 	};
 
-	QList<ConfigPage*> configPages;
-	ConfigPage* currentlyDisplayedPage;
+	QList<ConfigPage *> configPages;
+	ConfigPage *currentlyDisplayedPage;
 
 	QModelIndex findPageModelIndex(const QModelIndex &rootIndex, ConfigPage *page)
 	{
-		QStandardItemModel *model = static_cast<QStandardItemModel*>(tvOptionsList->model());
+		QStandardItemModel *model = static_cast<QStandardItemModel *>(tvOptionsList->model());
 		for (int row = 0; row < model->rowCount(rootIndex); ++row)
 		{
 			QModelIndex index = model->index(row, COL_META, rootIndex);
 			ConfigPage *pageAtIndex = pageFromIndex(index);
 			if (pageAtIndex == page)
-			{
 				return index;
-			}
 			QModelIndex childIndex = findPageModelIndex(index, page);
 			if (childIndex.isValid())
-			{
 				return childIndex;
-			}
 		}
 		return QModelIndex();
 	}
@@ -73,8 +69,8 @@ public:
 	{
 		QModelIndex pageIndex = index.sibling(index.row(), COL_META);
 		QtMetaPointer metaPointer = pageIndex.data(Qt::UserRole).value<QtMetaPointer>();
-		void* pointer = metaPointer;
-		return static_cast<ConfigPage*>(pointer);
+		void *pointer = metaPointer;
+		return static_cast<ConfigPage *>(pointer);
 	}
 
 	QIcon validationIcon(ConfigPage::Validation validation) const
@@ -91,8 +87,8 @@ public:
 
 DPointered(ConfigurationDialog)
 
-ConfigurationDialog::ConfigurationDialog(QWidget* parent)
-: QDialog(parent)
+ConfigurationDialog::ConfigurationDialog(QWidget *parent)
+	: QDialog(parent)
 {
 	d->setupUi(this);
 
@@ -104,54 +100,46 @@ ConfigurationDialog::ConfigurationDialog(QWidget* parent)
 	}
 	d->tvOptionsList->setModel(model);
 
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	d->tvOptionsList->header()->setSectionResizeMode(
 		PrivData<ConfigurationDialog>::COL_NAME, QHeaderView::Stretch);
 	d->tvOptionsList->header()->setSectionResizeMode(
 		PrivData<ConfigurationDialog>::COL_VALIDATION, QHeaderView::Fixed);
-#else
+	#else
 	d->tvOptionsList->header()->setResizeMode(
 		PrivData<ConfigurationDialog>::COL_NAME, QHeaderView::Stretch);
 	d->tvOptionsList->header()->setResizeMode(
 		PrivData<ConfigurationDialog>::COL_VALIDATION, QHeaderView::Fixed);
-#endif
+	#endif
 
 	d->currentlyDisplayedPage = nullptr;
-	connect(d->buttonBox, SIGNAL( clicked(QAbstractButton *) ), this, SLOT ( btnClicked(QAbstractButton *) ));
-	this->connect(d->tvOptionsList->selectionModel(), SIGNAL(currentChanged(QModelIndex, QModelIndex)),
-		SLOT(switchToItem(QModelIndex, QModelIndex)));
+	connect(d->buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT (btnClicked(QAbstractButton*)));
+	this->connect(d->tvOptionsList->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+		SLOT(switchToItem(QModelIndex,QModelIndex)));
 }
 
 ConfigurationDialog::~ConfigurationDialog()
 {
-	for(int i = 0; i < d->configPages.count(); ++i)
-	{
+	for (int i = 0; i < d->configPages.count(); ++i)
 		delete d->configPages[i];
-	}
 }
 
-QStandardItem* ConfigurationDialog::addConfigPage(
-	QStandardItem* rootItem, ConfigPage* configPage, int position)
+QStandardItem *ConfigurationDialog::addConfigPage(
+	QStandardItem *rootItem, ConfigPage *configPage, int position)
 {
 	if (!canConfigPageBeAdded(configPage))
-	{
 		return nullptr;
-	}
 
-	QStandardItemModel* pModel = (QStandardItemModel*)d->tvOptionsList->model();
+	QStandardItemModel *pModel = (QStandardItemModel *)d->tvOptionsList->model();
 	if (rootItem == nullptr)
-	{
 		rootItem = pModel->invisibleRootItem();
-	}
 
 	if (!this->hasItemOnList(rootItem))
-	{
 		return nullptr;
-	}
 
-	QList<QStandardItem*> row;
+	QList<QStandardItem *> row;
 
-	QStandardItem* nameItem = new QStandardItem(configPage->name());
+	QStandardItem *nameItem = new QStandardItem(configPage->name());
 	nameItem->setIcon(configPage->icon());
 
 	row.insert(PrivData<ConfigurationDialog>::COL_NAME, nameItem);
@@ -162,58 +150,44 @@ QStandardItem* ConfigurationDialog::addConfigPage(
 	row.insert(PrivData<ConfigurationDialog>::COL_VALIDATION, new QStandardItem());
 
 	if (position < 0)
-	{
 		rootItem->appendRow(row);
-	}
 	else
-	{
 		rootItem->insertRow(position, row);
-	}
 
 	d->configPages << configPage;
 	this->connect(configPage, SIGNAL(validationRequested()),
 		SLOT(onPageValidationRequested()));
 
 	if (!configPage->areSettingsAlreadyRead())
-	{
 		configPage->read();
-	}
 	validatePage(configPage);
 
 	return nameItem;
 }
 
-QStandardItem* ConfigurationDialog::addLabel(QStandardItem* rootItem, const QString& label, int position)
+QStandardItem *ConfigurationDialog::addLabel(QStandardItem *rootItem, const QString &label, int position)
 {
-	QStandardItemModel* pModel = (QStandardItemModel*)d->tvOptionsList->model();
+	QStandardItemModel *pModel = (QStandardItemModel *)d->tvOptionsList->model();
 	if (rootItem == nullptr)
-	{
 		rootItem = pModel->invisibleRootItem();
-	}
 
 	if (!this->hasItemOnList(rootItem))
-	{
 		return nullptr;
-	}
 
-	QtMetaPointer metaPointer = (void*)nullptr;
+	QtMetaPointer metaPointer = (void *)nullptr;
 	QVariant variantMetaPointer = qVariantFromValue(metaPointer);
 
-	QList<QStandardItem*> row;
+	QList<QStandardItem *> row;
 
-	QStandardItem* nameItem = new QStandardItem(label);
+	QStandardItem *nameItem = new QStandardItem(label);
 	nameItem->setData(variantMetaPointer, Qt::UserRole);
 	row.insert(PrivData<ConfigurationDialog>::COL_NAME, nameItem);
 	row.insert(PrivData<ConfigurationDialog>::COL_VALIDATION, new QStandardItem());
 
 	if (position < 0)
-	{
 		rootItem->appendRow(row);
-	}
 	else
-	{
 		rootItem->insertRow(position, row);
-	}
 
 	return nameItem;
 }
@@ -221,85 +195,79 @@ QStandardItem* ConfigurationDialog::addLabel(QStandardItem* rootItem, const QStr
 void ConfigurationDialog::btnClicked(QAbstractButton *button)
 {
 	// Figure out what button we pressed and perform its action.
-	switch(d->buttonBox->standardButton(button))
+	switch (d->buttonBox->standardButton(button))
 	{
-		default:
-			break;
+	default:
+		break;
 
-		case QDialogButtonBox::Ok: // Also does the same as Apply
-			if (this->validate())
-			{
-				this->accept();
-				this->saveSettings();
-			}
-			break;
+	case QDialogButtonBox::Ok: // Also does the same as Apply
+		if (this->validate())
+		{
+			this->accept();
+			this->saveSettings();
+		}
+		break;
 
-		case QDialogButtonBox::Apply:
-			if (this->validate())
-			{
-				this->saveSettings();
-			}
-			break;
+	case QDialogButtonBox::Apply:
+		if (this->validate())
+			this->saveSettings();
+		break;
 
-		case QDialogButtonBox::Cancel:
-			this->reject();
-			break;
+	case QDialogButtonBox::Cancel:
+		this->reject();
+		break;
 	}
 }
 
-bool ConfigurationDialog::canConfigPageBeAdded(ConfigPage* configPage)
+bool ConfigurationDialog::canConfigPageBeAdded(ConfigPage *configPage)
 {
 	return isConfigPageValid(configPage) && !hasConfigPage(configPage);
 }
 
 QModelIndex ConfigurationDialog::findPageModelIndex(ConfigPage *page)
 {
-	QStandardItemModel *model = static_cast<QStandardItemModel*>(d->tvOptionsList->model());
+	QStandardItemModel *model = static_cast<QStandardItemModel *>(d->tvOptionsList->model());
 	return d->findPageModelIndex(model->indexFromItem(model->invisibleRootItem()), page);
 }
 
-bool ConfigurationDialog::isConfigPageValid(ConfigPage* configPage)
+bool ConfigurationDialog::isConfigPageValid(ConfigPage *configPage)
 {
 	return configPage != nullptr && !configPage->name().isEmpty();
 }
 
-bool ConfigurationDialog::hasConfigPage(ConfigPage* configPage)
+bool ConfigurationDialog::hasConfigPage(ConfigPage *configPage)
 {
-	foreach (ConfigPage* addedPage, d->configPages)
+	foreach (ConfigPage *addedPage, d->configPages)
 	{
 		if (configPage == addedPage)
-		{
 			return true;
-		}
 	}
 
 	return false;
 }
 
-void ConfigurationDialog::keyPressEvent(QKeyEvent* e)
+void ConfigurationDialog::keyPressEvent(QKeyEvent *e)
 {
 	switch (e->key())
 	{
-		case Qt::Key_Enter:
-		case Qt::Key_Return:
-			// Suppress the dialog being accepted on pressing ENTER key.
-			// Dialog would close even in line edits that had "returnPressed()"
-			// signals connected. That wasn't good.
-			e->ignore();
-			break;
-		default:
-			QDialog::keyPressEvent(e);
+	case Qt::Key_Enter:
+	case Qt::Key_Return:
+		// Suppress the dialog being accepted on pressing ENTER key.
+		// Dialog would close even in line edits that had "returnPressed()"
+		// signals connected. That wasn't good.
+		e->ignore();
+		break;
+	default:
+		QDialog::keyPressEvent(e);
 	}
 }
 
-bool ConfigurationDialog::hasItemOnList(QStandardItem* pItem) const
+bool ConfigurationDialog::hasItemOnList(QStandardItem *pItem) const
 {
 	if (pItem == nullptr)
-	{
 		return false;
-	}
 
-	QStandardItemModel* pModel = (QStandardItemModel*)d->tvOptionsList->model();
+	QStandardItemModel *pModel = (QStandardItemModel *)d->tvOptionsList->model();
 
 	// Calling index methods on the invisible root items will always return
 	// invalid values.
@@ -310,36 +278,34 @@ bool ConfigurationDialog::hasItemOnList(QStandardItem* pItem) const
 
 void ConfigurationDialog::onPageValidationRequested()
 {
-	ConfigPage *page = qobject_cast<ConfigPage*>(sender());
+	ConfigPage *page = qobject_cast<ConfigPage *>(sender());
 	assert(page != nullptr);
 	validatePage(page);
 }
 
 void ConfigurationDialog::reject()
 {
-	foreach(ConfigPage *page, d->configPages)
+	foreach (ConfigPage *page, d->configPages)
 	{
 		page->reject();
 	}
 	QDialog::reject();
 }
 
-void ConfigurationDialog::switchToItem(const QModelIndex& current, const QModelIndex &previous)
+void ConfigurationDialog::switchToItem(const QModelIndex &current, const QModelIndex &previous)
 {
 	if (current.isValid() && current != previous)
 	{
-		ConfigPage* configPage = d->pageFromIndex(current);
+		ConfigPage *configPage = d->pageFromIndex(current);
 
 		// Something with sense was selected, display this something
 		// and hide previous box.
 		if (isConfigPageValid(configPage))
-		{
 			showConfigPage(configPage);
-		}
 	}
 }
 
-QTreeView* ConfigurationDialog::optionsTree()
+QTreeView *ConfigurationDialog::optionsTree()
 {
 	return d->tvOptionsList;
 }
@@ -348,13 +314,11 @@ void ConfigurationDialog::saveSettings()
 {
 	// Iterate through every engine and execute it's saving method
 	for (int i = 0; i < d->configPages.count(); ++i)
-	{
 		d->configPages[i]->save();
-	}
 
 	doSaveSettings();
 
-	if(isVisible())
+	if (isVisible())
 	{
 		// Allow panels such as the one for Wadseeker update their contents.
 		for (int i = 0; i < d->configPages.count(); ++i)
@@ -365,7 +329,7 @@ void ConfigurationDialog::saveSettings()
 	}
 }
 
-void ConfigurationDialog::showConfigPage(ConfigPage* page)
+void ConfigurationDialog::showConfigPage(ConfigPage *page)
 {
 	if (d->currentlyDisplayedPage != nullptr)
 	{
@@ -394,7 +358,7 @@ void ConfigurationDialog::validatePage(ConfigPage *page)
 	QModelIndex validationIndex = pageIndex.sibling(pageIndex.row(), PrivData<ConfigurationDialog>::COL_VALIDATION);
 	assert(validationIndex.isValid());
 
-	QStandardItemModel *model = static_cast<QStandardItemModel*>(d->tvOptionsList->model());
+	QStandardItemModel *model = static_cast<QStandardItemModel *>(d->tvOptionsList->model());
 	QStandardItem *validationItem = model->itemFromIndex(validationIndex);
 	validationItem->setIcon(d->validationIcon(page->validate()));
 }

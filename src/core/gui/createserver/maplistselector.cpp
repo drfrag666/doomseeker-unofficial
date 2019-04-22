@@ -25,13 +25,13 @@
 #include "commongui.h"
 #include "modreader.h"
 
-#include <QTimer>
-#include <QScopedPointer>
-#include <QSharedPointer>
 #include <QFileInfo>
 #include <QMenu>
+#include <QScopedPointer>
+#include <QSharedPointer>
+#include <QTimer>
 
-MapEntry::MapEntry(const QString& name, const QString& originalFile, const bool& isIwad)
+MapEntry::MapEntry(const QString &name, const QString &originalFile, const bool &isIwad)
 {
 	this->name = name;
 	this->originalFile = originalFile;
@@ -48,7 +48,7 @@ public:
 
 DPointeredNoCopy(MapListSelector)
 
-MapListSelector::MapListSelector(QWidget* parent) : QDialog(parent)
+MapListSelector::MapListSelector(QWidget *parent) : QDialog(parent)
 {
 	d->checkWadTimer.reset(new QTimer);
 
@@ -61,7 +61,7 @@ MapListSelector::~MapListSelector()
 {
 }
 
-void MapListSelector::addPaths(const QStringList& paths)
+void MapListSelector::addPaths(const QStringList &paths)
 {
 	d->paths << paths;
 	d->progressBar->setMaximum(d->progressBar->value() + paths.size());
@@ -92,14 +92,14 @@ void MapListSelector::performCheckStep()
 	}
 	QString path = d->paths.takeFirst();
 	QSharedPointer<ModReader> modReader = ModReader::create(path);
-	if(!modReader.isNull() && modReader->load())
+	if (!modReader.isNull() && modReader->load())
 	{
-		foreach (const QString& tempMap, modReader->getAllMaps())
+		foreach (const QString &tempMap, modReader->getAllMaps())
 		{
 			addEntryToMapList(MapEntry(tempMap, QFile(path).fileName(), modReader->isIwad()));
 		}
 	}
-	d->progressBar->setValue(d->progressBar->value()+1);
+	d->progressBar->setValue(d->progressBar->value() + 1);
 }
 
 void MapListSelector::addEntryToMapList(const MapEntry &newEntry)
@@ -117,10 +117,10 @@ void MapListSelector::addEntryToMapList(const MapEntry &newEntry)
 		d->mapList.append(newEntry);
 }
 
-void MapListSelector::setMapsOfCheckableList(const QList<MapEntry>& list)
+void MapListSelector::setMapsOfCheckableList(const QList<MapEntry> &list)
 {
 	d->listMapsWidget->clear();
-	foreach (const MapEntry& mapEntry, list)
+	foreach (const MapEntry &mapEntry, list)
 	{
 		QListWidgetItem *item = new QListWidgetItem(mapEntry.name, d->listMapsWidget);
 		item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
@@ -131,7 +131,7 @@ void MapListSelector::setMapsOfCheckableList(const QList<MapEntry>& list)
 	}
 }
 
-void MapListSelector::setIfFinishedStateIsEnabled(const bool& state)
+void MapListSelector::setIfFinishedStateIsEnabled(const bool &state)
 {
 	d->btnAdd->setEnabled(state);
 	d->checkAll->setEnabled(state);
@@ -165,9 +165,7 @@ void MapListSelector::listItemChanged()
 {
 	QStringList checkedMaps = selectedMaps();
 	if (checkedMaps.size() > 0 && checkedMaps.size() < d->listMapsWidget->count())
-	{
 		d->checkAll->setCheckState(Qt::PartiallyChecked);
-	}
 	else
 	{
 		d->checkAll->setCheckState((checkedMaps.size() == 0) ?

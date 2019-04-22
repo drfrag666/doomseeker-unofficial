@@ -27,8 +27,8 @@
 #include "protocols/json.h"
 #include <QCryptographicHash>
 #include <QDebug>
-#include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QNetworkRequest>
 #include <QUrl>
 
 class WadArchiveClient::PrivData
@@ -139,7 +139,7 @@ void WadArchiveClient::setUserAgent(const QString &userAgent)
 void WadArchiveClient::start()
 {
 	#ifndef NDEBUG
-		qDebug() << "WadArchiveClient::start()";
+	qDebug() << "WadArchiveClient::start()";
 	#endif
 	emit message(tr("Wad Archive started."), WadseekerLib::Notice);
 	startNextInQueue();
@@ -156,8 +156,8 @@ void WadArchiveClient::startNextInQueue()
 	QUrl urlName = d->buildUrlName(d->currentWad);
 	QUrl urlChecksum = d->buildUrlChecksum(d->currentWad);
 	#ifndef NDEBUG
-		qDebug() << "wad archive search:" << urlName;
-		qDebug() << "wad archive checksum:" << urlChecksum;
+	qDebug() << "wad archive search:" << urlName;
+	qDebug() << "wad archive checksum:" << urlChecksum;
 	#endif
 	emit message(tr("Querying Wad Archive for %1").arg(d->currentWad.name()), WadseekerLib::Notice);
 
@@ -209,7 +209,7 @@ void WadArchiveClient::reportBadUrlIfOriginatingFromHere(const QUrl &url)
 			WadseekerLib::Notice);
 		QUrl reportUrl = d->buildBadUrlReporterUrl(url);
 		#ifndef NDEBUG
-			qDebug() << "Wad Archive report url:" << reportUrl;
+		qDebug() << "Wad Archive report url:" << reportUrl;
 		#endif
 		QNetworkReply *reply = startQNetworkReply(reportUrl);
 		connect(reply, SIGNAL(finished()), reply, SLOT(deleteLater()));

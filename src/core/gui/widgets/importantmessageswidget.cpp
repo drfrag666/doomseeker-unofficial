@@ -22,8 +22,8 @@
 //------------------------------------------------------------------------------
 #include "importantmessageswidget.h"
 
-#include <QDateTime>
 #include "ui_importantmessageswidget.h"
+#include <QDateTime>
 #include <QLabel>
 #include <QVBoxLayout>
 
@@ -33,13 +33,13 @@ public:
 	class MessageLabel
 	{
 	public:
-		MessageLabel(QLabel* pLabel)
+		MessageLabel(QLabel *pLabel)
 		{
 			this->pLabel = pLabel;
 			this->timeCreated = QDateTime::currentDateTime();
 		}
 
-		QLabel* pLabel;
+		QLabel *pLabel;
 		QDateTime timeCreated;
 	};
 
@@ -52,8 +52,8 @@ public:
 
 DPointered(ImportantMessagesWidget)
 
-ImportantMessagesWidget::ImportantMessagesWidget(QWidget* pParent)
-: QWidget(pParent)
+ImportantMessagesWidget::ImportantMessagesWidget(QWidget *pParent)
+	: QWidget(pParent)
 {
 	d->maxMessages = PrivData<ImportantMessagesWidget>::DEFAULT_MAX_MESSAGES;
 	d->setupUi(this);
@@ -65,22 +65,20 @@ ImportantMessagesWidget::~ImportantMessagesWidget()
 {
 }
 
-void ImportantMessagesWidget::addMessage(const QString& message)
+void ImportantMessagesWidget::addMessage(const QString &message)
 {
 	addMessage(message, QDateTime());
 }
 
-void ImportantMessagesWidget::addMessage(const QString& message, const QDateTime& dateTime)
+void ImportantMessagesWidget::addMessage(const QString &message, const QDateTime &dateTime)
 {
 	QString strTimestamp = "";
 	if (dateTime.isValid())
-	{
 		strTimestamp = dateTime.toString("[hh:mm:ss]") + " ";
-	}
 
 	QString formattedMessage = "<p>" + strTimestamp + message + "</p>";
 
-	QLabel* pNewLabel = new QLabel(this);
+	QLabel *pNewLabel = new QLabel(this);
 	pNewLabel->setText(formattedMessage);
 	pNewLabel->setTextInteractionFlags(pNewLabel->textInteractionFlags()
 		| Qt::TextSelectableByMouse);
@@ -97,7 +95,7 @@ void ImportantMessagesWidget::addMessage(const QString& message, const QDateTime
 	dropOldWidgetsIfBeyondLimit();
 }
 
-void ImportantMessagesWidget::addMessage(const QString& message, unsigned timestamp)
+void ImportantMessagesWidget::addMessage(const QString &message, unsigned timestamp)
 {
 	addMessage(message, QDateTime::fromTime_t(timestamp));
 }
@@ -114,13 +112,11 @@ void ImportantMessagesWidget::dropOldWidgetsIfBeyondLimit()
 {
 	while (d->labelWidgets.size() > d->maxMessages)
 	{
-		PrivData<ImportantMessagesWidget>::MessageLabel& oldestLabel = d->labelWidgets.first();
+		PrivData<ImportantMessagesWidget>::MessageLabel &oldestLabel = d->labelWidgets.first();
 		int timeDifference = oldestLabel.timeCreated.secsTo(QDateTime::currentDateTime());
 
 		if (timeDifference > PrivData<ImportantMessagesWidget>::MAX_MSG_KEEP_TIME_SEC)
-		{
 			removeOneOldest();
-		}
 		else
 		{
 			// Exit the loop as no message is old enough to be dropped.
@@ -133,15 +129,11 @@ void ImportantMessagesWidget::dropOldWidgetsIfBeyondLimit()
 void ImportantMessagesWidget::removeOldest(int num)
 {
 	if (num >= d->labelWidgets.size())
-	{
 		clear();
-	}
 	else
 	{
 		for (; num > 0; --num)
-		{
 			removeOneOldest();
-		}
 	}
 }
 

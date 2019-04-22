@@ -32,7 +32,7 @@ ServerListFilterInfo::ServerListFilterInfo()
 	testingServers = Doomseeker::Indifferent;
 }
 
-void ServerListFilterInfo::copy(const ServerListFilterInfo& other)
+void ServerListFilterInfo::copy(const ServerListFilterInfo &other)
 {
 	bEnabled = other.bEnabled;
 	bShowEmpty = other.bShowEmpty;
@@ -48,53 +48,41 @@ void ServerListFilterInfo::copy(const ServerListFilterInfo& other)
 	copyTrimmed(this->wadsExcluded, other.wadsExcluded);
 }
 
-void ServerListFilterInfo::copyTrimmed(QStringList& target, const QStringList& source) const
+void ServerListFilterInfo::copyTrimmed(QStringList &target, const QStringList &source) const
 {
 	target.clear();
 	foreach (QString element, source)
 	{
 		element = element.trimmed();
 		if (!element.isEmpty())
-		{
 			target << element;
-		}
 	}
 }
 
 bool ServerListFilterInfo::isFilteringAnything() const
 {
 	if (!serverName.isEmpty())
-	{
 		return true;
-	}
 
 	if (!bEnabled)
-	{
 		return false;
-	}
 
 	if (!bShowEmpty || !bShowFull)
-	{
 		return true;
-	}
 
 	if (bShowOnlyValid || maxPing > 0)
-	{
 		return true;
-	}
 
 	if (!gameModes.isEmpty()
-	||  !gameModesExcluded.isEmpty()
-	||  !wads.isEmpty()
-	||  !wadsExcluded.isEmpty())
+		||  !gameModesExcluded.isEmpty()
+		||  !wads.isEmpty()
+		||  !wadsExcluded.isEmpty())
 	{
 		return true;
 	}
 
 	if (testingServers != Doomseeker::Indifferent)
-	{
 		return true;
-	}
 
 	return false;
 }

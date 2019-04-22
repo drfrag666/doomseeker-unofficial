@@ -22,8 +22,8 @@
 //------------------------------------------------------------------------------
 #include "freedoominfoparser.h"
 
-#include "entities/modset.h"
 #include "entities/checksum.h"
+#include "entities/modset.h"
 #include "protocols/json.h"
 
 #include <QCryptographicHash>

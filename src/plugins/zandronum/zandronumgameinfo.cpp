@@ -27,7 +27,7 @@ const QString ZandronumGameInfo::OPTION_GAMEVERSION = "GameVersion";
 QList<GameMode> ZandronumGameInfo::gameModes()
 {
 	QList<GameMode> gameModesList;
-	gameModesList << GameMode::mkCooperative();;
+	gameModesList << GameMode::mkCooperative();
 	gameModesList << GameMode::ffaGame(GAMEMODE_SURVIVAL, tr("Survival"));
 	gameModesList << GameMode::ffaGame(GAMEMODE_INVASION, tr("Invasion"));
 	gameModesList << GameMode::mkDeathmatch();

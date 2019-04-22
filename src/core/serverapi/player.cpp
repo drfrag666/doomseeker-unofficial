@@ -25,13 +25,13 @@
 
 DClass<Player>
 {
-	public:
-		QString name;
-		long score;
-		unsigned short ping;
-		bool spectator;
-		bool bot;
-		Player::PlayerTeam team;
+public:
+	QString name;
+	long score;
+	unsigned short ping;
+	bool spectator;
+	bool bot;
+	Player::PlayerTeam team;
 };
 
 DPointered(Player)
@@ -56,12 +56,12 @@ Player::Player(const QString &name, long score, unsigned long ping,
 	d->team = team;
 }
 
-Player::Player(const Player& other)
+Player::Player(const Player &other)
 {
 	d = other.d;
 }
 
-Player& Player::operator=(const Player& other)
+Player &Player::operator=(const Player &other)
 {
 	d = other.d;
 	return *this;
@@ -86,7 +86,7 @@ bool Player::isTeamlessBot() const
 	return d->bot && d->team == TEAM_NONE;
 }
 
-const QString& Player::name() const
+const QString &Player::name() const
 {
 	return d->name;
 }
@@ -116,7 +116,7 @@ QString Player::nameColorTagsStripped() const
 						break;
 				}
 				if (range && colorCodeIdx >= d->name.length())
-					++i;  // We didn't find range end.
+					++i; // We didn't find range end.
 				else
 					i = colorCodeIdx;
 			}
@@ -139,17 +139,17 @@ QString Player::nameFormatted() const
 
 		switch (d->name[i].toLatin1())
 		{
-			case '<':
-				ret += "&lt;";
-				break;
+		case '<':
+			ret += "&lt;";
+			break;
 
-			case '>':
-				ret += "&gt;";
-				break;
+		case '>':
+			ret += "&gt;";
+			break;
 
-			default:
-				ret += d->name[i];
-				break;
+		default:
+			ret += d->name[i];
+			break;
 		}
 	}
 
@@ -171,14 +171,14 @@ Player::PlayerTeam Player::teamNum() const
 	return d->team;
 }
 
-bool Player::operator==(const Player& other) const
+bool Player::operator==(const Player &other) const
 {
 	return name().compare(other.name(), Qt::CaseInsensitive) == 0;
 }
 
 //////////////////////////////////////////////////////////////////////////////
 
-uint qHash(const Player& player)
+uint qHash(const Player &player)
 {
 	return qHash(player.name());
 }

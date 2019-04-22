@@ -26,7 +26,7 @@
 #include <serverapi/gamecreateparams.h>
 
 PluginGameHost::PluginGameHost()
-: GameHost(PluginEnginePlugin::staticInstance())
+	: GameHost(PluginEnginePlugin::staticInstance())
 {
 	set_addDMFlags(&PluginGameHost::addDMFlags);
 }
@@ -36,8 +36,6 @@ void PluginGameHost::addDMFlags()
 	foreach (const DMFlagsSection &section, params().dmFlags())
 	{
 		for (int i = 0; i < section.count(); ++i)
-		{
 			args() << "-flag" << section.name() << section[i].name();
-		}
 	}
 }

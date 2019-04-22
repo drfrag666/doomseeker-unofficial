@@ -28,7 +28,7 @@
 
 static const QString DATA_SEARCH_PREFIX = "data";
 
-DataPaths* DoomseekerFilePaths::pDataPaths = nullptr;
+DataPaths *DoomseekerFilePaths::pDataPaths = nullptr;
 
 const QString DoomseekerFilePaths::CACERTS_FILENAME = "cacerts.pem";
 const QString DoomseekerFilePaths::IP2C_DATABASE_FILENAME = "IpToCountry.dat";
@@ -61,7 +61,7 @@ QString DoomseekerFilePaths::ircIni()
 
 QString DoomseekerFilePaths::ip2cDatabaseAny()
 {
-	foreach(const QString &searchPath, QDir::searchPaths(DATA_SEARCH_PREFIX))
+	foreach (const QString &searchPath, QDir::searchPaths(DATA_SEARCH_PREFIX))
 	{
 		QString path = Strings::combinePaths(searchPath, IP2C_DATABASE_FILENAME);
 		if (QFile(path).exists())
@@ -78,9 +78,7 @@ QString DoomseekerFilePaths::ip2cDatabase()
 QString DoomseekerFilePaths::joinIfNeitherEmpty(const QString &left, const QString &right)
 {
 	if (left.trimmed().isEmpty() || right.trimmed().isEmpty())
-	{
 		return QString();
-	}
 	return left + "/" + right;
 }
 

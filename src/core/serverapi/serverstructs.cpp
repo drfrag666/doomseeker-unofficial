@@ -36,15 +36,15 @@ static QString coerceInternalName(const QString &name)
 
 DClass<DMFlag>
 {
-	public:
-		QString name;
-		unsigned value;
-		QString internalName;
+public:
+	QString name;
+	unsigned value;
+	QString internalName;
 
-		void setInternalName(const QString &name)
-		{
-			internalName = coerceInternalName(name);
-		}
+	void setInternalName(const QString &name)
+	{
+		internalName = coerceInternalName(name);
+	}
 };
 
 DPointered(DMFlag)
@@ -108,15 +108,15 @@ unsigned DMFlag::value() const
 
 DClass<DMFlagsSection>
 {
-	public:
-		QString name;
-		QString internalName;
-		QVector<DMFlag> flags;
+public:
+	QString name;
+	QString internalName;
+	QVector<DMFlag> flags;
 
-		void setInternalName(const QString &name)
-		{
-			internalName = coerceInternalName(name);
-		}
+	void setInternalName(const QString &name)
+	{
+		internalName = coerceInternalName(name);
+	}
 };
 
 DPointered(DMFlagsSection)
@@ -153,7 +153,7 @@ DMFlagsSection &DMFlagsSection::operator=(const DMFlagsSection &other)
 	return *this;
 }
 
-void DMFlagsSection::add(const DMFlag& flag)
+void DMFlagsSection::add(const DMFlag &flag)
 {
 	d->flags << flag;
 }
@@ -161,7 +161,7 @@ void DMFlagsSection::add(const DMFlag& flag)
 unsigned DMFlagsSection::combineValues() const
 {
 	unsigned result = 0;
-	foreach (const DMFlag& flag, d->flags)
+	foreach (const DMFlag &flag, d->flags)
 	{
 		result |= flag.value();
 	}
@@ -190,17 +190,17 @@ bool DMFlagsSection::isEmpty() const
 	return count() == 0;
 }
 
-const QString& DMFlagsSection::name() const
+const QString &DMFlagsSection::name() const
 {
 	return d->name;
 }
 
-const DMFlag& DMFlagsSection::operator[](int index) const
+const DMFlag &DMFlagsSection::operator[](int index) const
 {
 	return d->flags[index];
 }
 
-DMFlag& DMFlagsSection::operator[](int index)
+DMFlag &DMFlagsSection::operator[](int index)
 {
 	return d->flags[index];
 }
@@ -253,10 +253,10 @@ DMFlagsSection DMFlagsSection::removed(const DMFlagsSection &removals) const
 
 DClass<GameCVar>
 {
-	public:
-		QString command;
-		QString name;
-		QVariant value;
+public:
+	QString command;
+	QString name;
+	QVariant value;
 };
 
 DPointered(GameCVar)
@@ -314,7 +314,7 @@ const QString &GameCVar::name() const
 	return d->name;
 }
 
-void GameCVar::setValue(const QVariant& value)
+void GameCVar::setValue(const QVariant &value)
 {
 	d->value = value;
 }
@@ -349,10 +349,10 @@ QList<GameCVar> GameCVarProvider::get(const QVariant &context)
 
 DClass<GameMode>
 {
-	public:
-		gamemode_id index;
-		QString name;
-		bool teamgame;
+public:
+	gamemode_id index;
+	QString name;
+	bool teamgame;
 };
 
 DPointered(GameMode)
@@ -454,10 +454,10 @@ GameMode GameMode::teamGame(int index, const QString &name)
 
 DClass<PWad>
 {
-	public:
-		QString name;
-		bool optional;
-		QList<Checksum> checksums;
+public:
+	QString name;
+	bool optional;
+	QList<Checksum> checksums;
 };
 
 DPointered(PWad)
@@ -510,7 +510,7 @@ bool PWad::isOptional() const
 	return d->optional;
 }
 
-const QString& PWad::name() const
+const QString &PWad::name() const
 {
 	return d->name;
 }

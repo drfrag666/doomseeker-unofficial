@@ -24,9 +24,9 @@
 
 #include "mastermanager.h"
 
+#include "customservers.h"
 #include "serverapi/message.h"
 #include "serverapi/server.h"
-#include "customservers.h"
 
 // TODO: I don't think that MasterManager should store a duplicate of each
 // server (~Zalewa).
@@ -40,7 +40,7 @@ MasterManager::~MasterManager()
 {
 	clearServers();
 
-	for(int i = 0;i < masters.size();i++)
+	for (int i = 0; i < masters.size(); i++)
 		delete masters[i];
 
 	delete customServers;
@@ -48,15 +48,15 @@ MasterManager::~MasterManager()
 
 void MasterManager::addMaster(MasterClient *master)
 {
-	if(master == nullptr)
+	if (master == nullptr)
 		return;
 
 	masters.append(master);
 	master->setEnabled(true);
 
 	this->connect(master, SIGNAL(listUpdated()), SLOT(masterListUpdated()));
-	this->connect(master, SIGNAL(message(QString, QString, bool)),
-		SLOT(forwardMasterMessage(QString, QString, bool)));
+	this->connect(master, SIGNAL(message(QString,QString,bool)),
+		SLOT(forwardMasterMessage(QString,QString,bool)));
 	this->connect(master, SIGNAL(messageImportant(Message)),
 		SLOT(forwardMasterMessageImportant(Message)));
 }
@@ -74,7 +74,7 @@ QList<ServerPtr> MasterManager::allServers() const
 
 void MasterManager::masterListUpdated()
 {
-	MasterClient *master = static_cast<MasterClient*>(sender());
+	MasterClient *master = static_cast<MasterClient *>(sender());
 	foreach(ServerPtr pServer, master->servers())
 	{
 		registerNewServer(pServer);
@@ -100,9 +100,9 @@ void MasterManager::refreshStarts()
 
 	clearServers();
 
-	for(int i = 0;i < masters.size();i++)
+	for (int i = 0; i < masters.size(); i++)
 	{
-		if(!masters[i]->isEnabled())
+		if (!masters[i]->isEnabled())
 		{
 			continue;
 		}
@@ -114,7 +114,7 @@ void MasterManager::refreshStarts()
 
 void MasterManager::timeoutRefreshEx()
 {
-	foreach(MasterClient* pMaster, mastersBeingRefreshed)
+	foreach(MasterClient *pMaster, mastersBeingRefreshed)
 	{
 		pMaster->timeoutRefresh();
 	}

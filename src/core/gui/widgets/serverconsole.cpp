@@ -23,8 +23,8 @@
 #include "configuration/doomseekerconfig.h"
 #include "gui/widgets/memorylineedit.h"
 #include "serverconsole.h"
-#include "ui_serverconsole.h"
 #include "strings.hpp"
+#include "ui_serverconsole.h"
 
 #include <QRegExp>
 
@@ -52,17 +52,17 @@ ServerConsole::~ServerConsole()
 
 void ServerConsole::appendMessage(const QString &message)
 {
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	QString appendMessage = QString(message).toHtmlEscaped();
-#else
+	#else
 	QString appendMessage = Qt::escape(message);
-#endif
-	if(appendMessage.endsWith('\n')) // Remove the trailing new line since appendPlainText seems to add one automatically.
+	#endif
+	if (appendMessage.endsWith('\n')) // Remove the trailing new line since appendPlainText seems to add one automatically.
 		appendMessage.chop(1);
 	appendMessage.replace('\n', "<br>");
 
 	// Process colors
-	if(gConfig.doomseeker.bColorizeServerConsole)
+	if (gConfig.doomseeker.bColorizeServerConsole)
 		appendMessage = Strings::colorizeString(appendMessage);
 	else
 	{
@@ -79,7 +79,7 @@ void ServerConsole::appendMessage(const QString &message)
 void ServerConsole::forwardMessage()
 {
 	QString msg = d->consoleInput->text();
-	if(msg[0] == ':')
+	if (msg[0] == ':')
 		msg.replace(0, 1, "say ");
 
 	emit messageSent(msg);

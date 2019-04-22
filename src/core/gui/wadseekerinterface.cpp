@@ -23,17 +23,17 @@
 #include "gui/wadseekerinterface.h"
 #include "ui_wadseekerinterface.h"
 
+#include "application.h"
 #include "configuration/doomseekerconfig.h"
 #include "gui/helpers/taskbarbutton.h"
 #include "gui/helpers/taskbarprogress.h"
+#include "mainwindow.h"
 #include "serverapi/server.h"
 #include "serverapi/serverstructs.h"
-#include "application.h"
-#include "mainwindow.h"
 #include "strings.hpp"
+#include "wadseeker/entities/checksum.h"
 #include "wadseeker/entities/modfile.h"
 #include "wadseeker/entities/modset.h"
-#include "wadseeker/entities/checksum.h"
 
 #include <QMessageBox>
 
@@ -51,15 +51,15 @@ public:
 
 DPointered(WadseekerInterface)
 
-WadseekerInterface::WadseekerInterface(QWidget* parent)
-: QDialog(parent)
+WadseekerInterface::WadseekerInterface(QWidget *parent)
+	: QDialog(parent)
 {
 	construct();
 	bAutomatic = false;
 }
 
-WadseekerInterface::WadseekerInterface(ServerPtr server, QWidget* parent)
-: QDialog(parent)
+WadseekerInterface::WadseekerInterface(ServerPtr server, QWidget *parent)
+	: QDialog(parent)
 {
 	construct();
 	setupAutomatic();
@@ -90,22 +90,20 @@ void WadseekerInterface::accept()
 	if (isAutomatic())
 	{
 		if (d->bCompletedSuccessfully)
-		{
 			done(QDialog::Accepted);
-		}
 	}
 	else
 	{
 		if (d->leWadName->text().isEmpty())
-		{
 			return;
-		}
 		else
 		{
 			seekedWads.clear();
 			QStringList pwadNames = d->leWadName->text().split(',', QString::SkipEmptyParts);
 			foreach (QString pwadName, pwadNames)
+			{
 				seekedWads << pwadName.trimmed();
+			}
 		}
 		startSeeking(seekedWads);
 	}
@@ -123,20 +121,16 @@ void WadseekerInterface::allDone(bool bSuccess)
 		if (isAutomatic() && !d->preventGame)
 		{
 			if (isActiveWindow())
-			{
 				done(QDialog::Accepted);
-			}
 			else
-			{
 				d->btnStartGame->show();
-			}
 		}
 	}
 	else
 	{
 		QList<PWad> failures = unsuccessfulWads();
 
-		foreach (const PWad& failure, failures)
+		foreach (const PWad &failure, failures)
 		{
 			d->twWads->setFileFailed(failure.name());
 		}
@@ -148,34 +142,34 @@ void WadseekerInterface::allDone(bool bSuccess)
 void WadseekerInterface::connectWadseekerObject()
 {
 	// Connect Wadseeker to the dialog box.
-	this->connect(&wadseeker, SIGNAL( allDone(bool) ),
-		SLOT( allDone(bool) ) );
-	this->connect(&wadseeker, SIGNAL( message(const QString&, WadseekerLib::MessageType) ),
-		SLOT( message(const QString&, WadseekerLib::MessageType) ) );
-	this->connect(&wadseeker, SIGNAL( seekStarted(const ModSet&) ),
-		SLOT( seekStarted(const ModSet&) ) );
-	this->connect(&wadseeker, SIGNAL( fileInstalled(const ModFile&) ),
-		SLOT( fileDownloadSuccessful(const ModFile&) ) );
-	this->connect(&wadseeker, SIGNAL( siteFinished(const QUrl&) ),
-		SLOT( siteFinished(const QUrl&) ) );
-	this->connect(&wadseeker, SIGNAL( siteProgress(const QUrl&, qint64, qint64) ),
-		SLOT( siteProgress(const QUrl&, qint64, qint64) ) );
-	this->connect(&wadseeker, SIGNAL( siteRedirect(const QUrl&, const QUrl&) ),
-		SLOT( siteRedirect(const QUrl&, const QUrl&) ) );
-	this->connect(&wadseeker, SIGNAL( siteStarted(const QUrl&) ),
-		SLOT( siteStarted(const QUrl&) ) );
-	this->connect(&wadseeker, SIGNAL( serviceStarted(QString) ),
-		SLOT( serviceStarted(QString) ) );
-	this->connect(&wadseeker, SIGNAL( serviceFinished(QString) ),
-		SLOT( serviceFinished(QString) ) );
+	this->connect(&wadseeker, SIGNAL(allDone(bool)),
+		SLOT(allDone(bool)));
+	this->connect(&wadseeker, SIGNAL(message(const QString&,WadseekerLib::MessageType)),
+		SLOT(message(const QString&,WadseekerLib::MessageType)));
+	this->connect(&wadseeker, SIGNAL(seekStarted(const ModSet&)),
+		SLOT(seekStarted(const ModSet&)));
+	this->connect(&wadseeker, SIGNAL(fileInstalled(const ModFile&)),
+		SLOT(fileDownloadSuccessful(const ModFile&)));
+	this->connect(&wadseeker, SIGNAL(siteFinished(const QUrl&)),
+		SLOT(siteFinished(const QUrl&)));
+	this->connect(&wadseeker, SIGNAL(siteProgress(const QUrl&,qint64,qint64)),
+		SLOT(siteProgress(const QUrl&,qint64,qint64)));
+	this->connect(&wadseeker, SIGNAL(siteRedirect(const QUrl&,const QUrl&)),
+		SLOT(siteRedirect(const QUrl&,const QUrl&)));
+	this->connect(&wadseeker, SIGNAL(siteStarted(const QUrl&)),
+		SLOT(siteStarted(const QUrl&)));
+	this->connect(&wadseeker, SIGNAL(serviceStarted(QString)),
+		SLOT(serviceStarted(QString)));
+	this->connect(&wadseeker, SIGNAL(serviceFinished(QString)),
+		SLOT(serviceFinished(QString)));
 
 	// Connect Wadseeker to the WADs table widget.
-	d->twWads->connect(&wadseeker, SIGNAL( fileDownloadFinished(const ModFile&) ),
-		SLOT( setFileDownloadFinished(const ModFile&) ) );
-	d->twWads->connect(&wadseeker, SIGNAL( fileDownloadProgress(const ModFile&, qint64, qint64) ),
-		SLOT( setFileProgress(const ModFile&, qint64, qint64) ) );
-	d->twWads->connect(&wadseeker, SIGNAL( fileDownloadStarted(const ModFile&, const QUrl&) ),
-		SLOT( setFileUrl(const ModFile&, const QUrl&) ) );
+	d->twWads->connect(&wadseeker, SIGNAL(fileDownloadFinished(const ModFile&)),
+		SLOT(setFileDownloadFinished(const ModFile&)));
+	d->twWads->connect(&wadseeker, SIGNAL(fileDownloadProgress(const ModFile&,qint64,qint64)),
+		SLOT(setFileProgress(const ModFile&,qint64,qint64)));
+	d->twWads->connect(&wadseeker, SIGNAL(fileDownloadStarted(const ModFile&,const QUrl&)),
+		SLOT(setFileUrl(const ModFile&,const QUrl&)));
 }
 
 void WadseekerInterface::construct()
@@ -200,8 +194,8 @@ void WadseekerInterface::construct()
 	connectWadseekerObject();
 
 	// Connect tables.
-	this->connect(d->twWads, SIGNAL( rightMouseClick(const QModelIndex&, const QPoint&) ),
-		SLOT( wadsTableRightClicked(const QModelIndex&, const QPoint&) ) );
+	this->connect(d->twWads, SIGNAL(rightMouseClick(const QModelIndex&,const QPoint&)),
+		SLOT(wadsTableRightClicked(const QModelIndex&,const QPoint&)));
 
 	bAutomatic = false;
 	bFirstShown = false;
@@ -210,9 +204,7 @@ void WadseekerInterface::construct()
 	if (gConfig.wadseeker.bAlwaysUseDefaultSites)
 	{
 		for (int i = 0; !Wadseeker::defaultSites[i].isEmpty(); ++i)
-		{
 			urlList << Wadseeker::defaultSites[i];
-		}
 	}
 
 	wadseeker.setPrimarySites(urlList);
@@ -221,7 +213,7 @@ void WadseekerInterface::construct()
 	updateTimer.start(UPDATE_INTERVAL_MS);
 }
 
-WadseekerInterface *WadseekerInterface::create(QWidget* parent)
+WadseekerInterface *WadseekerInterface::create(QWidget *parent)
 {
 	if (!isInstantiated())
 	{
@@ -231,7 +223,7 @@ WadseekerInterface *WadseekerInterface::create(QWidget* parent)
 	return nullptr;
 }
 
-WadseekerInterface *WadseekerInterface::create(ServerPtr server, QWidget* parent)
+WadseekerInterface *WadseekerInterface::create(ServerPtr server, QWidget *parent)
 {
 	if (!isInstantiated())
 	{
@@ -241,7 +233,7 @@ WadseekerInterface *WadseekerInterface::create(ServerPtr server, QWidget* parent
 	return nullptr;
 }
 
-WadseekerInterface *WadseekerInterface::createAutoNoGame(QWidget* parent)
+WadseekerInterface *WadseekerInterface::createAutoNoGame(QWidget *parent)
 {
 	WadseekerInterface *interface = create(parent);
 	if (interface != nullptr)
@@ -252,7 +244,7 @@ WadseekerInterface *WadseekerInterface::createAutoNoGame(QWidget* parent)
 	return interface;
 }
 
-void WadseekerInterface::displayMessage(const QString& message, WadseekerLib::MessageType type, bool bPrependErrorsWithMessageType)
+void WadseekerInterface::displayMessage(const QString &message, WadseekerLib::MessageType type, bool bPrependErrorsWithMessageType)
 {
 	QString strProcessedMessage;
 
@@ -263,53 +255,43 @@ void WadseekerInterface::displayMessage(const QString& message, WadseekerLib::Me
 
 	switch (type)
 	{
-		case WadseekerLib::CriticalError:
-			htmlStyle = QString("color: %1; font-weight: bold;").arg(colorHtmlMessageFatalError);
-			bPrependWithNewline = true;
+	case WadseekerLib::CriticalError:
+		htmlStyle = QString("color: %1; font-weight: bold;").arg(colorHtmlMessageFatalError);
+		bPrependWithNewline = true;
 
-			if (bPrependErrorsWithMessageType)
-			{
-				strProcessedMessage = tr("CRITICAL ERROR: %1").arg(message);
-			}
-			else
-			{
-				strProcessedMessage = message;
-			}
-
-			setStateWaiting();
-			break;
-
-		case WadseekerLib::Error:
-			htmlStyle = QString("color: %1;").arg(colorHtmlMessageError);
-
-			if (bPrependErrorsWithMessageType)
-			{
-				strProcessedMessage = tr("Error: %1").arg(message);
-			}
-			else
-			{
-				strProcessedMessage = message;
-			}
-			break;
-
-		case WadseekerLib::Notice:
-			htmlStyle = QString("color: %1;").arg(colorHtmlMessageNotice);
-
+		if (bPrependErrorsWithMessageType)
+			strProcessedMessage = tr("CRITICAL ERROR: %1").arg(message);
+		else
 			strProcessedMessage = message;
-			break;
 
-		case WadseekerLib::NoticeImportant:
-			htmlStyle = QString("color: %1; font-weight: bold;").arg(colorHtmlMessageNotice);
-			bPrependWithNewline = true;
+		setStateWaiting();
+		break;
 
+	case WadseekerLib::Error:
+		htmlStyle = QString("color: %1;").arg(colorHtmlMessageError);
+
+		if (bPrependErrorsWithMessageType)
+			strProcessedMessage = tr("Error: %1").arg(message);
+		else
 			strProcessedMessage = message;
-			break;
+		break;
+
+	case WadseekerLib::Notice:
+		htmlStyle = QString("color: %1;").arg(colorHtmlMessageNotice);
+
+		strProcessedMessage = message;
+		break;
+
+	case WadseekerLib::NoticeImportant:
+		htmlStyle = QString("color: %1; font-weight: bold;").arg(colorHtmlMessageNotice);
+		bPrependWithNewline = true;
+
+		strProcessedMessage = message;
+		break;
 	}
 
 	if (bPrependWithNewline && !d->teWadseekerOutput->toPlainText().isEmpty())
-	{
 		strProcessedMessage = "<br>" + strProcessedMessage;
-	}
 
 	wrapHtmlLeft = wrapHtmlLeft.arg(htmlStyle);
 
@@ -318,7 +300,7 @@ void WadseekerInterface::displayMessage(const QString& message, WadseekerLib::Me
 	d->teWadseekerOutput->append(strProcessedMessage);
 }
 
-void WadseekerInterface::fileDownloadSuccessful(const ModFile& filename)
+void WadseekerInterface::fileDownloadSuccessful(const ModFile &filename)
 {
 	successfulWads << filename;
 	d->twWads->setFileSuccessful(filename.fileName());
@@ -336,7 +318,7 @@ bool WadseekerInterface::isInstantiated()
 	return currentInstance != nullptr;
 }
 
-void WadseekerInterface::message(const QString& message, WadseekerLib::MessageType type)
+void WadseekerInterface::message(const QString &message, WadseekerLib::MessageType type)
 {
 	displayMessage(message, type, true);
 }
@@ -349,15 +331,15 @@ void WadseekerInterface::registerUpdateRequest()
 
 void WadseekerInterface::reject()
 {
-	switch(state)
+	switch (state)
 	{
-		case Downloading:
-			wadseeker.abort();
-			break;
+	case Downloading:
+		wadseeker.abort();
+		break;
 
-		case Waiting:
-			this->done(Rejected);
-			break;
+	case Waiting:
+		this->done(Rejected);
+		break;
 	}
 }
 
@@ -366,7 +348,7 @@ void WadseekerInterface::resetTitleToDefault()
 	setWindowTitle(tr("Wadseeker"));
 }
 
-void WadseekerInterface::seekStarted(const ModSet& filenames)
+void WadseekerInterface::seekStarted(const ModSet &filenames)
 {
 	QList<PWad> wads;
 	QStringList names;
@@ -386,7 +368,7 @@ void WadseekerInterface::seekStarted(const ModSet& filenames)
 	d->twWads->setRowCount(0);
 	setStateDownloading();
 
-	foreach (const PWad& wad, seekedWads)
+	foreach (const PWad &wad, seekedWads)
 	{
 		d->twWads->addFile(wad.name());
 	}
@@ -416,14 +398,16 @@ void WadseekerInterface::setupAutomatic()
 	d->leWadName->hide();
 }
 
-void WadseekerInterface::setWads(const QList<PWad>& wads)
+void WadseekerInterface::setWads(const QList<PWad> &wads)
 {
 	seekedWads = wads;
 	if (!isAutomatic())
 	{
 		QStringList names;
 		foreach (PWad wad, wads)
+		{
 			names << wad.name();
+		}
 		d->leWadName->setText(names.join(", "));
 	}
 }
@@ -435,19 +419,17 @@ void WadseekerInterface::setupIdgames()
 	wadseeker.setWadArchiveEnabled(gConfig.wadseeker.bSearchInWadArchive);
 }
 
-void WadseekerInterface::showEvent(QShowEvent* event)
+void WadseekerInterface::showEvent(QShowEvent *event)
 {
 	if (!bFirstShown)
 	{
-#if QT_VERSION >= 0x050000
+		#if QT_VERSION >= 0x050000
 		d->taskbarButton->setWindow(windowHandle());
-#endif
+		#endif
 		bFirstShown = true;
 
 		if (isAutomatic())
-		{
 			startSeeking(seekedWads);
-		}
 	}
 }
 
@@ -461,41 +443,41 @@ void WadseekerInterface::serviceFinished(const QString &service)
 	d->twSites->removeService(service);
 }
 
-void WadseekerInterface::siteFinished(const QUrl& site)
+void WadseekerInterface::siteFinished(const QUrl &site)
 {
 	d->twSites->removeUrl(site);
 	displayMessage("Site finished: " + site.toString(), WadseekerLib::Notice, false);
 }
 
-void WadseekerInterface::siteProgress(const QUrl& site, qint64 bytes, qint64 total)
+void WadseekerInterface::siteProgress(const QUrl &site, qint64 bytes, qint64 total)
 {
 	d->twSites->setUrlProgress(site, bytes, total);
 }
 
-void WadseekerInterface::siteRedirect(const QUrl& oldUrl, const QUrl& newUrl)
+void WadseekerInterface::siteRedirect(const QUrl &oldUrl, const QUrl &newUrl)
 {
 	d->twSites->removeUrl(oldUrl);
 	d->twSites->addUrl(newUrl);
 	displayMessage("Site redirect: " + oldUrl.toString() + " -> " + newUrl.toString(), WadseekerLib::Notice, false);
 }
 
-void WadseekerInterface::siteStarted(const QUrl& site)
+void WadseekerInterface::siteStarted(const QUrl &site)
 {
 	d->twSites->addUrl(site);
 	displayMessage("Site started: " + site.toString(), WadseekerLib::Notice, false);
 }
 
-void WadseekerInterface::startSeeking(const QList<PWad>& seekedFilesList)
+void WadseekerInterface::startSeeking(const QList<PWad> &seekedFilesList)
 {
 	if (seekedFilesList.isEmpty())
-	{
 		return;
-	}
 	d->bCompletedSuccessfully = false;
 
 	ModSet listWads;
 	foreach (PWad seekedFile, seekedFilesList)
+	{
 		listWads.addModFile(seekedFile);
+	}
 
 	setupIdgames();
 
@@ -519,22 +501,20 @@ void WadseekerInterface::updateTitle()
 {
 	switch (state)
 	{
-		case Downloading:
-		{
-			double totalPercentage = d->twWads->totalDonePercentage();
-			if (totalPercentage < 0.0)
-			{
-				totalPercentage = 0.0;
-			}
+	case Downloading:
+	{
+		double totalPercentage = d->twWads->totalDonePercentage();
+		if (totalPercentage < 0.0)
+			totalPercentage = 0.0;
 
-			setWindowTitle(tr("[%1%] Wadseeker").arg(totalPercentage, 6, 'f', 2));
-			break;
-		}
+		setWindowTitle(tr("[%1%] Wadseeker").arg(totalPercentage, 6, 'f', 2));
+		break;
+	}
 
-		default:
-		case Waiting:
-			resetTitleToDefault();
-			break;
+	default:
+	case Waiting:
+		resetTitleToDefault();
+		break;
 	}
 }
 
@@ -555,18 +535,16 @@ QList<PWad> WadseekerInterface::unsuccessfulWads() const
 	return allWads;
 }
 
-void WadseekerInterface::wadsTableRightClicked(const QModelIndex& index, const QPoint& cursorPosition)
+void WadseekerInterface::wadsTableRightClicked(const QModelIndex &index, const QPoint &cursorPosition)
 {
-	WadseekerWadsTable::ContextMenu* menu = d->twWads->contextMenu(index, cursorPosition);
+	WadseekerWadsTable::ContextMenu *menu = d->twWads->contextMenu(index, cursorPosition);
 
 	// Disable actions depending on Wadseeker's state.
 	QString fileName = d->twWads->fileNameAtRow(index.row());
 	if (!wadseeker.isDownloadingFile(fileName))
-	{
 		menu->actionSkipCurrentSite->setEnabled(false);
-	}
 
-	QAction* pResult = menu->exec();
+	QAction *pResult = menu->exec();
 
 	if (pResult == menu->actionSkipCurrentSite)
 	{
@@ -576,9 +554,7 @@ void WadseekerInterface::wadsTableRightClicked(const QModelIndex& index, const Q
 		wadseeker.skipFileCurrentUrl(wadName);
 	}
 	else if (pResult != nullptr)
-	{
 		QMessageBox::warning(this, tr("Context menu error"), tr("Unknown action selected."));
-	}
 
 	delete menu;
 }

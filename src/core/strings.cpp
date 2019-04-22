@@ -24,9 +24,9 @@
 
 #include "random.h"
 
+#include "datastreamoperatorwrapper.h"
 #include "plugins/engineplugin.h"
 #include "plugins/pluginloader.h"
-#include "datastreamoperatorwrapper.h"
 
 #include <cassert>
 #include <cmath>
@@ -77,50 +77,50 @@ QString Strings::colorizeString(const QString &str, int current)
 
 	QString ret;
 	bool colored = false;
-	for(int i = 0;i < str.length();i++)
+	for (int i = 0; i < str.length(); i++)
 	{
-		if(str[i] == ESCAPE_COLOR_CHAR)
+		if (str[i] == ESCAPE_COLOR_CHAR)
 		{
 			i++;
-			if(i >= str.length())
+			if (i >= str.length())
 				break;
 			QChar colorChar = str[i].toLower();
 			int color = colorChar.toLatin1() - 97;
 
 			// special cases
-			if(colorChar == '+')
-				color = current == 0 ? 19 : current-1; // + is the current minus one, wrap if needed.
-			else if(colorChar == '*')
+			if (colorChar == '+')
+				color = current == 0 ? 19 : current - 1; // + is the current minus one, wrap if needed.
+			else if (colorChar == '*')
 				color = 3; // Chat color which is usally green
-			else if(colorChar == '!')
+			else if (colorChar == '!')
 				color = 16; // Team char (usually green, but made dark green here for distinction)
-			else if(colorChar == '[') // Named!
+			else if (colorChar == '[') // Named!
 			{
 				int end = str.indexOf(']', i);
-				if(end == -1)
+				if (end == -1)
 					break;
-				QString colorName = str.mid(i+1, end-i-1);
-				if(colorName.indexOf('"') == -1) // Just in case there's a security problem.
+				QString colorName = str.mid(i + 1, end - i - 1);
+				if (colorName.indexOf('"') == -1) // Just in case there's a security problem.
 					ret += QString("<span style=\"color: " + colorName + "\">");
-				i += colorName.length()+1;
+				i += colorName.length() + 1;
 				colored = true;
 				continue;
 			}
-			else if(colorChar == '-')
+			else if (colorChar == '-')
 			{
-				if(colored)
+				if (colored)
 					ret += "</span>";
 				colored = false;
 				continue;
 			}
 
-			if(colored)
+			if (colored)
 			{
 				ret += "</span>";
 				colored = false;
 			}
 
-			if(color >= 0 && color < 22)
+			if (color >= 0 && color < 22)
 			{
 				ret += QString("<span style=\"color: #") + colorChart[color] + "\">";
 				colored = true;
@@ -129,7 +129,7 @@ QString Strings::colorizeString(const QString &str, int current)
 		}
 		ret += str[i];
 	}
-	if(colored)
+	if (colored)
 		ret += "</span>";
 	return ret;
 }
@@ -193,24 +193,24 @@ QString Strings::createRandomAlphaNumericStringWithNewLines(unsigned numCharsPer
 
 // NOTE: Be sure that '\\' is the first thing in the array otherwise it will re-escape.
 static char escapeCharacters[] = {'\\', '"', 0};
-const QString& Strings::escape(QString &str)
+const QString &Strings::escape(QString &str)
 {
-	for(unsigned int i = 0;escapeCharacters[i] != 0;i++)
+	for (unsigned int i = 0; escapeCharacters[i] != 0; i++)
 	{
 		// += 2 because we'll be inserting 1 character.
-		for(int p = 0;p < str.length() && (p = str.indexOf(escapeCharacters[i], p)) != -1;p += 2)
+		for (int p = 0; p < str.length() && (p = str.indexOf(escapeCharacters[i], p)) != -1; p += 2)
 		{
 			str.insert(p, '\\');
 		}
 	}
 	return str;
 }
-const QString& Strings::unescape(QString &str)
+const QString &Strings::unescape(QString &str)
 {
-	for(unsigned int i = 0;escapeCharacters[i] != 0;i++)
+	for (unsigned int i = 0; escapeCharacters[i] != 0; i++)
 	{
 		QString sequence = "\\" + QString(escapeCharacters[i]);
-		for(int p = 0;p < str.length() && (p = str.indexOf(sequence, p)) != -1;p++)
+		for (int p = 0; p < str.length() && (p = str.indexOf(sequence, p)) != -1; p++)
 			str.replace(str.indexOf(sequence, p), 2, escapeCharacters[i]);
 	}
 	return str;
@@ -224,27 +224,27 @@ QString Strings::formatDataAmount(qint64 bytes)
 	fBytes = scaleDataUnit(fBytes, dataUnit);
 
 	QString formattedString = QString("%1 ").arg(fBytes, 0, 'f', 2);
-	switch(dataUnit)
+	switch (dataUnit)
 	{
-		case Byte:
-			formattedString += "B";
-			break;
+	case Byte:
+		formattedString += "B";
+		break;
 
-		case Kilobyte:
-			formattedString += "kB";
-			break;
+	case Kilobyte:
+		formattedString += "kB";
+		break;
 
-		case Megabyte:
-			formattedString += "MB";
-			break;
+	case Megabyte:
+		formattedString += "MB";
+		break;
 
-		case Gigabyte:
-			formattedString += "GB";
-			break;
+	case Gigabyte:
+		formattedString += "GB";
+		break;
 
-		default:
-			// Shouldn't really happen.
-			return "#ERR: Formatting data amount error.";
+	default:
+		// Shouldn't really happen.
+		return "#ERR: Formatting data amount error.";
 	}
 
 	return formattedString;
@@ -257,27 +257,27 @@ QString Strings::formatDataSpeed(float speedInBytesPerSecond)
 	speedInBytesPerSecond = scaleDataUnit(speedInBytesPerSecond, dataUnit);
 
 	QString formattedString = QString("%1 ").arg(speedInBytesPerSecond, 0, 'f', 2);
-	switch(dataUnit)
+	switch (dataUnit)
 	{
-		case Byte:
-			formattedString += "B/s";
-			break;
+	case Byte:
+		formattedString += "B/s";
+		break;
 
-		case Kilobyte:
-			formattedString += "kB/s";
-			break;
+	case Kilobyte:
+		formattedString += "kB/s";
+		break;
 
-		case Megabyte:
-			formattedString += "MB/s";
-			break;
+	case Megabyte:
+		formattedString += "MB/s";
+		break;
 
-		case Gigabyte:
-			formattedString += "GB/s";
-			break;
+	case Gigabyte:
+		formattedString += "GB/s";
+		break;
 
-		default:
-			// Shouldn't really happen.
-			return "#ERR: Formatting speed error.";
+	default:
+		// Shouldn't really happen.
+		return "#ERR: Formatting speed error.";
 	}
 
 	return formattedString;
@@ -331,7 +331,7 @@ QString Strings::formatTime(float seconds)
 	return formattedString;
 }
 
-bool Strings::isCharOnCharList(char c, const QString& charList)
+bool Strings::isCharOnCharList(char c, const QString &charList)
 {
 	for (int i = 0; i < charList.length(); ++i)
 	{
@@ -342,7 +342,7 @@ bool Strings::isCharOnCharList(char c, const QString& charList)
 	return false;
 }
 
-bool Strings::isUrlSafe(const QString& url)
+bool Strings::isUrlSafe(const QString &url)
 {
 	QUrl urlObject = url;
 
@@ -365,13 +365,13 @@ QString Strings::normalizePath(QString path)
 	return path;
 }
 
-QByteArray Strings::readUntilByte(QDataStream& stream, unsigned char stopByte)
+QByteArray Strings::readUntilByte(QDataStream &stream, unsigned char stopByte)
 {
 	DataStreamOperatorWrapper reader(&stream);
 	return reader.readRawUntilByte(stopByte);
 }
 
-float Strings::scaleDataUnit(float bytes, DataUnit& outUnit)
+float Strings::scaleDataUnit(float bytes, DataUnit &outUnit)
 {
 	const static float UPPER_BOUNDARY = 900.0f;
 	outUnit = Byte;
@@ -385,12 +385,12 @@ float Strings::scaleDataUnit(float bytes, DataUnit& outUnit)
 	return bytes;
 }
 
-QString Strings::timestamp(const QString& format)
+QString Strings::timestamp(const QString &format)
 {
 	return QDateTime::currentDateTime().toString(format);
 }
 
-void Strings::translateServerAddress(const QString& addressString, QString& hostname, unsigned short& port, const QString& defaultAddress)
+void Strings::translateServerAddress(const QString &addressString, QString &hostname, unsigned short &port, const QString &defaultAddress)
 {
 	port = 0;
 	QStringList addressAndPort = addressString.split(":");
@@ -419,7 +419,7 @@ void Strings::translateServerAddress(const QString& addressString, QString& host
 	}
 }
 
-QString& Strings::trimr(QString& str, const QString& charList)
+QString &Strings::trimr(QString &str, const QString &charList)
 {
 	int i;
 	for (i = str.length() - 1; i >= 0; --i)
@@ -432,7 +432,7 @@ QString& Strings::trimr(QString& str, const QString& charList)
 	return str.remove(i, str.length() - i);
 }
 
-QString& Strings::triml(QString& str, const QString& charList)
+QString &Strings::triml(QString &str, const QString &charList)
 {
 	int i;
 	for (i = 0; i < str.length(); ++i)
@@ -444,14 +444,14 @@ QString& Strings::triml(QString& str, const QString& charList)
 	return str.remove(0, i);
 }
 
-QString Strings::wrapUrlsWithHtmlATags(const QString& str)
+QString Strings::wrapUrlsWithHtmlATags(const QString &str)
 {
 	static QString pluginSchemes;
-	if(pluginSchemes.isEmpty())
+	if (pluginSchemes.isEmpty())
 	{
 		pluginSchemes = "zds";
 
-		for(unsigned int i = 0;i < gPlugins->numPlugins();++i)
+		for (unsigned int i = 0; i < gPlugins->numPlugins(); ++i)
 			pluginSchemes = QString("%1|%2").arg(pluginSchemes)
 				.arg(gPlugins->plugin(i)->info()->data()->scheme);
 	}

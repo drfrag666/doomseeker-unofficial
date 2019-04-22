@@ -22,11 +22,11 @@
 //------------------------------------------------------------------------------
 #include "wadseekershow.h"
 
+#include "application.h"
 #include "configuration/doomseekerconfig.h"
 #include "gui/mainwindow.h"
 #include "gui/wadseekerinterface.h"
 #include "serverapi/server.h"
-#include "application.h"
 #include <QDir>
 #include <QFileInfo>
 #include <QMap>
@@ -60,9 +60,9 @@ bool WadseekerShow::checkWadseekerValidity(QWidget *parent)
 	if (targetDirPath.isEmpty() || !targetDir.exists() || !targetDirFileInfo.isWritable())
 	{
 		QString error = tr("Wadseeker will not work correctly:\n\n"
-				"Target directory is either not set, is invalid or cannot be written to.\n\n"
-				"Please review your Configuration and/or refer to online help available from "
-				"the Help menu.");
+			"Target directory is either not set, is invalid or cannot be written to.\n\n"
+			"Please review your Configuration and/or refer to online help available from "
+			"the Help menu.");
 		QMessageBox::warning(parent, tr("Wadseeker cannot be launched"),
 			error, QMessageBox::Ok);
 		return false;
@@ -74,8 +74,6 @@ bool WadseekerShow::checkWadseekerValidity(QWidget *parent)
 WadseekerShow *WadseekerShow::instance()
 {
 	if (staticInstance == nullptr)
-	{
 		staticInstance = new WadseekerShow();
-	}
 	return staticInstance;
 }

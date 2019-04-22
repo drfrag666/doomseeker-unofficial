@@ -22,9 +22,9 @@
 //------------------------------------------------------------------------------
 #include "chatnetworkscfg.h"
 
+#include "ini/inisection.h"
 #include "irc/chatlogs.h"
 #include "irc/configuration/ircconfig.h"
-#include "ini/inisection.h"
 #include "patternlist.h"
 #include <QString>
 
@@ -34,12 +34,10 @@ const QString ChatNetworksCfg::SECTIONS_NAMES_PREFIX = "Network.";
 QList<IRCNetworkEntity> ChatNetworksCfg::autoJoinNetworks() const
 {
 	QList<IRCNetworkEntity> result;
-	foreach (const IRCNetworkEntity& network, networks())
+	foreach (const IRCNetworkEntity &network, networks())
 	{
 		if (network.isAutojoinNetwork())
-		{
 			result << network;
-		}
 	}
 
 	return result;
@@ -47,12 +45,10 @@ QList<IRCNetworkEntity> ChatNetworksCfg::autoJoinNetworks() const
 
 bool ChatNetworksCfg::isAnyNetworkOnAutoJoin() const
 {
-	foreach (const IRCNetworkEntity& network, networks())
+	foreach (const IRCNetworkEntity &network, networks())
 	{
 		if (network.isAutojoinNetwork())
-		{
 			return true;
-		}
 	}
 
 	return false;
@@ -64,9 +60,7 @@ IRCNetworkEntity ChatNetworksCfg::lastUsedNetwork() const
 	foreach (const IRCNetworkEntity &network, networks())
 	{
 		if (network.description() == networkName)
-		{
 			return network;
-		}
 	}
 	return IRCNetworkEntity();
 }
@@ -108,9 +102,7 @@ IRCNetworkEntity ChatNetworksCfg::network(const QString &description)
 	foreach (const IRCNetworkEntity &network, networks())
 	{
 		if (network.description() == description)
-		{
 			return network;
-		}
 	}
 	return IRCNetworkEntity();
 }
@@ -134,9 +126,7 @@ void ChatNetworksCfg::removeNetwork(const IRCNetworkEntity &network)
 bool ChatNetworksCfg::replaceNetwork(const QString &oldDescription, const IRCNetworkEntity &newNetwork, QWidget *errorDisplayParentWidget)
 {
 	if (!ChatLogs().renameNetwork(errorDisplayParentWidget, oldDescription, newNetwork.description()))
-	{
 		return false;
-	}
 	QList<IRCNetworkEntity> networks = this->networks();
 	QMutableListIterator<IRCNetworkEntity> it(networks);
 	while (it.hasNext())
@@ -154,13 +144,13 @@ bool ChatNetworksCfg::replaceNetwork(const QString &oldDescription, const IRCNet
 
 void ChatNetworksCfg::clearNetworkSections()
 {
-	foreach (const IniSection& section, allNetworksSections())
+	foreach (const IniSection &section, allNetworksSections())
 	{
 		ini().deleteSection(section.name());
 	}
 }
 
-IRCNetworkEntity ChatNetworksCfg::loadNetwork(const IniSection& section) const
+IRCNetworkEntity ChatNetworksCfg::loadNetwork(const IniSection &section) const
 {
 	IRCNetworkEntity network;
 	network.setAddress(section["Address"]);
@@ -177,7 +167,7 @@ IRCNetworkEntity ChatNetworksCfg::loadNetwork(const IniSection& section) const
 	return network;
 }
 
-void ChatNetworksCfg::saveNetwork(IniSection section, const IRCNetworkEntity& network)
+void ChatNetworksCfg::saveNetwork(IniSection section, const IRCNetworkEntity &network)
 {
 	section["Address"] = network.address();
 	section["bAutojoinNetwork"] = network.isAutojoinNetwork();
@@ -201,7 +191,7 @@ IniSection ChatNetworksCfg::networkSection(int id)
 	return ini().section(SECTIONS_NAMES_PREFIX + id);
 }
 
-Ini& ChatNetworksCfg::ini() const
+Ini &ChatNetworksCfg::ini() const
 {
 	return *gIRCConfig.ini();
 }

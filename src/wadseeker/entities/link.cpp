@@ -26,24 +26,23 @@
 
 Link::Link()
 {
-
 }
 
-Link::Link(const QUrl& url, const QString& text)
+Link::Link(const QUrl &url, const QString &text)
 {
 	this->url = url;
 	this->text = text;
 }
 
-bool Link::isRemote(const QUrl& comparePage)
+bool Link::isRemote(const QUrl &comparePage)
 {
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	QString str1 = url.host(QUrl::FullyEncoded);
 	QString str2 = comparePage.host(QUrl::FullyEncoded);
-#else
+	#else
 	QString str1 = url.encodedHost();
 	QString str2 = comparePage.encodedHost();
-#endif
+	#endif
 
 	if (str1.isEmpty())
 	{
@@ -65,32 +64,32 @@ bool Link::isRemote(const QUrl& comparePage)
 	return false;
 }
 
-bool Link::isTheSamePage(const QUrl& comparePage)
+bool Link::isTheSamePage(const QUrl &comparePage)
 {
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	QString str1 = url.host(QUrl::FullyEncoded);
 	QString str2 = comparePage.host(QUrl::FullyEncoded);
-#else
+	#else
 	QString str1 = url.encodedHost();
 	QString str2 = comparePage.encodedHost();
-#endif
+	#endif
 
 	if (!str1.isEmpty() && str1.compare(str2, Qt::CaseInsensitive) != 0)
 	{
 		return false;
 	}
 
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	str1 = url.query(QUrl::FullyEncoded);
 	str2 = comparePage.query(QUrl::FullyEncoded);
 	QString str3 = url.path(QUrl::FullyEncoded);
 	QString str4 = comparePage.path(QUrl::FullyEncoded);
-#else
+	#else
 	str1 = url.encodedQuery();
 	str2 = comparePage.encodedQuery();
 	QString str3 = url.encodedPath();
 	QString str4 = comparePage.encodedPath();
-#endif
+	#endif
 
 	if (str1.compare(str2, Qt::CaseInsensitive) == 0
 		&& str3.compare(str4, Qt::CaseInsensitive) == 0)
@@ -106,13 +105,13 @@ bool Link::isJavascriptURL()
 	return url.toString().startsWith("javascript:", Qt::CaseInsensitive);
 }
 
-bool Link::pathEndsWith(const QStringList& ends)
+bool Link::pathEndsWith(const QStringList &ends)
 {
-#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= 0x050000
 	QString str = url.path(QUrl::FullyEncoded);
-#else
+	#else
 	QString str = url.encodedPath();
-#endif
+	#endif
 	QStringList::const_iterator it;
 	for (it = ends.begin(); it != ends.end(); ++it)
 	{

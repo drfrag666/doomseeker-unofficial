@@ -22,13 +22,13 @@
 //------------------------------------------------------------------------------
 #include "wwwseeker.h"
 
-#include "protocols/networkreplysignalwrapper.h"
-#include "protocols/networkreply.h"
-#include "protocols/http.h"
-#include "wwwseeker/entities/fileseekinfo.h"
 #include "htmlparser.h"
+#include "protocols/http.h"
+#include "protocols/networkreply.h"
+#include "protocols/networkreplysignalwrapper.h"
 #include "urlparser.h"
 #include "wadseekerversioninfo.h"
+#include "wwwseeker/entities/fileseekinfo.h"
 
 #include <QDebug>
 #include <QFileInfo>
@@ -43,7 +43,7 @@ WWWSeeker::WWWSeeker()
 
 WWWSeeker::~WWWSeeker()
 {
-	foreach (NetworkReply* pInfo, d.networkQueries)
+	foreach (NetworkReply *pInfo, d.networkQueries)
 	{
 		pInfo->deleteMembersLater();
 		delete pInfo;
@@ -71,20 +71,20 @@ void WWWSeeker::abort()
 		d.sitesUrls.clear();
 		d.seekedFiles.clear();
 
-		foreach (NetworkReply* pInfo, d.networkQueries)
+		foreach (NetworkReply *pInfo, d.networkQueries)
 		{
 			pInfo->reply->abort();
 		}
 	}
 }
 
-void WWWSeeker::addFileSiteUrl(const QString& filename, const QUrl& url)
+void WWWSeeker::addFileSiteUrl(const QString &filename, const QUrl &url)
 {
 	const int DEFAULT_PRIORITY = 0;
 	addFileSiteUrlWithPriority(filename, url, DEFAULT_PRIORITY);
 }
 
-void WWWSeeker::addFileSiteUrlWithPriority(const QString& filename, const QUrl& url, int priority)
+void WWWSeeker::addFileSiteUrlWithPriority(const QString &filename, const QUrl &url, int priority)
 {
 	if (!wasUrlUsed(url))
 	{
@@ -93,7 +93,7 @@ void WWWSeeker::addFileSiteUrlWithPriority(const QString& filename, const QUrl& 
 		if (d.fileSiteUrls.contains(lowerCaseFilename))
 		{
 			// Add to existing URL list.
-			QMultiMap<int, QUrl>& urls = d.fileSiteUrls[lowerCaseFilename];
+			QMultiMap<int, QUrl> &urls = d.fileSiteUrls[lowerCaseFilename];
 			urls.insert(priority, url);
 		}
 		else
@@ -109,25 +109,25 @@ void WWWSeeker::addFileSiteUrlWithPriority(const QString& filename, const QUrl& 
 	}
 }
 
-void WWWSeeker::addNetworkReply(const QNetworkRequest &request, QNetworkReply* pReply)
+void WWWSeeker::addNetworkReply(const QNetworkRequest &request, QNetworkReply *pReply)
 {
-	NetworkReply* pQueryInfo = new NetworkReply(request, pReply);
+	NetworkReply *pQueryInfo = new NetworkReply(request, pReply);
 	pQueryInfo->setProgressTimeout(NetworkReply::SUGGESTED_PROGRESS_TIMEOUT_MSECS);
 	pQueryInfo->startConnectionTimeoutTimer();
 
-	this->connect(pQueryInfo->signalWrapper, SIGNAL( downloadProgress(NetworkReply*, qint64, qint64) ),
-		SLOT( networkQueryDownloadProgress(NetworkReply*, qint64, qint64) ));
-	this->connect(pQueryInfo->signalWrapper, SIGNAL( error(NetworkReply*, QNetworkReply::NetworkError) ),
-		SLOT( networkQueryError(NetworkReply*, QNetworkReply::NetworkError) ));
-	this->connect(pQueryInfo->signalWrapper, SIGNAL( finished(NetworkReply*) ),
-		SLOT( networkQueryFinished(NetworkReply*) ));
-	this->connect(pQueryInfo->signalWrapper, SIGNAL( metaDataChanged(NetworkReply*) ),
-		SLOT( networkQueryMetaDataChanged(NetworkReply*) ));
+	this->connect(pQueryInfo->signalWrapper, SIGNAL(downloadProgress(NetworkReply*,qint64,qint64)),
+		SLOT(networkQueryDownloadProgress(NetworkReply*,qint64,qint64)));
+	this->connect(pQueryInfo->signalWrapper, SIGNAL(error(NetworkReply*,QNetworkReply::NetworkError)),
+		SLOT(networkQueryError(NetworkReply*,QNetworkReply::NetworkError)));
+	this->connect(pQueryInfo->signalWrapper, SIGNAL(finished(NetworkReply*)),
+		SLOT(networkQueryFinished(NetworkReply*)));
+	this->connect(pQueryInfo->signalWrapper, SIGNAL(metaDataChanged(NetworkReply*)),
+		SLOT(networkQueryMetaDataChanged(NetworkReply*)));
 
 	d.networkQueries << pQueryInfo;
 }
 
-void WWWSeeker::addSiteUrl(const QUrl& url)
+void WWWSeeker::addSiteUrl(const QUrl &url)
 {
 	if (!wasUrlUsed(url))
 	{
@@ -135,15 +135,15 @@ void WWWSeeker::addSiteUrl(const QUrl& url)
 	}
 }
 
-void WWWSeeker::addSitesUrls(const QList<QUrl>& urlsList)
+void WWWSeeker::addSitesUrls(const QList<QUrl> &urlsList)
 {
-	foreach (const QUrl& url, urlsList)
+	foreach (const QUrl &url, urlsList)
 	{
 		addSiteUrl(url);
 	}
 }
 
-void WWWSeeker::deleteNetworkReply(NetworkReply* pReply)
+void WWWSeeker::deleteNetworkReply(NetworkReply *pReply)
 {
 	pReply->deleteMembersLater();
 	d.networkQueries.removeOne(pReply);
@@ -165,14 +165,14 @@ bool WWWSeeker::isMoreToSearch() const
 		|| hasCustomUrl;
 }
 
-FileSeekInfo* WWWSeeker::findFileSeekInfo(const QString& seekedName)
+FileSeekInfo *WWWSeeker::findFileSeekInfo(const QString &seekedName)
 {
 	QList<FileSeekInfo>::iterator it;
 	for (it = d.seekedFiles.begin(); it != d.seekedFiles.end(); ++it)
 	{
-		FileSeekInfo& info = *it;
+		FileSeekInfo &info = *it;
 		QStringList possibleFilenames = info.possibleFilenames();
-		foreach (const QString& possibleFilename, possibleFilenames)
+		foreach (const QString &possibleFilename, possibleFilenames)
 		{
 			if (possibleFilename.compare(seekedName, Qt::CaseInsensitive) == 0)
 			{
@@ -184,9 +184,9 @@ FileSeekInfo* WWWSeeker::findFileSeekInfo(const QString& seekedName)
 	return nullptr;
 }
 
-NetworkReply* WWWSeeker::findNetworkReply(QNetworkReply* pReply)
+NetworkReply *WWWSeeker::findNetworkReply(QNetworkReply *pReply)
 {
-	foreach (NetworkReply* info, d.networkQueries)
+	foreach (NetworkReply *info, d.networkQueries)
 	{
 		if (*info == pReply)
 		{
@@ -197,9 +197,9 @@ NetworkReply* WWWSeeker::findNetworkReply(QNetworkReply* pReply)
 	return nullptr;
 }
 
-NetworkReply* WWWSeeker::findNetworkReply(const QUrl& url)
+NetworkReply *WWWSeeker::findNetworkReply(const QUrl &url)
 {
-	foreach (NetworkReply* info, d.networkQueries)
+	foreach (NetworkReply *info, d.networkQueries)
 	{
 		if (info->request().url() == url)
 		{
@@ -210,17 +210,17 @@ NetworkReply* WWWSeeker::findNetworkReply(const QUrl& url)
 	return nullptr;
 }
 
-bool WWWSeeker::isDirectUrl(const QUrl& url, QString& outFileName) const
+bool WWWSeeker::isDirectUrl(const QUrl &url, QString &outFileName) const
 {
 	// Utilize what UrlParser gives us for this.
 	QList<Link> links;
 	links << Link(url, "");
 
 	UrlParser urlParser(links);
-	foreach (const FileSeekInfo& fileSeekInfo, d.seekedFiles)
+	foreach (const FileSeekInfo &fileSeekInfo, d.seekedFiles)
 	{
-		const QString& file = fileSeekInfo.file();
-		const QStringList& possibleFilenames = fileSeekInfo.possibleFilenames();
+		const QString &file = fileSeekInfo.file();
+		const QStringList &possibleFilenames = fileSeekInfo.possibleFilenames();
 
 		QList<Link> directLinks = urlParser.directLinks(possibleFilenames, url);
 		if (!directLinks.isEmpty())
@@ -233,12 +233,12 @@ bool WWWSeeker::isDirectUrl(const QUrl& url, QString& outFileName) const
 	return false;
 }
 
-void WWWSeeker::networkQueryDownloadProgress(NetworkReply* pReply, qint64 current, qint64 total)
+void WWWSeeker::networkQueryDownloadProgress(NetworkReply *pReply, qint64 current, qint64 total)
 {
 	emit siteProgress(pReply->request().url(), current, total);
 }
 
-void WWWSeeker::networkQueryError(NetworkReply* pReply, QNetworkReply::NetworkError code)
+void WWWSeeker::networkQueryError(NetworkReply *pReply, QNetworkReply::NetworkError code)
 {
 	// We shall ignore OperationCanceledError because this error is caused
 	// by a call to QNetworkReply::abort() and it may confuse users.
@@ -256,7 +256,7 @@ void WWWSeeker::logHeaders(NetworkReply *reply)
 	qDebug() << "HEADERS";
 	qDebug() << "URL " << reply->url();
 	QList<QByteArray> headers = reply->rawHeaderList();
-	foreach (const QByteArray& headerName, headers)
+	foreach (const QByteArray &headerName, headers)
 	{
 		QByteArray headerData = reply->rawHeader(headerName);
 		qDebug() << QString("%1: %2").arg(QString::fromUtf8(headerName)).arg(
@@ -265,14 +265,14 @@ void WWWSeeker::logHeaders(NetworkReply *reply)
 	printf("END OF HEADERS\n");
 }
 
-void WWWSeeker::networkQueryFinished(NetworkReply* pReply)
+void WWWSeeker::networkQueryFinished(NetworkReply *pReply)
 {
 	QUrl url = pReply->request().url();
 
-#ifndef NDEBUG
+	#ifndef NDEBUG
 	printf("WWWSeeker::networkQueryFinished()\n");
 	logHeaders(pReply);
-#endif
+	#endif
 
 	QUrl possibleRedirectUrl = pReply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl();
 	if (!possibleRedirectUrl.isEmpty()
@@ -323,14 +323,14 @@ void WWWSeeker::networkQueryFinished(NetworkReply* pReply)
 	}
 }
 
-void WWWSeeker::networkQueryMetaDataChanged(NetworkReply* pReply)
+void WWWSeeker::networkQueryMetaDataChanged(NetworkReply *pReply)
 {
 	QUrl url = pReply->request().url();
 
-#ifndef NDEBUG
+	#ifndef NDEBUG
 	printf("WWWSeeker::networkQueryMetaDataChanged()\n");
 	logHeaders(pReply);
-#endif
+	#endif
 
 	Http http(pReply);
 	if (!http.isHtmlContentType())
@@ -351,16 +351,16 @@ void WWWSeeker::networkQueryMetaDataChanged(NetworkReply* pReply)
 			}
 
 			// See if we just stumbled upon a download link for a file we seek.
-			FileSeekInfo* attachmentSeekInfo = findFileSeekInfo(attachmentName);
+			FileSeekInfo *attachmentSeekInfo = findFileSeekInfo(attachmentName);
 
-#ifndef NDEBUG
+			#ifndef NDEBUG
 			printf("Attachment detected on URL %s\n", url.toString().toUtf8().constData());
 			if (attachmentSeekInfo != nullptr)
 			{
 				printf("Forwarding the detected attachment to \"%s\" download queue\n",
-						attachmentSeekInfo->file().toUtf8().constData());
+					attachmentSeekInfo->file().toUtf8().constData());
 			}
-#endif
+			#endif
 			// Abort further download here.
 			// This should execute networkQueryFinished() request.
 
@@ -385,7 +385,7 @@ void WWWSeeker::networkQueryMetaDataChanged(NetworkReply* pReply)
 	}
 }
 
-void WWWSeeker::parseAsHtml(NetworkReply* pReply)
+void WWWSeeker::parseAsHtml(NetworkReply *pReply)
 {
 	QByteArray downloadedData = pReply->readAll();
 	QUrl url = pReply->request().url();
@@ -400,51 +400,51 @@ void WWWSeeker::parseAsHtml(NetworkReply* pReply)
 	HtmlParser html(downloadedData);
 	QList<Link> links = html.linksFromHtml();
 
-#ifndef NDEBUG
+	#ifndef NDEBUG
 	qDebug() << "Finished URL" << url << "; content type"
-		<< pReply->header(QNetworkRequest::ContentTypeHeader).toString()
-		<< ". Data size:" << downloadedData.size();
+	<< pReply->header(QNetworkRequest::ContentTypeHeader).toString()
+	<< ". Data size:" << downloadedData.size();
 	qDebug() << "Links:" << links.size();
-#endif
+	#endif
 
 	// Extract URLs of interest from <A HREFs>
 	UrlParser urlParser(links);
 
-	foreach (const FileSeekInfo& fileSeekInfo, d.seekedFiles)
+	foreach (const FileSeekInfo &fileSeekInfo, d.seekedFiles)
 	{
-		const QString& file = fileSeekInfo.file();
-		const QStringList& possibleFilenames = fileSeekInfo.possibleFilenames();
+		const QString &file = fileSeekInfo.file();
+		const QStringList &possibleFilenames = fileSeekInfo.possibleFilenames();
 
 		QList<Link> siteLinks = urlParser.siteLinks(possibleFilenames, url);
 		QList<Link> directLinks = urlParser.directLinks(possibleFilenames, url);
 
-#ifndef NDEBUG
+		#ifndef NDEBUG
 		printf("File %s\n", file.toUtf8().constData());
 		printf("Site links: %d\n", siteLinks.size());
 		printf("Direct links: %d\n", directLinks.size());
-#endif
+		#endif
 
-		foreach (const Link& link, siteLinks)
+		foreach (const Link &link, siteLinks)
 		{
-#ifndef NDEBUG
+			#ifndef NDEBUG
 			printf("Adding url %s\n", link.url.toEncoded().constData());
-#endif
+			#endif
 			addFileSiteUrl(file, link.url);
 		}
 
-		foreach (const Link& link, directLinks)
+		foreach (const Link &link, directLinks)
 		{
 			emit linkFound(file, link.url);
 		}
 	}
 }
 
-void WWWSeeker::removeSeekedFile(const QString& file)
+void WWWSeeker::removeSeekedFile(const QString &file)
 {
 	// Make sure to remove all occurences of the filename.
 	QList<FileSeekInfo> toRemove;
 
-	foreach (const FileSeekInfo& fileOnList, d.seekedFiles)
+	foreach (const FileSeekInfo &fileOnList, d.seekedFiles)
 	{
 		if (fileOnList == file)
 		{
@@ -452,7 +452,7 @@ void WWWSeeker::removeSeekedFile(const QString& file)
 		}
 	}
 
-	foreach (const FileSeekInfo& fileToRemove, toRemove)
+	foreach (const FileSeekInfo &fileToRemove, toRemove)
 	{
 		d.seekedFiles.removeAll(fileToRemove);
 	}
@@ -463,34 +463,34 @@ void WWWSeeker::removeSeekedFile(const QString& file)
 	}
 }
 
-void WWWSeeker::setUserAgent(const QString& userAgent)
+void WWWSeeker::setUserAgent(const QString &userAgent)
 {
 	d.userAgent = userAgent;
 }
 
-void WWWSeeker::skipSite(const QUrl& url)
+void WWWSeeker::skipSite(const QUrl &url)
 {
-	NetworkReply* pInfo = findNetworkReply(url);
+	NetworkReply *pInfo = findNetworkReply(url);
 	if (pInfo != nullptr)
 	{
 		pInfo->reply->abort();
 	}
 }
 
-void WWWSeeker::startNetworkQuery(const QUrl& url)
+void WWWSeeker::startNetworkQuery(const QUrl &url)
 {
 	QNetworkRequest request;
 	request.setUrl(url);
 	request.setRawHeader("User-Agent", d.userAgent.toUtf8());
 
-	QNetworkReply* reply = d.pNetworkAccessManager->get(request);
+	QNetworkReply *reply = d.pNetworkAccessManager->get(request);
 	addNetworkReply(request, reply);
 }
 
 void WWWSeeker::startNextSites()
 {
 	while (d.networkQueries.size() < d.maxConcurrentSiteDownloads
-			&& isMoreToSearch())
+		&& isMoreToSearch())
 	{
 		QUrl url = takeNextUrl();
 		qDebug() << "Took URL:" << url.toString();
@@ -524,7 +524,7 @@ void WWWSeeker::startNextSites()
 	}
 }
 
-void WWWSeeker::startSearch(const QList<FileSeekInfo>& seekedFiles)
+void WWWSeeker::startSearch(const QList<FileSeekInfo> &seekedFiles)
 {
 	if (isWorking())
 	{
@@ -562,7 +562,7 @@ QUrl WWWSeeker::takeNextUrl()
 
 		if (d.fileSiteUrls.contains(lowerCaseFilename))
 		{
-			QMultiMap<int, QUrl>& urls = d.fileSiteUrls[lowerCaseFilename];
+			QMultiMap<int, QUrl> &urls = d.fileSiteUrls[lowerCaseFilename];
 			if (!urls.isEmpty())
 			{
 				int priority = urls.keys().back();
@@ -595,14 +595,14 @@ QUrl WWWSeeker::takeNextUrl()
 	return QUrl();
 }
 
-const QString& WWWSeeker::userAgent() const
+const QString &WWWSeeker::userAgent() const
 {
 	return d.userAgent;
 }
 
-bool WWWSeeker::wasUrlUsed(const QUrl& url) const
+bool WWWSeeker::wasUrlUsed(const QUrl &url) const
 {
-	foreach (const QUrl& usedUrl, d.visitedUrls)
+	foreach (const QUrl &usedUrl, d.visitedUrls)
 	{
 		if (UrlParser::urlEqualsCaseInsensitive(usedUrl, url))
 		{

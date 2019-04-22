@@ -22,12 +22,12 @@
 //------------------------------------------------------------------------------
 #include "srb2server.h"
 
+#include <climits>
+#include <cstring>
 #include <QBuffer>
 #include <QDataStream>
 #include <QFileInfo>
 #include <QScopedPointer>
-#include <climits>
-#include <cstring>
 
 #include "srb2engineplugin.h"
 #include "srb2gameclientrunner.h"
@@ -166,9 +166,7 @@ struct Srb2ServerPacket::ServerInfo
 	{
 		QList<GameMode> modes = Srb2GameInfo::gameModes();
 		if (d.gameType < modes.length())
-		{
 			return modes[d.gameType];
-		}
 		return GameMode::mkUnknown();
 	}
 };
@@ -304,7 +302,7 @@ public:
 };
 
 Srb2Server::Srb2Server(const QHostAddress &address, unsigned short port)
-: Server(address, port)
+	: Server(address, port)
 {
 	d = new PrivData();
 	set_customDetails(&Srb2Server::customDetails);
@@ -322,13 +320,13 @@ QString Srb2Server::customDetails()
 	return "";
 }
 
-GameClientRunner* Srb2Server::gameRunner()
+GameClientRunner *Srb2Server::gameRunner()
 {
 	return new Srb2GameClientRunner(
 		self().toStrongRef().staticCast<Srb2Server>());
 }
 
-EnginePlugin* Srb2Server::plugin() const
+EnginePlugin *Srb2Server::plugin() const
 {
 	return Srb2EnginePlugin::staticInstance();
 }
@@ -363,22 +361,16 @@ Server::Response Srb2Server::readRequest(const QByteArray &data)
 	}
 
 	if (!d->serverInfo.isNull() && !d->playerInfo.isNull())
-	{
 		return processInfoPackets();
-	}
 	else
-	{
 		return RESPONSE_PENDING;
-	}
 }
 
 Server::Response Srb2Server::processInfoPackets()
 {
 	Response response = processServerInfo(*d->serverInfo);
 	if (response != RESPONSE_GOOD)
-	{
 		return response;
-	}
 	return processPlayerInfo(*d->playerInfo);
 }
 
@@ -438,10 +430,10 @@ QByteArray Srb2Server::createSendRequest()
 	d->playerInfo.reset(nullptr);
 
 	/*
-		References:
-		- https://wiki.srb2.org/wiki/SRB2_network_documentation
-		- https://github.com/STJr/SRB2/blob/SRB2_release_2.1.14/src/d_net.c#L689
-	*/
+	References:
+	- https://wiki.srb2.org/wiki/SRB2_network_documentation
+	- https://github.com/STJr/SRB2/blob/SRB2_release_2.1.14/src/d_net.c#L689
+	 */
 	const int length = 13;
 	const unsigned char challenge[length] = {
 		// Header
@@ -451,7 +443,7 @@ QByteArray Srb2Server::createSendRequest()
 		0x00, // Version
 		0x00, 0x00, 0x00, 0x00 // Time
 	};
-	return QByteArray(reinterpret_cast<const char*>(challenge), length);
+	return QByteArray(reinterpret_cast<const char *>(challenge), length);
 }
 
 void Srb2Server::setGameVersion(const QString &version)

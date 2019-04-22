@@ -27,16 +27,16 @@
 
 DClass<RConProtocol>
 {
-	public:
-		bool connected;
-		QList<Player> players;
-		QHostAddress serverAddress;
-		quint16 serverPort;
-		QUdpSocket socket;
+public:
+	bool connected;
+	QList<Player> players;
+	QHostAddress serverAddress;
+	quint16 serverPort;
+	QUdpSocket socket;
 
-		void (RConProtocol::*disconnectFromServer)();
-		void (RConProtocol::*sendCommand)(const QString&);
-		void (RConProtocol::*sendPassword)(const QString&);
+	void (RConProtocol::*disconnectFromServer)();
+	void (RConProtocol::*sendCommand)(const QString &);
+	void (RConProtocol::*sendPassword)(const QString &);
 };
 
 DPointeredNoCopy(RConProtocol)
@@ -60,8 +60,8 @@ RConProtocol::~RConProtocol()
 }
 
 POLYMORPHIC_DEFINE(void, RConProtocol, disconnectFromServer, (), ());
-POLYMORPHIC_DEFINE(void, RConProtocol, sendCommand, (const QString& cmd), (cmd));
-POLYMORPHIC_DEFINE(void, RConProtocol, sendPassword, (const QString& password), (password));
+POLYMORPHIC_DEFINE(void, RConProtocol, sendCommand, (const QString &cmd), (cmd));
+POLYMORPHIC_DEFINE(void, RConProtocol, sendPassword, (const QString &password), (password));
 
 const QHostAddress &RConProtocol::address() const
 {
@@ -112,4 +112,3 @@ QUdpSocket &RConProtocol::socket()
 {
 	return d->socket;
 }
-

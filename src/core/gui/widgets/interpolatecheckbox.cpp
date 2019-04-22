@@ -25,6 +25,8 @@
 
 void InterpolateCheckBox::nextCheckState()
 {
-	checkState() == Qt::Unchecked ?
-		setCheckState(Qt::Checked) : setCheckState(Qt::Unchecked);
+	if (checkState() == Qt::Unchecked)
+		setCheckState(Qt::Checked);
+	else
+		setCheckState(Qt::Unchecked);
 }

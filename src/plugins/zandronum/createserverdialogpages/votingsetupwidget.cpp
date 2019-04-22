@@ -22,11 +22,11 @@
 //------------------------------------------------------------------------------
 #include "votingsetupwidget.h"
 
-#include <ini/inisection.h>
 #include <ini/ini.h>
+#include <ini/inisection.h>
 
 VotingSetupWidget::VotingSetupWidget(QWidget *parent)
-: QWidget(parent)
+	: QWidget(parent)
 {
 	setupUi(this);
 	mainPanel->setEnabled(false);
@@ -65,7 +65,7 @@ QStringList VotingSetupWidget::gameParametersList() const
 	return params;
 }
 
-bool VotingSetupWidget::loadConfig(Ini& ini)
+bool VotingSetupWidget::loadConfig(Ini &ini)
 {
 	IniSection section = ini.section("voting");
 
@@ -88,7 +88,7 @@ bool VotingSetupWidget::loadConfig(Ini& ini)
 	return true;
 }
 
-bool VotingSetupWidget::saveConfig(Ini& ini)
+bool VotingSetupWidget::saveConfig(Ini &ini)
 {
 	IniSection section = ini.section("voting");
 

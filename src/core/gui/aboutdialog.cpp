@@ -26,8 +26,8 @@
 #include "plugins/engineplugin.h"
 #include "plugins/pluginloader.h"
 #include "ui_aboutdialog.h"
-#include "wadseeker/wadseekerversioninfo.h"
 #include "version.h"
+#include "wadseeker/wadseekerversioninfo.h"
 #include <QPixmap>
 #include <QResource>
 #include <QString>
@@ -38,11 +38,11 @@ DClass<AboutDialog> : public Ui::AboutDialog
 
 DPointered(AboutDialog)
 
-AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent)
+AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent)
 {
 	d->setupUi(this);
 
-	connect(d->buttonBox, SIGNAL( clicked(QAbstractButton *) ), SLOT( close() ));
+	connect(d->buttonBox, SIGNAL(clicked(QAbstractButton*)), SLOT(close()));
 
 	// Doomseeker
 	d->versionChangeset->setText(Version::changeset());
@@ -58,11 +58,9 @@ AboutDialog::AboutDialog(QWidget* parent) : QDialog(parent)
 	d->wadseekerYearSpan->setText(WadseekerVersionInfo::yearSpan());
 
 	// Populate plugins dialog
-	for(unsigned i = 0; i < gPlugins->numPlugins(); ++i)
-	{
+	for (unsigned i = 0; i < gPlugins->numPlugins(); ++i)
 		d->pluginBox->addItem( gPlugins->plugin(i)->info()->data()->name);
-	}
-	connect(d->pluginBox, SIGNAL( currentIndexChanged(int) ), SLOT( changePlugin(int) ));
+	connect(d->pluginBox, SIGNAL(currentIndexChanged(int)), SLOT(changePlugin(int)));
 	changePlugin(0);
 
 	d->jsonLayout->setAlignment(d->btnJsonLicense, Qt::AlignTop);
@@ -75,13 +73,14 @@ AboutDialog::~AboutDialog()
 
 void AboutDialog::changePlugin(int pluginIndex)
 {
-	if(static_cast<unsigned> (pluginIndex) >= gPlugins->numPlugins())
+	if (static_cast<unsigned>(pluginIndex) >= gPlugins->numPlugins())
 		return; // Invalid plugin.
 
-	const EnginePlugin* plug = gPlugins->plugin(pluginIndex)->info();
+	const EnginePlugin *plug = gPlugins->plugin(pluginIndex)->info();
 
-	(plug->data()->aboutProvider.isNull()) ?
-		d->pluginDescription->setPlainText("") :
+	if (plug->data()->aboutProvider.isNull())
+		d->pluginDescription->setPlainText("");
+	else
 		d->pluginDescription->setPlainText(plug->data()->aboutProvider->provide());
 	d->pluginAuthor->setText(plug->data()->author);
 	d->pluginVersion->setText(QString("Version: %1.%2").arg(plug->data()->abiVersion).arg(plug->data()->version));
@@ -136,7 +135,7 @@ void AboutDialog::showJsonLicense()
 {
 	QResource license("LICENSE.json");
 	QString licenseText = QString::fromUtf8(
-		reinterpret_cast<const char*>(license.data()),
+		reinterpret_cast<const char *>(license.data()),
 		license.size());
 	CopyTextDlg dialog(licenseText, tr("JSON library license"), this);
 	dialog.resize(550, dialog.height());

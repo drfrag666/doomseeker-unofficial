@@ -24,6 +24,7 @@
 #include "ui_generalgamesetuppanel.h"
 
 #include "configuration/doomseekerconfig.h"
+#include "filefilter.h"
 #include "gui/createserver/maplistpanel.h"
 #include "gui/createserverdialog.h"
 #include "ini/ini.h"
@@ -31,12 +32,11 @@
 #include "serverapi/gamecreateparams.h"
 #include "serverapi/gameexefactory.h"
 #include "serverapi/gamefile.h"
-#include "filefilter.h"
+#include <cassert>
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QTimer>
-#include <cassert>
 
 DClass<GeneralGameSetupPanel> : public Ui::GeneralGameSetupPanel
 {
@@ -51,7 +51,7 @@ DPointered(GeneralGameSetupPanel)
 
 
 GeneralGameSetupPanel::GeneralGameSetupPanel(QWidget *parent)
-: QWidget(parent)
+	: QWidget(parent)
 {
 	d->setupUi(this);
 	d->iwadSetExplicitly = false;
@@ -102,21 +102,17 @@ void GeneralGameSetupPanel::loadConfig(Ini &config, bool loadingPrevious)
 	{
 		QString currentExecutable = d->executableInput->path();
 		QString engineName = general["engine"];
-		const EnginePlugin* prevEngine = d->currentEngine;
-		if(!setEngine(engineName))
+		const EnginePlugin *prevEngine = d->currentEngine;
+		if (!setEngine(engineName))
 			return;
 
 		bool bChangeExecutable = (prevEngine != d->currentEngine || !d->cbLockExecutable->isChecked());
 		QString executablePath = *general["executable"];
 		QFileInfo fileInfo(executablePath);
 		if (!executablePath.isEmpty() && fileInfo.isFile() && bChangeExecutable)
-		{
 			d->executableInput->setPath(executablePath);
-		}
 		else if (!bChangeExecutable)
-		{
 			d->executableInput->setPath(currentExecutable);
-		}
 	}
 
 	d->leServername->setText(general["name"]);
@@ -133,15 +129,13 @@ void GeneralGameSetupPanel::loadConfig(Ini &config, bool loadingPrevious)
 	d->leMap->setText(general["map"]);
 
 	if (!(loadingPrevious && d->iwadSetExplicitly))
-	{
 		d->iwadPicker->addIwad(general["iwad"]);
-	}
 
 	d->logDirectoryPicker->setLoggingEnabled(general["logEnabled"]);
 	d->logDirectoryPicker->setPathAndUpdate(general["logDir"]);
 
 	QList<bool> optionalWads;
-	foreach(QString value, general["pwadsOptional"].valueString().split(";"))
+	foreach (QString value, general["pwadsOptional"].valueString().split(";"))
 	{
 		optionalWads << (value != "0");
 	}
@@ -173,8 +167,10 @@ void GeneralGameSetupPanel::saveConfig(Ini &config)
 	general["pwads"] = d->wadsPicker->filePaths().join(";");
 	QList<bool> optionalWads = d->wadsPicker->fileOptional();
 	QStringList optionalList;
-	foreach(bool optional, optionalWads)
+	foreach (bool optional, optionalWads)
+	{
 		optionalList << (optional ? "1" : "0");
+	}
 	general["pwadsOptional"] = optionalList.join(";");
 
 	general["broadcastToLAN"] = d->cbBroadcastToLAN->isChecked();
@@ -198,7 +194,7 @@ void GeneralGameSetupPanel::setupDifficulty(const EnginePlugin *engine)
 	d->labelDifficulty->setVisible(!levels.isEmpty());
 	d->cboDifficulty->setVisible(!levels.isEmpty());
 	d->cboDifficulty->addItem(tr("< NONE >"), Skill::UNDEFINED);
-	foreach(const GameCVar &level, levels)
+	foreach (const GameCVar &level, levels)
 	{
 		d->cboDifficulty->addItem(level.name(), level.value());
 	}
@@ -227,9 +223,7 @@ void GeneralGameSetupPanel::setupForEngine(EnginePlugin *engine)
 
 	QList<GameMode> gameModes = d->currentEngine->gameModes();
 	for (int i = 0; i < gameModes.count(); ++i)
-	{
 		d->cboGamemode->addItem(gameModes[i].name(), gameModes[i].index());
-	}
 	setupDifficulty(engine);
 }
 
@@ -245,7 +239,7 @@ void GeneralGameSetupPanel::setupForRemoteGame()
 
 		NULL
 	};
-	for(int i = 0;disableControls[i] != nullptr;++i)
+	for (int i = 0; disableControls[i] != nullptr; ++i)
 		disableControls[i]->setDisabled(true);
 }
 
@@ -278,20 +272,16 @@ QString GeneralGameSetupPanel::pathToExe()
 void GeneralGameSetupPanel::onGameModeChanged(int index)
 {
 	if (index >= 0)
-	{
 		emit gameModeChanged(currentGameMode());
-	}
 }
 
 GameMode GeneralGameSetupPanel::currentGameMode() const
 {
 	QList<GameMode> gameModes = d->currentEngine->gameModes();
-	foreach (const GameMode& mode, gameModes)
+	foreach (const GameMode &mode, gameModes)
 	{
 		if (mode.index() == d->cboGamemode->itemData(d->cboGamemode->currentIndex()).toInt())
-		{
 			return mode;
-		}
 	}
 	return GameMode::mkUnknown();
 }

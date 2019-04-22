@@ -63,7 +63,7 @@ bool LocalizationInfo::isValid() const
 	return !localeName.isEmpty();
 }
 
-bool LocalizationInfo::operator==(const LocalizationInfo& o2) const
+bool LocalizationInfo::operator==(const LocalizationInfo &o2) const
 {
 	return countryCodeName == o2.countryCodeName
 		&& QLocale(localeName) == QLocale(o2.localeName)

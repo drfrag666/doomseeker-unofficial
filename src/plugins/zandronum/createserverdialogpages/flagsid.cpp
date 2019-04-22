@@ -22,10 +22,10 @@
 //------------------------------------------------------------------------------
 #include "flagsid.h"
 
-#include <ini/inisection.h>
-#include <ini/inivariable.h>
 #include "createserverdialogpages/flagspage.h"
 #include "zandronumgamesettings.h"
+#include <ini/inisection.h>
+#include <ini/inivariable.h>
 
 #include <QCheckBox>
 
@@ -51,7 +51,7 @@ FlagsId::~FlagsId()
 
 void FlagsId::save(IniSection &cfg)
 {
-	foreach (const QCheckBox *checkbox, d->page->findChildren<QCheckBox*>())
+	foreach (const QCheckBox *checkbox, d->page->findChildren<QCheckBox *>())
 	{
 		QVariant flagName = checkbox->property("flagname");
 		if (flagName.isValid())
@@ -63,7 +63,7 @@ void FlagsId::save(IniSection &cfg)
 
 void FlagsId::load(const IniSection &cfg)
 {
-	foreach (QCheckBox *checkbox, d->page->findChildren<QCheckBox*>())
+	foreach (QCheckBox *checkbox, d->page->findChildren<QCheckBox *>())
 	{
 		QVariant flagName = checkbox->property("flagname");
 		if (flagName.isValid() && cfg.hasSetting(flagName.toString()))
@@ -79,7 +79,7 @@ void FlagsId::assign()
 {
 	using namespace ZandronumGameSettingsNames;
 
-	FlagsPage* f = d->page;
+	FlagsPage *f = d->page;
 
 	f->cbCompatAllowSilentBFGTrick->setProperty("flagname", COMPAT_ALLOW_SILENT_BFGTRICK);
 	f->cbCompatEnableWallRunning->setProperty("flagname", COMPAT_ENABLE_WALL_RUNNING);

@@ -22,15 +22,15 @@
 //------------------------------------------------------------------------------
 #include "gameexecutablepicker.h"
 
-#include "ui_gameexecutablepicker.h"
 #include "configuration/doomseekerconfig.h"
+#include "filefilter.h"
 #include "gui/commongui.h"
 #include "ini/ini.h"
 #include "plugins/engineplugin.h"
 #include "serverapi/exefile.h"
 #include "serverapi/gameexefactory.h"
 #include "serverapi/gamefile.h"
-#include "filefilter.h"
+#include "ui_gameexecutablepicker.h"
 #include <QFileDialog>
 
 DClass<GameExecutablePicker> : public Ui::GameExecutablePicker
@@ -42,7 +42,7 @@ public:
 DPointered(GameExecutablePicker)
 
 GameExecutablePicker::GameExecutablePicker(QWidget *parent)
-: QWidget(parent)
+	: QWidget(parent)
 {
 	d->setupUi(this);
 	d->allowedExecs = 0;
@@ -58,9 +58,7 @@ GameExecutablePicker::~GameExecutablePicker()
 void GameExecutablePicker::add(const QString &path)
 {
 	if (!path.trimmed().isEmpty() && d->executableInput->findText(path) < 0)
-	{
 		d->executableInput->addItem(path);
-	}
 }
 
 void GameExecutablePicker::browse()
@@ -86,17 +84,11 @@ GameFileList GameExecutablePicker::gameExecutables() const
 	GameFileList files = d->plugin->gameExe()->gameFiles();
 	GameFileList candidates = GameFiles::allFlagMatchExecutables(files, d->allowedExecs);
 	if (d->allowedExecs & GameFile::Client)
-	{
 		candidates.prepend(GameFiles::defaultClientExecutable(files));
-	}
 	else if (d->allowedExecs & GameFile::Server)
-	{
 		candidates.prepend(GameFiles::defaultServerExecutable(files));
-	}
 	else if (d->allowedExecs & GameFile::Offline)
-	{
 		candidates.prepend(GameFiles::defaultOfflineExecutable(files));
-	}
 	return candidates;
 }
 
@@ -183,17 +175,11 @@ void GameExecutablePicker::reloadExecutables()
 	{
 		QFileInfo fileInfo(exe.path());
 		if (fileInfo.isFile())
-		{
 			add(exe.path());
-		}
 	}
 
 	if (d->executableInput->findText(currentExec) >= 0)
-	{
 		CommonGUI::setCurrentText(d->executableInput, currentExec);
-	}
 	else
-	{
 		setExecutableToDefault();
-	}
 }

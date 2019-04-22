@@ -22,8 +22,8 @@
 //------------------------------------------------------------------------------
 #include "huffmanudpsocket.h"
 
-#include <cassert>
 #include "huffmanqt.h"
+#include <cassert>
 
 class HuffmanUdpSocket::PrivData
 {

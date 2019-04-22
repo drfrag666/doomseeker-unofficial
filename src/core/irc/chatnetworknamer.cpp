@@ -33,9 +33,7 @@ QString ChatNetworkNamer::convertToValidName(const QString &name)
 	for (int i = 0; i < result.length(); ++i)
 	{
 		if (!isValidCharacter(result[i]))
-		{
 			result[i] = '_';
-		}
 	}
 	return result;
 }
@@ -48,15 +46,11 @@ bool ChatNetworkNamer::isValidCharacter(const QChar &c)
 bool ChatNetworkNamer::isValidName(const QString &name)
 {
 	if (name.trimmed().isEmpty())
-	{
 		return false;
-	}
 	for (int i = 0; i < name.length(); ++i)
 	{
 		if (!isValidCharacter(name[i]))
-		{
 			return false;
-		}
 	}
 	return true;
 }

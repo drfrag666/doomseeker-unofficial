@@ -26,10 +26,10 @@
 #include "irc/entities/ircnetworkentity.h"
 #include "plugins/engineplugin.h"
 
+#include "odamexengineplugin.h"
 #include "odamexgamehost.h"
 #include "odamexgameinfo.h"
 #include "odamexmasterclient.h"
-#include "odamexengineplugin.h"
 #include "odamexserver.h"
 
 INSTALL_PLUGIN(OdamexEnginePlugin)
@@ -75,7 +75,7 @@ QList<GameMode> OdamexEnginePlugin::gameModes() const
 	return OdamexGameInfo::gameModes();
 }
 
-GameHost* OdamexEnginePlugin::gameHost()
+GameHost *OdamexEnginePlugin::gameHost()
 {
 	return new OdamexGameHost();
 }

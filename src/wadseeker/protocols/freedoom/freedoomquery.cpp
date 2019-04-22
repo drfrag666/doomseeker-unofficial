@@ -22,14 +22,14 @@
 //------------------------------------------------------------------------------
 #include "freedoomquery.h"
 
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
-#include <QString>
-#include <QUrl>
 #include "entities/modset.h"
 #include "protocols/freedoom/freedoominfoparser.h"
 #include "wadseekerversioninfo.h"
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QString>
+#include <QUrl>
 
 DClass<FreedoomQuery>
 {
@@ -47,7 +47,7 @@ public:
 DPointeredNoCopy(FreedoomQuery)
 
 FreedoomQuery::FreedoomQuery(QObject *parent)
-: QObject(parent)
+	: QObject(parent)
 {
 	d->nam = new QNetworkAccessManager();
 	d->reply = nullptr;
