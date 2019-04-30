@@ -23,13 +23,31 @@
 #include "basefileseeker.h"
 
 #include "pathfinder/filesearchpath.h"
-#include <QDir>
 
-QString BaseFileSeeker::findFile(const QString &fileName, const QList<FileSearchPath> &paths)
+#include <QDir>
+#include <QSet>
+
+DClass<BaseFileSeeker>
 {
-	foreach (const FileSearchPath &candidate, paths)
+public:
+	QSharedPointer <QList<FileSearchPath> > paths;
+};
+DPointered(BaseFileSeeker)
+
+BaseFileSeeker::BaseFileSeeker(QSharedPointer <QList<FileSearchPath> > paths)
+{
+	d->paths = paths;
+}
+
+BaseFileSeeker::~BaseFileSeeker()
+{
+}
+
+QString BaseFileSeeker::findFile(const QString &fileName)
+{
+	for (int i = 0; i < d->paths->size(); ++i)
 	{
-		QString result = findFileInPath(fileName, candidate);
+		QString result = findFileInPath(fileName, (*d->paths.data())[i]);
 		if (!result.isNull())
 		{
 			return result;
@@ -38,28 +56,56 @@ QString BaseFileSeeker::findFile(const QString &fileName, const QList<FileSearch
 	return QString();
 }
 
-QString BaseFileSeeker::findFileInPath(const QString &fileName, const FileSearchPath &path)
+QString BaseFileSeeker::findFileInPath(const QString &fileName, FileSearchPath &path)
 {
-	QString result = findFileInSpecifiedDirectory(fileName, path.path());
-	if (!result.isNull())
+	if (!path.hasCache())
 	{
-		return result;
+		generatePathCacheAndEditPaths(path);
+	}
+	if (path.getCache().contains(fileName.toLower()))
+		return QDir(path.path()).absoluteFilePath(fileName);
+	return QString();
+}
+
+void BaseFileSeeker::generatePathCacheAndEditPaths(FileSearchPath &path)
+{
+	QFileInfoList entriesDirectory = QDir(path.path()).entryInfoList(QDir::AllEntries | QDir::NoDotAndDotDot);
+	QSet<QString> entriesFileNames, entriesDirAbsolutePath;
+
+	for (const QFileInfo &entry : qAsConst(entriesDirectory))
+	{
+		if (entry.isFile())
+			entriesFileNames << entry.fileName().toLower();
+		else if (entry.isDir())
+			entriesDirAbsolutePath << entry.absoluteFilePath();
 	}
 
 	if (path.isRecursive())
 	{
-		QDir dir(path.path());
-		QStringList subDirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-		foreach (const QString &subDir, subDirs)
+		QList<FileSearchPath> subpaths;
+		for (const QString &entry : qAsConst(entriesDirAbsolutePath))
 		{
-			FileSearchPath subSearchPath(dir.filePath(subDir));
-			subSearchPath.setRecursive(true);
-			QString result = findFileInPath(fileName, subSearchPath);
-			if (!result.isNull())
-			{
-				return result;
-			}
+			FileSearchPath subpath = FileSearchPath(entry);
+			subpath.setRecursive(true);
+			subpaths << subpath;
 		}
+		insertSubpathsAfterPath(path, subpaths);
+		path.setRecursive(false);
 	}
-	return QString();
+	path.setCache(entriesFileNames);
+}
+
+void BaseFileSeeker::insertSubpathsAfterPath(const FileSearchPath &path, QList<FileSearchPath> subpaths)
+{
+	bool startStripping = false;
+	QList<FileSearchPath> postPathBaseEntries;
+	while (!d->paths->isEmpty() && d->paths->last().path() != path.path())
+	{
+		postPathBaseEntries.prepend(d->paths->takeLast());
+	}
+	if (!d->paths->isEmpty())
+	{
+		postPathBaseEntries.prepend(d->paths->takeFirst());
+		*d->paths.data() << subpaths << postPathBaseEntries;
+	}
 }

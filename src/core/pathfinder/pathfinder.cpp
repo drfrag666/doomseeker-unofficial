@@ -22,16 +22,17 @@
 //------------------------------------------------------------------------------
 #include "pathfinder.h"
 
+#include "basefileseeker.h"
 #include "configuration/doomseekerconfig.h"
 #include "datapaths.h"
 #include "log.h"
-#include "pathfinder/caseinsensitivefsfileseeker.h"
-#include "pathfinder/casesensitivefsfileseeker.h"
 #include "pathfinder/filesearchpath.h"
 #include "strings.hpp"
+
 #include <cstdlib>
 #include <QDir>
 #include <QFileInfo>
+#include <QSharedPointer>
 
 DClass<PathFinderResult>
 {
@@ -77,7 +78,7 @@ const QStringList &PathFinderResult::missingFiles() const
 DClass<PathFinder>
 {
 public:
-	QList<FileSearchPath> searchPaths;
+	QSharedPointer <QList<FileSearchPath> > searchPaths;
 
 	QString resolveDir(const QString &dir)
 	{
@@ -103,14 +104,16 @@ DPointered(PathFinder)
 
 PathFinder::PathFinder()
 {
-	d->searchPaths = gConfig.combinedWadseekPaths();
+	d->searchPaths.reset(new QList<FileSearchPath>());
+	d->searchPaths->append(gConfig.combinedWadseekPaths());
 }
 
 PathFinder::PathFinder(const QStringList &paths)
 {
+	d->searchPaths.reset(new QList<FileSearchPath>());
 	foreach (const QString &path, paths)
 	{
-		d->searchPaths << path;
+		d->searchPaths->append(path);
 	}
 }
 
@@ -145,29 +148,23 @@ PathFinder PathFinder::genericPathFinder(const QStringList &suffixes)
 
 void PathFinder::addPrioritySearchDir(const QString &dir)
 {
-	d->searchPaths.prepend(d->resolveDir(dir));
+	d->searchPaths->prepend(d->resolveDir(dir));
 }
 
 void PathFinder::addSearchDir(const QString &dir)
 {
-	d->searchPaths << d->resolveDir(dir);
+	d->searchPaths->append(d->resolveDir(dir));
 }
 
 QString PathFinder::findFile(const QString &fileName) const
 {
-	if (d->searchPaths.count() == 0)
+	if (d->searchPaths->count() == 0)
 	{
 		return QString();
 	}
 
-	BaseFileSeeker *seeker = nullptr;
-	#ifdef Q_OS_WIN32
-	seeker = new CaseInsensitiveFSFileSeeker();
-	#else
-	seeker = new CaseSensitiveFSFileSeeker();
-	#endif
-	QString result = seeker->findFile(fileName, d->searchPaths);
-	delete seeker;
+	BaseFileSeeker seeker(d->searchPaths);
+	QString result = seeker.findFile(fileName);
 	return result;
 }
 

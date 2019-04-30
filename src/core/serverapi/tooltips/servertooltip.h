@@ -27,6 +27,7 @@
 #include <QString>
 
 class PWad;
+class WadPathFinder;
 
 namespace ServerTooltip
 {
@@ -39,7 +40,7 @@ QString createIwadToolTip(ServerPtr server);
 QString createPlayersToolTip(ServerCPtr server);
 QString createPortToolTip(ServerCPtr server);
 QString createPwadsToolTip(ServerPtr server);
-QString createPwadToolTipInfo(const PWad &pwad, const ServerPtr &server);
+QString createPwadToolTipInfo(const PWad &pwad, WadPathFinder &wadFinder);
 QString createServerNameToolTip(ServerCPtr server);
 }
 

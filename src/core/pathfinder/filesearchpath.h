@@ -23,6 +23,7 @@
 #ifndef idD5CA37A7_5FD3_4151_8316AB0B1F9974E5
 #define idD5CA37A7_5FD3_4151_8316AB0B1F9974E5
 
+#include <QSet>
 #include <QString>
 #include <QVariant>
 
@@ -60,9 +61,16 @@ public:
 		recursive_ = b;
 	}
 
+	/**
+	 * @brief Set the list of the names files located in the directory.
+	 */
+	void setCache(const QSet<QString> &files);
+	bool hasCache();
+	const QSet<QString> &getCache();
 private:
 	QString path_;
 	bool recursive_;
+	QSet<QString> cacheFiles_;
 };
 
 #endif

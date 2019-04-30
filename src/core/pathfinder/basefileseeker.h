@@ -24,18 +24,24 @@
 #define id05405E76_A2CE_42DA_B784CB577350685F
 
 #include <QList>
-#include <QString>
+#include <QSharedPointer>
+
+#include "dptr.h"
 
 class FileSearchPath;
 
 class BaseFileSeeker
 {
 public:
-	virtual ~BaseFileSeeker() {}
+	BaseFileSeeker(QSharedPointer <QList<FileSearchPath> > paths);
+	~BaseFileSeeker();
 
-	QString findFile(const QString &fileName, const QList<FileSearchPath> &paths);
-	QString findFileInPath(const QString &fileName, const FileSearchPath &path);
-	virtual QString findFileInSpecifiedDirectory(const QString &fileName, const QString &dirPath) = 0;
+	QString findFile(const QString &fileName);
+	QString findFileInPath(const QString &fileName, FileSearchPath &path);
+	void generatePathCacheAndEditPaths(FileSearchPath &path);
+	void insertSubpathsAfterPath(const FileSearchPath &path, QList<FileSearchPath> subpaths);
+private:
+	DPtr<BaseFileSeeker> d;
 };
 
 #endif // header

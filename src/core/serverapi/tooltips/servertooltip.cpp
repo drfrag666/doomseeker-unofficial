@@ -23,11 +23,14 @@
 #include "servertooltip.h"
 
 #include "configuration/doomseekerconfig.h"
+#include "pathfinder/pathfinder.h"
 #include "pathfinder/wadpathfinder.h"
 #include "serverapi/playerslist.h"
 #include "serverapi/server.h"
 #include "serverapi/serverstructs.h"
 #include "serverapi/tooltips/tooltipgenerator.h"
+
+#include "log.h"
 
 namespace ServerTooltip
 {
@@ -106,6 +109,7 @@ QString ServerTooltip::createPortToolTip(ServerCPtr server)
 
 QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 {
+	QDateTime dateTime1 = QDateTime::currentDateTime();
 	if (server == nullptr || !server->isKnown() || server->numWads() == 0)
 	{
 		return QString();
@@ -124,9 +128,11 @@ QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 	if (bFindWads)
 	{
 		QStringList pwadsFormatted;
+		PathFinder pathFinder = server->wadPathFinder();
+		WadPathFinder wadFinder(pathFinder);
 		foreach (const PWad &wad, pwads)
 		{
-			pwadsFormatted << createPwadToolTipInfo(wad, server);
+			pwadsFormatted << createPwadToolTipInfo(wad, wadFinder);
 		}
 
 		content = "<table cellspacing=1>";
@@ -142,12 +148,15 @@ QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 		content.chop(1); // Get rid of extra \n.
 	}
 
+	QDateTime dateTime2 = QDateTime::currentDateTime();
+	gLog << "ms: " + QString::number(dateTime1.msecsTo(dateTime2));
+
 	return toolTip.arg(content);
 }
 
-QString ServerTooltip::createPwadToolTipInfo(const PWad &pwad, const ServerPtr &server)
+QString ServerTooltip::createPwadToolTipInfo(const PWad &pwad, WadPathFinder &wadFinder)
 {
-	WadFindResult findResult = findWad(server, pwad.name());
+	WadFindResult findResult = wadFinder.find(pwad.name());
 
 	QString fontColor = "#777777";
 	QStringList cells;
