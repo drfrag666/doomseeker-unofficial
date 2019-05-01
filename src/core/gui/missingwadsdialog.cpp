@@ -122,7 +122,9 @@ void MissingWadsDialog::setupDownloadableFilesArea()
 		d->areaCanBeDownloadedFiles->show();
 		QStringList names;
 		foreach (PWad file, files)
-		names << file.name();
+		{
+			names << file.name();
+		}
 		d->lblCanBeDownloadedFiles->setText(names.join(", "));
 	}
 	else

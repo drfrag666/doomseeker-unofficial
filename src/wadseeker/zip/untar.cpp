@@ -67,7 +67,9 @@ QStringList UnTar::files()
 {
 	QStringList files;
 	foreach(const TarFile &tarfile, directory)
-	files << tarfile.filename;
+	{
+		files << tarfile.filename;
+	}
 	return files;
 }
 

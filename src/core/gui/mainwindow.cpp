@@ -620,7 +620,9 @@ void MainWindow::findMissingWADs(const ServerPtr &server)
 	const CheckResult checkResults = checkWadsDlg->checkWads();
 
 	foreach (const PWad &wad, checkResults.missingWads)
-	missingWads << PWad(wad.name(), true, wad.checksums());
+	{
+		missingWads << PWad(wad.name(), true, wad.checksums());
+	}
 	incompatibleWads << checkResults.incompatibleWads;
 
 	if (missingWads.isEmpty() && incompatibleWads.isEmpty())

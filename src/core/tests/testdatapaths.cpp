@@ -75,8 +75,7 @@ bool TestDataPathsAppDataDirectoryWrite::executeTest()
 		// be quite easy.
 		randomDirName = Strings::createRandomAlphaNumericString(32);
 		bEntryDoesExist = appDataDir.exists(randomDirName);
-	}
-	while (bEntryDoesExist == true);
+	} while (bEntryDoesExist == true);
 
 	QString randomDirPath = appDataDirPath + "/" + randomDirName;
 

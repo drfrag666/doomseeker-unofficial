@@ -118,7 +118,9 @@ QStringList WadReader::getAllMaps()
 		"SEGS", "SSECTORS", "NODES", "SECTORS", "REJECT", "BLOCKMAP"};
 
 	foreach (DirectoryEntry dirEntry, getDirectory())
-	names << dirEntry.name;
+	{
+		names << dirEntry.name;
+	}
 
 	for (int mainIter = 0; mainIter < names.size() - lumpsToCheckFor.size(); ++mainIter)
 	{

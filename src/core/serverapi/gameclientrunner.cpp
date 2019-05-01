@@ -301,12 +301,18 @@ void GameClientRunner::addPwads()
 	checkWadsDlg->addWads(d->server->wads());
 	const CheckResult checkResults = checkWadsDlg->checkWads();
 	foreach (const PWad &wad, checkResults.missingWads)
-	markPwadAsMissing(wad);
+	{
+		markPwadAsMissing(wad);
+	}
 	foreach (const PWad &wad, checkResults.incompatibleWads)
-	markPwadAsIncompatible(wad);
+	{
+		markPwadAsIncompatible(wad);
+	}
 	QStringList paths;
 	foreach (const PWad &wad, checkResults.foundWads)
-	paths << findWad(wad.name());
+	{
+		paths << findWad(wad.name());
+	}
 	addModFiles(paths);
 }
 

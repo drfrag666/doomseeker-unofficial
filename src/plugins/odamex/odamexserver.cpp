@@ -68,8 +68,7 @@ QString OdamexServer::customDetails()
 	do
 	{
 		cvarList += QString("<li>%1 %2</li>").arg(iter.key()).arg(iter.value());
-	}
-	while (++iter != cvars.constEnd());
+	} while (++iter != cvars.constEnd());
 	return cvarList + "</ul>";
 }
 
