@@ -44,6 +44,8 @@ public:
 
 	bool anythingAvailable;
 	const EnginePlugin *engine;
+	GameCreateParams::HostMode hostMode;
+	GameMode gameMode;
 	QList<GameCVar> gameModifiers;
 	QList<GameLimitWidget *> limitWidgets;
 	QMap<QString, QMap<QString, int> > memorizedLimits;
@@ -57,11 +59,60 @@ GameRulesPanel::GameRulesPanel(QWidget *parent)
 	d->setupUi(this);
 	d->anythingAvailable = true;
 	d->engine = nullptr;
+	d->hostMode = GameCreateParams::Host;
 }
 
 GameRulesPanel::~GameRulesPanel()
 {
 	qDeleteAll(d->limitWidgets);
+}
+
+void GameRulesPanel::applyModeToUi()
+{
+	bool engineAllowsSlotsLimits = false;
+	bool engineHasModifiers = false;
+	bool engineHasMapList = false;
+
+	if (d->engine != nullptr)
+	{
+		setupModifiers(d->engine);
+		d->mapListPanel->setupForEngine(d->engine);
+		setupLimitWidgets(d->engine, d->gameMode);
+
+		auto ecfg = d->engine->data();
+
+		d->labelMaxClients->setVisible(ecfg->allowsClientSlots);
+		d->spinMaxClients->setVisible(ecfg->allowsClientSlots);
+		d->labelMaxPlayers->setVisible(ecfg->allowsPlayerSlots);
+		d->spinMaxPlayers->setVisible(ecfg->allowsPlayerSlots);
+
+		// Remove hidden widgets to prevent creating extra spacing
+		// in the form layout.
+		d->hostingLimitsLayout->removeWidget(d->labelMaxClients);
+		d->hostingLimitsLayout->removeWidget(d->spinMaxClients);
+		d->hostingLimitsLayout->removeWidget(d->labelMaxPlayers);
+		d->hostingLimitsLayout->removeWidget(d->spinMaxPlayers);
+
+		if (ecfg->allowsClientSlots)
+			d->hostingLimitsLayout->addRow(d->labelMaxClients, d->spinMaxClients);
+		if (ecfg->allowsPlayerSlots)
+			d->hostingLimitsLayout->addRow(d->labelMaxPlayers, d->spinMaxPlayers);
+
+		engineAllowsSlotsLimits = ecfg->allowsClientSlots || ecfg->allowsPlayerSlots;
+		engineHasMapList = ecfg->hasMapList;
+		engineHasModifiers = !d->engine->gameModifiers().isEmpty();
+	}
+
+	d->gameLimitsBox->setVisible(!d->limitWidgets.isEmpty());
+
+	bool slotLimitsBoxAvailable = d->hostMode == GameCreateParams::Host && engineAllowsSlotsLimits;
+	d->hostLimitsBox->setVisible(slotLimitsBoxAvailable);
+	d->mapListBox->setVisible(engineHasMapList);
+
+	d->anythingAvailable = !d->limitWidgets.isEmpty()
+		|| engineHasModifiers
+		|| engineHasMapList
+		|| slotLimitsBoxAvailable;
 }
 
 void GameRulesPanel::fillInParams(GameCreateParams &params)
@@ -77,7 +128,7 @@ void GameRulesPanel::fillInParams(GameCreateParams &params)
 
 void GameRulesPanel::fillInLimits(GameCreateParams &params)
 {
-	foreach (PrivData<GameRulesPanel>::GameLimitWidget *p, d->limitWidgets)
+	for (PrivData<GameRulesPanel>::GameLimitWidget *p : d->limitWidgets)
 	{
 		p->limit.setValue(p->spinBox->value());
 		params.cvars() << p->limit;
@@ -112,7 +163,7 @@ void GameRulesPanel::memorizeLimits()
 		if (!d->memorizedLimits.contains(d->engine->nameCanonical()))
 			d->memorizedLimits[d->engine->nameCanonical()] = QMap<QString, int>();
 		QMap<QString, int> &limits = d->memorizedLimits[d->engine->nameCanonical()];
-		foreach (const PrivData<GameRulesPanel>::GameLimitWidget *limitWidget, d->limitWidgets)
+		for (const PrivData<GameRulesPanel>::GameLimitWidget *limitWidget : d->limitWidgets)
 		{
 			limits[limitWidget->limit.command()] = limitWidget->spinBox->value();
 		}
@@ -124,7 +175,7 @@ void GameRulesPanel::loadMemorizedLimits(const EnginePlugin *engine)
 	if (d->memorizedLimits.contains(engine->nameCanonical()))
 	{
 		QMap<QString, int> &limits = d->memorizedLimits[engine->nameCanonical()];
-		foreach (const PrivData<GameRulesPanel>::GameLimitWidget *limitWidget, d->limitWidgets)
+		for (const PrivData<GameRulesPanel>::GameLimitWidget *limitWidget : d->limitWidgets)
 		{
 			if (limits.contains(limitWidget->limit.command()))
 				limitWidget->spinBox->setValue(limits[limitWidget->limit.command()]);
@@ -139,7 +190,7 @@ void GameRulesPanel::loadConfig(Ini &config)
 	d->cboModifier->setCurrentIndex(section["modifier"]);
 	d->spinMaxClients->setValue(section["maxClients"]);
 	d->spinMaxPlayers->setValue(section["maxPlayers"]);
-	foreach (PrivData<GameRulesPanel>::GameLimitWidget *widget, d->limitWidgets)
+	for (PrivData<GameRulesPanel>::GameLimitWidget *widget : d->limitWidgets)
 	{
 		widget->spinBox->setValue(section[widget->limit.command()]);
 	}
@@ -154,7 +205,7 @@ void GameRulesPanel::saveConfig(Ini &config)
 	section["modifier"] = d->cboModifier->currentIndex();
 	section["maxClients"] = d->spinMaxClients->value();
 	section["maxPlayers"] = d->spinMaxPlayers->value();
-	foreach (PrivData<GameRulesPanel>::GameLimitWidget *widget, d->limitWidgets)
+	for (PrivData<GameRulesPanel>::GameLimitWidget *widget : d->limitWidgets)
 	{
 		section[widget->limit.command()] = widget->spinBox->value();
 	}
@@ -169,35 +220,15 @@ void GameRulesPanel::setCreateServerDialog(CreateServerDialog *dialog)
 
 void GameRulesPanel::setupForEngine(const EnginePlugin *engine, const GameMode &gameMode)
 {
-	d->anythingAvailable = false;
-	setupModifiers(engine);
-
-	d->mapListBox->setVisible(engine->data()->hasMapList);
-	d->mapListPanel->setupForEngine(engine);
-	d->anythingAvailable = engine->data()->hasMapList || d->anythingAvailable;
-
-	d->labelMaxClients->setVisible(engine->data()->allowsClientSlots);
-	d->spinMaxClients->setVisible(engine->data()->allowsClientSlots);
-	d->anythingAvailable = engine->data()->allowsClientSlots || d->anythingAvailable;
-
-	d->labelMaxPlayers->setVisible(engine->data()->allowsPlayerSlots);
-	d->spinMaxPlayers->setVisible(engine->data()->allowsPlayerSlots);
-	d->anythingAvailable = engine->data()->allowsPlayerSlots || d->anythingAvailable;
-
-	setupLimitWidgets(engine, gameMode);
-	d->anythingAvailable = !d->limitWidgets.isEmpty() || d->anythingAvailable;
-
 	d->engine = engine;
+	d->gameMode = gameMode;
+	applyModeToUi();
 }
 
-void GameRulesPanel::setupForRemoteGame()
+void GameRulesPanel::setupForHostMode(GameCreateParams::HostMode hostMode)
 {
-	QWidget *disableControls[] =
-	{
-		d->spinMaxClients, d->spinMaxPlayers, NULL
-	};
-	for (int i = 0; disableControls[i]; ++i)
-		disableControls[i]->setDisabled(true);
+	d->hostMode = hostMode;
+	applyModeToUi();
 }
 
 void GameRulesPanel::setupModifiers(const EnginePlugin *engine)
@@ -210,12 +241,11 @@ void GameRulesPanel::setupModifiers(const EnginePlugin *engine)
 
 	if (!modifiers.isEmpty())
 	{
-		d->cboModifier->show();
-		d->labelModifiers->show();
+		d->modifierBox->show();
 
 		d->cboModifier->addItem(tr("< NONE >"));
 
-		foreach (const GameCVar &cvar, modifiers)
+		for (const GameCVar &cvar : modifiers)
 		{
 			d->cboModifier->addItem(cvar.name());
 			d->gameModifiers << cvar;
@@ -229,14 +259,13 @@ void GameRulesPanel::setupModifiers(const EnginePlugin *engine)
 	}
 	else
 	{
-		d->cboModifier->hide();
-		d->labelModifiers->hide();
+		d->modifierBox->hide();
 	}
 }
 
 void GameRulesPanel::removeLimitWidgets()
 {
-	foreach (PrivData<GameRulesPanel>::GameLimitWidget *widget, d->limitWidgets)
+	for (PrivData<GameRulesPanel>::GameLimitWidget *widget : d->limitWidgets)
 	{
 		delete widget->label;
 		delete widget->spinBox;
@@ -252,7 +281,7 @@ void GameRulesPanel::setupLimitWidgets(const EnginePlugin *engine, const GameMod
 	removeLimitWidgets();
 	QList<GameCVar> limits = engine->limits(gameMode);
 
-	foreach (const GameCVar &limit, limits)
+	for (const GameCVar &limit : limits)
 	{
 		QLabel *label = new QLabel(this);
 		label->setText(limit.name());

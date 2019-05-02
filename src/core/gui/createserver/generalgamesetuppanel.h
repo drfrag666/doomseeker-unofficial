@@ -24,6 +24,7 @@
 #define idb76a672e_9f54_4dbc_a933_33ea083e8f11
 
 #include "dptr.h"
+#include "serverapi/gamecreateparams.h"
 
 #include <QWidget>
 
@@ -50,7 +51,7 @@ public:
 	void reloadAppConfig();
 	void saveConfig(Ini &config);
 	void setupForEngine(EnginePlugin *engine);
-	void setupForRemoteGame();
+	void setupForHostMode(GameCreateParams::HostMode hostMode);
 	void setCreateServerDialog(CreateServerDialog *dialog);
 	void setIwadByName(const QString &iwad);
 	QStringList getAllWadPaths() const;

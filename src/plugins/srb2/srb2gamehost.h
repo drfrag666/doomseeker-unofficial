@@ -46,6 +46,7 @@ private:
 
 	void addDMFlags();
 	void addDMFlags(const QList<DMFlagsSection> &flags, bool enabled);
+	void addHostModeParams();
 	void addIwad();
 };
 

@@ -1015,7 +1015,7 @@ void MainWindow::menuBuddies()
 void MainWindow::menuCreateServer()
 {
 	// This object will auto-delete on close.
-	CreateServerDialog *dialog = new CreateServerDialog(nullptr);
+	CreateServerDialog *dialog = new CreateServerDialog(GameCreateParams::Host, nullptr);
 	dialog->setWindowIcon(this->windowIcon());
 	dialog->show();
 }

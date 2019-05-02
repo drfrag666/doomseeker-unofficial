@@ -24,6 +24,7 @@
 #define id880d5e15_1a53_40da_bdb9_11d9b4dc3222
 
 #include "dptr.h"
+#include "serverapi/gamecreateparams.h"
 
 #include <QWidget>
 
@@ -48,12 +49,13 @@ public:
 	void loadConfig(Ini &config);
 	void saveConfig(Ini &config);
 	void setupForEngine(const EnginePlugin *engine, const GameMode &gameMode);
-	void setupForRemoteGame();
+	void setupForHostMode(GameCreateParams::HostMode hostMode);
 	void setCreateServerDialog(CreateServerDialog *dialog);
 
 private:
 	DPtr<GameRulesPanel> d;
 
+	void applyModeToUi();
 	void fillInLimits(GameCreateParams &params);
 	void fillInModifiers(GameCreateParams &params);
 	void memorizeLimits();

@@ -325,8 +325,7 @@ void Main::createMainWindow()
 void Main::runCreateGame()
 {
 	gLog << tr("Starting Create Game box.");
-	CreateServerDialog *dialog = new CreateServerDialog(nullptr);
-	dialog->setConfigureButtonVisible(true);
+	CreateServerDialog *dialog = new CreateServerDialog(GameCreateParams::Host, nullptr);
 	dialog->setWindowIcon(Application::icon());
 	dialog->show();
 }

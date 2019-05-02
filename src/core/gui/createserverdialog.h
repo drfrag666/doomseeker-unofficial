@@ -24,6 +24,7 @@
 #define DOOMSEEKER_GUI_CREATESERVERDIALOG_H
 
 #include "dptr.h"
+#include "serverapi/gamecreateparams.h"
 #include "serverapi/serverstructs.h"
 #include <QDialog>
 
@@ -42,22 +43,19 @@ class CreateServerDialog : public QDialog
 	Q_OBJECT
 
 public:
-	CreateServerDialog(QWidget *parent = nullptr);
+	CreateServerDialog(GameCreateParams::HostMode hostMode, QWidget *parent = nullptr);
 	virtual ~CreateServerDialog();
 
 	bool commandLineArguments(QString &executable, QStringList &args, bool offline);
 	void makeRemoteGameSetupDialog(const EnginePlugin *plugin);
 	MapListPanel *mapListPanel();
 	QString mapName() const;
-	void setConfigureButtonVisible(bool visible);
 	void setIwadByName(const QString &iwad);
 	QStringList wadPaths() const;
 
 private slots:
-	void btnLoadClicked();
-	void btnPlayOfflineClicked();
-	void btnSaveClicked();
-	void btnStartServerClicked();
+	void changeToHostMode();
+	void changeToOfflineMode();
 	void firstLoadConfigTimer();
 
 	/**
@@ -68,8 +66,10 @@ private slots:
 	void initEngineSpecific(EnginePlugin *engineInfo);
 	void initGamemodeSpecific(const GameMode &gameMode);
 	void showConfiguration();
-	void showHostCommandLine();
-	void showOfflineCommandLine();
+	void showLoadConfig();
+	void showSaveConfig();
+	void showStartGameCommandLine();
+	void startGame();
 
 private:
 	static const QString TEMP_GAME_CONFIG_FILENAME;
@@ -82,6 +82,7 @@ private:
 	 * will be selected.
 	 */
 	void addIwad(const QString &path);
+	void applyModeToUi();
 
 	/**
 	 * Sets host information for both server and hi objects. Both
@@ -103,13 +104,14 @@ private:
 	 */
 	void initEngineSpecificPages(EnginePlugin *engineInfo);
 
-	void initInfoAndPassword();
+	void initServerTab();
 
 	void initRules();
 
 	bool loadConfig(const QString &filename, bool loadingPrevious);
 	void runGame(bool offline);
 	bool saveConfig(const QString &filename);
+	void setupMenu();
 	void showCommandLine(bool offline);
 };
 

@@ -36,7 +36,7 @@ DPointered(CreateServerDialogApi)
 
 CreateServerDialogApi::CreateServerDialogApi(QWidget *parent)
 {
-	d->dialog = new CreateServerDialog(parent);
+	d->dialog = new CreateServerDialog(GameCreateParams::Host, parent);
 }
 
 CreateServerDialogApi::~CreateServerDialogApi()

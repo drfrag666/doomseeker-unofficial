@@ -79,9 +79,6 @@ void Srb2GameHost::addDMFlags(const QList<DMFlagsSection> &flags, bool enabled)
 
 void Srb2GameHost::addExtra()
 {
-	if (params().hostMode() == GameCreateParams::Host)
-		args() << (listenServer ? "-server" : "-dedicated");
-
 	unsigned int modeNum = params().gameMode().index();
 	switch (params().gameMode().index())
 	{
@@ -95,6 +92,17 @@ void Srb2GameHost::addExtra()
 	}
 	if (modeNum != GameMode::SGM_Unknown)
 		args() << "-gametype" << QString::number(modeNum);
+
+	if (!params().map().isEmpty())
+		args() << "+map" << params().map();
+
+	if (params().hostMode() == GameCreateParams::Host)
+		addHostModeParams();
+}
+
+void Srb2GameHost::addHostModeParams()
+{
+	args() << (listenServer ? "-server" : "-dedicated");
 	args() << "+servername" << params().name();
 	args() << "+maxplayers" << QString::number(params().maxPlayers());
 
@@ -104,9 +112,6 @@ void Srb2GameHost::addExtra()
 		const QString CASUAL_ROOM = "28";
 		args() << "-room" << (casualServer ? CASUAL_ROOM : STANDARD_ROOM);
 	}
-
-	if (!params().map().isEmpty())
-		args() << "+map" << params().map();
 
 	if (!params().rconPassword().isEmpty())
 		args() << "-password" << params().rconPassword();

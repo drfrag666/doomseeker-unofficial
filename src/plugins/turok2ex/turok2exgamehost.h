@@ -37,6 +37,8 @@ protected:
 
 private:
 	Q_DISABLE_COPY(Turok2ExGameHost)
+
+	void addHostModeParams();
 	void addIwad();
 };
 
