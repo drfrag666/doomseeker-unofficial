@@ -192,7 +192,14 @@ QString PluginLoader::Plugin::getDllWindowsErrorMessage()
 
 		LPCWSTR lpMsgStr = (LPCWSTR)lpMsgBuf;
 		QString result = QString::fromWCharArray(lpMsgStr, bufLen);
-		result.chop(1); // remove \n char.
+		if (result.contains("%1"))
+		{
+			// Try to cover the formatting placeholder in all WinAPI
+			// messages with a lowest common denominator fit.
+			result = result.arg("Plugin");
+		}
+		result = result.trimmed();
+
 		LocalFree(lpMsgBuf);
 
 		return baseErrorString.arg(result, QString::number(errorId));
