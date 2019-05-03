@@ -14,6 +14,18 @@
    <string>Create Game</string>
   </property>
   <layout class="QVBoxLayout" name="dialogLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
@@ -75,9 +87,31 @@
     </widget>
    </item>
    <item>
+    <widget class="Line" name="line">
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <property name="leftMargin">
+      <number>9</number>
+     </property>
+     <property name="topMargin">
+      <number>9</number>
+     </property>
+     <property name="rightMargin">
+      <number>9</number>
+     </property>
+     <property name="bottomMargin">
+      <number>9</number>
+     </property>
      <item>
-      <spacer name="horizontalSpacer_2">
+      <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -100,6 +134,10 @@
        <property name="text">
         <string>Start</string>
        </property>
+       <property name="icon">
+        <iconset resource="../../../media/resources.qrc">
+         <normaloff>:/icons/media-playback-start.png</normaloff>:/icons/media-playback-start.png</iconset>
+       </property>
       </widget>
      </item>
      <item>
@@ -110,11 +148,21 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="toolTip">
         <string>Obtain command line required to launch this game.</string>
        </property>
        <property name="text">
         <string>Command line</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../../media/resources.qrc">
+         <normaloff>:/icons/terminal-32.png</normaloff>:/icons/terminal-32.png</iconset>
        </property>
       </widget>
      </item>

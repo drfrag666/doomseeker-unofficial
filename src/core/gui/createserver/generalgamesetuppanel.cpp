@@ -129,22 +129,28 @@ void GeneralGameSetupPanel::loadConfig(Ini &config, bool loadingPrevious)
 	bool changeExecutable = engineChanged || !d->cbLockExecutable->isChecked();
 	if (d->hostMode == GameCreateParams::Remote)
 	{
+		// If we're configuring a remote game the engine cannot be changed.
+		// Don't substitute the executable when the config that is being
+		// loaded is for a different game.
 		auto *plugin = gPlugins->plugin(gPlugins->pluginIndexFromName(configEngineName));
 		if (plugin == nullptr || d->currentEngine != plugin->info())
 			changeExecutable = false;
 	}
 
-	QString hostExecutablePath = *general["hostExecutable"];
-	if (d->isValidExecutable(hostExecutablePath) && changeExecutable)
-		d->hostExecutableInput->setPath(hostExecutablePath);
+	if (changeExecutable)
+	{
+		QString hostExecutablePath = *general["hostExecutable"];
+		if (d->isValidExecutable(hostExecutablePath))
+			d->hostExecutableInput->setPath(hostExecutablePath);
 
-	QString offlineExecutablePath = *general["offlineExecutable"];
-	if (d->isValidExecutable(offlineExecutablePath) && changeExecutable)
-		d->offlineExecutableInput->setPath(offlineExecutablePath);
+		QString offlineExecutablePath = *general["offlineExecutable"];
+		if (d->isValidExecutable(offlineExecutablePath))
+			d->offlineExecutableInput->setPath(offlineExecutablePath);
 
-	QString remoteExecutablePath = *general["remoteExecutable"];
-	if (d->isValidExecutable(remoteExecutablePath) && changeExecutable)
-		d->remoteExecutableInput->setPath(remoteExecutablePath);
+		QString remoteExecutablePath = *general["remoteExecutable"];
+		if (d->isValidExecutable(remoteExecutablePath))
+			d->remoteExecutableInput->setPath(remoteExecutablePath);
+	}
 
 	// Other
 	d->leServerName->setText(general["name"]);

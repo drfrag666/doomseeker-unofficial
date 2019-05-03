@@ -43,6 +43,7 @@
 #include <QKeySequence>
 #include <QMenuBar>
 #include <QMessageBox>
+#include <QStyle>
 #include <QTimer>
 
 DClass<CreateServerDialog> : public Ui::CreateServerDialog
@@ -88,11 +89,14 @@ const QString CreateServerDialog::TEMP_GAME_CONFIG_FILENAME = "/tmpserver.ini";
 CreateServerDialog::CreateServerDialog(GameCreateParams::HostMode hostMode, QWidget *parent)
 	: QDialog(parent)
 {
-	// Have the console delete itself
+	// Have the window delete itself
 	setAttribute(Qt::WA_DeleteOnClose);
 	assert(hostMode == GameCreateParams::Offline
 		|| hostMode == GameCreateParams::Host
 		|| hostMode == GameCreateParams::Remote);
+
+	// Get rid of the useless '?' button from the title bar.
+	setWindowFlags(windowFlags() & (~Qt::WindowContextHelpButtonHint));
 
 	d->currentEngine = nullptr;
 	d->hostMode = hostMode;
@@ -104,6 +108,9 @@ CreateServerDialog::CreateServerDialog(GameCreateParams::HostMode hostMode, QWid
 
 	d->generalSetupPanel->setCreateServerDialog(this);
 	d->rulesPanel->setCreateServerDialog(this);
+
+	d->tabWidget->setObjectName("createGameTabWidget");
+	d->tabWidget->setStyleSheet("#createGameTabWidget::pane { border: 0; }");
 
 	// This is a crude solution to the problem where message boxes appear
 	// before the actual Create Game dialog. We need to give some time
@@ -127,9 +134,9 @@ void CreateServerDialog::applyModeToUi()
 	d->offlineModeAction->setChecked(d->hostMode == GameCreateParams::Offline);
 
 	if (d->hostMode == GameCreateParams::Host)
-		d->btnStart->setText(tr("Host server!"));
+		d->btnStart->setText(tr("Host server"));
 	else
-		d->btnStart->setText(tr("Play!"));
+		d->btnStart->setText(tr("Play"));
 
 	QString windowTitle;
 	switch (d->hostMode)
