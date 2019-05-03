@@ -135,16 +135,16 @@ void CreateServerDialog::applyModeToUi()
 	switch (d->hostMode)
 	{
 	case GameCreateParams::Remote:
-		windowTitle = tr("Setup Remote Game");
+		windowTitle = tr("Doomseeker - Setup Remote Game");
 		break;
 	case GameCreateParams::Host:
-		windowTitle = tr("Host Online Game");
+		windowTitle = tr("Doomseeker - Host Online Game");
 		break;
 	case GameCreateParams::Offline:
-		windowTitle = tr("Play Offline Game");
+		windowTitle = tr("Doomseeker - Play Offline Game");
 		break;
 	default:
-		windowTitle = tr("[Unhandled Host Mode]");
+		windowTitle = tr("Doomseeker - [Unhandled Host Mode]");
 		break;
 	}
 	setWindowTitle(windowTitle);
@@ -470,8 +470,8 @@ void CreateServerDialog::showCommandLine(bool offline)
 		CommandLine::escapeArgs(args);
 
 		QString title = offline ?
-			tr("Run game command line:") :
-			tr("Host server command line:");
+			tr("Doomseeker - Run game command line:") :
+			tr("Doomseeker - Host server command line:");
 		CopyTextDlg ctd(executable + " " + args.join(" "), title, this);
 		ctd.exec();
 	}
