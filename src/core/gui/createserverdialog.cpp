@@ -40,6 +40,7 @@
 
 #include <cassert>
 #include <QFileDialog>
+#include <QKeySequence>
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QTimer>
@@ -433,12 +434,18 @@ void CreateServerDialog::setupMenu()
 	d->offlineModeAction->setCheckable(true);
 
 	auto *settingsMenu = mainMenu->addMenu(tr("&Settings"));
-	settingsMenu->addAction(tr("&Load game configuration"),
+
+	auto *loadConfigAction = settingsMenu->addAction(tr("&Load game configuration"),
 		this, SLOT(showLoadConfig()));
+	loadConfigAction->setIcon(style()->standardIcon(QStyle::SP_DirIcon));
+	loadConfigAction->setShortcut(QKeySequence("Ctrl+O"));
+
 	auto *saveConfigAction = settingsMenu->addAction(tr("&Save game configuration"),
 		this, SLOT(showSaveConfig()));
 	saveConfigAction->setIcon(QIcon(":/icons/diskette.png"));
+	saveConfigAction->setShortcut(QKeySequence("Ctrl+S"));
 	settingsMenu->addSeparator();
+
 	auto *programSettings = settingsMenu->addAction(tr("&Program settings"),
 		this, SLOT(showConfiguration()));
 	programSettings->setIcon(QIcon(":/icons/preferences-system-4.png"));
