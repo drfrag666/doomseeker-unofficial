@@ -477,8 +477,8 @@ void CreateServerDialog::showCommandLine(bool offline)
 		CommandLine::escapeArgs(args);
 
 		QString title = offline ?
-			tr("Doomseeker - Run game command line:") :
-			tr("Doomseeker - Host server command line:");
+			tr("Run game command line:") :
+			tr("Host server command line:");
 		CopyTextDlg ctd(executable + " " + args.join(" "), title, this);
 		ctd.exec();
 	}
