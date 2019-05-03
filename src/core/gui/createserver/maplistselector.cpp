@@ -125,8 +125,11 @@ void MapListSelector::setMapsOfCheckableList(const QList<MapEntry> &list)
 		QListWidgetItem *item = new QListWidgetItem(mapEntry.name, d->listMapsWidget);
 		item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
 		item->setCheckState(Qt::Checked);
-		item->setBackgroundColor(mapEntry.isIwad ?
-			Qt::lightGray : Qt::white);
+		if (mapEntry.isIwad)
+		{
+			item->setBackgroundColor(Qt::lightGray);
+			item->setTextColor(Qt::black);
+		}
 		item->setToolTip("File: " + mapEntry.originalFile);
 	}
 }
