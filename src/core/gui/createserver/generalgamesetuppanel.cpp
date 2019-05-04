@@ -206,7 +206,7 @@ void GeneralGameSetupPanel::saveConfig(Ini &config)
 	general["pwads"] = d->wadsPicker->filePaths().join(";");
 	QList<bool> optionalWads = d->wadsPicker->fileOptional();
 	QStringList optionalList;
-	foreach (bool optional, optionalWads)
+	for (bool optional : optionalWads)
 	{
 		optionalList << (optional ? "1" : "0");
 	}
@@ -235,7 +235,7 @@ void GeneralGameSetupPanel::setupDifficulty(const EnginePlugin *engine)
 	d->labelDifficulty->setVisible(!levels.isEmpty());
 	d->cboDifficulty->setVisible(!levels.isEmpty());
 	d->cboDifficulty->addItem(tr("< NONE >"), Skill::UNDEFINED);
-	foreach (const GameCVar &level, levels)
+	for (const GameCVar &level : levels)
 	{
 		d->cboDifficulty->addItem(level.name(), level.value());
 	}
@@ -354,7 +354,7 @@ void GeneralGameSetupPanel::onGameModeChanged(int index)
 GameMode GeneralGameSetupPanel::currentGameMode() const
 {
 	QList<GameMode> gameModes = d->currentEngine->gameModes();
-	foreach (const GameMode &mode, gameModes)
+	for (const GameMode &mode : gameModes)
 	{
 		if (mode.index() == d->cboGamemode->itemData(d->cboGamemode->currentIndex()).toInt())
 			return mode;

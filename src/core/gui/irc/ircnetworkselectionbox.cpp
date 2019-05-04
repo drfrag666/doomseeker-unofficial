@@ -105,7 +105,7 @@ void IRCNetworkSelectionBox::fetchNetworks()
 	d->cboNetwork->blockSignals(true);
 	d->cboNetwork->clear();
 
-	foreach (const IRCNetworkEntity &network, networks)
+	for (const IRCNetworkEntity &network : networks)
 	{
 		addNetworkToComboBox(network);
 	}

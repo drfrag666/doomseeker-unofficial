@@ -224,7 +224,7 @@ PluginLoader *PluginLoader::staticInstance = nullptr;
 PluginLoader::PluginLoader(unsigned int type, const QStringList &directories)
 {
 	d->type = type;
-	foreach (const QString &dir, directories)
+	for (const QString &dir : directories)
 	{
 		d->pluginsDirectory = dir;
 		if (filesInDir())
@@ -271,7 +271,7 @@ bool PluginLoader::filesInDir()
 	windowsNamesFilter << "*.dll";
 	dir.setNameFilters(windowsNamesFilter);
 	#endif
-	foreach (const QString &entry, dir.entryList(QDir::Files))
+	for (const QString &entry : dir.entryList(QDir::Files))
 	{
 		QString pluginFilePath = Strings::combinePaths(d->pluginsDirectory, entry);
 		Plugin *plugin = new Plugin(d->type, pluginFilePath);
@@ -306,7 +306,7 @@ void PluginLoader::init(const QStringList &directories)
 
 void PluginLoader::initConfig()
 {
-	foreach (Plugin *plugin, d->plugins)
+	for (Plugin *plugin : d->plugins)
 	{
 		plugin->initConfig();
 	}

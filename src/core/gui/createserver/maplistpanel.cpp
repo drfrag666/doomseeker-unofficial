@@ -71,7 +71,7 @@ void MapListPanel::addMapsFromLoadedWads()
 	mapListSelector->addPaths(d->parentDialog->wadPaths());
 	if (mapListSelector->exec() == QDialog::Accepted)
 	{
-		foreach (QString map, mapListSelector->selectedMaps())
+		for (QString map : mapListSelector->selectedMaps())
 		{
 			addMapToMaplist(map);
 		}
@@ -118,7 +118,7 @@ bool MapListPanel::hasMaps() const
 
 bool MapListPanel::isMapOnList(const QString &mapName) const
 {
-	foreach (const QString &candidate, CommonGUI::listViewStandardItemsToStringList(d->lstMaplist))
+	for (const QString &candidate : CommonGUI::listViewStandardItemsToStringList(d->lstMaplist))
 	{
 		if (candidate.compare(mapName, Qt::CaseInsensitive) == 0)
 			return true;
@@ -142,7 +142,7 @@ void MapListPanel::loadConfig(Ini &config)
 	QStringList stringList = section["maplist"].valueString().split(";");
 	QAbstractItemModel *model = d->lstMaplist->model();
 	model->removeRows(0, model->rowCount());
-	foreach (QString s, stringList)
+	for (QString s : stringList)
 	{
 		addMapToMaplist(s);
 	}

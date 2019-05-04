@@ -45,7 +45,7 @@ void FileAlias::addAlias(const QString &val)
 
 void FileAlias::addAliases(const QStringList &val)
 {
-	foreach (const QString &element, val)
+	for (const QString &element : val)
 	{
 		addAlias(element);
 	}
@@ -124,7 +124,7 @@ QList<FileAlias> FileAlias::freeDoom2Aliases()
 	// they will run just fine with any of them, and thus also with freedoom.
 	bases << "doom2.wad" << "tnt.wad" << "plutonia.wad";
 	QList<FileAlias> result;
-	foreach (const QString &base, bases)
+	for (const QString &base : bases)
 	{
 		FileAlias alias;
 		alias.setName(base);
@@ -171,7 +171,7 @@ QList<FileAlias> FileAlias::standardWadAliases()
 {
 	QList<FileAlias> result;
 	result << freeDoom1Aliases();
-	foreach (const FileAlias &alias, freeDoom2Aliases())
+	for (const FileAlias &alias : freeDoom2Aliases())
 	{
 		result << alias;
 	}
@@ -181,7 +181,7 @@ QList<FileAlias> FileAlias::standardWadAliases()
 QStringList FileAliasList::aliases(const QList<FileAlias> &candidates, const QString &name)
 {
 	QStringList allAliases;
-	foreach (const FileAlias &candidate, candidates)
+	for (const FileAlias &candidate : candidates)
 	{
 		switch (candidate.matchType())
 		{
@@ -212,7 +212,7 @@ QStringList FileAliasList::aliases(const QList<FileAlias> &candidates, const QSt
 QList<FileAlias> FileAliasList::mergeDuplicates(const QList<FileAlias> &input)
 {
 	QList<FileAlias> result;
-	foreach (const FileAlias &alias, input)
+	for (const FileAlias &alias : input)
 	{
 		bool merged = false;
 		for (int i = 0; i < result.size(); ++i)

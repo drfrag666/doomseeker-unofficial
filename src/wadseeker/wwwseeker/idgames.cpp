@@ -116,7 +116,7 @@ void Idgames::extractAndEmitLinks(QByteArray &pageData, const QUrl &pageUrl)
 	if (!directLinks.isEmpty())
 	{
 		QList<QUrl> directUrls;
-		foreach (const Link &link, directLinks)
+		for (const Link &link : directLinks)
 		{
 			directUrls << link.url;
 		}

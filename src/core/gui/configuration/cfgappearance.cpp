@@ -85,7 +85,7 @@ void CFGAppearance::dynamicAppearanceChange()
 
 void CFGAppearance::initLanguagesList()
 {
-	foreach (const LocalizationInfo &obj, Localization::get()->localizations)
+	for (const LocalizationInfo &obj : Localization::get()->localizations)
 	{
 		const QString &flagName = obj.countryCodeName;
 		const QString &translationName = obj.localeName;
@@ -106,7 +106,7 @@ void CFGAppearance::initSlotStyles(const QString &selected)
 {
 	QList<PlayersDiagramStyle> styles = PlayersDiagram::availableSlotStyles();
 	d->slotStyle->clear();
-	foreach (const PlayersDiagramStyle &style, styles)
+	for (const PlayersDiagramStyle &style : styles)
 	{
 		d->slotStyle->addItem(style.displayName, style.name);
 		if (style.name == selected)

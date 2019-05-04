@@ -64,7 +64,7 @@ void MasterManager::addMaster(MasterClient *master)
 QList<ServerPtr> MasterManager::allServers() const
 {
 	QList<ServerPtr> result;
-	foreach (MasterClient *master, masters)
+	for (MasterClient *master : masters)
 	{
 		result << master->servers();
 	}
@@ -75,7 +75,7 @@ QList<ServerPtr> MasterManager::allServers() const
 void MasterManager::masterListUpdated()
 {
 	MasterClient *master = static_cast<MasterClient *>(sender());
-	foreach(ServerPtr pServer, master->servers())
+	for(ServerPtr pServer : master->servers())
 	{
 		registerNewServer(pServer);
 	}
@@ -114,7 +114,7 @@ void MasterManager::refreshStarts()
 
 void MasterManager::timeoutRefreshEx()
 {
-	foreach(MasterClient *pMaster, mastersBeingRefreshed)
+	for(MasterClient *pMaster : mastersBeingRefreshed)
 	{
 		pMaster->timeoutRefresh();
 	}

@@ -54,7 +54,7 @@ void PlayersList::bots(PlayersList &botsList) const
 {
 	botsList.clear();
 
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (player.isBot())
 		{
@@ -67,7 +67,7 @@ void PlayersList::botsWithoutTeam(PlayersList &botsList) const
 {
 	botsList.clear();
 
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (player.isBot() && player.teamNum() == Player::TEAM_NONE)
 		{
@@ -84,7 +84,7 @@ void PlayersList::clear()
 int PlayersList::numBots() const
 {
 	int bots = 0;
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (player.isBot())
 		{
@@ -98,7 +98,7 @@ int PlayersList::numBots() const
 int PlayersList::numBotsOnTeam(int team) const
 {
 	int bots = 0;
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (player.isBot() && player.teamNum() == team)
 		{
@@ -112,7 +112,7 @@ int PlayersList::numBotsOnTeam(int team) const
 int PlayersList::numBotsWithoutTeam() const
 {
 	int bots = 0;
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (player.isBot() && player.teamNum() == Player::TEAM_NONE)
 		{
@@ -137,7 +137,7 @@ int PlayersList::numHumansInGame() const
 {
 	int humansInGame = 0;
 
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (!player.isBot() && !player.isSpectating())
 		{
@@ -151,7 +151,7 @@ int PlayersList::numHumansInGame() const
 int PlayersList::numHumansOnTeam(int team) const
 {
 	int humans = 0;
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (!player.isBot()
 			&& !player.isSpectating()
@@ -167,7 +167,7 @@ int PlayersList::numHumansOnTeam(int team) const
 int PlayersList::numHumansWithoutTeam() const
 {
 	int humans = 0;
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (!player.isBot()
 			&& !player.isSpectating()
@@ -183,7 +183,7 @@ int PlayersList::numHumansWithoutTeam() const
 int PlayersList::numPlayersOnTeam(int team) const
 {
 	int teamSize = 0;
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (player.teamNum() == team)
 		{
@@ -198,7 +198,7 @@ int PlayersList::numSpectators() const
 {
 	int spectators = 0;
 
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (player.isSpectating())
 		{
@@ -234,7 +234,7 @@ void PlayersList::inGamePlayersByTeams(PlayersByTeams &playersListMap) const
 {
 	playersListMap.clear();
 
-	foreach(const Player &player, players())
+	for(const Player &player : players())
 	{
 		if (!player.isSpectating() && !player.isTeamlessBot())
 		{
@@ -262,7 +262,7 @@ void PlayersList::spectators(PlayersList &spectatorsList) const
 {
 	spectatorsList.clear();
 
-	foreach(Player player, players())
+	for(Player player : players())
 	{
 		if (player.isSpectating())
 		{

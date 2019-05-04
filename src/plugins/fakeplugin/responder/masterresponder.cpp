@@ -86,7 +86,7 @@ QList<QByteArray> MasterResponder::buildResponsePackets()
 		ResponderCfg::maxPacketSize());
 	QList<QByteArray> portsLists;
 	QString packet = "";
-	foreach (const ServerResponder *server, d->serverResponders)
+	for (const ServerResponder *server : d->serverResponders)
 	{
 		if (server->port() == 0)
 			continue;
@@ -104,7 +104,7 @@ QList<QByteArray> MasterResponder::buildResponsePackets()
 	// Now that we have the number of packets, we can prepend
 	// that number to each packet.
 	QList<QByteArray> result;
-	foreach (const QByteArray &portsList, portsLists)
+	for (const QByteArray &portsList : portsLists)
 	{
 		QString number = QString::number(portsLists.size()) + ";";
 		result.append(number.toUtf8() + portsList);
@@ -155,7 +155,7 @@ void MasterResponder::respond()
 	gLog << QString("FakePlugin, sending master response now. "
 		"Packets count = %1, Target client: '%2:%3'").arg(packets.size())
 		.arg(client.address.toString()).arg(client.port);
-	foreach (const QByteArray &packet, packets)
+	for (const QByteArray &packet : packets)
 	{
 		gLog << QString("FakePlugin, Sending master packet, size: %1").arg(packet.size());
 		d->socket->writeDatagram(packet, client.address, client.port);

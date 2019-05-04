@@ -96,7 +96,7 @@ QString IRCChatAdapter::extractMessageLine(QStringList &words, int maxLength)
 				sentence += '-';
 
 				QString wordRemainder = "";
-				foreach (const QByteArray &wordToken, splitWordTokens)
+				for (const QByteArray &wordToken : splitWordTokens)
 				{
 					wordRemainder += QString::fromUtf8(wordToken.constData(), wordToken.size());
 				}
@@ -128,7 +128,7 @@ void IRCChatAdapter::sendChatMessage(const QString &message)
 	int maxLength = IRCClient::SAFE_MESSAGE_LENGTH - ircCall.toUtf8().length();
 	QStringList wordLines = message.split("\n");
 
-	foreach (QString line, wordLines)
+	for (QString line : wordLines)
 	{
 		QStringList words = line.split(" ");
 

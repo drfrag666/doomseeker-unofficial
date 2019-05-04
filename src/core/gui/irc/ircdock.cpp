@@ -140,7 +140,7 @@ void IRCDock::performNetworkAutojoins()
 	connectionInfo.userName = gIRCConfig.personal.userName;
 
 	QList<IRCNetworkEntity> autojoinNetworks = ChatNetworksCfg().autoJoinNetworks();
-	foreach (const IRCNetworkEntity &network, autojoinNetworks)
+	for (const IRCNetworkEntity &network : autojoinNetworks)
 	{
 		connectionInfo.networkEntity = network;
 

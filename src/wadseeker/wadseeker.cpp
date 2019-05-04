@@ -239,7 +239,7 @@ void Wadseeker::fileLinkFound(const QString &filename, const QUrl &url)
 void Wadseeker::fileMirrorLinksFound(const QString &filename, const QList<QUrl> &urls)
 {
 	emit message(tr("Found mirror links to file \"%1\":").arg(filename), WadseekerLib::Notice);
-	foreach (const QUrl &url, urls)
+	for (const QUrl &url : urls)
 	{
 		QString strUrl = url.toEncoded().constData();
 		emit message(tr("    %2").arg(strUrl), WadseekerLib::Notice);
@@ -251,7 +251,7 @@ void Wadseeker::fileMirrorLinksFound(const QString &filename, const QList<QUrl> 
 ModSet Wadseeker::filterAllowedOnlyWads(const ModSet &wads)
 {
 	ModSet result;
-	foreach (const ModFile &wad, wads.modFiles())
+	for (const ModFile &wad : wads.modFiles())
 	{
 		if (!isForbiddenWad(wad))
 		{
@@ -264,7 +264,7 @@ ModSet Wadseeker::filterAllowedOnlyWads(const ModSet &wads)
 ModSet Wadseeker::filterForbiddenOnlyWads(const ModSet &wads)
 {
 	ModSet result;
-	foreach (const ModFile &wad, wads.modFiles())
+	for (const ModFile &wad : wads.modFiles())
 	{
 		if (isForbiddenWad(wad))
 		{
@@ -477,7 +477,7 @@ void Wadseeker::setWadArchiveEnabled(bool enabled)
 
 void Wadseeker::setupIdgamesClients(const QList<WadDownloadInfo> &wadDownloadInfoList)
 {
-	foreach (const WadDownloadInfo &wad, wadDownloadInfoList)
+	for (const WadDownloadInfo &wad : wadDownloadInfoList)
 	{
 		Idgames *pIdgames = new Idgames(d->seekParametersForCurrentSeek->idgamesUrl);
 
@@ -515,7 +515,7 @@ void Wadseeker::setupSitesUrls()
 	{
 		// If URL containts wadname placeholder we need to create a unique
 		// URL for each searched wad.
-		foreach (const ModFile &wad, d->seekParametersForCurrentSeek->seekedWads.modFiles())
+		for (const ModFile &wad : d->seekParametersForCurrentSeek->seekedWads.modFiles())
 		{
 			QUrl url = UrlParser::resolveWadnameTemplateUrl(
 				d->seekParametersForCurrentSeek->customSiteUrl, wad.fileName());
@@ -530,11 +530,11 @@ void Wadseeker::setupSitesUrls()
 		d->wwwSeeker->setCustomSiteUrl(d->seekParametersForCurrentSeek->customSiteUrl);
 	}
 
-	foreach (const QString &strSiteUrl, d->seekParametersForCurrentSeek->sitesUrls)
+	for (const QString &strSiteUrl : d->seekParametersForCurrentSeek->sitesUrls)
 	{
 		if (UrlParser::isWadnameTemplateUrl(strSiteUrl))
 		{
-			foreach (const ModFile &wad, d->seekParametersForCurrentSeek->seekedWads.modFiles())
+			for (const ModFile &wad : d->seekParametersForCurrentSeek->seekedWads.modFiles())
 			{
 				QUrl url = UrlParser::resolveWadnameTemplateUrl(strSiteUrl, wad.fileName());
 				if (url.isValid())
@@ -558,7 +558,7 @@ void Wadseeker::setupWadArchiveClient(const QList<WadDownloadInfo> &wadDownloadI
 {
 	d->wadArchiveClient = new WadArchiveClient();
 	d->wadArchiveClient->setUserAgent(WadseekerVersionInfo::userAgent());
-	foreach (const WadDownloadInfo &wad, wadDownloadInfos)
+	for (const WadDownloadInfo &wad : wadDownloadInfos)
 	{
 		d->wadArchiveClient->enqueue(wad);
 	}
@@ -685,7 +685,7 @@ bool Wadseeker::startSeek(const ModSet &wads)
 	}
 
 	ModSet filteredWadsList;
-	foreach (ModFile wad, wads.modFiles())
+	for (ModFile wad : wads.modFiles())
 	{
 		if (wad.fileName().isEmpty())
 		{
@@ -722,7 +722,7 @@ bool Wadseeker::startSeek(const ModSet &wads)
 	QList<FileSeekInfo> fileSeekInfosList;
 	QList<WadDownloadInfo> wadDownloadInfoList;
 
-	foreach (const ModFile &wad, filteredWadsList.modFiles())
+	for (const ModFile &wad : filteredWadsList.modFiles())
 	{
 		// Create download info object for this WAD.
 		WadDownloadInfo wadDownloadInfo(wad);

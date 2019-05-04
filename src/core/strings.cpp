@@ -137,7 +137,7 @@ QString Strings::colorizeString(const QString &str, int current)
 QStringList Strings::combineManyPaths(const QStringList &fronts, const QString &pathEnd)
 {
 	QStringList result;
-	foreach (const QString &s, fronts)
+	for (const QString &s : fronts)
 	{
 		result << combinePaths(s, pathEnd);
 	}

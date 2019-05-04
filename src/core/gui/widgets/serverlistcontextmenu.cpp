@@ -68,7 +68,7 @@ public:
 	void togglePinAllServers()
 	{
 		bool toggleTo = !isServerPinned();
-		foreach (const ServerPtr &server, servers)
+		for (const ServerPtr &server : servers)
 		{
 			CustomServers::setServerPinned(
 				CustomServerInfo::fromServer(server.data()),

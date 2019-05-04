@@ -34,9 +34,9 @@ static QStringList searchSuffixes()
 	games << "doom" << "heretic" << "hexen" << "strife";
 
 	QStringList suffixes;
-	foreach (const QString &tmplate, templates)
+	for (const QString &tmplate : templates)
 	{
-		foreach (const QString &game, games)
+		for (const QString &game : games)
 		{
 			suffixes << tmplate.arg(game);
 		}

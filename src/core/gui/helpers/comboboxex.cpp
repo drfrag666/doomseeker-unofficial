@@ -76,7 +76,7 @@ void ComboBoxEx::setItemsSorted(QStringList items)
 {
 	qSort(items.begin(), items.end(), caseInsensitiveLessThan);
 	box.clear();
-	foreach (const QString &item, items)
+	for (const QString &item : items)
 	{
 		if (box.findText(item) < 0)
 			box.addItem(item);

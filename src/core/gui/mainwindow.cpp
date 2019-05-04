@@ -274,7 +274,7 @@ MainWindow::MainWindow(QApplication *application, int argc, char **argv)
 
 	// Init custom servers
 	QList<ServerPtr> customServers = d->masterManager->customServs()->readConfig();
-	foreach (ServerPtr server, customServers)
+	for (ServerPtr server : customServers)
 	{
 		d->serverList->registerServer(server);
 	}
@@ -325,7 +325,7 @@ MainWindow::~MainWindow()
 
 	QList<QAction *> menuQueryActions = d->menuQuery->actions();
 	QList<QAction *>::iterator it;
-	foreach (QAction *action, menuQueryActions)
+	for (QAction *action : menuQueryActions)
 	{
 		QString pluginName = action->text();
 
@@ -432,7 +432,7 @@ void MainWindow::checkForUpdates(bool bUserTriggered)
 	QMap<QString, QList<QString> > ignoredPackagesRevisions;
 	if (!bUserTriggered)
 	{
-		foreach (const QString &package, gConfig.autoUpdates.lastKnownUpdateRevisions.keys())
+		for (const QString &package : gConfig.autoUpdates.lastKnownUpdateRevisions.keys())
 		{
 			QString revision = gConfig.autoUpdates.lastKnownUpdateRevisions[package];
 			QList<QString> list;
@@ -506,7 +506,7 @@ void MainWindow::discardUpdates()
 	// User rejected this update so let's add the packages
 	// to the ignore list so user won't be nagged again.
 	const QList<UpdatePackage> &pkgList = d->autoUpdater->newUpdatePackages();
-	foreach (const UpdatePackage &pkg, pkgList)
+	for (const UpdatePackage &pkg : pkgList)
 	{
 		gConfig.autoUpdates.lastKnownUpdateRevisions.insert(pkg.name, pkg.revision);
 	}
@@ -619,7 +619,7 @@ void MainWindow::findMissingWADs(const ServerPtr &server)
 	checkWadsDlg->addWads(wads);
 	const CheckResult checkResults = checkWadsDlg->checkWads();
 
-	foreach (const PWad &wad, checkResults.missingWads)
+	for (const PWad &wad : checkResults.missingWads)
 	{
 		missingWads << PWad(wad.name(), true, wad.checksums());
 	}
@@ -674,7 +674,7 @@ void MainWindow::finishConfiguration(DoomseekerConfigurationDialog &configDialog
 	{
 		d->serverList->removeCustomServers();
 		QList<ServerPtr> servers = d->masterManager->customServs()->readConfig();
-		foreach (ServerPtr server, servers)
+		for (ServerPtr server : servers)
 		{
 			d->serverList->registerServer(server);
 		}
@@ -1243,7 +1243,7 @@ void MainWindow::quitProgram()
 
 void MainWindow::refreshCustomServers()
 {
-	foreach (const ServerPtr &server, d->serverList->servers())
+	for (const ServerPtr &server : d->serverList->servers())
 	{
 		if (server->isCustom())
 			gRefresher->registerServer(server.data());
@@ -1252,7 +1252,7 @@ void MainWindow::refreshCustomServers()
 
 void MainWindow::refreshServersOnList()
 {
-	foreach (const ServerPtr &server, d->serverList->servers())
+	for (const ServerPtr &server : d->serverList->servers())
 	{
 		gRefresher->registerServer(server.data());
 	}
@@ -1550,7 +1550,7 @@ void MainWindow::updateServerFilter(const ServerListFilterInfo &filterInfo)
 ServerListCount MainWindow::sumServerListCount() const
 {
 	ServerListCount count;
-	foreach (const ServersStatusWidget *status, d->serversStatusesWidgets.values())
+	for (const ServersStatusWidget *status : d->serversStatusesWidgets.values())
 	{
 		count += status->count();
 	}

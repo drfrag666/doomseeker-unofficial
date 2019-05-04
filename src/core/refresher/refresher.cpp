@@ -160,7 +160,7 @@ Refresher::~Refresher()
 void Refresher::attemptTimeoutMasters()
 {
 	QList<MasterClient *> masters = d->registeredMasters.keys();
-	foreach (MasterClient *master, masters)
+	for (MasterClient *master : masters)
 	{
 		MasterClientInfo *pMasterInfo = d->registeredMasters[master];
 		if (!pMasterInfo->isLastChallengeTimerActive())
@@ -208,7 +208,7 @@ void Refresher::deinstantiate()
 Server *Refresher::findRefreshingServer(const QHostAddress &address,
 	unsigned short port)
 {
-	foreach (const ServerRefreshTime &refreshOp, d->refreshingServers)
+	for (const ServerRefreshTime &refreshOp : d->refreshingServers)
 	{
 		if (refreshOp.server.isNull())
 		{
@@ -231,7 +231,7 @@ void Refresher::masterFinishedRefreshing()
 {
 	MasterClient *pMaster = static_cast<MasterClient *>(sender());
 	const QList<ServerPtr> &servers = pMaster->servers();
-	foreach (ServerPtr pServer, servers)
+	for (ServerPtr pServer : servers)
 	{
 		registerServer(pServer.data());
 	}
@@ -423,7 +423,7 @@ void Refresher::resendCurrentServerRefreshesIfTimeout()
 bool Refresher::tryReadDatagramByMasterClient(QHostAddress &address,
 	unsigned short port, QByteArray &packet)
 {
-	foreach (MasterClient *pMaster, d->registeredMasters.keys())
+	for (MasterClient *pMaster : d->registeredMasters.keys())
 	{
 		if (!d->bKeepRunning)
 		{

@@ -47,7 +47,7 @@ QStringList WadseekerVersionInfo::knownWadExtensions()
 bool WadseekerVersionInfo::isSupportedArchiveExtension(const QString &suffix)
 {
 	QStringList extensions = supportedArchiveExtensions();
-	foreach (const QString &supported, extensions)
+	for (const QString &supported : extensions)
 	{
 		if (suffix.compare(supported, Qt::CaseInsensitive) == 0)
 		{

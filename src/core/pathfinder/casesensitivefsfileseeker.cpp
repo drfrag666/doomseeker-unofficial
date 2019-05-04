@@ -34,7 +34,7 @@ QString CaseSensitiveFSFileSeeker::findFileInSpecifiedDirectory(const QString &f
 	filterList << fileName;
 	QDir dir(dirPath);
 	QFileInfoList fiList = dir.entryInfoList(filterList, QDir::Files);
-	foreach (const QFileInfo &fileInfo, fiList)
+	for (const QFileInfo &fileInfo : fiList)
 	{
 		QString candidate = fileInfo.fileName();
 		if (candidate.compare(fileName, Qt::CaseInsensitive) == 0)

@@ -117,7 +117,7 @@ QStringList WadReader::getAllMaps()
 	QStringList lumpsToCheckFor = {"THINGS", "LINEDEFS", "SIDEDEFS", "VERTEXES",
 		"SEGS", "SSECTORS", "NODES", "SECTORS", "REJECT", "BLOCKMAP"};
 
-	foreach (DirectoryEntry dirEntry, getDirectory())
+	for (DirectoryEntry dirEntry : getDirectory())
 	{
 		names << dirEntry.name;
 	}
@@ -187,7 +187,7 @@ QStringList CompressedReader::getAllMapsRootDir()
 
 	if (tempDir.isValid())
 	{
-		foreach (QString dirEntry, d->directory)
+		for (QString dirEntry : d->directory)
 		{
 			if (!dirEntry.contains("/"))
 			{
@@ -213,7 +213,7 @@ QStringList PkReader::getAllMaps()
 {
 	QStringList mapList;
 	QStringList rootPaths;
-	foreach (const QString &dirEntry, d->directory)
+	for (const QString &dirEntry : d->directory)
 	{
 		QFileInfo fileInfo(dirEntry);
 		if (dirEntry.startsWith("maps/", Qt::CaseInsensitive) &&

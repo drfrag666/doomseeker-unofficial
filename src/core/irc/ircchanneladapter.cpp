@@ -59,7 +59,7 @@ void IRCChannelAdapter::appendNameToCachedList(const QString &name)
 
 void IRCChannelAdapter::appendNamesToCachedList(const QStringList &names)
 {
-	foreach (const QString &name, names)
+	for (const QString &name : names)
 	{
 		appendNameToCachedList(name);
 	}
@@ -207,11 +207,11 @@ void IRCChannelAdapter::userModeChanges(const QString &nickname,
 	if (pUserInfo != nullptr)
 	{
 		IRCUserInfo newUserInfo = *pUserInfo;
-		foreach (char mode, addedFlags)
+		for (char mode : addedFlags)
 		{
 			newUserInfo.setMode(mode);
 		}
-		foreach (char mode, removedFlags)
+		for (char mode : removedFlags)
 		{
 			newUserInfo.unsetMode(mode);
 		}

@@ -119,7 +119,7 @@ void GameExecutablePicker::setExecutableToDefault()
 		return;
 	}
 
-	foreach (const GameFile &candidate, execs.asQList())
+	for (const GameFile &candidate : execs.asQList())
 	{
 		QString path = cfg->value(candidate.configName()).toString();
 		if (!path.isEmpty())
@@ -167,11 +167,11 @@ void GameExecutablePicker::reloadExecutables()
 	}
 
 	GameFileList files = gameExecutables();
-	foreach (const GameFile &file, files.asQList())
+	for (const GameFile &file : files.asQList())
 	{
 		add(cfg->value(file.configName()).toString());
 	}
-	foreach (const ExeFilePath &exe, d->plugin->gameExe()->additionalExecutables(d->allowedExecs))
+	for (const ExeFilePath &exe : d->plugin->gameExe()->additionalExecutables(d->allowedExecs))
 	{
 		QFileInfo fileInfo(exe.path());
 		if (fileInfo.isFile())

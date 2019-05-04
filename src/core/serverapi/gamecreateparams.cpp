@@ -260,7 +260,7 @@ const QStringList &GameCreateParams::pwadsPaths() const
 QStringList GameCreateParams::pwadsNames() const
 {
 	QStringList result;
-	foreach (const QString &path, pwadsPaths())
+	for (const QString &path : pwadsPaths())
 	{
 		QFileInfo fi(path);
 		result << fi.fileName();

@@ -451,7 +451,7 @@ void FlagsPageValueController::convertCheckboxesToNumerical(
 	const QMap<unsigned, QAbstractButton *> &checkboxMap,
 	unsigned &flagsValue)
 {
-	foreach (unsigned flag, checkboxMap.keys())
+	for (unsigned flag : checkboxMap.keys())
 	{
 		if (checkboxMap[flag]->isChecked())
 		{
@@ -471,7 +471,7 @@ void FlagsPageValueController::convertNumericalToCheckboxes(
 	QMap<unsigned, QAbstractButton *> &checkboxMap,
 	unsigned flagsValue)
 {
-	foreach (unsigned flag, checkboxMap.keys())
+	for (unsigned flag : checkboxMap.keys())
 	{
 		checkboxMap[flag]->setChecked(flagsValue & flag);
 	}
@@ -689,7 +689,7 @@ void FlagsPageValueController::setVisible(bool visible)
 	flagsPage->cbNoItemDrop->setVisible(visible);
 	flagsPage->cbSurvivalNoMapResetOnDeath->setVisible(visible);
 	flagsPage->cbDeadPlayersCanKeepInventory->setVisible(visible);
-	foreach (QWidget *checkbox, compatflags2Checkboxes.values())
+	for (QWidget *checkbox : compatflags2Checkboxes.values())
 	{
 		checkbox->setVisible(visible);
 	}

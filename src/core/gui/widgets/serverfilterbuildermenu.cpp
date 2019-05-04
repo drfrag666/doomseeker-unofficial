@@ -67,7 +67,7 @@ ServerFilterBuilderMenu::ServerFilterBuilderMenu(const Server &server,
 	QMenu *excludeWads = new QMenu(tr("Exclude WAD ..."), this);
 
 	QStringList wads = server.allWadNames();
-	foreach (const QString &wad, wads)
+	for (const QString &wad : wads)
 	{
 		if (!d->filter.wadsExcluded.contains(wad, Qt::CaseInsensitive))
 			mkExcludeWadAction(excludeWads, wad);

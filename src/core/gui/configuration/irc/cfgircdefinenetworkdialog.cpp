@@ -115,7 +115,7 @@ void CFGIRCDefineNetworkDialog::construct()
 QStringList CFGIRCDefineNetworkDialog::formatOffenders(const QStringList &offenders) const
 {
 	QStringList offendersFormatted;
-	foreach (const QString &offender, offenders)
+	for (const QString &offender : offenders)
 	{
 		offendersFormatted << tr("\t%1 (...)").arg(offender.left(40));
 	}
@@ -162,7 +162,7 @@ bool CFGIRCDefineNetworkDialog::isDescriptionUnique() const
 		// Network is being edited and its name hasn't been changed.
 		return true;
 	}
-	foreach (const IRCNetworkEntity &network, listExistingNetworks())
+	for (const IRCNetworkEntity &network : listExistingNetworks())
 	{
 		if (network.description().trimmed().toLower() == current)
 			return false;
@@ -186,7 +186,7 @@ QList<IRCNetworkEntity> CFGIRCDefineNetworkDialog::listExistingNetworks() const
 QStringList CFGIRCDefineNetworkDialog::validateAutojoinCommands() const
 {
 	QStringList offenders;
-	foreach (const QString &command, autojoinCommands())
+	for (const QString &command : autojoinCommands())
 	{
 		if (command.toUtf8().length() > PrivData<CFGIRCDefineNetworkDialog>::MAX_IRC_COMMAND_LENGTH)
 			offenders << command;

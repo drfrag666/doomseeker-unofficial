@@ -100,7 +100,7 @@ void MissingWadsDialog::setupForbiddenFilesArea()
 	{
 		d->areaCantBeDownloaded->show();
 		QStringList names;
-		foreach (PWad file, files)
+		for (PWad file : files)
 		{
 			names << file.name();
 		}
@@ -121,7 +121,7 @@ void MissingWadsDialog::setupDownloadableFilesArea()
 	{
 		d->areaCanBeDownloadedFiles->show();
 		QStringList names;
-		foreach (PWad file, files)
+		for (PWad file : files)
 		{
 			names << file.name();
 		}
@@ -137,7 +137,7 @@ void MissingWadsDialog::setupOptionalFilesArea()
 	if (!files.isEmpty())
 	{
 		d->areaOptionalFiles->show();
-		foreach (const PWad &file, files)
+		for (const PWad &file : files)
 		{
 			QListWidgetItem *item = new QListWidgetItem(file.name(), d->optionalFilesList);
 			item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
@@ -154,7 +154,7 @@ void MissingWadsDialog::setupIncompatibleFilesArea()
 	if (!files.isEmpty())
 	{
 		d->areaIncompatibleFiles->show();
-		foreach (const PWad &file, files)
+		for (const PWad &file : files)
 		{
 			QListWidgetItem *item = new QListWidgetItem(file.name(), d->incompatibleFilesList);
 			item->setFlags(item->flags() | Qt::ItemIsUserCheckable);
@@ -167,7 +167,7 @@ void MissingWadsDialog::setupIncompatibleFilesArea()
 
 bool MissingWadsDialog::isFreedoomReplaceableOnList(const QStringList &files) const
 {
-	foreach (const QString &file, files)
+	for (const QString &file : files)
 	{
 		if (Freedoom::hasFreedoomReplacement(file))
 			return true;
@@ -201,7 +201,7 @@ void MissingWadsDialog::installMissingFiles()
 QList<PWad> MissingWadsDialog::downloadableFiles() const
 {
 	QList<PWad> result;
-	foreach (PWad file, d->missingWads)
+	for (PWad file : d->missingWads)
 	{
 		if (!Wadseeker::isForbiddenWad(file) && !file.isOptional())
 			result << file;
@@ -214,7 +214,7 @@ QList<PWad> MissingWadsDialog::forbiddenFiles() const
 	QList<PWad> result;
 	QList<PWad> wads;
 	wads << d->missingWads << d->incompatibleWads;
-	foreach (const PWad &file, wads)
+	for (const PWad &file : wads)
 	{
 		if (Wadseeker::isForbiddenWad(file.name()))
 			result << file;
@@ -225,7 +225,7 @@ QList<PWad> MissingWadsDialog::forbiddenFiles() const
 QList<PWad> MissingWadsDialog::optionalFiles() const
 {
 	QList<PWad> result;
-	foreach (const PWad &file, d->missingWads)
+	for (const PWad &file : d->missingWads)
 	{
 		if (!Wadseeker::isForbiddenWad(file.name()) && file.isOptional())
 			result << file;
@@ -236,7 +236,7 @@ QList<PWad> MissingWadsDialog::optionalFiles() const
 QList<PWad> MissingWadsDialog::incompatibleFiles() const
 {
 	QList<PWad> result;
-	foreach (const PWad &file, d->incompatibleWads)
+	for (const PWad &file : d->incompatibleWads)
 	{
 		if (!Wadseeker::isForbiddenWad(file.name()))
 			result << file;
@@ -279,7 +279,7 @@ QList<PWad> MissingWadsDialog::selectedIncompatibleFiles() const
 QList<PWad> MissingWadsDialog::filenamesToPwads(const QStringList &names, QList<PWad> files) const
 {
 	QList<PWad> result;
-	foreach (QString name, names)
+	for (QString name : names)
 	{
 		for (int i = 0; i < files.size(); ++i)
 		{

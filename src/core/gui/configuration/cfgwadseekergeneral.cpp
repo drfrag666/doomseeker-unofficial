@@ -133,7 +133,7 @@ ConfigPage::Validation CFGWadseekerGeneral::validate()
 	if (error.isEmpty())
 	{
 		bool pathOnList = false;
-		foreach (FileSearchPath possiblePath, gConfig.doomseeker.wadPaths)
+		for (FileSearchPath possiblePath : gConfig.doomseeker.wadPaths)
 		{
 			// Bring paths to QFileInfo before string comparison. Two same paths
 			// may have different string representations.

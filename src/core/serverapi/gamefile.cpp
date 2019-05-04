@@ -159,7 +159,7 @@ GameFileList &GameFileList::append(const GameFile &gameFile)
 
 GameFileList &GameFileList::append(const GameFileList &list)
 {
-	foreach (const GameFile &other, list.asQList())
+	for (const GameFile &other : list.asQList())
 	{
 		append(other);
 	}
@@ -178,7 +178,7 @@ void GameFileList::clear()
 
 GameFile GameFileList::first() const
 {
-	foreach (const GameFile &file, d->list)
+	for (const GameFile &file : d->list)
 	{
 		if (file.isValid())
 		{
@@ -190,7 +190,7 @@ GameFile GameFileList::first() const
 
 GameFile GameFileList::findByConfigName(const QString &configName)
 {
-	foreach (const GameFile &file, d->list)
+	for (const GameFile &file : d->list)
 	{
 		if (file.configName() == configName)
 		{
@@ -243,7 +243,7 @@ GameFileList GameFiles::allServerExecutables(const GameFileList &list)
 GameFileList GameFiles::allFlagMatchExecutables(const GameFileList &list, int execs)
 {
 	GameFileList result;
-	foreach (const GameFile &file, list.asQList())
+	for (const GameFile &file : list.asQList())
 	{
 		if (file.isValid() && (execs & file.executable()))
 		{
@@ -255,7 +255,7 @@ GameFileList GameFiles::allFlagMatchExecutables(const GameFileList &list, int ex
 
 GameFile GameFiles::defaultClientExecutable(const GameFileList &list)
 {
-	foreach (const GameFile &file, list.asQList())
+	for (const GameFile &file : list.asQList())
 	{
 		if (file.isValid() && (file.executable() & GameFile::Client)
 			&& file.configName() == "BinaryPath")
@@ -268,7 +268,7 @@ GameFile GameFiles::defaultClientExecutable(const GameFileList &list)
 
 GameFile GameFiles::defaultOfflineExecutable(const GameFileList &list)
 {
-	foreach (const GameFile &file, list.asQList())
+	for (const GameFile &file : list.asQList())
 	{
 		if (file.isValid() && (file.executable() & GameFile::Offline)
 			&& file.configName() == "BinaryPath")
@@ -281,7 +281,7 @@ GameFile GameFiles::defaultOfflineExecutable(const GameFileList &list)
 
 GameFile GameFiles::defaultServerExecutable(const GameFileList &list)
 {
-	foreach (const GameFile &file, list.asQList())
+	for (const GameFile &file : list.asQList())
 	{
 		if (file.isValid() && (file.executable() & GameFile::Server)
 			&& (file.configName() == "ServerBinaryPath" || file.configName() == "BinaryPath"))
@@ -299,7 +299,7 @@ GameFile GameFiles::preferredOfflineExecutable(const GameFileList &list)
 	{
 		return candidate;
 	}
-	foreach (const GameFile &file, list.asQList())
+	for (const GameFile &file : list.asQList())
 	{
 		if (file.isValid() && (file.executable() & GameFile::Offline))
 		{

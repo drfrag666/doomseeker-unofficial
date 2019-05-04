@@ -33,7 +33,7 @@ public:
 
 	bool hasUrl(const QUrl &url) const
 	{
-		foreach (const QUrl &urlOnList, urls)
+		for (const QUrl &urlOnList : urls)
 		{
 			if (UrlParser::urlEqualsCaseInsensitive(urlOnList, url))
 			{
@@ -58,7 +58,7 @@ URLProvider::URLProvider()
 
 URLProvider::~URLProvider()
 {
-	foreach(MirrorStorage *pMirror, mirrors)
+	for(MirrorStorage *pMirror : mirrors)
 	{
 		delete pMirror;
 	}
@@ -94,7 +94,7 @@ void URLProvider::addMirrorUrls(const QList<QUrl> &urls)
 {
 	MirrorStorage *pMirrorStorage = new MirrorStorage();
 
-	foreach (const QUrl &url, urls)
+	for (const QUrl &url : urls)
 	{
 		if (!hasOrHadUrl(url))
 		{
@@ -127,7 +127,7 @@ void URLProvider::addUrl(const QUrl &url)
 QList<QUrl> URLProvider::allAvailableUrls() const
 {
 	QList<QUrl> urls;
-	foreach (const QList<QUrl> &partial, allUrlsPrioritized.values())
+	for (const QList<QUrl> &partial : allUrlsPrioritized.values())
 	{
 		urls += partial;
 	}
@@ -154,7 +154,7 @@ void URLProvider::insertUrlPrioritized(const QUrl &url)
 
 bool URLProvider::isEmpty() const
 {
-	foreach (const QList<QUrl> &chunk, allUrlsPrioritized.values())
+	for (const QList<QUrl> &chunk : allUrlsPrioritized.values())
 	{
 		if (!chunk.isEmpty())
 		{
@@ -166,7 +166,7 @@ bool URLProvider::isEmpty() const
 
 bool URLProvider::hasOrHadUrl(const QUrl &url) const
 {
-	foreach (MirrorStorage *pMirror, mirrors)
+	for (MirrorStorage *pMirror : mirrors)
 	{
 		if (pMirror->hasUrl(url))
 		{
@@ -179,7 +179,7 @@ bool URLProvider::hasOrHadUrl(const QUrl &url) const
 
 bool URLProvider::hasUrl(const QUrl &url) const
 {
-	foreach (const QUrl &urlOnList, allAvailableUrls())
+	for (const QUrl &urlOnList : allAvailableUrls())
 	{
 		if (UrlParser::urlEqualsCaseInsensitive(urlOnList, url))
 		{
@@ -192,7 +192,7 @@ bool URLProvider::hasUrl(const QUrl &url) const
 QList<MirrorStorage *> URLProvider::mirrorsWithUrl(const QUrl &url)
 {
 	QList<MirrorStorage *> mirrorsWithUrls;
-	foreach (MirrorStorage *pMirror, mirrors)
+	for (MirrorStorage *pMirror : mirrors)
 	{
 		if (pMirror->hasUrl(url))
 		{
@@ -216,7 +216,7 @@ URLProvider &URLProvider::operator<<(const QUrl &url)
 
 void URLProvider::removeAllUrls(const MirrorStorage *pMirror)
 {
-	foreach (const QUrl &url, pMirror->urls)
+	for (const QUrl &url : pMirror->urls)
 	{
 		removeUrl(url);
 	}
@@ -224,7 +224,7 @@ void URLProvider::removeAllUrls(const MirrorStorage *pMirror)
 
 void URLProvider::removeUrl(const QUrl &url)
 {
-	foreach (int key, allUrlsPrioritized.uniqueKeys())
+	for (int key : allUrlsPrioritized.uniqueKeys())
 	{
 		allUrlsPrioritized[key].removeAll(url);
 	}
@@ -233,7 +233,7 @@ void URLProvider::removeUrl(const QUrl &url)
 void URLProvider::removeUrlAndMirrors(const QUrl &url)
 {
 	QList<MirrorStorage *> mirrors = mirrorsWithUrl(url);
-	foreach (MirrorStorage *pMirror, mirrors)
+	for (MirrorStorage *pMirror : mirrors)
 	{
 		removeAllUrls(pMirror);
 	}

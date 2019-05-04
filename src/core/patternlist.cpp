@@ -26,7 +26,7 @@
 
 bool PatternList::isExactMatchAny(const QString &candidate) const
 {
-	foreach (const QRegExp &matcher, *this)
+	for (const QRegExp &matcher : *this)
 	{
 		if (matcher.exactMatch(candidate))
 		{
@@ -39,7 +39,7 @@ bool PatternList::isExactMatchAny(const QString &candidate) const
 PatternList PatternList::deserializeQVariant(const QVariant &var)
 {
 	PatternList result;
-	foreach (const QVariant &element, var.toList())
+	for (const QVariant &element : var.toList())
 	{
 		result << element.toRegExp();
 	}
@@ -49,7 +49,7 @@ PatternList PatternList::deserializeQVariant(const QVariant &var)
 QVariant PatternList::serializeQVariant() const
 {
 	QVariantList var;
-	foreach (const QRegExp &pattern, *this)
+	for (const QRegExp &pattern : *this)
 	{
 		var << pattern;
 	}

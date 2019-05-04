@@ -65,10 +65,10 @@ QList<PlayersDiagramStyle> PlayersDiagram::availableSlotStyles()
 
 	// Extra.
 	QStringList knownNames;
-	foreach (QDir dir, stylePaths())
+	for (QDir dir : stylePaths())
 	{
 		QStringList extraSlots = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-		foreach (QString slotsName, extraSlots)
+		for (QString slotsName : extraSlots)
 		{
 			if (!knownNames.contains(slotsName, Qt::CaseInsensitive))
 			{
@@ -198,7 +198,7 @@ QImage PlayersDiagram::loadImage(const QString &style, const QString &name)
 	if (style != DEFAULT_STYLE)
 	{
 		QString resourcePath;
-		foreach (const QString &dir, stylePaths())
+		for (const QString &dir : stylePaths())
 		{
 			image = QImage(Strings::combinePaths(dir, style + "/" + name + ".png"));
 			if (!image.isNull())

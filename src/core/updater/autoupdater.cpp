@@ -155,7 +155,7 @@ const QStringList &AutoUpdater::downloadedPackagesFilenames() const
 
 void AutoUpdater::dumpUpdatePackagesToLog(const QList<UpdatePackage> &packages)
 {
-	foreach (const UpdatePackage &pkg, packages)
+	for (const UpdatePackage &pkg : packages)
 	{
 		gLog << tr("Detected update for package \"%1\" from version \"%2\" to version \"%3\".")
 			.arg(pkg.displayName, pkg.currentlyInstalledDisplayVersion, pkg.displayVersion);
@@ -378,7 +378,7 @@ AutoUpdater::ErrorCode AutoUpdater::saveUpdaterScript()
 {
 	QDomDocument xmlDocAllScripts;
 	UpdaterScriptParser scriptParser(xmlDocAllScripts);
-	foreach (const QDomDocument &doc, d->allScripts)
+	for (const QDomDocument &doc : d->allScripts)
 	{
 		scriptParser.merge(doc);
 	}

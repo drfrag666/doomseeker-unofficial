@@ -376,7 +376,7 @@ void MasterClient::updateAddress()
 	d->address = info.addresses().first();
 	if (d->address.protocol() != QAbstractSocket::IPv4Protocol)
 	{
-		foreach(const QHostAddress &addr, info.addresses())
+		for(const QHostAddress &addr : info.addresses())
 		{
 			if (addr.protocol() == QAbstractSocket::IPv4Protocol)
 				d->address = addr;

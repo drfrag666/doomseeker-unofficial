@@ -57,7 +57,7 @@ IniVariable Ini::createSetting(const QString &sectionName, const QString &name, 
 
 void Ini::deleteSection(const QString &sectionName)
 {
-	foreach (const QString &key, d->provider->allKeys())
+	for (const QString &key : d->provider->allKeys())
 	{
 		if (key.startsWith(sectionName + "/", Qt::CaseInsensitive))
 			removeKey(key);
@@ -104,7 +104,7 @@ QVector<IniSection> Ini::sectionsArray(const QString &regexPattern)
 
 	QStringList groups = d->provider->allSections();
 
-	foreach (const QString &key, groups)
+	for (const QString &key : groups)
 	{
 		if (key.contains(regExp))
 			sectionsReferencesArray << IniSection(this, key);

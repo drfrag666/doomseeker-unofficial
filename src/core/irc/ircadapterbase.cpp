@@ -27,7 +27,7 @@
 void IRCAdapterBase::emitMessageToAllChatBoxes(const QString &message, const IRCMessageClass &msgClass)
 {
 	network()->emitMessageWithClass(message, msgClass);
-	foreach (IRCAdapterBase *adapter, network()->childrenAdapters())
+	for (IRCAdapterBase *adapter : network()->childrenAdapters())
 	{
 		adapter->emitMessageWithClass(message, msgClass);
 	}

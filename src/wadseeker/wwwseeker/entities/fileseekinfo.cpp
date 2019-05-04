@@ -29,7 +29,7 @@ FileSeekInfo::FileSeekInfo()
 FileSeekInfo::FileSeekInfo(const QString &file, const QStringList &possibleFilenames)
 {
 	d.file = file;
-	foreach (QString filename, possibleFilenames)
+	for (QString filename : possibleFilenames)
 	{
 		if (!filename.trimmed().isEmpty() && !isFilenameListed(filename))
 		{
@@ -53,7 +53,7 @@ void FileSeekInfo::addPossibleFilename(const QString &filename)
 
 bool FileSeekInfo::isFilenameListed(const QString &filename) const
 {
-	foreach (const QString &listFilename, d.possibleFilenames)
+	for (const QString &listFilename : d.possibleFilenames)
 	{
 		if (filename.compare(listFilename, Qt::CaseInsensitive) == 0)
 		{

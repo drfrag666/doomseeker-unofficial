@@ -49,7 +49,7 @@ void OdamexGameHost::addExtra()
 	const QStringList &mapsList = params().mapList();
 	if (!mapsList.isEmpty())
 	{
-		foreach (QString map, mapsList)
+		for (QString map : mapsList)
 		{
 			args() << "+addmap" << map;
 		}

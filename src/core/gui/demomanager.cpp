@@ -98,7 +98,7 @@ void DemoManagerDlg::adjustDemoList()
 	QStringList demos = demosDirectory.entryList(demoExtensions, QDir::Files);
 	typedef QMap<int, Demo> DemoMap;
 	QMap<int, DemoMap> demoMap;
-	foreach (const QString &demoName, demos)
+	for (const QString &demoName : demos)
 	{
 		QStringList demoData;
 		QString metaData = demoName.left(demoName.lastIndexOf("."));
@@ -154,11 +154,11 @@ void DemoManagerDlg::adjustDemoList()
 	// Convert to a model
 	d->demoModel->clear();
 	d->demoTree.clear();
-	foreach (const DemoMap &demoDate, demoMap)
+	for (const DemoMap &demoDate : demoMap)
 	{
 		QStandardItem *item = new QStandardItem(demoDate.begin().value().time.toString("ddd. MMM d, yyyy"));
 		QList<Demo> demoDateList;
-		foreach (const Demo &demo, demoDate)
+		for (const Demo &demo : demoDate)
 		{
 			demoDateList << demo;
 			item->appendRow(new QStandardItem(demo.time.toString("hh:mm:ss")));
@@ -278,7 +278,7 @@ void DemoManagerDlg::playSelected()
 	QStringList missingWads;
 	QStringList wadPaths;
 
-	foreach (const QString &wad, d->selectedDemo->wads)
+	for (const QString &wad : d->selectedDemo->wads)
 	{
 		WadFindResult findResult = wadFinder.find(wad);
 		if (findResult.isValid())
@@ -294,7 +294,7 @@ void DemoManagerDlg::playSelected()
 		return;
 	}
 	QStringList optionalWadPaths;
-	foreach (const QString &wad, d->selectedDemo->optionalWads)
+	for (const QString &wad : d->selectedDemo->optionalWads)
 	{
 		WadFindResult findResult = wadFinder.find(wad);
 		if (findResult.isValid())
@@ -341,11 +341,11 @@ void DemoManagerDlg::updatePreview(const QModelIndex &index)
 
 	QString text = "<b>" + tr("Port") + ":</b><p style=\"margin: 0px 0px 0px 10px\">" + d->selectedDemo->port + "</p>" +
 		"<b>" + tr("WADs") + ":</b><p style=\"margin: 0px 0px 0px 10px\">";
-	foreach (const QString &wad, d->selectedDemo->wads)
+	for (const QString &wad : d->selectedDemo->wads)
 	{
 		text += wad + "<br />";
 	}
-	foreach (const QString &wad, d->selectedDemo->optionalWads)
+	for (const QString &wad : d->selectedDemo->optionalWads)
 	{
 		text += "[" + wad + "]<br />";
 	}

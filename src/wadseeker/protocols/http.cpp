@@ -69,7 +69,7 @@ QStringList Http::contentDisposition() const
 		return filteredContentDisposition;
 	}
 
-	foreach (QString value, contentDisposition)
+	for (QString value : contentDisposition)
 	{
 		value = value.trimmed();
 		filteredContentDisposition << value;

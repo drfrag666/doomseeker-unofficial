@@ -117,7 +117,7 @@ QString PlayerTable::spawnPlayersRows(const PlayersByTeams &playersByTeams)
 	QString playersRows;
 
 	bool bAppendEmptyRowAtBeginning = false;
-	foreach (const PlayersList &playersList, playersByTeams.values())
+	for (const PlayersList &playersList : playersByTeams.values())
 	{
 		playersRows += spawnPartOfPlayerTable(playersList, bAppendEmptyRowAtBeginning);
 		if (!bAppendEmptyRowAtBeginning)

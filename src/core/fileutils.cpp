@@ -68,7 +68,7 @@ Qt::CaseSensitivity FileUtils::comparisonSensitivity()
 
 bool FileUtils::containsPath(const QStringList &candidates, const QString &path)
 {
-	foreach (const QString &candidate, candidates)
+	for (const QString &candidate : candidates)
 	{
 		if (QFileInfo(candidate) == QFileInfo(path))
 			return true;

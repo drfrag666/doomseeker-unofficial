@@ -76,7 +76,7 @@ void IRCConfig::loadNetworksFromPlugins()
 			shouldSave = true;
 			registered = true;
 
-			foreach (const IRCNetworkEntity &entity, gPlugins->plugin(i)->info()->data()->ircChannels)
+			for (const IRCNetworkEntity &entity : gPlugins->plugin(i)->info()->data()->ircChannels)
 			{
 				// If we have a unique server add it to the list...
 				if (!networks.contains(entity))

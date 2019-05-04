@@ -124,7 +124,7 @@ QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 	if (bFindWads)
 	{
 		QStringList pwadsFormatted;
-		foreach (const PWad &wad, pwads)
+		for (const PWad &wad : pwads)
 		{
 			pwadsFormatted << createPwadToolTipInfo(wad, server);
 		}
@@ -135,7 +135,7 @@ QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 	}
 	else
 	{
-		foreach (const PWad &wad, pwads)
+		for (const PWad &wad : pwads)
 		{
 			content += wad.name() + "\n";
 		}
@@ -183,7 +183,7 @@ QString ServerTooltip::createPwadToolTipInfo(const PWad &pwad, const ServerPtr &
 	QString formattedStringBegin = QString("<tr style=\"color: %1;\">").arg(fontColor);
 	QString formattedStringMiddle;
 	QString space = "";
-	foreach (const QString &cell, cells)
+	for (const QString &cell : cells)
 	{
 		formattedStringMiddle += QString("<td style=\"padding-right: 5;\">%1</td>").arg(cell);
 		space = " ";

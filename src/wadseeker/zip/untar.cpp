@@ -66,7 +66,7 @@ QString UnTar::fileNameFromIndex(int file)
 QStringList UnTar::files()
 {
 	QStringList files;
-	foreach(const TarFile &tarfile, directory)
+	for(const TarFile &tarfile : directory)
 	{
 		files << tarfile.filename;
 	}

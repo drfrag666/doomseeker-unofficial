@@ -52,7 +52,7 @@ void Srb2GameHost::addDMFlags()
 
 void Srb2GameHost::addDMFlags(const QList<DMFlagsSection> &flags, bool enabled)
 {
-	foreach (const DMFlagsSection &section, flags)
+	for (const DMFlagsSection &section : flags)
 	{
 		for (int i = 0; i < section.count(); ++i)
 		{

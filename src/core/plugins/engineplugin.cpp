@@ -316,7 +316,7 @@ void EnginePlugin::setGameExeFactory(QSharedPointer<GameExeFactory> factory)
 
 void EnginePlugin::findGameFiles(IniSection &ini)
 {
-	foreach (const GameFile &file, gameExe()->gameFiles().asQList())
+	for (const GameFile &file : gameExe()->gameFiles().asQList())
 	{
 		if (!ini.hasSetting(file.configName()))
 		{
@@ -329,7 +329,7 @@ void EnginePlugin::findGameFiles(IniSection &ini)
 QStringList EnginePlugin::collectKnownPaths(const IniSection &ini) const
 {
 	QStringList paths;
-	foreach (const GameFile &file, data()->gameExeFactory->gameFiles().asQList())
+	for (const GameFile &file : data()->gameExeFactory->gameFiles().asQList())
 	{
 		QString path = ini.retrieveSetting(file.configName()).valueString();
 		if (!path.isEmpty())

@@ -27,7 +27,7 @@
 
 QString BaseFileSeeker::findFile(const QString &fileName, const QList<FileSearchPath> &paths)
 {
-	foreach (const FileSearchPath &candidate, paths)
+	for (const FileSearchPath &candidate : paths)
 	{
 		QString result = findFileInPath(fileName, candidate);
 		if (!result.isNull())
@@ -50,7 +50,7 @@ QString BaseFileSeeker::findFileInPath(const QString &fileName, const FileSearch
 	{
 		QDir dir(path.path());
 		QStringList subDirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-		foreach (const QString &subDir, subDirs)
+		for (const QString &subDir : subDirs)
 		{
 			FileSearchPath subSearchPath(dir.filePath(subDir));
 			subSearchPath.setRecursive(true);

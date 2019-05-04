@@ -108,7 +108,7 @@ PathFinder::PathFinder()
 
 PathFinder::PathFinder(const QStringList &paths)
 {
-	foreach (const QString &path, paths)
+	for (const QString &path : paths)
 	{
 		d->searchPaths << path;
 	}
@@ -133,9 +133,9 @@ PathFinder PathFinder::genericPathFinder(const QStringList &suffixes)
 	<< "/usr/share/games/" << gDefaultDataPaths->workingDirectory() << ".";
 	#endif
 	QStringList pathsCopy(paths);
-	foreach (const QString &path, pathsCopy)
+	for (const QString &path : pathsCopy)
 	{
-		foreach (const QString &suffix, suffixes)
+		for (const QString &suffix : suffixes)
 		{
 			paths << Strings::combinePaths(path, suffix);
 		}
@@ -174,7 +174,7 @@ QString PathFinder::findFile(const QString &fileName) const
 PathFinderResult PathFinder::findFiles(const QStringList &files) const
 {
 	PathFinderResult result;
-	foreach(const QString file, files)
+	for(const QString file : files)
 	{
 		QString filePath = findFile(file);
 		if (filePath.isNull())

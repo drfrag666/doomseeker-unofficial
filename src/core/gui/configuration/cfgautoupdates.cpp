@@ -52,7 +52,7 @@ CFGAutoUpdates::~CFGAutoUpdates()
 void CFGAutoUpdates::initUpdateChannels()
 {
 	QList<UpdateChannel> channels = UpdateChannel::allChannels();
-	foreach (const UpdateChannel &channel, channels)
+	for (const UpdateChannel &channel : channels)
 	{
 		d->cboUpdateChannel->addItem(channel.translatedName(),
 			channel.name());

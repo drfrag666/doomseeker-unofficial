@@ -34,7 +34,7 @@ const QString ChatNetworksCfg::SECTIONS_NAMES_PREFIX = "Network.";
 QList<IRCNetworkEntity> ChatNetworksCfg::autoJoinNetworks() const
 {
 	QList<IRCNetworkEntity> result;
-	foreach (const IRCNetworkEntity &network, networks())
+	for (const IRCNetworkEntity &network : networks())
 	{
 		if (network.isAutojoinNetwork())
 			result << network;
@@ -45,7 +45,7 @@ QList<IRCNetworkEntity> ChatNetworksCfg::autoJoinNetworks() const
 
 bool ChatNetworksCfg::isAnyNetworkOnAutoJoin() const
 {
-	foreach (const IRCNetworkEntity &network, networks())
+	for (const IRCNetworkEntity &network : networks())
 	{
 		if (network.isAutojoinNetwork())
 			return true;
@@ -57,7 +57,7 @@ bool ChatNetworksCfg::isAnyNetworkOnAutoJoin() const
 IRCNetworkEntity ChatNetworksCfg::lastUsedNetwork() const
 {
 	QString networkName = ini().section("LastUsedNetwork").value("Description").toString();
-	foreach (const IRCNetworkEntity &network, networks())
+	for (const IRCNetworkEntity &network : networks())
 	{
 		if (network.description() == networkName)
 			return network;
@@ -77,7 +77,7 @@ void ChatNetworksCfg::setLastUsedNetwork(const IRCNetworkEntity &network)
 QList<IRCNetworkEntity> ChatNetworksCfg::networks() const
 {
 	QList<IRCNetworkEntity> result;
-	foreach (const IniSection &section, allNetworksSections())
+	for (const IniSection &section : allNetworksSections())
 	{
 		result << loadNetwork(section);
 	}
@@ -90,7 +90,7 @@ void ChatNetworksCfg::setNetworks(const QList<IRCNetworkEntity> &networks)
 	// We need to rebuild these sections from scratch.
 	clearNetworkSections();
 	int id = 0;
-	foreach (const IRCNetworkEntity &network, networks)
+	for (const IRCNetworkEntity &network : networks)
 	{
 		saveNetwork(networkSection(id), network);
 		++id;
@@ -99,7 +99,7 @@ void ChatNetworksCfg::setNetworks(const QList<IRCNetworkEntity> &networks)
 
 IRCNetworkEntity ChatNetworksCfg::network(const QString &description)
 {
-	foreach (const IRCNetworkEntity &network, networks())
+	for (const IRCNetworkEntity &network : networks())
 	{
 		if (network.description() == description)
 			return network;
@@ -144,7 +144,7 @@ bool ChatNetworksCfg::replaceNetwork(const QString &oldDescription, const IRCNet
 
 void ChatNetworksCfg::clearNetworkSections()
 {
-	foreach (const IniSection &section, allNetworksSections())
+	for (const IniSection &section : allNetworksSections())
 	{
 		ini().deleteSection(section.name());
 	}

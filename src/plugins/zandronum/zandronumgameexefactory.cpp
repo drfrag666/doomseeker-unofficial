@@ -53,7 +53,7 @@ QList<ExeFilePath> ZandronumGameExeFactory::additionalExecutables(int execType) 
 	{
 		QDir directory(cfg->value("TestingPath").toString());
 		QStringList subdirs = directory.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::Reversed);
-		foreach (const QString &subdirName, subdirs)
+		for (const QString &subdirName : subdirs)
 		{
 			testingExecutables << scanSubdir(directory, subdirName, execType);
 		}

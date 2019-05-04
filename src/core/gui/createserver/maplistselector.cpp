@@ -94,7 +94,7 @@ void MapListSelector::performCheckStep()
 	QSharedPointer<ModReader> modReader = ModReader::create(path);
 	if (!modReader.isNull() && modReader->load())
 	{
-		foreach (const QString &tempMap, modReader->getAllMaps())
+		for (const QString &tempMap : modReader->getAllMaps())
 		{
 			addEntryToMapList(MapEntry(tempMap, QFile(path).fileName(), modReader->isIwad()));
 		}
@@ -120,7 +120,7 @@ void MapListSelector::addEntryToMapList(const MapEntry &newEntry)
 void MapListSelector::setMapsOfCheckableList(const QList<MapEntry> &list)
 {
 	d->listMapsWidget->clear();
-	foreach (const MapEntry &mapEntry, list)
+	for (const MapEntry &mapEntry : list)
 	{
 		QListWidgetItem *item = new QListWidgetItem(mapEntry.name, d->listMapsWidget);
 		item->setFlags(item->flags() | Qt::ItemIsUserCheckable);

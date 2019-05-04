@@ -83,7 +83,7 @@ void ServerListRowHandler::emptyItem(QStandardItem *item)
 QStringList ServerListRowHandler::extractValidGameCVarNames(const QList<GameCVar> &cvars)
 {
 	QStringList result;
-	foreach (const GameCVar &cvar, cvars)
+	for (const GameCVar &cvar : cvars)
 	{
 		if (!cvar.isValid())
 			result << cvar.name();
@@ -317,7 +317,7 @@ void ServerListRowHandler::setGood()
 	fillItem(qstdItem, d->server->map());
 
 	strTmp.clear();
-	foreach (const PWad &wad, d->server->wads())
+	for (const PWad &wad : d->server->wads())
 	{
 		if (wad.isOptional())
 			strTmp += QString("[%1] ").arg(wad.name());

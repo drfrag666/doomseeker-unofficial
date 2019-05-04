@@ -50,7 +50,7 @@ QString IwadAndWadsPickerDialog::executable() const
 
 void IwadAndWadsPickerDialog::setExecutables(const QStringList &paths)
 {
-	foreach (const QString &path, paths)
+	for (const QString &path : paths)
 	{
 		if (d->executableInput->findText(path) < 0)
 			d->executableInput->addItem(path);

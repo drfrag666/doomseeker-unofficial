@@ -78,7 +78,7 @@ ModSet FreedoomInfoParser::parse()
 {
 	d->modSet.clear();
 	d->readRoot();
-	foreach (const QString &filename, d->root.keys())
+	for (const QString &filename : d->root.keys())
 	{
 		d->parseAndAppendModFile(filename, d->root[filename].toMap());
 	}

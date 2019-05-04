@@ -60,7 +60,7 @@ QList<UpdateChannel> UpdateChannel::allChannels()
 UpdateChannel UpdateChannel::fromName(const QString &name)
 {
 	QList<UpdateChannel> channels = allChannels();
-	foreach (const UpdateChannel &channel, channels)
+	for (const UpdateChannel &channel : channels)
 	{
 		if (channel.name() == name)
 		{

@@ -49,7 +49,7 @@ public:
 	QString exactKey(const QString &key) const
 	{
 		assert(target != nullptr);
-		foreach (const QString &candidate, target->allKeys())
+		for (const QString &candidate : target->allKeys())
 		{
 			if (candidate.compare(key, Qt::CaseInsensitive) == 0)
 				return candidate;

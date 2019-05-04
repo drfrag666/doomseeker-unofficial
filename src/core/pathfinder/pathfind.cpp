@@ -46,7 +46,7 @@ QString PathFind::findGameFile(const QStringList &knownPaths, const GameFile &ga
 {
 	PathFinder pathFinder = PathFinder::genericPathFinder(gameFile.searchSuffixes());
 	QStringList knownDirs;
-	foreach (const QString &path, knownPaths)
+	for (const QString &path : knownPaths)
 	{
 		if (!path.trimmed().isEmpty())
 		{

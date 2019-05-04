@@ -51,7 +51,7 @@ void ServerListFilterInfo::copy(const ServerListFilterInfo &other)
 void ServerListFilterInfo::copyTrimmed(QStringList &target, const QStringList &source) const
 {
 	target.clear();
-	foreach (QString element, source)
+	for (QString element : source)
 	{
 		element = element.trimmed();
 		if (!element.isEmpty())

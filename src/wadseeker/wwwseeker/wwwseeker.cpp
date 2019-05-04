@@ -43,7 +43,7 @@ WWWSeeker::WWWSeeker()
 
 WWWSeeker::~WWWSeeker()
 {
-	foreach (NetworkReply *pInfo, d.networkQueries)
+	for (NetworkReply *pInfo : d.networkQueries)
 	{
 		pInfo->deleteMembersLater();
 		delete pInfo;
@@ -71,7 +71,7 @@ void WWWSeeker::abort()
 		d.sitesUrls.clear();
 		d.seekedFiles.clear();
 
-		foreach (NetworkReply *pInfo, d.networkQueries)
+		for (NetworkReply *pInfo : d.networkQueries)
 		{
 			pInfo->reply->abort();
 		}
@@ -137,7 +137,7 @@ void WWWSeeker::addSiteUrl(const QUrl &url)
 
 void WWWSeeker::addSitesUrls(const QList<QUrl> &urlsList)
 {
-	foreach (const QUrl &url, urlsList)
+	for (const QUrl &url : urlsList)
 	{
 		addSiteUrl(url);
 	}
@@ -172,7 +172,7 @@ FileSeekInfo *WWWSeeker::findFileSeekInfo(const QString &seekedName)
 	{
 		FileSeekInfo &info = *it;
 		QStringList possibleFilenames = info.possibleFilenames();
-		foreach (const QString &possibleFilename, possibleFilenames)
+		for (const QString &possibleFilename : possibleFilenames)
 		{
 			if (possibleFilename.compare(seekedName, Qt::CaseInsensitive) == 0)
 			{
@@ -186,7 +186,7 @@ FileSeekInfo *WWWSeeker::findFileSeekInfo(const QString &seekedName)
 
 NetworkReply *WWWSeeker::findNetworkReply(QNetworkReply *pReply)
 {
-	foreach (NetworkReply *info, d.networkQueries)
+	for (NetworkReply *info : d.networkQueries)
 	{
 		if (*info == pReply)
 		{
@@ -199,7 +199,7 @@ NetworkReply *WWWSeeker::findNetworkReply(QNetworkReply *pReply)
 
 NetworkReply *WWWSeeker::findNetworkReply(const QUrl &url)
 {
-	foreach (NetworkReply *info, d.networkQueries)
+	for (NetworkReply *info : d.networkQueries)
 	{
 		if (info->request().url() == url)
 		{
@@ -217,7 +217,7 @@ bool WWWSeeker::isDirectUrl(const QUrl &url, QString &outFileName) const
 	links << Link(url, "");
 
 	UrlParser urlParser(links);
-	foreach (const FileSeekInfo &fileSeekInfo, d.seekedFiles)
+	for (const FileSeekInfo &fileSeekInfo : d.seekedFiles)
 	{
 		const QString &file = fileSeekInfo.file();
 		const QStringList &possibleFilenames = fileSeekInfo.possibleFilenames();
@@ -256,7 +256,7 @@ void WWWSeeker::logHeaders(NetworkReply *reply)
 	qDebug() << "HEADERS";
 	qDebug() << "URL " << reply->url();
 	QList<QByteArray> headers = reply->rawHeaderList();
-	foreach (const QByteArray &headerName, headers)
+	for (const QByteArray &headerName : headers)
 	{
 		QByteArray headerData = reply->rawHeader(headerName);
 		qDebug() << QString("%1: %2").arg(QString::fromUtf8(headerName)).arg(
@@ -410,7 +410,7 @@ void WWWSeeker::parseAsHtml(NetworkReply *pReply)
 	// Extract URLs of interest from <A HREFs>
 	UrlParser urlParser(links);
 
-	foreach (const FileSeekInfo &fileSeekInfo, d.seekedFiles)
+	for (const FileSeekInfo &fileSeekInfo : d.seekedFiles)
 	{
 		const QString &file = fileSeekInfo.file();
 		const QStringList &possibleFilenames = fileSeekInfo.possibleFilenames();
@@ -424,7 +424,7 @@ void WWWSeeker::parseAsHtml(NetworkReply *pReply)
 		printf("Direct links: %d\n", directLinks.size());
 		#endif
 
-		foreach (const Link &link, siteLinks)
+		for (const Link &link : siteLinks)
 		{
 			#ifndef NDEBUG
 			printf("Adding url %s\n", link.url.toEncoded().constData());
@@ -432,7 +432,7 @@ void WWWSeeker::parseAsHtml(NetworkReply *pReply)
 			addFileSiteUrl(file, link.url);
 		}
 
-		foreach (const Link &link, directLinks)
+		for (const Link &link : directLinks)
 		{
 			emit linkFound(file, link.url);
 		}
@@ -444,7 +444,7 @@ void WWWSeeker::removeSeekedFile(const QString &file)
 	// Make sure to remove all occurences of the filename.
 	QList<FileSeekInfo> toRemove;
 
-	foreach (const FileSeekInfo &fileOnList, d.seekedFiles)
+	for (const FileSeekInfo &fileOnList : d.seekedFiles)
 	{
 		if (fileOnList == file)
 		{
@@ -452,7 +452,7 @@ void WWWSeeker::removeSeekedFile(const QString &file)
 		}
 	}
 
-	foreach (const FileSeekInfo &fileToRemove, toRemove)
+	for (const FileSeekInfo &fileToRemove : toRemove)
 	{
 		d.seekedFiles.removeAll(fileToRemove);
 	}
@@ -602,7 +602,7 @@ const QString &WWWSeeker::userAgent() const
 
 bool WWWSeeker::wasUrlUsed(const QUrl &url) const
 {
-	foreach (const QUrl &usedUrl, d.visitedUrls)
+	for (const QUrl &usedUrl : d.visitedUrls)
 	{
 		if (UrlParser::urlEqualsCaseInsensitive(usedUrl, url))
 		{

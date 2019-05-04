@@ -310,7 +310,7 @@ QList<ColumnSort> DoomseekerConfig::DoomseekerCfg::additionalSortColumns() const
 {
 	QList<ColumnSort> list;
 	QVariantList varList = d->section.value("AdditionalSortColumns").toList();
-	foreach (const QVariant &var, varList)
+	for (const QVariant &var : varList)
 	{
 		list << ColumnSort::deserializeQVariant(var);
 	}
@@ -320,7 +320,7 @@ QList<ColumnSort> DoomseekerConfig::DoomseekerCfg::additionalSortColumns() const
 void DoomseekerConfig::DoomseekerCfg::setAdditionalSortColumns(const QList<ColumnSort> &val)
 {
 	QVariantList varList;
-	foreach (const ColumnSort &elem, val)
+	for (const ColumnSort &elem : val)
 	{
 		varList << elem.serializeQVariant();
 	}
@@ -421,10 +421,10 @@ void DoomseekerConfig::DoomseekerCfg::load(IniSection &section)
 	CustomServers::decodeConfigEntries(section["CustomServers2"], customServersList);
 	QList<CustomServerInfo> backwardCompatibleServers;
 	CustomServers::decodeConfigEntries(section["CustomServers"], backwardCompatibleServers);
-	foreach (const CustomServerInfo &backwardCompatibleServer, backwardCompatibleServers)
+	for (const CustomServerInfo &backwardCompatibleServer : backwardCompatibleServers)
 	{
 		bool known = false;
-		foreach (const CustomServerInfo &knownServer, customServersList)
+		for (const CustomServerInfo &knownServer : customServersList)
 		{
 			if (knownServer.isSameServer(backwardCompatibleServer))
 			{
@@ -445,7 +445,7 @@ void DoomseekerConfig::DoomseekerCfg::load(IniSection &section)
 		// Backward compatibility continued:
 		wadPaths.clear();
 		QStringList paths = variantWadPaths.toString().split(";");
-		foreach (const QString &path, paths)
+		for (const QString &path : paths)
 		{
 			wadPaths << FileSearchPath(path);
 		}
@@ -511,7 +511,7 @@ void DoomseekerConfig::DoomseekerCfg::save(IniSection &section)
 	// Custom servers
 	QStringList allCustomServers; // backward compatibility for Doomseeker <1.2
 	QStringList allCustomServers2; // Doomseeker >=1.2
-	foreach (const CustomServerInfo &customServer, this->customServers)
+	for (const CustomServerInfo &customServer : this->customServers)
 	{
 		QString engineName = QUrl::toPercentEncoding(customServer.engine, "", "()");
 		QString address = QUrl::toPercentEncoding(customServer.host, "", "()");
@@ -547,7 +547,7 @@ QList<FileAlias> DoomseekerConfig::DoomseekerCfg::wadAliases() const
 {
 	QList<FileAlias> list;
 	QVariantList varList = d->section.value("WadAliases").toList();
-	foreach (const QVariant &var, varList)
+	for (const QVariant &var : varList)
 	{
 		list << FileAlias::deserializeQVariant(var);
 	}
@@ -557,7 +557,7 @@ QList<FileAlias> DoomseekerConfig::DoomseekerCfg::wadAliases() const
 void DoomseekerConfig::DoomseekerCfg::setWadAliases(const QList<FileAlias> &val)
 {
 	QVariantList varList;
-	foreach (const FileAlias &elem, val)
+	for (const FileAlias &elem : val)
 	{
 		varList << elem.serializeQVariant();
 	}
@@ -578,7 +578,7 @@ void DoomseekerConfig::DoomseekerCfg::enableFreedoomInstallation(const QString &
 QStringList DoomseekerConfig::DoomseekerCfg::wadPathsOnly() const
 {
 	QStringList result;
-	foreach (const FileSearchPath &path, wadPaths)
+	for (const FileSearchPath &path : wadPaths)
 	{
 		result << path.path();
 	}
@@ -601,7 +601,7 @@ void DoomseekerConfig::AutoUpdates::load(IniSection &section)
 	updateMode = (UpdateMode)section["UpdateMode"].value().toInt();
 	QVariantMap lastKnownUpdateRevisionsVariant = section["LastKnownUpdateRevisions"].value().toMap();
 	lastKnownUpdateRevisions.clear();
-	foreach (const QString &package, lastKnownUpdateRevisionsVariant.keys())
+	for (const QString &package : lastKnownUpdateRevisionsVariant.keys())
 	{
 		QVariant revisionVariant = lastKnownUpdateRevisionsVariant[package];
 		lastKnownUpdateRevisions.insert(package, revisionVariant.toString());
@@ -614,7 +614,7 @@ void DoomseekerConfig::AutoUpdates::save(IniSection &section)
 	section["UpdateChannelName"] = updateChannelName;
 	section["UpdateMode"] = updateMode;
 	QVariantMap revisionsVariantMap;
-	foreach (const QString &package, lastKnownUpdateRevisions.keys())
+	for (const QString &package : lastKnownUpdateRevisions.keys())
 	{
 		revisionsVariantMap.insert(package, lastKnownUpdateRevisions[package]);
 	}
@@ -726,7 +726,7 @@ void DoomseekerConfig::WadseekerCfg::load(IniSection &section)
 	// Complex data values
 	this->searchURLs.clear();
 	QStringList urlList = section["SearchURLs"].valueString().split(";", QString::SkipEmptyParts);
-	foreach (const QString &url, urlList)
+	for (const QString &url : urlList)
 	{
 		this->searchURLs << QUrl::fromPercentEncoding(url.toUtf8());
 	}
@@ -749,7 +749,7 @@ void DoomseekerConfig::WadseekerCfg::save(IniSection &section)
 
 	// Complex data values
 	QStringList urlEncodedList;
-	foreach (const QString &url, this->searchURLs)
+	for (const QString &url : this->searchURLs)
 	{
 		urlEncodedList << QUrl::toPercentEncoding(url);
 	}

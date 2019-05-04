@@ -248,7 +248,7 @@ bool FlagsPage::saveConfig(Ini &ini)
 	QStringList oldSettings;
 	oldSettings << "dmflags" << "dmflags2" << "zandronumDmflags" << "compatflags"
 	<< "zandronumCompatflags" << "lmsallowedweapons" << "lmsspectatorsettings";
-	foreach (const QString &oldSetting, oldSettings)
+	for (const QString &oldSetting : oldSettings)
 	{
 		section.deleteSetting(oldSetting);
 	}
