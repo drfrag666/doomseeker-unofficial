@@ -96,8 +96,7 @@ QVariant FileAlias::serializeMatchType(MatchType matchType)
 	switch (matchType)
 	{
 	default:
-		assert(false && "don't know how to serialize this FileAlias::MatchType");
-		// intentional fall-through
+		assert(false && "don't know how to serialize this FileAlias::MatchType"); // intentional fall-through
 	case LeftToRight:
 		return "LeftToRight";
 	case AllEqual:

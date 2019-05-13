@@ -475,8 +475,7 @@ bool Refresher::tryReadDatagramByServer(const QHostAddress &address,
 				d->refreshingServers.append(refreshOp);
 				break;
 			}
-			response = Server::RESPONSE_BAD;
-		// Intentional fall through
+			response = Server::RESPONSE_BAD; // Intentional fall through
 		default:
 			d->refreshingServers.removeAll(ServerRefreshTime(server));
 			server->refreshStops(static_cast<Server::Response>(response));

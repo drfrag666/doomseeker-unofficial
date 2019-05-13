@@ -146,12 +146,12 @@ void FlagsPage::fillInGameCreateParams(GameCreateParams &gameCreateParams)
 	if (cbMonstersMustBeKilledToExit->isChecked())
 	{
 		params << "+sv_killallmonsters_percentage"
-		<< QString::number(spinMonsterKillPercentage->value());
+			<< QString::number(spinMonsterKillPercentage->value());
 	}
 	params << "+sv_afk2spec" <<
-	QString::number(spinForceInactivePlayersSpectatingMins->value());
+		QString::number(spinForceInactivePlayersSpectatingMins->value());
 	params << "+sv_coop_damagefactor" <<
-	QString::number(spinMonstersDamageFactor->value());
+		QString::number(spinMonstersDamageFactor->value());
 
 	params << "+sv_defaultdmflags" << (cbDefaultDmflags->isChecked() ? "1" : "0");
 
@@ -247,7 +247,7 @@ bool FlagsPage::saveConfig(Ini &ini)
 	// the backward-compatibility fallbacks.
 	QStringList oldSettings;
 	oldSettings << "dmflags" << "dmflags2" << "zandronumDmflags" << "compatflags"
-	<< "zandronumCompatflags" << "lmsallowedweapons" << "lmsspectatorsettings";
+		<< "zandronumCompatflags" << "lmsallowedweapons" << "lmsspectatorsettings";
 	for (const QString &oldSetting : oldSettings)
 	{
 		section.deleteSetting(oldSetting);
@@ -292,7 +292,7 @@ void FlagsPage::loadGameVersion(ZandronumGameInfo::GameVersion version)
 		if (index < 0)
 		{
 			gLog << QString("Zandronum: FlagsPage::loadGameVersion() - oops, "
-				"a bug!, GameVersion = %1").arg(version);
+					"a bug!, GameVersion = %1").arg(version);
 			return;
 		}
 	}
@@ -313,8 +313,7 @@ void FlagsPage::setGameVersion(ZandronumGameInfo::GameVersion version)
 	switch (version)
 	{
 	default:
-		gLog << tr("Tried to set unknown Zandronum version. Reverting to default.");
-	// intentional fall-through
+		gLog << tr("Tried to set unknown Zandronum version. Reverting to default."); // intentional fall-through
 	case ZandronumGameInfo::GV_Zandronum2:
 		d->flagsController = QSharedPointer<FlagsPageValueController>(
 			new Zandronum2::FlagsPageValueController(this));
