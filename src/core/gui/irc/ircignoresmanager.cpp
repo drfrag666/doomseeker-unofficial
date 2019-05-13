@@ -68,7 +68,7 @@ void IRCIgnoresManager::loadItems()
 {
 	ChatNetworksCfg cfg;
 	IRCNetworkEntity network = cfg.network(d->networkDescription);
-	foreach (const QRegExp &pattern, network.ignoredUsers())
+	for (const QRegExp &pattern : network.ignoredUsers())
 	{
 		QListWidgetItem *item = new QListWidgetItem(pattern.pattern(), d->list);
 		item->setFlags(item->flags() | Qt::ItemIsEditable);
@@ -99,7 +99,7 @@ PatternList IRCIgnoresManager::patterns() const
 void IRCIgnoresManager::deleteSelected()
 {
 	QList<QListWidgetItem *> selection = d->list->selectedItems();
-	foreach (QListWidgetItem *item, selection)
+	for (QListWidgetItem *item : selection)
 	{
 		d->list->removeItemWidget(item);
 	}

@@ -49,7 +49,7 @@ flags/localhost-small.png
 flags/unknown-small.png
 
 
-- Copyright (C) 2009, 2014, 2016, 2017 Zalewa <zalewapl@gmail.com>
+- Copyright (C) 2009, 2014, 2016, 2017, 2019 Zalewa <zalewapl@gmail.com>
 
 ../src/core/unknownengine.xpm
 icons/ascending.png
@@ -58,6 +58,8 @@ icons/descending.png
 icons/magnifier.png
 icons/t.png
 icons/t.xcf
+icons/terminal.png
+icons/terminal-32.png
 
 
 - Copyright (C) 2014 MazterQyoun-ae

@@ -41,7 +41,7 @@ const QString DoomseekerFilePaths::PASSWORD_INI_FILENAME = "doomseeker-password.
 QString DoomseekerFilePaths::cacerts()
 {
 	QStringList paths = pDataPaths->staticDataSearchDirs(CACERTS_FILENAME);
-	foreach (const QString &path, paths)
+	for (const QString &path : paths)
 	{
 		if (QFile(path).exists())
 			return path;
@@ -61,7 +61,7 @@ QString DoomseekerFilePaths::ircIni()
 
 QString DoomseekerFilePaths::ip2cDatabaseAny()
 {
-	foreach (const QString &searchPath, QDir::searchPaths(DATA_SEARCH_PREFIX))
+	for (const QString &searchPath : QDir::searchPaths(DATA_SEARCH_PREFIX))
 	{
 		QString path = Strings::combinePaths(searchPath, IP2C_DATABASE_FILENAME);
 		if (QFile(path).exists())

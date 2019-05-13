@@ -39,7 +39,7 @@ public:
 		Asset()
 		{
 			socket = new QUdpSocket();
-			valid = socket->bind();
+			valid = socket->bind(QHostAddress("0.0.0.0"));
 		}
 
 		~Asset()
@@ -82,7 +82,7 @@ QUdpSocket *UdpSocketPool::acquire(const QHostAddress &address, quint16 port)
 {
 	HostPort hostPort(address, port);
 	// Return if already acquired.
-	foreach (PrivData<UdpSocketPool>::Asset *asset, d->pool)
+	for (PrivData<UdpSocketPool>::Asset *asset : d->pool)
 	{
 		if (asset->hasAddress(hostPort))
 		{
@@ -90,7 +90,7 @@ QUdpSocket *UdpSocketPool::acquire(const QHostAddress &address, quint16 port)
 		}
 	}
 	// Acquire existing.
-	foreach (PrivData<UdpSocketPool>::Asset *asset, d->pool)
+	for (PrivData<UdpSocketPool>::Asset *asset : d->pool)
 	{
 		if (asset->size() < d->sliceSize)
 		{
@@ -127,7 +127,7 @@ void UdpSocketPool::releaseAll()
 
 bool UdpSocketPool::hasPendingDatagrams() const
 {
-	foreach (PrivData<UdpSocketPool>::Asset *asset, d->pool)
+	for (PrivData<UdpSocketPool>::Asset *asset : d->pool)
 	{
 		if (asset->socket->hasPendingDatagrams())
 			return true;
@@ -137,7 +137,7 @@ bool UdpSocketPool::hasPendingDatagrams() const
 
 QByteArray UdpSocketPool::readNextDatagram(QHostAddress *address, quint16 *port)
 {
-	foreach (PrivData<UdpSocketPool>::Asset *asset, d->pool)
+	for (PrivData<UdpSocketPool>::Asset *asset : d->pool)
 	{
 		QUdpSocket *socket = asset->socket;
 		if (socket->hasPendingDatagrams())

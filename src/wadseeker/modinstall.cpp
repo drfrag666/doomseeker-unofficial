@@ -67,12 +67,12 @@ void ModInstall::install(const QString &targetDir, const ModSet &modSet)
 		SIGNAL(wadDownloadProgress(WadDownloadInfo,qint64,qint64)),
 		SLOT(onWadDownloadProgress(WadDownloadInfo,qint64,qint64)));
 	QList<WadDownloadInfo> downloadInfo;
-	foreach (const ModFile &file, modSet.modFiles())
+	for (const ModFile &file : modSet.modFiles())
 	{
 		downloadInfo << file.fileName();
 	}
 	d->wadRetriever->setWads(downloadInfo);
-	foreach (const ModFile &file, modSet.modFiles())
+	for (const ModFile &file : modSet.modFiles())
 	{
 		d->wadRetriever->addUrl(file.fileName(), file.url());
 	}

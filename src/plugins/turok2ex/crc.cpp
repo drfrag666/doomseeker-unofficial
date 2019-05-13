@@ -59,7 +59,6 @@
 * File Name = ............................ 8x256_tables.c
 */
 
-#include "stdint.h"
 #include "crc.h"
 
 uint32_t kexCRC::crc32_tab[8][256] =
@@ -218,10 +217,10 @@ const uint32_t kexCRC::Mem32(const void *pInData, int32_t length, uint32_t crcHa
 {
 	crcHash = ~crcHash;
 
-	const uint8_t *pData = (uint8_t*)pInData;
+	const uint8_t *pData = (uint8_t *)pInData;
 
-	const uint32_t *pData4 = (const uint32_t*)pData;
-	for(uint32_t repeat = length / 8; repeat; --repeat)
+	const uint32_t *pData4 = (const uint32_t *)pData;
+	for (uint32_t repeat = length / 8; repeat; --repeat)
 	{
 		uint32_t v1 = *pData4++ ^ crcHash;
 		uint32_t v2 = *pData4++;
@@ -237,10 +236,10 @@ const uint32_t kexCRC::Mem32(const void *pInData, int32_t length, uint32_t crcHa
 			crc32_tab[0][v2 >> 24];
 	}
 
-	pData = (const uint8_t*)pData4;
+	pData = (const uint8_t *)pData4;
 	length %= 8;
 
-	for(; length; --length)
+	for (; length; --length)
 	{
 		crcHash = (crcHash >> 8) ^ crc32_tab[0][(crcHash & 0xff) ^ *pData++];
 	}

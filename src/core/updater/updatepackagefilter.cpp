@@ -48,7 +48,7 @@ public:
 
 	bool hasMainProgramPackage(const QList<UpdatePackage> &packages) const
 	{
-		foreach (const UpdatePackage &pkg, packages)
+		for (const UpdatePackage &pkg : packages)
 		{
 			if (pkg.name == AutoUpdater::MAIN_PROGRAM_PACKAGE_NAME)
 			{
@@ -75,7 +75,7 @@ QMap<QString, UpdatePackageFilter::PluginInfo> UpdatePackageFilter::collectPlugi
 {
 	QMap<QString, PluginInfo> infos;
 	const QList<PluginLoader::Plugin *> plugins = gPlugins->plugins();
-	foreach (const PluginLoader::Plugin *plugin, plugins)
+	for (const PluginLoader::Plugin *plugin : plugins)
 	{
 		PluginInfo pluginInfo;
 		pluginInfo.name = plugin->info()->data()->name;
@@ -91,7 +91,7 @@ QList<UpdatePackage> UpdatePackageFilter::filter(const QList<UpdatePackage> &pac
 	QList<UpdatePackage> filtered;
 	d->plugins = collectPluginInfo();
 	QList<UpdatePackage> packagesOnIgnoredList;
-	foreach (UpdatePackage pkg, packages)
+	for (UpdatePackage pkg : packages)
 	{
 		if (isDifferentThanInstalled(pkg))
 		{
@@ -186,7 +186,7 @@ bool UpdatePackageFilter::isQtInstallOk() const
 {
 	QStringList files;
 	files << "libeay32.dll" << "ssleay32.dll";
-	foreach (const QString &filename, files)
+	for (const QString &filename : files)
 	{
 		QString fileLocation = Strings::combinePaths(
 			QCoreApplication::applicationDirPath(), filename);

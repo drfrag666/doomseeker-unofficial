@@ -40,7 +40,7 @@ LocalizationInfo LocalizationInfo::findBestMatch(
 	const QString &localeName)
 {
 	LocalizationInfo matchLanguage;
-	foreach (const LocalizationInfo &candidate, candidates)
+	for (const LocalizationInfo &candidate : candidates)
 	{
 		LocaleMatch matchScore = matchLocale(candidate.localeName, localeName);
 		switch (matchScore)

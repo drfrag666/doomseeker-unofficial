@@ -153,7 +153,7 @@ bool DoomseekerConfigurationDialog::isOpen()
 {
 	if (gApp->mainWindow() == nullptr)
 		return false;
-	foreach (QObject *obj, gApp->mainWindow()->children())
+	for (QObject *obj : gApp->mainWindow()->children())
 	{
 		if (qobject_cast<DoomseekerConfigurationDialog *>(obj) != nullptr)
 			return true;

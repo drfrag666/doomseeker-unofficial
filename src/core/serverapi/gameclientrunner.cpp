@@ -239,7 +239,7 @@ void GameClientRunner::addInGamePassword_default()
 	else
 	{
 		gLog << tr("BUG: Plugin doesn't specify argument for in-game "
-			"password, but the server requires such password.");
+				"password, but the server requires such password.");
 	}
 }
 
@@ -270,7 +270,7 @@ void GameClientRunner::addWads()
 			d->joinError.setType(JoinError::MissingWads);
 		}
 		d->joinError.setMissingWads(d->missingPwads);
-		foreach(const PWad &wad, d->missingPwads)
+		for (const PWad &wad : d->missingPwads)
 		{
 			// Only error if there are required missing wads
 			if (!wad.isOptional())
@@ -291,7 +291,7 @@ void GameClientRunner::addPassword_default()
 	else
 	{
 		gLog << tr("BUG: Plugin doesn't specify argument for connect "
-			"password, but the server is passworded.");
+				"password, but the server is passworded.");
 	}
 }
 
@@ -300,19 +300,25 @@ void GameClientRunner::addPwads()
 	CheckWadsDlg *checkWadsDlg = new CheckWadsDlg(&d->pathFinder);
 	checkWadsDlg->addWads(d->server->wads());
 	const CheckResult checkResults = checkWadsDlg->checkWads();
-	foreach (const PWad &wad, checkResults.missingWads)
-	markPwadAsMissing(wad);
-	foreach (const PWad &wad, checkResults.incompatibleWads)
-	markPwadAsIncompatible(wad);
+	for (const PWad &wad : checkResults.missingWads)
+	{
+		markPwadAsMissing(wad);
+	}
+	for (const PWad &wad : checkResults.incompatibleWads)
+	{
+		markPwadAsIncompatible(wad);
+	}
 	QStringList paths;
-	foreach (const PWad &wad, checkResults.foundWads)
-	paths << findWad(wad.name());
+	for (const PWad &wad : checkResults.foundWads)
+	{
+		paths << findWad(wad.name());
+	}
 	addModFiles(paths);
 }
 
 void GameClientRunner::addModFiles_default(const QStringList &files)
 {
-	foreach (const QString &file, files)
+	for (const QString &file : files)
 	{
 		args() << fileLoadingPrefix(file) << file;
 	}
@@ -321,15 +327,15 @@ void GameClientRunner::addModFiles_default(const QStringList &files)
 void GameClientRunner::addModFiles_prefixOnce(const QStringList &files)
 {
 	QMap<QString, QStringList> groups;
-	foreach (const QString &file, files)
+	for (const QString &file : files)
 	{
 		QString prefix = fileLoadingPrefix(file);
 		groups[prefix] << file;
 	}
-	foreach (const QString &prefix, groups.keys())
+	for (const QString &prefix : groups.keys())
 	{
 		args() << prefix;
-		foreach (const QString &file, groups[prefix])
+		for (const QString &file : groups[prefix])
 		{
 			args() << file;
 		}

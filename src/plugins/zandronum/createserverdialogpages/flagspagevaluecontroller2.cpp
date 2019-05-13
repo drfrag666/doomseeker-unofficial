@@ -432,7 +432,7 @@ void FlagsPageValueController::convertCheckboxesToNumerical(
 	const QMap<unsigned, QAbstractButton *> &checkboxMap,
 	unsigned &flagsValue)
 {
-	foreach (unsigned flag, checkboxMap.keys())
+	for (unsigned flag : checkboxMap.keys())
 	{
 		if (checkboxMap[flag]->isChecked())
 		{
@@ -452,7 +452,7 @@ void FlagsPageValueController::convertNumericalToCheckboxes(
 	QMap<unsigned, QAbstractButton *> &checkboxMap,
 	unsigned flagsValue)
 {
-	foreach (unsigned flag, checkboxMap.keys())
+	for (unsigned flag : checkboxMap.keys())
 	{
 		checkboxMap[flag]->setChecked(flagsValue & flag);
 	}

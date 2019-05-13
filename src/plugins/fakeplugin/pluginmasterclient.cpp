@@ -81,7 +81,7 @@ MasterClient::Response PluginMasterClient::readMasterResponse(const QByteArray &
 	QStringList ports = QString(data).split(";");
 	// First element is amount of expected packets:
 	d->expectedPackets = ports.takeFirst().toUInt();
-	foreach (const QString &portEncoded, ports)
+	for (const QString &portEncoded : ports)
 	{
 		quint16 port = portEncoded.toUShort();
 		if (port != 0)

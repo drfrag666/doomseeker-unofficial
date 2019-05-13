@@ -106,7 +106,7 @@ void CustomServers::decodeConfigEntries(const QString &str, QList<CustomServerIn
 
 bool CustomServers::isServerPinned(const CustomServerInfo &serverInfo)
 {
-	foreach (const CustomServerInfo &knownPinned, gConfig.doomseeker.customServers)
+	for (const CustomServerInfo &knownPinned : gConfig.doomseeker.customServers)
 	{
 		if (knownPinned.isSameServer(serverInfo))
 			return knownPinned.enabled;
@@ -117,7 +117,7 @@ bool CustomServers::isServerPinned(const CustomServerInfo &serverInfo)
 bool CustomServers::hasSameServer(const Server *otherServer) const
 {
 	CustomServerInfo otherServerInfo = CustomServerInfo::fromServer(otherServer);
-	foreach (ServerCPtr knownServer, servers())
+	for (ServerCPtr knownServer : servers())
 	{
 		if (CustomServerInfo::fromServer(knownServer.data()).isSameServer(otherServerInfo))
 			return true;
@@ -153,7 +153,7 @@ QList<ServerPtr> CustomServers::setServers(const QList<CustomServerInfo> &server
 	emptyServerList();
 
 	QList<ServerPtr> servers;
-	foreach (const CustomServerInfo &customServerInfo, serverDefs)
+	for (const CustomServerInfo &customServerInfo : serverDefs)
 	{
 		if (!customServerInfo.enabled)
 			continue;
@@ -184,7 +184,7 @@ QList<ServerPtr> CustomServers::setServers(const QList<CustomServerInfo> &server
 		if (p == nullptr)
 		{
 			gLog << tr("Plugin returned nullptr \"Server*\" for custom server %1:%2. "
-				"This is a problem with the plugin.")
+					"This is a problem with the plugin.")
 				.arg(customServerInfo.host).arg(customServerInfo.port);
 			continue;
 		}

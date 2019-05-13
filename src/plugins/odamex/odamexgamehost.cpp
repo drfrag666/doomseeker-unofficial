@@ -39,7 +39,6 @@ void OdamexGameHost::addExtra()
 {
 	if (params().skill() != Skill::UNDEFINED)
 		args() << "-skill" << QString::number(params().skill() + 1); // from 1 to 5
-	args() << "+set" << "sv_upnp" << (params().upnp() ? "1" : "0");
 
 	if (!params().loggingPath().isEmpty())
 	{
@@ -50,7 +49,7 @@ void OdamexGameHost::addExtra()
 	const QStringList &mapsList = params().mapList();
 	if (!mapsList.isEmpty())
 	{
-		foreach (QString map, mapsList)
+		for (QString map : mapsList)
 		{
 			args() << "+addmap" << map;
 		}
@@ -71,6 +70,13 @@ void OdamexGameHost::addExtra()
 	if (!params().map().isEmpty())
 		args() << "+map" << params().map();
 
+	if (params().hostMode() == GameCreateParams::Host)
+		addHostModeParams();
+}
+
+void OdamexGameHost::addHostModeParams()
+{
+	args() << "+set" << "sv_upnp" << (params().upnp() ? "1" : "0");
 	args() << "+join_password" << "\"" + params().ingamePassword() + "\"";
 	args() << "+rcon_password" << "\"" + params().rconPassword() + "\"";
 	args() << "+sv_email" << "\"" + params().email() + "\"";

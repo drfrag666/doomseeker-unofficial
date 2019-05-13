@@ -121,7 +121,7 @@ bool JoinCommandLineBuilder::checkServerStatus()
 	{
 		d->error = tr("This server is still refreshing.\nPlease wait until it is finished.");
 		gLog << tr("Attempted to obtain a join command line for a \"%1\" "
-			"server that is under refresh.").arg(d->server->addressWithPort());
+				"server that is under refresh.").arg(d->server->addressWithPort());
 		return false;
 	}
 	// Fail if Doomseeker couldn't get data on this server.
@@ -129,7 +129,7 @@ bool JoinCommandLineBuilder::checkServerStatus()
 	{
 		d->error = tr("Data for this server is not available.\nOperation failed.");
 		gLog << tr("Attempted to obtain a join command line for an unknown server \"%1\"").arg(
-			d->server->addressWithPort());
+				d->server->addressWithPort());
 		return false;
 	}
 	return true;
@@ -173,8 +173,8 @@ void JoinCommandLineBuilder::handleError(const JoinError &error)
 	d->configurationError = (error.type() == JoinError::ConfigurationError);
 
 	gLog << tr("Error when obtaining join parameters for server "
-		"\"%1\", game \"%2\": %3").arg(d->server->name()).arg(
-		d->server->engineName()).arg(d->error);
+			"\"%1\", game \"%2\": %3").arg(d->server->name()).arg(
+			d->server->engineName()).arg(d->error);
 }
 
 MissingWadsDialog::MissingWadsProceed JoinCommandLineBuilder::handleMissingWads(const JoinError &error)

@@ -100,7 +100,7 @@ void WadseekerInterface::accept()
 		{
 			seekedWads.clear();
 			QStringList pwadNames = d->leWadName->text().split(',', QString::SkipEmptyParts);
-			foreach (QString pwadName, pwadNames)
+			for (QString pwadName : pwadNames)
 			{
 				seekedWads << pwadName.trimmed();
 			}
@@ -130,7 +130,7 @@ void WadseekerInterface::allDone(bool bSuccess)
 	{
 		QList<PWad> failures = unsuccessfulWads();
 
-		foreach (const PWad &failure, failures)
+		for (const PWad &failure : failures)
 		{
 			d->twWads->setFileFailed(failure.name());
 		}
@@ -352,7 +352,7 @@ void WadseekerInterface::seekStarted(const ModSet &filenames)
 {
 	QList<PWad> wads;
 	QStringList names;
-	foreach (ModFile modFile, filenames.modFiles())
+	for (ModFile modFile : filenames.modFiles())
 	{
 		wads << modFile;
 		names << modFile.fileName();
@@ -368,7 +368,7 @@ void WadseekerInterface::seekStarted(const ModSet &filenames)
 	d->twWads->setRowCount(0);
 	setStateDownloading();
 
-	foreach (const PWad &wad, seekedWads)
+	for (const PWad &wad : seekedWads)
 	{
 		d->twWads->addFile(wad.name());
 	}
@@ -404,7 +404,7 @@ void WadseekerInterface::setWads(const QList<PWad> &wads)
 	if (!isAutomatic())
 	{
 		QStringList names;
-		foreach (PWad wad, wads)
+		for (PWad wad : wads)
 		{
 			names << wad.name();
 		}
@@ -474,7 +474,7 @@ void WadseekerInterface::startSeeking(const QList<PWad> &seekedFilesList)
 	d->bCompletedSuccessfully = false;
 
 	ModSet listWads;
-	foreach (PWad seekedFile, seekedFilesList)
+	for (PWad seekedFile : seekedFilesList)
 	{
 		listWads.addModFile(seekedFile);
 	}
@@ -521,7 +521,7 @@ void WadseekerInterface::updateTitle()
 QList<PWad> WadseekerInterface::unsuccessfulWads() const
 {
 	QList<PWad> allWads = seekedWads;
-	foreach (PWad successfulWad, successfulWads)
+	for (PWad successfulWad : successfulWads)
 	{
 		for (int i = 0; i < allWads.size(); ++i)
 		{

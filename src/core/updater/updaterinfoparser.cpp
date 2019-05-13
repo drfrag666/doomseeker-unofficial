@@ -62,7 +62,7 @@ int UpdaterInfoParser::parse(const QByteArray &json)
 		QVariantMap metaData = var.toMap();
 		if (d->hasMainProgramName(metaData))
 		{
-			foreach (const QString &package, metaData.keys())
+			for (const QString &package : metaData.keys())
 			{
 				int result = parsePackageNode(package, metaData[package].toMap());
 				if (result != AutoUpdater::EC_Ok)

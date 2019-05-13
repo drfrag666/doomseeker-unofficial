@@ -207,7 +207,7 @@ QStringList Server::allWadNames() const
 	{
 		result << d->iwad;
 	}
-	foreach (const PWad &wad, d->wads)
+	for (const PWad &wad : d->wads)
 	{
 		result << wad.name();
 	}

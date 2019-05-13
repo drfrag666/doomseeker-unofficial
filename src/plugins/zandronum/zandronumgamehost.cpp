@@ -90,28 +90,31 @@ void ZandronumGameHost::addExtra()
 	if (!gameModeStr.isEmpty())
 		args() << gameModeStr << "1";
 
-	args() << "+sv_hostemail" << strArg(params().email());
-
 	if (!params().map().isEmpty())
 	{
 		args() << "+map" << strArg(params().map());
 	}
 
-	foreach (const QString &map, params().mapList())
+	for (const QString &map : params().mapList())
 	{
 		args() << "+addmap" << strArg(map);
 	}
 
 	args() << "+sv_maprotation" << QString::number(
-		static_cast<int>(!params().mapList().isEmpty()));
+			static_cast<int>(!params().mapList().isEmpty()));
 	args() << "+sv_randommaprotation" << QString::number(
-		static_cast<int>(params().isRandomMapRotation()));
+			static_cast<int>(params().isRandomMapRotation()));
 
+	if (params().hostMode() == GameCreateParams::Host)
+		addHostModeParams();
+}
+
+void ZandronumGameHost::addHostModeParams()
+{
 	QString motd = params().motd();
 	args() << "+sv_motd" << strArg(motd.replace("\n", "\\n"));
-
+	args() << "+sv_hostemail" << strArg(params().email());
 	args() << "+sv_hostname" << strArg(params().name());
-
 	args() << "+sv_website" << strArg(params().url());
 
 	{

@@ -112,7 +112,7 @@ PathFinder::PathFinder()
 PathFinder::PathFinder(const QStringList &paths)
 {
 	d->searchPaths.reset(new QList<FileSearchPath>());
-	foreach (const QString &path, paths)
+	for (const QString &path : paths)
 	{
 		d->searchPaths->append(path);
 	}
@@ -127,19 +127,19 @@ PathFinder PathFinder::genericPathFinder(const QStringList &suffixes)
 	QStringList paths;
 	#if defined(Q_OS_WIN32)
 	paths << "." << ".."
-	<< gDefaultDataPaths->workingDirectory()
-	<< gDefaultDataPaths->workingDirectory() + "/.."
-	<< DataPaths::programFilesDirectory(DataPaths::x64)
-	<< DataPaths::programFilesDirectory(DataPaths::x86);
+		<< gDefaultDataPaths->workingDirectory()
+		<< gDefaultDataPaths->workingDirectory() + "/.."
+		<< DataPaths::programFilesDirectory(DataPaths::x64)
+		<< DataPaths::programFilesDirectory(DataPaths::x86);
 	#else
 	paths << "/usr/bin" << "/usr/local/bin" << "/usr/share/bin"
-	<< "/usr/games/" << "/usr/local/games/"
-	<< "/usr/share/games/" << gDefaultDataPaths->workingDirectory() << ".";
+		<< "/usr/games/" << "/usr/local/games/"
+		<< "/usr/share/games/" << gDefaultDataPaths->workingDirectory() << ".";
 	#endif
 	QStringList pathsCopy(paths);
-	foreach (const QString &path, pathsCopy)
+	for (const QString &path : pathsCopy)
 	{
-		foreach (const QString &suffix, suffixes)
+		for (const QString &suffix : suffixes)
 		{
 			paths << Strings::combinePaths(path, suffix);
 		}
@@ -169,7 +169,7 @@ QString PathFinder::findFile(const QString &fileName) const
 PathFinderResult PathFinder::findFiles(const QStringList &files) const
 {
 	PathFinderResult result;
-	foreach(const QString file, files)
+	for (const QString file : files)
 	{
 		QString filePath = findFile(file);
 		if (filePath.isNull())

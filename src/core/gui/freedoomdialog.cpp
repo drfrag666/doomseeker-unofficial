@@ -136,7 +136,7 @@ void FreedoomDialog::showModInfo(const ModSet &modSet)
 	{
 		d->wadsTable->removeRow(d->wadsTable->rowCount() - 1);
 	}
-	foreach (const ModFile &file, modSet.modFiles())
+	for (const ModFile &file : modSet.modFiles())
 	{
 		insertModFile(file);
 	}
@@ -160,7 +160,7 @@ void FreedoomDialog::insertModFile(const ModFile &file)
 	else
 	{
 		QByteArray md5 = FileUtils::md5(location);
-		foreach (Checksum checksum, file.checksums())
+		for (Checksum checksum : file.checksums())
 		{
 			if (md5 != checksum.hash() && checksum.algorithm() == QCryptographicHash::Md5)
 			{
@@ -230,7 +230,7 @@ void FreedoomDialog::setupInstallPaths()
 	completer->setModel(new QDirModel(completer));
 	d->cboInstallPath->setCompleter(completer);
 
-	foreach (const FileSearchPath &path, gConfig.combinedWadseekPaths())
+	for (const FileSearchPath &path : gConfig.combinedWadseekPaths())
 	{
 		d->cboInstallPath->addItem(path.path());
 	}

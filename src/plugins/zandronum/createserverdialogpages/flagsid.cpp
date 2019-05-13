@@ -51,7 +51,7 @@ FlagsId::~FlagsId()
 
 void FlagsId::save(IniSection &cfg)
 {
-	foreach (const QCheckBox *checkbox, d->page->findChildren<QCheckBox *>())
+	for (const QCheckBox *checkbox : d->page->findChildren<QCheckBox *>())
 	{
 		QVariant flagName = checkbox->property("flagname");
 		if (flagName.isValid())
@@ -63,7 +63,7 @@ void FlagsId::save(IniSection &cfg)
 
 void FlagsId::load(const IniSection &cfg)
 {
-	foreach (QCheckBox *checkbox, d->page->findChildren<QCheckBox *>())
+	for (QCheckBox *checkbox : d->page->findChildren<QCheckBox *>())
 	{
 		QVariant flagName = checkbox->property("flagname");
 		if (flagName.isValid() && cfg.hasSetting(flagName.toString()))

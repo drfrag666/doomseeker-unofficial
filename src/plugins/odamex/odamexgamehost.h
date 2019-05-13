@@ -37,6 +37,8 @@ protected:
 
 private:
 	Q_DISABLE_COPY(OdamexGameHost)
+
+	void addHostModeParams();
 };
 
 #endif

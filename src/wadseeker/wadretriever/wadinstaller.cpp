@@ -47,7 +47,7 @@ WadInstaller::WadInstallerResult WadInstaller::installArchive(UnArchive &archive
 
 	WadInstallerResult result;
 	#ifndef NDEBUG
-	foreach(const QString &file, archive.files())
+	for (const QString &file : archive.files())
 	{
 		qDebug() << "archive file entry " << file;
 	}
@@ -55,7 +55,7 @@ WadInstaller::WadInstallerResult WadInstaller::installArchive(UnArchive &archive
 	FileFind fileFinder(archive.files());
 
 	// We will try to find all requested WADs in the single archive.
-	foreach (const WadDownloadInfo *pWadInfo, requestedWads)
+	for (const WadDownloadInfo *pWadInfo : requestedWads)
 	{
 		const QString &name = pWadInfo->name();
 		#ifndef NDEBUG

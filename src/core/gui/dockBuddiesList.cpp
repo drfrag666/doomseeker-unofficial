@@ -92,7 +92,7 @@ DockBuddiesList::DockBuddiesList(QWidget *parent)
 	// Read config
 	d->patterns = gConfig.doomseeker.buddies;
 
-	foreach (const QRegExp &pattern, d->patterns)
+	for (const QRegExp &pattern : d->patterns)
 	{
 		d->patternsList->addItem(pattern.pattern());
 	}
@@ -169,7 +169,7 @@ void DockBuddiesList::followBuddy(const QModelIndex &index)
 
 bool DockBuddiesList::hasBuddy(const ServerPtr &server)
 {
-	foreach (const BuddyLocationInfo &location, d->buddies)
+	for (const BuddyLocationInfo &location : d->buddies)
 	{
 		if (location.location() == server)
 			return true;
@@ -207,7 +207,7 @@ void DockBuddiesList::scan(const MasterManager *master)
 		masterClient = master;
 
 	d->buddies.clear(); //empty list
-	foreach (ServerPtr server, masterClient->allServers())
+	for (ServerPtr server : masterClient->allServers())
 	{
 		if (!server->isKnown())
 			continue;

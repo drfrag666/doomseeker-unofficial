@@ -45,7 +45,7 @@ public:
 
 	ColumnSort additionalSortForColumn(int column) const
 	{
-		foreach (const ColumnSort &sort, additionalSortColumns)
+		for (const ColumnSort &sort : additionalSortColumns)
 		{
 			if (sort.columnId() == column)
 				return sort;
@@ -217,7 +217,7 @@ bool ServerListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &so
 
 			// TODO
 			// This may cause performance drops. Testing is required
-			foreach (const QString &filteredWad, d->filterInfo.wads)
+			for (const QString &filteredWad : d->filterInfo.wads)
 			{
 				if (s->anyWadnameContains(filteredWad))
 				{
@@ -232,7 +232,7 @@ bool ServerListProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &so
 
 		if (!d->filterInfo.wadsExcluded.isEmpty())
 		{
-			foreach (const QString &filteredWad, d->filterInfo.wadsExcluded)
+			for (const QString &filteredWad : d->filterInfo.wadsExcluded)
 			{
 				if (s->anyWadnameContains(filteredWad))
 					return false;
@@ -311,7 +311,7 @@ bool ServerListProxyModel::lessThan(const QModelIndex &left, const QModelIndex &
 	int comparison = compareColumnSortData(leftVar, rightVar, left.column());
 	if (comparison == 0)
 	{
-		foreach (const ColumnSort &additionalSort, d->additionalSortColumns)
+		for (const ColumnSort &additionalSort : d->additionalSortColumns)
 		{
 			QModelIndex additionalLeft = left.sibling(left.row(), additionalSort.columnId());
 			QModelIndex additionalRight = right.sibling(right.row(), additionalSort.columnId());

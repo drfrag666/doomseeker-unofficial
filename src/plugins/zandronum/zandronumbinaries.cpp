@@ -133,7 +133,7 @@ Message ZandronumClientExeFile::install(QWidget *parent)
 		QStringList nameFilters;
 		nameFilters << "*.ini";
 		QStringList iniFiles = baseBinaryDir.entryList(nameFilters, QDir::Files);
-		foreach(QString str, iniFiles)
+		for (QString str : iniFiles)
 		{
 			QString sourcePath = baseBinaryDir.absolutePath() + '/' + str;
 			QString targetPath = finalDestinationPath + '/' + str;

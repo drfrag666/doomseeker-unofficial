@@ -101,7 +101,7 @@ void CFGWadAlias::addAliasToTable(const FileAlias &alias)
 void CFGWadAlias::addDefaults()
 {
 	QList<FileAlias> aliases = FileAlias::standardWadAliases();
-	foreach (const FileAlias &alias, aliases)
+	for (const FileAlias &alias : aliases)
 	{
 		addAliasToTable(alias);
 	}
@@ -139,7 +139,7 @@ FileAlias CFGWadAlias::aliasFromRow(int row) const
 	FileAlias alias;
 	alias.setName(d->table->item(row, PrivData<CFGWadAlias>::ColWad)->text().trimmed());
 	QStringList candidateAliases = d->table->item(row, PrivData<CFGWadAlias>::ColAliases)->text().split(";");
-	foreach (const QString &candidateAlias, candidateAliases)
+	for (const QString &candidateAlias : candidateAliases)
 	{
 		if (!candidateAlias.trimmed().isEmpty())
 			alias.addAlias(candidateAlias.trimmed());
@@ -201,7 +201,7 @@ void CFGWadAlias::readSettings()
 	}
 	// Aliases from configuration are guaranteed to be unique.
 	QList<FileAlias> aliases = gConfig.doomseeker.wadAliases();
-	foreach (const FileAlias &alias, aliases)
+	for (const FileAlias &alias : aliases)
 	{
 		if (alias.isValid())
 			addAliasToTable(alias);

@@ -177,7 +177,7 @@ QList<ServerPassword> PasswordsCfg::serverPasswords() const
 {
 	QList<ServerPassword> result;
 	QVariantList vars = d->section[SERVER_PASSWORDS_KEY].value().toList();
-	foreach (const QVariant &var, vars)
+	for (const QVariant &var : vars)
 	{
 		result << ServerPassword::deserializeQVariant(var);
 	}
@@ -187,7 +187,7 @@ QList<ServerPassword> PasswordsCfg::serverPasswords() const
 QStringList PasswordsCfg::serverPhrases() const
 {
 	QStringList result;
-	foreach (const ServerPassword &pass, serverPasswords())
+	for (const ServerPassword &pass : serverPasswords())
 	{
 		result << pass.phrase();
 	}
@@ -217,7 +217,7 @@ void PasswordsCfg::setServerPasswords(const QList<ServerPassword> &val)
 void PasswordsCfg::storeServerPasswords(const QList<ServerPassword> &val)
 {
 	QVariantList vars;
-	foreach (const ServerPassword obj, val)
+	for (const ServerPassword obj : val)
 	{
 		vars << obj.serializeQVariant();
 	}
@@ -233,7 +233,7 @@ ServerPassword PasswordsCfg::suggestPassword(const Server *server, const QString
 
 	ServerPassword password;
 	ServerPasswordSummary bestFit;
-	foreach (const ServerPassword &potentialPassword, serverPasswords())
+	for (const ServerPassword &potentialPassword : serverPasswords())
 	{
 		float newSimilarity;
 		ServerPasswordSummary candidate = potentialPassword.mostSimilarServer(serverSummary, &newSimilarity);

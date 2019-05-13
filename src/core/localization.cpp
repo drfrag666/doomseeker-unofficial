@@ -136,7 +136,7 @@ bool Localization::loadTranslation(const QString &localeName)
 	bool installed = installTranslation(localization.localeName, searchPaths);
 
 	// Plugins translators.
-	foreach (const PluginLoader::Plugin *plugin, gPlugins->plugins())
+	for (const PluginLoader::Plugin *plugin : gPlugins->plugins())
 	{
 		QString name = plugin->info()->nameCanonical();
 		QTranslator *pluginTranslator = loadTranslationFile(
@@ -190,7 +190,7 @@ QTranslator *Localization::loadTranslationFile(const QString &translationName, c
 {
 	QTranslator *pTranslator = new QTranslator();
 	bool bLoaded = false;
-	foreach (const QString &dir, searchPaths)
+	for (const QString &dir : searchPaths)
 	{
 		if (pTranslator->load(translationName, dir))
 		{
@@ -215,7 +215,7 @@ Localization::LocalizationLoader::LocalizationLoader()
 
 QList<LocalizationInfo> Localization::LocalizationLoader::loadLocalizationsList(const QStringList &definitionsFileSearchDirs)
 {
-	foreach (const QString &dirPath, definitionsFileSearchDirs)
+	for (const QString &dirPath : definitionsFileSearchDirs)
 	{
 		loadLocalizationsListFile(dirPath);
 	}
@@ -227,7 +227,7 @@ void Localization::LocalizationLoader::loadLocalizationsListFile(const QString &
 {
 	QDir dir(definitionsFilePath);
 	QStringList defFiles = dir.entryList(QStringList(DEFINITION_FILE_PATTERN), QDir::Files);
-	foreach (const QString &defFileName, defFiles)
+	for (const QString &defFileName : defFiles)
 	{
 		// No point in translating strings in this class because
 		// translation is not loaded yet.

@@ -325,8 +325,7 @@ void Main::createMainWindow()
 void Main::runCreateGame()
 {
 	gLog << tr("Starting Create Game box.");
-	CreateServerDialog *dialog = new CreateServerDialog(nullptr);
-	dialog->setConfigureButtonVisible(true);
+	CreateServerDialog *dialog = new CreateServerDialog(GameCreateParams::Host, nullptr);
 	dialog->setWindowIcon(Application::icon());
 	dialog->show();
 }
@@ -414,7 +413,7 @@ bool Main::initDataDirectories()
 		// Inform the user which directories failed and QUIT.
 		// We give an accurate error message of what is going wrong, thanks to errno.
 		QString errorMessage = tr("Doomseeker will not run because some directories cannot be used properly.\n");
-		foreach(const DataPaths::DirErrno &failedDirErrno, failedDirsErrno)
+		for (const DataPaths::DirErrno &failedDirErrno : failedDirsErrno)
 		{
 			errorMessage += "\n[" + QString::number(failedDirErrno.errnoNum) + "] ";
 			errorMessage += failedDirErrno.directory.absolutePath() + ": ";

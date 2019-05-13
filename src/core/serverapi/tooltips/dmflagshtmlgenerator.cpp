@@ -56,7 +56,7 @@ QString DmflagsHtmlGenerator::generate()
 {
 	QString result;
 	const QList<DMFlagsSection> sections = d->server->dmFlags();
-	foreach(const DMFlagsSection &section, sections)
+	for (const DMFlagsSection &section : sections)
 	{
 		if (!section.isEmpty())
 		{

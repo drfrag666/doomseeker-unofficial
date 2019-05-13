@@ -49,7 +49,7 @@ void OdamexGameClientRunner::addExtra()
 	if (dehPatches.count() > 0)
 	{
 		args() << "-deh";
-		foreach (QString patch, dehPatches)
+		for (QString patch : dehPatches)
 		{
 			QString file = findWad(patch.toLower());
 			args() << file;

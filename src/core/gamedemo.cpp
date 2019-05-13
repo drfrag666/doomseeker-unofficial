@@ -89,7 +89,7 @@ void GameDemo::saveDemoMetaData(const QString &demoName, const EnginePlugin &plu
 	QStringList requiredPwads;
 	QStringList optionalPwads;
 
-	foreach (const PWad &wad, pwads)
+	for (const PWad &wad : pwads)
 	{
 		if (wad.isOptional())
 			optionalPwads << wad.name();

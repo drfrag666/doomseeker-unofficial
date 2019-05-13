@@ -35,7 +35,7 @@ QList<Link> UrlParser::directLinks(const QStringList &wantedFilenames, const QUr
 {
 	QList<Link> linksList;
 
-	foreach (Link link, d.links)
+	for (Link link : d.links)
 	{
 		if (isDirectLinkToFile(wantedFilenames, link))
 		{
@@ -59,7 +59,7 @@ bool UrlParser::hasFileReferenceSomewhere(const QStringList &wantedFilenames, co
 	QString strQuery = QUrl::fromPercentEncoding(link.url.encodedQuery());
 	#endif
 
-	foreach (const QString &filename, wantedFilenames)
+	for (const QString &filename : wantedFilenames)
 	{
 		if (strQuery.contains(filename, Qt::CaseInsensitive)
 			|| link.text.contains(filename, Qt::CaseInsensitive))
@@ -88,7 +88,7 @@ bool UrlParser::isDirectLinkToFile(const QStringList &wantedFilenames, const QUr
 	#endif
 	QFileInfo fi(urlPath);
 
-	foreach (const QString &filename, wantedFilenames)
+	for (const QString &filename : wantedFilenames)
 	{
 		if (fi.fileName().compare(filename, Qt::CaseInsensitive) == 0)
 		{
@@ -127,7 +127,7 @@ QList<Link> UrlParser::siteLinks(const QStringList &wantedFilenames, const QUrl 
 {
 	QList<Link> linksList;
 
-	foreach (Link link, d.links)
+	for (Link link : d.links)
 	{
 		// Make sure direct links are not listed here.
 		if (hasFileReferenceSomewhere(wantedFilenames, link)

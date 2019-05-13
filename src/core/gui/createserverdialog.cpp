@@ -38,36 +38,79 @@
 #include "serverapi/gamehost.h"
 #include "serverapi/message.h"
 
+#include <cassert>
 #include <QFileDialog>
+#include <QKeySequence>
+#include <QMenuBar>
 #include <QMessageBox>
+#include <QStyle>
 #include <QTimer>
 
 DClass<CreateServerDialog> : public Ui::CreateServerDialog
 {
 public:
-	bool remoteGameSetup;
 	QList<CreateServerDialogPage *> currentCustomPages;
 	EnginePlugin *currentEngine;
+	GameCreateParams::HostMode hostMode;
+
+	QMenu *modeMenu;
+	QAction *hostModeAction;
+	QAction *offlineModeAction;
+
+	bool canLoadHostModeFromConfig() const
+	{
+		return hostMode == GameCreateParams::Host
+			|| hostMode == GameCreateParams::Offline;
+	}
+
+	QString hostModeCfgName() const
+	{
+		switch (hostMode)
+		{
+		default:
+		case GameCreateParams::Host: return "host";
+		case GameCreateParams::Offline: return "offline";
+		}
+	}
+
+	GameCreateParams::HostMode hostModeFromCfgName(const QString &name)
+	{
+		if (name == "offline")
+			return GameCreateParams::Offline;
+		// Default to Host if there's any other value.
+		return GameCreateParams::Host;
+	}
 };
 
 DPointered(CreateServerDialog)
 
 const QString CreateServerDialog::TEMP_GAME_CONFIG_FILENAME = "/tmpserver.ini";
 
-CreateServerDialog::CreateServerDialog(QWidget *parent)
+CreateServerDialog::CreateServerDialog(GameCreateParams::HostMode hostMode, QWidget *parent)
 	: QDialog(parent)
 {
-	// Have the console delete itself
+	// Have the window delete itself
 	setAttribute(Qt::WA_DeleteOnClose);
+	assert(hostMode == GameCreateParams::Offline
+		|| hostMode == GameCreateParams::Host
+		|| hostMode == GameCreateParams::Remote);
 
-	d->remoteGameSetup = false;
+	// Get rid of the useless '?' button from the title bar.
+	setWindowFlags(windowFlags() & (~Qt::WindowContextHelpButtonHint));
+
 	d->currentEngine = nullptr;
+	d->hostMode = hostMode;
 
 	d->setupUi(this);
-	setConfigureButtonVisible(false);
+	setupMenu();
+
+	applyModeToUi();
 
 	d->generalSetupPanel->setCreateServerDialog(this);
 	d->rulesPanel->setCreateServerDialog(this);
+
+	d->tabWidget->setObjectName("createGameTabWidget");
+	d->tabWidget->setStyleSheet("#createGameTabWidget::pane { border: 0; }");
 
 	// This is a crude solution to the problem where message boxes appear
 	// before the actual Create Game dialog. We need to give some time
@@ -80,48 +123,52 @@ CreateServerDialog::~CreateServerDialog()
 {
 }
 
-void CreateServerDialog::btnLoadClicked()
+void CreateServerDialog::applyModeToUi()
 {
-	QString dialogDir = gConfig.doomseeker.previousCreateServerConfigDir;
-	QString strFile = QFileDialog::getOpenFileName(this, tr("Doomseeker - load game setup config"), dialogDir, tr("Config files (*.ini)"));
+	d->generalSetupPanel->setupForHostMode(d->hostMode);
+	d->rulesPanel->setupForHostMode(d->hostMode);
+	initServerTab();
 
-	if (!strFile.isEmpty())
-	{
-		QFileInfo fi(strFile);
-		gConfig.doomseeker.previousCreateServerConfigDir = fi.absolutePath();
+	d->modeMenu->setEnabled(d->hostMode != GameCreateParams::Remote);
+	d->hostModeAction->setChecked(d->hostMode == GameCreateParams::Host);
+	d->offlineModeAction->setChecked(d->hostMode == GameCreateParams::Offline);
 
-		loadConfig(strFile, false);
-	}
-}
-
-void CreateServerDialog::btnPlayOfflineClicked()
-{
-	runGame(true);
-}
-
-void CreateServerDialog::btnSaveClicked()
-{
-	QString dialogDir = gConfig.doomseeker.previousCreateServerConfigDir;
-	QString strFile = QFileDialog::getSaveFileName(this, tr("Doomseeker - save game setup config"), dialogDir, tr("Config files (*.ini)"));
-	if (!strFile.isEmpty())
-	{
-		QFileInfo fi(strFile);
-		gConfig.doomseeker.previousCreateServerConfigDir = fi.absolutePath();
-
-		if (fi.suffix().isEmpty())
-			strFile += ".ini";
-
-		if (!saveConfig(strFile))
-			QMessageBox::critical(nullptr, tr("Doomseeker - save game setup config"), tr("Unable to save game setup configuration!"));
-	}
-}
-
-void CreateServerDialog::btnStartServerClicked()
-{
-	if (!d->remoteGameSetup)
-		runGame(false);
+	if (d->hostMode == GameCreateParams::Host)
+		d->btnStart->setText(tr("Host server"));
 	else
-		accept();
+		d->btnStart->setText(tr("Play"));
+
+	QString windowTitle;
+	switch (d->hostMode)
+	{
+	case GameCreateParams::Remote:
+		windowTitle = tr("Doomseeker - Setup Remote Game");
+		break;
+	case GameCreateParams::Host:
+		windowTitle = tr("Doomseeker - Host Online Game");
+		break;
+	case GameCreateParams::Offline:
+		windowTitle = tr("Doomseeker - Play Offline Game");
+		break;
+	default:
+		windowTitle = tr("Doomseeker - [Unhandled Host Mode]");
+		break;
+	}
+	setWindowTitle(windowTitle);
+
+	d->btnCommandLine->setVisible(d->hostMode != GameCreateParams::Remote);
+}
+
+void CreateServerDialog::changeToHostMode()
+{
+	d->hostMode = GameCreateParams::Host;
+	applyModeToUi();
+}
+
+void CreateServerDialog::changeToOfflineMode()
+{
+	d->hostMode = GameCreateParams::Offline;
+	applyModeToUi();
 }
 
 bool CreateServerDialog::commandLineArguments(QString &executable, QStringList &args, bool offline)
@@ -161,10 +208,7 @@ bool CreateServerDialog::commandLineArguments(QString &executable, QStringList &
 
 bool CreateServerDialog::createHostInfo(GameCreateParams &params, bool offline)
 {
-	if (d->remoteGameSetup)
-		params.setHostMode(GameCreateParams::Remote);
-	else
-		params.setHostMode(offline ? GameCreateParams::Offline : GameCreateParams::Host);
+	params.setHostMode(d->hostMode);
 	d->generalSetupPanel->fillInParams(params);
 	d->dmflagsPanel->fillInParams(params);
 
@@ -172,7 +216,7 @@ bool CreateServerDialog::createHostInfo(GameCreateParams &params, bool offline)
 		return false;
 
 	d->customParamsPanel->fillInParams(params);
-	d->miscPanel->fillInParams(params);
+	d->serverPanel->fillInParams(params);
 	d->rulesPanel->fillInParams(params);
 
 	createHostInfoDemoRecord(params, offline);
@@ -223,22 +267,20 @@ void CreateServerDialog::initEngineSpecific(EnginePlugin *engine)
 	d->generalSetupPanel->setupForEngine(engine);
 	initDMFlagsTabs();
 	initEngineSpecificPages(engine);
-	initInfoAndPassword();
+	initServerTab();
 	initRules();
 }
 
 void CreateServerDialog::initEngineSpecificPages(EnginePlugin *engine)
 {
 	// First, get rid of the original pages.
-	foreach (CreateServerDialogPage *page, d->currentCustomPages)
-	{
+	for (CreateServerDialogPage *page : d->currentCustomPages)
 		delete page;
-	}
 	d->currentCustomPages.clear();
 
 	// Add new custom pages to the dialog.
 	d->currentCustomPages = engine->createServerDialogPages(this);
-	foreach (CreateServerDialogPage *page, d->currentCustomPages)
+	for (CreateServerDialogPage *page : d->currentCustomPages)
 	{
 		int idxInsertAt = d->tabWidget->indexOf(d->tabCustomParameters);
 		d->tabWidget->insertTab(idxInsertAt, page, page->name());
@@ -250,10 +292,12 @@ void CreateServerDialog::initGamemodeSpecific(const GameMode &gameMode)
 	d->rulesPanel->setupForEngine(d->currentEngine, gameMode);
 }
 
-void CreateServerDialog::initInfoAndPassword()
+void CreateServerDialog::initServerTab()
 {
-	d->miscPanel->setupForEngine(d->currentEngine);
-	d->tabWidget->setTabEnabled(d->tabWidget->indexOf(d->tabMisc), d->miscPanel->isAnythingAvailable());
+	if (d->currentEngine != nullptr)
+		d->serverPanel->setupForEngine(d->currentEngine);
+	d->tabWidget->setTabEnabled(d->tabWidget->indexOf(d->tabServer),
+		d->serverPanel->isAnythingAvailable() && d->hostMode != GameCreateParams::Offline);
 }
 
 void CreateServerDialog::initRules()
@@ -270,28 +314,27 @@ bool CreateServerDialog::loadConfig(const QString &filename, bool loadingPreviou
 
 	d->generalSetupPanel->loadConfig(ini, loadingPrevious);
 	d->rulesPanel->loadConfig(ini);
-	d->miscPanel->loadConfig(ini);
+	d->serverPanel->loadConfig(ini);
 	d->dmflagsPanel->loadConfig(ini);
 
-	// Custom pages.
-	foreach (CreateServerDialogPage *page, d->currentCustomPages)
-	{
+	for (CreateServerDialogPage *page : d->currentCustomPages)
 		page->loadConfig(ini);
-	}
 
 	d->customParamsPanel->loadConfig(ini);
+
+	if (d->canLoadHostModeFromConfig())
+	{
+		d->hostMode = d->hostModeFromCfgName(ini.section("General")["hostMode"]);
+		applyModeToUi();
+	}
+
 	return true;
 }
 
 void CreateServerDialog::makeRemoteGameSetupDialog(const EnginePlugin *plugin)
 {
-	d->remoteGameSetup = true;
-
-	d->btnCommandLine->hide();
-	d->btnPlayOffline->setDisabled(true);
-
-	d->generalSetupPanel->setupForRemoteGame();
-	d->rulesPanel->setupForRemoteGame();
+	d->hostMode = GameCreateParams::Remote;
+	applyModeToUi();
 }
 
 MapListPanel *CreateServerDialog::mapListPanel()
@@ -311,7 +354,7 @@ QStringList CreateServerDialog::wadPaths() const
 
 bool CreateServerDialog::fillInParamsFromPluginPages(GameCreateParams &params)
 {
-	foreach (CreateServerDialogPage *page, d->currentCustomPages)
+	for (CreateServerDialogPage *page : d->currentCustomPages)
 	{
 		if (page->validate())
 			page->fillInGameCreateParams(params);
@@ -359,20 +402,18 @@ bool CreateServerDialog::saveConfig(const QString &filename)
 	QSettings settingsFile(filename, QSettings::IniFormat);
 	SettingsProviderQt settingsProvider(&settingsFile);
 	Ini ini(&settingsProvider);
-	IniSection general = ini.section("General");
 
 	d->generalSetupPanel->saveConfig(ini);
 	d->rulesPanel->saveConfig(ini);
-	d->miscPanel->saveConfig(ini);
+	d->serverPanel->saveConfig(ini);
 	d->dmflagsPanel->saveConfig(ini);
 
-	// Custom pages.
-	foreach (CreateServerDialogPage *page, d->currentCustomPages)
-	{
+	for (CreateServerDialogPage *page : d->currentCustomPages)
 		page->saveConfig(ini);
-	}
 
 	d->customParamsPanel->saveConfig(ini);
+
+	ini.section("General")["hostMode"] = d->hostModeCfgName();
 
 	if (settingsFile.isWritable())
 	{
@@ -387,9 +428,36 @@ void CreateServerDialog::setIwadByName(const QString &iwad)
 	d->generalSetupPanel->setIwadByName(iwad);
 }
 
-void CreateServerDialog::setConfigureButtonVisible(bool visible)
+void CreateServerDialog::setupMenu()
 {
-	d->btnConfigure->setVisible(visible);
+	QMenuBar *mainMenu = new QMenuBar(this);
+
+	d->modeMenu = mainMenu->addMenu(tr("&Mode"));
+	d->hostModeAction = d->modeMenu->addAction(tr("&Host server"),
+		this, SLOT(changeToHostMode()));
+	d->hostModeAction->setCheckable(true);
+	d->offlineModeAction = d->modeMenu->addAction(tr("&Play offline"),
+		this, SLOT(changeToOfflineMode()));
+	d->offlineModeAction->setCheckable(true);
+
+	auto *settingsMenu = mainMenu->addMenu(tr("&Settings"));
+
+	auto *loadConfigAction = settingsMenu->addAction(tr("&Load game configuration"),
+		this, SLOT(showLoadConfig()));
+	loadConfigAction->setIcon(style()->standardIcon(QStyle::SP_DirIcon));
+	loadConfigAction->setShortcut(QKeySequence("Ctrl+O"));
+
+	auto *saveConfigAction = settingsMenu->addAction(tr("&Save game configuration"),
+		this, SLOT(showSaveConfig()));
+	saveConfigAction->setIcon(QIcon(":/icons/diskette.png"));
+	saveConfigAction->setShortcut(QKeySequence("Ctrl+S"));
+	settingsMenu->addSeparator();
+
+	auto *programSettings = settingsMenu->addAction(tr("&Program settings"),
+		this, SLOT(showConfiguration()));
+	programSettings->setIcon(QIcon(":/icons/preferences-system-4.png"));
+
+	d->dialogLayout->setMenuBar(mainMenu);
 }
 
 void CreateServerDialog::showConfiguration()
@@ -416,12 +484,46 @@ void CreateServerDialog::showCommandLine(bool offline)
 	}
 }
 
-void CreateServerDialog::showHostCommandLine()
+void CreateServerDialog::showLoadConfig()
 {
-	showCommandLine(false);
+	QString dialogDir = gConfig.doomseeker.previousCreateServerConfigDir;
+	QString strFile = QFileDialog::getOpenFileName(this, tr("Doomseeker - load game setup config"), dialogDir, tr("Config files (*.ini)"));
+
+	if (!strFile.isEmpty())
+	{
+		QFileInfo fi(strFile);
+		gConfig.doomseeker.previousCreateServerConfigDir = fi.absolutePath();
+
+		loadConfig(strFile, false);
+	}
 }
 
-void CreateServerDialog::showOfflineCommandLine()
+void CreateServerDialog::showSaveConfig()
 {
-	showCommandLine(true);
+	QString dialogDir = gConfig.doomseeker.previousCreateServerConfigDir;
+	QString strFile = QFileDialog::getSaveFileName(this, tr("Doomseeker - save game setup config"), dialogDir, tr("Config files (*.ini)"));
+	if (!strFile.isEmpty())
+	{
+		QFileInfo fi(strFile);
+		gConfig.doomseeker.previousCreateServerConfigDir = fi.absolutePath();
+
+		if (fi.suffix().isEmpty())
+			strFile += ".ini";
+
+		if (!saveConfig(strFile))
+			QMessageBox::critical(nullptr, tr("Doomseeker - save game setup config"), tr("Unable to save game setup configuration!"));
+	}
+}
+
+void CreateServerDialog::showStartGameCommandLine()
+{
+	showCommandLine(d->hostMode == GameCreateParams::Offline);
+}
+
+void CreateServerDialog::startGame()
+{
+	if (d->hostMode != GameCreateParams::Remote)
+		runGame(d->hostMode == GameCreateParams::Offline);
+	else
+		accept();
 }

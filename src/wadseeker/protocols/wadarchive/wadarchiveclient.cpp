@@ -55,7 +55,7 @@ public:
 	{
 		if (wad.isValid() || !wad.name().contains("/"))
 		{
-			foreach (Checksum checksum, wad.checksums())
+			for (Checksum checksum : wad.checksums())
 			{
 				if (checksum.algorithm() == QCryptographicHash::Md5 || checksum.algorithm() == QCryptographicHash::Sha1)
 					return QUrl(QString("https://www.wad-archive.com/api/latest/%1").arg(QString(checksum.hash().toHex())));
@@ -191,7 +191,7 @@ void WadArchiveClient::parseWadArchiveStructure(const QVariantMap &mapName, cons
 {
 	QVariantList linksName = mapName["links"].toList();
 	QVariantList linksChecksum = mapChecksum["links"].toList();
-	foreach (QVariant link, linksName)
+	for (QVariant link : linksName)
 	{
 		if (linksChecksum.isEmpty() || linksChecksum.contains(link))
 		{

@@ -39,6 +39,6 @@ public:
 	virtual QString findFileInPath(const QString &fileName, FileSearchPath &path) = 0;
 protected:
 	QSharedPointer <QList<FileSearchPath> > paths;
-}
+};
 
 #endif // header

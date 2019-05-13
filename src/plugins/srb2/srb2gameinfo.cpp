@@ -119,8 +119,7 @@ QList<GameCVar> Srb2GameInfo::limits(const GameMode &gameMode)
 		break;
 	case Tag:
 	case HideAndSeek:
-		limits << GameCVar(tr("Hide time"), "+hidetime", 30);
-		// Intentional fall-through.
+		limits << GameCVar(tr("Hide time"), "+hidetime", 30); // Intentional fall-through.
 	case GameMode::SGM_Deathmatch:
 	case GameMode::SGM_TeamDeathmatch:
 	case GameMode::SGM_CTF:

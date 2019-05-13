@@ -397,7 +397,7 @@ Server::Response Srb2Server::processServerInfo(const ServerInfo &info)
 	setIwad(info.files.first().name);
 	clearWads();
 	bool first = true;
-	foreach (const FileNeeded &file, info.files)
+	for (const FileNeeded &file : info.files)
 	{
 		if (first)
 		{
@@ -413,7 +413,7 @@ Server::Response Srb2Server::processServerInfo(const ServerInfo &info)
 Server::Response Srb2Server::processPlayerInfo(const PlayerInfo &info)
 {
 	clearPlayersList();
-	foreach (const PlayerInfo::Player &srbPlayer, info.players)
+	for (const PlayerInfo::Player &srbPlayer : info.players)
 	{
 		addPlayer(Player(srbPlayer.name, srbPlayer.d.score, USHRT_MAX,
 			srbPlayer.team(), srbPlayer.isSpectator()));

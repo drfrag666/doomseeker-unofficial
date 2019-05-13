@@ -47,6 +47,12 @@ void Turok2ExGameHost::addExtra()
 	if (!params().map().isEmpty())
 		args() << "+sv_map" << params().map();
 
+	if (params().hostMode() == GameCreateParams::Host)
+		addHostModeParams();
+}
+
+void Turok2ExGameHost::addHostModeParams()
+{
 	args() << "+sv_email" << params().email();
 	args() << "+sv_directservername" << params().name();
 	args() << "+sv_maxplayers" << QString::number(params().maxPlayers());

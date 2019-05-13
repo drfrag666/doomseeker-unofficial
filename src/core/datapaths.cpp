@@ -62,7 +62,7 @@ static QList<DataPaths::DirErrno> uniqueErrnosByDir(const QList<DataPaths::DirEr
 {
 	QSet<QString> uniqueDirs;
 	QList<DataPaths::DirErrno> uniqueErrnos;
-	foreach (const DataPaths::DirErrno &dirErrno, errnos)
+	for (const DataPaths::DirErrno &dirErrno : errnos)
 	{
 		if (!uniqueDirs.contains(dirErrno.directory.path()))
 		{
@@ -77,7 +77,7 @@ static QStringList uniquePaths(const QStringList &paths)
 {
 	QList<QFileInfo> uniqueMarkers;
 	QStringList result;
-	foreach (const QString &path, paths)
+	for (const QString &path : paths)
 	{
 		if (!uniqueMarkers.contains(path))
 		{
@@ -210,7 +210,7 @@ QList<DataPaths::DirErrno> DataPaths::createDirectories()
 				.arg(oldConfigDir.absolutePath())
 				.arg(d->configDirectory.absolutePath());
 
-			foreach (QFileInfo fileinfo, oldConfigDir.entryInfoList(QStringList("*.ini"), QDir::Files))
+			for (QFileInfo fileinfo : oldConfigDir.entryInfoList(QStringList("*.ini"), QDir::Files))
 			{
 				QFile(fileinfo.absoluteFilePath()).copy(d->configDirectory.absoluteFilePath(fileinfo.fileName()));
 			}
@@ -239,7 +239,7 @@ QList<DataPaths::DirErrno> DataPaths::createDirectories()
 				.arg(oldConfigDir.absolutePath())
 				.arg(d->dataDirectory.absolutePath());
 
-			foreach (QFileInfo fileinfo, oldConfigDir.entryInfoList(QDir::Dirs))
+			for (QFileInfo fileinfo : oldConfigDir.entryInfoList(QDir::Dirs))
 			{
 				const QString origPath = fileinfo.absoluteFilePath();
 				QFile file(origPath);

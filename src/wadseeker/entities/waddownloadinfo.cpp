@@ -94,7 +94,7 @@ bool WadDownloadInfo::isArchive() const
 	QStringList supportedArchives = WadseekerVersionInfo::supportedArchiveExtensions();
 	QFileInfo fi(d->name);
 
-	foreach (const QString &supportedSuffix, supportedArchives)
+	for (const QString &supportedSuffix : supportedArchives)
 	{
 		if (fi.suffix().compare(supportedSuffix, Qt::CaseInsensitive) == 0)
 		{
@@ -141,7 +141,7 @@ QStringList WadDownloadInfo::possibleArchiveNames() const
 	{
 		QString basename = this->basename();
 
-		foreach (const QString &suffix, WadseekerVersionInfo::supportedArchiveExtensions())
+		for (const QString &suffix : WadseekerVersionInfo::supportedArchiveExtensions())
 		{
 			names << basename + "." + suffix;
 		}
@@ -167,7 +167,7 @@ const QList<Checksum> &WadDownloadInfo::checksums() const
 
 const bool WadDownloadInfo::validFile(const QString &path) const
 {
-	foreach (const Checksum checksum, d->checksums)
+	for (const Checksum checksum : d->checksums)
 	{
 		if (Hash::hashFile(path, checksum.algorithm()) != checksum.hash())
 		{

@@ -13,7 +13,19 @@
   <property name="windowTitle">
    <string>Create Game</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="dialogLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
@@ -42,13 +54,13 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tabMisc">
+     <widget class="QWidget" name="tabServer">
       <attribute name="title">
-       <string>Misc.</string>
+       <string>Server</string>
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <widget class="MiscServerSetupPanel" name="miscPanel" native="true"/>
+        <widget class="MiscServerSetupPanel" name="serverPanel" native="true"/>
        </item>
       </layout>
      </widget>
@@ -75,62 +87,31 @@
     </widget>
    </item>
    <item>
+    <widget class="Line" name="line">
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <property name="leftMargin">
+      <number>9</number>
+     </property>
+     <property name="topMargin">
+      <number>9</number>
+     </property>
+     <property name="rightMargin">
+      <number>9</number>
+     </property>
+     <property name="bottomMargin">
+      <number>9</number>
+     </property>
      <item>
-      <widget class="QPushButton" name="btnConfigure">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Configure</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../../../media/resources.qrc">
-         <normaloff>:/icons/preferences-system-4.png</normaloff>:/icons/preferences-system-4.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnLoad">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Load previously saved server configuration.</string>
-       </property>
-       <property name="text">
-        <string>Load</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnSave">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Save current server configuration.</string>
-       </property>
-       <property name="text">
-        <string>Save</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../../../media/resources.qrc">
-         <normaloff>:/icons/diskette.png</normaloff>:/icons/diskette.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_2">
+      <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -143,39 +124,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="Line" name="line_3">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>10</height>
-        </size>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnCommandLineOffline">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Obtain command line required to launch this game.</string>
-       </property>
-       <property name="text">
-        <string>Offline command line</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnPlayOffline">
+      <widget class="QPushButton" name="btnStart">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
          <horstretch>0</horstretch>
@@ -183,23 +132,11 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Play offline</string>
+        <string>Start</string>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="Line" name="line">
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>10</height>
-        </size>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Plain</enum>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
+       <property name="icon">
+        <iconset resource="../../../media/resources.qrc">
+         <normaloff>:/icons/media-playback-start.png</normaloff>:/icons/media-playback-start.png</iconset>
        </property>
       </widget>
      </item>
@@ -211,24 +148,21 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="toolTip">
-        <string>Obtain command line required to launch this server.</string>
+        <string>Obtain command line required to launch this game.</string>
        </property>
        <property name="text">
-        <string>Host command line</string>
+        <string>Command line</string>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btnStartServer">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Start server</string>
+       <property name="icon">
+        <iconset resource="../../../media/resources.qrc">
+         <normaloff>:/icons/terminal-32.png</normaloff>:/icons/terminal-32.png</iconset>
        </property>
       </widget>
      </item>
@@ -287,12 +221,6 @@
  </customwidgets>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>btnConfigure</tabstop>
-  <tabstop>btnLoad</tabstop>
-  <tabstop>btnSave</tabstop>
-  <tabstop>btnPlayOffline</tabstop>
-  <tabstop>btnCommandLine</tabstop>
-  <tabstop>btnStartServer</tabstop>
   <tabstop>btnCancel</tabstop>
  </tabstops>
  <resources>
@@ -338,8 +266,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>667</x>
-     <y>507</y>
+     <x>750</x>
+     <y>508</y>
     </hint>
     <hint type="destinationlabel">
      <x>305</x>
@@ -351,58 +279,10 @@
    <sender>btnCommandLine</sender>
    <signal>clicked()</signal>
    <receiver>CreateServerDialog</receiver>
-   <slot>showHostCommandLine()</slot>
+   <slot>showStartGameCommandLine()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>505</x>
-     <y>507</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>305</x>
-     <y>259</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btnLoad</sender>
-   <signal>clicked()</signal>
-   <receiver>CreateServerDialog</receiver>
-   <slot>btnLoadClicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>75</x>
-     <y>507</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>305</x>
-     <y>259</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btnPlayOffline</sender>
-   <signal>clicked()</signal>
-   <receiver>CreateServerDialog</receiver>
-   <slot>btnPlayOfflineClicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>413</x>
-     <y>507</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>305</x>
-     <y>259</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btnSave</sender>
-   <signal>clicked()</signal>
-   <receiver>CreateServerDialog</receiver>
-   <slot>btnSaveClicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>199</x>
+     <x>588</x>
      <y>508</y>
     </hint>
     <hint type="destinationlabel">
@@ -412,50 +292,18 @@
    </hints>
   </connection>
   <connection>
-   <sender>btnStartServer</sender>
+   <sender>btnStart</sender>
    <signal>clicked()</signal>
    <receiver>CreateServerDialog</receiver>
-   <slot>btnStartServerClicked()</slot>
+   <slot>startGame()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>586</x>
-     <y>507</y>
+     <x>669</x>
+     <y>508</y>
     </hint>
     <hint type="destinationlabel">
      <x>305</x>
      <y>259</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btnConfigure</sender>
-   <signal>clicked()</signal>
-   <receiver>CreateServerDialog</receiver>
-   <slot>showConfiguration()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>23</x>
-     <y>496</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>305</x>
-     <y>259</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>btnCommandLineOffline</sender>
-   <signal>clicked()</signal>
-   <receiver>CreateServerDialog</receiver>
-   <slot>showOfflineCommandLine()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>287</x>
-     <y>493</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>676</x>
-     <y>476</y>
     </hint>
    </hints>
   </connection>
@@ -463,12 +311,7 @@
  <slots>
   <slot>initGamemodeSpecific(GameMode)</slot>
   <slot>initEngineSpecific(EnginePlugin*)</slot>
-  <slot>showHostCommandLine()</slot>
-  <slot>btnLoadClicked()</slot>
-  <slot>btnPlayOfflineClicked()</slot>
-  <slot>btnSaveClicked()</slot>
-  <slot>btnStartServerClicked()</slot>
-  <slot>showConfiguration()</slot>
-  <slot>showOfflineCommandLine()</slot>
+  <slot>showStartGameCommandLine()</slot>
+  <slot>startGame()</slot>
  </slots>
 </ui>

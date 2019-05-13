@@ -162,7 +162,7 @@ void IRCNetworkAdapter::banUser(const QString &nickname, const QString &reason, 
 QList<IRCAdapterBase *> IRCNetworkAdapter::childrenAdapters()
 {
 	QList<IRCAdapterBase *> result;
-	foreach (IRCChatAdapter *adapter, chatWindows.values())
+	for (IRCChatAdapter *adapter : chatWindows.values())
 	{
 		result << adapter;
 	}
@@ -326,13 +326,13 @@ void IRCNetworkAdapter::helloClient(const QString &nickname)
 
 		this->sendMessage(messageNickserv);
 	}
-	foreach (const QString &command, network.autojoinCommands())
+	for (const QString &command : network.autojoinCommands())
 	{
 		if (!command.trimmed().isEmpty())
 			this->sendMessage(command);
 	}
 
-	foreach (const QString &channel, network.autojoinChannels())
+	for (const QString &channel : network.autojoinChannels())
 	{
 		if (IRCGlobal::isChannelName(channel))
 			this->openNewAdapter(channel);
@@ -364,7 +364,7 @@ bool IRCNetworkAdapter::isAdapterRelated(const IRCAdapterBase *pAdapter) const
 		return true;
 
 	QList<IRCChatAdapter *> adaptersList = chatWindows.values();
-	foreach (IRCChatAdapter *pChatWindow, adaptersList)
+	for (IRCChatAdapter *pChatWindow : adaptersList)
 	{
 		if (pChatWindow == pAdapter)
 			return true;
@@ -419,7 +419,7 @@ void IRCNetworkAdapter::kill(const QString &victim, const QString &comment)
 	// Implementation of each adapter should recognize if this quit actually
 	// has anything to do with that adapter.
 	QList<IRCChatAdapter *> adaptersList = chatWindows.values();
-	foreach (IRCChatAdapter *pAdapter, adaptersList)
+	for (IRCChatAdapter *pAdapter : adaptersList)
 	{
 		pAdapter->userLeaves(victim, comment, IRCChatAdapter::NetworkKill);
 	}
@@ -428,7 +428,7 @@ void IRCNetworkAdapter::kill(const QString &victim, const QString &comment)
 void IRCNetworkAdapter::killAllChatWindows()
 {
 	QList<IRCChatAdapter *> pWindows = chatWindows.values();
-	foreach (IRCChatAdapter *pAdapter, pWindows)
+	for (IRCChatAdapter *pAdapter : pWindows)
 	{
 		// Make sure that the adapter destructor won't call the
 		// detachChatWindow() method or the program will be shot to oblivion.
@@ -636,7 +636,7 @@ void IRCNetworkAdapter::userChangesNickname(const QString &oldNickname, const QS
 	}
 
 	QList<IRCChatAdapter *> adaptersList = chatWindows.values();
-	foreach (IRCChatAdapter *pAdapter, adaptersList)
+	for (IRCChatAdapter *pAdapter : adaptersList)
 	{
 		pAdapter->userChangesNickname(oldNickname, newNickname);
 	}
@@ -723,7 +723,7 @@ void IRCNetworkAdapter::userQuitsNetwork(const QString &nickname, const QString 
 	// Implementation of each adapter should recognize if this quit actually
 	// has anything to do with that adapter.
 	QList<IRCChatAdapter *> adaptersList = chatWindows.values();
-	foreach (IRCChatAdapter *pAdapter, adaptersList)
+	for (IRCChatAdapter *pAdapter : adaptersList)
 	{
 		pAdapter->userLeaves(nickname, farewellMessage, IRCChatAdapter::NetworkQuit);
 	}

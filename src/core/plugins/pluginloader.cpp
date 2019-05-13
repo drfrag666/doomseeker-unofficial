@@ -37,7 +37,7 @@
 #define dlopen(a, b) LoadLibrary(a)
 #define dlsym(a, b)  GetProcAddress(a, b)
 #define dlclose(a)   FreeLibrary(a)
-#define dlerror()    GetLastError()
+#define dlerror()    PluginLoader::Plugin::getDllWindowsErrorMessage()
 	#ifdef _MSC_VER
 		#pragma warning(disable: 4251)
 	#endif
@@ -171,6 +171,43 @@ void PluginLoader::Plugin::unload()
 	}
 }
 
+#ifdef Q_OS_WIN32
+QString PluginLoader::Plugin::getDllWindowsErrorMessage()
+{
+	QString baseErrorString("%1 (%2)");
+
+	DWORD errorId = GetLastError();
+
+	if (errorId == 127)
+	{
+		return baseErrorString.arg("Procedure not found. Perhaps this plugin is for a different Doomseeker version?",
+			QString::number(errorId));
+	}
+	if (errorId != 0)
+	{
+		LPVOID lpMsgBuf;
+		DWORD bufLen = FormatMessageW(FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM |
+			FORMAT_MESSAGE_IGNORE_INSERTS, NULL, errorId, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
+			(LPWSTR) &lpMsgBuf, 0, NULL );
+
+		LPCWSTR lpMsgStr = (LPCWSTR)lpMsgBuf;
+		QString result = QString::fromWCharArray(lpMsgStr, bufLen);
+		if (result.contains("%1"))
+		{
+			// Try to cover the formatting placeholder in all WinAPI
+			// messages with a lowest common denominator fit.
+			result = result.arg("Plugin");
+		}
+		result = result.trimmed();
+
+		LocalFree(lpMsgBuf);
+
+		return baseErrorString.arg(result, QString::number(errorId));
+	}
+	return QString();
+}
+#endif
+
 ////////////////////////////////////////////////////////////////////////////////
 DClass<PluginLoader>
 {
@@ -187,7 +224,7 @@ PluginLoader *PluginLoader::staticInstance = nullptr;
 PluginLoader::PluginLoader(unsigned int type, const QStringList &directories)
 {
 	d->type = type;
-	foreach (const QString &dir, directories)
+	for (const QString &dir : directories)
 	{
 		d->pluginsDirectory = dir;
 		if (filesInDir())
@@ -234,7 +271,7 @@ bool PluginLoader::filesInDir()
 	windowsNamesFilter << "*.dll";
 	dir.setNameFilters(windowsNamesFilter);
 	#endif
-	foreach (const QString &entry, dir.entryList(QDir::Files))
+	for (const QString &entry : dir.entryList(QDir::Files))
 	{
 		QString pluginFilePath = Strings::combinePaths(d->pluginsDirectory, entry);
 		Plugin *plugin = new Plugin(d->type, pluginFilePath);
@@ -269,7 +306,7 @@ void PluginLoader::init(const QStringList &directories)
 
 void PluginLoader::initConfig()
 {
-	foreach (Plugin *plugin, d->plugins)
+	for (Plugin *plugin : d->plugins)
 	{
 		plugin->initConfig();
 	}

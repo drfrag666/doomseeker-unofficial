@@ -87,7 +87,7 @@ void ChatLogRotate::purgeOld(const IRCNetworkEntity &network, const QString &rec
 	if (d->removalAgeDaysThreshold < 0)
 		return;
 	QString dirPath = ChatLogArchive::archiveDirPath(network, recipient);
-	foreach (const QString &entry, ChatLogArchive::listArchivedLogsSortedByTime(network, recipient))
+	for (const QString &entry : ChatLogArchive::listArchivedLogsSortedByTime(network, recipient))
 	{
 		QString entryPath = QString("%1/%2").arg(dirPath, entry);
 		if (isEligibleForRemoval(entryPath))

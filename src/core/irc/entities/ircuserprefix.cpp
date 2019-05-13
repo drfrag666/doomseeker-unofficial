@@ -84,7 +84,7 @@ int IRCUserPrefix::compare(char mode1, char mode2) const
 {
 	if (mode1 == mode2)
 		return 0;
-	foreach (const IRCModePrefix &candidate, d->map)
+	for (const IRCModePrefix &candidate : d->map)
 	{
 		if (candidate.mode == mode1)
 			return -1;
@@ -126,7 +126,7 @@ char IRCUserPrefix::modeFromNickname(const QString &nickname) const
 
 char IRCUserPrefix::modeForPrefix(char prefix) const
 {
-	foreach (const IRCModePrefix &candidate, d->map)
+	for (const IRCModePrefix &candidate : d->map)
 	{
 		if (candidate.prefix == prefix)
 			return candidate.mode;
@@ -136,7 +136,7 @@ char IRCUserPrefix::modeForPrefix(char prefix) const
 
 char IRCUserPrefix::prefixForMode(char mode) const
 {
-	foreach (const IRCModePrefix &candidate, d->map)
+	for (const IRCModePrefix &candidate : d->map)
 	{
 		if (candidate.mode == mode)
 			return candidate.prefix;
@@ -147,7 +147,7 @@ char IRCUserPrefix::prefixForMode(char mode) const
 char IRCUserPrefix::topMostMode(const QList<char> &candidates) const
 {
 	char highest = 0;
-	foreach (char candidate, candidates)
+	for (char candidate : candidates)
 	{
 		if (compare(highest, candidate) > 0)
 			highest = candidate;

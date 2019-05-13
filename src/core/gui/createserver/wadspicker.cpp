@@ -95,7 +95,7 @@ void WadsPicker::browseAndAdd()
 		QFileInfo fi(filesNames[0]);
 		gConfig.doomseeker.previousCreateServerWadDir = fi.absolutePath();
 
-		foreach (const QString &strFile, filesNames)
+		for (const QString &strFile : filesNames)
 		{
 			addWadPath(strFile);
 		}

@@ -206,7 +206,7 @@ void ServerList::contextMenuTriggered(QAction *action)
 		break;
 
 	case ServerListContextMenu::TogglePinServers:
-		foreach (const ServerPtr &server, contextMenu->servers())
+		for (const ServerPtr &server : contextMenu->servers())
 		{
 			model->redraw(server.data());
 		}
@@ -373,7 +373,7 @@ void ServerList::redraw()
 
 void ServerList::refreshSelected()
 {
-	foreach (const ServerPtr &server, selectedServers())
+	for (const ServerPtr &server : selectedServers())
 	{
 		gRefresher->registerServer(server.data());
 	}
@@ -405,7 +405,7 @@ void ServerList::removeServer(const ServerPtr &server)
 
 void ServerList::removeCustomServers()
 {
-	foreach (ServerPtr server, model->customServers())
+	for (ServerPtr server : model->customServers())
 	{
 		removeServer(server);
 	}
@@ -413,7 +413,7 @@ void ServerList::removeCustomServers()
 
 void ServerList::removeNonSpecialServers()
 {
-	foreach (ServerPtr server, model->nonSpecialServers())
+	for (ServerPtr server : model->nonSpecialServers())
 	{
 		removeServer(server);
 	}

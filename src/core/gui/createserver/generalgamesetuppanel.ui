@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>596</width>
-    <height>453</height>
+    <width>613</width>
+    <height>465</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -48,12 +48,41 @@
      <item row="1" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_7">
        <item>
-        <widget class="GameExecutablePicker" name="executableInput" native="true">
+        <widget class="GameExecutablePicker" name="hostExecutableInput" native="true">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::WheelFocus</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="GameExecutablePicker" name="offlineExecutableInput" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::WheelFocus</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="GameExecutablePicker" name="remoteExecutableInput" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::WheelFocus</enum>
          </property>
         </widget>
        </item>
@@ -70,6 +99,16 @@
       </layout>
      </item>
      <item row="2" column="0">
+      <widget class="QLabel" name="labelLogging">
+       <property name="text">
+        <string>Logging:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="LogDirectoryPicker" name="logDirectoryPicker" native="true"/>
+     </item>
+     <item row="3" column="0">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -82,76 +121,70 @@
        </property>
       </spacer>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
+     <item row="4" column="0">
+      <widget class="QLabel" name="labelServerName">
        <property name="text">
         <string>Server name:</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="leServername">
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="leServerName">
        <property name="text">
         <string>Started from Doomseeker</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_8">
+     <item row="5" column="0">
+      <widget class="QLabel" name="labelPort">
        <property name="text">
         <string>Port:</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
-      <layout class="QHBoxLayout" name="horizontalLayout_81">
-       <item>
-        <widget class="QSpinBox" name="spinPort">
-         <property name="minimum">
-          <number>1</number>
-         </property>
-         <property name="maximum">
-          <number>65535</number>
-         </property>
-         <property name="value">
-          <number>10666</number>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="cbAllowTheGameToChoosePort">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="text">
-          <string>Allow the game to choose port.</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="labelLogging">
-       <property name="text">
-        <string>Logging:</string>
-       </property>
+     <item row="5" column="1">
+      <widget class="QWidget" name="portArea" native="true">
+       <layout class="QHBoxLayout" name="horizontalLayout_81">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QSpinBox" name="spinPort">
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>65535</number>
+          </property>
+          <property name="value">
+           <number>10666</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="cbAllowTheGameToChoosePort">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>Allow the game to choose port.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
-     </item>
-     <item row="6" column="0">
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
      <item row="7" column="0">
       <widget class="QLabel" name="label_2">
@@ -229,8 +262,27 @@
      <item row="10" column="1">
       <widget class="IwadPicker" name="iwadPicker" native="true"/>
      </item>
-     <item row="5" column="1">
-      <widget class="LogDirectoryPicker" name="logDirectoryPicker" native="true"/>
+     <item row="6" column="0">
+      <widget class="QWidget" name="hostModeSpacer" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -252,69 +304,83 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,1,0">
-     <item>
-      <widget class="QCheckBox" name="cbBroadcastToLAN">
-       <property name="text">
-        <string>Broadcast to LAN</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="cbBroadcastToMaster">
-       <property name="text">
-        <string>Broadcast to Master</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QWidget" name="upnpArea" native="true">
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <property name="leftMargin">
-         <number>0</number>
+    <widget class="QWidget" name="broadcastOptionsArea" native="true">
+     <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1,0">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QCheckBox" name="cbBroadcastToLAN">
+        <property name="text">
+         <string>Broadcast to LAN</string>
         </property>
-        <property name="topMargin">
-         <number>0</number>
+        <property name="checked">
+         <bool>true</bool>
         </property>
-        <property name="rightMargin">
-         <number>0</number>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="cbBroadcastToMaster">
+        <property name="text">
+         <string>Broadcast to Master</string>
         </property>
-        <property name="bottomMargin">
-         <number>0</number>
+        <property name="checked">
+         <bool>true</bool>
         </property>
-        <item>
-         <widget class="QCheckBox" name="cbUpnp">
-          <property name="toolTip">
-           <string>If checked, the game will try to tell your router to forward necessary ports.</string>
-          </property>
-          <property name="text">
-           <string>UPnP</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="spinUpnpPort">
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;UPnP port. Set this to 0 to let Doomseeker or game decide.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="maximum">
-           <number>65535</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="upnpArea" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QCheckBox" name="cbUpnp">
+           <property name="toolTip">
+            <string>If checked, the game will try to tell your router to forward necessary ports.</string>
+           </property>
+           <property name="text">
+            <string>UPnP</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="spinUpnpPort">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;UPnP port. Set this to 0 to let Doomseeker or game decide.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+           <property name="maximum">
+            <number>65535</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -351,8 +417,11 @@
  </customwidgets>
  <tabstops>
   <tabstop>cboEngine</tabstop>
+  <tabstop>hostExecutableInput</tabstop>
+  <tabstop>offlineExecutableInput</tabstop>
+  <tabstop>remoteExecutableInput</tabstop>
   <tabstop>cbLockExecutable</tabstop>
-  <tabstop>leServername</tabstop>
+  <tabstop>leServerName</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>cbAllowTheGameToChoosePort</tabstop>
   <tabstop>cboGamemode</tabstop>
@@ -384,22 +453,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>cbAllowTheGameToChoosePort</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinPort</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>593</x>
-     <y>122</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>374</x>
-     <y>124</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>leMap</sender>
    <signal>textChanged(QString)</signal>
    <receiver>GeneralGameSetupPanel</receiver>
@@ -412,22 +465,6 @@
     <hint type="destinationlabel">
      <x>297</x>
      <y>191</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>cbUpnp</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>spinUpnpPort</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>513</x>
-     <y>368</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>570</x>
-     <y>370</y>
     </hint>
    </hints>
   </connection>

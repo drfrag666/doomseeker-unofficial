@@ -70,7 +70,7 @@ QList<int> TableWidgetMouseAware::selectedRows() const
 
 	QList<int> rowIndices;
 	QModelIndexList rows = pSelectionModel->selectedRows();
-	foreach (const QModelIndex &index, rows)
+	for (const QModelIndex &index : rows)
 	{
 		rowIndices << index.row();
 	}

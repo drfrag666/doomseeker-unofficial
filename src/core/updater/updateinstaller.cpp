@@ -79,7 +79,7 @@ QString UpdateInstaller::copyUpdaterExecutableToTemporarySpace()
 		}
 	}
 	gLog << tr("Failed to copy the updater executable to a temporary"
-		" space: \"%1\" -> \"%2\".").arg(updaterProgramPath, clonePath);
+			" space: \"%1\" -> \"%2\".").arg(updaterProgramPath, clonePath);
 	return QString();
 }
 
@@ -162,7 +162,7 @@ UpdateInstaller::ErrorCode UpdateInstaller::startInstallation()
 	else
 	{
 		gLog << tr("Update was about to be installed but "
-			"update script \"%1\" is missing.").arg(scriptPath);
+				"update script \"%1\" is missing.").arg(scriptPath);
 		return EC_UpdatePackageMissing;
 	}
 	return EC_Ok;

@@ -237,7 +237,7 @@ bool ConfigurationDialog::isConfigPageValid(ConfigPage *configPage)
 
 bool ConfigurationDialog::hasConfigPage(ConfigPage *configPage)
 {
-	foreach (ConfigPage *addedPage, d->configPages)
+	for (ConfigPage *addedPage : d->configPages)
 	{
 		if (configPage == addedPage)
 			return true;
@@ -285,7 +285,7 @@ void ConfigurationDialog::onPageValidationRequested()
 
 void ConfigurationDialog::reject()
 {
-	foreach (ConfigPage *page, d->configPages)
+	for (ConfigPage *page : d->configPages)
 	{
 		page->reject();
 	}

@@ -84,7 +84,7 @@ void CFGIRCNetworks::addRecord(IRCNetworkEntity *pNetworkEntity)
 void CFGIRCNetworks::cleanUpTable()
 {
 	QVector<IRCNetworkEntity *> networksArray = networks();
-	foreach (IRCNetworkEntity *pEntity, networksArray)
+	for (IRCNetworkEntity *pEntity : networksArray)
 	{
 		delete pEntity;
 	}

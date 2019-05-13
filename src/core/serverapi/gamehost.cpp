@@ -180,10 +180,10 @@ void GameHost::addPwads_prefixOnce()
 		QString prefix = fileLoadingPrefix(i);
 		groups[prefix] << pwad;
 	}
-	foreach (const QString &prefix, groups.keys())
+	for (const QString &prefix : groups.keys())
 	{
 		args() << prefix;
-		foreach (const QString &file, groups[prefix])
+		for (const QString &file : groups[prefix])
 		{
 			args() << file;
 		}
@@ -277,7 +277,7 @@ void GameHost::createCommandLineArguments()
 
 	// CVars
 	const QList<GameCVar> &cvars = params().cvars();
-	foreach (const GameCVar &c, cvars)
+	for (const GameCVar &c : cvars)
 	{
 		args() << QString(c.command()) << c.valueString();
 	}
@@ -434,7 +434,7 @@ void GameHost::setupGamePaths()
 
 bool GameHost::verifyPwadPaths()
 {
-	foreach (const QString &pwad, params().pwadsPaths())
+	for (const QString &pwad : params().pwadsPaths())
 	{
 		QFileInfo fi(pwad);
 		if (!fi.isFile())

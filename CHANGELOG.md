@@ -36,13 +36,56 @@ Mantis ticket #3369.
       each map comes from through a tooltip. Reading map lumps from WAD and PK3
       formats is supported, as well as extracting mods from archives and parsing
       them. (addresses #3599)
+    - CTRL+S and CTRL+O keyboard shortcuts can be used to save/load
+      game config (#3645)
 
 ### Changed
+- Remove "Allow servers to display my country" feature in Zandronum since
+it can be set from the game menu. (#3626)
+- On non-Windows systems don't seek mod files (WADs) in the executable
+directory, since it's usually somewhere like /usr/bin. (#3625)
 - Windows compiler change. Use MinGW-w64 to build Doomseeker instead of
 Microsoft's Visual Studio Compiler with v120_xp toolset. From the source-code
 perspective, this allows to use the modern C++ standards. From the end-user
 perspective, the program performance seems to have improved by 50%, while
-the downside is that the size of the release package has increased by 25%.
+in exchange the size of the release package has increased by 25%. (#3598)
+- Windows: error dialogs will no longer pop-up when incompatible plugin DLLs
+are loaded. Incompatible plugins now simply not appear as available and
+the load error is only logged to the program log. (#3401)
+- Present the Plugin ABI version of Doomseeker in the About dialog. (#3644)
+- Present the Plugin ABI version of each plugin in the About dialog
+as a separate value instead of as "%ABI.%actual_version" string.
+Plugin's actual version is now a single number. (#3644)
+- "Create Game" box:
+    - There's now a distinctive split between hosting a server and
+      playing an offline game. This choice is no longer made as a final
+      step by pressing one of the two "Start" buttons, but is now
+      determined from the "Create Game" dialog box menu that also
+      affects how this "Create Game" box looks like. When "offline"
+      mode is selected, the options that only make sense for a server
+      hosting are hidden. The values stored in those options are,
+      however, remembered and will be saved in the configuration if user
+      chooses to switch their mode back to "host a server". There is
+      some visual feedback provided to inform the user in which mode
+      the box currently is: the title of the box is directly related
+      and also the text of the "Start game" button adjusts. (#3636)
+    - Move config-related bottom buttons of the "Create Game" dialog box
+      to menu bar actions. The menu bar is presented at the top of that
+      dialog box just like in the main window. Game config, program
+      config and launch mode can now be picked from that menu.
+    - Another (initially invisible) change splits the behavior of
+      the game executable selector combo box. Each of the 3 modes:
+      "Play offline", "Host a server" and "Configure remote game"
+      now track separate game executables. This is to accomodate
+      for source-ports that use more than one executable.
+    - Rename "Misc." tab in the Create Game box to "Server".
+
+### Fixed
+- If no plugins are loaded only one notification will now appear instead
+of two notifications that said the same thing only with different
+phrasing. (#3401)
+- Manually bind client UDP sockets to address "0.0.0.0" which fixes
+problem with the sockets not working on OpenBSD system. (#3494)
 
 ## [1.2] - 2018-10-27
 ### Added

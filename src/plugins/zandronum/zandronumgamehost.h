@@ -40,6 +40,7 @@ private:
 	Q_DISABLE_COPY(ZandronumGameHost)
 
 	void addDMFlags();
+	void addHostModeParams();
 
 	QString strArg(const QString &val);
 	ZandronumGameInfo::GameVersion gameVersion() const;

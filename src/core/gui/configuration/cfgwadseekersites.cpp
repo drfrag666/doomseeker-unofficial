@@ -110,7 +110,7 @@ void CFGWadseekerSites::insertUrl(const QString &url)
 void CFGWadseekerSites::readSettings()
 {
 	const QStringList &urlList = gConfig.wadseeker.searchURLs;
-	foreach (const QString &url, urlList)
+	for (const QString &url : urlList)
 	{
 		this->insertUrl(url);
 	}

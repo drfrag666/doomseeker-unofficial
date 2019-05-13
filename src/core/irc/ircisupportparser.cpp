@@ -56,7 +56,7 @@ IRCISupportParser::~IRCISupportParser()
 
 void IRCISupportParser::appendLine(const QString &line)
 {
-	foreach (const QString &element, line.split(" "))
+	for (const QString &element : line.split(" "))
 	{
 		if (element == ":are")
 		{
@@ -70,7 +70,7 @@ void IRCISupportParser::appendLine(const QString &line)
 
 QString IRCISupportParser::findValue(const QString &key)
 {
-	foreach (const QString &element, d->iSupportParams)
+	for (const QString &element : d->iSupportParams)
 	{
 		if (element.startsWith(key))
 			return element.mid(key.length());

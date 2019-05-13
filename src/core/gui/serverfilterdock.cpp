@@ -161,13 +161,13 @@ void ServerFilterDock::setFilterInfo(const ServerListFilterInfo &filterInfo)
 	d->cbShowFull->setChecked(filterInfo.bShowFull);
 	d->cbShowOnlyValid->setChecked(filterInfo.bShowOnlyValid);
 
-	foreach (const QString &gameMode, filterInfo.gameModes)
+	for (const QString &gameMode : filterInfo.gameModes)
 	{
 		addGameModeToComboBox(gameMode);
 	}
 	d->cboGameMode->setSelectedTexts(filterInfo.gameModes);
 
-	foreach (const QString &gameMode, filterInfo.gameModesExcluded)
+	for (const QString &gameMode : filterInfo.gameModesExcluded)
 	{
 		addGameModeToComboBox(gameMode);
 	}

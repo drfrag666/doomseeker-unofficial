@@ -82,7 +82,7 @@ QStringList ChocolateDoomGameClientRunner::executables() const
 	QStringList paths;
 	GameFile executableForIwad = ChocolateDoomGameExeFactory::executableForIwad(server->iwad());
 	paths << plugin()->data()->pConfig->value(executableForIwad.configName()).toString();
-	foreach (const GameFile &file, ChocolateDoomGameExeFactory::gameFiles().asQList())
+	for (const GameFile &file : ChocolateDoomGameExeFactory::gameFiles().asQList())
 	{
 		paths << plugin()->data()->pConfig->value(file.configName()).toString();
 	}
@@ -101,7 +101,7 @@ void ChocolateDoomGameClientRunner::joinPopulatedServer()
 	{
 		overwriteExecutable = dialog->executable();
 		args() << "-iwad" << dialog->iwadPath();
-		foreach (const QString &file, dialog->filePaths())
+		for (const QString &file : dialog->filePaths())
 		{
 			if (file.toLower().endsWith(".deh"))
 				args() << "-deh" << file;

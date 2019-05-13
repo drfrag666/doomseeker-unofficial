@@ -161,7 +161,7 @@ void DMFlagsSection::add(const DMFlag &flag)
 unsigned DMFlagsSection::combineValues() const
 {
 	unsigned result = 0;
-	foreach (const DMFlag &flag, d->flags)
+	for (const DMFlag &flag : d->flags)
 	{
 		result |= flag.value();
 	}
@@ -210,10 +210,10 @@ QList<DMFlagsSection> DMFlagsSection::removedBySection(
 	const QList<DMFlagsSection> &removals)
 {
 	QList<DMFlagsSection> copy;
-	foreach (const DMFlagsSection &section, original)
+	for (const DMFlagsSection &section : original)
 	{
 		bool removed = false;
-		foreach (const DMFlagsSection &removal, removals)
+		for (const DMFlagsSection &removal : removals)
 		{
 			if (section.internalName() == removal.internalName())
 			{
@@ -233,7 +233,7 @@ QList<DMFlagsSection> DMFlagsSection::removedBySection(
 DMFlagsSection DMFlagsSection::removed(const DMFlagsSection &removals) const
 {
 	DMFlagsSection copy = *this;
-	foreach (const DMFlag &removal, removals.d->flags)
+	for (const DMFlag &removal : removals.d->flags)
 	{
 		QMutableVectorIterator<DMFlag> i(copy.d->flags);
 		while (i.hasNext())
@@ -527,7 +527,7 @@ void PWad::addChecksum(const QByteArray &hash, const QCryptographicHash::Algorit
 
 const bool PWad::validFile(const QString &path) const
 {
-	foreach (const Checksum checksum, d->checksums)
+	for (const Checksum checksum : d->checksums)
 	{
 		if (Hash::hashFile(path, checksum.algorithm()) != checksum.hash())
 		{

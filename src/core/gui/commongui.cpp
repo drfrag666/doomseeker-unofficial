@@ -63,11 +63,11 @@ void CommonGUI::removeSelectedRowsFromQTableWidget(QTableWidget *table)
 	// because the program will crash. This solution is so stupid
 	// that there must be another one, but nobody knows...
 	QMap<int, QTableWidgetItem *> uniqueRowsItems;
-	foreach (QTableWidgetItem *item, table->selectedItems())
+	for (QTableWidgetItem *item : table->selectedItems())
 	{
 		uniqueRowsItems.insert(item->row(), item);
 	}
-	foreach (QTableWidgetItem *item, uniqueRowsItems.values())
+	for (QTableWidgetItem *item : uniqueRowsItems.values())
 	{
 		int row = table->row(item);
 		if (row >= 0)
@@ -143,7 +143,7 @@ void CommonGUI::stringListToStandardItemsListView(QListView *targetListview,
 		targetListview->model());
 	model->removeRows(0, model->rowCount());
 
-	foreach (const QString &str, stringList)
+	for (const QString &str : stringList)
 	{
 		QStandardItem *pItem = new QStandardItem();
 		pItem->setText(str);
