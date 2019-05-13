@@ -72,7 +72,7 @@ QList<ExeFilePath> ZandronumGameExeFactory::scanSubdir(const QDir &mainDir,
 		if (!subdir.entryList(QStringList(execName()), QDir::Files).isEmpty())
 		{
 			paths << mainDir.absoluteFilePath(
-				subdirName + ZandronumClientExeFile::scriptFileExtension());
+					subdirName + ZandronumClientExeFile::scriptFileExtension());
 		}
 	}
 	if (execType & GameFile::Server)
@@ -81,7 +81,7 @@ QList<ExeFilePath> ZandronumGameExeFactory::scanSubdir(const QDir &mainDir,
 		{
 			#ifdef Q_OS_WIN32
 			paths << mainDir.absoluteFilePath(
-				subdirName + ZandronumClientExeFile::scriptFileExtension());
+					subdirName + ZandronumClientExeFile::scriptFileExtension());
 			#else
 			paths << mainDir.absoluteFilePath(subdirName + "/zandronum-server");
 			#endif

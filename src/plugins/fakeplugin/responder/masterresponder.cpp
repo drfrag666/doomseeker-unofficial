@@ -64,7 +64,7 @@ bool MasterResponder::bind(unsigned short port)
 	if (!result)
 	{
 		gLog << QString("FakePlugin, failed to bind master server on port %1."
-			" Plugin will not be functional.").arg(port);
+				" Plugin will not be functional.").arg(port);
 	}
 	return result;
 }
@@ -134,7 +134,7 @@ void MasterResponder::readPendingDatagram()
 	delete[] buffer;
 
 	gLog << QString("FakePlugin, received master datagram. Magic = %1"
-		", Client: '%2:%3'").arg(QString(packet))
+			", Client: '%2:%3'").arg(QString(packet))
 		.arg(address.toString()).arg(port);
 	if (packet == "FAKE")
 	{
@@ -153,7 +153,7 @@ void MasterResponder::respond()
 	AwaitingClient client = d->awaitingClients.takeFirst();
 	QList<QByteArray> packets = buildResponsePackets();
 	gLog << QString("FakePlugin, sending master response now. "
-		"Packets count = %1, Target client: '%2:%3'").arg(packets.size())
+			"Packets count = %1, Target client: '%2:%3'").arg(packets.size())
 		.arg(client.address.toString()).arg(client.port);
 	for (const QByteArray &packet : packets)
 	{

@@ -260,7 +260,7 @@ void WWWSeeker::logHeaders(NetworkReply *reply)
 	{
 		QByteArray headerData = reply->rawHeader(headerName);
 		qDebug() << QString("%1: %2").arg(QString::fromUtf8(headerName)).arg(
-			QString::fromUtf8(headerData));
+				QString::fromUtf8(headerData));
 	}
 	printf("END OF HEADERS\n");
 }
@@ -402,8 +402,8 @@ void WWWSeeker::parseAsHtml(NetworkReply *pReply)
 
 	#ifndef NDEBUG
 	qDebug() << "Finished URL" << url << "; content type"
-	<< pReply->header(QNetworkRequest::ContentTypeHeader).toString()
-	<< ". Data size:" << downloadedData.size();
+		<< pReply->header(QNetworkRequest::ContentTypeHeader).toString()
+		<< ". Data size:" << downloadedData.size();
 	qDebug() << "Links:" << links.size();
 	#endif
 

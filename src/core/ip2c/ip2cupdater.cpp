@@ -85,7 +85,7 @@ void IP2CUpdater::checksumDownloadFinished()
 	}
 
 	gLog << tr("Comparing IP2C hashes: local = %1, remote = %2").arg(
-		QString(localMd5)).arg(QString(remoteMd5));
+			QString(localMd5)).arg(QString(remoteMd5));
 	bool needed = localMd5 != remoteMd5;
 	if (needed)
 		gLog << tr("IP2C update needed.");

@@ -86,7 +86,7 @@ public:
 		QStringList paths;
 		#ifdef Q_OS_UNIX
 		paths << "/usr/local/share/games/doom/"
-		<< "/usr/share/games/doom/";
+			<< "/usr/share/games/doom/";
 		#endif
 		return paths;
 	}
@@ -100,7 +100,7 @@ WadPathFinder::WadPathFinder(PathFinder pathFinder)
 	d->aliasesAllowed = true;
 	d->pathFinder = pathFinder;
 	for (const QString &path : d->defaultPaths())
-	d->pathFinder.addSearchDir(path);
+		d->pathFinder.addSearchDir(path);
 }
 
 WadPathFinder::~WadPathFinder()

@@ -101,9 +101,9 @@ void ZandronumGameHost::addExtra()
 	}
 
 	args() << "+sv_maprotation" << QString::number(
-		static_cast<int>(!params().mapList().isEmpty()));
+			static_cast<int>(!params().mapList().isEmpty()));
 	args() << "+sv_randommaprotation" << QString::number(
-		static_cast<int>(params().isRandomMapRotation()));
+			static_cast<int>(params().isRandomMapRotation()));
 
 	if (params().hostMode() == GameCreateParams::Host)
 		addHostModeParams();

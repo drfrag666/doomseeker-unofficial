@@ -111,13 +111,13 @@ QString AboutDialog::copyrightVerboseNotice() const
 
 	// GeoLite2
 	paragraphs << tr("This program uses GeoLite2 data for IP-to-Country (IP2C) purposes, "
-		"available from https://www.maxmind.com") + "\n" +
+			"available from https://www.maxmind.com") + "\n" +
 		tr("Database and Contents Copyright (c) 2018 MaxMind, Inc.");
 	paragraphs << tr("GeoLite2 License:\n"
-		"This work is licensed under the Creative Commons Attribution - ShareAlike 4.0 Unported License. "
-		"To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.");
+			"This work is licensed under the Creative Commons Attribution - ShareAlike 4.0 Unported License. "
+			"To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.");
 	paragraphs << tr("GeoLite2 available at:\n"
-		"https://dev.maxmind.com/geoip/geoip2/geolite2/");
+			"https://dev.maxmind.com/geoip/geoip2/geolite2/");
 
 	// Icons
 	QStringList icons;

@@ -184,7 +184,7 @@ QList<ServerPtr> CustomServers::setServers(const QList<CustomServerInfo> &server
 		if (p == nullptr)
 		{
 			gLog << tr("Plugin returned nullptr \"Server*\" for custom server %1:%2. "
-				"This is a problem with the plugin.")
+					"This is a problem with the plugin.")
 				.arg(customServerInfo.host).arg(customServerInfo.port);
 			continue;
 		}

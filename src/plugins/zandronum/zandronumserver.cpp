@@ -635,8 +635,8 @@ Server::Response ZandronumServer::readRequest(const QByteArray &data)
 void ZandronumServer::resetPwadsList(const QList<PWad> &wads)
 {
 	clearWads();
-	for(const PWad &wad : wads)
-	addWad(wad);
+	for (const PWad &wad : wads)
+		addWad(wad);
 }
 
 QByteArray ZandronumServer::createSendRequest()

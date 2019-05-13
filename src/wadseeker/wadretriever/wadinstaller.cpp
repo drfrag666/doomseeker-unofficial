@@ -47,7 +47,7 @@ WadInstaller::WadInstallerResult WadInstaller::installArchive(UnArchive &archive
 
 	WadInstallerResult result;
 	#ifndef NDEBUG
-	for(const QString &file : archive.files())
+	for (const QString &file : archive.files())
 	{
 		qDebug() << "archive file entry " << file;
 	}

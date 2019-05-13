@@ -239,7 +239,7 @@ void GameClientRunner::addInGamePassword_default()
 	else
 	{
 		gLog << tr("BUG: Plugin doesn't specify argument for in-game "
-			"password, but the server requires such password.");
+				"password, but the server requires such password.");
 	}
 }
 
@@ -270,7 +270,7 @@ void GameClientRunner::addWads()
 			d->joinError.setType(JoinError::MissingWads);
 		}
 		d->joinError.setMissingWads(d->missingPwads);
-		for(const PWad &wad : d->missingPwads)
+		for (const PWad &wad : d->missingPwads)
 		{
 			// Only error if there are required missing wads
 			if (!wad.isOptional())
@@ -291,7 +291,7 @@ void GameClientRunner::addPassword_default()
 	else
 	{
 		gLog << tr("BUG: Plugin doesn't specify argument for connect "
-			"password, but the server is passworded.");
+				"password, but the server is passworded.");
 	}
 }
 

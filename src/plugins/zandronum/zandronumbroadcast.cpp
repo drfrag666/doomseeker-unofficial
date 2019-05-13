@@ -119,7 +119,7 @@ void ZandronumBroadcast::bindSocket()
 		if (!d->bindFailureLogged)
 		{
 			gLog << tr("Failed to bind Zandronum's LAN broadcasts listening socket on port %1. "
-				"Will keep retrying silently.").arg(port);
+					"Will keep retrying silently.").arg(port);
 			d->bindFailureLogged = true;
 		}
 		QTimer::singleShot(10000, this, SLOT(bindSocket()));

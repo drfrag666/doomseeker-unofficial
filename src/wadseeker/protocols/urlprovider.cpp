@@ -58,7 +58,7 @@ URLProvider::URLProvider()
 
 URLProvider::~URLProvider()
 {
-	for(MirrorStorage *pMirror : mirrors)
+	for (MirrorStorage *pMirror : mirrors)
 	{
 		delete pMirror;
 	}
