@@ -43,13 +43,13 @@ public:
 		LMSAW_GrenadeLauncher = 1 << 6,
 		LMSAW_PlasmaRifle = 1 << 7,
 		LMSAW_Railgun = 1 << 8,
-		LMSAW_Chainsaw = 1 << 9
+		LMSAW_Chainsaw = 1 << 9,
 	};
 
 	enum LMSSpectatorSettings
 	{
 		LMSSS_TalkToActivePlayers = 1 << 0,
-		LMSSS_ViewTheGame = 1 << 1
+		LMSSS_ViewTheGame = 1 << 1,
 	};
 
 	enum ZandronumGameMode
