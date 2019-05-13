@@ -22,9 +22,9 @@
 //------------------------------------------------------------------------------
 #include "pathfinder.h"
 
-#include "basefileseeker.h"
 #include "configuration/doomseekerconfig.h"
 #include "datapaths.h"
+#include "fileseeker.h"
 #include "log.h"
 #include "pathfinder/filesearchpath.h"
 #include "strings.hpp"
@@ -32,6 +32,7 @@
 #include <cstdlib>
 #include <QDir>
 #include <QFileInfo>
+#include <QScopedPointer>
 #include <QSharedPointer>
 
 DClass<PathFinderResult>
@@ -159,12 +160,9 @@ void PathFinder::addSearchDir(const QString &dir)
 QString PathFinder::findFile(const QString &fileName) const
 {
 	if (d->searchPaths->count() == 0)
-	{
 		return QString();
-	}
-
-	BaseFileSeeker seeker(d->searchPaths);
-	QString result = seeker.findFile(fileName);
+	QScopedPointer<FileSeeker> seeker(FileSeeker::createSeeker(d->searchPaths));
+	QString result = seeker->findFile(fileName);
 	return result;
 }
 

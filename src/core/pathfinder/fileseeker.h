@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// basefileseeker.h
+// fileseeker.h
 //------------------------------------------------------------------------------
 //
 // This library is free software; you can redistribute it and/or
@@ -26,22 +26,19 @@
 #include <QList>
 #include <QSharedPointer>
 
-#include "dptr.h"
-
 class FileSearchPath;
-
-class BaseFileSeeker
+class FileSeeker
 {
 public:
-	BaseFileSeeker(QSharedPointer <QList<FileSearchPath> > paths);
-	~BaseFileSeeker();
+	FileSeeker(QSharedPointer <QList<FileSearchPath> > paths);
+	~FileSeeker();
+
+	static FileSeeker *createSeeker(QSharedPointer <QList<FileSearchPath> > paths);
 
 	QString findFile(const QString &fileName);
-	QString findFileInPath(const QString &fileName, FileSearchPath &path);
-	void generatePathCacheAndEditPaths(FileSearchPath &path);
-	void insertSubpathsAfterPath(const FileSearchPath &path, QList<FileSearchPath> subpaths);
-private:
-	DPtr<BaseFileSeeker> d;
-};
+	virtual QString findFileInPath(const QString &fileName, FileSearchPath &path) = 0;
+protected:
+	QSharedPointer <QList<FileSearchPath> > paths;
+}
 
 #endif // header

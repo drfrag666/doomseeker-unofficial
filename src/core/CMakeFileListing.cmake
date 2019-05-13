@@ -218,9 +218,11 @@ set(HEADER_FILES
 	log.h
 	main.h
 	modreader.h
-	pathfinder/basefileseeker.h
+	pathfinder/caseinsensitivefsfileseeker.h
+	pathfinder/casesensitivefsfileseeker.h
 	pathfinder/filealias.h
 	pathfinder/filesearchpath.h
+	pathfinder/fileseeker.h
 	pathfinder/pathfind.h
 	pathfinder/pathfinder.h
 	pathfinder/wadpathfinder.h
@@ -445,9 +447,11 @@ set(SOURCE_FILES
 	log.cpp
 	main.cpp
 	modreader.cpp
-	pathfinder/basefileseeker.cpp
+	pathfinder/caseinsensitivefsfileseeker.cpp
+	pathfinder/casesensitivefsfileseeker.cpp
 	pathfinder/filealias.cpp
 	pathfinder/filesearchpath.cpp
+	pathfinder/fileseeker.cpp
 	pathfinder/pathfind.cpp
 	pathfinder/pathfinder.cpp
 	pathfinder/wadpathfinder.cpp
