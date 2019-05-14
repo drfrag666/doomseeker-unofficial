@@ -128,6 +128,10 @@ public:
 	PathFinderResult findFiles(const QStringList &files) const;
 
 private:
+	/**
+	 * @brief Delete duplicated paths and subdirs of recursive dirs.
+	 */
+	const void removeUnneededPaths() const;
 	DPtr<PathFinder> d;
 };
 

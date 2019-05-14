@@ -128,33 +128,6 @@ ConfigPage::Validation CFGWadseekerGeneral::validate()
 	if (error.isEmpty() && !targetDirectory.isWritable())
 		error = tr("This directory cannot be written to.");
 
-	// If path seems valid also take a look at the file
-	// paths configuration. Warn if it is not on the list.
-	if (error.isEmpty())
-	{
-		bool pathOnList = false;
-		for (FileSearchPath possiblePath : gConfig.doomseeker.wadPaths)
-		{
-			// Bring paths to QFileInfo before string comparison. Two same paths
-			// may have different string representations.
-			// TODO: Consider recursive paths.
-			QFileInfo possiblePathFileInfo(possiblePath.path());
-
-			if (possiblePathFileInfo == targetDirectory)
-			{
-				pathOnList = true;
-				break;
-			}
-		}
-
-		if (!pathOnList)
-		{
-			error = tr(
-				"The specified target directory for Wadseeker could not be found on the file (WAD) paths list.\n\n"
-				"Doomseeker will automatically add this path to the file search paths.");
-		}
-	}
-
 	d->lblDirectoryWarning->setVisible(!error.isEmpty());
 	d->lblDirectoryWarning->setText(error);
 	return error.isEmpty() ? VALIDATION_OK : VALIDATION_ERROR;

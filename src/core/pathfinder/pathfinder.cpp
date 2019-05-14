@@ -107,15 +107,15 @@ PathFinder::PathFinder()
 {
 	d->searchPaths.reset(new QList<FileSearchPath>());
 	d->searchPaths->append(gConfig.combinedWadseekPaths());
+	removeUnneededPaths();
 }
 
 PathFinder::PathFinder(const QStringList &paths)
 {
 	d->searchPaths.reset(new QList<FileSearchPath>());
 	for (const QString &path : paths)
-	{
 		d->searchPaths->append(path);
-	}
+	removeUnneededPaths();
 }
 
 PathFinder::~PathFinder()
@@ -150,11 +150,13 @@ PathFinder PathFinder::genericPathFinder(const QStringList &suffixes)
 void PathFinder::addPrioritySearchDir(const QString &dir)
 {
 	d->searchPaths->prepend(d->resolveDir(dir));
+	removeUnneededPaths();
 }
 
 void PathFinder::addSearchDir(const QString &dir)
 {
 	d->searchPaths->append(d->resolveDir(dir));
+	removeUnneededPaths();
 }
 
 QString PathFinder::findFile(const QString &fileName) const
@@ -183,4 +185,29 @@ PathFinderResult PathFinder::findFiles(const QStringList &files) const
 	}
 
 	return result;
+}
+
+const void PathFinder::removeUnneededPaths() const
+{
+	Qt::CaseSensitivity caseSensitivity;
+	#ifdef Q_OS_WIN32
+	caseSensitivity = Qt::CaseInsensitive;
+	#else
+	caseSensitivity = Qt::CaseSensitive;
+	#endif
+
+	for (int mainIterator = 0; mainIterator < d->searchPaths->length(); ++mainIterator)
+	{
+		for (int subIterator = mainIterator + 1; subIterator < d->searchPaths->length(); ++subIterator)
+		{
+			const FileSearchPath &mainPath = d->searchPaths->at(mainIterator);
+			const FileSearchPath &subPath = d->searchPaths->at(subIterator);
+			if (mainPath.path().compare(subPath.path(), caseSensitivity) == 0 ||
+				(mainPath.isRecursive() && subPath.path().startsWith(mainPath.path(), caseSensitivity)))
+			{
+				d->searchPaths->removeAt(subIterator);
+				--subIterator;
+			}
+		}
+	}
 }
