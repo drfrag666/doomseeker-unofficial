@@ -109,7 +109,6 @@ QString ServerTooltip::createPortToolTip(ServerCPtr server)
 
 QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 {
-	QDateTime dateTime1 = QDateTime::currentDateTime();
 	if (server == nullptr || !server->isKnown() || server->numWads() == 0)
 	{
 		return QString();
@@ -147,9 +146,6 @@ QString ServerTooltip::createPwadsToolTip(ServerPtr server)
 		}
 		content.chop(1); // Get rid of extra \n.
 	}
-
-	QDateTime dateTime2 = QDateTime::currentDateTime();
-	gLog << "ms: " + QString::number(dateTime1.msecsTo(dateTime2));
 
 	return toolTip.arg(content);
 }
