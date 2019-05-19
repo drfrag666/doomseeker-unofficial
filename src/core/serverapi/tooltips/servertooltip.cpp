@@ -30,8 +30,6 @@
 #include "serverapi/serverstructs.h"
 #include "serverapi/tooltips/tooltipgenerator.h"
 
-#include "log.h"
-
 namespace ServerTooltip
 {
 QString FONT_COLOR_MISSING = "#ff0000";
