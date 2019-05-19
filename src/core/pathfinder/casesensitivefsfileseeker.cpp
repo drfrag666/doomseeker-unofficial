@@ -48,7 +48,7 @@ void CaseSensitiveFSFileSeeker::generatePathCacheAndEditPaths(FileSearchPath &pa
 	QFileInfoList entriesDirectory = QDir(path.path()).entryInfoList(QDir::AllEntries | QDir::NoDotAndDotDot);
 	QSet<QString> entriesFileNames, entriesDirAbsolutePath;
 
-	for (const QFileInfo &entry : qAsConst(entriesDirectory))
+	for (const QFileInfo &entry : entriesDirectory)
 	{
 		if (entry.isFile())
 			entriesFileNames << entry.fileName().toLower();

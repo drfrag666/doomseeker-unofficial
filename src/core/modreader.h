@@ -45,6 +45,7 @@ struct DirectoryEntry
 class ModReader
 {
 public:
+	virtual ~ModReader() {}
 	virtual bool load() = 0;
 	virtual QStringList getAllMaps() = 0;
 	virtual bool isIwad() = 0;

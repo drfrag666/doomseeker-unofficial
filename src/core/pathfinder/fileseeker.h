@@ -31,7 +31,7 @@ class FileSeeker
 {
 public:
 	FileSeeker(QSharedPointer <QList<FileSearchPath> > paths);
-	~FileSeeker();
+	virtual ~FileSeeker();
 
 	static FileSeeker *createSeeker(QSharedPointer <QList<FileSearchPath> > paths);
 
