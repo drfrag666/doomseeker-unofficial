@@ -67,7 +67,7 @@ void MapListPanel::addMapFromEditBoxToList()
 
 void MapListPanel::addMapsFromLoadedWads()
 {
-	MapListSelector *mapListSelector = new MapListSelector;
+	MapListSelector *mapListSelector = new MapListSelector(this);
 	mapListSelector->addPaths(d->parentDialog->wadPaths());
 	if (mapListSelector->exec() == QDialog::Accepted)
 	{

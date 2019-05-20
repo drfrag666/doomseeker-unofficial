@@ -24,6 +24,7 @@
 #include "tests/testdatapaths.h"
 #include "tests/testini.h"
 #include "tests/testircisupportparser.h"
+#include "tests/testmodreader.h"
 #include "tests/testplayer.h"
 #include "tests/teststrings.h"
 #include "tests/testutf8splitter.h"
@@ -49,6 +50,10 @@ void TestRuns::callTests()
 
 	pTestCore->executeTest(new TestIRCISupportPrefix());
 	pTestCore->executeTest(new TestIRCISupportNoPrefix());
+
+
+	// WadReader.
+	pTestCore->executeTest(new TestModReader());
 
 	// Misc.
 	pTestCore->executeTest(new TestUtf8Splitter());

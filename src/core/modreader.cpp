@@ -112,35 +112,74 @@ QList<DirectoryEntry> WadReader::getDirectory()
 
 QStringList WadReader::getAllMaps()
 {
-	QStringList maps;
 	QStringList names;
-	QStringList lumpsToCheckFor = {"THINGS", "LINEDEFS", "SIDEDEFS", "VERTEXES",
-		"SEGS", "SSECTORS", "NODES", "SECTORS", "REJECT", "BLOCKMAP"};
-
 	for (DirectoryEntry dirEntry : getDirectory())
-	{
 		names << dirEntry.name;
-	}
 
-	for (int mainIter = 0; mainIter < names.size() - lumpsToCheckFor.size(); ++mainIter)
+	QStringList maps = getClassicMaps(names);
+	maps << getUdmfMaps(names);
+	return maps;
+}
+
+QStringList WadReader::getClassicMaps(const QStringList &names)
+{
+	QStringList maps;
+	QStringList initialMandatoryLumps = {"THINGS", "LINEDEFS", "SIDEDEFS", "VERTEXES"};
+	QStringList extraMandatoryLumps = {"SECTORS", "REJECT"};
+
+	for (int mainIter = 0; mainIter < names.size() - (initialMandatoryLumps.size() + extraMandatoryLumps.size()); ++mainIter)
 	{
-		bool isMap = true;
-		for (int checkIter = 0; checkIter < lumpsToCheckFor.size(); ++checkIter)
+		bool allInitsFound = true;
+		for (int subInitIter = 0; subInitIter < initialMandatoryLumps.size(); ++subInitIter)
 		{
-			if (names[mainIter + checkIter + 1] != lumpsToCheckFor[checkIter])
-			{
-				isMap = false;
+			allInitsFound &= (names[mainIter + subInitIter + 1] == initialMandatoryLumps[subInitIter]);
+			if (!allInitsFound)
 				break;
-			}
 		}
-		if (isMap)
+		if (allInitsFound)
 		{
-			maps << names[mainIter];
-			mainIter += lumpsToCheckFor.size();
+			int extrasChecked = 0;
+
+			for (int subExtraIter = 0; mainIter + subExtraIter + 1 < names.size(); ++subExtraIter)
+			{
+				if (extrasChecked == extraMandatoryLumps.size())
+				{
+					maps << names[mainIter];
+					break;
+				}
+				if (names[mainIter + subExtraIter + 1] == extraMandatoryLumps[extrasChecked])
+					++extrasChecked;
+			}
 		}
 	}
 	return maps;
 }
+
+QStringList WadReader::getUdmfMaps(const QStringList &names)
+{
+	QStringList maps;
+	QString firstLump = "TEXTMAP";
+	QString lastLump = "ENDMAP";
+	unsigned char lumpAmount = 2;
+
+	for (int mainIter = 0; mainIter < names.size() - lumpAmount; ++mainIter)
+	{
+		if (names[mainIter + 1] == firstLump)
+		{
+			for (int checkIter = lumpAmount; mainIter + checkIter < names.size(); ++checkIter)
+			{
+				if (names[mainIter + checkIter] == lastLump)
+				{
+					maps << names[mainIter];
+					mainIter += checkIter;
+					break;
+				}
+			}
+		}
+	}
+	return maps;
+}
+
 
 DClass<CompressedReader>
 {

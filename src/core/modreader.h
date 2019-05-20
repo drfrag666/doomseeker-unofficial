@@ -85,6 +85,17 @@ public:
 	 * @return QStringList list of maps.
 	 */
 	QStringList getAllMaps();
+
+private:
+	/**
+	 * @brief Get the Classic-formatted Maps.
+	 */
+	QStringList getClassicMaps(const QStringList &names);
+	/**
+	* @brief Get the UDMF-formatted Maps.
+	*/
+	QStringList getUdmfMaps(const QStringList &names);
+
 private:
 	DPtr<WadReader> d;
 };
