@@ -76,9 +76,19 @@ Plugin's actual version is now a single number. (#3644)
     - Another (initially invisible) change splits the behavior of
       the game executable selector combo box. Each of the 3 modes:
       "Play offline", "Host a server" and "Configure remote game"
-      now track separate game executables. This is to accomodate
+      now track separate game executables. This is to accommodate
       for source-ports that use more than one executable.
     - Rename "Misc." tab in the Create Game box to "Server".
+- Local wad searching:
+    - Now there's no need to add the path from Wadseeker's general settings
+    since it will be automatically added to the list of dirs to check. That list
+    will be checked is better filtered to remove repeated directories. (#3639)
+    - On case-sensitive systems (non-windows systems) the search now caches the
+    results in each file search iteration, meaning that in servers with lots of
+    wads the search will last less. (#3638)
+    - Also, now we no longer check for wads on the binary folder on those systems.
+    Overall, the time that it takes to find a set of wads on the tested Linux
+    environment was around 48 times less. (#3640)
 
 ### Fixed
 - If no plugins are loaded only one notification will now appear instead
@@ -86,6 +96,13 @@ of two notifications that said the same thing only with different
 phrasing. (#3401)
 - Manually bind client UDP sockets to address "0.0.0.0" which fixes
 problem with the sockets not working on OpenBSD system. (#3494)
+- Prevent empty wads from Zandronum servers, this was caused rarely by some
+servers that reported a non-existent wad. (#3624)
+
+### Removed
+- The "Allow servers to display my country" option in the zandronum's config
+menu has been removed since Zandronum can now handle this option by itself.
+(#3626)
 
 ## [1.2] - 2018-10-27
 ### Added
