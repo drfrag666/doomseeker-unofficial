@@ -1,6 +1,6 @@
 image: doomseeker/doomseeker-build:latest
 
-stepsdefinded:
+stepsDefined:
   - Qt4Build: &qt4Build
       name: Qt4 build
       script:
@@ -9,6 +9,7 @@ stepsdefinded:
         - cmake -DCMAKE_CXX_FLAGS="-Wall -Werror=return-type" -DFORCE_QT4=true ..
         - make -j$(nproc)
         - make install
+        - QT_QPA_PLATFORM=offscreen ./doomseeker --tests
   - Qt5Build: &qt5Build
       name: Qt5 build
       script:
@@ -17,6 +18,7 @@ stepsdefinded:
         - cmake -DCMAKE_CXX_FLAGS="-Wall -Werror=return-type" ..
         - make -j$(nproc)
         - make install
+        - QT_QPA_PLATFORM=offscreen ./doomseeker --tests
 
 pipelines:
   bookmarks:
