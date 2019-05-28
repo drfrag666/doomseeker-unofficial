@@ -31,7 +31,7 @@ void Random::builtInInit()
 	if (Random::generator.isNull())
 	{
 		std::random_device randomDevice;
-		init(randomDevice() + QDateTime::currentDateTime().toSecsSinceEpoch());
+		init(randomDevice() + QDateTime::currentDateTime().toMSecsSinceEpoch());
 	}
 }
 
