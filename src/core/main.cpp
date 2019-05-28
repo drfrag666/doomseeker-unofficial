@@ -64,6 +64,10 @@
 #include "versiondump.h"
 #include "wadseeker/wadseeker.h"
 
+#ifdef Q_OS_OPENBSD
+#include <unistd.h>
+#endif
+
 QString Main::argDataDir;
 bool Main::bInstallUpdatesAndRestart = false;
 
@@ -72,6 +76,11 @@ Main::Main(int argc, char *argv[])
 	: arguments(argv), argumentsCount(argc),
 	startCreateGame(false), startRcon(false)
 {
+	#ifdef Q_OS_OPENBSD
+	pledge ("stdio rpath wpath cpath tmppath inet mcast fattr chown flock unix "
+		"dns sendfd recvfd tape tty proc exec prot_exec ps audio video unveil",
+		"");
+	#endif
 	bIsFirstRun = false;
 	bTestMode = false;
 	bPortableMode = false;

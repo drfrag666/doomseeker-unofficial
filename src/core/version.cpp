@@ -42,7 +42,7 @@ QString Version::operatingSystem()
 	#elif defined(Q_OS_MAC)
 	return QString("MAC");
 	#else
-	return QString("Unknown OS for Version::operatingSystem()");
+	return QSysInfo::prettyProductName();
 	#endif
 }
 
