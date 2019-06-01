@@ -76,9 +76,5 @@ void CaseSensitiveFSFileSeeker::insertSubpathsAfterPath(const FileSearchPath &pa
 	QList<FileSearchPath> postPathBaseEntries;
 	while (!paths->isEmpty() && paths->last().path() != path.path())
 		postPathBaseEntries.prepend(paths->takeLast());
-	if (!paths->isEmpty())
-	{
-		postPathBaseEntries.prepend(paths->takeFirst());
-		*paths.data() << subpaths << postPathBaseEntries;
-	}
+	*paths.data() << subpaths << postPathBaseEntries;
 }
