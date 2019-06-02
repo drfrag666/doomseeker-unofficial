@@ -39,7 +39,11 @@ public:
 		Asset()
 		{
 			socket = new QUdpSocket();
+			#ifdef Q_OS_OPENBSD
 			valid = socket->bind(QHostAddress("0.0.0.0"));
+			#else
+			valid = socket->bind();
+			#endif
 		}
 
 		~Asset()

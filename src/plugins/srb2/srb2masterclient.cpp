@@ -182,7 +182,7 @@ void Srb2MasterClient::readResponse()
 	{
 		Header header = readHeader();
 
-		if (header.length == 0)
+		if (header.length == 0 || header.length > 0x0FFFFFFF)
 		{
 			socket.close();
 			emit listUpdated();
