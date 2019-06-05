@@ -30,11 +30,11 @@ class QStandardItem;
 
 struct ServerListColumn
 {
-	int columnId;
-	int width;
-	bool bHidden;
-	bool bResizable;
-	Qt::SortOrder defaultSortOrder;
+	const int columnId;
+	const int width;
+	const bool bHidden;
+	const bool bResizable;
+	const Qt::SortOrder defaultSortOrder;
 };
 
 namespace ServerListColumnId
@@ -62,7 +62,7 @@ class ServerListColumns : public QObject
 	Q_OBJECT
 
 public:
-	static ServerListColumn columns[];
+	static const ServerListColumn columns[];
 
 	static QString columnLabel(int columnId);
 	static QStringList generateColumnHeaderLabels();
