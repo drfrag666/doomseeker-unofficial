@@ -93,7 +93,7 @@ QVariantList FileSearchPath::toVariantList(const QList<FileSearchPath> &collecti
 	return result;
 }
 
-void FileSearchPath::setCache(const QSet<QString> &files)
+void FileSearchPath::setCache(const QMap<QString, QString> &files)
 {
 	cacheFiles_ = files;
 }
@@ -103,7 +103,7 @@ bool FileSearchPath::hasCache()
 	return !cacheFiles_.isEmpty();
 }
 
-const QSet<QString> &FileSearchPath::getCache()
+const QMap<QString, QString> &FileSearchPath::getCache()
 {
 	return cacheFiles_;
 }

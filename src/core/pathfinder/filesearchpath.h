@@ -63,14 +63,17 @@ public:
 
 	/**
 	 * @brief Set the list of the names files located in the directory.
+	 *
+	 * The cache is a map where the key is the name in lowercase and the entry
+	 * will be case sensitive or not depending on the implementation.
 	 */
-	void setCache(const QSet<QString> &files);
+	void setCache(const QMap<QString, QString> &files);
 	bool hasCache();
-	const QSet<QString> &getCache();
+	const QMap<QString, QString> &getCache();
 private:
 	QString path_;
 	bool recursive_;
-	QSet<QString> cacheFiles_;
+	QMap<QString, QString> cacheFiles_;
 };
 
 #endif

@@ -39,19 +39,20 @@ QString CaseSensitiveFSFileSeeker::findFileInPath(const QString &fileName, FileS
 	if (!path.hasCache())
 		generatePathCacheAndEditPaths(path);
 	if (path.getCache().contains(fileName.toLower()))
-		return QDir(path.path()).absoluteFilePath(fileName);
+		return QDir(path.path()).absoluteFilePath(path.getCache().value(fileName.toLower()));
 	return QString();
 }
 
 void CaseSensitiveFSFileSeeker::generatePathCacheAndEditPaths(FileSearchPath &path)
 {
 	QFileInfoList entriesDirectory = QDir(path.path()).entryInfoList(QDir::AllEntries | QDir::NoDotAndDotDot);
-	QSet<QString> entriesFileNames, entriesDirAbsolutePath;
+	QSet<QString> entriesDirAbsolutePath;
+	QMap<QString, QString> entriesFileNames;
 
 	for (const QFileInfo &entry : entriesDirectory)
 	{
 		if (entry.isFile())
-			entriesFileNames << entry.fileName().toLower();
+			entriesFileNames.insert(entry.fileName().toLower(), entry.fileName());
 		else if (entry.isDir())
 			entriesDirAbsolutePath << entry.absoluteFilePath();
 	}
