@@ -263,6 +263,7 @@ MainWindow::MainWindow(QApplication *application, int argc, char **argv)
 
 	// Get the master
 	d->masterManager = new MasterManager();
+	d->masterManager->setBroadcastManager(d->broadcastManager);
 	d->buddiesList->scan(d->masterManager);
 	connect(d->masterManager, SIGNAL(masterMessage(MasterClient*,const QString&,const QString&,bool)),
 		this, SLOT(masterManagerMessages(MasterClient*,const QString&,const QString&,bool)));
