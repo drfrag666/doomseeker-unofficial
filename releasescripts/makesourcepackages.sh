@@ -145,6 +145,7 @@ if ! tar -c "$doomseekerArchiveName" --owner=doomseeker --group=doomseeker | xz 
 	Error=1
 else
 	echo 'Adding licence and dependencies for independent building...'
+	cp "$doomseekerArchiveName/LICENSE" "$doomseekerArchiveName/src/wadseeker"
 	cp "$doomseekerArchiveName/LICENSE.json" "$doomseekerArchiveName/src/wadseeker"
 	cp -r "$doomseekerArchiveName/cmake" "$doomseekerArchiveName/src/wadseeker"
 
