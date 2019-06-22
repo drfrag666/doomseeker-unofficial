@@ -177,9 +177,9 @@ set(HEADER_FILES
 	wadseekerversioninfo.h
 )
 
-add_library(Wadseeker SHARED ${WADSEEKER_FILES} ${HEADER_FILES})
+add_library(wadseeker SHARED ${WADSEEKER_FILES} ${HEADER_FILES})
 
-target_include_directories(Wadseeker
+target_include_directories(wadseeker
 PRIVATE
 	${CMAKE_CURRENT_BINARY_DIR}
 	${CMAKE_CURRENT_SOURCE_DIR}
@@ -187,7 +187,7 @@ INTERFACE
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
 )
 
-target_link_libraries(Wadseeker
+target_link_libraries(wadseeker
 LINK_PUBLIC
 	${QT_LIBRARIES}
 LINK_PRIVATE
@@ -196,33 +196,33 @@ LINK_PRIVATE
 	lzma
 	ZLIB::ZLIB)
 
-set_target_properties(Wadseeker PROPERTIES
+set_target_properties(wadseeker PROPERTIES
 	AUTOMOC ON
 	VERSION ${WADSEEKER_LIBVERSION}
 	SOVERSION ${WADSEEKER_SOVERSION}
 )
 
 if(DEFINED Doomseeker_BINARY_DIR)
-	set_target_properties(Wadseeker PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${Doomseeker_BINARY_DIR} RUNTIME_OUTPUT_DIRECTORY ${Doomseeker_BINARY_DIR})
+	set_target_properties(wadseeker PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${Doomseeker_BINARY_DIR} RUNTIME_OUTPUT_DIRECTORY ${Doomseeker_BINARY_DIR})
 endif()
 
 set(TARGETS_EXPORT_NAME "${PROJECT_NAME}Targets")
 if(NOT WIN32 AND NOT XCODE_VERSION)
 	install(
-		TARGETS Wadseeker
+		TARGETS wadseeker
 		EXPORT ${TARGETS_EXPORT_NAME}
 		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT wadseeker NAMELINK_SKIP
 		INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wadseeker
 	)
 	install(
-		TARGETS Wadseeker
+		TARGETS wadseeker
 		EXPORT ${TARGETS_EXPORT_NAME}
 		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT wadseeker-dev NAMELINK_ONLY
 	)
 	install(FILES ${CMAKE_SOURCE_DIR}/LICENSE.json DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/wadseeker COMPONENT wadseeker)
 elseif(WIN32)
 	install(
-		TARGETS Wadseeker
+		TARGETS wadseeker
 		EXPORT ${TARGETS_EXPORT_NAME}
 		RUNTIME DESTINATION . COMPONENT wadseeker
 		ARCHIVE DESTINATION ./lib COMPONENT wadseeker

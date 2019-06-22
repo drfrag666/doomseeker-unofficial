@@ -104,7 +104,7 @@ if(NOT TARGET ZLIB::ZLIB)
 	find_package_ZLIB(REQUIRED)
 endif()
 
-if(NOT TARGET Wadseeker::Wadseeker AND NOT Wadseeker_INTERNAL)
+if(NOT TARGET wadseeker::wadseeker AND NOT WADSEEKER_INTERNAL)
 	find_package_wadseeker(REQUIRED)
 endif()
 
@@ -221,7 +221,7 @@ add_dependencies(doomseeker revision_check)
 
 target_link_libraries(doomseeker
 LINK_PRIVATE
-	Wadseeker
+	wadseeker
 	ZLIB::ZLIB
 	${CMAKE_DL_LIBS}
 LINK_PUBLIC
@@ -407,7 +407,7 @@ if(USE_CPACK)
 		DISPLAY_NAME "Doomseeker"
 		DESCRIPTION "Cross-platform browser for Doom servers."
 		REQUIRED
-		DEPENDS Wadseeker)
+		DEPENDS wadseeker)
 	parent_scope_component(doomseeker)
 
 	set(CPACK_DEBIAN_DOOMSEEKER_PACKAGE_NAME "doomseeker" PARENT_SCOPE)

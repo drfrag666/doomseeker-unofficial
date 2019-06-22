@@ -125,30 +125,30 @@ macro(find_package_BZip2)
 endmacro()
 
 macro(find_package_wadseeker)
-	find_package(Wadseeker CONFIG ${ARGV0})
+	find_package(wadseeker CONFIG ${ARGV0})
 	#Probably not needed. The config should do it's job.
-	if (Wadseeker_FOUND AND NOT TARGET Wadseeker::Wadseeker)
-		add_library(Wadseeker::Wadseeker UNKNOWN IMPORTED)
-		set_target_properties(Wadseeker::Wadseeker PROPERTIES
-		INTERFACE_INCLUDE_DIRECTORIES "${Wadseeker_INCLUDE_DIRS}")
+	if (wadseeker_FOUND AND NOT TARGET wadseeker::wadseeker)
+		add_library(wadseeker::wadseeker UNKNOWN IMPORTED)
+		set_target_properties(wadseeker::wadseeker PROPERTIES
+		INTERFACE_INCLUDE_DIRECTORIES "${wadseeker_INCLUDE_DIRS}")
 
-		if(Wadseeker_LIBRARY_RELEASE)
-			set_property(TARGET Wadseeker::Wadseeker APPEND PROPERTY
+		if(wadseeker_LIBRARY_RELEASE)
+			set_property(TARGET wadseeker::wadseeker APPEND PROPERTY
 				IMPORTED_CONFIGURATIONS RELEASE)
-			set_target_properties(Wadseeker::Wadseeker PROPERTIES
-				IMPORTED_LOCATION_RELEASE "${Wadseeker_LIBRARY_RELEASE}")
+			set_target_properties(wadseeker::wadseeker PROPERTIES
+				IMPORTED_LOCATION_RELEASE "${wadseeker_LIBRARY_RELEASE}")
 		endif()
 
-		if(Wadseeker_LIBRARY_DEBUG)
-			set_property(TARGET Wadseeker::Wadseeker APPEND PROPERTY
+		if(W_LIBRARY_DEBUG)
+			set_property(TARGET wadseeker::wadseeker APPEND PROPERTY
 				IMPORTED_CONFIGURATIONS DEBUG)
-			set_target_properties(Wadseeker::Wadseeker PROPERTIES
-				IMPORTED_LOCATION_DEBUG "${Wadseeker_LIBRARY_DEBUG}")
+			set_target_properties(wadseeker::wadseeker PROPERTIES
+				IMPORTED_LOCATION_DEBUG "${wadseeker_LIBRARY_DEBUG}")
 		endif()
 
-		if(NOT Wadseeker_LIBRARY_RELEASE AND NOT Wadseeker_LIBRARY_DEBUG)
-			set_property(TARGET Wadseeker::Wadseeker APPEND PROPERTY
-				IMPORTED_LOCATION "${Wadseeker_LIBRARY}")
+		if(NOT wadseeker_LIBRARY_RELEASE AND NOT wadseeker_LIBRARY_DEBUG)
+			set_property(TARGET wadseeker::wadseeker APPEND PROPERTY
+				IMPORTED_LOCATION "${wadseeker_LIBRARY}")
 		endif()
 	endif()
 endmacro()
