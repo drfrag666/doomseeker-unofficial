@@ -51,9 +51,12 @@ The sources for development are available through Mercurial on Bitbucket:
 <https://bitbucket.org/Doomseeker/doomseeker>.
 
 A typical way to get started is to clone the Mercurial repository, using a
-Mercurial client from command line: `hg clone
-https://bitbucket.org/Doomseeker/doomseeker`. Refer to the manual of your
-client for information on interfacing with Mercurial.
+Mercurial client from command line.
+
+`hg clone https://bitbucket.org/Doomseeker/doomseeker`
+
+Refer to the manual of your client for information on interfacing with
+Mercurial.
 
 A distribution of Doomseeker source code will most often include a copy of
 Wadseeker's source code at `src/wadseeker`.
