@@ -58,7 +58,7 @@
    <item>
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;WARNING: &lt;/span&gt;It's highly discouraged to enable recursion for directories with lots of subdirectories. You may experience heavy performance loss and high hard drive usage if recursion is used recklessly. When recursion is enabled, file search operations will go the entire way down to the bottom of the directory tree if necessary.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;WARNING: &lt;/span&gt;It's not recommended to enable recursion for directories with lots of subdirectories. With such directories you may experience heavy performance loss and high hard drive usage. When recursion is enabled, file search operations will go the entire way down to the bottom of the directory tree if necessary.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
