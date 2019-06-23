@@ -104,12 +104,6 @@ maintainer may also `uncrustify` the source code tree occasionally.
 The standard version followed is currently **C++11**, as we look forward to use
 more modern C++ standard versions in the future.
 
-### Unit tests
-
-They're *DOOM*ed. Rotten in hell. Forget about it.
-
-(See [issue #3533](https://zandronum.com/tracker/view.php?id=3533) online.)
-
 ## Submitting contributions
 
 > For glory and vodka!
