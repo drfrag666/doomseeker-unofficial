@@ -169,6 +169,7 @@ set(HEADER_FILES
 	gui/widgets/serverlistview.h
 	gui/widgets/serversstatuswidget.h
 	gui/widgets/tablewidgetmouseaware.h
+	gui/widgets/tablewidgetreorderable.h
 	gui/widgets/wadseekersitestable.h
 	gui/widgets/wadseekerwadstable.h
 	ini/ini.h
@@ -400,6 +401,7 @@ set(SOURCE_FILES
 	gui/widgets/serverlistview.cpp
 	gui/widgets/serversstatuswidget.cpp
 	gui/widgets/tablewidgetmouseaware.cpp
+	gui/widgets/tablewidgetreorderable.cpp
 	gui/widgets/wadseekersitestable.cpp
 	gui/widgets/wadseekerwadstable.cpp
 	ini/ini.cpp
