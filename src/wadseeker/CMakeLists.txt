@@ -191,23 +191,24 @@ if(DEFINED Doomseeker_BINARY_DIR)
 	set_target_properties(wadseeker PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${Doomseeker_BINARY_DIR} RUNTIME_OUTPUT_DIRECTORY ${Doomseeker_BINARY_DIR})
 endif()
 
-set(TARGETS_EXPORT_NAME "${PROJECT_NAME}Targets")
+set(TARGETS_NAME "wadseeker")
+set(TARGETS_EXPORT_NAME "${TARGETS_NAME}Targets")
 if(NOT WIN32 AND NOT XCODE_VERSION)
 	install(
-		TARGETS wadseeker
+		TARGETS ${TARGETS_NAME}
 		EXPORT ${TARGETS_EXPORT_NAME}
 		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT wadseeker NAMELINK_SKIP
 		INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wadseeker
 	)
 	install(
-		TARGETS wadseeker
+		TARGETS ${TARGETS_NAME}
 		EXPORT ${TARGETS_EXPORT_NAME}
 		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT wadseeker-dev NAMELINK_ONLY
 	)
 	install(FILES ${CMAKE_SOURCE_DIR}/LICENSE.json DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/wadseeker COMPONENT wadseeker)
 elseif(WIN32)
 	install(
-		TARGETS wadseeker
+		TARGETS ${TARGETS_NAME}
 		EXPORT ${TARGETS_EXPORT_NAME}
 		RUNTIME DESTINATION . COMPONENT wadseeker
 		ARCHIVE DESTINATION ./lib COMPONENT wadseeker
@@ -262,8 +263,8 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.6.0")
 		set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/wadseeker")
 
 		set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
-		set(VERSION_CONFIG "${generated_dir}/${PROJECT_NAME}ConfigVersion.cmake")
-		set(PROJECT_CONFIG "${generated_dir}/${PROJECT_NAME}Config.cmake")
+		set(VERSION_CONFIG "${generated_dir}/${TARGETS_NAME}ConfigVersion.cmake")
+		set(PROJECT_CONFIG "${generated_dir}/${TARGETS_NAME}Config.cmake")
 		configure_package_config_file(wadseekerConfig.cmake.in
 			${PROJECT_CONFIG}
 			INSTALL_DESTINATION ${CONFIG_INSTALL_DIR}
