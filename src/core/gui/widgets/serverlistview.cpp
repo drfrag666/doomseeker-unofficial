@@ -55,6 +55,10 @@ public:
 			rightAligned = true;
 		}
 
+		// Hide the focus rectangle in picture cells.
+		if (isPictureColumn(index.column()))
+			opt.state &= ~QStyle::State_HasFocus;
+
 		// Now we draw the table as usual.
 		QItemDelegate::paint(painter, opt, index);
 
@@ -82,7 +86,7 @@ public:
 	}
 
 protected:
-	void drawDecoration(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QPixmap &pixmap) const
+	void drawDecoration(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QPixmap &pixmap) const override
 	{
 		if (pixmap.isNull() || !rect.isValid())
 			return;
@@ -94,6 +98,13 @@ protected:
 		}
 		else
 			QItemDelegate::drawDecoration(painter, option, rect, pixmap);
+	}
+
+private:
+	inline static bool isPictureColumn(int column)
+	{
+		return column == ServerListColumnId::IDPort ||
+			column == ServerListColumnId::IDPlayers;
 	}
 };
 
