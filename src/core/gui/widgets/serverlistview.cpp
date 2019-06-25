@@ -103,11 +103,7 @@ ServerListView::ServerListView(QWidget *parent) : QTableView(parent)
 {
 	// Prevent the fat rows problem.
 	verticalHeader()->setDefaultSectionSize(fontMetrics().height() + 6);
-	#if QT_VERSION >= 0x050000
 	verticalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-	#else
-	verticalHeader()->setResizeMode(QHeaderView::Fixed);
-	#endif
 	setShowGrid(gConfig.doomseeker.bDrawGridInServerTable);
 
 	setItemDelegate(new CustomItemDelegate());
@@ -188,17 +184,9 @@ void ServerListView::setupTableColumnWidths()
 		}
 		QHeaderView::ResizeMode resizeMode = columns[colIdx].bResizable ?
 			QHeaderView::Interactive : QHeaderView::Fixed;
-		#if QT_VERSION >= 0x050000
 		horizontalHeader()->setSectionResizeMode(colIdx, resizeMode);
-		#else
-		horizontalHeader()->setResizeMode(colIdx, resizeMode);
-		#endif
 	}
 
 	// General settings.
-	#if QT_VERSION >= 0x050000
 	horizontalHeader()->setSectionsMovable(true);
-	#else
-	horizontalHeader()->setMovable(true);
-	#endif
 }

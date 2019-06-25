@@ -69,30 +69,15 @@ if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/gitinfo.h")
 	file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/gitinfo.h" "")
 endif()
 
-if(NOT FORCE_QT4)
-	find_package(Qt5 COMPONENTS Widgets)
-endif()
+find_package(Qt5 COMPONENTS Widgets)
 
 if(NOT Qt5Widgets_FOUND)
-	find_package(Qt4 COMPONENTS QtCore QtGui QtNetwork QtXml REQUIRED)
-	set(QT_LIBRARIES Qt4::QtCore Qt4::QtGui Qt4::QtNetwork Qt4::QtXml)
+	message(FATAL_ERROR "Qt5 not found. Please make sure to set the Qt5_DIR variable")
 else()
 	find_package(Qt5 COMPONENTS Core Gui LinguistTools Multimedia Network Xml REQUIRED)
 	if (WIN32)
 		find_package(Qt5 COMPONENTS WinExtras REQUIRED)
 	endif()
-	macro(qt4_add_resources)
-		qt5_add_resources(${ARGV})
-	endmacro()
-	macro(qt4_wrap_ui)
-		qt5_wrap_ui(${ARGV})
-	endmacro()
-	macro(qt4_add_translation)
-		qt5_add_translation(${ARGV})
-	endmacro()
-	macro(qt4_create_translation)
-		qt5_create_translation(${ARGV})
-	endmacro()
 	set(QT_LIBRARIES Qt5::Widgets Qt5::Multimedia Qt5::Network Qt5::Xml Qt5::Gui Qt5::Core)
 	if(Qt5WinExtras_FOUND)
 		set(QT_LIBRARIES ${QT_LIBRARIES} Qt5::WinExtras)
@@ -119,9 +104,9 @@ configure_file(
 )
 include("CMakeFileListing.cmake")
 
-qt4_wrap_ui(doomseekerUI ${UI_FILES})
+qt5_wrap_ui(doomseekerUI ${UI_FILES})
 
-qt4_add_resources(doomseekerResources
+qt5_add_resources(doomseekerResources
 	${Doomseeker_SOURCE_DIR}/media/resources.qrc
 )
 
@@ -138,7 +123,7 @@ if (UPDATE_TRANSLATIONS)
 		${SOURCE_FILES}
 		${HEADER_FILES}
 	)
-	qt4_create_translation(TS_FILES
+	qt5_create_translation(TS_FILES
 		${FILES_TO_TRANSLATE}
 		${TRANSLATIONS_FILES}
 	)
@@ -151,21 +136,11 @@ else ()
 	add_custom_target(translations_target)
 endif ()
 
-if (WIN32 AND NOT Qt5Widgets_FOUND)
-	# Compile&copy Qt4 translations that need to be redistributed with the .exe.
-	# .qm files from these need to be redistributed with the application.
-	# WARNING: This should always be defined after UPDATE_TRANSLATIONS "if".
-	set(TRANSLATIONS_FILES
-		${TRANSLATIONS_FILES}
-		${QT_TRANSLATIONS_DIR}/qt_es.ts
-		${QT_TRANSLATIONS_DIR}/qt_pl.ts)
-endif()
-
-qt4_add_translation(QM_FILES ${TRANSLATIONS_FILES})
+qt5_add_translation(QM_FILES ${TRANSLATIONS_FILES})
 
 if (WIN32 AND Qt5Widgets_FOUND)
 	# Copy Qt5 translations that need to be redistributed with the .exe.
-	# WARNING: This should always be defined after qt4_add_translation.
+	# WARNING: This should always be defined after qt5_add_translation.
 	execute_process(COMMAND ${QMAKE_EXEC} -query QT_INSTALL_TRANSLATIONS
 		OUTPUT_VARIABLE QT_TRANSLATIONS_DIR
 		OUTPUT_STRIP_TRAILING_WHITESPACE)

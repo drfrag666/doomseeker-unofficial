@@ -38,9 +38,7 @@
 #include <QProcessEnvironment>
 #include <QSet>
 
-#if QT_VERSION >= 0x050000
 #include <QStandardPaths>
-#endif
 
 // Sanity check for INSTALL_PREFIX and INSTALL_LIBDIR
 #if !defined(INSTALL_PREFIX) || !defined(INSTALL_LIBDIR)
@@ -131,7 +129,6 @@ DataPaths::DataPaths(bool bPortableModeOn)
 	}
 	else
 	{
-		#if QT_VERSION >= 0x050000
 		d->cacheDirectory = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
 		#if QT_VERSION >= 0x050500
 		// QStandardPaths::AppConfigLocation was added in Qt 5.5.
@@ -143,17 +140,6 @@ DataPaths::DataPaths(bool bPortableModeOn)
 			Application::NAME);
 		#endif
 		d->dataDirectory = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-		#else
-		d->cacheDirectory = QDesktopServices::storageLocation(QDesktopServices::CacheLocation);
-		d->dataDirectory = QDesktopServices::storageLocation(QDesktopServices::DataLocation);
-
-		#ifdef Q_OS_DARWIN
-		d->configDirectory = systemAppDataDirectory("Library/Preferences/Doomseeker");
-		#else
-		d->configDirectory = systemAppDataDirectory(LEGACY_APPDATA_DIR_NAME);
-		#endif
-
-		#endif
 	}
 
 	gLog << QString("Cache directory: %1").arg(d->cacheDirectory.absolutePath());
@@ -293,11 +279,7 @@ QString DataPaths::documentsLocationPath(const QString &subpath) const
 	QString rootPath;
 	if (!isPortableModeOn())
 	{
-		#if QT_VERSION >= 0x050000
 		rootPath = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation).first();
-		#else
-		rootPath = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
-		#endif
 		rootPath = Strings::combinePaths(rootPath, QCoreApplication::applicationName());
 	}
 	else

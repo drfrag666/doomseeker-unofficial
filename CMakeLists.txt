@@ -71,7 +71,6 @@ if(USE_CPACK)
 	endmacro()
 endif()
 
-option(FORCE_QT4 "Force Qt4" NO)
 if(WIN32)
 	set(FORCE_INTERNAL_ZLIB YES)
 	set(FORCE_INTERNAL_BZIP2 YES)

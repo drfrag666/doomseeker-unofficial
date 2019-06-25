@@ -28,7 +28,7 @@ set(PLUGIN_NAME zandronum)
 set(PLUGIN_VERSION 41)
 include(../PluginHeader.cmake)
 
-qt4_wrap_ui(ZANDRONUM_UI_FILES
+qt5_wrap_ui(ZANDRONUM_UI_FILES
 	createserverdialogpages/flagspage.ui
 	createserverdialogpages/votingsetupwidget.ui
 )

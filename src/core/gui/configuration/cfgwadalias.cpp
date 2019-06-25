@@ -57,11 +57,7 @@ CFGWadAlias::CFGWadAlias(QWidget *parent)
 	connect(header, SIGNAL(sectionResized(int,int,int)), &d->resizeTimer, SLOT(start()));
 
 	header->resizeSection(PrivData<CFGWadAlias>::ColWad, 150);
-	#if QT_VERSION >= 0x050000
 	header->setSectionResizeMode(PrivData<CFGWadAlias>::ColAliases, QHeaderView::Stretch);
-	#else
-	header->setResizeMode(PrivData<CFGWadAlias>::ColAliases, QHeaderView::Stretch);
-	#endif
 	header->resizeSection(PrivData<CFGWadAlias>::ColMatchType, 110);
 
 	d->table->sortByColumn(PrivData<CFGWadAlias>::ColWad, Qt::AscendingOrder);
