@@ -208,6 +208,9 @@ set(HEADER_FILES
 )
 
 add_library(wadseeker SHARED ${WADSEEKER_FILES} ${HEADER_FILES})
+if(NOT CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+	add_library(Wadseeker::wadseeker ALIAS wadseeker)
+endif()
 
 target_include_directories(wadseeker
 PRIVATE
@@ -215,13 +218,11 @@ PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}
 INTERFACE
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
-	$<INSTALL_INTERFACE:include>
 )
 
 target_link_libraries(wadseeker
-LINK_PUBLIC
-	${QT_LIBRARIES}
 LINK_PRIVATE
+	${QT_LIBRARIES}
 	${CMAKE_THREAD_LIBS_INIT}
 	BZip2::BZip2
 	lzma
@@ -237,28 +238,27 @@ if(DEFINED Doomseeker_BINARY_DIR)
 	set_target_properties(wadseeker PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${Doomseeker_BINARY_DIR} RUNTIME_OUTPUT_DIRECTORY ${Doomseeker_BINARY_DIR})
 endif()
 
-set(TARGETS_NAME "wadseeker")
-set(TARGETS_EXPORT_NAME "${TARGETS_NAME}Targets")
+set(TARGETS_EXPORT_NAME "wadseekerTargets")
 if(NOT WIN32 AND NOT XCODE_VERSION)
 	install(
-		TARGETS ${TARGETS_NAME}
+		TARGETS wadseeker
 		EXPORT ${TARGETS_EXPORT_NAME}
 		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT wadseeker NAMELINK_SKIP
-		INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wadseeker
+		INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 	)
 	install(
-		TARGETS ${TARGETS_NAME}
+		TARGETS wadseeker
 		EXPORT ${TARGETS_EXPORT_NAME}
 		LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT wadseeker-dev NAMELINK_ONLY
 	)
 	install(FILES ${CMAKE_SOURCE_DIR}/LICENSE.json DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/doc/wadseeker COMPONENT wadseeker)
 elseif(WIN32)
 	install(
-		TARGETS ${TARGETS_NAME}
+		TARGETS wadseeker
 		EXPORT ${TARGETS_EXPORT_NAME}
 		RUNTIME DESTINATION . COMPONENT wadseeker
 		ARCHIVE DESTINATION ./lib COMPONENT wadseeker
-		INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/wadseeker
+		INCLUDES DESTINATION ${CMAKE_INSTALL_PREFIX}/include
 	)
 	# License files.
 	set(LICENSE_FILES
@@ -309,8 +309,8 @@ if(NOT CMAKE_VERSION VERSION_LESS "3.6.0")
 		set(CONFIG_INSTALL_DIR "${CMAKE_INSTALL_LIBDIR}/cmake/wadseeker")
 
 		set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
-		set(VERSION_CONFIG "${generated_dir}/${TARGETS_NAME}ConfigVersion.cmake")
-		set(PROJECT_CONFIG "${generated_dir}/${TARGETS_NAME}Config.cmake")
+		set(VERSION_CONFIG "${generated_dir}/wadseekerConfigVersion.cmake")
+		set(PROJECT_CONFIG "${generated_dir}/wadseekerConfig.cmake")
 		configure_package_config_file(wadseekerConfig.cmake.in
 			${PROJECT_CONFIG}
 			INSTALL_DESTINATION ${CONFIG_INSTALL_DIR}

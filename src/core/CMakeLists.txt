@@ -89,7 +89,7 @@ if(NOT TARGET ZLIB::ZLIB)
 	find_package_ZLIB(REQUIRED)
 endif()
 
-if(NOT TARGET wadseeker::wadseeker AND NOT WADSEEKER_INTERNAL)
+if(NOT TARGET Wadseeker::wadseeker AND NOT WADSEEKER_INTERNAL)
 	find_package_wadseeker(REQUIRED)
 endif()
 
@@ -163,6 +163,10 @@ include("versiondefs.cmake")
 configure_file(versiondefs.h.in versiondefs.h)
 set(HEADER_FILES "${HEADER_FILES}" versiondefs.h)
 
+if (POLICY CMP0028)
+	cmake_policy(SET CMP0028 NEW)
+endif()
+
 add_executable(doomseeker
 	${doomseekerUI}
 	${doomseekerResources}
@@ -196,7 +200,7 @@ add_dependencies(doomseeker revision_check)
 
 target_link_libraries(doomseeker
 LINK_PRIVATE
-	wadseeker
+	Wadseeker::wadseeker
 	ZLIB::ZLIB
 	${CMAKE_DL_LIBS}
 LINK_PUBLIC
