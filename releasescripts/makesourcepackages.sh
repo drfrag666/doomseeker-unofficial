@@ -148,6 +148,7 @@ else
 	cp "$doomseekerArchiveName/LICENSE" "$doomseekerArchiveName/src/wadseeker"
 	cp "$doomseekerArchiveName/LICENSE.json" "$doomseekerArchiveName/src/wadseeker"
 	cp -r "$doomseekerArchiveName/cmake" "$doomseekerArchiveName/src/wadseeker"
+	cp -r "$doomseekerArchiveName/dependencies" "$doomseekerArchiveName/src/wadseeker"
 
 	echo 'Creating Wadseeker archive...'
 	if ! tar -cC "$doomseekerArchiveName/src" wadseeker --transform "s,^wadseeker,$wadseekerArchiveName," --owner=doomseeker --group=doomseeker | xz -9 > "$wadseekerArchiveName.tar.xz"; then
