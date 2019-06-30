@@ -23,6 +23,8 @@
 #include "version.h"
 #include "versiondefs.h"
 
+#include <QSysInfo>
+
 QString Version::changeset()
 {
 	return HG_REVISION_HASH_STRING;
