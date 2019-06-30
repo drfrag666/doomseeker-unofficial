@@ -70,6 +70,12 @@ public:
 
 	static bool isColumnVital(int columnId);
 
+	inline static bool isPictureColumn(int columnId)
+	{
+		return columnId == ServerListColumnId::IDPort ||
+			columnId == ServerListColumnId::IDPlayers;
+	}
+
 	ServerListColumns() {}
 };
 

@@ -56,7 +56,7 @@ public:
 		}
 
 		// Hide the focus rectangle in picture cells.
-		if (isPictureColumn(index.column()))
+		if (ServerListColumns::isPictureColumn(index.column()))
 			opt.state &= ~QStyle::State_HasFocus;
 
 		// Now we draw the table as usual.
@@ -98,13 +98,6 @@ protected:
 		}
 		else
 			QItemDelegate::drawDecoration(painter, option, rect, pixmap);
-	}
-
-private:
-	inline static bool isPictureColumn(int column)
-	{
-		return column == ServerListColumnId::IDPort ||
-			column == ServerListColumnId::IDPlayers;
 	}
 };
 
