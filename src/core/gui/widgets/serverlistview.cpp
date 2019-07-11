@@ -41,7 +41,7 @@
 class CustomItemDelegate : public QItemDelegate
 {
 public:
-	void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+	void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
 	{
 		// First we're going to check for our new right aligned image
 		// option.

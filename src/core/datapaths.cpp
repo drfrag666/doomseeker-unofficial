@@ -123,23 +123,23 @@ DataPaths::DataPaths(bool bPortableModeOn)
 
 	if (bPortableModeOn)
 	{
-		d->cacheDirectory = systemAppDataDirectory(".cache");
-		d->configDirectory = systemAppDataDirectory(LEGACY_APPDATA_DIR_NAME);
-		d->dataDirectory = systemAppDataDirectory(".static");
+		d->cacheDirectory.setPath(systemAppDataDirectory(".cache"));
+		d->configDirectory.setPath(systemAppDataDirectory(LEGACY_APPDATA_DIR_NAME));
+		d->dataDirectory.setPath(systemAppDataDirectory(".static"));
 	}
 	else
 	{
-		d->cacheDirectory = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+		d->cacheDirectory.setPath(QStandardPaths::writableLocation(QStandardPaths::CacheLocation));
 		#if QT_VERSION >= 0x050500
 		// QStandardPaths::AppConfigLocation was added in Qt 5.5.
-		d->configDirectory = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+		d->configDirectory.setPath(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
 		#else
 		// In older 5.x versions we need to construct the config path ourselves.
-		d->configDirectory = Strings::combinePaths(
+		d->configDirectory.setPath(Strings::combinePaths(
 			QStandardPaths::writableLocation(QStandardPaths::GenericConfigLocation),
-			Application::NAME);
+			Application::NAME));
 		#endif
-		d->dataDirectory = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
+		d->dataDirectory.setPath(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
 	}
 
 	gLog << QString("Cache directory: %1").arg(d->cacheDirectory.absolutePath());
