@@ -137,6 +137,7 @@ bool JoinCommandLineBuilder::checkServerStatus()
 
 bool JoinCommandLineBuilder::checkWadseekerValidity(QWidget *parent)
 {
+	Q_UNUSED(parent);
 	QString targetDirPath = gConfig.wadseeker.targetDirectory;
 	QDir targetDir(targetDirPath);
 	QFileInfo targetDirFileInfo(targetDirPath);
@@ -284,7 +285,7 @@ void JoinCommandLineBuilder::obtainJoinCommandLine()
 			failBuild();
 			return;
 		}
-		// Intentional fall through
+		[[gnu::fallthrough]];
 	}
 
 	case JoinError::NoError:

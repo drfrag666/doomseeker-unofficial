@@ -45,7 +45,7 @@ DClass<ZandronumEnginePlugin>
 public:
 	ZandronumBroadcast *broadcast;
 };
-DPointered(ZandronumEnginePlugin);
+DPointered(ZandronumEnginePlugin)
 
 INSTALL_PLUGIN(ZandronumEnginePlugin)
 

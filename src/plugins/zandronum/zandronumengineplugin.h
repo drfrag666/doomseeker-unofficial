@@ -32,21 +32,21 @@ class ZandronumEnginePlugin : public EnginePlugin
 public:
 	ZandronumEnginePlugin();
 
-	QList<CreateServerDialogPage *> createServerDialogPages(CreateServerDialog *pDialog);
+	QList<CreateServerDialogPage *> createServerDialogPages(CreateServerDialog *pDialog) override;
 
-	void setupConfig(IniSection &config);
+	void setupConfig(IniSection &config) override;
 
-	ConfigPage *configuration(QWidget *parent);
-	GameHost *gameHost();
-	QList<GameMode> gameModes() const;
-	QList<GameCVar> gameModifiers() const;
-	QList<GameCVar> limits(const GameMode &gm) const;
+	ConfigPage *configuration(QWidget *parent) override;
+	GameHost *gameHost() override;
+	QList<GameMode> gameModes() const override;
+	QList<GameCVar> gameModifiers() const override;
+	QList<GameCVar> limits(const GameMode &gm) const override;
 
 	MasterClient *masterClient() const;
 
-	ServerPtr mkServer(const QHostAddress &address, unsigned short port) const;
+	ServerPtr mkServer(const QHostAddress &address, unsigned short port) const override;
 
-	void start();
+	void start() override;
 
 private:
 	DPtr<ZandronumEnginePlugin> d;

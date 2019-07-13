@@ -83,7 +83,7 @@ class ChocolateDoomAboutProvider : public TextProvider
 	Q_OBJECT
 
 public:
-	QString provide();
+	QString provide() override;
 };
 
 #endif

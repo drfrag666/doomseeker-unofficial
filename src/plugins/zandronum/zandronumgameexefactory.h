@@ -35,7 +35,7 @@ class ZandronumGameExeFactory : public GameExeFactory
 {
 public:
 	ZandronumGameExeFactory(EnginePlugin *plugin);
-	~ZandronumGameExeFactory();
+	~ZandronumGameExeFactory() override;
 
 private:
 	DPtr<ZandronumGameExeFactory> d;

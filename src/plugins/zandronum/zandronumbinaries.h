@@ -41,17 +41,17 @@ public:
 	static QString scriptFileExtension();
 
 	ZandronumClientExeFile(const QSharedPointer<const ZandronumServer> &server);
-	~ZandronumClientExeFile();
+	~ZandronumClientExeFile() override;
 
-	Message install(QWidget *parent);
+	Message install(QWidget *parent) override;
 
 	/**
 	 * If the parent Server is a normal server simple path to executable
 	 * file is returned. If this is a testing server, a shell script is
 	 * created	if necessary and a path to this shell script s returned.
 	 */
-	QString pathToExe(Message &message);
-	QString workingDirectory(Message &message);
+	QString pathToExe(Message &message) override;
+	QString workingDirectory(Message &message) override;
 
 protected:
 	bool downloadTestingBinaries(const QDir &destination, QWidget *parent);

@@ -327,6 +327,7 @@ void GeneralGameSetupPanel::setIwadByName(const QString &iwad)
 
 void GeneralGameSetupPanel::showEvent(QShowEvent *event)
 {
+	Q_UNUSED(event);
 	updateMapWarningVisibility();
 }
 

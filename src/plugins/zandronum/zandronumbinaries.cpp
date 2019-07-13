@@ -262,6 +262,7 @@ QString ZandronumClientExeFile::testingVersionInstallPath() const
 
 QString ZandronumClientExeFile::workingDirectory(Message &message)
 {
+	Q_UNUSED(message);
 	IniSection &config = *ZandronumEnginePlugin::staticInstance()->data()->pConfig;
 
 	QFileInfo fi((QString)config["BinaryPath"]);
@@ -505,6 +506,7 @@ void TestingProgressDialog::downloadFinished()
 
 void TestingProgressDialog::errorReceived(QNetworkReply::NetworkError code)
 {
+	Q_UNUSED(code);
 	networkError = pNetworkReply->errorString();
 }
 

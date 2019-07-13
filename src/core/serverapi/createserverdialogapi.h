@@ -91,7 +91,7 @@ public:
 	void setIwadByName(const QString &iwad);
 
 private:
-	Q_DISABLE_COPY(CreateServerDialogApi);
+	Q_DISABLE_COPY(CreateServerDialogApi)
 
 	DPtr<CreateServerDialogApi> d;
 

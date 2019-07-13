@@ -61,6 +61,7 @@ const QString &ExeFile::exeTypeName() const
 
 Message ExeFile::install(QWidget *parent)
 {
+	Q_UNUSED(parent);
 	return Message();
 }
 
@@ -130,7 +131,7 @@ public:
 	QString workingDir;
 };
 
-DPointered(ExeFilePath);
+DPointered(ExeFilePath)
 
 ExeFilePath::ExeFilePath()
 {

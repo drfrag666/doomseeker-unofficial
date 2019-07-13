@@ -51,7 +51,7 @@ class MAIN_EXPORT ExeFile : public QObject
 
 public:
 	ExeFile();
-	virtual ~ExeFile();
+	virtual ~ExeFile() override;
 
 	/**
 	 * @brief Config key where executable path on current system

@@ -47,9 +47,9 @@ public:
 	{
 		return dehPatches;
 	}
-	GameClientRunner *gameRunner();
+	GameClientRunner *gameRunner() override;
 
-	EnginePlugin *plugin() const;
+	EnginePlugin *plugin() const override;
 
 protected:
 	Response readRequest(const QByteArray &data);

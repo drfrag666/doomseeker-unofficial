@@ -37,7 +37,7 @@ class EngineZandronumConfigBox : public EngineConfigPage
 public:
 	EngineZandronumConfigBox(EnginePlugin *plugin, IniSection &cfg, QWidget *parent = nullptr);
 
-	void readSettings();
+	void readSettings() override;
 
 
 protected slots:
@@ -45,7 +45,7 @@ protected slots:
 
 protected:
 
-	void saveSettings();
+	void saveSettings() override;
 
 	QGroupBox *groupTesting;
 	QLineEdit *leTestingPath;
