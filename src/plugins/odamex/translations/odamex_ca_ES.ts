@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es_ES">
+<TS version="2.1" language="ca_ES">
 <context>
     <name>OdamexAboutProvider</name>
     <message>
@@ -8,7 +8,7 @@
         <source>This plugin is distributed under the terms of the LGPL v2.1 or later.
 
 </source>
-        <translation>Este complemento se distribuye bajo los términos de la licencia LGPL v2.1 o posterior.
+        <translation>Aquest complement es distribueix sota els termes de la llicència LGPL v2.1 o posterior.
 
 </translation>
     </message>
@@ -18,77 +18,78 @@
     <message>
         <location filename="../odamexgameinfo.cpp" line="27"/>
         <source>Duel</source>
-        <translation>Duelo</translation>
+        <translation>Duel</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="33"/>
         <source>Items respawn</source>
-        <translation>Objetos reaparecen</translation>
+        <translation>Objectes reapareixen</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="34"/>
         <source>Weapons stay</source>
-        <translation>Armas permanecen</translation>
+        <translatorcomment>There&apos;s a better word that saves an &quot;es&quot; -&quot;romanen&quot;- but it&apos;s so formal that it&apos;s never used in a normal enviorment and it&apos;s simply to odd for a program of this nature.</translatorcomment>
+        <translation>Armes es mantenen</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="35"/>
         <source>Friendly fire</source>
-        <translation>Fuego amigo</translation>
+        <translation>Foc amic</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="36"/>
         <source>Allow exit</source>
-        <translation>Permitir salir</translation>
+        <translation>Permetre sortir</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="37"/>
         <source>Infinite ammo</source>
-        <translation>Munición infinita</translation>
+        <translation>Munició infinita</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="38"/>
         <source>No monsters</source>
-        <translation>Sin monstruos</translation>
+        <translation>Sense monstres</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="39"/>
         <source>Monsters respawn</source>
-        <translation>Monstruos reaparecen</translation>
+        <translation>Monstres reapareixen</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="40"/>
         <source>Fast monsters</source>
-        <translation>Monstruos rápidos</translation>
+        <translation>Monstres ràpids</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="41"/>
         <source>Jumping allowed</source>
-        <translation>Permitir saltar</translation>
+        <translation>Permetre saltar</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="42"/>
         <source>Freelook allowed</source>
-        <translation>Cámara libre permitida</translation>
+        <translation>Càmera lliure permesa</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="43"/>
         <source>Wad can be downloaded</source>
-        <translation>El Wad se puede descargar</translation>
+        <translation>El Wad es pot descarregar</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="44"/>
         <source>Server resets on empty</source>
-        <translation>El servidor se restablece cuando está vacío</translation>
+        <translation>El servidor es restableix quan està buit</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="45"/>
         <source>Clean Maps</source>
-        <translation>Mapas Límpios</translation>
+        <translation>Mapes nets</translation>
     </message>
     <message>
         <location filename="../odamexgameinfo.cpp" line="47"/>
         <source>Kill anyone who tries to leave the level</source>
-        <translation>Mata a quien intente abandonar el nivel</translation>
+        <translation>Mata a qui intenti abandonar el nivell</translation>
     </message>
 </context>
 </TS>

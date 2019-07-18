@@ -112,6 +112,7 @@ qt5_add_resources(doomseekerResources
 
 # Translations
 set (TRANSLATIONS_FILES
+	translations/ca_ES.ts
 	translations/es_ES.ts
 	translations/pl_PL.ts
 )
@@ -146,8 +147,10 @@ if (WIN32 AND Qt5Widgets_FOUND)
 		OUTPUT_STRIP_TRAILING_WHITESPACE)
 	set(QM_FILES
 		${QM_FILES}
+		${QT_TRANSLATIONS_DIR}/qtbase_ca.qm
 		${QT_TRANSLATIONS_DIR}/qtbase_es.qm
 		${QT_TRANSLATIONS_DIR}/qtbase_pl.qm
+		${QT_TRANSLATIONS_DIR}/qtmultimedia_ca.qm
 		${QT_TRANSLATIONS_DIR}/qtmultimedia_es.qm
 		${QT_TRANSLATIONS_DIR}/qtmultimedia_pl.qm)
 endif ()

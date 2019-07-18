@@ -93,6 +93,7 @@ set(HEADER_FILES
 )
 
 set(TRANSLATIONS_FILES
+	translations/zandronum_ca_ES.ts
 	translations/zandronum_es_ES.ts
 	translations/zandronum_pl_PL.ts
 )

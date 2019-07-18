@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es_ES">
+<TS version="2.1" language="ca_ES">
 <context>
     <name>Srb2AboutProvider</name>
     <message>
@@ -8,7 +8,7 @@
         <source>This plugin is distributed under the terms of the LGPL v2.1 or later.
 
 </source>
-        <translation>Este complemento se distribuye bajo los términos de la licencia LGPL v2.1 o posterior.
+        <translation>Aquest complement es distribueix sota els termes de la llicència LGPL v2.1 o posterior.
 
 </translation>
     </message>
@@ -18,47 +18,47 @@
     <message>
         <location filename="../srb2gameinfo.cpp" line="62"/>
         <source>Flags</source>
-        <translation>Indicadores</translation>
+        <translation>Indicadors</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="64"/>
         <source>All players must reach exit</source>
-        <translation>Todos los jugadores deben llegar a la salida</translation>
+        <translation>Tots els jugadors han d&apos;arribar a la sortida</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="66"/>
         <source>Allow attacking in all game modes</source>
-        <translation>Permitir atacar en todos los modos de juego</translation>
+        <translation>Permet atacar en tots els modes de joc</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="67"/>
         <source>Allow mouse-look</source>
-        <translation>Permitir mirar con el mouse</translation>
+        <translation>Permetre mirar amb el ratolí</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="69"/>
         <source>Allow level exit in all game modes</source>
-        <translation>Permitir salir del nivel en todos los modos de juego</translation>
+        <translation>Permetre sortir del nivell en tots els modes de joc</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="70"/>
         <source>Allow team change</source>
-        <translation>Permitir cambiar de equipo</translation>
+        <translation>Permetre canviar d&apos;equip</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="72"/>
         <source>Tag players by simply touching them</source>
-        <translation>&quot;pillar&quot; jugadores simplemente tocándolos</translation>
+        <translation>&quot;Enxampar&quot; jugadors simplement tocant-los</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="73"/>
         <source>Respawn items</source>
-        <translation>Objetos reaparecen</translation>
+        <translation>Objectes reapareixen</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="74"/>
         <source>Listen server</source>
-        <translation>Escuchar servidor</translation>
+        <translation>Escoltar servidor</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="75"/>
@@ -68,37 +68,37 @@
     <message>
         <location filename="../srb2gameinfo.cpp" line="77"/>
         <source>Allow in-game WAD downloads</source>
-        <translation>Permitir descargas de WADs durante el juego</translation>
+        <translation>Permetre descàrregues de WADs durant el joc</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="79"/>
         <source>Players are non-solid and can be picked up</source>
-        <translation>Los jugadores se pueden traspasar y pueden ser recogidos</translation>
+        <translation>Els jugadors es poden traspassar i es poden agafar</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="80"/>
         <source>Friendly fire</source>
-        <translation>Fuego amigo</translation>
+        <translation>Foc amic</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="82"/>
         <source>Restrict skin change (game mode specific)</source>
-        <translation>Restringir el cambio de skins (específico al modo de juego)</translation>
+        <translation>Restringir el canvi de skins (específic al mode de joc)</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="84"/>
         <source>Join game only on next round</source>
-        <translation>Únete al juego solo en la siguiente ronda</translation>
+        <translation>Uneix-te al joc només a la següent ronda</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="86"/>
         <source>Spawn chaos emeralds (powerstones) in DM, TDM and CTF</source>
-        <translation>Hacer aparecer esmeraldas del caos (piedras de poder) en DM, TDM y CTF</translation>
+        <translation>Fer aparèixer maragdes del caos (pedres de poder) en DM, TDM i CTF</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="97"/>
         <source>Competition</source>
-        <translation>Competición</translation>
+        <translation>Competició</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="98"/>
@@ -108,67 +108,67 @@
     <message>
         <location filename="../srb2gameinfo.cpp" line="101"/>
         <source>Tag</source>
-        <translation>Tú la llevas</translation>
+        <translation>Pilla-pilla</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="102"/>
         <source>Hide &amp; Seek</source>
-        <translation>Escondite</translation>
+        <translation>Fet i amagar</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="114"/>
         <source>Starting lives</source>
-        <translation>Vidas iniciales</translation>
+        <translation>Vides inicials</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="117"/>
         <source>Laps</source>
-        <translation>Vueltas</translation>
+        <translation>Voltes</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="118"/>
         <source>Countdown time</source>
-        <translation>Cuenta atrás</translation>
+        <translation>Compte enrere</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="122"/>
         <source>Hide time</source>
-        <translation>Tiempo para esconderse</translation>
+        <translation>Temps per amagar-se</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="127"/>
         <source>Team difference autobalance</source>
-        <translation>Autobalance de equipos</translation>
+        <translation>Autobalanç d&apos;equips</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="128"/>
         <source>Point limit</source>
-        <translation>Límite de puntos</translation>
+        <translation>Límit de punts</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="129"/>
         <source>Time limit</source>
-        <translation>Límite de tiempo</translation>
+        <translation>Límit de temps</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="133"/>
         <source>Flag auto-return time</source>
-        <translation>Indicar tiempo para el regreso automático</translation>
+        <translation>Indicar temps per al retorn automàtic</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="134"/>
         <source>Force server character (skin)</source>
-        <translation>Forzar el personaje del servidor (skin)</translation>
+        <translation>Forçar el personatge del servidor (skin)</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="135"/>
         <source>Respawn item time</source>
-        <translation>Tiempo para reaprovisionamiento</translation>
+        <translation>Temps per reaprovisionament</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="136"/>
         <source>Intermission time</source>
-        <translation>Intermedio</translation>
+        <translation>Temps intermedi</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="137"/>
@@ -178,17 +178,17 @@
     <message>
         <location filename="../srb2gameinfo.cpp" line="138"/>
         <source>Max upload size in kB</source>
-        <translation>Tamaño máximo de subida en kB</translation>
+        <translation>Mida màxima de pujada en kB</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="139"/>
         <source>Tics until client timeout</source>
-        <translation>Tics hasta el límite de tiempo del cliente</translation>
+        <translation>Tics fins al límit de temps del client</translation>
     </message>
     <message>
         <location filename="../srb2gameinfo.cpp" line="140"/>
         <source>Resynch attempts before kicking clients</source>
-        <translation>Intentos de resincronización antes de expulsar a los clientes</translation>
+        <translation>Intents de resincronització abans d&apos;expulsar als clients</translation>
     </message>
 </context>
 </TS>

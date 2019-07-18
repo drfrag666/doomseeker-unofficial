@@ -67,6 +67,7 @@
 	<file alias="flags/BOL">flags/BOL.png</file> <!-- Bolivia -->
 	<file alias="flags/BRA">flags/BRA.png</file> <!-- Brazil -->
 	<file alias="flags/BLR">flags/BLR.png</file> <!-- Belarus (Bialorus) -->
+	<file alias="flags/CAT">flags/CAT.png</file> <!-- Catalonia (region of Spain) -->
 	<file alias="flags/CAN">flags/CAN.png</file> <!-- Canada -->
 	<file alias="flags/CHE">flags/CHE.png</file> <!-- Switzerland -->
 	<file alias="flags/CHL">flags/CHL.png</file> <!-- Chile -->

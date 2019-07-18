@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="es_ES">
+<TS version="2.1" language="ca_ES">
 <context>
     <name>ChocolateDoomAboutProvider</name>
     <message>
@@ -8,7 +8,7 @@
         <source>This plugin is distributed under the terms of the LGPL v2.1 or later.
 
 </source>
-        <translation>Este complemento se distribuye bajo los términos de la licencia LGPL v2.1 o posterior.
+        <translation>Aquest complement es distribueix sota els termes de la llicència LGPL v2.1 o posterior.
 
 </translation>
     </message>
@@ -18,7 +18,7 @@
     <message>
         <location filename="../chocolatedoomgamerunner.cpp" line="97"/>
         <source>Join Chocolate Doom game</source>
-        <translation>Unirse al juego Chocolate Doom</translation>
+        <translation>Unir-se al joc Chocolate Doom</translation>
     </message>
 </context>
 <context>

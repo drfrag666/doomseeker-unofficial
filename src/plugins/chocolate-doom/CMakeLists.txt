@@ -44,6 +44,7 @@ set(HEADER_FILES
 )
 
 set(TRANSLATIONS_FILES
+	translations/chocolatedoom_ca_ES.ts
 	translations/chocolatedoom_es_ES.ts
 	translations/chocolatedoom_pl_PL.ts
 )
