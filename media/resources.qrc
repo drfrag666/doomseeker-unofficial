@@ -64,11 +64,11 @@
 	<file alias="flags/BGR">flags/BGR.png</file> <!-- Bulgaria -->
 	<file alias="flags/BHS">flags/BHS.png</file> <!-- Bahamas -->
 	<file alias="flags/BIH">flags/BIH.png</file> <!-- Bosnia and Herzegovina -->
+	<file alias="flags/BLR">flags/BLR.png</file> <!-- Belarus (Bialorus) -->
 	<file alias="flags/BOL">flags/BOL.png</file> <!-- Bolivia -->
 	<file alias="flags/BRA">flags/BRA.png</file> <!-- Brazil -->
-	<file alias="flags/BLR">flags/BLR.png</file> <!-- Belarus (Bialorus) -->
-	<file alias="flags/CAT">flags/CAT.png</file> <!-- Catalonia (region of Spain) -->
 	<file alias="flags/CAN">flags/CAN.png</file> <!-- Canada -->
+	<file alias="flags/CAT">flags/CAT.png</file> <!-- Catalonia (region of Spain) -->
 	<file alias="flags/CHE">flags/CHE.png</file> <!-- Switzerland -->
 	<file alias="flags/CHL">flags/CHL.png</file> <!-- Chile -->
 	<file alias="flags/CHN">flags/CHN.png</file> <!-- China -->
@@ -84,8 +84,8 @@
 	<file alias="flags/DZA">flags/DZA.png</file> <!-- Algeria -->
 	<file alias="flags/ECU">flags/ECU.png</file> <!-- Ecuador -->
 	<file alias="flags/EGY">flags/EGY.png</file> <!-- Egypt -->
-	<file alias="flags/EST">flags/EST.png</file> <!-- Estonia -->
 	<file alias="flags/ESP">flags/ESP.png</file> <!-- Spain -->
+	<file alias="flags/EST">flags/EST.png</file> <!-- Estonia -->
 	<file alias="flags/EU" >flags/EU.png</file>  <!-- European Union (not really a country, but included in the database) -->
 	<file alias="flags/FIN">flags/FIN.png</file> <!-- Finland -->
 	<file alias="flags/FRA">flags/FRA.png</file> <!-- France -->
@@ -122,8 +122,8 @@
 	<file alias="flags/MEX">flags/MEX.png</file> <!-- Mexico -->
 	<file alias="flags/MKD">flags/MKD.png</file> <!-- Macedonia -->
 	<file alias="flags/MLT">flags/MLT.png</file> <!-- Malta -->
-	<file alias="flags/MYS">flags/MYS.png</file> <!-- Malaysia -->
 	<file alias="flags/MOZ">flags/MOZ.png</file> <!-- Mozambique -->
+	<file alias="flags/MYS">flags/MYS.png</file> <!-- Malaysia -->
 	<file alias="flags/NCL">flags/NCL.png</file> <!-- New Caledonia -->
 	<file alias="flags/NGA">flags/NGA.png</file> <!-- Nigeria -->
 	<file alias="flags/NIC">flags/NIC.png</file> <!-- Nicaragua -->
