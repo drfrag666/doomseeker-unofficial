@@ -107,7 +107,8 @@ QString AboutDialog::copyrightVerboseNotice() const
 	// Translations
 	paragraphs << tr("Doomseeker translations contributed by:\n")
 		+ tr("- Polish: Zalewa") + "\n"
-		+ tr("- Spanish: Pol Marcet Sard%1").arg(smallAGraveChar);
+		+ tr("- Spanish: Pol Marcet Sard%1").arg(smallAGraveChar) + "\n"
+		+ tr("- Catalan: Pol Marcet Sard%1").arg(smallAGraveChar);
 
 	// GeoLite2
 	paragraphs << tr("This program uses GeoLite2 data for IP-to-Country (IP2C) purposes, "

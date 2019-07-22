@@ -26,62 +26,62 @@
 <context>
     <name>FlagsPage</name>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="75"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="76"/>
         <source>Zandronum</source>
         <translation>Zandronum</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="103"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="104"/>
         <source>Zandronum 3</source>
         <translation>Zandronum 3</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="104"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="105"/>
         <source>Zandronum 2 (old)</source>
         <translation>Zandronum 2 (viejo)</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="106"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="107"/>
         <source>None</source>
         <translation>Nada</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="107"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="108"/>
         <source>Old (ZDoom)</source>
         <translation>Viejo (ZDoom)</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="108"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="109"/>
         <source>Hexen</source>
         <translation>Hexen</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="109"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="110"/>
         <source>Strife</source>
         <translation>Strife</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="166"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="167"/>
         <source>Default</source>
         <translation>Predeterminado</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="167"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="168"/>
         <source>No</source>
         <translation>No</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="168"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="169"/>
         <source>Yes</source>
         <translation>Si</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="289"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="290"/>
         <source>Unknown Zandronum version in the config. Reverting to default.</source>
         <translation>Versión desconocida de Zandronum en la configuración. Revirtiendo a predeterminado.</translation>
     </message>
     <message>
-        <location filename="../createserverdialogpages/flagspage.cpp" line="316"/>
+        <location filename="../createserverdialogpages/flagspage.cpp" line="317"/>
         <source>Tried to set unknown Zandronum version. Reverting to default.</source>
         <translation>Se ha intentado establecer una versión desconocida de Zandronum. Revertirtiendo a predeterminado.</translation>
     </message>
@@ -1242,12 +1242,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>TestingProgressDialog</name>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="455"/>
+        <location filename="../zandronumbinaries.cpp" line="456"/>
         <source>Downloading testing binaries...</source>
         <translation>Descargando archivos binarios de prueba ...</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="455"/>
+        <location filename="../zandronumbinaries.cpp" line="456"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -2745,17 +2745,17 @@ existe, pero no contiene el ejecutable de Zandronum.
 Doomseeker puede instalar el juego allí igualmente si lo desea.</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="301"/>
+        <location filename="../zandronumbinaries.cpp" line="302"/>
         <source>Downloading Zandronum testing binary from URL: %1</source>
         <translation>Descargando el archivo binario de prueba de Zandronum desde la URL: %1</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="306"/>
+        <location filename="../zandronumbinaries.cpp" line="307"/>
         <source>Doomseeker - download failed</source>
         <translation>Doomseeker - descarga fallida</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="307"/>
+        <location filename="../zandronumbinaries.cpp" line="308"/>
         <source>Failed to download testing binary.
 
 %1</source>
@@ -2764,46 +2764,46 @@ Doomseeker puede instalar el juego allí igualmente si lo desea.</translation>
 %1</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="331"/>
+        <location filename="../zandronumbinaries.cpp" line="332"/>
         <source>Unpacking file: %1</source>
         <translation>Desempaquetando archivo: %1</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="343"/>
+        <location filename="../zandronumbinaries.cpp" line="344"/>
         <source>Doomseeker - unpack failed</source>
         <translation>Doomseeker - error al desempaquetar</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="344"/>
+        <location filename="../zandronumbinaries.cpp" line="345"/>
         <source>Failed to unpack: %1</source>
         <translation>Error al desempaquetar: %1</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="371"/>
+        <location filename="../zandronumbinaries.cpp" line="372"/>
         <source>%1
  should be a script file but is a directory!</source>
         <translation>%1
  debería ser un script, pero es un directorio!</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="380"/>
+        <location filename="../zandronumbinaries.cpp" line="381"/>
         <source>You don&apos;t have permissions to execute file: %1
 </source>
         <translation>No tienes permisos para ejecutar el archivo: %1
 </translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="427"/>
+        <location filename="../zandronumbinaries.cpp" line="428"/>
         <source>Couldn&apos;t open batch file &quot;%1&quot; for writing</source>
         <translation>No se pudo abrir el script &quot;%1&quot; para escribir</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="434"/>
+        <location filename="../zandronumbinaries.cpp" line="435"/>
         <source>Error while writing batch file &quot;%1&quot;</source>
         <translation>Error al escribir el script &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../zandronumbinaries.cpp" line="444"/>
+        <location filename="../zandronumbinaries.cpp" line="445"/>
         <source>Cannot set permissions for file:
 %1</source>
         <translation>No se pueden definir los permisos para el archivo:
@@ -2950,22 +2950,22 @@ Doomseeker puede instalar el juego allí igualmente si lo desea.</translation>
 <context>
     <name>ZandronumServer</name>
     <message>
-        <location filename="../zandronumserver.cpp" line="111"/>
+        <location filename="../zandronumserver.cpp" line="112"/>
         <source>Blue</source>
         <translation>Azul</translation>
     </message>
     <message>
-        <location filename="../zandronumserver.cpp" line="112"/>
+        <location filename="../zandronumserver.cpp" line="113"/>
         <source>Red</source>
         <translation>Rojo</translation>
     </message>
     <message>
-        <location filename="../zandronumserver.cpp" line="113"/>
+        <location filename="../zandronumserver.cpp" line="114"/>
         <source>Green</source>
         <translation>Verde</translation>
     </message>
     <message>
-        <location filename="../zandronumserver.cpp" line="114"/>
+        <location filename="../zandronumserver.cpp" line="115"/>
         <source>Gold</source>
         <translation>Oro</translation>
     </message>

@@ -4,7 +4,7 @@
 <context>
     <name>Turok2AboutProvider</name>
     <message>
-        <location filename="../turok2exgameinfo.cpp" line="51"/>
+        <location filename="../turok2exgameinfo.cpp" line="52"/>
         <source>Turok 2 EX - Doomseeker plugin
 
 </source>
@@ -13,7 +13,7 @@
 </translation>
     </message>
     <message>
-        <location filename="../turok2exgameinfo.cpp" line="52"/>
+        <location filename="../turok2exgameinfo.cpp" line="53"/>
         <source>This plugin is distributed under the terms of the LGPL v2.1 or later.
 
 </source>
@@ -22,14 +22,14 @@
 </translation>
     </message>
     <message>
-        <location filename="../turok2exgameinfo.cpp" line="54"/>
+        <location filename="../turok2exgameinfo.cpp" line="55"/>
         <source>CRC code on BSD License:
 </source>
         <translation>Codi CRC sota llicència BSD:
 </translation>
     </message>
     <message>
-        <location filename="../turok2exgameinfo.cpp" line="56"/>
+        <location filename="../turok2exgameinfo.cpp" line="57"/>
         <source>Copyright (c) 2004-2006 Intel Corporation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -79,27 +79,27 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&
         <translation>Festa de raptors</translation>
     </message>
     <message>
-        <location filename="../turok2exgameinfo.cpp" line="41"/>
+        <location filename="../turok2exgameinfo.cpp" line="42"/>
         <source>Frag limit</source>
         <translation>Límit de frags</translation>
     </message>
     <message>
-        <location filename="../turok2exgameinfo.cpp" line="42"/>
+        <location filename="../turok2exgameinfo.cpp" line="43"/>
         <source>Time limit (in seconds)</source>
         <translation>Límit de temps (en segons)</translation>
     </message>
     <message>
-        <location filename="../turok2exgameinfo.cpp" line="43"/>
+        <location filename="../turok2exgameinfo.cpp" line="44"/>
         <source>Point limit</source>
         <translation>Límit de punts</translation>
     </message>
     <message>
-        <location filename="../turok2exgameinfo.cpp" line="44"/>
+        <location filename="../turok2exgameinfo.cpp" line="45"/>
         <source>Force team balance</source>
         <translation>Forçar balanç d&apos;equips</translation>
     </message>
     <message>
-        <location filename="../turok2exgameinfo.cpp" line="45"/>
+        <location filename="../turok2exgameinfo.cpp" line="46"/>
         <source>PFM overlap threshold</source>
         <translation>Marge de superposició PFM</translation>
     </message>

@@ -31,73 +31,78 @@
         <translation>- Espanyol: Pol Marcet Sard%1</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="113"/>
+        <location filename="../gui/aboutdialog.cpp" line="111"/>
+        <source>- Catalan: Pol Marcet Sard%1</source>
+        <translation type="unfinished">- Català: Pol Marcet Sard%1</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="114"/>
         <source>This program uses GeoLite2 data for IP-to-Country (IP2C) purposes, available from https://www.maxmind.com</source>
         <translation>Aquest programa fa servir la informació de GeoLite2 per localitzar països per IP (IP2C), i la pot trobar en https://www.maxmind.com</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="115"/>
+        <location filename="../gui/aboutdialog.cpp" line="116"/>
         <source>Database and Contents Copyright (c) 2018 MaxMind, Inc.</source>
         <translation>La base de dades i el seu contingut sota Copyright (c) 2018 Maxmind, Inc.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="116"/>
+        <location filename="../gui/aboutdialog.cpp" line="117"/>
         <source>GeoLite2 License:
 This work is licensed under the Creative Commons Attribution - ShareAlike 4.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.</source>
         <translation>Llicència de GeoLite2:
 Es troba sota la llicència de la Creative Commons Attribution-ShareAlike 4.0 Unported License. Per veure una còpia d&apos;aquesta llicència, visita http://creativecommons.org/licenses/by-sa/4.0/.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="119"/>
+        <location filename="../gui/aboutdialog.cpp" line="120"/>
         <source>GeoLite2 available at:
 https://dev.maxmind.com/geoip/geoip2/geolite2/</source>
         <translation>GeoLite2 està disponible en:
 https://dev.maxmind.com/geoip/geoip2/geolite2/</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="124"/>
+        <location filename="../gui/aboutdialog.cpp" line="125"/>
         <source>- Aha-Soft</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="125"/>
+        <location filename="../gui/aboutdialog.cpp" line="126"/>
         <source>- Crystal Clear by Everaldo Coelho</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="126"/>
+        <location filename="../gui/aboutdialog.cpp" line="127"/>
         <source>- Fugue Icons (C) 2013 Yusuke Kamiyamane. All rights reserved.</source>
         <translation>- Fugue Icons (C) 2013 Yusuke Kamiyamane. Tots els drets reservats.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="127"/>
+        <location filename="../gui/aboutdialog.cpp" line="128"/>
         <source>- Nuvola 1.0 (KDE 3.x icon set)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="128"/>
+        <location filename="../gui/aboutdialog.cpp" line="129"/>
         <source>- Oxygen Icons 4.3.1 (KDE)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="129"/>
+        <location filename="../gui/aboutdialog.cpp" line="130"/>
         <source>- Silk Icon Set (C) Mark James (famfamfam.com)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="130"/>
+        <location filename="../gui/aboutdialog.cpp" line="131"/>
         <source>- Tango Icon Library / Tango Desktop Project</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="131"/>
+        <location filename="../gui/aboutdialog.cpp" line="132"/>
         <source>This program uses icons (or derivates of) from following sources:
 </source>
         <translation>Aquest programa fa servir icones (o derivats) de les següents fonts:
 </translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="142"/>
+        <location filename="../gui/aboutdialog.cpp" line="143"/>
         <source>JSON library license</source>
         <translation>Llicència de la biblioteca JSON</translation>
     </message>
@@ -799,57 +804,61 @@ p, li { white-space: pre-wrap; }
         <translation>Rutes d&apos;arxiu</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgfilepaths.cpp" line="48"/>
+        <location filename="../gui/configuration/cfgfilepaths.cpp" line="45"/>
         <source>Path</source>
         <translation>Ruta</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgfilepaths.cpp" line="48"/>
+        <location filename="../gui/configuration/cfgfilepaths.cpp" line="45"/>
         <source>Recurse</source>
         <translation>Recursiu</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgfilepaths.cpp" line="96"/>
+        <location filename="../gui/configuration/cfgfilepaths.cpp" line="92"/>
         <source>Doomseeker - Add wad path</source>
         <translation>Doomseeker - Afegir ruta a WAD</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgfilepaths.cpp" line="199"/>
+        <location filename="../gui/configuration/cfgfilepaths.cpp" line="185"/>
         <source>No path specified.</source>
         <translation>Ruta no especificada.</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgfilepaths.cpp" line="203"/>
+        <location filename="../gui/configuration/cfgfilepaths.cpp" line="189"/>
         <source>Path doesn&apos;t exist.</source>
         <translation>La ruta no existeix.</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgfilepaths.cpp" line="206"/>
+        <location filename="../gui/configuration/cfgfilepaths.cpp" line="192"/>
         <source>Path is not a directory.</source>
         <translation>La ruta no és un directori.</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="116"/>
+        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="121"/>
         <source>IWAD and PWAD paths:</source>
         <translation>Rutes cap IWADs i PWADs:</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="117"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;WARNING: &lt;/span&gt;It&apos;s highly discouraged to enable recursion for directories with lots of subdirectories. You may experience heavy performance loss and high hard drive usage if recursion is used recklessly. When recursion is enabled, file search operations will go the entire way down to the bottom of the directory tree if necessary.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head /&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot;font-weight: 600;&quot;&gt;NOTA: &lt;/span&gt;No es recomana habilitar la recursivitat per directoris amb molts subdirectoris. Pot experimentar una pèrdua severa de rendiment i un desgast excessiu del disc dur si la recursió s&apos;usa imprudentment. Quan la recursivitat està habilitada, l&apos;operació de recerca d&apos;arxius anirà fins al fons de l&apos;arbre de directoris, si cal.&lt;/P&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head /&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot;font-weight: 600;&quot;&gt;NOTA: &lt;/span&gt;No es recomana habilitar la recursivitat per directoris amb molts subdirectoris. Pot experimentar una pèrdua severa de rendiment i un desgast excessiu del disc dur si la recursió s&apos;usa imprudentment. Quan la recursivitat està habilitada, l&apos;operació de recerca d&apos;arxius anirà fins al fons de l&apos;arbre de directoris, si cal.&lt;/P&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="118"/>
+        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="122"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;WARNING: &lt;/span&gt;It&apos;s not recommended to enable recursion for directories with lots of subdirectories. With such directories you may experience heavy performance loss and high hard drive usage. When recursion is enabled, file search operations will go the entire way down to the bottom of the directory tree if necessary.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head /&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot;font-weight: 600;&quot;&gt;NOTA: &lt;/span&gt;No es recomana habilitar la recursivitat per directoris amb molts subdirectoris. Pot experimentar una pèrdua severa de rendiment i un ús excessiu del disc. Quan la recursivitat està habilitada, l&apos;operació de recerca d&apos;arxius anirà fins al fons de l&apos;arbre de directoris, si cal.&lt;/P&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="123"/>
         <source>Add</source>
         <translation>Afegir</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="119"/>
+        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="124"/>
         <source>Remove</source>
         <translation>Esborrar</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="121"/>
+        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="126"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -864,12 +873,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Això també s&apos;aplica a la columna IWAD.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="129"/>
+        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="134"/>
         <source>Tell me where are my WADs located</source>
         <translation>Digues-me on es troben els meus WADs</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="131"/>
+        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="136"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -885,7 +894,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8pt;&quot;&gt;Aquest paràmetre s’utilitza quan s’uneix a un servidor i quan feu clic al botó &amp;quot;Troba els WADs faltants&amp;quot; al menú contextual del ratolí.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="139"/>
+        <location filename="../../../build/src/core/ui_cfgfilepaths.h" line="144"/>
         <source>Check the integrity of local WADs</source>
         <translation>Comprovar la integritat dels WADs locals</translation>
     </message>
@@ -1418,7 +1427,7 @@ Aquests valors també es poden modificar a mà.</translation>
         <translation>Mostrar</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgserverpasswords.cpp" line="253"/>
+        <location filename="../gui/configuration/cfgserverpasswords.cpp" line="255"/>
         <source>Hide</source>
         <translation>Amagar</translation>
     </message>
@@ -1500,22 +1509,22 @@ p, li { white-space: pre-wrap; }
         <translation>Àlies de WADs</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgwadalias.cpp" line="69"/>
+        <location filename="../gui/configuration/cfgwadalias.cpp" line="65"/>
         <source>Left-to-Right will use the alias files instead of the main file but not vice-versa.</source>
         <translation>Esquerra-a-Dreta utilitzarà els àlies d&apos;arxius en lloc de l&apos;arxiu principal, però no a l&apos;inrevés.</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgwadalias.cpp" line="72"/>
+        <location filename="../gui/configuration/cfgwadalias.cpp" line="68"/>
         <source>All Equal will treat all files as equal and try to match them in any combination.</source>
         <translation>Tot Equivalent tractarà a tots els arxius com iguals i intentarà combinar-los en qualsevol combinació.</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgwadalias.cpp" line="189"/>
+        <location filename="../gui/configuration/cfgwadalias.cpp" line="185"/>
         <source>Left-to-Right</source>
         <translation>Esquerra-a-Dreta</translation>
     </message>
     <message>
-        <location filename="../gui/configuration/cfgwadalias.cpp" line="190"/>
+        <location filename="../gui/configuration/cfgwadalias.cpp" line="186"/>
         <source>All Equal</source>
         <translation>Tot Equivalent</translation>
     </message>
@@ -2132,19 +2141,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../gui/createserverdialog.cpp" line="176"/>
-        <location filename="../gui/createserverdialog.cpp" line="373"/>
+        <location filename="../gui/createserverdialog.cpp" line="374"/>
         <source>Doomseeker - create game</source>
         <translation>Doomseeker - crear joc</translation>
     </message>
     <message>
         <location filename="../gui/createserverdialog.cpp" line="179"/>
-        <location filename="../gui/createserverdialog.cpp" line="376"/>
+        <location filename="../gui/createserverdialog.cpp" line="377"/>
         <source>No game selected</source>
         <translation>Cap joc seleccionat</translation>
     </message>
     <message>
         <location filename="../gui/createserverdialog.cpp" line="196"/>
-        <location filename="../gui/createserverdialog.cpp" line="391"/>
+        <location filename="../gui/createserverdialog.cpp" line="392"/>
         <source>Doomseeker - error</source>
         <translation>Doomseeker - error</translation>
     </message>
@@ -2155,69 +2164,69 @@ p, li { white-space: pre-wrap; }
         <translation>Indicadors</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="435"/>
+        <location filename="../gui/createserverdialog.cpp" line="436"/>
         <source>&amp;Mode</source>
         <translation>&amp;Mode</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="436"/>
+        <location filename="../gui/createserverdialog.cpp" line="437"/>
         <source>&amp;Host server</source>
         <translation>&amp;Hostejar servidor</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="439"/>
+        <location filename="../gui/createserverdialog.cpp" line="440"/>
         <source>&amp;Play offline</source>
         <translation>&amp;Jugar fora de línia</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="443"/>
+        <location filename="../gui/createserverdialog.cpp" line="444"/>
         <source>&amp;Settings</source>
         <translation>&amp;Configuració</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="445"/>
+        <location filename="../gui/createserverdialog.cpp" line="446"/>
         <source>&amp;Load game configuration</source>
         <translation>&amp;Carregar la configuració del joc</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="450"/>
+        <location filename="../gui/createserverdialog.cpp" line="451"/>
         <source>&amp;Save game configuration</source>
         <translation>&amp;Guargar la configuració del joc</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="456"/>
+        <location filename="../gui/createserverdialog.cpp" line="457"/>
         <source>&amp;Program settings</source>
         <translation>Configuració del &amp;Programa</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="480"/>
+        <location filename="../gui/createserverdialog.cpp" line="481"/>
         <source>Run game command line:</source>
         <translation>Comanda per executar joc:</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="481"/>
+        <location filename="../gui/createserverdialog.cpp" line="482"/>
         <source>Host server command line:</source>
         <translation>Comanda per executar el servidor:</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="490"/>
+        <location filename="../gui/createserverdialog.cpp" line="491"/>
         <source>Doomseeker - load game setup config</source>
         <translation>Doomseeker - carregar la configuració del joc</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="490"/>
-        <location filename="../gui/createserverdialog.cpp" line="504"/>
+        <location filename="../gui/createserverdialog.cpp" line="491"/>
+        <location filename="../gui/createserverdialog.cpp" line="505"/>
         <source>Config files (*.ini)</source>
         <translation>Arxius de configuració (* .ini)</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="504"/>
-        <location filename="../gui/createserverdialog.cpp" line="514"/>
+        <location filename="../gui/createserverdialog.cpp" line="505"/>
+        <location filename="../gui/createserverdialog.cpp" line="515"/>
         <source>Doomseeker - save game setup config</source>
         <translation>Doomseeker - guarda la configuració del joc</translation>
     </message>
     <message>
-        <location filename="../gui/createserverdialog.cpp" line="514"/>
+        <location filename="../gui/createserverdialog.cpp" line="515"/>
         <source>Unable to save game setup configuration!</source>
         <translation>No es pot guardar la configuració del joc!</translation>
     </message>
@@ -2316,27 +2325,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>DefaultDifficultyProvider</name>
     <message>
-        <location filename="../plugins/enginedefaults.h" line="36"/>
+        <location filename="../plugins/enginedefaults.h" line="37"/>
         <source>1 - I&apos;m too young to die</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../plugins/enginedefaults.h" line="37"/>
+        <location filename="../plugins/enginedefaults.h" line="38"/>
         <source>2 - Hey, not too rough</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../plugins/enginedefaults.h" line="38"/>
+        <location filename="../plugins/enginedefaults.h" line="39"/>
         <source>3 - Hurt me plenty</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../plugins/enginedefaults.h" line="39"/>
+        <location filename="../plugins/enginedefaults.h" line="40"/>
         <source>4 - Ultra-violence</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../plugins/enginedefaults.h" line="40"/>
+        <location filename="../plugins/enginedefaults.h" line="41"/>
         <source>5 - NIGHTMARE!</source>
         <translation></translation>
     </message>
@@ -2540,12 +2549,12 @@ You may need to use the browse button.</source>
 <context>
     <name>ExeFile</name>
     <message>
-        <location filename="../serverapi/exefile.cpp" line="77"/>
+        <location filename="../serverapi/exefile.cpp" line="78"/>
         <source>No %1 executable specified for %2</source>
         <translation>No s&apos;ha especificat %1 executable per %2</translation>
     </message>
     <message>
-        <location filename="../serverapi/exefile.cpp" line="88"/>
+        <location filename="../serverapi/exefile.cpp" line="89"/>
         <source>Executable for %1 %2:
 %3
 is a directory or doesn&apos;t exist.</source>
@@ -2663,7 +2672,7 @@ is a directory or doesn&apos;t exist.</source>
         <translation>&lt;p&gt;Arxiu: %1&lt;br&gt;Versió: %2&lt;br&gt;Descripció: %3&lt;br&gt;Ubicació: %4&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/freedoomdialog.cpp" line="269"/>
+        <location filename="../gui/freedoomdialog.cpp" line="252"/>
         <source>%1 %p%</source>
         <translation></translation>
     </message>
@@ -2771,17 +2780,17 @@ Executable: %3</translation>
 <context>
     <name>GameExeFactory</name>
     <message>
-        <location filename="../serverapi/gameexefactory.cpp" line="71"/>
+        <location filename="../serverapi/gameexefactory.cpp" line="72"/>
         <source>game</source>
         <translation>joc</translation>
     </message>
     <message>
-        <location filename="../serverapi/gameexefactory.cpp" line="77"/>
+        <location filename="../serverapi/gameexefactory.cpp" line="78"/>
         <source>client</source>
         <translation>client</translation>
     </message>
     <message>
-        <location filename="../serverapi/gameexefactory.cpp" line="80"/>
+        <location filename="../serverapi/gameexefactory.cpp" line="81"/>
         <source>server</source>
         <translation>servidor</translation>
     </message>
@@ -2941,17 +2950,17 @@ Executable: %3</translation>
     <name>GeneralGameSetupPanel</name>
     <message>
         <location filename="../gui/createserver/generalgamesetuppanel.cpp" line="237"/>
-        <location filename="../gui/createserver/generalgamesetuppanel.cpp" line="265"/>
+        <location filename="../gui/createserver/generalgamesetuppanel.cpp" line="266"/>
         <source>&lt; NONE &gt;</source>
         <translation>&lt; RES &gt;</translation>
     </message>
     <message>
-        <location filename="../gui/createserver/generalgamesetuppanel.cpp" line="374"/>
+        <location filename="../gui/createserver/generalgamesetuppanel.cpp" line="376"/>
         <source>Doomseeker - load server config</source>
         <translation>Doomseeker - carregar la configuració del servidor</translation>
     </message>
     <message>
-        <location filename="../gui/createserver/generalgamesetuppanel.cpp" line="375"/>
+        <location filename="../gui/createserver/generalgamesetuppanel.cpp" line="377"/>
         <source>Plugin for engine &quot;%1&quot; is not present!</source>
         <translation>El complement per al motor &quot;%1&quot; no està present!</translation>
     </message>
@@ -3896,17 +3905,17 @@ p, li { white-space: pre-wrap; }
         <translation>Aquest usuari ha canviat el seu Àlies de %1 a %2</translation>
     </message>
     <message>
-        <location filename="../irc/ircprivadapter.cpp" line="59"/>
+        <location filename="../irc/ircprivadapter.cpp" line="61"/>
         <source>This user connection has been killed. (KILL: %1)</source>
         <translation>Aquesta connexió d&apos;usuari ha estat eliminada. (KILL: %1)</translation>
     </message>
     <message>
-        <location filename="../irc/ircprivadapter.cpp" line="63"/>
+        <location filename="../irc/ircprivadapter.cpp" line="65"/>
         <source>This user has left the network. (QUIT: %1)</source>
         <translation>Aquest usuari ha abandonat la xarxa. (QUIT: %1)</translation>
     </message>
     <message>
-        <location filename="../irc/ircprivadapter.cpp" line="67"/>
+        <location filename="../irc/ircprivadapter.cpp" line="69"/>
         <source>Unhandled IRCQuitType in IRCPrivAdapter::userLeaves()</source>
         <translation>IRCQuitType no controlat en IRCPrivAdapter::userLeaves()</translation>
     </message>
@@ -4090,17 +4099,17 @@ Operació fallida.</translation>
         <translation>S&apos;ha intentat obtenir una línia de comanda per unir-se a un servidor desconegut &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../joincommandlinebuilder.cpp" line="171"/>
+        <location filename="../joincommandlinebuilder.cpp" line="172"/>
         <source>Unknown error.</source>
         <translation>Error desconegut.</translation>
     </message>
     <message>
-        <location filename="../joincommandlinebuilder.cpp" line="175"/>
+        <location filename="../joincommandlinebuilder.cpp" line="176"/>
         <source>Error when obtaining join parameters for server &quot;%1&quot;, game &quot;%2&quot;: %3</source>
         <translation>Error en obtenir els paràmetres per unir-se al servidor &quot;%1&quot;, joc &quot;%2&quot;: %3</translation>
     </message>
     <message>
-        <location filename="../joincommandlinebuilder.cpp" line="338"/>
+        <location filename="../joincommandlinebuilder.cpp" line="339"/>
         <source>Game installation failure</source>
         <translation>Error d&apos;instal·lació del joc</translation>
     </message>
@@ -4350,11 +4359,10 @@ Operació fallida.</translation>
         <translation>Doomseeker necessita reiniciar perquè alguns dels canvis s&apos;apliquin.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="708"/>
         <source>Doomseeker is unable to proceed with the refresh operation because the following problem has occured:
 
 </source>
-        <translation>Doomseeker no pot continuar amb l&apos;operació d&apos;actualització perquè s&apos;ha produït el següent problema:
+        <translation type="vanished">Doomseeker no pot continuar amb l&apos;operació d&apos;actualització perquè s&apos;ha produït el següent problema:
 
 </translation>
     </message>
@@ -4369,9 +4377,20 @@ Operació fallida.</translation>
         <translation>No hi ha servidors mestres habilitats en el menú &quot;Consulta&quot;.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="716"/>
         <source>Unknown error occured.</source>
-        <translation>S&apos;ha produït un error desconegut.</translation>
+        <translation type="vanished">S&apos;ha produït un error desconegut.</translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="708"/>
+        <source>Doomseeker is unable to proceed with the refresh operation because the following problem has occurred:
+
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="716"/>
+        <source>Unknown error occurred.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="719"/>
@@ -4439,70 +4458,70 @@ Operació fallida.</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="992"/>
+        <location filename="../gui/mainwindow.cpp" line="993"/>
         <source>Master server for %1: %2</source>
         <translation>Servidor mestre per a %1:%2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="996"/>
+        <location filename="../gui/mainwindow.cpp" line="997"/>
         <source>Error: %1</source>
         <translation>Error: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1005"/>
+        <location filename="../gui/mainwindow.cpp" line="1006"/>
         <source>%1: %2</source>
         <translation>%1: %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1036"/>
-        <location filename="../gui/mainwindow.cpp" line="1044"/>
+        <location filename="../gui/mainwindow.cpp" line="1037"/>
+        <location filename="../gui/mainwindow.cpp" line="1045"/>
         <source>Help error</source>
         <translation>Error en ajuda</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1036"/>
+        <location filename="../gui/mainwindow.cpp" line="1037"/>
         <source>No help found.</source>
         <translation>No s&apos;ha trobat ajuda.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1044"/>
+        <location filename="../gui/mainwindow.cpp" line="1045"/>
         <source>Failed to open URL:
 %1</source>
         <translation>Error en obrir la URL:
 %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1124"/>
+        <location filename="../gui/mainwindow.cpp" line="1125"/>
         <source>Welcome to Doomseeker</source>
         <translation>Benvingut a Doomseeker</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1125"/>
+        <location filename="../gui/mainwindow.cpp" line="1126"/>
         <source>Before you start browsing for servers, please ensure that Doomseeker is properly configured.</source>
         <translation>Abans de començar a buscar servidors, assegureu-vos que Doomseeker estigui configurat correctament.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1142"/>
+        <location filename="../gui/mainwindow.cpp" line="1143"/>
         <source>Program update detection &amp; download finished with status: [%1] %2</source>
         <translation>La detecció i descàrrega de l&apos;actualització del programa va acabar amb l&apos;estat: [%1] %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1152"/>
+        <location filename="../gui/mainwindow.cpp" line="1153"/>
         <source>Updates will be installed on next program start.</source>
         <translation>Les actualitzacions s&apos;instal·laran en el següent inici del programa.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1158"/>
+        <location filename="../gui/mainwindow.cpp" line="1159"/>
         <source>Update channel was changed during update process. Discarding update.</source>
         <translation>El canal d&apos;actualització ha canviat durant el procés d&apos;actualització. Descartant l&apos;actualització.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1200"/>
+        <location filename="../gui/mainwindow.cpp" line="1201"/>
         <source>Query on startup warning: No master servers are enabled in the Query menu.</source>
         <translation>Notes de consulta a l&apos;inici: No hi ha servidors mestres habilitats en el menú Consulta.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1217"/>
+        <location filename="../gui/mainwindow.cpp" line="1218"/>
         <source>Doomseeker was unable to find any plugin libraries.
 Although the application will still work it will not be possible to fetch any server info or launch any game.
 
@@ -4515,32 +4534,32 @@ Comproveu si hi ha arxius en el directori &quot;engines/&quot;.
 Per solucionar aquest problema, podria descarregar Doomseeker novament des del lloc especificat en el quadre Ajuda | Sobre i tornar a instal·lar Doomseeker.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1224"/>
+        <location filename="../gui/mainwindow.cpp" line="1225"/>
         <source>Doomseeker critical error</source>
         <translation>Error crític de Doomseeker</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1264"/>
+        <location filename="../gui/mainwindow.cpp" line="1265"/>
         <source>Querying...</source>
         <translation>Consultant...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1273"/>
+        <location filename="../gui/mainwindow.cpp" line="1274"/>
         <source>Done</source>
         <translation>Fet</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1355"/>
+        <location filename="../gui/mainwindow.cpp" line="1356"/>
         <source>Main Toolbar</source>
         <translation>Barra d&apos;eines principal</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1360"/>
+        <location filename="../gui/mainwindow.cpp" line="1361"/>
         <source>Get Servers</source>
         <translation>Obtenir servidors</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1394"/>
+        <location filename="../gui/mainwindow.cpp" line="1395"/>
         <source>Search:</source>
         <translation>Buscar:</translation>
     </message>
@@ -4842,22 +4861,22 @@ Les actualitzacions restants s&apos;han descartat.</translation>
         <translation>El mapa actual no està present a la llista de mapes. El joc pot comportar-se de forma estranya.</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_maplistpanel.h" line="115"/>
+        <location filename="../../../build/src/core/ui_maplistpanel.h" line="116"/>
         <source>Add from loaded wads</source>
         <translation>Afegir des dels WADs carregats</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_maplistpanel.h" line="116"/>
+        <location filename="../../../build/src/core/ui_maplistpanel.h" line="117"/>
         <source>Add</source>
         <translation>Afegir</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_maplistpanel.h" line="117"/>
+        <location filename="../../../build/src/core/ui_maplistpanel.h" line="118"/>
         <source>Remove</source>
         <translation>Esborrar</translation>
     </message>
     <message>
-        <location filename="../../../build/src/core/ui_maplistpanel.h" line="118"/>
+        <location filename="../../../build/src/core/ui_maplistpanel.h" line="119"/>
         <source>Random map rotation</source>
         <translation>Rotació aleatòria del mapa</translation>
     </message>
@@ -5138,12 +5157,12 @@ Si no té aquest arxiu, i pertany a un joc comercial, necessita comprar el joc a
 <context>
     <name>PlayersDiagram</name>
     <message>
-        <location filename="../gui/helpers/playersdiagram.cpp" line="63"/>
+        <location filename="../gui/helpers/playersdiagram.cpp" line="64"/>
         <source>Numeric</source>
         <translation>Numèric</translation>
     </message>
     <message>
-        <location filename="../gui/helpers/playersdiagram.cpp" line="64"/>
+        <location filename="../gui/helpers/playersdiagram.cpp" line="65"/>
         <source>Blocks</source>
         <translation>Blocs</translation>
     </message>
@@ -5182,62 +5201,62 @@ Si no té aquest arxiu, i pertany a un joc comercial, necessita comprar el joc a
         <translation>Il·limitat</translation>
     </message>
     <message>
-        <location filename="../serverapi/serverstructs.cpp" line="403"/>
+        <location filename="../serverapi/serverstructs.cpp" line="404"/>
         <source>Cooperative</source>
         <translation>Cooperatiu</translation>
     </message>
     <message>
-        <location filename="../serverapi/serverstructs.cpp" line="408"/>
+        <location filename="../serverapi/serverstructs.cpp" line="409"/>
         <source>Deathmatch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../serverapi/serverstructs.cpp" line="413"/>
+        <location filename="../serverapi/serverstructs.cpp" line="414"/>
         <source>Team DM</source>
         <translation>DM per equips</translation>
     </message>
     <message>
-        <location filename="../serverapi/serverstructs.cpp" line="418"/>
+        <location filename="../serverapi/serverstructs.cpp" line="419"/>
         <source>CTF</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../serverapi/serverstructs.cpp" line="423"/>
+        <location filename="../serverapi/serverstructs.cpp" line="424"/>
         <source>Unknown</source>
         <translation>Desconegut</translation>
     </message>
     <message>
-        <location filename="../plugins/pluginloader.cpp" line="76"/>
+        <location filename="../plugins/pluginloader.cpp" line="77"/>
         <source>Skipping loading of forbidden plugin: %1</source>
         <translation>Saltant la càrrega d&apos;un complement prohibit: %1</translation>
     </message>
     <message>
-        <location filename="../plugins/pluginloader.cpp" line="99"/>
+        <location filename="../plugins/pluginloader.cpp" line="100"/>
         <source>plugin ABI version mismatch; plugin: %1, Doomseeker: %2</source>
         <translation>diferències en l&apos;ABI del complement; complement:%1, Doomseeker:%2</translation>
     </message>
     <message>
-        <location filename="../plugins/pluginloader.cpp" line="105"/>
+        <location filename="../plugins/pluginloader.cpp" line="106"/>
         <source>plugin doesn&apos;t report its ABI version</source>
         <translation>el complement no proporciona la seva versió ABI</translation>
     </message>
     <message>
-        <location filename="../plugins/pluginloader.cpp" line="107"/>
+        <location filename="../plugins/pluginloader.cpp" line="108"/>
         <source>Cannot load plugin %1, reason: %2.</source>
         <translation>No es pot carregar el complement %1, Motiu: %2.</translation>
     </message>
     <message>
-        <location filename="../plugins/pluginloader.cpp" line="126"/>
+        <location filename="../plugins/pluginloader.cpp" line="127"/>
         <source>Loaded plugin: &quot;%1&quot;!</source>
         <translation>Complement carregat: &quot;%1&quot;!</translation>
     </message>
     <message>
-        <location filename="../plugins/pluginloader.cpp" line="131"/>
+        <location filename="../plugins/pluginloader.cpp" line="132"/>
         <source>Failed to open plugin: %1</source>
         <translation>Error en obrir el complement: %1</translation>
     </message>
     <message>
-        <location filename="../plugins/pluginloader.cpp" line="237"/>
+        <location filename="../plugins/pluginloader.cpp" line="238"/>
         <source>Failed to locate plugins.</source>
         <translation>No s&apos;ha pogut localitzar complements.</translation>
     </message>
@@ -5257,17 +5276,17 @@ Si no té aquest arxiu, i pertany a un joc comercial, necessita comprar el joc a
         <translation>Configurant l&apos;arxiu IRC INI: %1</translation>
     </message>
     <message>
-        <location filename="../datapaths.cpp" line="492"/>
+        <location filename="../datapaths.cpp" line="475"/>
         <source>parent node is not a directory: %1</source>
         <translation>node pare no és un directori: %1</translation>
     </message>
     <message>
-        <location filename="../datapaths.cpp" line="506"/>
+        <location filename="../datapaths.cpp" line="489"/>
         <source>lack of necessary permissions to the parent directory: %1</source>
         <translation>falta de permisos necessaris per al directori pare: %1</translation>
     </message>
     <message>
-        <location filename="../datapaths.cpp" line="511"/>
+        <location filename="../datapaths.cpp" line="494"/>
         <source>cannot create directory</source>
         <translation>no es pot crear el directori</translation>
     </message>
@@ -5282,7 +5301,7 @@ Si no té aquest arxiu, i pertany a un joc comercial, necessita comprar el joc a
         <translation>DoomseekerConfig.iniSectionForPlugin (): el nom del complement no és vàlid: %1</translation>
     </message>
     <message>
-        <location filename="../configuration/doomseekerconfig.cpp" line="209"/>
+        <location filename="../configuration/doomseekerconfig.cpp" line="210"/>
         <source>Setting INI file: %1</source>
         <translation>Configurant arxiu INI: %1</translation>
     </message>
@@ -5820,22 +5839,22 @@ Humans + Bots) / Servidors actualitzats%</translation>
 <context>
     <name>UpdateChannelTr</name>
     <message>
-        <location filename="../updater/updatechannel.cpp" line="104"/>
+        <location filename="../updater/updatechannel.cpp" line="110"/>
         <source>Beta versions have newer features but they are untested. Releases on this update channel are more often and are suggested for users who want newest functionalities and minor bug fixes as soon as they become implemented and available.</source>
         <translation>Les versions Beta tenen característiques més noves però no han estat provades. Les versions d&apos;aquest canal d&apos;actualització són més freqüents i es suggereixen per a usuaris que volen funcionalitats més recents i correccions d&apos;errors menors tan aviat com s&apos;implementen i estan disponibles.</translation>
     </message>
     <message>
-        <location filename="../updater/updatechannel.cpp" line="114"/>
+        <location filename="../updater/updatechannel.cpp" line="120"/>
         <source>Stable versions are released rarely. They cover many changes at once and these changes are more certain to work correctly. Critical bug fixes are also provided through this channel.</source>
         <translation>Les versions estables es llancen rarament. Cobreixen molts canvis alhora i és més probable que aquests canvis funcionin correctament. Les correccions d&apos;errors crítiques també es proporcionen a través d&apos;aquest canal.</translation>
     </message>
     <message>
-        <location filename="../updater/updatechannel.cpp" line="132"/>
+        <location filename="../updater/updatechannel.cpp" line="138"/>
         <source>Beta</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../updater/updatechannel.cpp" line="136"/>
+        <location filename="../updater/updatechannel.cpp" line="142"/>
         <source>Stable</source>
         <translation>Estable</translation>
     </message>
@@ -5953,7 +5972,7 @@ Humans + Bots) / Servidors actualitzats%</translation>
 <context>
     <name>WadsPicker</name>
     <message>
-        <location filename="../gui/createserver/wadspicker.cpp" line="89"/>
+        <location filename="../gui/createserver/wadspicker.cpp" line="90"/>
         <source>Doomseeker - Add file(s)</source>
         <translation>Doomseeker - Afegir arxiu(s)</translation>
     </message>
@@ -6029,17 +6048,17 @@ Humans + Bots) / Servidors actualitzats%</translation>
         <translation>Tancar</translation>
     </message>
     <message>
-        <location filename="../gui/wadseekerinterface.cpp" line="510"/>
+        <location filename="../gui/wadseekerinterface.cpp" line="509"/>
         <source>[%1%] Wadseeker</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../gui/wadseekerinterface.cpp" line="557"/>
+        <location filename="../gui/wadseekerinterface.cpp" line="556"/>
         <source>Context menu error</source>
         <translation>Error del menú contextual</translation>
     </message>
     <message>
-        <location filename="../gui/wadseekerinterface.cpp" line="557"/>
+        <location filename="../gui/wadseekerinterface.cpp" line="556"/>
         <source>Unknown action selected.</source>
         <translation>Acció desconeguda seleccionada.</translation>
     </message>
@@ -6121,8 +6140,8 @@ Revisi la seva configuració i/o consulteu l&apos;ajuda en línia disponible al 
 <context>
     <name>WadseekerSitesTable</name>
     <message>
-        <location filename="../gui/widgets/wadseekersitestable.cpp" line="55"/>
-        <location filename="../gui/widgets/wadseekersitestable.cpp" line="103"/>
+        <location filename="../gui/widgets/wadseekersitestable.cpp" line="51"/>
+        <location filename="../gui/widgets/wadseekersitestable.cpp" line="102"/>
         <source>Abort</source>
         <translation>Avortar</translation>
     </message>
@@ -6134,8 +6153,8 @@ Revisi la seva configuració i/o consulteu l&apos;ajuda en línia disponible al 
         <location filename="../gui/widgets/wadseekerwadstable.cpp" line="67"/>
         <location filename="../gui/widgets/wadseekerwadstable.cpp" line="124"/>
         <location filename="../gui/widgets/wadseekerwadstable.cpp" line="125"/>
-        <location filename="../gui/widgets/wadseekerwadstable.cpp" line="304"/>
-        <location filename="../gui/widgets/wadseekerwadstable.cpp" line="312"/>
+        <location filename="../gui/widgets/wadseekerwadstable.cpp" line="301"/>
+        <location filename="../gui/widgets/wadseekerwadstable.cpp" line="309"/>
         <source>N/A</source>
         <translation></translation>
     </message>
@@ -6151,7 +6170,7 @@ Revisi la seva configuració i/o consulteu l&apos;ajuda en línia disponible al 
         <translation>Fet</translation>
     </message>
     <message>
-        <location filename="../gui/widgets/wadseekerwadstable.cpp" line="321"/>
+        <location filename="../gui/widgets/wadseekerwadstable.cpp" line="318"/>
         <source>Skip current URL</source>
         <translation>Ometre la URL actual</translation>
     </message>
