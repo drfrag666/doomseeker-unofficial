@@ -895,7 +895,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../gui/configuration/irc/cfgircappearance.h" line="44"/>
         <source>Appearance</source>
-        <translation>aparença</translation>
+        <translation>Aparença</translation>
     </message>
     <message>
         <location filename="../gui/configuration/irc/cfgircappearance.h" line="49"/>
@@ -1585,7 +1585,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../build/src/core/ui_cfgwadseekerappearance.h" line="107"/>
         <source>Notice:</source>
-        <translation>notificació:</translation>
+        <translation>Notificació:</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_cfgwadseekerappearance.h" line="108"/>
@@ -2564,7 +2564,7 @@ is a directory or doesn&apos;t exist.</source>
     <message>
         <location filename="../filefilter.cpp" line="33"/>
         <source>Runnable files (*.exe;*.bat;*.com);;</source>
-        <translation>Arxius executables (* .exe; *.bat; *.com);;</translation>
+        <translation>Arxius executables (*.exe; *.bat; *.com);;</translation>
     </message>
 </context>
 <context>
@@ -2615,7 +2615,7 @@ is a directory or doesn&apos;t exist.</source>
     <message>
         <location filename="../gui/freedoomdialog.cpp" line="77"/>
         <source>Install Freedoom</source>
-        <translation>instal·lar Freedoom</translation>
+        <translation>Instal·lar Freedoom</translation>
     </message>
     <message>
         <location filename="../gui/freedoomdialog.cpp" line="78"/>
@@ -4537,7 +4537,7 @@ Per solucionar aquest problema, podria descarregar Doomseeker novament des del l
     <message>
         <location filename="../gui/mainwindow.cpp" line="1360"/>
         <source>Get Servers</source>
-        <translation>obtenir servidors</translation>
+        <translation>Obtenir servidors</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1394"/>
@@ -5051,7 +5051,7 @@ Si no té aquest arxiu, i pertany a un joc comercial, necessita comprar el joc a
     <message>
         <location filename="../../../build/src/core/ui_missingwadsdialog.h" line="322"/>
         <source>Install Freedoom</source>
-        <translation>instal·lar Freedom</translation>
+        <translation>Instal·lar Freedom</translation>
     </message>
     <message>
         <location filename="../../../build/src/core/ui_missingwadsdialog.h" line="323"/>
@@ -5094,7 +5094,7 @@ Si no té aquest arxiu, i pertany a un joc comercial, necessita comprar el joc a
     <message>
         <location filename="../../../build/src/core/ui_passworddlg.h" line="159"/>
         <source>Remember password</source>
-        <translation>recordar contrasenya</translation>
+        <translation>Recordar contrasenya</translation>
     </message>
 </context>
 <context>
@@ -5140,7 +5140,7 @@ Si no té aquest arxiu, i pertany a un joc comercial, necessita comprar el joc a
     <message>
         <location filename="../gui/helpers/playersdiagram.cpp" line="63"/>
         <source>Numeric</source>
-        <translation>numèric</translation>
+        <translation>Numèric</translation>
     </message>
     <message>
         <location filename="../gui/helpers/playersdiagram.cpp" line="64"/>

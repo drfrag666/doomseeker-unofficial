@@ -220,7 +220,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1884"/>
         <source>Disallow</source>
-        <translation>no permetre</translation>
+        <translation>No permetre</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1885"/>
@@ -280,7 +280,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1900"/>
         <source>Target identify</source>
-        <translation>identificar objectiu</translation>
+        <translation>Identificar objectiu</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1902"/>
@@ -640,7 +640,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1993"/>
         <source>Health</source>
-        <translation>salut</translation>
+        <translation>Salut</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronum/ui_flagspage.h" line="1994"/>
@@ -1576,7 +1576,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum2dmflags.cpp" line="145"/>
         <source>Disable taunting</source>
-        <translation>desactivar burles</translation>
+        <translation>Desactivar burles</translation>
     </message>
     <message>
         <location filename="../zandronum2dmflags.cpp" line="147"/>
@@ -2214,7 +2214,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronum3dmflags.cpp" line="157"/>
         <source>Disable taunting</source>
-        <translation>desactivar burles</translation>
+        <translation>Desactivar burles</translation>
     </message>
     <message>
         <location filename="../zandronum3dmflags.cpp" line="159"/>
@@ -2811,7 +2811,7 @@ Doomseeker pot instal lar el joc allà igualment si ho desitja.</translation>
     <message>
         <location filename="../zandronumgameinfo.cpp" line="31"/>
         <source>Survival</source>
-        <translation>supervivència</translation>
+        <translation>Supervivència</translation>
     </message>
     <message>
         <location filename="../zandronumgameinfo.cpp" line="32"/>
@@ -2841,7 +2841,7 @@ Doomseeker pot instal lar el joc allà igualment si ho desitja.</translation>
     <message>
         <location filename="../zandronumgameinfo.cpp" line="39"/>
         <source>Possession</source>
-        <translation>possessió</translation>
+        <translation>Possessió</translation>
     </message>
     <message>
         <location filename="../zandronumgameinfo.cpp" line="40"/>
