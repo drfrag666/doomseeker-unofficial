@@ -25,7 +25,7 @@ if(POLICY CMP0071)
 endif()
 
 set(PLUGIN_NAME zandronum)
-set(PLUGIN_VERSION 41)
+set(PLUGIN_VERSION 42)
 include(../PluginHeader.cmake)
 
 qt5_wrap_ui(ZANDRONUM_UI_FILES
