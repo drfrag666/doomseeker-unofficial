@@ -9,7 +9,7 @@ and this project does not adhere to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased]
+## [1.3] - 2019-07-27
 ### Added
 - WAD checksum verification when joining a game. The checksum verification
 is done for servers where the games provide the checksum info for the
@@ -40,6 +40,7 @@ Mantis ticket #3369.
       game config (#3645)
 - File (game mod, WAD) search paths can now be reordered in the config box
 by drag'n'drop. (#3669)
+- Catalan translation by Pol Marcet Sardà
 
 ### Changed
 - Completely dropped compilation support for Qt4. (#3514)
@@ -113,7 +114,6 @@ config box and when pressing the "Apply" button for that table. (#3642)
 servers that reported a non-existent wad. (#3624)
 - SRB2: Discard master server header replies that don't have the expected
 length declaration, thus preventing crashes when trying to read them. (#3660)
-
 
 ### Removed
 - The "Allow servers to display my country" option in the zandronum's config
@@ -505,7 +505,7 @@ notice and this notice are preserved.  This file is offered as-is,
 without any warranty.
 
 
-[unreleased]: https://bitbucket.org/Doomseeker/doomseeker/commits/all
+[1.3]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.3
 [1.2]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.2
 [1.1-p1]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.1-p1
 [1.1]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.1
