@@ -113,7 +113,12 @@ config box and when pressing the "Apply" button for that table. (#3642)
 - Prevent empty wads from Zandronum servers, this was caused rarely by some
 servers that reported a non-existent wad. (#3624)
 - SRB2: Discard master server header replies that don't have the expected
-length declaration, thus preventing crashes when trying to read them. (#3660)
+length declaration, thus preventing crashes when trying to read them.
+The relevant
+[CVE Identifier](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-12968)
+has also been created. (#3660)
+
+
 
 ### Removed
 - The "Allow servers to display my country" option in the zandronum's config
