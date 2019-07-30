@@ -136,7 +136,7 @@ QString AboutDialog::copyrightVerboseNotice() const
 
 void AboutDialog::showJsonLicense()
 {
-	QResource license("LICENSE.json");
+	QResource license("LICENSE-json");
 	QString licenseText = QString::fromUtf8(
 		reinterpret_cast<const char *>(license.data()),
 		license.size());
