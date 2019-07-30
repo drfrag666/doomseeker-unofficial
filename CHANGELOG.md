@@ -44,8 +44,6 @@ by drag'n'drop. (#3669)
 
 ### Changed
 - Completely dropped compilation support for Qt4. (#3514)
-- Remove "Allow servers to display my country" feature in Zandronum since
-it can be set from the game menu. (#3626)
 - On non-Windows systems don't seek mod files (WADs) in the executable
 directory, since it's usually somewhere like /usr/bin. (#3625)
 - Windows compiler change. Use MinGW-w64 to build Doomseeker instead of
