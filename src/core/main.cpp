@@ -78,7 +78,7 @@ Main::Main(int argc, char *argv[])
 {
 	#ifdef Q_OS_OPENBSD
 	pledge ("stdio rpath wpath cpath tmppath inet mcast fattr chown flock unix "
-		"dns sendfd recvfd tape tty proc exec prot_exec ps audio video unveil",
+		"dns getpw sendfd recvfd tty proc exec prot_exec ps audio video unveil",
 		"");
 	#endif
 	bIsFirstRun = false;
