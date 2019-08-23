@@ -11,7 +11,7 @@ and this project does not adhere to
 ## [Unreleased]
 ### Fixed
 - Hidden server list columns would still become exposed if server name
-filter was used. Fix this by removing these columns altogether. (#3411)
+filter was used. Fix this by removing these columns altogether. (#3411, #3703)
 
 ## [1.3] - 2019-07-27
 ### Added
