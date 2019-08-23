@@ -632,7 +632,7 @@ void MainWindow::findMissingWADs(const ServerPtr &server)
 		return;
 	}
 
-	MissingWadsDialog dialog(missingWads, incompatibleWads, this);
+	MissingWadsDialog dialog(missingWads, incompatibleWads, server->plugin(), this);
 	dialog.setAllowIgnore(false);
 	if (dialog.exec() == QDialog::Accepted && dialog.decision() == MissingWadsDialog::Install)
 	{

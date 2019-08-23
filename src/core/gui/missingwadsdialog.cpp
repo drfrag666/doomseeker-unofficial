@@ -25,6 +25,7 @@
 #include "application.h"
 #include "gui/mainwindow.h"
 #include "gui/wadseekerinterface.h"
+#include "plugins/engineplugin.h"
 #include "serverapi/serverstructs.h"
 #include "ui_missingwadsdialog.h"
 #include <QListWidgetItem>
@@ -38,17 +39,18 @@ public:
 	::MissingWadsDialog::MissingWadsProceed decision;
 	QList<PWad> missingWads;
 	QList<PWad> incompatibleWads;
+	EnginePlugin *plugin = nullptr;
 };
 DPointeredNoCopy(MissingWadsDialog)
 
-MissingWadsDialog::MissingWadsDialog(const QList<PWad> &missingWads, const QList<PWad> &incompatibleWads, QWidget *parent)
+MissingWadsDialog::MissingWadsDialog(const QList<PWad> &missingWads, const QList<PWad> &incompatibleWads, EnginePlugin *plugin, QWidget *parent)
 	: QDialog(parent)
 {
 	d->setupUi(this);
 	d->decision = Cancel;
 	d->missingWads = missingWads;
 	d->incompatibleWads = incompatibleWads;
-
+	d->plugin = plugin;
 	setup();
 	adjustSize();
 }
@@ -91,6 +93,9 @@ void MissingWadsDialog::setupWadseekerNotRunning()
 	setupIncompatibleFilesArea();
 
 	d->btnInstall->setVisible(hasAnyAllowedFile());
+	setAllowIgnore(((optionalFiles().size() == d->missingWads.size()) ||
+		d->missingWads.size() == 0 || // there are only incompatible files
+		(d->plugin != nullptr && d->plugin->data()->inGameFileDownloads)));
 }
 
 void MissingWadsDialog::setupForbiddenFilesArea()
