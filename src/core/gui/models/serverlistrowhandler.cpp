@@ -77,7 +77,7 @@ void ServerListRowHandler::emptyItem(QStandardItem *item)
 {
 	item->setData("", Qt::DisplayRole);
 	item->setData(QVariant(), Qt::DecorationRole);
-	item->setData(QVariant(), DTSort);
+	item->setData(QVariant(), ServerListModel::SLDT_SORT);
 }
 
 QStringList ServerListRowHandler::extractValidGameCVarNames(const QList<GameCVar> &cvars)
@@ -101,7 +101,7 @@ void ServerListRowHandler::fillItem(QStandardItem *item, const QString &str)
 {
 	QString strLowcase = str.toLower();
 	item->setData(str, Qt::DisplayRole);
-	item->setData(strLowcase, DTSort);
+	item->setData(strLowcase, ServerListModel::SLDT_SORT);
 }
 
 void ServerListRowHandler::fillItem(QStandardItem *item, int sort, const QString &str)
@@ -109,7 +109,7 @@ void ServerListRowHandler::fillItem(QStandardItem *item, int sort, const QString
 	QVariant var = sort;
 
 	fillItem(item, str);
-	item->setData(sort, DTSort);
+	item->setData(sort, ServerListModel::SLDT_SORT);
 }
 
 void ServerListRowHandler::fillItem(QStandardItem *item, int num)
@@ -117,7 +117,7 @@ void ServerListRowHandler::fillItem(QStandardItem *item, int num)
 	QVariant var = num;
 
 	item->setData(var, Qt::DisplayRole);
-	item->setData(var, DTSort);
+	item->setData(var, ServerListModel::SLDT_SORT);
 }
 
 void ServerListRowHandler::fillItem(QStandardItem *item, const QHostAddress &addr, const QString &actualDisplay)
@@ -128,19 +128,19 @@ void ServerListRowHandler::fillItem(QStandardItem *item, const QHostAddress &add
 		item->setData(addr.toString(), Qt::DisplayRole);
 	else
 		item->setData(actualDisplay, Qt::DisplayRole);
-	item->setData(var, DTSort);
+	item->setData(var, ServerListModel::SLDT_SORT);
 }
 
 void ServerListRowHandler::fillItem(QStandardItem *item, const QString &sort, const QPixmap &icon)
 {
 	item->setIcon(QIcon(icon));
-	item->setData(sort, DTSort);
+	item->setData(sort, ServerListModel::SLDT_SORT);
 }
 
 void ServerListRowHandler::fillItem(QStandardItem *item, int sort, const QPixmap &image)
 {
 	item->setData(image, Qt::DecorationRole);
-	item->setData(sort, DTSort);
+	item->setData(sort, ServerListModel::SLDT_SORT);
 }
 
 void ServerListRowHandler::fillPlayerColumn()
@@ -201,11 +201,11 @@ void ServerListRowHandler::fillPortIconColumn()
 	fillItem(pItem, d->server->metaObject()->className(), icon);
 }
 
-void ServerListRowHandler::fillServerPointerColumn()
+void ServerListRowHandler::fillServerPointer()
 {
-	QStandardItem *pItem = item(IDHiddenServerPointer);
+	QStandardItem *pItem = item(COL_META);
 	QVariant savePointer = qVariantFromValue(d->server);
-	pItem->setData(savePointer, DTPointerToServerStructure);
+	pItem->setData(savePointer, ServerListModel::SLDT_POINTER_TO_SERVER_STRUCTURE);
 }
 
 QStandardItem *ServerListRowHandler::item(int columnIndex)
@@ -259,8 +259,7 @@ void ServerListRowHandler::setBad()
 	qstdItem = item(IDServerName);
 	fillItem(qstdItem, tr("<ERROR>"));
 
-	qstdItem = item(IDHiddenGroup);
-	fillItem(qstdItem, SGBad);
+	item(COL_META)->setData(SGBad, ServerListModel::SLDT_SERVER_GROUP);
 }
 
 void ServerListRowHandler::setBanned()
@@ -272,8 +271,7 @@ void ServerListRowHandler::setBanned()
 	qstdItem = item(IDServerName);
 	fillItem(qstdItem, tr("You are banned from this server!"));
 
-	qstdItem = item(IDHiddenGroup);
-	fillItem(qstdItem, SGBanned);
+	item(COL_META)->setData(SGBanned, ServerListModel::SLDT_SERVER_GROUP);
 }
 
 void ServerListRowHandler::setCountryFlag()
@@ -293,8 +291,7 @@ void ServerListRowHandler::setCountryFlag()
 
 void ServerListRowHandler::setFirstQuery()
 {
-	QStandardItem *qstdItem = item(IDHiddenGroup);
-	fillItem(qstdItem, SGFirstQuery);
+	item(COL_META)->setData(SGFirstQuery, ServerListModel::SLDT_SERVER_GROUP);
 }
 
 void ServerListRowHandler::setGood()
@@ -335,8 +332,7 @@ void ServerListRowHandler::setGood()
 		fullGameModeName += QString(" (%1)").arg(modifierNames.join(", "));
 	fillItem(qstdItem, fullGameModeName);
 
-	qstdItem = item(IDHiddenGroup);
-	fillItem(qstdItem, SGNormal);
+	item(COL_META)->setData(SGNormal, ServerListModel::SLDT_SERVER_GROUP);
 }
 
 void ServerListRowHandler::setRefreshing()
@@ -354,8 +350,7 @@ void ServerListRowHandler::setTimeout()
 	qstdItem = item(IDServerName);
 	fillItem(qstdItem, tr("<NO RESPONSE>"));
 
-	qstdItem = item(IDHiddenGroup);
-	fillItem(qstdItem, SGTimeout);
+	item(COL_META)->setData(SGTimeout, ServerListModel::SLDT_SERVER_GROUP);
 }
 
 void ServerListRowHandler::setWait()
@@ -367,14 +362,13 @@ void ServerListRowHandler::setWait()
 	qstdItem = item(IDServerName);
 	fillItem(qstdItem, tr("<Refreshed too soon, wait a while and try again>"));
 
-	qstdItem = item(IDHiddenGroup);
-	fillItem(qstdItem, SGWait);
+	item(COL_META)->setData(SGWait, ServerListModel::SLDT_SERVER_GROUP);
 }
 
 ServerPtr ServerListRowHandler::serverFromList(const ServerListModel *parentModel, int rowIndex)
 {
-	QStandardItem *pItem = parentModel->item(rowIndex, IDHiddenServerPointer);
-	QVariant pointer = pItem->data(DTPointerToServerStructure);
+	QStandardItem *pItem = parentModel->item(rowIndex, COL_META);
+	QVariant pointer = pItem->data(ServerListModel::SLDT_POINTER_TO_SERVER_STRUCTURE);
 	if (!pointer.isValid())
 		return ServerPtr();
 	return pointer.value<ServerPtr>();
@@ -382,7 +376,7 @@ ServerPtr ServerListRowHandler::serverFromList(const ServerListModel *parentMode
 
 int ServerListRowHandler::updateServer()
 {
-	fillServerPointerColumn();
+	fillServerPointer();
 	fillPortIconColumn();
 	fillAddressColumn();
 

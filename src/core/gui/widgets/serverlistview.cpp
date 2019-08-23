@@ -175,12 +175,11 @@ void ServerListView::setupTableColumnWidths()
 	int smallestWidth = horizontalHeader()->minimumSectionSize();
 	for (int colIdx = 0; colIdx < ServerListColumnId::NUM_SERVERLIST_COLUMNS; ++colIdx)
 	{
-		if (!columns[colIdx].bResizable && !columns[colIdx].bHidden && columns[colIdx].width < smallestWidth)
+		if (!columns[colIdx].bResizable && columns[colIdx].width < smallestWidth)
 		{
 			smallestWidth = columns[colIdx].width;
 			horizontalHeader()->setMinimumSectionSize(smallestWidth);
 		}
-		setColumnHidden(colIdx, columns[colIdx].bHidden);
 		QHeaderView::ResizeMode resizeMode = columns[colIdx].bResizable ?
 			QHeaderView::Interactive : QHeaderView::ResizeToContents;
 		horizontalHeader()->setSectionResizeMode(colIdx, resizeMode);

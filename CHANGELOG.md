@@ -8,6 +8,10 @@ This file follows the format of
 and this project does not adhere to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fixed
+- Hidden server list columns would still become exposed if server name
+filter was used. Fix this by removing these columns altogether. (#3411)
 
 ## [1.3] - 2019-07-27
 ### Added
@@ -508,6 +512,7 @@ notice and this notice are preserved.  This file is offered as-is,
 without any warranty.
 
 
+[unreleased]: https://bitbucket.org/Doomseeker/doomseeker/commits/all
 [1.3]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.3
 [1.2]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.2
 [1.1-p1]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.1-p1
