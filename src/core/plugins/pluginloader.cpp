@@ -34,7 +34,6 @@
 
 #ifdef Q_OS_WIN32
 	#include <windows.h>
-#define dlopen(a, b) LoadLibrary(a)
 #define dlsym(a, b)  GetProcAddress(a, b)
 #define dlclose(a)   FreeLibrary(a)
 #define dlerror()    PluginLoader::Plugin::getDllWindowsErrorMessage()
@@ -82,10 +81,10 @@ PluginLoader::Plugin::Plugin(unsigned int type, QString file)
 	#ifdef Q_OS_WIN32
 	UINT oldErrorMode = SetErrorMode(0);
 	SetErrorMode(oldErrorMode | SEM_FAILCRITICALERRORS);
-	#endif
-	d->library = dlopen(d->file.toUtf8().constData(), RTLD_NOW);
-	#ifdef Q_OS_WIN32
+	d->library = LoadLibraryW(d->file.toStdWString().c_str());
 	SetErrorMode(oldErrorMode);
+	#else
+	d->library = dlopen(d->file.toUtf8().constData(), RTLD_NOW);
 	#endif
 
 	if (d->library != nullptr)

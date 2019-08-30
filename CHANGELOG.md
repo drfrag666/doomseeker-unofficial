@@ -12,6 +12,12 @@ and this project does not adhere to
 ### Fixed
 - Hidden server list columns would still become exposed if server name
 filter was used. Fix this by removing these columns altogether. (#3411, #3703)
+- Disable the ignore button in the WAD download prompt unless all the WADs
+are optional files, there are only incompatible WADs or the game can download
+the WADs instead. This prevents from using this ignore button in a state where
+it would lead to launching the game in a corrupted manner. (#3695)
+- Windows: loading game plugins wouldn't work if the "engines" directory
+was in a path that had non-ASCII characters. (#3706)
 
 ## [1.3] - 2019-07-27
 ### Added
