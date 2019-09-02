@@ -81,7 +81,8 @@ PluginLoader::Plugin::Plugin(unsigned int type, QString file)
 	#ifdef Q_OS_WIN32
 	UINT oldErrorMode = SetErrorMode(0);
 	SetErrorMode(oldErrorMode | SEM_FAILCRITICALERRORS);
-	d->library = LoadLibraryW(d->file.toStdWString().c_str());
+	QString nativeFilePath = QDir::toNativeSeparators(d->file);
+	d->library = LoadLibraryW(nativeFilePath.toStdWString().c_str());
 	SetErrorMode(oldErrorMode);
 	#else
 	d->library = dlopen(d->file.toUtf8().constData(), RTLD_NOW);
