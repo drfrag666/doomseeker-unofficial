@@ -138,7 +138,7 @@ Contributions are accepted for merging from issue attachments on [Zandronum
 issue tracker](https://zandronum.com/tracker/). This requires an account on the
 issue tracker.
 
-Use git [fromat-patch](https://git-scm.com/docs/git-format-patch) to create
+Use git [format-patch](https://git-scm.com/docs/git-format-patch) to create
 patches which include contributor's name and email address. Attach the patches
 to a reported issue.
 
