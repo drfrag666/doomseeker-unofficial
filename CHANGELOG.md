@@ -16,6 +16,12 @@ filter was used. Fix this by removing these columns altogether. (#3411, #3703)
 are optional files, there are only incompatible WADs or the game can download
 the WADs instead. This prevents from using this ignore button in a state where
 it would lead to launching the game in a corrupted manner. (#3695)
+- Simplify a bit the IP2C update routine. The parser thread will no longer
+update the live IP2C data as it is being used. It now signals the main
+thread that the parsing has finished. The main thread can then take this
+parsed data and swap the IP2C database on its own convenient terms. Potential
+race conditions are mitigates by this, which may help with resolving IP2C
+update crashes. (#3395)
 - Windows: loading game plugins wouldn't work if the "engines" directory
 was in a path that had non-ASCII characters. (#3706)
 

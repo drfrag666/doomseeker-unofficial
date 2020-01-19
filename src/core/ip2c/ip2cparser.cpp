@@ -31,10 +31,9 @@
 #include <QMutexLocker>
 #include <QTime>
 
-IP2CParser::IP2CParser(IP2C *pTargetDatabase)
+IP2CParser::IP2CParser()
 {
 	currentParsingThread = nullptr;
-	this->pTargetDatabase = pTargetDatabase;
 	bIsParsing = false;
 }
 
@@ -84,7 +83,7 @@ bool IP2CParser::doReadDatabase(const QString &filePath)
 	if (!wasReadSuccessful)
 		return false;
 
-	gLog << tr("IP2C database read in %1 ms. Entries read: %2").arg(time.elapsed()).arg(pTargetDatabase->numKnownEntries());
+	gLog << tr("IP2C database read in %1 ms. Entries read: %2").arg(time.elapsed()).arg(parsedValues.size());
 	return true;
 }
 
@@ -161,7 +160,7 @@ bool IP2CParser::readDatabaseVersion2(const QByteArray &dataArray)
 		}
 	}
 
-	pTargetDatabase->setDatabase(hashTable.values());
+	this->parsedValues = hashTable.values();
 
 	return true;
 }

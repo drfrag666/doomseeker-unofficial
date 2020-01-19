@@ -65,28 +65,6 @@ IP2C::~IP2C()
 {
 }
 
-void IP2C::appendEntryToDatabase(const IP2CData &entry)
-{
-	QMutexLocker dataAccessMutexLocker(&dataAccessMutex);
-
-	if (database.isEmpty() || entry.ipStart > database.back().ipStart)
-		database << entry;
-	else if (entry.ipStart < database.first().ipStart)
-		database.insert(0, entry);
-	else
-	{
-		QList<IP2CData>::iterator it;
-		for (it = database.begin(); it != database.end(); ++it)
-		{
-			if (entry.ipStart < it->ipStart)
-			{
-				database.insert(it, entry);
-				break;
-			}
-		}
-	}
-}
-
 const QPixmap &IP2C::flag(const QString &countryShortName)
 {
 	if (flags.contains(countryShortName))
@@ -113,8 +91,6 @@ bool IP2C::hasData() const
 
 const IP2C::IP2CData &IP2C::lookupIP(unsigned int ipaddress)
 {
-	QMutexLocker dataAccessMutexLocker(&dataAccessMutex);
-
 	if (database.empty())
 		return invalidData;
 

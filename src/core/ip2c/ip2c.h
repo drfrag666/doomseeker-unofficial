@@ -82,13 +82,6 @@ public:
 	const QPixmap flagLocalhost;
 	const QPixmap flagUnknown;
 
-	/**
-	 * @brief Adds new country entry to the database.
-	 *
-	 * Makes sure the database is sorted in ascending order.
-	 */
-	void appendEntryToDatabase(const IP2CData &entry);
-
 	const QPixmap &flag(const QString &countryShortName);
 	bool hasData() const;
 
@@ -133,7 +126,6 @@ public:
 	 */
 	void setDatabase(const QList<IP2CData> &sortedCountryData)
 	{
-		QMutexLocker dataAccessMutexLocker(&dataAccessMutex);
 		database = sortedCountryData;
 	}
 
@@ -174,7 +166,6 @@ private:
 	 * data inside might still be invalid.
 	 */
 	bool bDataAccessLocked;
-	QMutex dataAccessMutex;
 	QList<IP2CData> database;
 	QHash<QString, QPixmap> flags;
 	const IP2CData invalidData;

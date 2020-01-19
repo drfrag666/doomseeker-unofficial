@@ -50,7 +50,7 @@ IP2CLoader::IP2CLoader(QObject *parent)
 	d->updateInProgress = false;
 	d->inFallbackMode = false;
 
-	d->ip2cParser = new IP2CParser(IP2C::instance());
+	d->ip2cParser = new IP2CParser();
 	this->connect(d->ip2cParser, SIGNAL(parsingFinished(bool)),
 		SLOT(ip2cFinishedParsing(bool)));
 
@@ -188,6 +188,7 @@ void IP2CLoader::ip2cFinishedParsing(bool bSuccess)
 	else
 	{
 		gLog << tr("IP2C parsing finished.");
+		IP2C::instance()->setDatabase(d->ip2cParser->parsed());
 		ip2cJobsFinished();
 	}
 }
