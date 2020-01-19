@@ -22,6 +22,9 @@ thread that the parsing has finished. The main thread can then take this
 parsed data and swap the IP2C database on its own convenient terms. Potential
 race conditions are mitigates by this, which may help with resolving IP2C
 update crashes. (#3395)
+- SRB2: it's possible that a server will not report any files loaded.
+This possibility was not anticipated and if encountered, resulted in
+an assertion causing the whole program to close. (#3728)
 - Windows: loading game plugins wouldn't work if the "engines" directory
 was in a path that had non-ASCII characters. (#3706)
 

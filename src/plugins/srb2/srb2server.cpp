@@ -394,7 +394,7 @@ Server::Response Srb2Server::processServerInfo(const ServerInfo &info)
 	setMap(info.mapName);
 	setGameMode(info.gameMode());
 
-	setIwad(info.files.first().name);
+	setIwad(!info.files.empty() ? info.files.first().name : "");
 	clearWads();
 	bool first = true;
 	for (const FileNeeded &file : info.files)
