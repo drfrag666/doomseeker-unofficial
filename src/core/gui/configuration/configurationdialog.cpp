@@ -138,7 +138,7 @@ QStandardItem *ConfigurationDialog::addConfigPage(
 	row.insert(PrivData<ConfigurationDialog>::COL_NAME, nameItem);
 
 	QtMetaPointer metaPointer = configPage;
-	nameItem->setData(qVariantFromValue(metaPointer), Qt::UserRole);
+	nameItem->setData(QVariant::fromValue(metaPointer), Qt::UserRole);
 
 	row.insert(PrivData<ConfigurationDialog>::COL_VALIDATION, new QStandardItem());
 
@@ -168,7 +168,7 @@ QStandardItem *ConfigurationDialog::addLabel(QStandardItem *rootItem, const QStr
 		return nullptr;
 
 	QtMetaPointer metaPointer = (void *)nullptr;
-	QVariant variantMetaPointer = qVariantFromValue(metaPointer);
+	QVariant variantMetaPointer = QVariant::fromValue(metaPointer);
 
 	QList<QStandardItem *> row;
 

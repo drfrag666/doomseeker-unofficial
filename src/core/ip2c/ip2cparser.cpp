@@ -26,10 +26,10 @@
 #include "global.h"
 #include "log.h"
 #include <QBuffer>
+#include <QElapsedTimer>
 #include <QFile>
 #include <QMap>
 #include <QMutexLocker>
-#include <QTime>
 
 IP2CParser::IP2CParser()
 {
@@ -55,7 +55,7 @@ bool IP2CParser::doReadDatabase(const QString &filePath)
 		return false;
 	}
 
-	QTime time;
+	QElapsedTimer time;
 	time.start();
 
 	QByteArray dataArray = dataBase.readAll();
