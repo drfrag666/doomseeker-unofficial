@@ -204,7 +204,7 @@ void ServerListRowHandler::fillPortIconColumn()
 void ServerListRowHandler::fillServerPointer()
 {
 	QStandardItem *pItem = item(COL_META);
-	QVariant savePointer = qVariantFromValue(d->server);
+	QVariant savePointer = QVariant::fromValue(d->server);
 	pItem->setData(savePointer, ServerListModel::SLDT_POINTER_TO_SERVER_STRUCTURE);
 }
 

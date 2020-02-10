@@ -37,7 +37,6 @@
 #include "strings.hpp"
 #include <cassert>
 #include <QElapsedTimer>
-#include <QTime>
 #include <QUdpSocket>
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +84,7 @@ public:
 	unsigned short maxPlayers;
 	QString motd;
 	QString name;
-	QTime pingClock;
+	QElapsedTimer pingClock;
 	PlayersList players;
 	bool randomMapRotation;
 	Server::Response response;
