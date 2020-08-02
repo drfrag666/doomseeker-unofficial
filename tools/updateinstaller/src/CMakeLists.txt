@@ -127,6 +127,7 @@ if(APPLE)
 endif()
 
 target_link_libraries(updater
+  -static  # [Doomseeker]
   updatershared
 )
 
