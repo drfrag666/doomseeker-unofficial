@@ -8,6 +8,11 @@ This file follows the format of
 and this project does not adhere to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Fixed
+- SRB2: Support SRB2 version 2.2.6 (#3851)
+- Windows: updater.exe is now linked statically with the runtime libs (#3759)
+
 ## [1.3.1] - 2020-01-27
 ### Fixed
 - Hidden server list columns would still become exposed if server name
@@ -527,6 +532,7 @@ notice and this notice are preserved.  This file is offered as-is,
 without any warranty.
 
 
+[unreleased]: https://bitbucket.org/Doomseeker/doomseeker/commits/all
 [1.3.1]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.3.1
 [1.3]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.3
 [1.2]: https://bitbucket.org/Doomseeker/doomseeker/commits/tag/1.2
