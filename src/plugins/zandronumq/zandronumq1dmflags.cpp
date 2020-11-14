@@ -120,6 +120,8 @@ DMFlagsSection Dmflags::zandronumqCompatFlags()
 	DMFlagsSection section("ZA Compat. flags");
 	section << DMFlag(COMPAT_NETSCRIPTS_ARE_CLIENTSIDE, ZACOMPATF_NETSCRIPTS_ARE_CLIENTSIDE,
 		tr("Net scripts are client side"));
+	section << DMFlag(COMPAT_NO_PREDICTION_ACS, ZACOMPATF_NO_PREDICTION_ACS,
+		tr("Don't execute prediction ACS on client"));
 	section << DMFlag(NO_USE_LAND_CONSOLE_COMMAND, ZACOMPATF_NO_LAND,
 		tr("Players can't use 'land' CCMD"));
 	section << DMFlag(COMPAT_OLD_RANDOM_NUMBER_GENERATOR,
@@ -165,6 +167,8 @@ DMFlagsSection Dmflags::zandronumqCompatFlags()
 		tr("Disable crosshair"));
 	section << DMFlag(COMPAT_ORIGINAL_WEAPON_SWITCH, ZACOMPATF_OLD_WEAPON_SWITCH,
 		tr("Force weapon switch"));
+	section << DMFlag(COMPAT_DISABLE_CROSSHAIR_ACCURATE, ZACOMPATF_DISABLE_CROSSHAIR_ACCURATE,
+		tr("Disable shooting where crosshair is"));
 	return section;
 }
 

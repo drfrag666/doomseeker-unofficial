@@ -1052,6 +1052,11 @@ p, li { white-space: pre-wrap; }
         <translation>És impossible mirar directament a l&apos;adreça cardinal</translation>
     </message>
     <message>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2128"/>
+        <source>Deshabilitar disparo donde está la mira</source>
+        <translation>?</translation>
+    </message>
+    <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2129"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use Doom&apos;s shortest texture find behavior. This is requied by some WADs in MAP07.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Utilitza el comportament de recerca de textura més curta de Doom. Això és requerit per alguns WADs a MAP07.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -1474,6 +1479,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../zandronumq1dmflags.cpp" line="122"/>
         <source>Net scripts are client side</source>
         <translation>Els scripts NET s&apos;executen en el client</translation>
+    </message>
+    <message>
+        <location filename="../zandronumq1dmflags.cpp" line="124"/>
+        <source>Don&apos;t execute prediction ACS on client</source>
+        <translation>?</translation>
     </message>
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="126"/>

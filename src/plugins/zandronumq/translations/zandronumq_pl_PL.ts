@@ -1044,6 +1044,11 @@ p, li { white-space: pre-wrap; }
         <translation>Nie można obrócić się bezpośrednio w kierunku kardynalnym</translation>
     </message>
     <message>
+        <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="2131"/>
+        <source>Disable shooting where crosshair is</source>
+        <translation>Wyłącz strzelanie tam gdzie jest celownik</translation>
+    </message>
+    <message>
         <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="2151"/>
         <source>Use the same floor motion behavior as Doom</source>
         <translation>Użyj takiego zachowania ruchu podłóg, jak w Doomie</translation>
@@ -1109,6 +1114,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="2140"/>
         <source>NET scripts are clientside</source>
         <translation>Skrypty NET są po stronie klienta</translation>
+    </message>
+    <message>
+        <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="2140"/>
+        <source>Don&apos;t execute prediction ACS on client</source>
+        <translation>Nie uruchamiaj ACS przewidywania u klienta</translation>
     </message>
     <message>
         <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="2141"/>
@@ -1497,6 +1507,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../zandronumq1dmflags.cpp" line="123"/>
         <source>Net scripts are client side</source>
         <translation>Skrypty NET są po stronie klienta</translation>
+    </message>
+    <message>
+        <location filename="../zandronumq1dmflags.cpp" line="125"/>
+        <source>Don&apos;t execute prediction ACS on client</source>
+        <translation>Nie uruchamiaj ACS przewidywania u klienta</translation>
     </message>
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="127"/>
@@ -2233,6 +2248,10 @@ nie zawiera pliku wykonywalnego Zandronumq</translation>
     <message>
         <source>Net scripts are client side</source>
         <translation type="vanished">Skrypty NET są po stronie klienta</translation>
+    </message>
+    <message>
+        <source>Don&apos;t execute prediction ACS on client</source>
+        <translation type="vanished">Nie uruchamiaj ACS przewidywania u klienta</translation>
     </message>
     <message>
         <source>Players can&apos;t use &apos;land&apos; CCMD</source>

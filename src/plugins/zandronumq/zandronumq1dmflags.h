@@ -284,6 +284,13 @@ public:
 
 		// [BB] Clients use the vanilla Doom weapon on pickup behavior.
 		ZACOMPATF_OLD_WEAPON_SWITCH		= 1 << 26,
+
+		// [geNia] Disable crosshair accurate weapons
+		ZACOMPATF_DISABLE_CROSSHAIR_ACCURATE = 1 << 27,
+
+		// [geNia] Disable executing ACS_ExecuteWithResult on client
+		// TODO add new prediction ACS type for this
+		ZACOMPATF_NO_PREDICTION_ACS = 1 << 28,
 	};
 
 	QList<DMFlagsSection> flags();

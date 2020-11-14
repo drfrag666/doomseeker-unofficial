@@ -156,6 +156,8 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage *flagsPage)
 			f->cbCompatOldRandomNumberGenerator);
 		m.insert(Dmflags::ZACOMPATF_NETSCRIPTS_ARE_CLIENTSIDE,
 			f->cbCompatNETScriptsAreClientside);
+		m.insert(Dmflags::ZACOMPATF_NO_PREDICTION_ACS,
+			f->cbCompatNoPredictionACS);
 		m.insert(Dmflags::ZACOMPATF_NOGRAVITY_SPHERES,
 			f->cbCompatAddNOGRAVITYFlagToSpheres);
 		m.insert(Dmflags::ZACOMPATF_DONT_STOP_PLAYER_SCRIPTS_ON_DISCONNECT,
@@ -174,6 +176,8 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage *flagsPage)
 			f->cbCompatUseVanillaAutoaimTracerBehavior);
 		m.insert(Dmflags::ZACOMPATF_SILENT_WEST_SPAWNS,
 			f->cbCompatWestSpawnsAreSilent);
+		m.insert(Dmflags::ZACOMPATF_DISABLE_CROSSHAIR_ACCURATE,
+			f->cbCompatDisableCrosshairAccurate);
 	}
 
 	// DMFlags

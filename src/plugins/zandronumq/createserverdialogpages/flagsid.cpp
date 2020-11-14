@@ -124,6 +124,7 @@ void FlagsId::assign()
 	f->cbCompatOldDamageRadiusInfiniteHeight->setProperty("flagname", COMPAT_OLD_DAMAGE_RADIUS_INFINITE_HEIGHT);
 	f->cbCompatOldRandomNumberGenerator->setProperty("flagname", COMPAT_OLD_RANDOM_NUMBER_GENERATOR);
 	f->cbCompatNETScriptsAreClientside->setProperty("flagname", COMPAT_NETSCRIPTS_ARE_CLIENTSIDE);
+	f->cbCompatNoPredictionACS->setProperty("flagname", COMPAT_NO_PREDICTION_ACS);
 	f->cbCompatAddNOGRAVITYFlagToSpheres->setProperty("flagname", COMPAT_ADD_NOGRAVITYFLAG_TO_SPHERES);
 	f->cbDontStopPlayerScriptsOnDisconnect->setProperty("flagname", DONT_STOP_PLAYER_SCRIPTS_ON_DISCONNECT);
 	f->cbOldZDoomHorizontalThrust->setProperty("flagname", OLD_ZDOOM_HORIZONTAL_THRUST);
@@ -135,6 +136,7 @@ void FlagsId::assign()
 	f->cbCompatWestSpawnsAreSilent->setProperty("flagname", COMPAT_WEST_SPAWNS_ARE_SILENT);
 	f->cbCompatMaskedMidtex->setProperty("flagname", COMPAT_MASKED_MIDTEX);
 	f->cbCompatBadAngles->setProperty("flagname", COMPAT_BAD_ANGLES);
+	f->cbCompatDisableCrosshairAccurate->setProperty("flagname", COMPAT_DISABLE_CROSSHAIR_ACCURATE);
 	f->cbCompatFloorMove->setProperty("flagname", COMPAT_FLOOR_MOVE);
 	f->cbNoMonsters->setProperty("flagname", NO_MONSTERS);
 	f->cbItemsRespawn->setProperty("flagname", ITEMS_RESPAWN);

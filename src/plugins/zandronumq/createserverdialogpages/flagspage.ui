@@ -1677,6 +1677,16 @@ p, li { white-space: pre-wrap; }
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QCheckBox" name="cbCompatDisableCrosshairAccurate">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bring back vanilla ZDoom shooting below the crosshair.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Disable shooting where crosshair is</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item>
@@ -1712,6 +1722,16 @@ p, li { white-space: pre-wrap; }
              </property>
              <property name="text">
               <string>NET scripts are clientside</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="cbCompatNoPredictionACS">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Don't execute predicted ACS scripts on client side. Turning this on can fix ACS teleports or jumppads on maps that are not using ACS_ExecuteWithResult.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Don't execute prediction ACS on client</string>
              </property>
             </widget>
            </item>
@@ -2055,10 +2075,12 @@ p, li { white-space: pre-wrap; }
   <tabstop>cbCompatUseVanillaAutoaimTracerBehavior</tabstop>
   <tabstop>cbCompatMaskedMidtex</tabstop>
   <tabstop>cbCompatBadAngles</tabstop>
+  <tabstop>cbCompatDisableCrosshairAccurate</tabstop>
   <tabstop>cbCompatFindShortestTexturesLikeDoom</tabstop>
   <tabstop>cbCompatLimitPainElementals</tabstop>
   <tabstop>cbCompatSpawnItemDropsOnTheFloor</tabstop>
   <tabstop>cbCompatNETScriptsAreClientside</tabstop>
+  <tabstop>cbCompatNoPredictionACS</tabstop>
   <tabstop>cbCompatActorsAreInfinitelyTall</tabstop>
   <tabstop>cbCompatUseBuggierStairBuilding</tabstop>
   <tabstop>cbCompatDisableBoomDoorLightEffect</tabstop>
@@ -3870,6 +3892,22 @@ p, li { white-space: pre-wrap; }
    </hints>
   </connection>
   <connection>
+   <sender>cbCompatNoPredictionACS</sender>
+   <signal>clicked()</signal>
+   <receiver>FlagsPage</receiver>
+   <slot>applyWidgetsChange()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>607</x>
+     <y>140</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>631</x>
+     <y>406</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>cbCompatActorsAreInfinitelyTall</sender>
    <signal>clicked()</signal>
    <receiver>FlagsPage</receiver>
@@ -4319,6 +4357,22 @@ p, li { white-space: pre-wrap; }
   </connection>
   <connection>
    <sender>cbCompatBadAngles</sender>
+   <signal>clicked()</signal>
+   <receiver>FlagsPage</receiver>
+   <slot>applyWidgetsChange()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>89</x>
+     <y>323</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1</x>
+     <y>338</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbCompatDisableCrosshairAccurate</sender>
    <signal>clicked()</signal>
    <receiver>FlagsPage</receiver>
    <slot>applyWidgetsChange()</slot>
