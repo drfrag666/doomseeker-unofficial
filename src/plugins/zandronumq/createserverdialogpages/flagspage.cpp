@@ -31,7 +31,7 @@
 #include <serverapi/gamecreateparams.h>
 
 #include "createserverdialogpages/flagsid.h"
-#include "createserverdialogpages/flagspagevaluecontroller3.h"
+#include "createserverdialogpages/flagspagevaluecontroller1.h"
 #include "createserverdialogpages/votingsetupwidget.h"
 #include "zandronumqgameinfo.h"
 
@@ -96,10 +96,10 @@ FlagsPage::FlagsPage(CreateServerDialog *pParentDialog)
 	leLMSSpectatorSettings->setValidator(&d->validator);
 
 	// Version-specific widgets should all be invisible at this stage.
-	Zandronumq3::FlagsPageValueController(this).setVisible(false);
+	zandronumq1::FlagsPageValueController(this).setVisible(false);
 
 	// Init values for widgets.
-	cboGameVersion->addItem(tr("Q-Zandronum 3"), ZandronumqGameInfo::GV_Zandronumq3);
+	cboGameVersion->addItem(tr("Q-Zandronum 1"), ZandronumqGameInfo::GV_zandronumq1);
 
 	cboFallingDamage->insertItem(FDT_None, tr("None"));
 	cboFallingDamage->insertItem(FDT_Old, tr("Old (ZDoom)"));
@@ -110,7 +110,7 @@ FlagsPage::FlagsPage(CreateServerDialog *pParentDialog)
 	initJumpCrouchComboBoxes(cboJumping);
 	initJumpCrouchComboBoxes(cboCrouching);
 
-	setGameVersion(ZandronumqGameInfo::GV_Zandronumq3);
+	setGameVersion(ZandronumqGameInfo::GV_zandronumq1);
 
 	// Widget states
 	spinMonsterKillPercentage->setEnabled(false);
@@ -312,9 +312,9 @@ void FlagsPage::setGameVersion(ZandronumqGameInfo::GameVersion version)
 	{
 	default:
 		gLog << tr("Tried to set unknown Q-Zandronum version. Reverting to default."); // intentional fall-through
-	case ZandronumqGameInfo::GV_Zandronumq3:
+	case ZandronumqGameInfo::GV_zandronumq1:
 		d->flagsController = QSharedPointer<FlagsPageValueController>(
-			new Zandronumq3::FlagsPageValueController(this));
+			new zandronumq1::FlagsPageValueController(this));
 		break;
 	}
 	d->flagsController->setVisible(true);

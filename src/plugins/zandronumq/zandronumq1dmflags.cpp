@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// zandronumq3dmflags.cpp
+// zandronumq1dmflags.cpp
 //------------------------------------------------------------------------------
 //
 // This library is free software; you can redistribute it and/or
@@ -20,13 +20,13 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2016 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
-#include "zandronumq3dmflags.h"
+#include "zandronumq1dmflags.h"
 
 #include "zandronumqgamesettings.h"
 #include <QMutex>
 #include <serverapi/serverstructs.h>
 
-namespace Zandronumq3
+namespace zandronumq1
 {
 static QList<DMFlagsSection> cachedFlags;
 static QMutex cacheMutex;

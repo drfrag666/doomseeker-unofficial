@@ -35,7 +35,7 @@ qt5_wrap_ui(ZANDRONUMQ_UI_FILES
 
 set(ZANDRONUMQ_FILES
 	createserverdialogpages/flagsid.cpp
-	createserverdialogpages/flagspagevaluecontroller3.cpp
+	createserverdialogpages/flagspagevaluecontroller1.cpp
 	createserverdialogpages/flagspage.cpp
 	createserverdialogpages/votingsetupwidget.cpp
 	huffman/bitreader.cpp
@@ -47,7 +47,7 @@ set(ZANDRONUMQ_FILES
 	huffmanudpsocket.cpp
 	zandronumqbinaries.cpp
 	zandronumqbroadcast.cpp
-	zandronumq3dmflags.cpp
+	zandronumq1dmflags.cpp
 	zandronumqengineplugin.cpp
 	zandronumqgameexefactory.cpp
 	zandronumqgamehost.cpp
@@ -64,7 +64,7 @@ set(HEADER_FILES
 	createserverdialogpages/flagspage.h
 	createserverdialogpages/votingsetupwidget.h
 	createserverdialogpages/flagsid.h
-	createserverdialogpages/flagspagevaluecontroller3.h
+	createserverdialogpages/flagspagevaluecontroller1.h
 	huffman/bitreader.h
 	huffman/bitwriter.h
 	huffman/codec.h
@@ -75,7 +75,7 @@ set(HEADER_FILES
 	huffmanudpsocket.h
 	zandronumqbinaries.h
 	zandronumqbroadcast.h
-	zandronumq3dmflags.h
+	zandronumq1dmflags.h
 	zandronumqengineplugin.h
 	zandronumqgameexefactory.h
 	zandronumqgamehost.h

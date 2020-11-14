@@ -22,7 +22,7 @@
 //------------------------------------------------------------------------------
 #include "zandronumqserverdmflagsparser.h"
 
-#include "zandronumq3dmflags.h"
+#include "zandronumq1dmflags.h"
 #include "zandronumqgameinfo.h"
 #include "zandronumqserver.h"
 #include <datastreamoperatorwrapper.h>
@@ -31,7 +31,7 @@
 ZandronumqServerDmflagsParser *ZandronumqServerDmflagsParser::mkParser(
 	ZandronumqServer *server, QDataStream *in)
 {
-	return new ZandronumqServer3DmflagsParser(server, in);
+	return new ZandronumqServer1DmflagsParser(server, in);
 }
 
 ZandronumqServerDmflagsParser::ZandronumqServerDmflagsParser(
@@ -88,7 +88,7 @@ QList<DMFlagsSection> ZandronumqServerNullParser::parse()
 
 ///////////////////////////////////////////////////////////////////////////////
 
-QList<DMFlagsSection> ZandronumqServer3DmflagsParser::parse()
+QList<DMFlagsSection> ZandronumqServer1DmflagsParser::parse()
 {
-	return sequential32Parse(Zandronumq3::Dmflags().flags());
+	return sequential32Parse(zandronumq1::Dmflags().flags());
 }

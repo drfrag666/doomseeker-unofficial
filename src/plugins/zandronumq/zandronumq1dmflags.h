@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// zandronumq3dmflags.h
+// zandronumq1dmflags.h
 //------------------------------------------------------------------------------
 //
 // This library is free software; you can redistribute it and/or
@@ -28,7 +28,7 @@
 
 class DMFlagsSection;
 
-namespace Zandronumq3
+namespace zandronumq1
 {
 /**
  * @brief Common dmflags.

@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// flagspagevaluecontroller3.cpp
+// flagspagevaluecontroller1.cpp
 //------------------------------------------------------------------------------
 //
 // This library is free software; you can redistribute it and/or
@@ -20,13 +20,13 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2016 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
-#include "flagspagevaluecontroller3.h"
+#include "flagspagevaluecontroller1.h"
 
 #include "createserverdialogpages/flagspage.h"
-#include "zandronumq3dmflags.h"
+#include "zandronumq1dmflags.h"
 #include "zandronumqgameinfo.h"
 
-namespace Zandronumq3
+namespace zandronumq1
 {
 FlagsPageValueController::FlagsPageValueController(FlagsPage *flagsPage)
 {

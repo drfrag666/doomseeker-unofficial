@@ -77,7 +77,7 @@ public:
 	 */
 	enum GameVersion
 	{
-		GV_Zandronumq3 = 2
+		GV_zandronumq1 = 2
 	};
 
 	static const QString OPTION_GAMEVERSION;

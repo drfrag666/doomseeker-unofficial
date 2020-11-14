@@ -1,5 +1,5 @@
 //------------------------------------------------------------------------------
-// flagspagevaluecontroller3.h
+// flagspagevaluecontroller1.h
 //------------------------------------------------------------------------------
 //
 // This library is free software; you can redistribute it and/or
@@ -20,8 +20,8 @@
 //------------------------------------------------------------------------------
 // Copyright (C) 2016 "Zalewa" <zalewapl@gmail.com>
 //------------------------------------------------------------------------------
-#ifndef DOOMSEEKER_PLUGIN_ZANDRONUMQ_CREATESERVERDIALOGPAGES_FLAGSPAGEVALUECONTROLLER3_H
-#define DOOMSEEKER_PLUGIN_ZANDRONUMQ_CREATESERVERDIALOGPAGES_FLAGSPAGEVALUECONTROLLER3_H
+#ifndef DOOMSEEKER_PLUGIN_ZANDRONUMQ_CREATESERVERDIALOGPAGES_flagspagevaluecontroller1_H
+#define DOOMSEEKER_PLUGIN_ZANDRONUMQ_CREATESERVERDIALOGPAGES_flagspagevaluecontroller1_H
 
 #include <QAbstractButton>
 #include <QMap>
@@ -30,7 +30,7 @@
 
 class FlagsPage;
 
-namespace Zandronumq3
+namespace zandronumq1
 {
 /**
  * @brief Converts numerical flags values to widget representation
