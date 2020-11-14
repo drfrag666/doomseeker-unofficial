@@ -38,27 +38,10 @@ DPointered(ZandronumqGameExeFactory)
 ZandronumqGameExeFactory::ZandronumqGameExeFactory(EnginePlugin *plugin)
 	: GameExeFactory(plugin)
 {
-	set_additionalExecutables(&ZandronumqGameExeFactory::additionalExecutables);
 }
 
 ZandronumqGameExeFactory::~ZandronumqGameExeFactory()
 {
-}
-
-QList<ExeFilePath> ZandronumqGameExeFactory::additionalExecutables(int execType) const
-{
-	QList<ExeFilePath> testingExecutables;
-	IniSection *cfg = plugin()->data()->pConfig;
-	if (cfg != nullptr)
-	{
-		QDir directory(cfg->value("TestingPath").toString());
-		QStringList subdirs = directory.entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name | QDir::Reversed);
-		for (const QString &subdirName : subdirs)
-		{
-			testingExecutables << scanSubdir(directory, subdirName, execType);
-		}
-	}
-	return testingExecutables;
 }
 
 QList<ExeFilePath> ZandronumqGameExeFactory::scanSubdir(const QDir &mainDir,

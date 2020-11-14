@@ -25,11 +25,6 @@
 
 #include "gui/configuration/engineconfigpage.h"
 
-class QCheckBox;
-class QGroupBox;
-class QLineEdit;
-class QPushButton;
-
 class EngineZandronumqConfigBox : public EngineConfigPage
 {
 	Q_OBJECT
@@ -37,19 +32,6 @@ class EngineZandronumqConfigBox : public EngineConfigPage
 public:
 	EngineZandronumqConfigBox(EnginePlugin *plugin, IniSection &cfg, QWidget *parent = nullptr);
 
-	void readSettings() override;
-
-
-protected slots:
-	void btnBrowseTestingPathClicked();
-
-protected:
-
-	void saveSettings() override;
-
-	QGroupBox *groupTesting;
-	QLineEdit *leTestingPath;
-	QPushButton *btnBrowseTestingPath;
 };
 
 #endif

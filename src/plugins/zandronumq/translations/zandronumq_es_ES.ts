@@ -3,25 +3,6 @@
 <TS version="2.1" language="es_ES">
 <context>
     <name>EngineZandronumqConfigBox</name>
-    <message>
-        <location filename="../enginezandronumqconfigbox.cpp" line="42"/>
-        <source>Testing Releases</source>
-        <translation>Versiones de prueba</translation>
-    </message>
-    <message>
-        <location filename="../enginezandronumqconfigbox.cpp" line="45"/>
-        <source>Directory for testing releases:</source>
-        <translation>Directorio para las versiones de prueba:</translation>
-    </message>
-    <message>
-        <source>Allow servers to display my country</source>
-        <translation type="vanished">Permitir que los servidores muestren mi país</translation>
-    </message>
-    <message>
-        <location filename="../enginezandronumqconfigbox.cpp" line="61"/>
-        <source>Doomseeker - choose Zandronumq testing directory</source>
-        <translation>Doomseeker - elija el directorio de pruebas de Zandronumq</translation>
-    </message>
 </context>
 <context>
     <name>FlagsPage</name>
@@ -1237,19 +1218,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../zandronumqserver.h" line="72"/>
         <source>&lt;&lt; Unknown &gt;&gt;</source>
         <translation>&lt;&lt; Desconocido &gt;&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>TestingProgressDialog</name>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="456"/>
-        <source>Downloading testing binaries...</source>
-        <translation>Descargando archivos binarios de prueba ...</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="456"/>
-        <source>Cancel</source>
-        <translation>Cancelar</translation>
     </message>
 </context>
 <context>
@@ -2659,12 +2627,6 @@ p, li { white-space: pre-wrap; }
         <translation>cliente</translation>
     </message>
     <message>
-        <location filename="../zandronumqbinaries.cpp" line="113"/>
-        <location filename="../zandronumqbinaries.cpp" line="205"/>
-        <source>No testing directory specified for Zandronumq</source>
-        <translation>No se especificó ningún directorio de pruebas para Zandronumq</translation>
-    </message>
-    <message>
         <location filename="../zandronumqbinaries.cpp" line="119"/>
         <source>Unable to create directory:
 %1</source>
@@ -2691,40 +2653,6 @@ p, li { white-space: pre-wrap; }
 %2</translation>
     </message>
     <message>
-        <location filename="../zandronumqbinaries.cpp" line="161"/>
-        <source>&lt;p&gt;Installation of testing binaries for version %1 can potentially &lt;b&gt;overwrite&lt;/b&gt; your files.&lt;/p&gt;&lt;p&gt;Game will be installed to:&lt;br&gt;%2&lt;/p&gt;&lt;p&gt;Do you want Doomseeker to extract Zandronumq files, potentially &lt;b&gt;overwriting existing ones&lt;/b&gt;, and to copy all your configuration files from your base directory?&lt;/p&gt;</source>
-        <translation>&lt;p&gt;La instalación de los binarios de prueba para la versión %1 puede potencialmente &lt;b&gt;rescribir&lt;/b&gt; tus archivos.&lt;/p&gt;&lt;p&gt;El juego se instalará en:&lt;br&gt;%2&lt;/p&gt;&lt;p&gt;Quieres que Doomseeker extraiga los archivos de Zandronumq, potencialmente &lt;b&gt;reescribiendo los archivos ya existentes&lt;/b&gt;, y copiar todos los archivos de configuración de tu directorio base?&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="172"/>
-        <source>Zandronumq testing version %1 can be installed.
-
-Game will be installed to:
-%2
-
-Do you want Doomseeker to install that version and copy all your configuration files from your base directory?</source>
-        <translation>La versión de prueba de Zandronumq %1 puede instalarse.
-
-El juego puede instalarse en:
-%2
-
-Quieres que Doomseeker instale esta versión y copie todos tus archivos de configuración de tu directorio base?</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="179"/>
-        <source>Doomseeker - install Zandronumq testing version</source>
-        <translation>Doomseeker - instalar la versión de prueba de Zandronumq</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="215"/>
-        <source>%1
-doesn&apos;t exist.
-You need to install new testing binaries.</source>
-        <translation>%1
-No existe.
-Debe instalar los nuevos ejecutables de prueba.</translation>
-    </message>
-    <message>
         <location filename="../zandronumqbinaries.cpp" line="222"/>
         <source>%1
 exists but is NOT a directory.
@@ -2745,23 +2673,9 @@ existe, pero no contiene el ejecutable de Zandronumq.
 Doomseeker puede instalar el juego allí igualmente si lo desea.</translation>
     </message>
     <message>
-        <location filename="../zandronumqbinaries.cpp" line="302"/>
-        <source>Downloading Zandronumq testing binary from URL: %1</source>
-        <translation>Descargando el archivo binario de prueba de Zandronumq desde la URL: %1</translation>
-    </message>
-    <message>
         <location filename="../zandronumqbinaries.cpp" line="307"/>
         <source>Doomseeker - download failed</source>
         <translation>Doomseeker - descarga fallida</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="308"/>
-        <source>Failed to download testing binary.
-
-%1</source>
-        <translation>Error al descargar el binario de la versión de prueba.
-
-%1</translation>
     </message>
     <message>
         <location filename="../zandronumqbinaries.cpp" line="332"/>
@@ -2877,8 +2791,8 @@ Doomseeker puede instalar el juego allí igualmente si lo desea.</translation>
     <name>ZandronumqMasterClient</name>
     <message>
         <location filename="../zandronumqmasterclient.cpp" line="70"/>
-        <source>You may contact Zandronumq staff about this through IRC: &lt;b&gt;irc.qzandronum.com #zandronumq&lt;/b&gt; or on the forum: &lt;a href=&quot;https://qzandronum.com/forum&quot;&gt;https://qzandronum.com/forum.&lt;/a&gt;</source>
-        <translation>Puede ponerse en contacto con el personal de Zandronumq a través de IRC: &lt;b&gt;irc.qzandronum.com #zandronumq&lt;/b&gt; o en el foro: &lt;a href=&quot;https://qzandronum.com/forum&quot;&gt;https://qzandronum.com/forum.&lt;/a&gt;</translation>
+        <source>You may contact Q-Zandronum staff about this through QC:DE Discord: &lt;b&gt;https://discord.com/invite/RN9hhmA&lt;/b&gt;</source>
+        <translation>Puede ponerse en contacto con el personal de Zandronumq a través de QC:DE Discord: &lt;b&gt;https://discord.com/invite/RN9hhmA&lt;/b&gt;</translation>
     </message>
 </context>
 <context>

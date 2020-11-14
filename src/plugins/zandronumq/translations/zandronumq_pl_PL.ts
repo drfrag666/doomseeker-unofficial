@@ -3,26 +3,6 @@
 <TS version="2.1" language="pl_PL">
 <context>
     <name>EngineZandronumqConfigBox</name>
-    <message>
-        <location filename="../enginezandronumqconfigbox.cpp" line="42"/>
-        <source>Testing Releases</source>
-        <translation>Wydania testowe</translation>
-    </message>
-    <message>
-        <location filename="../enginezandronumqconfigbox.cpp" line="45"/>
-        <source>Directory for testing releases:</source>
-        <translation>Katalog dla wydań testowych:</translation>
-    </message>
-    <message>
-        <location filename="../enginezandronumqconfigbox.cpp" line="61"/>
-        <source>Allow servers to display my country</source>
-        <translation>Pozwól serwerom wyświetlać mój kraj</translation>
-    </message>
-    <message>
-        <location filename="../enginezandronumqconfigbox.cpp" line="70"/>
-        <source>Doomseeker - choose Zandronumq testing directory</source>
-        <translation>Doomseeker - wybierz katalog testowy dla Zandronumq</translation>
-    </message>
 </context>
 <context>
     <name>FlagsPage</name>
@@ -1261,19 +1241,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../zandronumqserver.h" line="72"/>
         <source>&lt;&lt; Unknown &gt;&gt;</source>
         <translation>&lt;&lt; Nieznana &gt;&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>TestingProgressDialog</name>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="455"/>
-        <source>Downloading testing binaries...</source>
-        <translation>Pobieram binarki testowe ...</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="455"/>
-        <source>Cancel</source>
-        <translation>Anuluj</translation>
     </message>
 </context>
 <context>
@@ -2687,24 +2654,6 @@ p, li { white-space: pre-wrap; }
         <translation>klient</translation>
     </message>
     <message>
-        <source>Testing binaries for version %1 can be installed.
-
-Do you want Doomseeker to create %1 directory and copy all your .ini files from your base directory?</source>
-        <translation type="vanished">Binarki testowe dla wersji %1 mogą zostać zainstalowane.
-
-Czy chcesz aby Doomseeker utworzył katalog %1 i skopiował do niego wszystkie twoje pliki .ini z katalogu bazowego?</translation>
-    </message>
-    <message>
-        <source>Doomseeker - missing testing binaries</source>
-        <translation type="vanished">Doomseeker - brakuje binarek testowych</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="113"/>
-        <location filename="../zandronumqbinaries.cpp" line="205"/>
-        <source>No testing directory specified for Zandronumq</source>
-        <translation>Nie podano katalogu testowego dla Zandronumq</translation>
-    </message>
-    <message>
         <location filename="../zandronumqbinaries.cpp" line="119"/>
         <source>Unable to create directory:
 %1</source>
@@ -2729,40 +2678,6 @@ Czy chcesz aby Doomseeker utworzył katalog %1 i skopiował do niego wszystkie t
 %2</source>
         <translation>Proszę teraz zainstalować wersję &quot;%1&quot; do:
 %2</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="161"/>
-        <source>&lt;p&gt;Installation of testing binaries for version %1 can potentially &lt;b&gt;overwrite&lt;/b&gt; your files.&lt;/p&gt;&lt;p&gt;Game will be installed to:&lt;br&gt;%2&lt;/p&gt;&lt;p&gt;Do you want Doomseeker to extract Zandronumq files, potentially &lt;b&gt;overwriting existing ones&lt;/b&gt;, and to copy all your configuration files from your base directory?&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Instalacja binarek testowych dla wersji %1 może potencjalnie &lt;b&gt;nadpisać&lt;/b&gt; Twoje pliki.&lt;/p&gt;&lt;p&gt;Gra zostanie zainstalowana pod ścieżką:&lt;br&gt;%2&lt;/p&gt;&lt;p&gt;Czy chcesz aby Doomseeker wypakował pliki Zandronumq, potencjalnie &lt;b&gt;nadpisując już istniejące&lt;/b&gt;, oraz aby skopiował wszystkie Twoje pliki konfiguracyjne z katalogu bazowego?&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="172"/>
-        <source>Zandronumq testing version %1 can be installed.
-
-Game will be installed to:
-%2
-
-Do you want Doomseeker to install that version and copy all your configuration files from your base directory?</source>
-        <translation>Wersja testowa Zandronumq %1 może zostać zainstalowana.
-
-Gra zostanie zainstalowana do:
-%2
-
-Czy chcesz, aby Doomseeker zainstalował tą wersję i skopiował wszystkie Twoje pliki konfiguracyjne z katalogu bazowego?</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="179"/>
-        <source>Doomseeker - install Zandronumq testing version</source>
-        <translation>Doomseeker - instalacja testowej wersji Zandronumq</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="215"/>
-        <source>%1
-doesn&apos;t exist.
-You need to install new testing binaries.</source>
-        <translation>%1
-nie istnieje.
-Musisz zainstalować nowe binarki testowe.</translation>
     </message>
     <message>
         <location filename="../zandronumqbinaries.cpp" line="222"/>
@@ -2791,23 +2706,9 @@ doesn&apos;t contain Zandronumq executable</source>
 nie zawiera pliku wykonywalnego Zandronumq</translation>
     </message>
     <message>
-        <location filename="../zandronumqbinaries.cpp" line="301"/>
-        <source>Downloading Zandronumq testing binary from URL: %1</source>
-        <translation>Pobieram binarkę testową Zandronumq z URLa: %1</translation>
-    </message>
-    <message>
         <location filename="../zandronumqbinaries.cpp" line="306"/>
         <source>Doomseeker - download failed</source>
         <translation>Doomseeker - pobieranie sfiaskowało</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="307"/>
-        <source>Failed to download testing binary.
-
-%1</source>
-        <translation>Nie udało się pobrać binarki testowe.
-
-%1</translation>
     </message>
     <message>
         <location filename="../zandronumqbinaries.cpp" line="331"/>
@@ -3512,8 +3413,8 @@ nie zawiera pliku wykonywalnego Zandronumq</translation>
     <name>ZandronumqMasterClient</name>
     <message>
         <location filename="../zandronumqmasterclient.cpp" line="70"/>
-        <source>You may contact Zandronumq staff about this through IRC: &lt;b&gt;irc.qzandronum.com #zandronumq&lt;/b&gt; or on the forum: &lt;a href=&quot;https://qzandronum.com/forum&quot;&gt;https://qzandronum.com/forum.&lt;/a&gt;</source>
-        <translation>Możesz skontaktować się z ekipą Zandronumq w tym temacie poprzez IRC: &lt;b&gt;irc.qzandronum.com #zandronumq&lt;/b&gt;, albo na forum: &lt;a href=&quot;https://qzandronum.com/forum&quot;&gt;https://qzandronum.com/forum.&lt;/a&gt;</translation>
+        <source>You may contact Q-Zandronum staff about this through QC:DE Discord: &lt;b&gt;https://discord.com/invite/RN9hhmA&lt;/b&gt;</source>
+        <translation>Możesz skontaktować się z ekipą Zandronumq w tym temacie poprzez QC:DE Discord: &lt;b&gt;https://discord.com/invite/RN9hhmA&lt;/b&gt;</translation>
     </message>
 </context>
 <context>

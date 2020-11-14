@@ -532,23 +532,6 @@ Server::Response ZandronumqServer::readRequest(const QByteArray &data)
 		}
 	}
 
-	if (in.remaining() != 0 && (flags & SQF_TESTING_SERVER) == SQF_TESTING_SERVER)
-	{
-		flags ^= SQF_TESTING_SERVER;
-
-		RETURN_BAD_IF_NOT_ENOUGH_DATA(1);
-		setTestingServer(in.readQInt8() != 0);
-
-		// '\0' is read if testingServer == false
-		RETURN_BAD_IF_NOT_ENOUGH_DATA(1);
-		testingArchive = in.readRawUntilByte('\0');
-	}
-	else
-	{
-		setTestingServer(false);
-		testingArchive = QString();
-	}
-
 	setDmFlags(QList<DMFlagsSection>()); // Basically, clear.
 	if ((flags & SQF_ALL_DMFLAGS) == SQF_ALL_DMFLAGS)
 	{
@@ -733,26 +716,6 @@ void ZandronumqServer::updatedSlot(ServerPtr server, int response)
 PathFinder ZandronumqServer::wadPathFinder()
 {
 	PathFinder pathFinder = Server::wadPathFinder();
-	if (isTestingServer())
-	{
-		QScopedPointer<ExeFile> exe(clientExe());
-		Message message;
-		QString exePath = exe->pathToExe(message);
-		if (!exePath.isNull())
-		{
-			// exePath is path to a .bat/.sh file that resides in
-			// directory above the directory of actual deployment of
-			// the testing client. Fortunately, name of the .bat/.sh
-			// file is the same as the name of the directory that
-			// interests us. So, we cut out the file extension and
-			// thus we receive a proper path that we can add to
-			// PathFinder.
-			QFileInfo fileInfo(exePath);
-			QString dirPath = Strings::combinePaths(fileInfo.absolutePath(),
-				fileInfo.completeBaseName());
-			pathFinder.addPrioritySearchDir(dirPath);
-		}
-	}
 	return pathFinder;
 }
 

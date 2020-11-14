@@ -81,7 +81,6 @@ ZandronumqEnginePlugin::ZandronumqEnginePlugin()
 		EP_DefaultServerPort, 10666,
 		EP_DefaultMaster, "master.qzandronum.com:15300",
 		EP_SupportsRandomMapRotation,
-		EP_IRCChannel, "Q-Zandronum", "irc.qzandronum.com", "#qzandronum",
 		EP_RefreshThreshold, 10,
 		EP_DemoExtension, false, "cld",
 		EP_URLScheme, "zan",
@@ -94,9 +93,6 @@ ZandronumqEnginePlugin::ZandronumqEnginePlugin()
 void ZandronumqEnginePlugin::setupConfig(IniSection &config)
 {
 	config.createSetting("Masterserver", data()->defaultMaster);
-	config.createSetting("EnableTesting", true);
-	config.createSetting("TestingPath",
-		DataPaths::defaultInstance()->pluginLocalDataLocationPath(*this));
 }
 
 ConfigPage *ZandronumqEnginePlugin::configuration(QWidget *parent)

@@ -68,8 +68,7 @@ QByteArray ZandronumqMasterClient::createServerListRequest()
 QString ZandronumqMasterClient::masterBanHelp() const
 {
 	return tr("You may contact Q-Zandronum staff about this through "
-		"IRC: <b>irc.qzandronum.com #zandronumq</b> or on "
-		"the forum: <a href=\"https://qzandronum.com/forum\">https://qzandronum.com/forum.</a>");
+		"QC:DE Discord: <b>https://discord.com/invite/RN9hhmA</b>");
 }
 
 const EnginePlugin *ZandronumqMasterClient::plugin() const

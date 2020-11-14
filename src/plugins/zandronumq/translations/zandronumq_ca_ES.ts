@@ -3,21 +3,6 @@
 <TS version="2.1" language="ca_ES">
 <context>
     <name>EngineZandronumqConfigBox</name>
-    <message>
-        <location filename="../enginezandronumqconfigbox.cpp" line="42"/>
-        <source>Testing Releases</source>
-        <translation>Versions de prova</translation>
-    </message>
-    <message>
-        <location filename="../enginezandronumqconfigbox.cpp" line="45"/>
-        <source>Directory for testing releases:</source>
-        <translation>Directori per a les versions de prova:</translation>
-    </message>
-    <message>
-        <location filename="../enginezandronumqconfigbox.cpp" line="61"/>
-        <source>Doomseeker - choose Zandronumq testing directory</source>
-        <translation>Doomseeker - triï el directori de proves de Zandronumq</translation>
-    </message>
 </context>
 <context>
     <name>FlagsPage</name>
@@ -1233,19 +1218,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../zandronumqserver.h" line="72"/>
         <source>&lt;&lt; Unknown &gt;&gt;</source>
         <translation>&lt;&lt; Desconegut &gt;&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>TestingProgressDialog</name>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="455"/>
-        <source>Downloading testing binaries...</source>
-        <translation>Descarregant arxius binaris de prova ...</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="455"/>
-        <source>Cancel</source>
-        <translation>Cancel·lar</translation>
     </message>
 </context>
 <context>
@@ -2655,12 +2627,6 @@ p, li { white-space: pre-wrap; }
         <translation>client</translation>
     </message>
     <message>
-        <location filename="../zandronumqbinaries.cpp" line="113"/>
-        <location filename="../zandronumqbinaries.cpp" line="205"/>
-        <source>No testing directory specified for Zandronumq</source>
-        <translation>No s&apos;ha especificat cap directori de proves per Zandronumq</translation>
-    </message>
-    <message>
         <location filename="../zandronumqbinaries.cpp" line="119"/>
         <source>Unable to create directory:
 %1</source>
@@ -2687,40 +2653,6 @@ p, li { white-space: pre-wrap; }
 %2</translation>
     </message>
     <message>
-        <location filename="../zandronumqbinaries.cpp" line="161"/>
-        <source>&lt;p&gt;Installation of testing binaries for version %1 can potentially &lt;b&gt;overwrite&lt;/b&gt; your files.&lt;/p&gt;&lt;p&gt;Game will be installed to:&lt;br&gt;%2&lt;/p&gt;&lt;p&gt;Do you want Doomseeker to extract Zandronumq files, potentially &lt;b&gt;overwriting existing ones&lt;/b&gt;, and to copy all your configuration files from your base directory?&lt;/p&gt;</source>
-        <translation>&lt;p&gt;La instal·lació dels binaris de prova per a la versió%1 pot potencialment &lt;b&gt;reescriure&lt;/b&gt; els teus arxius.&lt;/p&gt;&lt;p&gt;El joc s&apos;instal·larà a:&lt;br&gt;%2&lt;/p&gt;&lt;p&gt;Vols que Doomseeker extregui els arxius de Zandronumq, potencialment &lt;b&gt;reescrivint els arxius ja existents&lt;/b&gt;, i copiar tots els arxius de configuració del teu directori base?&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="172"/>
-        <source>Zandronumq testing version %1 can be installed.
-
-Game will be installed to:
-%2
-
-Do you want Doomseeker to install that version and copy all your configuration files from your base directory?</source>
-        <translation>La versió de prova de Zandronumq%1 pot instal·lar-se.
-
-El joc pot instal·lar-se a:
-%2
-
-Vols que Doomseeker instal aquesta versió i copieu tots els teus arxius de configuració del teu directori base?</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="179"/>
-        <source>Doomseeker - install Zandronumq testing version</source>
-        <translation>Doomseeker - instal·lar la versió de prova de Zandronumq</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="215"/>
-        <source>%1
-doesn&apos;t exist.
-You need to install new testing binaries.</source>
-        <translation>%1
-No existeix.
-Ha d&apos;instal·lar els nous executables de prova.</translation>
-    </message>
-    <message>
         <location filename="../zandronumqbinaries.cpp" line="222"/>
         <source>%1
 exists but is NOT a directory.
@@ -2739,40 +2671,6 @@ Doomseeker can still install the game there if you want.</source>
 existeix, però no conté l&apos;executable de Zandronumq.
 
 Doomseeker pot instal lar el joc allà igualment si ho desitja.</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="301"/>
-        <source>Downloading Zandronumq testing binary from URL: %1</source>
-        <translation>Descarregant l&apos;arxiu binari de prova de Zandronumq des de la URL: %1</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="306"/>
-        <source>Doomseeker - download failed</source>
-        <translation>Doomseeker - descàrrega fallida</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="307"/>
-        <source>Failed to download testing binary.
-
-%1</source>
-        <translation>Error al descarregar el binari de la versió de prova.
-
-%1</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="331"/>
-        <source>Unpacking file: %1</source>
-        <translation>Desempaquetant arxiu: %1</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="343"/>
-        <source>Doomseeker - unpack failed</source>
-        <translation>Doomseeker - error en desempaquetar</translation>
-    </message>
-    <message>
-        <location filename="../zandronumqbinaries.cpp" line="344"/>
-        <source>Failed to unpack: %1</source>
-        <translation>Error al desempaquetar: %1</translation>
     </message>
     <message>
         <location filename="../zandronumqbinaries.cpp" line="371"/>
@@ -2873,8 +2771,8 @@ Doomseeker pot instal lar el joc allà igualment si ho desitja.</translation>
     <name>ZandronumqMasterClient</name>
     <message>
         <location filename="../zandronumqmasterclient.cpp" line="70"/>
-        <source>You may contact Zandronumq staff about this through IRC: &lt;b&gt;irc.qzandronum.com #zandronumq&lt;/b&gt; or on the forum: &lt;a href=&quot;https://qzandronum.com/forum&quot;&gt;https://qzandronum.com/forum.&lt;/a&gt;</source>
-        <translation>Pot posar-se en contacte amb el personal de Zandronumq a través d&apos;IRC: &lt;b&gt;irc.qzandronum.com #zandronumq&lt;/b&gt; o al fòrum: &lt;a href=&quot;https://qzandronum.com/forum&quot;&gt;https://qzandronum.com/forum.&lt;/a&gt;</translation>
+        <source>You may contact Q-Zandronum staff about this through QC:DE Discord: &lt;b&gt;https://discord.com/invite/RN9hhmA&lt;/b&gt;</source>
+        <translation>Pot posar-se en contacte amb el personal de Zandronumq a través d&apos;QC:DE Discord: &lt;b&gt;https://discord.com/invite/RN9hhmA&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
