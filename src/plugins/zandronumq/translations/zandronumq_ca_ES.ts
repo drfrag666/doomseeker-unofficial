@@ -895,11 +895,6 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Els clients envien ucmd.buttons com &amp;quot;long&amp;quot; en lloc de com &amp;quot;byte&amp;quot; en CLIENTCOMMANDS_ClientMove. Fins ara, això només és necessari si la funció ACS GetPlayerInput s&apos;utilitza en un script del costat del servidor per buscar botons més grans que BT_ZOOM. Altrament, aquesta informació és completament inútil per al servidor i s&apos;ha d&apos;evitar el tràfic de xarxa addicional per a enviar-lo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2077"/>
-        <source>Clients send full button info</source>
-        <translation>Els clients envien tota la informació sobre els botons</translation>
-    </message>
-    <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2079"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use Doom&apos;s random table instead of ZDoom&apos;s random number generator. Affects weapon damage among other things.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Utilitza la taula aleatòria de Doom en lloc del generador de nombres aleatoris de ZDoom. Afecta el dany de les armes entre altres coses.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -1479,11 +1474,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../zandronumq1dmflags.cpp" line="122"/>
         <source>Net scripts are client side</source>
         <translation>Els scripts NET s&apos;executen en el client</translation>
-    </message>
-    <message>
-        <location filename="../zandronumq1dmflags.cpp" line="124"/>
-        <source>Clients send full button info</source>
-        <translation>Els clients envien tota la informació sobre els botons</translation>
     </message>
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="126"/>

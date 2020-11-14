@@ -895,11 +895,6 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Los clientes envían ucmd.buttons como &amp;quot;long&amp;quot; en lugar de como &amp;quot;byte&amp;quot; en CLIENTCOMMANDS_ClientMove. Hasta ahora, esto solo es necesario si la función ACS GetPlayerInput se utiliza en un script del lado del servidor para buscar botones más grandes que BT_ZOOM. De lo contrario, esta información es completamente inútil para el servidor y se debe evitar el tráfico de red adicional para enviarlo.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2077"/>
-        <source>Clients send full button info</source>
-        <translation>Los clientes envían toda la información sobre los botones</translation>
-    </message>
-    <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2079"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use Doom&apos;s random table instead of ZDoom&apos;s random number generator. Affects weapon damage among other things.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use la tabla aleatoria de Doom en lugar del generador de números aleatorios de ZDoom. Afecta el daño de las armas entre otras cosas.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -1479,11 +1474,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../zandronumq1dmflags.cpp" line="122"/>
         <source>Net scripts are client side</source>
         <translation>Los scripts NET se ejecutan en el cliente</translation>
-    </message>
-    <message>
-        <location filename="../zandronumq1dmflags.cpp" line="124"/>
-        <source>Clients send full button info</source>
-        <translation>Los clientes envían toda la información sobre los botones</translation>
     </message>
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="126"/>

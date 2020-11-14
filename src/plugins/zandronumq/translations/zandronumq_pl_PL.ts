@@ -903,11 +903,6 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Klienci wysyłają ucmd.buttons jako &amp;quot;long&amp;quot; zamiast jako &amp;quot;byte&amp;quot; w CLIENTCOMMANDS_ClientMove. Jak do tej pory, było to jedynie potrzebne w funkcji ACS GetPlayerInput, gdy jest ona użyta po stronie serwera do sprawdzenia przycisku większego niż BT_ZOOM. W każdym innym przypadku ta informacja jest całkowicie bezużyteczna dla serwera i powinno się unikać dodatkowego zużycia łącza.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="2080"/>
-        <source>Clients send full button info</source>
-        <translation>Klienci wysyłają pełne info o przyciskach</translation>
-    </message>
-    <message>
         <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="2082"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use Doom&apos;s random table instead of ZDoom&apos;s random number generator. Affects weapon damage among other things.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Używaj losowej tablicy z Dooma zamiast generatora liczb losowych z ZDooma. Wpływa to, między innymi, na obrażenia od broni.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -1502,11 +1497,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../zandronumq1dmflags.cpp" line="123"/>
         <source>Net scripts are client side</source>
         <translation>Skrypty NET są po stronie klienta</translation>
-    </message>
-    <message>
-        <location filename="../zandronumq1dmflags.cpp" line="125"/>
-        <source>Clients send full button info</source>
-        <translation>Klienci wysyłają pełne info o przyciskach</translation>
     </message>
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="127"/>
@@ -2245,10 +2235,6 @@ nie zawiera pliku wykonywalnego Zandronumq</translation>
         <translation type="vanished">Skrypty NET są po stronie klienta</translation>
     </message>
     <message>
-        <source>Clients send full button info</source>
-        <translation type="vanished">Klienci wysyłają pełne info o przyciskach</translation>
-    </message>
-    <message>
         <source>Players can&apos;t use &apos;land&apos; CCMD</source>
         <translation type="vanished">Gracze nie mogą używać komendy &apos;land&apos;</translation>
     </message>
@@ -2642,10 +2628,6 @@ nie zawiera pliku wykonywalnego Zandronumq</translation>
     <message>
         <source>NETSCRIPTS are clientside</source>
         <translation type="obsolete">Skrypty NET są po stronie klienta</translation>
-    </message>
-    <message>
-        <source>Clients send full button info</source>
-        <translation type="obsolete">Klienci wysyłają pełne info o przyciskach</translation>
     </message>
     <message>
         <source>Disallow &apos;land&apos; console command</source>

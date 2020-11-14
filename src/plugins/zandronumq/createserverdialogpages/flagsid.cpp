@@ -122,7 +122,6 @@ void FlagsId::assign()
 	f->cbCompatUseOldIntermissionScreensMusic->setProperty("flagname", COMPAT_USE_OLD_INTERMISSION_SCREENS_MUSIC);
 	f->cbCompatDisableStealthMonsters->setProperty("flagname", COMPAT_DISABLE_STEALTH_MONSTERS);
 	f->cbCompatOldDamageRadiusInfiniteHeight->setProperty("flagname", COMPAT_OLD_DAMAGE_RADIUS_INFINITE_HEIGHT);
-	f->cbCompatClientsSendFullButtonInfo->setProperty("flagname", COMPAT_CLIENTS_SEND_FULL_BUTTON_INFO);
 	f->cbCompatOldRandomNumberGenerator->setProperty("flagname", COMPAT_OLD_RANDOM_NUMBER_GENERATOR);
 	f->cbCompatNETScriptsAreClientside->setProperty("flagname", COMPAT_NETSCRIPTS_ARE_CLIENTSIDE);
 	f->cbCompatAddNOGRAVITYFlagToSpheres->setProperty("flagname", COMPAT_ADD_NOGRAVITYFLAG_TO_SPHERES);

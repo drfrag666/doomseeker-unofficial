@@ -65,7 +65,6 @@ const QString COMPAT_ALLOW_INSTANT_RESPAWN = "CompatAllowInstantRespawn";
 const QString COMPAT_USE_OLD_INTERMISSION_SCREENS_MUSIC = "CompatUseOldIntermissionScreensMusic";
 const QString COMPAT_DISABLE_STEALTH_MONSTERS = "CompatDisableStealthMonsters";
 const QString COMPAT_OLD_DAMAGE_RADIUS_INFINITE_HEIGHT = "CompatOldDamageRadiusInfiniteHeight";
-const QString COMPAT_CLIENTS_SEND_FULL_BUTTON_INFO = "CompatClientsSendFullButtonInfo";
 const QString COMPAT_OLD_RANDOM_NUMBER_GENERATOR = "CompatOldRandomNumberGenerator";
 const QString COMPAT_NETSCRIPTS_ARE_CLIENTSIDE = "CompatNETScriptsAreClientside";
 const QString COMPAT_ADD_NOGRAVITYFLAG_TO_SPHERES = "CompatAddNOGRAVITYFlagToSpheres";

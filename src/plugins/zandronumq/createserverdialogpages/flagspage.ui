@@ -1475,16 +1475,6 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="cbCompatClientsSendFullButtonInfo">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clients send ucmd.buttons as &amp;quot;long&amp;quot; instead of as &amp;quot;byte&amp;quot; in CLIENTCOMMANDS_ClientMove. So far this is only necessary if the ACS function GetPlayerInput is used in a server side script to check for buttons bigger than BT_ZOOM. Otherwise this information is completely useless for the server and the additional net traffic to send it should be avoided.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Clients send full button info</string>
-             </property>
-            </widget>
-           </item>
-           <item>
             <widget class="QCheckBox" name="cbCompatOldRandomNumberGenerator">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use Doom's random table instead of ZDoom's random number generator. Affects weapon damage among other things.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2044,7 +2034,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>cbCompatSectorSoundsUseOriginalMethod</tabstop>
   <tabstop>cbCompatNoMonstersDropoffMove</tabstop>
   <tabstop>cbCompatInstantlyMovingFloorsArentSilent</tabstop>
-  <tabstop>cbCompatClientsSendFullButtonInfo</tabstop>
   <tabstop>cbCompatOldRandomNumberGenerator</tabstop>
   <tabstop>cbCompatMonstersCantBePushedOffCliffs</tabstop>
   <tabstop>cbCompatOldDamageRadiusInfiniteHeight</tabstop>
@@ -3604,22 +3593,6 @@ p, li { white-space: pre-wrap; }
     </hint>
     <hint type="destinationlabel">
      <x>3</x>
-     <y>406</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>cbCompatClientsSendFullButtonInfo</sender>
-   <signal>clicked()</signal>
-   <receiver>FlagsPage</receiver>
-   <slot>applyWidgetsChange()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>607</x>
-     <y>173</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1</x>
      <y>406</y>
     </hint>
    </hints>

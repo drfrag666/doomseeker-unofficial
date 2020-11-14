@@ -152,8 +152,6 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage *flagsPage)
 			f->cbCompatDisableStealthMonsters);
 		m.insert(Dmflags::ZACOMPATF_OLDRADIUSDMG,
 			f->cbCompatOldDamageRadiusInfiniteHeight);
-		m.insert(Dmflags::ZACOMPATF_CLIENTS_SEND_FULL_BUTTON_INFO,
-			f->cbCompatClientsSendFullButtonInfo);
 		m.insert(Dmflags::ZACOMPATF_OLD_RANDOM_GENERATOR,
 			f->cbCompatOldRandomNumberGenerator);
 		m.insert(Dmflags::ZACOMPATF_NETSCRIPTS_ARE_CLIENTSIDE,

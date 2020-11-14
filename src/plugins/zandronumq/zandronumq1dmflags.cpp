@@ -120,8 +120,6 @@ DMFlagsSection Dmflags::zandronumqCompatFlags()
 	DMFlagsSection section("ZA Compat. flags");
 	section << DMFlag(COMPAT_NETSCRIPTS_ARE_CLIENTSIDE, ZACOMPATF_NETSCRIPTS_ARE_CLIENTSIDE,
 		tr("Net scripts are client side"));
-	section << DMFlag(COMPAT_CLIENTS_SEND_FULL_BUTTON_INFO, ZACOMPATF_CLIENTS_SEND_FULL_BUTTON_INFO,
-		tr("Clients send full button info"));
 	section << DMFlag(NO_USE_LAND_CONSOLE_COMMAND, ZACOMPATF_NO_LAND,
 		tr("Players can't use 'land' CCMD"));
 	section << DMFlag(COMPAT_OLD_RANDOM_NUMBER_GENERATOR,
