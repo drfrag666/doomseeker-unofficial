@@ -1055,8 +1055,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="2159"/>
-        <source>zandronumq compatflags</source>
-        <translation>zandronumq compatflags</translation>
+        <source>q-zandronum compatflags</source>
+        <translation>q-zandronum compatflags</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1167,8 +1167,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="2154"/>
-        <source>zandronumq dmflags</source>
-        <translation>zandronumq dmflags</translation>
+        <source>q-zandronum dmflags</source>
+        <translation>q-zandronum dmflags</translation>
     </message>
     <message>
         <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="2156"/>

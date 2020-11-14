@@ -297,7 +297,7 @@ DMFlagsSection Dmflags::dmflags2()
 
 DMFlagsSection Dmflags::zandronumqDmflags()
 {
-	DMFlagsSection section("Zandronumq Flags");
+	DMFlagsSection section("Q-Zandronum Flags");
 	section << DMFlag("Clients can't identify targets", ZADF_NO_IDENTIFY_TARGET,
 		tr("Clients can't identify targets"));
 	section << DMFlag("lmsspectatorsettings applied in all game modes",

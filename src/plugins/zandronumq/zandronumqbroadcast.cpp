@@ -112,13 +112,13 @@ void ZandronumqBroadcast::bindSocket()
 		QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
 	if (bound)
 	{
-		gLog << tr("Listening to Zandronumq's LAN servers broadcasts on port %1.").arg(port);
+		gLog << tr("Listening to Q-Zandronum's LAN servers broadcasts on port %1.").arg(port);
 	}
 	else
 	{
 		if (!d->bindFailureLogged)
 		{
-			gLog << tr("Failed to bind Zandronumq's LAN broadcasts listening socket on port %1. "
+			gLog << tr("Failed to bind Q-Zandronum's LAN broadcasts listening socket on port %1. "
 					"Will keep retrying silently.").arg(port);
 			d->bindFailureLogged = true;
 		}

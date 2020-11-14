@@ -63,8 +63,8 @@ void ZandronumqGameHost::addExtra()
 
 	if (!params().loggingPath().isEmpty())
 	{
-		// Zandronumq suffixes a date plus a ".log" extension. We'll add a prefix.
-		args() << "+logfile" << params().loggingPath() + "/Zandronumq";
+		// Q-Zandronum suffixes a date plus a ".log" extension. We'll add a prefix.
+		args() << "+logfile" << params().loggingPath() + "/Q-Zandronum";
 	}
 
 	QString gameModeStr;

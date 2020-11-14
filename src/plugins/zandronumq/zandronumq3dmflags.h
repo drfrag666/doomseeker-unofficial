@@ -38,7 +38,7 @@ class Dmflags : public QObject
 	Q_OBJECT
 
 public:
-	// DMFlag definitions as defined in "doomdef.h" of Zandronumq's
+	// DMFlag definitions as defined in "doomdef.h" of Q-Zandronum's
 	// source code.
 
 	// [RH] dmflags bits (based on Q2's)
@@ -112,7 +112,7 @@ public:
 		DF2_NOCOUNTENDMONST		= 1 << 26,	// Do not count monsters in 'end level when dying' sectors towards kill count
 	};
 
-	// [BB] Zandronumq dmflags.
+	// [BB] Zandronum dmflags.
 	enum
 	{
 		// [BB] Enforces clients not to identify players, i.e. behave as if cl_identifytarget == 0.
@@ -218,7 +218,7 @@ public:
 		COMPATF2_FLOORMOVE		= 1 << 1,	// Use the same floor motion behavior as Doom.
 	};
 
-	// [BB] Zandronumq compatibility flags.
+	// [BB] Zandronum compatibility flags.
 	enum
 	{
 		// [BB] Treat ACS scripts with the SCRIPTF_Net flag to be client side, i.e.

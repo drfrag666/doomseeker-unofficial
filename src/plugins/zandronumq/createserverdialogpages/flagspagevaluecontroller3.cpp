@@ -125,7 +125,7 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage *flagsPage)
 		m.insert(Dmflags::COMPATF2_FLOORMOVE, f->cbCompatFloorMove);
 	}
 
-	// Zandronumq compatflags
+	// Q-Zandronum compatflags
 	{
 		QMap<unsigned, QAbstractButton *> &m = zandronumqCompatflagsCheckboxes;
 
@@ -310,7 +310,7 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage *flagsPage)
 			f->cbDontSpawnRunes);
 	}
 
-	// Zandronumq DMFlags
+	// Q-Zandronum DMFlags
 	{
 		QMap<unsigned, QAbstractButton *> &m = zandronumqDmflagsCheckboxes;
 

@@ -76,7 +76,7 @@ ZandronumqEnginePlugin::ZandronumqEnginePlugin()
 		#endif
 		EP_ClientExeName, "q-zandronum",
 		EP_ServerExeName, "q-zandronum-server",
-		EP_GameFileSearchSuffixes, "zandronumq",
+		EP_GameFileSearchSuffixes, "q-zandronum",
 		EP_DontCreateDMFlagsPagesAutomatic,
 		EP_DefaultServerPort, 10666,
 		EP_DefaultMaster, "master.qzandronum.com:15300",

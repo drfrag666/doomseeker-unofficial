@@ -31,7 +31,7 @@ QByteArray HuffmanQt::decode(const QByteArray &in)
 
 QByteArray HuffmanQt::decode(const char *in, int size)
 {
-	// Below comment is copypasted from Zandronumq's network.cpp:
+	// Below comment is copypasted from Q-Zandronum's network.cpp:
 	//
 	// [BB] Vortex Cortex pointed us to the fact that the smallest huffman code is only 3 bits
 	// and it turns into 8 bits when it's decompressed. Thus we need to allocate a buffer that

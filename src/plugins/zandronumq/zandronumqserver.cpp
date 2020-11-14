@@ -61,7 +61,7 @@
 	}
 
 /**
- * Compares versions of Zandronumq.
+ * Compares versions of Q-Zandronum.
  */
 ZandronumqVersion::ZandronumqVersion(QString version) : version(version)
 {

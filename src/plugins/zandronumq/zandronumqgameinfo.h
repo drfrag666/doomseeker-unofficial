@@ -87,7 +87,7 @@ public:
 };
 
 /**
- * @brief Provides a (translated) About text for Zandronumq.
+ * @brief Provides a (translated) About text for Q-Zandronum.
  */
 class ZandronumqAboutProvider : public TextProvider
 {

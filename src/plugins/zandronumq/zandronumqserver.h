@@ -38,7 +38,7 @@ class RConProtocol;
 class ZandronumqServer;
 
 /**
- * Compares versions of Zandronumq.
+ * Compares versions of Q-Zandronum.
  */
 class ZandronumqVersion
 {

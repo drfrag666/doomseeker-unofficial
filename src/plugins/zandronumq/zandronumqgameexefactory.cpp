@@ -66,7 +66,7 @@ QList<ExeFilePath> ZandronumqGameExeFactory::scanSubdir(const QDir &mainDir,
 			paths << mainDir.absoluteFilePath(
 					subdirName + ZandronumqClientExeFile::scriptFileExtension());
 			#else
-			paths << mainDir.absoluteFilePath(subdirName + "/zandronumq-server");
+			paths << mainDir.absoluteFilePath(subdirName + "/q-zandronum-server");
 			#endif
 		}
 	}
@@ -76,17 +76,17 @@ QList<ExeFilePath> ZandronumqGameExeFactory::scanSubdir(const QDir &mainDir,
 QString ZandronumqGameExeFactory::execName() const
 {
 	#ifdef Q_OS_WIN32
-	return "zandronumq.exe";
+	return "q-zandronum.exe";
 	#else
-	return "zandronumq";
+	return "q-zandronum";
 	#endif
 }
 
 QString ZandronumqGameExeFactory::serverExecName() const
 {
 	#ifdef Q_OS_WIN32
-	return "zandronumq.exe";
+	return "q-zandronum.exe";
 	#else
-	return "zandronumq-server";
+	return "q-zandronum-server";
 	#endif
 }

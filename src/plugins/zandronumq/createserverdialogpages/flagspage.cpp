@@ -72,7 +72,7 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////
 FlagsPage::FlagsPage(CreateServerDialog *pParentDialog)
-	: CreateServerDialogPage(pParentDialog, tr("Zandronumq"))
+	: CreateServerDialogPage(pParentDialog, tr("Q-Zandronum"))
 {
 	setupUi(this);
 
@@ -284,12 +284,12 @@ void FlagsPage::loadGameVersion(ZandronumqGameInfo::GameVersion version)
 	int index = cboGameVersion->findData(version);
 	if (index < 0)
 	{
-		gLog << tr("Unknown Zandronumq version in the config. Reverting to default.");
+		gLog << tr("Unknown Q-Zandronum version in the config. Reverting to default.");
 		version = DEFAULT_GAME_VERSION;
 		index = cboGameVersion->findData(version);
 		if (index < 0)
 		{
-			gLog << QString("Zandronumq: FlagsPage::loadGameVersion() - oops, "
+			gLog << QString("Q-Zandronum: FlagsPage::loadGameVersion() - oops, "
 					"a bug!, GameVersion = %1").arg(version);
 			return;
 		}

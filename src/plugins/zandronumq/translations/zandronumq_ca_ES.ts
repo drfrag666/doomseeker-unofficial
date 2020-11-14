@@ -1143,7 +1143,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2151"/>
-        <source>zandronumq dmflags</source>
+        <source>q-zandronum dmflags</source>
         <translation></translation>
     </message>
     <message>
@@ -1158,7 +1158,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2156"/>
-        <source>zandronumq compatflags</source>
+        <source>q-zandronum compatflags</source>
         <translation></translation>
     </message>
     <message>
