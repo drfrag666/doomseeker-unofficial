@@ -60,16 +60,6 @@ public:
 	QList<DMFlagsSection> parse() override;
 };
 
-class ZandronumqServer2DmflagsParser : public ZandronumqServerDmflagsParser
-{
-public:
-	ZandronumqServer2DmflagsParser(ZandronumqServer *server, QDataStream *in)
-		: ZandronumqServerDmflagsParser(server, in)
-	{}
-
-	QList<DMFlagsSection> parse() override;
-};
-
 class ZandronumqServer3DmflagsParser : public ZandronumqServerDmflagsParser
 {
 public:

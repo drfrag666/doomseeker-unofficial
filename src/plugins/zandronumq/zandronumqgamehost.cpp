@@ -156,15 +156,7 @@ QString ZandronumqGameHost::strArg(const QString &val)
 {
 	if (val.isEmpty())
 	{
-		// This will reset the value to nothing.
-		if (gameVersion() == ZandronumqGameInfo::GV_Zandronumq2)
-		{
-			return "\"\"";
-		}
-		else
-		{
-			return "";
-		}
+		return "";
 	}
 	else
 	{

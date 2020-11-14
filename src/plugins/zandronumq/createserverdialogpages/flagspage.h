@@ -27,11 +27,6 @@
 #include "zandronumqgameinfo.h"
 #include <gui/widgets/createserverdialogpage.h>
 
-namespace Zandronumq2
-{
-class FlagsPageValueController;
-}
-
 namespace Zandronumq3
 {
 class FlagsPageValueController;
@@ -42,7 +37,6 @@ class GameCreateParams;
 class FlagsPage : public CreateServerDialogPage, private Ui::FlagsPage
 {
 	friend class FlagsId;
-	friend class Zandronumq2::FlagsPageValueController;
 	friend class Zandronumq3::FlagsPageValueController;
 
 	Q_OBJECT
@@ -91,7 +85,7 @@ public:
 		EXIT_KillPlayer = 3
 	};
 
-	static const ZandronumqGameInfo::GameVersion DEFAULT_GAME_VERSION = ZandronumqGameInfo::GV_Zandronumq2;
+	static const ZandronumqGameInfo::GameVersion DEFAULT_GAME_VERSION = ZandronumqGameInfo::GV_Zandronumq3;
 
 	FlagsPage(CreateServerDialog *pParentDialog);
 	~FlagsPage() override;

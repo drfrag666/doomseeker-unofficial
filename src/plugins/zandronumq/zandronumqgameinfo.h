@@ -77,7 +77,6 @@ public:
 	 */
 	enum GameVersion
 	{
-		GV_Zandronumq2 = 1,
 		GV_Zandronumq3 = 2
 	};
 
