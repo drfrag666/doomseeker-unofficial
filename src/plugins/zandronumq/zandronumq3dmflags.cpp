@@ -211,8 +211,6 @@ DMFlagsSection Dmflags::dmflags()
 		tr("No freelook"));
 	section << DMFlag("Respawn invulnerability and invisibility", DF_RESPAWN_SUPER,
 		tr("Respawn invulnerability and invisibility"));
-	section << DMFlag("Arbitrator FOV", DF_NO_FOV,
-		tr("Arbitrator FOV"));
 	section << DMFlag("No multiplayer weapons in cooperative", DF_NO_COOP_WEAPON_SPAWN,
 		tr("No multiplayer weapons in cooperative"));
 	section << DMFlag("No crouching", DF_NO_CROUCH,

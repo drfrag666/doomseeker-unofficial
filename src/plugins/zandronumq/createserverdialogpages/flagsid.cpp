@@ -140,7 +140,6 @@ void FlagsId::assign()
 	f->cbNoMonsters->setProperty("flagname", NO_MONSTERS);
 	f->cbItemsRespawn->setProperty("flagname", ITEMS_RESPAWN);
 	f->cbMegaPowerupsRespawn->setProperty("flagname", MEGA_POWERUPS_RESPAWN);
-	f->cbNoUseFOV->setProperty("flagname", NO_USE_FOV);
 	f->cbNoUseFreelook->setProperty("flagname", NO_USE_FREELOOK);
 	f->cbInfiniteAmmo->setProperty("flagname", INFINITE_AMMO);
 	f->cbDontSpawnDeathmatchWeapons->setProperty("flagname", DONT_SPAWN_DEATHMATCH_WEAPONS);

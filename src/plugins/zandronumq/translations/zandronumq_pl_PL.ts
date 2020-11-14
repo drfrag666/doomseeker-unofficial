@@ -287,16 +287,6 @@ p, li { white-space: pre-wrap; }
         <translation>Używanie autocelowania</translation>
     </message>
     <message>
-        <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="1910"/>
-        <source>Only let the arbitrator set FOV (for all players)</source>
-        <translation>Tylko serwer może ustalić FOV (wszystkim graczom)</translation>
-    </message>
-    <message>
-        <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="1912"/>
-        <source>Use FOV</source>
-        <translation>Używanie FOV</translation>
-    </message>
-    <message>
         <location filename="../../../../../vs2013_5_7_0/src/plugins/zandronumq/ui_flagspage.h" line="1913"/>
         <source>Use freelook</source>
         <translation>Patrzenia góra-dół</translation>
@@ -1714,11 +1704,6 @@ p, li { white-space: pre-wrap; }
         <translation>Odradzaj nieśmiertelność i niewidzialność</translation>
     </message>
     <message>
-        <location filename="../zandronumq3dmflags.cpp" line="216"/>
-        <source>Arbitrator FOV</source>
-        <translation>FOV ustalony z góry</translation>
-    </message>
-    <message>
         <location filename="../zandronumq3dmflags.cpp" line="218"/>
         <source>No multiplayer weapons in cooperative</source>
         <translation>Wyłącz bronie multiplayer w kooperacji</translation>
@@ -2450,10 +2435,6 @@ nie zawiera pliku wykonywalnego Zandronumq</translation>
     <message>
         <source>Respawn invulnerability and invisibility</source>
         <translation type="vanished">Odradzaj nieśmiertelność i niewidzialność</translation>
-    </message>
-    <message>
-        <source>Arbitrator FOV</source>
-        <translation type="vanished">FOV ustalony z góry</translation>
     </message>
     <message>
         <source>No multiplayer weapons in cooperative</source>

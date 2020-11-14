@@ -88,7 +88,6 @@ extern const QString COMPAT_FLOOR_MOVE;
 extern const QString NO_MONSTERS;
 extern const QString ITEMS_RESPAWN;
 extern const QString MEGA_POWERUPS_RESPAWN;
-extern const QString NO_USE_FOV;
 extern const QString NO_USE_FREELOOK;
 extern const QString INFINITE_AMMO;
 extern const QString DONT_SPAWN_DEATHMATCH_WEAPONS;

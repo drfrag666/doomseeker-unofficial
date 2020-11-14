@@ -191,8 +191,6 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage *flagsPage)
 			f->cbMegaPowerupsRespawn);
 
 		// Players
-		m.insert(Dmflags::DF_NO_FOV,
-			f->cbNoUseFOV);
 		m.insert(Dmflags::DF_NO_FREELOOK,
 			f->cbNoUseFreelook);
 		m.insert(Dmflags::DF_INFINITE_AMMO,

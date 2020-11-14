@@ -283,16 +283,6 @@ p, li { white-space: pre-wrap; }
         <translation>Usar autoapuntado</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="1907"/>
-        <source>Only let the arbitrator set FOV (for all players)</source>
-        <translation>Solo deje que el árbitro establezca el FOV (para todos los jugadores)</translation>
-    </message>
-    <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="1909"/>
-        <source>Use FOV</source>
-        <translation>Usar FOV</translation>
-    </message>
-    <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="1910"/>
         <source>Use freelook</source>
         <translation>Usar cámara libre</translation>
@@ -1689,11 +1679,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../zandronumq3dmflags.cpp" line="213"/>
         <source>Respawn invulnerability and invisibility</source>
         <translation>Reaparición de invulnerabilidad e invisibilidad</translation>
-    </message>
-    <message>
-        <location filename="../zandronumq3dmflags.cpp" line="215"/>
-        <source>Arbitrator FOV</source>
-        <translation>FOV preestablecido</translation>
     </message>
     <message>
         <location filename="../zandronumq3dmflags.cpp" line="217"/>

@@ -83,7 +83,6 @@ const QString COMPAT_FLOOR_MOVE = "CompatFloorMove";
 const QString NO_MONSTERS = "NoMonsters";
 const QString ITEMS_RESPAWN = "ItemsRespawn";
 const QString MEGA_POWERUPS_RESPAWN = "MegaPowerupsRespawn";
-const QString NO_USE_FOV = "NoUseFOV";
 const QString NO_USE_FREELOOK = "NoUseFreelook";
 const QString INFINITE_AMMO = "InfiniteAmmo";
 const QString DONT_SPAWN_DEATHMATCH_WEAPONS = "DontSpawnDeathmatchWeapons";
