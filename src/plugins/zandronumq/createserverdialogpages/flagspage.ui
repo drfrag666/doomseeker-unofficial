@@ -69,7 +69,7 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;If this is checked then Zandronumq may override some of the settings selected here.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;If this is checked then Q-Zandronum may override some of the settings selected here.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;(+sv_defaultdmflags)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="text">
@@ -464,7 +464,7 @@ p, li { white-space: pre-wrap; }
             <item>
              <widget class="QCheckBox" name="cbNoUseLandConsoleCommand">
               <property name="toolTip">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Players are not allowed to use the land CCMD. Because of Zandronumq's default amount of air control, flying players can get a huge speed boast with the land CCMD. Disallowing players to land, allows to keep the default air control most people are used to while not giving flying players too much of an advantage.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Players are not allowed to use the land CCMD. Because of Q-Zandronum's default amount of air control, flying players can get a huge speed boast with the land CCMD. Disallowing players to land, allows to keep the default air control most people are used to while not giving flying players too much of an advantage.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
                <string>Use 'land' console command</string>
@@ -1656,7 +1656,7 @@ p, li { white-space: pre-wrap; }
            <item>
             <widget class="QCheckBox" name="cbCompatUseVanillaAutoaimTracerBehavior">
              <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;p&gt;Zandronumq uses more tracers to fill in the gaps, this reverts it to vanilla's 3 tracer behavior&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;p&gt;Q-Zandronum uses more tracers to fill in the gaps, this reverts it to vanilla's 3 tracer behavior&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Use vanilla autoaim tracer behavior</string>
