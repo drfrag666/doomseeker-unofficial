@@ -106,6 +106,76 @@
          <string>Allow specific votes</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_7">
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="cbKickVote">
+           <property name="text">
+            <string>kick</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="cbChangeMapVote">
+           <property name="text">
+            <string>changemap</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="cbMapVote">
+           <property name="text">
+            <string>map</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="cbNextMapVote">
+           <property name="text">
+            <string>nextmap</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QCheckBox" name="cbTimeLimitVote">
+           <property name="text">
+            <string>timelimit</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QCheckBox" name="cbForceSpectatorVote">
+           <property name="text">
+            <string>force players to spectate</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QCheckBox" name="cbFragLimitVote">
+           <property name="text">
+            <string>fraglimit</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
          <item row="1" column="1">
           <widget class="QCheckBox" name="cbDuelLimitVote">
            <property name="text">
@@ -126,70 +196,10 @@
            </property>
           </widget>
          </item>
-         <item row="3" column="0">
-          <widget class="QCheckBox" name="cbTimeLimitVote">
-           <property name="text">
-            <string>timelimit</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
          <item row="3" column="1">
           <widget class="QCheckBox" name="cbWinLimitVote">
            <property name="text">
             <string>winlimit</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QCheckBox" name="cbChangeMapVote">
-           <property name="text">
-            <string>changemap</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QCheckBox" name="cbKickVote">
-           <property name="text">
-            <string>kick</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QCheckBox" name="cbMapVote">
-           <property name="text">
-            <string>map</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="cbFragLimitVote">
-           <property name="text">
-            <string>fraglimit</string>
-           </property>
-           <property name="checked">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QCheckBox" name="cbForceSpectatorVote">
-           <property name="text">
-            <string>force players to spectate</string>
            </property>
            <property name="checked">
             <bool>true</bool>

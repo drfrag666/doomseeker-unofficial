@@ -53,6 +53,7 @@ QStringList VotingSetupWidget::gameParametersList() const
 	params << "+sv_nocallvote" << QString::number(static_cast<int>(whoCanVote()));
 
 	params << "+sv_nochangemapvote" << (!cbChangeMapVote->isChecked() ? "1" : "0");
+	params << "+sv_nonextmapvote" << (!cbNextMapVote->isChecked() ? "1" : "0");
 	params << "+sv_noduellimitvote" << (!cbDuelLimitVote->isChecked() ? "1" : "0");
 	params << "+sv_nofraglimitvote" << (!cbFragLimitVote->isChecked() ? "1" : "0");
 	params << "+sv_nokickvote" << (!cbKickVote->isChecked() ? "1" : "0");
@@ -77,6 +78,7 @@ bool VotingSetupWidget::loadConfig(Ini &ini)
 
 	cbKickVote->setChecked(section.value("KickVote", true).toBool());
 	cbChangeMapVote->setChecked(section.value("ChangeMapVote", true).toBool());
+	cbNextMapVote->setChecked(section.value("NextMapVote", true).toBool());
 	cbMapVote->setChecked(section.value("MapVote", true).toBool());
 	cbTimeLimitVote->setChecked(section.value("TimeLimitVote", true).toBool());
 	cbFragLimitVote->setChecked(section.value("FragLimitVote", true).toBool());
@@ -99,7 +101,7 @@ bool VotingSetupWidget::saveConfig(Ini &ini)
 	section["VoteFloodingProtection"] = cbVoteFloodingProtectionEnabled->isChecked();
 
 	section["KickVote"] = cbKickVote->isChecked();
-	section["ChangeMapVote"] = cbChangeMapVote->isChecked();
+	section["NextMapVote"] = cbNextMapVote->isChecked();
 	section["MapVote"] = cbMapVote->isChecked();
 	section["TimeLimitVote"] = cbTimeLimitVote->isChecked();
 	section["FragLimitVote"] = cbFragLimitVote->isChecked();

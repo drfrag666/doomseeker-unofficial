@@ -1215,92 +1215,97 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>VotingSetupWidget</name>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="221"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="228"/>
         <source>Form</source>
         <translation>Formulari</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="222"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="229"/>
         <source>Use this page</source>
         <translation>Utilitzeu aquesta pàgina</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="223"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="230"/>
         <source>Who can vote</source>
         <translation>Qui pot votar</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="224"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="231"/>
         <source>All can vote</source>
         <translation>Tots poden votar</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="225"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="232"/>
         <source>No one can vote</source>
         <translation>Ningú pot votar</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="226"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="233"/>
         <source>Spectators can&apos;t vote</source>
         <translation>Els espectadors no poden votar</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="227"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="234"/>
         <source>Minimum number of players required to call a vote:</source>
         <translation>Nombre mínim de jugadors necessaris per a sol·licitar una votació:</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="228"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="235"/>
         <source>Allow specific votes</source>
         <translation>Permetre vots específics</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="229"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="243"/>
         <source>duellimit</source>
         <translation>límit de duel</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="230"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="244"/>
         <source>pointlimit</source>
         <translation>límit de punts</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="231"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="240"/>
         <source>timelimit</source>
         <translation>límit de temps</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="232"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="245"/>
         <source>winlimit</source>
         <translation>límit de victòries</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="233"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="237"/>
         <source>changemap</source>
         <translation>Canviar mapa</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="234"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="239"/>
+        <source>nextmap</source>
+        <translation>?</translation>
+    </message>
+    <message>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="236"/>
         <source>kick</source>
         <translation>expulsar</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="235"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="238"/>
         <source>map</source>
         <translation>mapa</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="236"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="242"/>
         <source>fraglimit</source>
         <translation>límit de frags</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="237"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="241"/>
         <source>force players to spectate</source>
         <translation>obligar els jugadors al mode espectador</translation>
     </message>
     <message>
-        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="238"/>
+        <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="246"/>
         <source>Vote flooding protection enabled</source>
         <translation>Protecció contra inundacions de vots habilitada</translation>
     </message>
