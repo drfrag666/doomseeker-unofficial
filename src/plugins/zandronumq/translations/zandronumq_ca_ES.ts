@@ -6,12 +6,12 @@
     <message>
         <location filename="../createserverdialogpages/flagspage.cpp" line="75"/>
         <source>Q-Zandronum</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../createserverdialogpages/flagspage.cpp" line="102"/>
         <source>Q-Zandronum 1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../createserverdialogpages/flagspage.cpp" line="104"/>
@@ -51,12 +51,12 @@
     <message>
         <location filename="../createserverdialogpages/flagspage.cpp" line="287"/>
         <source>Unknown Q-Zandronum version in the config. Reverting to default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Versió desconeguda de Q-Zandronum en la configuració. Revertint a la versió per defecte.</translation>
     </message>
     <message>
         <location filename="../createserverdialogpages/flagspage.cpp" line="314"/>
         <source>Tried to set unknown Q-Zandronum version. Reverting to default.</source>
-        <translation type="unfinished"></translation>
+        <translation>S&apos;ha intentat definir una versió desconeguda de Q-Zandronum. Revertint a la versió per defecte.</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="1847"/>
@@ -884,17 +884,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2118"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;p&gt;Q-Zandronum uses more tracers to fill in the gaps, this reverts it to vanilla&apos;s 3 tracer behavior&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;p&gt;Q-Zandronum fa servir més traçadors per omplir els buits, això ho reverteix al comportament original de 3 traçadors&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;p&gt;Q-Zandronum fa servir més traçadors per omplir els buits, això ho reverteix al comportament original de 3 traçadors&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2124"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bring back vanilla ZDoom shooting below the crosshair.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reverteix als trets de ZDoom &quot;vanilla&quot; sota la creueta.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2126"/>
         <source>Disable shooting where crosshair is</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar els trets on es troba la creueta</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2074"/>
@@ -1081,12 +1081,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2138"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Don&apos;t execute predicted ACS scripts on client side. Turning this on can fix ACS teleports or jumppads on maps that are not using ACS_ExecuteWithResult.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;No executar els scripts ACS predictius al client. Activar això pot arreglar el teletransport ACS o els punts de salt en els mapes que no usen ACS_ExecuteWithResult.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2140"/>
         <source>Don&apos;t execute prediction ACS on client</source>
-        <translation type="unfinished">?</translation>
+        <translation>No executar les prediccions d&apos;ACS en el client</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2141"/>
@@ -1282,7 +1282,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="239"/>
         <source>nextmap</source>
-        <translation>?</translation>
+        <translation>següent mapa</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="236"/>
@@ -1327,12 +1327,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronumqbroadcast.cpp" line="115"/>
         <source>Listening to Q-Zandronum&apos;s LAN servers broadcasts on port %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Escoltant les emissions de servidors LAN de Q-Zandronum al port %1.</translation>
     </message>
     <message>
         <location filename="../zandronumqbroadcast.cpp" line="121"/>
         <source>Failed to bind Q-Zandronum&apos;s LAN broadcasts listening socket on port %1. Will keep retrying silently.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error en enllaçar les emissions dels servidors LAN de Q-Zandronum al port d&apos;escolta %1. Se seguirà intentant de fons.</translation>
     </message>
 </context>
 <context>
@@ -1683,7 +1683,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="124"/>
         <source>Don&apos;t execute prediction ACS on client</source>
-        <translation>?</translation>
+        <translation>No executar prediccions d&apos;ACS en el client</translation>
     </message>
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="126"/>
@@ -1788,7 +1788,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="171"/>
         <source>Disable shooting where crosshair is</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar els tirs on es troba la creueta</translation>
     </message>
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="179"/>

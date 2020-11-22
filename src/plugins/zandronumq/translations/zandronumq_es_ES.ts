@@ -6,12 +6,12 @@
     <message>
         <location filename="../createserverdialogpages/flagspage.cpp" line="75"/>
         <source>Q-Zandronum</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../createserverdialogpages/flagspage.cpp" line="102"/>
         <source>Q-Zandronum 1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../createserverdialogpages/flagspage.cpp" line="104"/>
@@ -51,12 +51,12 @@
     <message>
         <location filename="../createserverdialogpages/flagspage.cpp" line="287"/>
         <source>Unknown Q-Zandronum version in the config. Reverting to default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Versión desconocida de Q-Zandronum en la configuración. Revirtiendo a la versión por defecto.</translation>
     </message>
     <message>
         <location filename="../createserverdialogpages/flagspage.cpp" line="314"/>
         <source>Tried to set unknown Q-Zandronum version. Reverting to default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Se ha intentado definir una versión desconocida de Q-Zandronum. Revirtiendo a la versión por defecto.</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="1847"/>
@@ -884,12 +884,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2124"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Bring back vanilla ZDoom shooting below the crosshair.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Revierte a los disparos de ZDoom &quot;vanilla&quot; bajo la cruceta.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2126"/>
         <source>Disable shooting where crosshair is</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar los disparos donde se encuentra la cruceta</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2074"/>
@@ -1081,12 +1081,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2138"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Don&apos;t execute predicted ACS scripts on client side. Turning this on can fix ACS teleports or jumppads on maps that are not using ACS_ExecuteWithResult.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;No ejecutar los scripts ACS predictivos en el cliente. Activar esto puede arreglar las teletransportaciones ACS o los puntos de salto en mapas que no usan ACS_ExecuteWithResult.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2140"/>
         <source>Don&apos;t execute prediction ACS on client</source>
-        <translation type="unfinished">No ejecutar predicciones de ACS en el cliente</translation>
+        <translation>No ejecutar predicciones de ACS en el cliente</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_flagspage.h" line="2141"/>
@@ -1282,7 +1282,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="239"/>
         <source>nextmap</source>
-        <translation>?</translation>
+        <translation>Siguiente mapa</translation>
     </message>
     <message>
         <location filename="../../../../build/src/plugins/zandronumq/ui_votingsetupwidget.h" line="236"/>
@@ -1327,12 +1327,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronumqbroadcast.cpp" line="115"/>
         <source>Listening to Q-Zandronum&apos;s LAN servers broadcasts on port %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>Escuchando las emisiones de servidores LAN de Q-Zandronum en el puerto %1.</translation>
     </message>
     <message>
         <location filename="../zandronumqbroadcast.cpp" line="121"/>
         <source>Failed to bind Q-Zandronum&apos;s LAN broadcasts listening socket on port %1. Will keep retrying silently.</source>
-        <translation type="unfinished"></translation>
+        <translation>Error al enlazar las emisiones de servidores LAN de Q-Zandronum en el puerto de escucha %1. Se seguirá intentando de fondo.</translation>
     </message>
 </context>
 <context>
@@ -1788,7 +1788,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="171"/>
         <source>Disable shooting where crosshair is</source>
-        <translation type="unfinished"></translation>
+        <translation>Desactivar el disparo donde se encuentra la cruceta</translation>
     </message>
     <message>
         <location filename="../zandronumq1dmflags.cpp" line="179"/>
