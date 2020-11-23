@@ -69,7 +69,7 @@ public:
 		}
 	};
 
-	static const int BROADCAST_LISTEN_PORT = 15101;
+	static const int BROADCAST_LISTEN_PORT = 15102;
 	static const int TERMINATE_OLD_AGE_MS = 10000;
 
 	bool bindFailureLogged;

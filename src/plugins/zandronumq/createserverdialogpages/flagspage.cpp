@@ -240,17 +240,6 @@ bool FlagsPage::saveConfig(Ini &ini)
 {
 	IniSection section = ini.section("dmflags");
 
-	// Remove obsolete settings that were created by old method of saving
-	// dmflags. That way the subsequent loads of this file will not trigger
-	// the backward-compatibility fallbacks.
-	QStringList oldSettings;
-	oldSettings << "dmflags" << "dmflags2" << "zandronumqDmflags" << "compatflags"
-		<< "zandronumqCompatflags" << "lmsallowedweapons" << "lmsspectatorsettings";
-	for (const QString &oldSetting : oldSettings)
-	{
-		section.deleteSetting(oldSetting);
-	}
-
 	FlagsId flagsId(this);
 	flagsId.save(section);
 

@@ -17,6 +17,7 @@
 # 02110-1301  USA
 #------------------------------------------------------------------------------
 # Copyright (C) 2012 "Zalewa" <zalewapl@gmail.com>
+# Copyright (C) 2020 "geNia" <geniann93@gmail.com>
 #------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 2.8.12)
 
@@ -25,7 +26,7 @@ if(POLICY CMP0071)
 endif()
 
 set(PLUGIN_NAME zandronumq)
-set(PLUGIN_VERSION 42)
+set(PLUGIN_VERSION 1)
 include(../PluginHeader.cmake)
 
 qt5_wrap_ui(ZANDRONUMQ_UI_FILES

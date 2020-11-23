@@ -58,7 +58,7 @@ ZandronumqEnginePlugin::ZandronumqEnginePlugin()
 	#include "zandronumq.xpm"
 
 	init("Q-Zandronum", zandronumq_xpm,
-		EP_Author, "The Doomseeker Team",
+		EP_Author, "geNia",
 		EP_Version, PLUGIN_VERSION,
 		EP_AboutProvider, new ZandronumqAboutProvider,
 
