@@ -178,6 +178,8 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage *flagsPage)
 			f->cbCompatWestSpawnsAreSilent);
 		m.insert(Dmflags::ZACOMPATF_DISABLE_CROSSHAIR_ACCURATE,
 			f->cbCompatDisableCrosshairAccurate);
+		m.insert(Dmflags::ZACOMPATF_DISABLE_WALL_FRICTION,
+			f->cbCompatDisableWallFriction);
 	}
 
 	// DMFlags

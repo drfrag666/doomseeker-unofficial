@@ -169,6 +169,8 @@ DMFlagsSection Dmflags::zandronumqCompatFlags()
 		tr("Force weapon switch"));
 	section << DMFlag(COMPAT_DISABLE_CROSSHAIR_ACCURATE, ZACOMPATF_DISABLE_CROSSHAIR_ACCURATE,
 		tr("Disable shooting where crosshair is"));
+	section << DMFlag(COMPAT_DISABLE_WALL_FRICTION, ZACOMPATF_DISABLE_WALL_FRICTION,
+		tr("Disable wall friction"));
 	return section;
 }
 

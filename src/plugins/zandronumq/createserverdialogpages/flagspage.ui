@@ -1794,6 +1794,13 @@ p, li { white-space: pre-wrap; }
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QCheckBox" name="cbCompatDisableWallFriction">
+             <property name="text">
+              <string>Disable wall friction</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
         </layout>
@@ -2089,6 +2096,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>cbCompatFullWeaponLower</tabstop>
   <tabstop>cbCompatWestSpawnsAreSilent</tabstop>
   <tabstop>cbCompatFloorMove</tabstop>
+  <tabstop>cbCompatDisableWallFriction</tabstop>
   <tabstop>votingPage</tabstop>
   <tabstop>leDmflags</tabstop>
   <tabstop>leDmflags2</tabstop>
@@ -4389,6 +4397,22 @@ p, li { white-space: pre-wrap; }
   </connection>
   <connection>
    <sender>cbCompatFloorMove</sender>
+   <signal>clicked()</signal>
+   <receiver>FlagsPage</receiver>
+   <slot>applyWidgetsChange()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>440</x>
+     <y>314</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>847</x>
+     <y>320</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cbCompatDisableWallFriction</sender>
    <signal>clicked()</signal>
    <receiver>FlagsPage</receiver>
    <slot>applyWidgetsChange()</slot>

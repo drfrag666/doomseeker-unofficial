@@ -85,6 +85,7 @@ extern const QString COMPAT_WEST_SPAWNS_ARE_SILENT;
 extern const QString COMPAT_MASKED_MIDTEX;
 extern const QString COMPAT_BAD_ANGLES;
 extern const QString COMPAT_DISABLE_CROSSHAIR_ACCURATE;
+extern const QString COMPAT_DISABLE_WALL_FRICTION;
 extern const QString COMPAT_FLOOR_MOVE;
 extern const QString NO_MONSTERS;
 extern const QString ITEMS_RESPAWN;
