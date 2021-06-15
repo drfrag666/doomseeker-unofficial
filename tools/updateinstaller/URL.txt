@@ -1,2 +1,0 @@
-Source code was obtained from:
-https://github.com/Mendeley/Update-Installer
