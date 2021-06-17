@@ -222,7 +222,7 @@ DoomseekerConfig::DoomseekerCfg::DoomseekerCfg()
 	this->bDrawGridInServerTable = false;
 	this->bHidePasswords = false;
 	this->bGroupServersWithPlayersAtTheTopOfTheList = true;
-	this->bIP2CountryAutoUpdate = true;
+	this->bIP2CountryAutoUpdate = false;
 	this->bLookupHosts = true;
 	this->bQueryAutoRefreshDontIfActive = true;
 	this->bQueryAutoRefreshEnabled = false;

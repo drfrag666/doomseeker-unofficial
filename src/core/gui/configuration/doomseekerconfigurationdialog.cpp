@@ -137,10 +137,10 @@ void DoomseekerConfigurationDialog::initOptionsList()
 
 	pConfigBox = new CFGServerPasswords(this);
 	addConfigurationBox(NULL, pConfigBox);
-
+/*
 	pConfigBox = new CFGIP2Country(this);
 	addConfigurationBox(NULL, pConfigBox);
-
+*/
 	pConfigBox = new CFGQuery(this);
 	addConfigurationBox(NULL, pConfigBox);
 

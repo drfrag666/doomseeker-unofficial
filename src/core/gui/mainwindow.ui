@@ -304,7 +304,9 @@
     </property>
     <addaction name="menuActionCreateServer"/>
     <addaction name="menuActionWadseeker"/>
+	<!--
     <addaction name="menuActionUpdateIP2C"/>
+	-->
     <addaction name="separator"/>
     <addaction name="menuActionManageDemos"/>
     <addaction name="menuActionRecordDemo"/>
