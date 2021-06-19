@@ -131,6 +131,8 @@ DMFlagsSection ZandronumDmflags::dmflags2()
 	section << DMFlag( tr("Players can't suicide"), DF2_NOSUICIDE);
 	section << DMFlag( tr("Players can't use autoaim"), DF2_NOAUTOAIM);
 	section << DMFlag( tr("Spawn map actors in coop as if the game was single player"), DF2_COOP_SP_ACTOR_SPAWN);
+	section << DMFlag( tr("Doubled monsters"), DF2_DOUBLESPAWN);
+	section << DMFlag( tr("No Doom2 monsters"), DF2_NO_DOOM2_MONSTERS);
 	return section;
 }
 
@@ -163,6 +165,7 @@ DMFlagsSection ZandronumDmflags1point0::dmflags3()
 	section << DMFlag(tr("No unlagged"), DF3_NOUNLAGGED);
 	section << DMFlag(tr("Noclip through other players"), DF3_UNBLOCK_PLAYERS);
 	section << DMFlag(tr("No medals"), DF3_NO_MEDALS);
+	section << DMFlag(tr("Share keys between players"), DF3_SHARE_KEYS);
 	return section;
 }
 

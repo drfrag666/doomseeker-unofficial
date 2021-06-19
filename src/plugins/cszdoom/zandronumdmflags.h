@@ -111,6 +111,8 @@ class ZandronumDmflags : public QObject
 			DF2_CHASECAM = 1 << 26, // Players can use the chasecam cheat.
 			DF2_NOSUICIDE = 1 << 27, // Players aren't allowed to suicide.
 			DF2_NOAUTOAIM = 1 << 28, // Players cannot use autoaim.
+			DF2_DOUBLESPAWN = 1 << 30, // Spawn double the monsters
+			DF2_NO_DOOM2_MONSTERS = 1 << 31, // No Doom2 monsters
 
 			// [BB] Enforces some Gl rendering options to their default values.
 			DF2_FORCE_GL_DEFAULTS = 1 << 18,
@@ -228,6 +230,9 @@ class ZandronumDmflags1point0 : public QObject
 
 			// [BB] Enforces clients not to show medals, i.e. behave as if cl_medals == 0.
 			DF3_NO_MEDALS = 1 << 5,
+
+			// [Dusk] Share keys between all players
+			DF3_SHARE_KEYS = 1 << 6,
 		};
 
 		// [BB] More compatibility flags.

@@ -255,6 +255,10 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage* flagsPage)
 		// - Monsters
 		m.insert(ZandronumDmflags::DF2_KILL_MONSTERS,
 			f->cbMonstersMustBeKilledToExit);
+		m.insert(ZandronumDmflags::DF2_DOUBLESPAWN,
+			f->cbMonstersAreDoubled);
+		m.insert(ZandronumDmflags::DF2_NO_DOOM2_MONSTERS,
+			f->cbMonstersNotFromDoom2);
 		// - Player death
 		m.insert(ZandronumDmflags::DF2_SAME_SPAWN_SPOT,
 			f->cbRespawnWhereDied);
@@ -301,6 +305,9 @@ FlagsPageValueController::FlagsPageValueController(FlagsPage* flagsPage)
 		// - Behavior
 		m.insert(ZandronumDmflags1point0::DF3_UNBLOCK_PLAYERS,
 			f->cbPlayersCanWalkThroughEachOther);
+		// Cooperative
+		m.insert(ZandronumDmflags1point0::DF3_SHARE_KEYS,
+			f->cbShareKeys);
 	}
 
 	// LMSAllowedWeapons
