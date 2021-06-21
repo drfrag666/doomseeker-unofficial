@@ -170,7 +170,7 @@
          </property>
          <property name="plainText">
           <string>Copyright © 2009 - 2014 The Doomseeker Team
-
+This version of Doomseeker has been modified.
 This program is distributed under the terms of the GPL v2.</string>
          </property>
         </widget>
@@ -217,7 +217,7 @@ This program is distributed under the terms of the GPL v2.</string>
          <item row="1" column="1">
           <widget class="QLabel" name="label_10">
            <property name="text">
-            <string>zalewapl@gmail.com</string>
+            <string>redacted</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -240,7 +240,7 @@ This program is distributed under the terms of the GPL v2.</string>
          <item row="0" column="1">
           <widget class="QLabel" name="label_12">
            <property name="text">
-            <string>admin@maniacsvault.net</string>
+            <string>redacted</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
