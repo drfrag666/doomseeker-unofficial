@@ -228,6 +228,11 @@ Server::Response ZandronumServer::readRequest(const QByteArray &data)
 	RETURN_BAD_IF_NOT_ENOUGH_DATA(1);
 	setGameVersion(in.readRawUntilByte('\0'));
 
+	QString version = gameVersion();
+	version = version.mid(0, 2);
+	if (version.toFloat() >= 2.f)  // hack hack
+		return RESPONSE_BAD;
+
 	ZandronumGameInfo::ZandronumGameMode mode = ZandronumGameInfo::GAMEMODE_COOPERATIVE;
 
 	// Flags - set of flags returned by the server. This is compared
