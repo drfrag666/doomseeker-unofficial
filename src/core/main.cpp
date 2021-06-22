@@ -68,7 +68,7 @@ Main::Main(int argc, char* argv[])
 {
 	bIsFirstRun = false;
 	bTestMode = false;
-	bPortableMode = false;
+	bPortableMode = true;
 	updateFailedCode = 0;
 
 	qRegisterMetaType<ServerPtr>("ServerPtr");
@@ -513,9 +513,9 @@ bool Main::interpretCommandLineParameters()
 			++i;
 			updateFailedCode = QString(arguments[i]).toInt();
 		}
-		else if (strcmp(arg, "--portable") == 0)
+		else if (strcmp(arg, "--noportable") == 0)
 		{
-			bPortableMode = true;
+			bPortableMode = false;
 		}
 		else if (strcmp(arg, "--tests") == 0)
 		{
