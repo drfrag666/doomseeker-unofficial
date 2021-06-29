@@ -155,7 +155,7 @@ QString ZandronumClientExeFile::pathToExe(Message& message)
 		QString path = setting;
 		if (path.isEmpty())
 		{
-			error = tr("No testing directory specified for Zandronum");
+			error = tr("No testing directory specified for csZDoom");
 			message = Message::customError(error);
 			return QString();
 		}
