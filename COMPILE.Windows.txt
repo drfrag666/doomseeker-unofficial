@@ -1,7 +1,7 @@
 ================================================================================
-Compiling Doomseeker in Microsoft Visual Studio 2008 Express with Qt 4.x
+Compiling Doomseeker in Microsoft Visual Studio 2017 Community with Qt 4.x
 Written by Zalewa, June 2012
-Last update: 4th November 2012
+Last update: 2th July 2021 (by drfrag)
 ================================================================================
 1. Quick introduction.
 
@@ -15,36 +15,34 @@ binaries for Doomseeker, Wadseeker and all plugins by yourself.
 2. Compiler.
 
 On Windows only one compiler is officially supported: the one that comes with
-Microsoft Visual Studio 2008. Forget about MinGW. MinGW is attached
+Microsoft Visual Studio 2017. Forget about MinGW. MinGW is attached
 as the default compiler to such programs as Code::Blocks or Qt Creator (AFAIK). 
 Binaries created by MinGW are larger and slower than the ones created by MSVC.
 Also the debugger that comes with MinGW is awful. Don't be deceived by the fact
 that MinGW is advertised as Windows port of GCC. 
 
 First step:
-Get Microsoft Visual Studio 2008 Express. It's free for commercial 
+Get Microsoft Visual Studio 2017 Community. It's free for commercial 
 and non-commercial use and you can use the same e-mail address multiple times
 to get multiple registration keys. The registration process is very simple and
 it's also free of any charge.
 
 Note:
-Visual Studio version is important. Not all libraries compiled in MSVC 2008
-will work in MSVC 2010 and vice-versa. Get MSVC 2008.
+Visual Studio version is important. You need to compile both Doomseeker and Qt
+with the same compiler and CRT (specifically same toolset and Windows SDK).
 ================================================================================
 3. Qt.
 
-http://qt-project.org/downloads
+https://download.qt.io/archive/qt/4.8/4.8.7/
 
 Qt download page has several links that allow to download the Qt SDK.
-You don't want to use the first link that says "Qt SDK". The link that should
-be used will say "Qt libraries 4.x.x for Windows (VS2008, >200MB)". 
+The link that should be used will say "qt-everywhere-opensource-src-4.8.7.zip". 
 
 This package contains all libraries that you need and the Qt Designer that 
 helps with creating GUI components.
 
-The "Qt SDK" URL installs trash that you don't need anyway.
-
-Refuse any prompts that will ask you if you wish to install the MinGW compiler.
+Find instructions on how to compile and install Qt 4 with VS 2017.
+You'll need the files included in the Compile-Windows folder.
 
 Once Qt is installed you may want to modify your PATH environment variable
 so that it contains path to the "bin" directory inside your Qt installation.
@@ -66,7 +64,7 @@ Launch CMake GUI.
 
 The first thing you would like to set is "Where to build the binaries". This 
 should be located somewhere outside the repository. For example:
-D:/dev/Doomseeker/visual2008
+D:/dev/Doomseeker/visual2017
 
 The second thing is "Where is the source code". Pick the top-most directory
 that contains the CMakeLists.txt file. In case of Doomseeker this is the root
@@ -76,9 +74,9 @@ D:/dev/Doomseeker/repo
 Now press "Configure" button.
 
 CMake should prompt about the type of compiler you want to use. Pick
-"Visual Studio 9 2008". Also make sure that "Use default native compilers"
+"Visual Studio 15 2017". Also make sure that "Use default native compilers"
 option is selected. Now press "Finish". If you did everything right up to this
-point then CMake should find the MSVC 2008 and Qt installations. The initial
+point then CMake should find the MSVC 2017 and Qt installations. The initial
 configuration may take some time but should finish without errors. Once done, 
 CMake will display some key-value positions in a table with a red background. 
 Red background means that these settings are new.
@@ -95,8 +93,6 @@ list should now change and you should see following items:
 First of all open "Ungrouped Entries" and uncheck "BUILD_SHARED_LIBS". This
 comes from ZLib source code and we don't need this because we already have a
 compiled version of ZLib.
-
-Next open "FORCE" group and uncheck everything.
 
 Now we need to show Visual Studio where BZip2 and ZLib libraries are located.
 When you open BZIP2 and ZLIB groups it should say that all entries were not 
