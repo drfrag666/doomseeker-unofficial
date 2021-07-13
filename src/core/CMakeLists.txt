@@ -22,11 +22,11 @@ if(COMMAND cmake_policy)
 	cmake_policy(SET CMP0005 NEW)
 endif(COMMAND cmake_policy)
 
-# Get the SVN revision
+# Update gitinfo.h
 get_target_property( UPDATEREVISION_EXE updaterevision LOCATION )
 
 add_custom_target(revision_check ALL
-	COMMAND ${UPDATEREVISION_EXE} . ${CMAKE_CURRENT_SOURCE_DIR}/svnrevision.h
+	COMMAND ${UPDATEREVISION_EXE} ${CMAKE_CURRENT_SOURCE_DIR}/gitinfo.h
 	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 	DEPENDS updaterevision
 )

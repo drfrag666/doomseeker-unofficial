@@ -1,0 +1,9 @@
+debug
+release
+Debug
+Release
+build/*
+*.orig
+*~
+*.rej
+src/core/gitinfo.h

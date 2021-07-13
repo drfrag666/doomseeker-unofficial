@@ -69,16 +69,16 @@ QStringList WadseekerVersionInfo::supportedArchiveExtensions()
 
 QString	WadseekerVersionInfo::userAgent()
 {
-	return "Wadseeker/" + WadseekerVersionInfo::version();
+	return "Wadseeker Zero/" + WadseekerVersionInfo::version();
 }
 
 QString WadseekerVersionInfo::version()
 {
-	return "0.8.1";
+	return "0.9.0";
 }
 
 QString WadseekerVersionInfo::yearSpan()
 {
-	return "2009 - 2014";
+	return "2009 - 2017";
 }
 

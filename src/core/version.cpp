@@ -25,12 +25,12 @@
 
 QString Version::changeset()
 {
-	return HG_REVISION_HASH_STRING;
+	return GIT_HASH;
 }
 
 QString Version::name()
 {
-	return "Doomseeker";
+	return "Doomseeker Zero";
 }
 
 QString Version::operatingSystem()
@@ -48,17 +48,17 @@ QString Version::operatingSystem()
 
 QString Version::revision()
 {
-	return SVN_REVISION_STRING;
+	return GIT_TIME;
 }
 
 unsigned long long Version::revisionNumber()
 {
-	return SVN_REVISION_NUMBER;
+	return 0;
 }
 
 QString Version::userAgent()
 {
-	return "Doomseeker/" + versionRevision();
+	return "Doomseeker Zero/" + versionRevision();
 }
 
 QString Version::version()
@@ -68,13 +68,14 @@ QString Version::version()
 
 QString Version::versionRevision()
 {
-	if (revision().isEmpty())
+	QString gittime = revision();
+	if (gittime[0] == '\0')
 	{
 		return version();
 	}
 	else
 	{
-		return version() + "-" + revision();
+		return GIT_DESCRIPTION;
 	}
 }
 

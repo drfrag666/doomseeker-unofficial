@@ -47,8 +47,8 @@ ZandronumEnginePlugin::ZandronumEnginePlugin()
 	#include "zdoom.xpm"
 
 	init("csZDoom", zdoom_xpm,
-		EP_Author, "The Doomseeker Team",
-		EP_Version, 15,
+		EP_Author, "The Doomseeker Team & drfrag",
+		EP_Version, 16,
 
 		EP_AllowsURL,
 		EP_AllowsEmail,
