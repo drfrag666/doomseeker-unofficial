@@ -1,0 +1,7 @@
+// Command line i used in x86 Native Tools Command Prompt for VS 2017 to compile Qt 4.8.7
+
+configure -make nmake -platform win32-msvc2017 -opensource -confirm-license -release -nomake demos -nomake examples -nomake tests -openssl -no-webkit -no-qt3support -no-multimedia -no-phonon -I C:\DEV\openssl-1.0.2u\inc32 -L C:\DEV\openssl-1.0.2u\out32dll
+
+nmake
+
+nmake install

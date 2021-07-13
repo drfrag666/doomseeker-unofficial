@@ -50,7 +50,19 @@ This will be helpful with CMake. This guide will not describe how to modify
 environment variables in Windows. If you decide to modify the PATH variable
 (you really should do that) you will need to reboot your system.
 ================================================================================
-4. CMake.
+4. OpenSSL
+
+Link:
+https://www.openssl.org/source/old/1.0.2/openssl-1.0.2u.tar.gz
+
+Doomseeker will work without OpenSSL, but it won't be able to access HTTPS sites.
+Many of the features contact HTTPS sites, therefore lack of OpenSSL will be
+crippling and may result in additional error popups.
+
+Note:
+Remember that you need to compile Qt with OpenSSL support besides OpenSSL itself.
+================================================================================
+5. CMake.
 
 CMake is a quite useful tool that helps with creation of project files and
 makefiles for various different compilers and Operating Systems. It allows
