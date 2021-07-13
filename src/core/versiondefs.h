@@ -39,13 +39,13 @@
 #include "gitinfo.h"
 
 // Info used by version.cpp
-#define VERSION_STRING "0.12.2 Beta"
+#define VERSION_STRING "0.13.0 Beta"
 
 // Info used by windows.rc
-#define FILEVERSION_DEF 0,12,2,0
-#define PRODUCTVERSION_DEF 0,12,2,0
-#define FILEVERSION_STR_DEF "0.12.2.0"
-#define PRODUCTVERSION_STR_DEF "0.12.2.0"
+#define FILEVERSION_DEF 0,13,0,0
+#define PRODUCTVERSION_DEF 0,13,0,0
+#define FILEVERSION_STR_DEF "0.13.0.0"
+#define PRODUCTVERSION_STR_DEF "0.13.0.0"
 #define LEGALCOPYRIGHT_DEF "The Doomseeker Team 2009 - 2017"
 
 #endif
